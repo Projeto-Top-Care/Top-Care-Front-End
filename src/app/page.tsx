@@ -1,13 +1,11 @@
-import InputFile from "@/components/InputFile/InputFile";
-import InputText from "@/components/InputText/InputText";
+import InputText from "@/components/InputText/InputText"
 
 export default function Home() {
   return (
-    <main>
-      <p>Olá Top Care</p>
-      <div className="w-96 h-40 border">
-        <InputText label="Ola" type="text" />
+    <main className="flex items-center justify-center mt-20">
+      <div className="w-72">
+        <InputText placeholder="Nome" id="name" type='text' />
       </div>
     </main>
-  );
+  )
 }
