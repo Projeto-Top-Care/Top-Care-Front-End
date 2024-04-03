@@ -14,13 +14,14 @@ export default function CadastroPet() {
     const [nome, setNome] = useState("");
     const [idade, setIdade] = useState("");
     return (
-        <div className="border border-black max-h-screen w-[60%] h-[40%] flex justify-center flex-col bg-branco rounded-lg">
+        <div className="border border-black max-h-screen w-[60%] h-64 flex justify-center flex-col bg-branco rounded-lg">
             <div className="flex items-center justify-center">
-                <div className="w-[65%] flex justify-end">
+                <div className="w-[33%]"></div>
+                <div className="w-[33%%] flex justify-center">
                     <h1 className="font-poppins font-bold text-center text-2xl mt-4">Cadastre seu pet!</h1>
                 </div>
-                <div className="w-[40%] flex justify-end">
-                    <img src="./assets/Sair.svg" alt="" className="w-[10%] self-end mr-2" />
+                <div className="w-[33%] flex justify-end mr-2">
+                    <img src="./assets/Sair.svg" alt="" className="w-[12%]" />
                 </div>
             </div>
             <div className="flex flex-row items-center justify-between w-[80%] m-auto">
@@ -37,7 +38,7 @@ export default function CadastroPet() {
                 </div>
             </div>
             <div className="w-full flex justify-center mb-4">
-                <BotaoPequeno texto="Cadastrar" />
+                <BotaoPequeno title="Cadastrar" />
             </div>
         </div>
     )

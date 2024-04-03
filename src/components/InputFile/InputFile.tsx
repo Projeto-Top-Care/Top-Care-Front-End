@@ -35,7 +35,7 @@ const Input = ({ dropzone }: any) => {
     const { getRootProps, getInputProps, isDragActive } = dropzone;
     return (
         <div {...getRootProps()} className={`border border-black rounded-full h-full w-full bg-branco flex justify-center items-center ${isDragActive ? 'border-primaria' : 'border-black'}`}>
-            <img src="./assets/imagem-galeria.svg" alt="" className="w-[40%]"/>
+            <img src="./assets/galeria.svg" alt="" className="w-[40%]"/>
             <input {...getInputProps()} className="hidden" />
         </div>
     )
