@@ -1,3 +1,4 @@
+import CardProduto from "@/components/CardProduto/page";
 import Lojas from "@/components/Lojas/page";
 
 export default function Home() {
