@@ -1,14 +1,16 @@
+'use client'
 import { useCallback } from "react";
 import { useState } from "react"
 import { useDropzone } from "react-dropzone";
 
 export default function InputFile() {
-    const [file, setFile] = useState();
+    const [file, setFile] = useState("");
 
     const onDrop = useCallback((files: any) => {
         const filePego = files[0];
 
-        const reader = new FileReader();
+
+        const reader: any = new FileReader();
         reader.onload = () => {
             setFile(reader.result);
         };

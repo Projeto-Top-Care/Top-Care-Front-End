@@ -1,15 +1,9 @@
-import Footer from "@/components/Footer/page";
-import HeaderLogado from "@/components/HeaderLogado/page";
-import TituloLinha from "@/components/TituloLinha/page";
-
+import Lojas from "@/components/Lojas/page";
 
 export default function Home() {
   return (
-    <div>
-      <p>Olá Top Care</p>
-      <HeaderLogado/>
-      <TituloLinha titulo="Promoções"/>
-      <Footer/>
-    </div>
+    <main className="flex flex-col items-center justify-center mt-10">
+      <Lojas src="./assets/Lojas.png" cidade="Balneário Camboriu - SC" rua="Rua Dom Henrique, 424"/>
+    </main>
   )
 }
