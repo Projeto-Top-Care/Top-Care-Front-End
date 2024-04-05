@@ -1,5 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBagShopping, } from '@fortawesome/free-solid-svg-icons'
+import { FaRegHeart } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
+import { FiShoppingBag } from "react-icons/fi";
 
 export default function HeaderLogado() {
     return(
@@ -19,7 +20,9 @@ export default function HeaderLogado() {
 
 
         <div className='flex flex-row gap-6 w-[25%] justify-end'>
-            <FontAwesomeIcon icon={faBagShopping} size="sm" style={{color: "#322828",}}  className="w-6"/>  
+            <FiShoppingBag style={{ color: "#322828",}} />
+            <FaRegHeart style={{color: "#32282"}} />
+            <FaUserCircle style={{color: "#32282"}} />
         </div>
     </div>
     )

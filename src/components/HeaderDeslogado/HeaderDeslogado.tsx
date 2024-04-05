@@ -16,8 +16,12 @@ export default function HeaderDeslogado() {
 
 
         <div className='flex flex-row gap-6 items-center w-[25%] justify-end'>
-            <button className='bg-terciaria rounded-lg w-[112px] py-[5px] px-2'>Login</button>
-            <button className='bg-terciaria rounded-lg w-[112px] py-[5px] px-2'>Cadastro</button>   
+            <button className='bg-terciaria rounded-lg w-[112px] py-[5px] px-2 transition ease-in-out delay-150 duration-200 hover:bg-[#c4d5f3]'>
+                Login
+            </button>
+            <button className='bg-terciaria rounded-lg w-[112px] py-[5px] px-2 transition ease-in-out delay-150 duration-200 hover:bg-[#c4d5f3]'>
+                Cadastro
+            </button>   
         </div>
     </div>
     )

@@ -1,8 +1,12 @@
+import HeaderDeslogado from "@/components/HeaderDeslogado/HeaderDeslogado";
+import HeaderLogado from "@/components/HeaderLogado/HeaderLogado";
 import CadastroPet from "@/components/Pop-up/CadastroPet/CadastroPet";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center mt-10">
+    <main className="">
+      <HeaderLogado/>
+      <HeaderDeslogado/>
       <CadastroPet />
     </main>
   )
