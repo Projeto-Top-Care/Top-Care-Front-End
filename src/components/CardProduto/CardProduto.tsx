@@ -39,8 +39,7 @@ const CardProduto = ({nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDo
                 </div>
 
                 <div onClick={() => setFavorito(!favorito)}>
-                    <button onClick={() => setFavorito(!favorito)} className="transition duration-100 active:scale-75
-                        ">
+                    <button onClick={() => setFavorito(!favorito)} className="transition duration-100 active:scale-75">
                         {iconeFavorito()}
                     </button>
                 </div>
