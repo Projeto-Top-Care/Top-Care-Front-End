@@ -8,9 +8,14 @@ import { useEffect, useState } from 'react'
 
 type cardprodutotype = {
     nomeProduto: string
+    notaDeAvaliacao: number
+    imagemProduto: string
+    precoAntigoDoProduto: number
+    desconto: string
+    precoNovo: number
 }
 
-const CardProduto = ({nomeProduto}: cardprodutotype) => {
+const CardProduto = ({nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo}: cardprodutotype) => {
 
     const [favorito, setFavorito] = useState<boolean>(false);
 
@@ -30,7 +35,7 @@ const CardProduto = ({nomeProduto}: cardprodutotype) => {
             <div className='flex flex-row justify-between items-center'>
                 <div className='flex flex-row gap-[0.2rem] items-center justify-center'>
                     <AiFillStar style={{ color: "#FFD601", }} className="w-5"/>
-                    <p className='text-xs font-medium text-cinza-escuro'>4,2</p>
+                    <p className='text-xs font-medium text-cinza-escuro'>{notaDeAvaliacao}</p>
                 </div>
 
                 <div onClick={() => setFavorito(!favorito)}>
@@ -44,9 +49,10 @@ const CardProduto = ({nomeProduto}: cardprodutotype) => {
 
             <div className='flex flex-col items-center'>
                 <h4 className='text-base font-medium text-preto text-center'>{nomeProduto}</h4>
-                <img src='assets/racao.png' />
-                <h5 className='text-xs font-medium text-cinza-escuro'><span className='line-through'>R$170,00 </span><span className='text-[11px]'>-16%</span></h5>
-                <h5 className='font-semibold text-preto'>R$142,80</h5>
+                <img src={imagemProduto} />
+                {/* <img src='assets/racao.png' /> */}
+                <h5 className='text-xs font-medium text-cinza-escuro'><span className='line-through'>R${precoAntigoDoProduto} </span><span className='text-[11px]'>{desconto}</span></h5>
+                <h5 className='font-semibold text-preto'>R${precoNovo}</h5>
             </div>
 
             <div className='flex flex-row gap-1 justify-between'>
