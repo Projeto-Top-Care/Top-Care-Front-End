@@ -2,7 +2,7 @@
 import InputFile from "../../InputFile/InputFile"
 import Select from "../../Select/Select"
 import InputText from "../../InputText/InputText";
-import BotaoPequeno from "../../BotaoPequeno";
+import BotaoMedio from "../../BotaoMedio/BotaoMedio";
 import { useState } from "react";
 
 const animais = ["Cachorro", "Gato", "Coelho", "Pássaro", "Hamster", "Peixe", "Tartaruga"]
@@ -38,7 +38,7 @@ export default function CadastroPet() {
                 </div>
             </div>
             <div className="w-full flex justify-center mb-4">
-                <BotaoPequeno title="Cadastrar" />
+                <BotaoMedio title="Cadastrar" />
             </div>
         </div>
     )
