@@ -6,6 +6,7 @@ import { AiOutlineStar } from "react-icons/ai";
 import { LuPencil } from "react-icons/lu";
 
 import { useState, useEffect } from 'react'
+import React from "react";
 
 type avaliacaotype = {
     nomeUsuario: string

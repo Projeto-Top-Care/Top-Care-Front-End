@@ -1,3 +1,5 @@
+import React from "react"
+
 type pettype = {
     fotoPet: string
     nomePet: string

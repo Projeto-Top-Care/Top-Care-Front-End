@@ -5,6 +5,7 @@ import { FiShoppingBag } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
 
 import { useEffect, useState } from 'react'
+import React from "react";
 
 type cardprodutotype = {
     nomeProduto: string
