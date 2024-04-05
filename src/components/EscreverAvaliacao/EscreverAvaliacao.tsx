@@ -42,7 +42,6 @@ const EscreverAvaliacao = ({nomeUsuario, avaliacaoUsuario, fotoUsuario}: avaliac
                 
                 {!avaliado && (
                     <div className='flex flex-col items-center p-3'>
-
                         <div>
                             <p className='pl-2 py-3 font-regular text-xs text-cinza-escuro'>
                                 Deixe sua avaliação aqui também!
