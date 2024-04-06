@@ -7,7 +7,7 @@ export const generateDate = (month = dayjs().month(), year = dayjs().year()) =>{
     let arrayDays = [];
 
     //dias antes que aparecem no calendario
-    for(let i = 0; i<firstDayofMonth.day(); i++){
+    for(let i = 0; i < firstDayofMonth.day(); i++){
         arrayDays.push({currentMonth: false , date: firstDayofMonth.date(i)})
     }
 

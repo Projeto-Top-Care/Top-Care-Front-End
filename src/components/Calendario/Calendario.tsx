@@ -1,17 +1,27 @@
 'use client'
-import dayjs from 'dayjs';
-import React, { useState } from 'react'
+import dayjs, { Dayjs } from 'dayjs';
+import React, { useEffect, useState } from 'react'
 import { generateDate, months } from './generateDate'
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import CardLegenda from './CardLegenda';
 
-function Calendario() {
+interface ICalendario{
+    dataParms: React.Dispatch<React.SetStateAction<string | Dayjs | undefined>>,
+}
+
+function Calendario({dataParms}: ICalendario) {
     const days = ["D", "S", "T", "Q", "Q", "S", "S"];
     const currentDate = dayjs()
     const [today, setToday] = useState(currentDate)
+    const [data, setData] = useState<Dayjs | string>();
+    
+    useEffect(() => {
+        dataParms(data);
+    }, [data])
+    
 
     return (
-        <div className='w-[35%] border rounded-lg select-none flex flex-col items-center'>
+        <div className='w-full border rounded-lg select-none flex flex-col items-center'>
             <div className='w-full flex justify-between px-3 mt-2'>
                 <h1 className='font-poppins text-2xl'>{months[today.month()]} de {today.year()}</h1>
                 <div className='flex gap-5'>
@@ -32,7 +42,10 @@ function Calendario() {
                 <div className='grid grid-cols-7 gap-4'>
                     {generateDate(today.month(), today.year()).map(({ date, currentMonth, today }, index) => {
                         return (
-                            <div key={index} className={`h-10 w-10 flex items-center justify-center ${today? 'bg-secundaria': currentMonth ? "bg-terciaria" : 'text-slate-300'} cursor-pointer`}>
+                            <div onClick={()=>{
+                                setData(date.toDate().toDateString() == currentDate.toDate().toDateString() || date > currentDate ?  date : "Indisponível" )
+                            }} 
+                            key={index} className={`h-10 w-10 flex items-center justify-center ${today? 'bg-secundaria': currentMonth ? "bg-terciaria" : 'text-slate-300'} cursor-pointer`}>
                                 <h1 className={`font-poppins`}>{date.date()}</h1>
                             </div>
                         )
