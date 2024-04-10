@@ -25,6 +25,15 @@ function Calendario({dataParms, openParms}: ICalendario) {
         openParms(open)
     }, [open])
     
+    const setarData = (date: Dayjs) =>{
+        if(date.toDate().toDateString() == currentDate.toDate().toDateString() || date > currentDate){
+            setData(date)
+            setOpen(false)
+        }else{
+            setData("")
+            setOpen(true)
+        }
+    }
 
     return (
         <div className='w-[30rem] border rounded-lg select-none flex flex-col items-center bg-branco'>
@@ -48,16 +57,8 @@ function Calendario({dataParms, openParms}: ICalendario) {
                 <div className='grid grid-cols-7 gap-4'>
                     {generateDate(today.month(), today.year()).map(({ date, currentMonth, today }, index) => {
                         return (
-                            <div onClick={()=>{
-                                if(date.toDate().toDateString() == currentDate.toDate().toDateString() || date > currentDate){
-                                setData(date)
-                                setOpen(false)
-                            }else{
-                                setData("")
-                                setOpen(true)
-                            }
-                            }} 
-                            key={index} className={`h-10 w-10 flex items-center justify-center ${today? 'bg-secundaria': currentMonth ? "bg-terciaria" : 'text-slate-300'} cursor-pointer`}>
+                            <div onClick={()=>setarData(date)} 
+                            key={index} className={`h-10 w-10 flex items-center justify-center ${today ? 'bg-secundaria': date > currentDate ? (currentMonth ? "bg-terciaria" :'text-slate-300'): 'text-slate-300'} cursor-pointer hover:bg-secundaria `}>
                                 <h1 className={`font-poppins`}>{date.date()}</h1>
                             </div>
                         )
