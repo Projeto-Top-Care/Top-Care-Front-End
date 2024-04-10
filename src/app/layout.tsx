@@ -1,3 +1,4 @@
+import HeaderDeslogado from "@/components/HeaderDeslogado/HeaderDeslogado";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -13,9 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <script async src="node_modules/@material-tailwind/html/scripts/ripple.js"></script>
-      <script async src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
-      <body className="">{children}</body>
+      <body className="">
+        <HeaderDeslogado />
+        {children}
+      </body>
     </html>
   );
 }
