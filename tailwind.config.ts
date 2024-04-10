@@ -15,6 +15,7 @@ const config: Config = {
         'branco': '#F5F5F5',
         'cinza': '#BDBDBD',
         'cinza-escuro': '#4F4F4F',
+        'fundo-modal': 'rgba(0, 0, 0, 0.3)'
       },
       fontFamily: {
         'poppins': ['Poppins'],

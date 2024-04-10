@@ -6,22 +6,28 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import CardLegenda from './CardLegenda';
 
 interface ICalendario{
-    dataParms: React.Dispatch<React.SetStateAction<string | Dayjs | undefined>>,
+    dataParms: React.Dispatch<React.SetStateAction<Dayjs | string | undefined>>,
+    openParms: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function Calendario({dataParms}: ICalendario) {
+function Calendario({dataParms, openParms}: ICalendario) {
     const days = ["D", "S", "T", "Q", "Q", "S", "S"];
     const currentDate = dayjs()
     const [today, setToday] = useState(currentDate)
     const [data, setData] = useState<Dayjs | string>();
+    const [open, setOpen] = useState<boolean>(true)
     
     useEffect(() => {
         dataParms(data);
     }, [data])
+
+    useEffect(() => {
+        openParms(open)
+    }, [open])
     
 
     return (
-        <div className='w-full border rounded-lg select-none flex flex-col items-center'>
+        <div className='w-[30rem] border rounded-lg select-none flex flex-col items-center bg-branco'>
             <div className='w-full flex justify-between px-3 mt-2'>
                 <h1 className='font-poppins text-2xl'>{months[today.month()]} de {today.year()}</h1>
                 <div className='flex gap-5'>
@@ -43,7 +49,13 @@ function Calendario({dataParms}: ICalendario) {
                     {generateDate(today.month(), today.year()).map(({ date, currentMonth, today }, index) => {
                         return (
                             <div onClick={()=>{
-                                setData(date.toDate().toDateString() == currentDate.toDate().toDateString() || date > currentDate ?  date : "Indisponível" )
+                                if(date.toDate().toDateString() == currentDate.toDate().toDateString() || date > currentDate){
+                                setData(date)
+                                setOpen(false)
+                            }else{
+                                setData("")
+                                setOpen(true)
+                            }
                             }} 
                             key={index} className={`h-10 w-10 flex items-center justify-center ${today? 'bg-secundaria': currentMonth ? "bg-terciaria" : 'text-slate-300'} cursor-pointer`}>
                                 <h1 className={`font-poppins`}>{date.date()}</h1>
