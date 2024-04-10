@@ -1,0 +1,22 @@
+.embla {
+  margin: auto;
+  --slide-height: 19rem;
+  --slide-spacing: 1rem;
+  --slide-size: 100%;
+  --slide-spacing-sm: 1.6rem;
+  --slide-size-sm: 50%;
+  --slide-spacing-lg: 2rem;
+  --slide-size-lg: 25%  ;
+}
+.embla__viewport {
+  overflow: hidden;
+}
+.embla__container {
+  backface-visibility: hidden;
+  touch-action: pan-y;
+}
+.embla__slide__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
