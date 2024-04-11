@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer/Footer";
 import HeaderDeslogado from "@/components/HeaderDeslogado/HeaderDeslogado";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body className="">
         <HeaderDeslogado />
         {children}
+        <Footer />
       </body>
     </html>
   );

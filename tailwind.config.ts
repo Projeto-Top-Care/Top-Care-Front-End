@@ -19,7 +19,7 @@ const config: Config = {
       },
       fontFamily: {
         'poppins': ['Poppins'],
-        'averia': ['Averia-Sans-Libre', 'sans-serif'],
+        'averia': ['"Averia Sans Libre"', 'sans-serif'],
       },
     },
   },

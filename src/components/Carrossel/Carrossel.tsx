@@ -3,6 +3,7 @@ import React from 'react'
 import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import './css/embla.css'
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 
 type PropType = {
   slides: string[]
@@ -26,8 +27,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           ))}
         </div>
       </div>
-      <button className='mr-5 absolute left-12 bg-branco font-poppins border border-black w-10 h-10 rounded-full' onClick={() => emblaApi?.scrollPrev()}>{'<-'}</button>
-      <button className='ml-5 absolute right-12 bg-branco font-poppins border border-black w-10 h-10 rounded-full' onClick={() => emblaApi?.scrollNext()}>{'->'}</button>
+      <button className='mr-5 absolute left-12 bg-branco font-poppins border border-black w-10 h-10 rounded-full flex items-center justify-center' onClick={() => emblaApi?.scrollPrev()}><FaChevronLeft /></button>
+      <button className='ml-5 absolute right-12 bg-branco font-poppins border border-black w-10 h-10 rounded-full flex items-center justify-center' onClick={() => emblaApi?.scrollNext()}><FaChevronRight /></button>
     </section>
   )
 }
