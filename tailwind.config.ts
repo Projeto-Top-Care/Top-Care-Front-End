@@ -13,6 +13,7 @@ const config: Config = {
         'terciaria': '#DFEAFF',
         'preto': '#322828',
         'branco': '#F5F5F5',
+        'cinza-claro':'#E8E8E8',
         'cinza': '#BDBDBD',
         'cinza-escuro': '#4F4F4F',
         'fundo-modal': 'rgba(0, 0, 0, 0.3)'
