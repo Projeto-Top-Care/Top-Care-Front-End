@@ -1,10 +1,10 @@
-import Endereco from "@/components/Endereço/Endereco";
+import FotoProduto from "@/components/FotoProduto/FotoProduto";
 
 export default function Home() {
  
   return (
     <main className="flex flex-col items-center justify-center mt-10">
-      <Endereco/>
+      <FotoProduto/>
     </main>
   )
 }
