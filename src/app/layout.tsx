@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="">
+      <body className="bg-branco">
         <HeaderDeslogado />
         {children}
         <Footer />

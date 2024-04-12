@@ -1,9 +1,12 @@
-import { ButtonHTMLAttributes } from "react";
+interface IBotaoGrande{
+    title: string,
+    background: string,
+}
 
-const BotaoGrande = (props : ButtonHTMLAttributes<HTMLButtonElement>) => {
+const BotaoGrande = ({title, background} : IBotaoGrande) => {
     return(
-        <button {...props} className="w-full h-8 px-2 text-preto font-poppins text-base font-regular bg-terciaria rounded-lg hover:bg-blue-200 transition duration-500">
-            {props?.title}
+        <button className={`w-full h-8 px-2 text-preto font-poppins text-base font-regular ${background} rounded-lg hover:bg-blue-200 transition duration-500`}>
+            {title}
         </button>
     )
 } 

@@ -1,4 +1,8 @@
+'use client'
+import { useRouter } from "next/navigation"
+
 export default function HeaderDeslogado() {
+    const {push} = useRouter();
     return (
         <div className="bg-primaria px-20 py-3 flex flex-row font-poppins justify-between items-center text-preto">
         <div className='w-[25%]'>
@@ -16,10 +20,10 @@ export default function HeaderDeslogado() {
 
 
         <div className='flex flex-row gap-6 items-center w-[25%] justify-end'>
-            <button className='bg-terciaria rounded-lg w-[112px] py-[5px] px-2 transition ease-in-out delay-150 duration-200 hover:bg-[#c4d5f3]'>
+            <button className='bg-terciaria rounded-lg w-[112px] py-[5px] px-2 transition ease-in-out delay-150 duration-200 hover:bg-[#c4d5f3]' onClick={()=>push('login')}>
                 Login
             </button>
-            <button className='bg-terciaria rounded-lg w-[112px] py-[5px] px-2 transition ease-in-out delay-150 duration-200 hover:bg-[#c4d5f3]'>
+            <button className='bg-terciaria rounded-lg w-[112px] py-[5px] px-2 transition ease-in-out delay-150 duration-200 hover:bg-[#c4d5f3]' onClick={()=>push('cadastro')}>
                 Cadastro
             </button>   
         </div>
