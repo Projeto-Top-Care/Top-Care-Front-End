@@ -14,7 +14,7 @@ const Lojas = ({src, cidade, estado, endereco, contato, funcionamentoDias, funci
     return (
         <div className="font-poppins flex flex-col items-center lg:w-[22%] md:w-[28%] w-[39%] ">
             <img className=" rounded-t-lg" src={src} />
-            <div className="flex justify-center border border-preto rounded-b-lg">
+            <div className="flex justify-center border border-preto border-t-0 rounded-b-lg">
                 <div className="mt-[5%] ">
                     <LuMapPin size={25} color="#B5A6F3"/>
                 </div>
