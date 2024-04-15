@@ -1,9 +1,7 @@
-import { FaInstagram } from "react-icons/fa6";
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
+import { FaFacebookSquare, FaInstagram, FaYoutube } from "react-icons/fa";
 
-const Footer = () => {
+const FooterApresentacao = () => {
     return (
         <div className="bg-secundaria font-poppins font-light">
             <div className="px-[70px] py-[30px] flex flex-row justify-between items-start text-lg">
@@ -32,11 +30,6 @@ const Footer = () => {
                         <BsTwitterX style={ { color: "#322828", fontSize: "1.4rem" }}/>
                     </div>
                 </div>
-
-                <div className="flex flex-col gap-2">
-                    <h5 className="text-base">Métodos de pagamento</h5>
-                    <img className="w-[190px]" src="assets/footer-pagamento.png" />
-                </div>
             </div>
 
             <div className="flex flex-row justify-between text-cinza-escuro py-2 px-4 text-[10px] border-t border-cinza-escuro">
@@ -47,4 +40,4 @@ const Footer = () => {
         </div>
     )
 }
-export default Footer;
+export default FooterApresentacao;
