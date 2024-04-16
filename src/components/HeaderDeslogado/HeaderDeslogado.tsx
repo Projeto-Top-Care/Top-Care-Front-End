@@ -9,6 +9,15 @@ export default function HeaderDeslogado() {
             <img className="md:w-[64px] w-[40px]" src="assets/logo.png"/>
         </div>
 
+        <div className="flex flex-row  w-[50%] justify-between">
+            <a className="hover:underline text-sm" href="#">Produtos</a>
+            <a className="hover:underline text-sm" href="#">Serviços</a>
+            <a className="hover:underline text-sm" href="./lojas">Lojas</a>
+            <a className="hover:underline text-sm" href="#">Pets</a>
+            <a className="hover:underline text-sm" href="#">Planos</a>
+            <a className="hover:underline text-sm" href="#">Ajuda</a>
+        </div>
+
         <div className="flex flex-row justify-between md:gap-12 gap-2">
             <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Produtos</a>
             <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Serviços</a>
