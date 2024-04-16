@@ -4,8 +4,8 @@ type titulotype = {
 
 const TituloLinha = ({titulo}: titulotype) => {
     return (
-        <div className="mx-14 p-6">
-            <p className="font-averia text-2xl font-bold text-pretok">{titulo}</p>
+        <div className="md:mx-14 md:p-6 mx-4 p-2">
+            <p className="font-averia md:text-2xl text-xl font-bold text-preto">{titulo}</p>
             <div className="border-t border-preto mt-3 px-30"></div>
         </div>
     )
