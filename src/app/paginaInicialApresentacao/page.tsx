@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function PaginaInicialApresentacao() {
     return (
-        <main className='bg-branco w-screen'>
+        <main className='bg-branco w-full'>
             <section>
                 <TituloLinha titulo='Novidades' />
             </section>
@@ -25,35 +25,35 @@ export default function PaginaInicialApresentacao() {
             <section className='flex justify-center w-full pb-20 md:mx-14 p-6'>
                 <div className='p-4 grid md:grid-cols-2 grid-cols-1 gap-2 gap-x-8 bg-terciaria rounded-xl'>
                     <div>
-                        <h3 className='font-averia md:text-xl text-[1.35rem] font-bold text-preto'>Banhos</h3>
+                        <h3 className='font-averia md:text-xl text-[1.2rem] font-bold text-preto'>Banhos</h3>
                         <p className='font-poppins text-sm text-preto'>Banhos que garantem aquele cheirinho bom no seu pet.</p>
                     </div>
                     <div>
-                        <h3 className='font-averia md:text-xl text-[1.35rem] font-bold text-preto'>Consultas</h3>
+                        <h3 className='font-averia md:text-xl text-[1.2rem] font-bold text-preto'>Consultas</h3>
                         <p className='font-poppins text-sm text-preto'>Os melhores profissionais pronto para te atender da melhor maneira.</p>
                     </div>
                     <div>
-                        <h3 className='font-averia md:text-xl text-[1.35rem] font-bold text-preto'>Passeios</h3>
+                        <h3 className='font-averia md:text-xl text-[1.2rem] font-bold text-preto'>Passeios</h3>
                         <p className='font-poppins text-sm text-preto'>Se sua semana foi cansativa, mas seu pet ainda tem energia, deixa que a gente passeia!</p>
                     </div>
                     <div>
-                        <h3 className='font-averia md:text-xl text-[1.35rem] font-bold text-preto'>Vacinas</h3>
+                        <h3 className='font-averia md:text-xl text-[1.2rem] font-bold text-preto'>Vacinas</h3>
                         <p className='font-poppins text-sm text-preto'>A gente sabe que não dá pra deixar de fora, então deixa conosco!</p>
                     </div>
                     <div>
-                        <h3 className='font-averia md:text-xl text-[1.35rem] font-bold text-preto'>Tosa</h3>
+                        <h3 className='font-averia md:text-xl text-[1.2rem] font-bold text-preto'>Tosa</h3>
                         <p className='font-poppins text-sm text-preto'>Aquela aparada especial que dá o “tcham” no pelo!</p>
                     </div>
                     <div>
-                        <h3 className='font-averia md:text-xl text-[1.35rem] font-bold text-preto'>Hospedagem</h3>
+                        <h3 className='font-averia md:text-xl text-[1.2rem] font-bold text-preto'>Hospedagem</h3>
                         <p className='font-poppins text-sm text-preto'>Vai viajar? Nós cuidamos do seu pet para você aproveitar o passeio!</p>
                     </div>
                     <div>
-                        <h3 className='font-averia md:text-xl text-[1.35rem] font-bold text-preto'>Adestramento</h3>
+                        <h3 className='font-averia md:text-xl text-[1.2rem] font-bold text-preto'>Adestramento</h3>
                         <p className='font-poppins text-sm text-preto'>Técnicas modernas e eficientes para tornar seu bichino educado.</p>
                     </div>
                     <div>
-                        <h3 className='font-averia md:text-xl text-[1.35rem] font-bold text-preto'>Exames</h3>
+                        <h3 className='font-averia md:text-xl text-[1.2rem] font-bold text-preto'>Exames</h3>
                         <p className='font-poppins text-sm text-preto'>Não esqueça de ver a saúde do seu pet. Agende um horário para exames.</p>
                     </div>
                 </div>
