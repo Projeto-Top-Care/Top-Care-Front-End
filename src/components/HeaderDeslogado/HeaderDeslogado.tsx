@@ -12,7 +12,7 @@ export default function HeaderDeslogado() {
         <div className="flex flex-row  w-[50%] justify-between">
             <a className="hover:underline text-sm" href="#">Produtos</a>
             <a className="hover:underline text-sm" href="#">Serviços</a>
-            <a className="hover:underline text-sm" href="#">Lojas</a>
+            <a className="hover:underline text-sm" href="./lojas">Lojas</a>
             <a className="hover:underline text-sm" href="#">Pets</a>
             <a className="hover:underline text-sm" href="#">Planos</a>
             <a className="hover:underline text-sm" href="#">Ajuda</a>
