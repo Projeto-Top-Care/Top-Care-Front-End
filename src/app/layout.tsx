@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer/Footer";
+import FooterApresentacao from "@/components/FooterApresentacao/footerApresentacao";
 import HeaderDeslogado from "@/components/HeaderDeslogado/HeaderDeslogado";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -18,7 +19,7 @@ export default function RootLayout({
       <body className="bg-branco">
         <HeaderDeslogado />
         {children}
-        <Footer />
+        <FooterApresentacao />
       </body>
     </html>
   );
