@@ -7,7 +7,7 @@ export default function HeaderApresentacao() {
                 <img className="md:w-[64px] w-[40px] transition duration-200" src="assets/logo.png"/>
             </div>
 
-            <div className="flex flex-row md:gap-24 gap-4 justify-center w-full">
+            <div className="flex flex-row md:gap-24 gap-4 justify-center w-full font-poppins">
                 <a className="hover:underline md:text-sm text-xs" href="#">Contato</a>
                 <a className="hover:underline md:text-sm text-xs" href="#">Lojas</a>
             </div>
