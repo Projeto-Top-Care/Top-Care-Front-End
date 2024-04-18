@@ -28,15 +28,6 @@ export default function HeaderDeslogado() {
         setNavStyle("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-0 overflow-x-hidden animation duration-300")
     }
 
-    // function openNav() {
-    //     document.getElementById("mySidenav").style.width = "250px";
-    //   }
-      
-      
-    //   function closeNav() {
-    //     document.getElementById("mySidenav").style.width = "0";
-    //   }
-
     return (
         <div>
             <div className="bg-primaria md:px-20 px-10 md:py-3 py-2 flex flex-row-reverse md:flex-row font-poppins justify-between items-center text-preto">
