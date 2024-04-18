@@ -28,7 +28,8 @@ export default function sobreNos() {
                                 amorosos cuidados começou a ganhar forma para se tornar a Top Care de hoje.</p>
                         </div>
                         <div className="w-[85%] md:mx-14 md:p-6 mx-4 p-2">
-                            <p className=" font-poppins text-justify">A ideia inicial era simples, mas carregada de propósito: proporcionar aos tutores de animais
+                            <p className=" font-poppins text-justify">A ideia inicial era simples,
+                             mas carregada de propósito: proporcionar aos tutores de animais
                                 um pet shop confiável e, acima de tudo, centrado no bem-estar de seus bichinhos. </p>
                         </div>
                         <div className="w-[85%] md:mx-14 md:p-6 mx-4 p-2">
