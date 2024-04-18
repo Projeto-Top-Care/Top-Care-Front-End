@@ -31,15 +31,15 @@ export default function HeaderLogado() {
     return(
         <div>
             <div className="bg-primaria md:px-20 px-10 md:py-3 py-2 flex flex-row-reverse md:flex-row font-poppins justify-between items-center text-preto">
-                <div className=''>
-                        <img className="md:w-[64px] w-[40px]" src="assets/logo.png"/>
+                <div className='px-3'>
+                        <img className="md:w-[70px] w-[40px]" src="assets/logo.png"/>
                 </div>
 
                 <div className="md:flex w-2/3 px-4 hidden">
                     <BarraPesquisa placeholder="O que você precisa hoje?" />
                 </div>
                 
-                <div className='md:flex hidden flex-row gap-6 items-center justify-end'>
+                <div className='md:flex hidden flex-row gap-4 items-center justify-end'>
                     <button><FiShoppingBag size={'1.2rem'} style={{ color: "#322828"}} /></button>
                     <button><FaRegHeart size={'1.3rem'} style={{color: "#32282"}} /></button>
                     <button><FaUserCircle size={'1.8rem'} style={{color: "#32282"}} /></button>

@@ -19,7 +19,6 @@ export default function HeaderLogado() {
             <a className="hover:underline md:text-sm texts-xs" href="#">Ajuda</a>
         </div>
 
-
         <div className='flex flex-row gap-6 w-[25%] justify-end'>
             <FiShoppingBag style={{ color: "#322828",}} />
             <FaRegHeart style={{color: "#32282"}} />

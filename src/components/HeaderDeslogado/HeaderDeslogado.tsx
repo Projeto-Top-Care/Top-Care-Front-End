@@ -30,8 +30,8 @@ export default function HeaderDeslogado() {
     return (
         <div>
             <div className="bg-primaria md:px-20 px-10 md:py-3 py-2 flex flex-row-reverse md:flex-row font-poppins justify-between items-center text-preto">
-                <div className=''>
-                    <img className="md:w-[64px] w-[40px]" src="assets/logo.png"/>
+                <div className='px-6'>
+                    <img className="md:w-[64px] w-[40px] " src="assets/logo.png"/>
                 </div>
 
                 <div className="md:flex w-2/3 px-4 hidden">
