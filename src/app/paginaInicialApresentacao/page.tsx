@@ -4,6 +4,7 @@ import React from 'react'
 export default function PaginaInicialApresentacao() {
     return (
         <main className='bg-branco w-full'>
+            
             <section>
                 <TituloLinha titulo='Novidades' />
             </section>
@@ -13,7 +14,7 @@ export default function PaginaInicialApresentacao() {
                     <p className='break-words'>O petshop e clínica veterinária Top Care irá ampliar suas vendas e serviços! A partir do dia XX/XX poderão ser feitas compras pelo nosso website e aplicativo mobile, além dos agendamentos que também foram simplificados.</p>
                     <p className='break-words'>Nas compras online, você pode escolher o endereço que quiser, resgatar cupons de descontos, além de aproveitar ofertas exclusivas do site.</p>
                 </div>
-                <div className='md:w-[47rem] w-[20rem]'>
+                <div className='md:w-[47rem] w-auto '>
                     <img src='/assets/doguinho.png' />
                 </div>
             </section>
@@ -22,7 +23,7 @@ export default function PaginaInicialApresentacao() {
                 <TituloLinha titulo='Conheça nossos serviços!' />
             </section>
 
-            <section className='flex justify-center w-full pb-20 md:mx-14 p-6'>
+            <section className='flex justify-center w-auto l pb-20 md:mx-14 p-6'>
                 <div className='p-4 grid md:grid-cols-2 grid-cols-1 gap-2 gap-x-8 bg-terciaria rounded-xl'>
                     <div>
                         <h3 className='font-averia md:text-xl text-[1.2rem] font-bold text-preto'>Banhos</h3>

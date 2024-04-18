@@ -10,6 +10,7 @@ export default function HeaderApresentacao() {
             <div className="flex flex-row md:gap-24 gap-4 justify-center w-full font-poppins">
                 <a className="hover:underline md:text-sm text-xs" href="#">Contato</a>
                 <a className="hover:underline md:text-sm text-xs" href="#">Lojas</a>
+                <a className="hover:underline md:text-sm text-xs" href="#">Sobre nós</a>
             </div>
         </div>
     )
