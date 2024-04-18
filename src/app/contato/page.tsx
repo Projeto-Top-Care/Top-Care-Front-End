@@ -14,17 +14,17 @@ export default function Contato() {
                     </div>
                     <section className="border-solid border rounded-lg border-cinza-escuro md:w-[55%] w-full mt-3">
                         <section className="p-5">
-                            <div className="flex flex-row justify-between">
-                                <p className="font-poppins md:text-lg text-sm font-medium text-preto">Telefone</p>
+                            <div className="flex flex-row justify-between ">
+                                <p className="font-poppins md:text-lg text-sm font-medium text-preto mr-[10%]">Telefone</p>
                                 <div className="flex flex-row gap-4 mt-1">
-                                    <p className="font-poppins md:text-sm text-xs text-cinza-escuro">(47) 00000-0000</p>
+                                    <p className="font-poppins md:text-sm text-xs text-cinza-escuro break-all">(47) 00000-0000</p>
                                     <IoCopyOutline />
                                 </div>
                             </div>
                             <div className="flex flex-row justify-between mt-4">
-                                <p className="font-poppins md:text-lg text-sm font-medium text-preto">Email</p>
+                                <p className="font-poppins md:text-lg text-sm font-medium text-preto mr-[10%]">Email</p>
                                 <div className="flex flex-row gap-4 mt-1">
-                                    <p className="font-poppins md:text-sm text-xs text-cinza-escuro">topcare@gmail.com</p>
+                                    <p className="font-poppins md:text-sm text-xs text-cinza-escuro break-all">topcare@gmail.com</p>
                                     <IoCopyOutline />
                                 </div>
                             </div>
