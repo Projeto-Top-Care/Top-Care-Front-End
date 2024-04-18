@@ -14,7 +14,6 @@ import { RiFilePaperLine } from "react-icons/ri";
 import { FaSearch } from "react-icons/fa";
 
 import { useState } from "react";
-import { FaS } from "react-icons/fa6";
 
 export default function HeaderDeslogado() {
     const {push} = useRouter();
