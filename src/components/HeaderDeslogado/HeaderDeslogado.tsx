@@ -14,7 +14,6 @@ import { RiFilePaperLine } from "react-icons/ri";
 import { FaSearch } from "react-icons/fa";
 
 import { useState } from "react";
-import { FaS } from "react-icons/fa6";
 
 export default function HeaderDeslogado() {
     const {push} = useRouter();
@@ -27,15 +26,6 @@ export default function HeaderDeslogado() {
     const fecharNav = () => {
         setNavStyle("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-0 overflow-x-hidden animation duration-300")
     }
-
-    // function openNav() {
-    //     document.getElementById("mySidenav").style.width = "250px";
-    //   }
-      
-      
-    //   function closeNav() {
-    //     document.getElementById("mySidenav").style.width = "0";
-    //   }
 
     return (
         <div>
@@ -76,15 +66,15 @@ export default function HeaderDeslogado() {
                     <div className="flex flex-col gap-1 font-poppins text-preto">
                         <h3 className="font-semibold text-sm">Conta</h3>
 
-                        <div className="flex flex-row gap-2 items-center ml-8 text-xs">
+                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaUserCircle  size={'0.9rem'} style={{color: "#322828"}} />
                             <p className="hover:underline">Perfil</p>
                         </div>
-                        <div className="flex flex-row gap-2 items-center ml-8 text-xs">
+                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaRegHeart  size={'0.9rem'} style={{color: "#322828"}} />
                             <p className="hover:underline">Sacola</p>
                         </div>
-                        <div className="flex flex-row gap-2 items-center ml-8 text-xs">
+                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FiShoppingBag  size={'0.9rem'} style={{color: "#322828"}} />
                             <p className="hover:underline">Favritos</p>
                         </div>
@@ -93,15 +83,15 @@ export default function HeaderDeslogado() {
                     <div className="flex flex-col gap-1 font-poppins text-preto">
                         <h3 className="font-semibold text-sm">Pet shop</h3>
 
-                        <div className="flex flex-row gap-2 items-center ml-8 text-xs">
+                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <PiBoneFill  size={'0.9rem'} style={{color: "#322828"}} />
                             <p className="hover:underline">Ver produtos</p>
                         </div>
-                        <div className="flex flex-row gap-2 items-center ml-8 text-xs">
+                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaSearch  size={'0.9rem'} style={{color: "#322828"}} />
                             <p className="hover:underline">Buscar produtos</p>
                         </div>
-                        <div className="flex flex-row gap-2 items-center ml-8 text-xs">
+                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaStore  size={'0.9rem'} style={{color: "#322828"}} />
                             <p className="hover:underline">Lojas</p>
                         </div>
@@ -110,15 +100,15 @@ export default function HeaderDeslogado() {
                     <div className="flex flex-col gap-1 font-poppins text-preto">
                         <h3 className="font-semibold text-sm">Serviços</h3>
 
-                        <div className="flex flex-row gap-2 items-center ml-8 text-xs">
+                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <GiSittingDog  size={'0.9rem'} style={{color: "#322828"}} />
                             <p className="hover:underline">Ver serviços</p>
                         </div>
-                        <div className="flex flex-row gap-2 items-center ml-8 text-xs">
+                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <RiFilePaperLine  size={'0.9rem'} style={{color: "#322828"}} />
                             <p className="hover:underline">Planos</p>
                         </div>
-                        <div className="flex flex-row gap-2 items-center ml-8 text-xs">
+                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <MdOutlinePets  size={'0.9rem'} style={{color: "#322828"}} />
                             <p className="hover:underline">Pets</p>
                         </div>
