@@ -1,8 +1,22 @@
+'use client'
+import InputData from "@/components/InputData/InputData";
 import InputText from "@/components/InputText/InputText";
 import Select from "@/components/Select/Select";
+import TextArea from "@/components/TextArea/TextArea";
+import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 
 export default function Contato() {
+
+    const [nome, setNome] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [atendimento, setAtendimento] = useState<string>("");
+    const [filial, setFilial] = useState<string>("");
+    const [servico, setServico] = useState<string>("");
+    const [data, setData] = useState<string>("");
+    const [horario, setHorario] = useState<string>("");
+    const [descricao, setDescricao] = useState<string>("");
+
     return (
         <main className="flex flex-col w-full">
             <section className="mt-16">
@@ -41,28 +55,48 @@ export default function Contato() {
                     </div>
                 </section>
                 <section className="flex flex-col items-center justify-center mx-12">
-                    <div className="md:w-[55%] w-full flex justify-start">
-                        <h1 className="font-averia md:text-2xl text-lg font-bold text-preto mt-16">Preencha o formulário</h1>
+                    <div className="md:w-[55%] flex justify-start">
+                        <h1 className="font-averia md:text-2xl text-lg font-bold text-preto mt-12">Preencha o formulário</h1>
                     </div>
-                    <div className="mt-16 flex flex-col justify-start border-solid border rounded-lg border-cinza-escuro md:w-[55%] w-full mt-3 gap-5">
-                        <div className="p-10">
+                    <div className="mt-12 flex flex-col justify-start border-solid border rounded-lg border-cinza-escuro md:w-[55%] gap-5">
+                        <div className="md:p-10 p-4">
                             <div className="text-xs">
-                                <InputText placeholder="Nome completo*" />
+                                <InputText placeholder="Nome completo*" onChange={(e)=>setNome(e.target.value)}/>
                             </div>
-                            <div className="flex flex-row justify-between mt-[5%]">
-                                <div className="w-[48%] ">
+                            <div className="flex flex-col justify-between lg:mt-[5%] mt-[8%] lg:flex-row">
+                                <div className="w-full lg:w-[48%]">
                                     <div className="text-xs">
-                                        <InputText placeholder="Email*" />
+                                        <InputText placeholder="Email*" onChange={(e)=>setEmail(e.target.value)}/>
                                     </div>
                                 </div>
-                                <div className="w-[48%]">
+                                <div className="w-full mt-[8%] lg:w-[48%] lg:mt-0">
                                     <div className="text-xs">
-                                        <Select label="Tipo de atendimento*" options={['Serviço', 'Dúvidas', 'Sugestões', 'Reclamações', 'Compras', 'Agendamento']}/>
+                                        <Select label="Tipo de atendimento*" options={['Serviço', 'Dúvidas', 'Sugestões', 'Reclamações', 'Compras', 'Agendamento']} opcaoSelecionada={setAtendimento} />
                                     </div>
                                 </div>
                             </div>
-                            <div className="text-xs mt-[5%]">
-                                <InputText placeholder="Descrição*" />
+                            {atendimento == "Agendamento" && (
+                                <div>
+                                    <div className="flex flex-col justify-between lg:mt-[5%] mt-[8%] lg:flex-row">
+                                        <div className="w-full lg:w-[48%]">
+                                            <Select label="Filial*" options={['Top Care Balneário Camboriú - SC', 'Top Care Curitiba - PR', 'Top Care Gramado - RS']} opcaoSelecionada={setFilial}/>
+                                        </div>
+                                        <div className="w-full mt-[8%] lg:w-[48%] lg:mt-0">
+                                            <Select label="Serviço*" options={['Consulta', 'Passeio', 'Vacinação', 'Hospedagem', 'Adestramento', 'Exames', 'Banho', 'Tosa', 'Banho e Tosa']} opcaoSelecionada={setServico}/>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col justify-between lg:mt-[5%] mt-[8%] lg:flex-row">
+                                        <div className="w-full lg:w-[48%]">
+                                            <InputData dataSelecionada={setData}/>
+                                        </div>
+                                        <div className="w-full mt-[8%] lg:w-[48%] lg:mt-0">
+                                            <Select label="Horario*" options={['9:30', '10:00', '11:30', '13:30', '15:30', '16:30']} opcaoSelecionada={setHorario}/>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                            <div className="h-32 lg:mt-[5%] mt-[8%]">
+                                <TextArea placeholder="Descrição*" onChange={(e)=>setDescricao(e.target.value)}/>
                             </div>
                         </div>
                     </div>

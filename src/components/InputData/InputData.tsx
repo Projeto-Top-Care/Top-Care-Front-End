@@ -1,10 +1,14 @@
 'use client'
 import { Dayjs } from 'dayjs';
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaCalendarAlt } from "react-icons/fa";
 import Calendario from '../Calendario/Calendario';
 
-export default function InputData() {
+interface IInputData {
+    dataSelecionada: React.Dispatch<React.SetStateAction<string>>
+}
+
+export default function InputData({dataSelecionada}: IInputData) {
 
     const [data, setData] = useState<Dayjs | string | undefined>();
     const [lastData, setLastData] = useState<Dayjs>()
@@ -17,13 +21,14 @@ export default function InputData() {
     useEffect(() => {
         if (typeof data !== 'string' && data !== undefined) {
             setLastData(data)
+            dataSelecionada(dataToString(data))
         }
     }, [data])
 
     return (
         <div className={`w-full h-full flex flex-col items-center justify-center`}>
-            <div className='w-full h-10 border border-cinza-escuro rounded-lg flex flex-row justify-between px-4 items-center'>
-                <p className={`${typeof data === "string" ? (data === undefined && lastData ? 'text-cinza-escuro' : 'text-cinza') : 'text-cinza-escuro'}`}>{typeof data === "string" || data === undefined ? (lastData && typeof data !== 'string' ? dataToString(lastData) : "dd/mm/aaaa") : dataToString(data as Dayjs)}</p>
+            <div className='w-full h-10 border text-xs lg:text-sm font-poppins border-cinza rounded-lg flex flex-row justify-between px-3 items-center'>
+                <p className={`${typeof data === "string" ? (data === undefined && lastData ? 'text-cinza-escuro' : 'text-cinza') : 'text-cinza-escuro'}`}>{typeof data === "string" || data === undefined ? (lastData && typeof data !== 'string' ? dataToString(lastData) : "Data*") : dataToString(data as Dayjs)}</p>
                 <FaCalendarAlt color='#4F4F4F' onClick={() => setOpen(!open)} />
             </div>
             {open && (
