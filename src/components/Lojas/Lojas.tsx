@@ -16,10 +16,10 @@ const Lojas = ({src, cidade, estado, endereco, contato, funcionamentoDias, funci
         <div className="font-poppins flex flex-col items-center lg:w-[22%] md:w-[28%] sm:w-[40%] w-[47%] ">
             <img className=" rounded-t-lg w-full" src={src} />
             <div className="flex justify-center border border-preto border-t-0 rounded-b-lg w-full">
-                <div className="mt-[5%] ">
+                <div className="mt-[5%] w-20px h-20px md:mr-3 mr-1">
                     <LuMapPin size={25} color="#B5A6F3"/>
                 </div>
-                <div className="mt-[5%] mb-[10%] w-[74%]">
+                <div className="mt-[5%] mb-[10%] w-[78%]">
                     <p className=" text-preto md:text-lg text-sm">Top Care {cidade} - {estado}</p>
                     <div className="text-cinza-escuro md:bg-red">
                         <p className="mt-[10%] font-bold md:text-base text-sm">Endereço</p>
