@@ -41,21 +41,21 @@ export default function Contato() {
                     </div>
                 </section>
                 <section className="flex flex-col items-center justify-center mx-12">
-                    <div className="md:w-[55%] w-full flex justify-start">
+                    <div className="md:w-[55%] flex justify-start">
                         <h1 className="font-averia md:text-2xl text-lg font-bold text-preto mt-16">Preencha o formulário</h1>
                     </div>
-                    <div className="mt-16 flex flex-col justify-start border-solid border rounded-lg border-cinza-escuro md:w-[55%] w-full mt-3 gap-5">
-                        <div className="p-10">
+                    <div className="mt-16 flex flex-col justify-start border-solid border rounded-lg border-cinza-escuro md:w-[55%] gap-5">
+                        <div className="md:p-10 p-4">
                             <div className="text-xs">
                                 <InputText placeholder="Nome completo*" />
                             </div>
-                            <div className="flex flex-row justify-between mt-[5%]">
-                                <div className="w-[48%] ">
+                            <div className="flex flex-col justify-between mt-[5%] lg:flex-row">
+                                <div className="w-full lg:w-[48%]">
                                     <div className="text-xs">
                                         <InputText placeholder="Email*" />
                                     </div>
                                 </div>
-                                <div className="w-[48%]">
+                                <div className="w-full mt-[5%] lg:w-[48%] lg:mt-0">
                                     <div className="text-xs">
                                         <Select label="Tipo de atendimento*" options={['Serviço', 'Dúvidas', 'Sugestões', 'Reclamações', 'Compras', 'Agendamento']}/>
                                     </div>
