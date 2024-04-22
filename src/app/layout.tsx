@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer/Footer";
+import HeaderApresentacao from "@/components/HeaderApresentacao/headerApresentacao";
 import HeaderDeslogado from "@/components/HeaderDeslogado/HeaderDeslogado";
 import HeaderLogado from "@/components/HeaderLogado/HeaderLogado";
 import type { Metadata } from "next";
@@ -17,7 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-branco">
-        <HeaderDeslogado />
+        {/* <HeaderDeslogado /> */}
+        <HeaderApresentacao/>
         {children}
         <Footer />
       </body>

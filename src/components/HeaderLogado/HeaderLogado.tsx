@@ -32,7 +32,7 @@ export default function HeaderLogado() {
         <div>
             <div className="bg-primaria md:px-20 px-10 md:py-3 py-2 flex flex-row-reverse md:flex-row font-poppins justify-between items-center text-preto">
                 <div className='px-3'>
-                        <img className="md:w-[70px] w-[40px]" src="assets/logo.png"/>
+                    <a><img className="md:w-[70px] w-[40px]" src="assets/logo.png"/></a>
                 </div>
 
                 <div className="md:flex w-2/3 px-4 hidden">
@@ -69,15 +69,15 @@ export default function HeaderLogado() {
 
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaUserCircle  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline">Perfil</p>
+                            <p className="hover:underline cursor">Perfil</p>
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaRegHeart  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline">Sacola</p>
+                            <p className="hover:underline cursor">Sacola</p>
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FiShoppingBag  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline">Favritos</p>
+                            <p className="hover:underline cursor">Favritos</p>
                         </div>
                     </div>
 
@@ -86,15 +86,15 @@ export default function HeaderLogado() {
 
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <PiBoneFill  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline">Ver produtos</p>
+                            <p className="hover:underline cursor">Ver produtos</p>
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaSearch  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline">Buscar produtos</p>
+                            <p className="hover:underline cursor">Buscar produtos</p>
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaStore  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline">Lojas</p>
+                            <p className="hover:underline cursor">Lojas</p>
                         </div>
                     </div>
 
@@ -103,15 +103,15 @@ export default function HeaderLogado() {
 
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <GiSittingDog  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline">Ver serviços</p>
+                            <p className="hover:underline cursor">Ver serviços</p>
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <RiFilePaperLine  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline">Planos</p>
+                            <p className="hover:underline cursor">Planos</p>
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <MdOutlinePets  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline">Pets</p>
+                            <p className="hover:underline cursor">Pets</p>
                         </div>
                     </div>
                     
