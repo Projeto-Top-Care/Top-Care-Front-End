@@ -13,20 +13,22 @@ import { MdOutlinePets } from "react-icons/md";
 import { RiFilePaperLine } from "react-icons/ri";
 import { FaSearch } from "react-icons/fa";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function HeaderLogado() {
 
     const {push} = useRouter();
 
+    const [navAberta, setNavAberta] = useState(false)
     const [navStyle, setNavStyle] = useState("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-0 overflow-x-hidden animation duration-300");
 
-    const abrirNav = () => {
-        setNavStyle("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-1/2 overflow-x-hidden animation duration-300")
-    }
-    const fecharNav = () => {
-        setNavStyle("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-0 overflow-x-hidden animation duration-300")
-    }
+    useEffect(() => {
+        if (navAberta) {
+            setNavStyle("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-1/2 overflow-x-hidden animation duration-300")
+        } else {
+            setNavStyle("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-0 overflow-x-hidden animation duration-300")
+        }
+    }, [navAberta])
 
     return(
         <div>
@@ -46,7 +48,7 @@ export default function HeaderLogado() {
                 </div>
 
                 <div className="md:hidden flex">
-                    <button onClick={() => abrirNav()}><IoMenu size={'2rem'} style={{color: "#F5F5F5"}} /></button>
+                    <button onClick={() => setNavAberta(true)}><IoMenu size={'2rem'} style={{color: "#F5F5F5"}} /></button>
                 </div>
             </div> 
 
@@ -63,7 +65,7 @@ export default function HeaderLogado() {
 
             <div className={navStyle}>
                 <div className="px-4 py-3 flex flex-col gap-4">
-                    <button className="w-full" onClick={() => fecharNav()}><IoClose size={'1.7rem'} style={{color: "#F5F5F5"}} /></button>
+                    <button className="w-full" onClick={() => setNavAberta(false)}><IoClose size={'1.7rem'} style={{color: "#F5F5F5"}} /></button>
                     <div className="flex flex-col gap-1 font-poppins text-preto">
                         <h3 className="font-semibold text-sm">Conta</h3>
 
