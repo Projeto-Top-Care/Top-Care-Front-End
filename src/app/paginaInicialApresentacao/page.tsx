@@ -8,11 +8,11 @@ export default function PaginaInicialApresentacao() {
             <section>
                 <TituloLinha titulo='Novidades' />
             </section>
-            
+
             <section className='flex md:flex-row flex-col md:mx-14 mx-2 p-6 gap-6 md:items-start items-center'>
                 <div className='font-poppins text-sm text-preto'>
-                    <p className='break-words'>O petshop e clínica veterinária Top Care irá ampliar suas vendas e serviços! A partir do dia XX/XX poderão ser feitas compras pelo nosso website e aplicativo mobile, além dos agendamentos que também foram simplificados.</p>
-                    <p className='break-words'>Nas compras online, você pode escolher o endereço que quiser, resgatar cupons de descontos, além de aproveitar ofertas exclusivas do site.</p>
+                    <p className='break-words text-justify'>O petshop e clínica veterinária Top Care irá ampliar suas vendas e serviços! A partir do dia XX/XX poderão ser feitas compras pelo nosso website e aplicativo mobile, além dos agendamentos que também foram simplificados.</p>
+                    <p className='break-words text-justify'>Nas compras online, você pode escolher o endereço que quiser, resgatar cupons de descontos, além de aproveitar ofertas exclusivas do site.</p>
                 </div>
                 <div className='md:w-[47rem] w-auto '>
                     <img src='/assets/doguinho.png' />

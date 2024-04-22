@@ -12,6 +12,6 @@ export async function createInvoice(formData: FormData) {
         horario: formData.get('horario'),
         descricao: formData.get('descricao')
       };
-      guardarFormularios(rawFormData)
+      guardarFormularios(rawFormData, rawFormData.atendimento!)
 
 }

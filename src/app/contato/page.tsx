@@ -42,9 +42,9 @@ export default function Contato() {
     })
 
     if (openModal) {
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflow = 'hidden';
     } else {
-        document.body.style.overflow = 'scroll'
+        document.body.style.overflow = 'auto';
     }
 
     const showModalError = () => {
@@ -98,7 +98,6 @@ export default function Contato() {
                         </div>
                     </div>
                 </div>
-
             )
         }
     }
@@ -147,7 +146,7 @@ export default function Contato() {
                         <h1 className="font-averia md:text-2xl text-lg font-bold text-preto mt-12">Preencha o formulário</h1>
                     </div>
                     <div className="mt-6 flex flex-col justify-start border-solid border rounded-lg border-cinza-escuro md:w-[55%] gap-5">
-                        <form action={() => createInvoice(formData)}>
+                        <form action={() => createInvoice(formData)} onSubmit={()=>verificaForms()}>
                             <div className="md:p-10 p-4">
                                 <div className="text-xs">
                                     <InputText placeholder="Nome completo*" id="nome" onChange={(e) => setNome(e.target.value)} />
@@ -187,7 +186,7 @@ export default function Contato() {
                                 <div className="h-32 lg:mt-[5%] mt-[8%]">
                                     <TextArea placeholder="Descrição*" id="descricao" onChange={(e) => setDescricao(e.target.value)} />
                                 </div>
-                                <div className="mt-[5%]" onClick={() => verificaForms()}>
+                                <div className="mt-[5%]">
                                     <BotaoGrande title="Enviar" type='submit' background="bg-secundaria" />
                                 </div>
                             </div>
