@@ -4,10 +4,10 @@ export default function Loja() {
     return (
         <main className="bg-branco ">
             <section className="flex justify-center">
-                <p className="font-averia font-bold text-3xl text-preto mt-20 mb-8">Lojas</p>
+                <p className="font-averia font-bold text-3xl text-preto mt-12 mb-5">Lojas</p>
             </section>
             <section className="flex justify-center">
-                <p className="font-poppins text-lg text-preto mb-16 mx-[3%] text-center">São várias lojas espalhadas pelo Sul do Brasil, ache a mais perto de você!</p>
+                <p className="font-poppins text-lg text-preto mb-12 mx-[3%] text-center">São várias lojas espalhadas pelo Sul do Brasil, ache a mais perto de você!</p>
             </section>
                 <section className="flex flex-col md:flex-row md:justify-center md:space-x-16 md:space-y-0 space-y-4 items-center ">
                     <Lojas src='./assets/lojaGramado.png/' cidade="Gramado" estado="RS" endereco="Av. das Hortênsias, 680 - Planalto, Gramado - RS, 95675-072"
