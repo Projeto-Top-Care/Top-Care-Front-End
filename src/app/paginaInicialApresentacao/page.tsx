@@ -1,9 +1,22 @@
+import Carrossel from '@/components/Carrossel/Carrossel'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
+import { EmblaOptionsType } from 'embla-carousel'
 import React from 'react'
 
 export default function PaginaInicialApresentacao() {
+
+    const slidesCarrosselDesktop: string[] = ['./assets/slidesDesktop/Banner1.svg', './assets/slidesDesktop/Banner2.svg', './assets/slidesDesktop/Banner3.svg']
+    const slidesCarrosselMobile: string[] = ['./assets/slidesMobile/Banner1.svg', './assets/slidesMobile/Banner2.svg', './assets/slidesMobile/Banner4.svg']
+    const OPTIONS: EmblaOptionsType = { loop: true }
     return (
         <main className='bg-branco w-full'>
+
+            <section className='mt-10 mb-10 max-sm:hidden'>
+                <Carrossel slides={slidesCarrosselDesktop} options={OPTIONS}/>
+            </section>
+            <section className='mt-10 mb-10 sm:hidden'>
+                <Carrossel slides={slidesCarrosselMobile} options={OPTIONS} />
+            </section>
             
             <section>
                 <TituloLinha titulo='Novidades' />

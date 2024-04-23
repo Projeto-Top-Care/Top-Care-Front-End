@@ -16,19 +16,19 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
   return (
     <section className="embla flex flex-row w-[90%] h-52 items-center">
-      <div className="embla__viewport w-full" ref={emblaRef}>
-        <div className="embla__container w-full">
+      <div className="embla__viewport w-full bg-branco" ref={emblaRef}>
+        <div className="embla__container w-full ">
           {slides.map((image, index) => (
-            <div className="embla__slide rounded-lg h-52" key={index}>
+            <div className="embla__slide h-52 " key={index}>
               <div className="embla__slide__number h-full w-full">
-                <img src={image} alt="" className='w-full rounded-2xl' />
+                <img src={image} alt="" className='w-full' />
               </div>
             </div>
           ))}
         </div>
       </div>
-      <button className='mr-5 absolute left-12 bg-branco font-poppins border border-black w-10 h-10 rounded-full flex items-center justify-center' onClick={() => emblaApi?.scrollPrev()}><FaChevronLeft /></button>
-      <button className='ml-5 absolute right-12 bg-branco font-poppins border border-black w-10 h-10 rounded-full flex items-center justify-center' onClick={() => emblaApi?.scrollNext()}><FaChevronRight /></button>
+      <button className='mr-5 absolute sm:left-12 left-3 bg-branco font-poppins border border-black sm:w-10 sm:h-10 w-5 h-5 rounded-full flex items-center justify-center' onClick={() => emblaApi?.scrollPrev()}><FaChevronLeft className='sm:text-sm text-xs'/></button>
+      <button className='ml-5 absolute sm:right-12 right-3 bg-branco font-poppins border border-black sm:w-10 sm:h-10 w-5 h-5 rounded-full flex items-center justify-center' onClick={() => emblaApi?.scrollNext()}><FaChevronRight className='sm:text-sm text-xs'/></button>
     </section>
   )
 }

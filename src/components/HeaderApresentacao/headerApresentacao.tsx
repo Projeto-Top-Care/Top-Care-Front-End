@@ -6,13 +6,13 @@ import { IoClose, IoMenu } from "react-icons/io5";
 export default function HeaderApresentacao() {
 
     const [navAberta, setNavAberta] = useState(false)
-    const [navStyle, setNavStyle] = useState("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-0 overflow-x-hidden animation duration-300");
+    const [navStyle, setNavStyle] = useState("bg-primaria z-50 drop-shadow-2xl block h-screen fixed top-0 left-0 w-0 overflow-x-hidden animation duration-300");
 
     useEffect(() => {
         if (navAberta) {
-            setNavStyle("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-1/2 overflow-x-hidden animation duration-300")
+            setNavStyle("bg-primaria z-50 drop-shadow-2xl block h-screen fixed top-0 left-0 w-1/2 overflow-x-hidden animation duration-300")
         } else {
-            setNavStyle("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-0 overflow-x-hidden animation duration-300")
+            setNavStyle("bg-primaria z-50 drop-shadow-2xl block h-screen fixed top-0 left-0 w-0 overflow-x-hidden animation duration-300")
         }
     }, [navAberta])
 
@@ -22,7 +22,7 @@ export default function HeaderApresentacao() {
                 <a id="div_link" href="./paginaInicialApresentacao"><img className="md:w-[64px] w-[40px] transition duration-200" src="assets/logo.png"/></a>
             </div>
 
-            <div className="hidden md:flex flex-row md:gap-24 gap-4 justify-center w-full font-poppins">
+            <div className="max-sm:hidden flex flex-row md:gap-24 gap-4 justify-center w-full font-poppins">
                 <a className="hover:underline md:text-sm text-xs" href="./contato">Contato</a>
                 <a className="hover:underline md:text-sm text-xs" href="./lojas">Lojas</a>
                 <a className="hover:underline md:text-sm text-xs" href="./SobreNos">Sobre nós</a>
