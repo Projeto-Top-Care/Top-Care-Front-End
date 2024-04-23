@@ -6,23 +6,23 @@ export default function sobreNos() {
         <main className="bg-branco w-full">
             <section className="flex w-full mb-8 bg-terciaria md:mt-10">
                 <div className="p-4 w-full h-[100%] flex justify-center items-center md:pt-6">
-                    <div className="w-[90%] md:w-[50%] md:my-4">
-                        <p className="font-poppins text-justify text-sm md:text-center md:text-base">Bem-vindo ao Top Care, o seu destino online
+                    <div className="w-[90%] md:w-[50%] md:my-4 lg:w-[45%]" >
+                        <p className="font-poppins text-justify text-sm md:text-center md:text-lg">Bem-vindo ao Top Care, o seu destino online
                             para cuidados de alta qualidade para animais de estimação! Fundada em 2010, a Top Care
                             surgiu da união de amantes de animais com uma visão compartilhada: tornar os cuidados
                             com os pets mais acessíveis, convenientes e personalizados.</p>
                     </div>
                 </div>
-                <div className="md:flex md:mt-[15%] md:-ml-[28%] hidden">
+                <div className="hidden md:flex md:mt-32 md:-ml-[26%] lg:mt-[1%] lg:-ml-[28%]">
                     <img className="object-contain md:w-[70%]" src="/assets/patinhas.png" alt="trilhas de patas" />
                 </div>
             </section>
 
             <section>
                 <TituloLinha titulo="Sobre a História da Nossa Empresa " />
-                <div className="flex flex-col items-center">
-                    <div className="md:w-[100%] w-[100%]">
-                        <div className="w-[98%] p-2 text-sm md:w-[85%] md:mx-14 md:px-6 md:text-base">
+                <div className="flex flex-col items-center lg:flex-row lg:items-start lg:w-[90%]">
+                    <div className="md:w-[100%] w-[95%] lg:w-[90%]">
+                        <div className="flex flex-col justify-center w-[98%] text-sm md:w-[85%] md:ml-14 md:px-6 md:text-base lg:w-[90%] lg:block">
                             <p className=" font-poppins text-justify md:mx-0 mx-4">Tudo começou com uma ideia de transformar a
                                 paixão por animais em algo mais. A visão de criar uma comunidade onde todos os animais
                                 pudessem encontrar produtos de qualidade e
@@ -39,21 +39,22 @@ export default function sobreNos() {
                                 buscam transmitir o espírito familiar e afetuoso que buscamos nutrir dentro da Top Care.</p>
                         </div>
                     </div>
-                    <div className="w-[70%] mt-4 flex justify-center md:mt-8 md:w-[80%]">
-                        <img className="md:w-[100%] md:h-[70%] md:hidden" src="/assets/cachorro-brincando.png" alt="cachorro correndo atras da bola" />
-                        <img className="hidden md:flex md:w-[100%] md:h-[70%] md:rounded" src="/assets/banner-cachorro-brincando.png" alt="banner pra tablet"/>
+                    <div className="w-[40%] mt-4 flex justify-center items-center md:mt-8 md:w-[82%] md:ml-4 lg:w-80 lg:mt-2">
+                        <img className="md:w-[100%] md:h-[70%] md:hidden lg:flex lg:w-fit" src="/assets/cachorro-brincando.png" alt="cachorro correndo atras da bola" />
+                        <img className="hidden md:flex md:w-[100%] md:h-[70%] md:rounded lg:hidden" src="/assets/banner-cachorro-brincando.png" alt="banner pra tablet"/>
                     </div>
                 </div>
             </section>
             
-            <section className="py-8">
+            <section className="pt-8 pb-24">
                 <TituloLinha titulo="Nossa missão, visão e valores" />
-                <div className="flex flex-col-reverse items-center">
-                    <div className="w-[70%] mt-4 flex justify-center md:mt-8 md:w-[80%]">
-                        <img src="/assets/gato-coberto.jpg" alt="cachorro correndo atras da bola" />
+                <div className="flex flex-col-reverse items-center lg:flex-row lg:items-start">
+                    <div className="w-[40%] mt-4 flex justify-center items-center md:mt-8 md:mr-4 md:w-[82%] lg:w-80 lg:mt-2 lg:ml-20">
+                        <img className="md:w-[100%] md:h-[70%] md:hidden lg:flex lg:w-fit" src="/assets/gato-filhote.png" alt="cachorro correndo atras da bola" />
+                        <img className="hidden md:flex md:w-[100%] md:h-[70%] md:rounded lg:hidden" src="/assets/banner-gato-filhote.png" alt="" />
                     </div>
-                    <div className="md:w-[100%] w-[100%]">
-                        <div className="w-[98%] p-2 text-sm md:w-[85%] md:mx-14 md:px-6 md:text-base">
+                    <div className="md:w-[100%] w-[95%] lg:w-[90%]">
+                        <div className="flex flex-col justify-center w-[98%] text-sm md:w-[85%] md:ml-14 md:px-6 md:text-base lg:w-[90%] lg:justify-end">
                             <p className=" font-poppins text-justify md:mx-0 mx-4">A Top Care preza prioritariamente pelo bem estar de seus clientes e por isso tem como missão
                                 oferecer produtos e serviços de alta qualidade, permitindo assim que tantos seus pets quanto
                                 seus donos aproveitem da melhor maneria possível pagando um preço justo. Com nosso constante
