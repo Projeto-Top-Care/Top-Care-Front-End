@@ -38,7 +38,7 @@ export default function HeaderApresentacao() {
                     <div className="flex flex-col gap-1 font-poppins font-medium text-preto">
                         <a className="hover:underline md:text-sm text-xs" href="./contato">Contato</a>
                         <a className="hover:underline md:text-sm text-xs" href="./lojas">Lojas</a>
-                        <a className="hover:underline md:text-sm text-xs" href="./SobreNos">Sobre nós</a>
+                        <a className="hover:underline md:text-sm text-xs" href="./Sobre">Sobre nós</a>
                     </div>
                 </div>
             </div>
