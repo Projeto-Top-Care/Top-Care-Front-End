@@ -7,28 +7,7 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 
 const EmblaCarousel = () => {
   const options: EmblaOptionsType = { loop: true, align: 'start'}
-  const slides = [
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' />,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' />  
-  ]
+  const slides = ['']
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
   return (
