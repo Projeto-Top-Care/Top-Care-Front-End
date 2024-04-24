@@ -137,7 +137,7 @@ export default function Contato() {
                                     <div>
                                         <div className="flex flex-col justify-between lg:mt-[5%] mt-[8%] lg:flex-row">
                                             <div className="w-full lg:w-[48%]">
-                                                <Select label="Filial*" options={['Top Care Balneário Camboriú - SC', 'Top Care Curitiba - PR', 'Top Care Gramado - RS']} opcaoSelecionada={setFilial} />
+                                                <Select label="Filial*" options={['Top Care Balneário Camboriú - SC', 'Top Care Curitiba - PR', 'Top Care Gramado - RS', "Top Care Joinville - SC", "Top Care Jaraguá do Sul - SC", "Top Care Corupá - SC"]} opcaoSelecionada={setFilial} />
                                             </div>
                                             <div className="w-full mt-[8%] lg:w-[48%] lg:mt-0">
                                                 <Select label="Serviço*" options={['Consulta', 'Passeio', 'Vacinação', 'Hospedagem', 'Adestramento', 'Exames', 'Banho', 'Tosa', 'Banho e Tosa']} opcaoSelecionada={setServico} />
