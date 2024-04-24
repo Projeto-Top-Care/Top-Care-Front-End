@@ -5,10 +5,11 @@ interface IPopUp {
     openParms: React.Dispatch<SetStateAction<boolean>>
 }
 
-export default function UmBotao({ texto, openParms }: IPopUp) {
+export default function UmBotao({ texto, openParms}: IPopUp) {
     const [open, setOpen] = useState<boolean>(true)
     useEffect(()=>{
         openParms(open)
+        if(!open) location.reload();
     }, [open])
     return (
         <div className='h-32 bg-terciaria rounded-lg font-poppins flex items-center justify-center flex-col gap-4'>
