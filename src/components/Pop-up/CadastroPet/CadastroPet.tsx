@@ -32,12 +32,12 @@ export default function CadastroPet({setOpen}: ICadastroPet) {
                     <InputFile rounded="rounded-full" />
                 </div>
                 <div className="flex flex-col gap-4 w-[35%]">
-                    <Select label="Qual o seu pet?" options={animais}/>
-                    <Select label="Qual a raça do seu pet" options={racasCachorro}/>
+                    <Select label="Qual o seu pet?" options={animais} opcaoSelecionada={setPet}/>
+                    <Select label="Qual a raça do seu pet" options={racasCachorro} opcaoSelecionada={setRaca}/>
                 </div>
                 <div className="flex flex-col gap-4 w-[35%]">
-                    <InputText placeholder="Qual o nome do pet?" type="text" />
-                    <InputText placeholder="Qual a idade?" type="number" />
+                    <InputText placeholder="Qual o nome do pet?" type="text" onChange={(e)=>setNome(e.target.value)}/>
+                    <InputText placeholder="Qual a idade?" type="number" onChange={(e)=>setIdade(e.target.value)}/>
                 </div>
             </div>
             <div className="w-full flex justify-center mb-4">

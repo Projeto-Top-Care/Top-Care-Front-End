@@ -8,6 +8,8 @@ import React, { useState } from 'react'
 
 export default function Cadastro() {
     const [open, setOpen] = useState<boolean>(false)
+    const [sexo, setSexo] = useState<string>('');
+    const [estado, setEstado] = useState<string>('');
     return (
         <main className={`w-full overflow-hidden`}>
             <section className='w-full flex items-center justify-center mt-10'>
@@ -40,7 +42,7 @@ export default function Cadastro() {
                     <InputText placeholder='Nome Completo' />
                     <InputText placeholder='Data de Nascimento' />
                     <InputText placeholder='Telefone' type={'tel'} />
-                    <Select label='Sexo' options={['', 'Masculino', 'Feminino', 'Prefiro não Informar']} />
+                    <Select label='Sexo' options={['', 'Masculino', 'Feminino', 'Prefiro não Informar']} opcaoSelecionada={setSexo} />
                     <InputText placeholder='Confirmar Senha' type={'password'} />
                 </section>
                 <section className='w-80 flex flex-col gap-2'>
@@ -52,7 +54,7 @@ export default function Cadastro() {
                         <p className='font-poppins text-sm'>Cadastre aqui pra ele não perder nenhuma oportunidade! É rapidinho!</p>
                     </div>
                     <div className='w-full' onClick={() => setOpen(true)}>
-                        <BotaoGrande title='Cadastrar Pet' background='bg-primaria' />
+                        <BotaoGrande title='Cadastrar Pet' background='bg-primaria' type={'button'} />
                     </div>
 
                 </section>
@@ -69,7 +71,7 @@ export default function Cadastro() {
                         <InputText placeholder='CEP' type={'number'} />
                     </div>
                     <div className='w-64'>
-                        <Select label='Estado' options={['', 'SC', 'SP', 'MG', 'RJ']} />
+                        <Select label='Estado' options={['', 'SC', 'SP', 'MG', 'RJ']} opcaoSelecionada={setEstado}/>
                     </div>
                     <div className='w-64'>
                         <InputText placeholder='Cidade' type={'text'} />
@@ -95,7 +97,7 @@ export default function Cadastro() {
             </section>
             <section className='w-full flex justify-center items-center mt-14 mb-14'>
                 <div className='w-52'>
-                    <BotaoGrande background='bg-terciaria' title='Cadastrar' />
+                    <BotaoGrande background='bg-terciaria' title='Cadastrar' type={'button'} />
                 </div>
             </section>
             {open && (

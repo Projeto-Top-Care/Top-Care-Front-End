@@ -2,6 +2,7 @@
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import InputData from "@/components/InputData/InputData";
 import InputText from "@/components/InputText/InputText";
+import Erro from "@/components/Pop-up/Erro/Erro";
 import UmBotao from "@/components/Pop-up/UmBotao/UmBotao";
 import Select from "@/components/Select/Select";
 import TextArea from "@/components/TextArea/TextArea";
@@ -41,21 +42,20 @@ export default function Contato() {
         updateFormData();
     })
 
-    if (openModal) {
-        document.body.style.overflow = 'hidden';
-    } else {
-        document.body.style.overflow = 'auto';
-    }
+    useEffect(()=>{
+        if (openModal) {
+            document.body.style.overflowY = 'hidden';
+        }else{
+            document.body.style.overflowY = 'auto';
+        }    
+    },[openModal])
 
+    
     const showModalError = () => {
         if (modalError) {
             return (
-                <div className="z-50">
-                    <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[60%] animate-slide-down`}>
-                        <div className="flex items-center justify-center lg:h-10 h-8 bg-error rounded font-poppins">
-                            <p className="text-branco lg:text-base text-xs text-center">Erro, insira os dados corretamente!</p>
-                        </div>
-                    </div>
+                <div className="w-full">
+                    <Erro />
                 </div>
             )
         }
@@ -142,10 +142,10 @@ export default function Contato() {
                     </div>
                 </section>
                 <section className="flex flex-col items-center justify-center mx-12">
-                    <div className="mt-12 flex flex-col justify-start border-solid rounded-lg md:w-[55%] gap-5">
+                    <div className="mt-12 flex flex-col justify-start border-solid rounded-lg md:w-[55%] w-full gap-5">
                         <h1 className="font-averia md:text-2xl text-lg font-bold text-preto mt-12">Preencha o formulário</h1>
                     </div>
-                    <div className="mt-6 flex flex-col justify-start border-solid border rounded-lg border-cinza-escuro md:w-[55%] gap-5">
+                    <div className="mt-6 flex flex-col justify-start border-solid border rounded-lg border-cinza-escuro md:w-[55%] w-full gap-5">
                         <form action={() => createInvoice(formData)} onSubmit={()=>verificaForms()}>
                             <div className="md:p-10 p-4">
                                 <div className="text-xs">
@@ -198,7 +198,7 @@ export default function Contato() {
                 <div className="w-full">
                     <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpenModal(false)}></div>
                     <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 lg:w-[25%] w-[60%]`}>
-                        <UmBotao texto="Formulário Enviado com sucesso!" openParms={setOpenModal} />
+                        <UmBotao texto="Formulário Enviado com sucesso!" openParms={setOpenModal}/>
                     </div>
                 </div>
             )}

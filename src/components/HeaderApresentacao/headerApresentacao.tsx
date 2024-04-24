@@ -25,7 +25,7 @@ export default function HeaderApresentacao() {
             <div className="max-sm:hidden flex flex-row md:gap-24 gap-4 justify-center w-full font-poppins">
                 <a className="hover:underline md:text-sm text-xs" href="./contato">Contato</a>
                 <a className="hover:underline md:text-sm text-xs" href="./lojas">Lojas</a>
-                <a className="hover:underline md:text-sm text-xs" href="./SobreNos">Sobre nós</a>
+                <a className="hover:underline md:text-sm text-xs" href="./Sobre">Sobre nós</a>
             </div>
 
             <div className="md:hidden flex">
@@ -38,7 +38,7 @@ export default function HeaderApresentacao() {
                     <div className="flex flex-col gap-1 font-poppins font-medium text-preto">
                         <a className="hover:underline md:text-sm text-xs" href="./contato">Contato</a>
                         <a className="hover:underline md:text-sm text-xs" href="./lojas">Lojas</a>
-                        <a className="hover:underline md:text-sm text-xs" href="./SobreNos">Sobre nós</a>
+                        <a className="hover:underline md:text-sm text-xs" href="./Sobre">Sobre nós</a>
                     </div>
                 </div>
             </div>

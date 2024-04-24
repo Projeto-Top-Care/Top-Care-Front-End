@@ -18,7 +18,7 @@ export default function Login() {
                                 <InputText type={'password'} placeholder='Senha' />
                                 <p className='underline text-cinza-escuro font-poppins text-xs select-none cursor-pointer w-36'>Esqueçeu sua senha?</p>
                             </div>
-                            <BotaoGrande title='Avançar' background='bg-terciaria'/>
+                            <BotaoGrande title='Avançar' background='bg-terciaria' type={'button'}/>
                         </div>
                     </div>
                 </section>
@@ -31,7 +31,7 @@ export default function Login() {
                         <p className='font-poppins text-sm mt-1 text-preto'>Aperte no botão abaixo para poder ficar ligado em todas as promoções e serviços.</p>
                     </div>
                     <div className='w-full mt-3'>
-                        <BotaoGrande title='Cadastrar' background='bg-terciaria'/>
+                        <BotaoGrande title='Cadastrar' background='bg-terciaria' type={'button'}/>
                     </div>
                 </section>
             </section>

@@ -7,28 +7,7 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 
 const EmblaCarousel = () => {
   const options: EmblaOptionsType = { loop: true, align: 'start'}
-  const slides = [
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' />,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' /> ,
-    <CardProduto nomeProduto='Ração de cachorro' notaDeAvaliacao={4}
-    imagemProduto='./assets/racao.png' precoAntigoDoProduto={100.00} precoNovo={89.99} desconto='15%' />  
-  ]
+  const slides = ['']
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
   return (
@@ -36,7 +15,7 @@ const EmblaCarousel = () => {
       <div className="embla__viewport w-full" ref={emblaRef}>
         <div className="embla__container flex flex-row justify-start">
           {slides.map((produto, i) => (
-            <div className="flex items-center justify-center h-30 shrink-0 h-80 w-full md:w-1/3 sm:w-1/2 xl:w-1/4" key={i}>
+            <div key={i} className="flex items-center justify-center h-30 shrink-0 h-80 w-full md:w-1/3 sm:w-1/2 xl:w-1/4">
               <div className="embla__slide__number select-none">{produto}</div>
             </div>
           ))}

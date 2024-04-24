@@ -18,6 +18,14 @@ export default function InputData({dataSelecionada}: IInputData) {
         return (`${(dt.date() < 10 ? "0" + dt.date() : dt.date())}/${(dt.month() + 1 < 10 ? "0" + (dt.month() + 1) : dt.month() + 1)}/${dt.year()}`)
     }
 
+    useEffect(()=>{
+        if (open) {
+            document.body.style.overflowY = 'hidden';
+        }else{
+            document.body.style.overflowY = 'auto';
+        }    
+    },[open])
+
     useEffect(() => {
         if (typeof data !== 'string' && data !== undefined) {
             setLastData(data)
