@@ -35,10 +35,10 @@ export default function HeaderApresentacao() {
             <div className={navStyle}>
                 <div className="px-4 py-3 flex flex-col gap-4">
                     <button className="w-full" onClick={() => setNavAberta(false)}><IoClose size={'1.7rem'} style={{color: "#F5F5F5"}} /></button>
-                    <div className="flex flex-col gap-1 font-poppins font-medium text-preto">
-                        <a className="hover:underline md:text-sm text-xs" href="./contato">Contato</a>
-                        <a className="hover:underline md:text-sm text-xs" href="./lojas">Lojas</a>
-                        <a className="hover:underline md:text-sm text-xs" href="./Sobre">Sobre nós</a>
+                    <div className="flex flex-col gap-4 font-poppins font-medium text-preto">
+                        <a className="hover:underline md:text-sm text-sm" href="./contato">Contato</a>
+                        <a className="hover:underline md:text-sm text-sm" href="./lojas">Lojas</a>
+                        <a className="hover:underline md:text-sm text-sm" href="./Sobre">Sobre nós</a>
                     </div>
                 </div>
             </div>
