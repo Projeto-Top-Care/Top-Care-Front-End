@@ -8,6 +8,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Top Care",
   description: "Pet Shop Top Care LTDA",
+  icons: "./assets/logo.png",
 };
 
 export default function RootLayout({
