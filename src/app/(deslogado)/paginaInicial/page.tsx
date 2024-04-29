@@ -17,22 +17,22 @@ export default function PaginaInicial() {
             </section>
 
             <section>
-                <TituloLinha titulo="Destaques do dia" />
+                <TituloLinha titulo="Seu pet vai adorar, e você também" />
                 <EmblaCarousel/>
             </section>
 
             <section>
-                <TituloLinha titulo="Promoções só para você" />
+                <TituloLinha titulo="Alimentação" />
                 <EmblaCarousel/>
             </section>
 
             <section>
-                <TituloLinha titulo="Produtos mais bem avaliados" />
+                <TituloLinha titulo="Acessórios e brinquedos" />
                 <EmblaCarousel/>
             </section>
 
             <section>
-                <TituloLinha titulo="Seu pet vai adorar!" />
+                <TituloLinha titulo="Higiene e medicamentos" />
                 <EmblaCarousel/>
             </section>
         </main>
