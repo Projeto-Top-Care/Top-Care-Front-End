@@ -2,7 +2,9 @@
 import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
 import InputFile from '@/components/InputFile/InputFile'
 import InputText from '@/components/InputText/InputText'
+import MoldeInput from '@/components/MoldeInput'
 import CadastroPet from '@/components/Pop-up/CadastroPet/CadastroPet'
+import ResponsiveInput from '@/components/ResponsiveInput'
 import Select from '@/components/Select/Select'
 import React, { useState } from 'react'
 
@@ -12,86 +14,123 @@ export default function Cadastro() {
     const [estado, setEstado] = useState<string>('');
     return (
         <main className={`w-full overflow-hidden`}>
-            <section className='w-full flex items-center justify-center mt-10'>
-                <h1 className='font-averia text-2xl font-bold'>Faça o cadastro e entre para a família Top Care!</h1>
+            <section className='w-[90%] m-auto mt-10 md:w-full'>
+                <h1 className='font-averia text-center text-2xl font-bold'>Faça o cadastro e entre para a família Top Care!</h1>
             </section>
-            <section className='flex flex-row w-[100%] items-center justify-center mt-12 gap-10'>
-                <section className='flex flex-col items-center justify-center gap-8 w-72'>
-                    <div className='w-44 h-32'>
-                        <InputFile rounded='rounded-lg' />
-                    </div>
-                    <div className='w-72 flex flex-col gap-10 justify-end'>
-                        <InputText placeholder='Email' type={'text'} />
-                        <InputText placeholder='CPF' type={'text'} />
-                        <div className='w-full'>
-                            <InputText placeholder='Senha' type={'password'} />
-                            <div className='w-72 ml-4 flex gap-5 absolute'>
-                                <div>
-                                    <p className='list-item font-poppins text-[0.6rem]'>Letra maiúscula e minúscula</p>
-                                    <p className='list-item font-poppins text-[0.6rem]'>1 caractere especial(@#!)</p>
-                                </div>
-                                <div>
-                                    <p className='list-item font-poppins text-[0.6rem]'>Mínimo 8 caracteres   </p>
-                                    <p className='list-item font-poppins text-[0.6rem]'>Números</p>
-                                </div>
+            <section className='flex flex-col justify-center items-center mt-12 gap-20 lg:flex-row lg:gap-10'>
+                <section className='flex flex-col justify-center md:gap-8 gap-5'>
+                    <div className='flex md:flex-row flex-col gap-5 md:gap-8'>
+                        <div className='md:w-72 w-[90%] m-auto gap-3 flex items-center justify-center'>
+                            <div className='w-32 h-16 md:w-44 md:h-32'>
+                                <InputFile rounded='rounded-lg' />
+                            </div>
+                            <div className='md:hidden'>
+                                <p className='font-poppins text-sm text-cinza-escuro'>Adicione uma foto para seu perfil.</p>
                             </div>
                         </div>
+                        <div className='flex flex-col gap-5 w-[90%] m-auto md:gap-8 md:w-72'>
+                            <ResponsiveInput>
+                                <InputText placeholder='Nome Completo' />
+                            </ResponsiveInput>
+                            <ResponsiveInput>
+                                <InputText placeholder='Data de Nascimento' />
+                            </ResponsiveInput>
+                        </div>
                     </div>
-                </section>
-                <section className='flex flex-col w-72 gap-10'>
-                    <InputText placeholder='Nome Completo' />
-                    <InputText placeholder='Data de Nascimento' />
-                    <InputText placeholder='Telefone' type={'tel'} />
-                    <Select label='Sexo' options={['', 'Masculino', 'Feminino', 'Prefiro não Informar']} opcaoSelecionada={setSexo} />
-                    <InputText placeholder='Confirmar Senha' type={'password'} />
+                    <MoldeInput>
+                        <ResponsiveInput>
+                            <InputText placeholder='Email' type={'text'} />
+                        </ResponsiveInput>
+                        <ResponsiveInput>
+                            <InputText placeholder='Telefone' type={'tel'} />
+                        </ResponsiveInput>
+                    </MoldeInput>
+                    <MoldeInput>
+                        <ResponsiveInput>
+                            <InputText placeholder='CPF' type={'text'} />
+                        </ResponsiveInput>
+                        <ResponsiveInput>
+                            <Select label='Sexo' options={['', 'Masculino', 'Feminino', 'Prefiro não Informar']} opcaoSelecionada={setSexo} />
+                        </ResponsiveInput>
+                    </MoldeInput>
+                    <MoldeInput>
+                        <ResponsiveInput>
+                            <InputText placeholder='Senha' type={'password'} />
+                        </ResponsiveInput>
+                        <ResponsiveInput>
+                            <InputText placeholder='Confirmar Senha' type={'password'} />
+                        </ResponsiveInput>
+                        <div className='w-72 ml-4 flex gap-5 absolute mt-28 md:mt-12'>
+                            <div>
+                                <p className='list-item font-poppins text-[0.6rem]'>Letra maiúscula e minúscula</p>
+                                <p className='list-item font-poppins text-[0.6rem]'>1 caractere especial(@#!)</p>
+                            </div>
+                            <div>
+                                <p className='list-item font-poppins text-[0.6rem]'>Mínimo 8 caracteres   </p>
+                                <p className='list-item font-poppins text-[0.6rem]'>Números</p>
+                            </div>
+                        </div>
+                    </MoldeInput>
                 </section>
                 <section className='w-80 flex flex-col gap-2'>
-                    <div>
+                    <div className='max-sm:hidden'>
                         <img src="./assets/imagemCadastro.svg" alt="" />
                     </div>
-                    <div className='flex flex-col text-center gap-2'>
+                    <div className='flex flex-col w-[90%] m-auto text-center md:gap-2 md:w-full'>
                         <h1 className='font-poppins font-medium'>Gostaria de cadastrar um Pet?</h1>
                         <p className='font-poppins text-sm'>Cadastre aqui pra ele não perder nenhuma oportunidade! É rapidinho!</p>
                     </div>
-                    <div className='w-full' onClick={() => setOpen(true)}>
+                    <div className='md:w-full w-[90%] m-auto' onClick={() => setOpen(true)}>
                         <BotaoGrande title='Cadastrar Pet' background='bg-primaria' type={'button'} />
                     </div>
 
                 </section>
             </section>
             <section>
-                <div className='border-t border-cinza mt-32 w-[75%] m-auto'></div>
+                <div className='border-t border-cinza mt-12 md:mt-20 w-[75%] m-auto lg:mt-32'></div>
             </section>
             <section className='flex justify-center mt-8'>
                 <h1 className='font-averia font-bold text-2xl'>Endereço</h1>
             </section>
-            <section className='mt-16 flex flex-col gap-8'>
-                <section className='flex flex-row gap-5 w-[75%] m-auto'>
-                    <div className='w-64'>
-                        <InputText placeholder='CEP' type={'number'} />
-                    </div>
-                    <div className='w-64'>
-                        <Select label='Estado' options={['', 'SC', 'SP', 'MG', 'RJ']} opcaoSelecionada={setEstado}/>
-                    </div>
-                    <div className='w-64'>
-                        <InputText placeholder='Cidade' type={'text'} />
-                    </div>
-                    <div className='w-64'>
-                        <InputText placeholder='Bairro' type={'text'} />
+            <section className='md:mt-16 mt-10 flex flex-col gap-5 lg:gap-8'>
+                <section className='flex flex-col gap-5'>
+                    <div className='flex flex-col gap-5 lg:gap-8 lg:m-auto lg:flex-row'>
+                        <MoldeInput>
+                            <ResponsiveInput>
+                                <InputText placeholder='CEP' type={'number'} />
+                            </ResponsiveInput>
+                            <ResponsiveInput>
+                                <Select label='Estado' options={['', 'SC', 'SP', 'MG', 'RJ']} opcaoSelecionada={setEstado} />
+                            </ResponsiveInput>
+                        </MoldeInput>
+                        <MoldeInput>
+                            <ResponsiveInput>
+                                <InputText placeholder='Cidade' type={'text'} />
+                            </ResponsiveInput>
+                            <ResponsiveInput>
+                                <InputText placeholder='Bairro' type={'text'} />
+                            </ResponsiveInput>
+                        </MoldeInput>
                     </div>
                 </section>
-                <section className='flex flex-row gap-5 w-[75%] m-auto'>
-                    <div className='w-64'>
-                        <InputText placeholder='Rua' type={'text'} />
-                    </div>
-                    <div className='w-64'>
-                        <InputText placeholder='Número' type={'number'} />
-                    </div>
-                    <div className='w-64'>
-                        <InputText placeholder='Complemento' type={'text'} />
-                    </div>
-                    <div className='w-64'>
-                        <InputText placeholder='Nome para o Endereço' type={'text'} />
+                <section className='flex flex-col gap-5'>
+                    <div className='flex flex-col gap-5 lg:gap-8 lg:m-auto lg:flex-row'>
+                        <MoldeInput>
+                            <ResponsiveInput>
+                                <InputText placeholder='Rua' type={'text'} />
+                            </ResponsiveInput>
+                            <ResponsiveInput>
+                                <InputText placeholder='Número' type={'number'} />    
+                            </ResponsiveInput>
+                        </MoldeInput>
+                        <MoldeInput>
+                            <ResponsiveInput>
+                                <InputText placeholder='Complemento' type={'text'} />
+                            </ResponsiveInput>
+                            <ResponsiveInput>
+                                <InputText placeholder='Nome para o Endereço' type={'text'} />
+                            </ResponsiveInput>
+                        </MoldeInput>
                     </div>
                 </section>
             </section>

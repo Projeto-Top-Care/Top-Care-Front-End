@@ -1,0 +1,146 @@
+[
+    {
+      "id": 1,
+      "nomeProduto": "Produto 1",
+      "notaDeAvaliacao": 4.5,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 20.99,
+      "desconto": "15%",
+      "precoNovo": 17.84
+    },
+    {
+      "id": 2,
+      "nomeProduto": "Produto 2",
+      "notaDeAvaliacao": 3.8,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 15.75,
+      "desconto": "10%",
+      "precoNovo": 14.18
+    },
+    {
+      "id": 3,
+      "nomeProduto": "Produto 3",
+      "notaDeAvaliacao": 4.2,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 18.49,
+      "desconto": "20%",
+      "precoNovo": 14.79
+    },
+    {
+      "id": 4,
+      "nomeProduto": "Produto 4",
+      "notaDeAvaliacao": 4.0,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 22.99,
+      "desconto": "25%",
+      "precoNovo": 17.24
+    },
+    {
+      "id": 5,
+      "nomeProduto": "Produto 5",
+      "notaDeAvaliacao": 4.7,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 19.99,
+      "desconto": "30%",
+      "precoNovo": 13.99
+    },
+    {
+      "id": 6,
+      "nomeProduto": "Produto 6",
+      "notaDeAvaliacao": 4.1,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 25.49,
+      "desconto": "15%",
+      "precoNovo": 21.67
+    },
+    {
+      "id": 7,
+      "nomeProduto": "Produto 7",
+      "notaDeAvaliacao": 4.6,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 17.99,
+      "desconto": "10%",
+      "precoNovo": 16.19
+    },
+    {
+      "id": 8,
+      "nomeProduto": "Produto 8",
+      "notaDeAvaliacao": 3.5,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 28.99,
+      "desconto": "20%",
+      "precoNovo": 23.19
+    },
+    {
+      "id": 9,
+      "nomeProduto": "Produto 9",
+      "notaDeAvaliacao": 4.3,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 16.99,
+      "desconto": "25%",
+      "precoNovo": 12.74
+    },
+    {
+      "id": 10,
+      "nomeProduto": "Produto 10",
+      "notaDeAvaliacao": 3.9,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 21.99,
+      "desconto": "30%",
+      "precoNovo": 15.39
+    },
+    {
+      "id": 11,
+      "nomeProduto": "Produto 11",
+      "notaDeAvaliacao": 4.4,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 23.99,
+      "desconto": "15%",
+      "precoNovo": 20.39
+    },
+    {
+      "id": 12,
+      "nomeProduto": "Produto 12",
+      "notaDeAvaliacao": 3.7,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 19.99,
+      "desconto": "10%",
+      "precoNovo": 17.99
+    },
+    {
+      "id": 13,
+      "nomeProduto": "Produto 13",
+      "notaDeAvaliacao": 4.1,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 25.99,
+      "desconto": "20%",
+      "precoNovo": 20.79
+    },
+    {
+      "id": 14,
+      "nomeProduto": "Produto 14",
+      "notaDeAvaliacao": 4.5,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 18.99,
+      "desconto": "25%",
+      "precoNovo": 14.24
+    },
+    {
+      "id": 15,
+      "nomeProduto": "Produto 15",
+      "notaDeAvaliacao": 3.8,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 22.99,
+      "desconto": "30%",
+      "precoNovo": 16.09
+    },
+    {
+      "id": 16,
+      "nomeProduto": "Produto 16",
+      "notaDeAvaliacao": 4.3,
+      "imagemProduto": "./assets/racao.png",
+      "precoAntigoDoProduto": 20.99,
+      "desconto": "15%",
+      "precoNovo": 17.84
+    }
+]

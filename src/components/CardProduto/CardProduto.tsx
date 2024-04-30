@@ -3,22 +3,16 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { FiShoppingBag } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
+import { useRouter } from "next/navigation";
+import {Produto} from '@/types/produto'
 
 import { useEffect, useState } from 'react'
 import React from "react";
 
-type cardprodutotype = {
-    nomeProduto: string
-    notaDeAvaliacao: number
-    imagemProduto: string
-    precoAntigoDoProduto: number
-    desconto: string
-    precoNovo: number
-}
-
-const CardProduto = ({nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo}: cardprodutotype) => {
+const CardProduto = ({id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo}: Produto) => {
 
     const [favorito, setFavorito] = useState<boolean>(false);
+    const {push} = useRouter()
 
     useEffect(() => {
         iconeFavorito()
@@ -31,7 +25,7 @@ const CardProduto = ({nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDo
     }
 
     return (
-        <div className='flex flex-col gap-3 border-cinza border-[1px] rounded-lg w-[11rem] font-poppins px-2 py-3'>
+        <div className='cursor-pointer flex flex-col gap-3 border-cinza border-[1px] rounded-lg w-[11rem] font-poppins px-2 py-3' onClick={()=>push(`/produtos/${nomeProduto}?id=${id}`)}>
 
             <div className='flex flex-row justify-between items-center'>
                 <div className='flex flex-row gap-[0.2rem] items-center justify-center'>
