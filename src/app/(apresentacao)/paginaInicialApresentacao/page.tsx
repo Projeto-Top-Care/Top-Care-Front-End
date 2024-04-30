@@ -6,7 +6,7 @@ import React from 'react'
 export default function PaginaInicialApresentacao() {
 
     const slidesCarrosselDesktop: string[] = ['./assets/slidesDesktop/Banner1.svg', './assets/slidesDesktop/Banner2.svg', './assets/slidesDesktop/Banner3.svg']
-    const slidesCarrosselMobile: string[] = ['./assets/slidesMobile/Banner1.svg', './assets/slidesMobile/Banner2.svg', './assets/slidesMobile/Banner4.svg']
+    const slidesCarrosselMobile: string[] = ['./assets/slidesMobile/Banner1.svg', './assets/slidesMobile/Banner2.svg', './assets/slidesMobile/Banner3.svg']
     const OPTIONS: EmblaOptionsType = { loop: true }
     return (
         <main className='bg-branco w-full'>
