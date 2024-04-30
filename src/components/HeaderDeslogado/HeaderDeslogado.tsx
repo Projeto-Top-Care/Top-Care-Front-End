@@ -50,10 +50,8 @@ export default function HeaderDeslogado() {
             <div className="bg-terciaria md:flex hidden flex-row justify-center">
                 <div className="font-poppins flex flex-row justify-between md:gap-12 gap-2 py-3">
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Produtos</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Serviços</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Lojas</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Pets</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Planos</a>
+                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Contato</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Ajuda</a>
                 </div>
             </div>
@@ -95,7 +93,7 @@ export default function HeaderDeslogado() {
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-1 font-poppins text-preto">
+                    {/* <div className="flex flex-col gap-1 font-poppins text-preto">
                         <h3 className="font-semibold text-sm">Serviços</h3>
 
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
@@ -110,7 +108,7 @@ export default function HeaderDeslogado() {
                             <MdOutlinePets  size={'0.9rem'} style={{color: "#322828"}} />
                             <a href="#" className="hover:underline">Pets</a>
                         </div>
-                    </div>
+                    </div> */}
                     
                 </div>
             </div>

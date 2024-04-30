@@ -8,7 +8,7 @@ import Select from "@/components/Select/Select";
 import TextArea from "@/components/TextArea/TextArea";
 import { useEffect, useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
-import { createInvoice } from "../../../server/formulario/action";
+import { createInvoice } from "@/server/formulario/action";
 
 export default function Contato() {
 
