@@ -1,7 +1,7 @@
 'use server';
 import {guardarFormularios} from './formularios'
 
-export async function createInvoice(formData: FormData) {
+export async function salvarInformacoes(formData: FormData) {
     const rawFormData = {
         nome: formData.get('nome'),
         email: formData.get('email'),

@@ -1,8 +1,6 @@
 'use client'
-import CardProduto from "@/components/CardProduto/CardProduto"
 import Carrossel from "@/components/Carrossel/Carrossel"
 import EmblaCarousel from "@/components/CarrosselProduto/Carrossel"
-import InputData from "@/components/InputData/InputData"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import { EmblaOptionsType } from "embla-carousel"
 

@@ -1,9 +1,12 @@
+'use client'
 import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
 import InputText from '@/components/InputText/InputText'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
+import { useRouter  } from 'next/navigation'
 import React from 'react'
 
 export default function Login() {
+    const {push} = useRouter();
     return (
         <main className='bg-branco'>
             <section className='mt-11'>
@@ -28,7 +31,7 @@ export default function Login() {
                         <h3 className='font-poppins text-lg font-medium text-preto'>Não possui conta?</h3>
                         <p className='font-poppins text-sm mt-2 text-preto'>Aperte no botão abaixo para poder ficar ligado em todas as promoções e serviços.</p>
                     </div>
-                    <div className='w-full mt-4'>
+                    <div className='w-full mt-4' onClick={()=>push('/cadastro')}>
                         <BotaoGrande title='Cadastrar' background='bg-terciaria' type={'button'} />
                     </div>
                 </section>

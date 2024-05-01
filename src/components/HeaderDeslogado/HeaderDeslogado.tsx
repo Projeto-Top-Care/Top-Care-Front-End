@@ -5,9 +5,6 @@ import { IoMenu, IoClose } from "react-icons/io5";
 import { FaRegHeart, FaUserCircle, FaSearch, FaStore } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 import { PiBoneFill } from "react-icons/pi";
-import { GiSittingDog } from "react-icons/gi";
-import { MdOutlinePets } from "react-icons/md";
-import { RiFilePaperLine } from "react-icons/ri";
 
 import { useEffect, useState } from "react";
 
@@ -29,14 +26,14 @@ export default function HeaderDeslogado() {
         <div>
             <div className="bg-primaria md:px-20 px-10 md:py-3 py-2 flex flex-row-reverse md:flex-row font-poppins justify-between items-center text-preto">
                 <div className='px-6'>
-                    <a href="/pagInit"><img className="md:w-[64px] w-[40px] " src="./assets/logo.png"/></a>
+                    <a href="/"><img className="md:w-[64px] w-[40px] " src="./assets/logo.png"/></a>
                 </div>
 
-                <div className="md:flex w-2/3 px-4 hidden">
+                <div className="flex w-2/3 px-4 max-sm:hidden">
                     <BarraPesquisa placeholder="O que você precisa hoje?" />
                 </div>
 
-                <div className='md:flex hidden flex-row gap-6 items-center justify-end'>
+                <div className='flex max-sm:hidden flex-row gap-6 items-center justify-end'>
                     <button className='bg-terciaria rounded-lg w-[112px] py-[5px] px-2 transition ease-in-out delay-150 duration-200 hover:bg-[#c4d5f3]' onClick={()=>push('login')}>
                         Login
                     </button> 
@@ -47,11 +44,11 @@ export default function HeaderDeslogado() {
                 </div>
             </div>
 
-            <div className="bg-terciaria md:flex hidden flex-row justify-center">
+            <div className="bg-terciaria flex max-sm:hidden flex-row justify-center">
                 <div className="font-poppins flex flex-row justify-between md:gap-12 gap-2 py-3">
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Produtos</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Lojas</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Contato</a>
+                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/produtos">Produtos</a>
+                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/lojas">Lojas</a>
+                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/contato">Contato</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Ajuda</a>
                 </div>
             </div>

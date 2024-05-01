@@ -1,146 +1,353 @@
 [
-    {
-      "id": 1,
-      "nomeProduto": "Produto 1",
-      "notaDeAvaliacao": 4.5,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 20.99,
-      "desconto": "15%",
-      "precoNovo": 17.84
-    },
-    {
-      "id": 2,
-      "nomeProduto": "Produto 2",
-      "notaDeAvaliacao": 3.8,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 15.75,
-      "desconto": "10%",
-      "precoNovo": 14.18
-    },
-    {
-      "id": 3,
-      "nomeProduto": "Produto 3",
-      "notaDeAvaliacao": 4.2,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 18.49,
-      "desconto": "20%",
-      "precoNovo": 14.79
-    },
-    {
-      "id": 4,
-      "nomeProduto": "Produto 4",
-      "notaDeAvaliacao": 4.0,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 22.99,
-      "desconto": "25%",
-      "precoNovo": 17.24
-    },
-    {
-      "id": 5,
-      "nomeProduto": "Produto 5",
-      "notaDeAvaliacao": 4.7,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 19.99,
-      "desconto": "30%",
-      "precoNovo": 13.99
-    },
-    {
-      "id": 6,
-      "nomeProduto": "Produto 6",
-      "notaDeAvaliacao": 4.1,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 25.49,
-      "desconto": "15%",
-      "precoNovo": 21.67
-    },
-    {
-      "id": 7,
-      "nomeProduto": "Produto 7",
-      "notaDeAvaliacao": 4.6,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 17.99,
-      "desconto": "10%",
-      "precoNovo": 16.19
-    },
-    {
-      "id": 8,
-      "nomeProduto": "Produto 8",
-      "notaDeAvaliacao": 3.5,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 28.99,
-      "desconto": "20%",
-      "precoNovo": 23.19
-    },
-    {
-      "id": 9,
-      "nomeProduto": "Produto 9",
-      "notaDeAvaliacao": 4.3,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 16.99,
-      "desconto": "25%",
-      "precoNovo": 12.74
-    },
-    {
-      "id": 10,
-      "nomeProduto": "Produto 10",
-      "notaDeAvaliacao": 3.9,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 21.99,
-      "desconto": "30%",
-      "precoNovo": 15.39
-    },
-    {
-      "id": 11,
-      "nomeProduto": "Produto 11",
-      "notaDeAvaliacao": 4.4,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 23.99,
-      "desconto": "15%",
-      "precoNovo": 20.39
-    },
-    {
-      "id": 12,
-      "nomeProduto": "Produto 12",
-      "notaDeAvaliacao": 3.7,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 19.99,
-      "desconto": "10%",
-      "precoNovo": 17.99
-    },
-    {
-      "id": 13,
-      "nomeProduto": "Produto 13",
-      "notaDeAvaliacao": 4.1,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 25.99,
-      "desconto": "20%",
-      "precoNovo": 20.79
-    },
-    {
-      "id": 14,
-      "nomeProduto": "Produto 14",
-      "notaDeAvaliacao": 4.5,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 18.99,
-      "desconto": "25%",
-      "precoNovo": 14.24
-    },
-    {
-      "id": 15,
-      "nomeProduto": "Produto 15",
-      "notaDeAvaliacao": 3.8,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 22.99,
-      "desconto": "30%",
-      "precoNovo": 16.09
-    },
-    {
-      "id": 16,
-      "nomeProduto": "Produto 16",
-      "notaDeAvaliacao": 4.3,
-      "imagemProduto": "./assets/racao.png",
-      "precoAntigoDoProduto": 20.99,
-      "desconto": "15%",
-      "precoNovo": 17.84
-    }
+  {
+    "id": 1,
+    "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+    "notaDeAvaliacao": 4.5,
+    "imagemProduto": ["./assets/racao.png", "./assets/racao.png"],
+    "precoAntigoDoProduto": 20.99,
+    "desconto": "15%",
+    "precoNovo": 17.84,
+    "marca": "Zee.Dog",
+    "precoAssinantes": 15.97,
+    "tamanho": ["G", "M", "P", "PP"],
+    "disponivel": true,
+    "codigo": 10031110007717,
+    "descricao": [
+      "- Indicada para cães;",
+      "- Com uma nova tecnologia com ultra proteção externa de borracha de PVC chamada neopro;",
+      "- Resistente à água e à ação do tempo;",
+      "- Muito fácil de limpar;",
+      "- Borracha de caveira feita de material atóxico;",
+      "- Textura macia e sedosa para maior conforto;",
+      "- Fecho seguro com sistema de segurança de 4 pontos;",
+      "- Regulável, para melhor ajuste no pescoço do seu cachorro;",
+      "- Estampa exclusiva;",
+      "- Em embalagem com 1 unidade;",
+      "- Disponível nos tamanhos PP, P, M e G."
+    ],
+    "especificacoes": [
+      {"topico": "Idade", "resposta": "Sênior, Filhote e Adulto"},
+      {"topico": "Porte da Raça", "resposta": "Grande, Pequeno, Mini, Gigante e Médio"},
+      {"topico": "Pet", "resposta": "Cachorros"},
+      {"topico": "Cor", "resposta": "Rosa"},
+      {"topico": "Tipo", "resposta": "Coleira para cães"},
+      {"topico": "Material", "resposta": "Poliéster, zinco e borracha"},
+      {"topico": "Apresentação", "resposta": "Disponível nos tamanhos PP, P, M e G."}
+    ],
+    "avaliacoes": [
+      {"id": 3, "nota": 3, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+    ]
+  },
+  {
+    "id": 2,
+    "nomeProduto": "Produto 2",
+    "notaDeAvaliacao": 4.8,
+    "imagemProduto": ["./assets/racao.png", "./assets/racao.png"],
+    "precoAntigoDoProduto": 15.99,
+    "desconto": "10%",
+    "precoNovo": 14.39,
+    "marca": "PetLove",
+    "precoAssinantes": 12.99,
+    "tamanho": ["Único"],
+    "disponivel": true,
+    "codigo": 10031110007718,
+    "descricao": [
+      "- Indicada para gatos;",
+      "- Confeccionada em nylon resistente;",
+      "- Estampa exclusiva e charmosa;",
+      "- Ideal para passeios seguros e confortáveis;",
+      "- Fecho seguro com sistema de segurança de 4 pontos;",
+      "- Regulável, para melhor ajuste no pescoço do seu gato;",
+      "- Em embalagem com 1 unidade."
+    ],
+    "especificacoes": [
+      {"topico": "Idade", "resposta": "Filhote e Adulto"},
+      {"topico": "Porte da Raça", "resposta": "Pequeno e Médio"},
+      {"topico": "Pet", "resposta": "Gatos"},
+      {"topico": "Cor", "resposta": "Verde"},
+      {"topico": "Tipo", "resposta": "Guia para gatos"},
+      {"topico": "Material", "resposta": "Nylon"},
+      {"topico": "Apresentação", "resposta": "Disponível em tamanho único."}
+    ],
+    "avaliacoes": [
+      {"id": 5, "nota": 4, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+    ]
+  },
+  {
+    "id": 3,
+    "nomeProduto": "Produto 3",
+    "notaDeAvaliacao": 4.2,
+    "imagemProduto": ["./assets/racao.png", "./assets/racao.png"],
+    "precoAntigoDoProduto": 39.99,
+    "desconto": "20%",
+    "precoNovo": 31.99,
+    "marca": "SuperPet",
+    "precoAssinantes": 28.79,
+    "tamanho": ["G", "M", "P"],
+    "disponivel": true,
+    "codigo": 10031110007719,
+    "descricao": [
+      "- Indicada para cães e gatos;",
+      "- Confortável e resistente;",
+      "- Ideal para uso em ambientes internos;",
+      "- Pode ser lavada à máquina;",
+      "- Textura macia para maior conforto do seu pet;",
+      "- Estampa divertida e exclusiva;",
+      "- Em embalagem com 1 unidade;",
+      "- Disponível nos tamanhos PP, P, M e G."
+    ],
+    "especificacoes": [
+      {"topico": "Idade", "resposta": "Filhote e Adulto"},
+      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
+      {"topico": "Pet", "resposta": "Cães e Gatos"},
+      {"topico": "Cor", "resposta": "Azul"},
+      {"topico": "Tipo", "resposta": "Cama para pets"},
+      {"topico": "Material", "resposta": "Algodão"},
+      {"topico": "Apresentação", "resposta": "Disponível nos tamanhos PP, P, M e G."}
+    ],
+    "avaliacoes": [
+      {"id": 8, "nota": 4.5, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+    ]
+  },
+  {
+    "id": 4,
+    "nomeProduto": "Produto 4",
+    "notaDeAvaliacao": 4.7,
+    "imagemProduto": ["./assets/racao.png", "./assets/racao.png"],
+    "precoAntigoDoProduto": 12.99,
+    "desconto": "10%",
+    "precoNovo": 11.69,
+    "marca": "DogLovers",
+    "precoAssinantes": 10.49,
+    "tamanho": ["Único"],
+    "disponivel": true,
+    "codigo": 10031110007720,
+    "descricao": [
+      "- Indicado para cães;",
+      "- Confeccionado em material atóxico e resistente;",
+      "- Textura especial para estimular a mastigação saudável;",
+      "- Ideal para brincadeiras interativas e enriquecimento ambiental;",
+      "- Em formato divertido e colorido;",
+      "- Disponível em embalagem com 1 unidade."
+    ],
+    "especificacoes": [
+      {"topico": "Idade", "resposta": "Filhote e Adulto"},
+      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
+      {"topico": "Pet", "resposta": "Cães"},
+      {"topico": "Cor", "resposta": "Vermelho, Azul e Amarelo"},
+      {"topico": "Tipo", "resposta": "Brinquedo para cães"},
+      {"topico": "Material", "resposta": "Borracha"},
+      {"topico": "Apresentação", "resposta": "Disponível em tamanho único."}
+    ],
+    "avaliacoes": [
+      {"id": 10, "nota": 4.8, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+    ]
+  },
+  {
+    "id": 5,
+    "nomeProduto": "Produto 5",
+    "notaDeAvaliacao": 4.9,
+    "imagemProduto": ["./assets/racao.png", "./assets/racao.png"],
+    "precoAntigoDoProduto": 49.99,
+    "desconto": "25%",
+    "precoNovo": 37.49,
+    "marca": "MeowWorld",
+    "precoAssinantes": 33.74,
+    "tamanho": ["Único"],
+    "disponivel": true,
+    "codigo": 10031110007721,
+    "descricao": [
+      "- Indicado para gatos;",
+      "- Estrutura resistente e durável;",
+      "- Perfeito para gatos que adoram afiar as unhas;",
+      "- Design moderno e elegante;",
+      "- Estimula comportamento saudável de arranhar;",
+      "- Disponível em embalagem com 1 unidade."
+    ],
+    "especificacoes": [
+      {"topico": "Idade", "resposta": "Filhote e Adulto"},
+      {"topico": "Porte da Raça", "resposta": "Pequeno e Médio"},
+      {"topico": "Pet", "resposta": "Gatos"},
+      {"topico": "Cor", "resposta": "Bege"},
+      {"topico": "Tipo", "resposta": "Arranhador para gatos"},
+      {"topico": "Material", "resposta": "Sisal"},
+      {"topico": "Apresentação", "resposta": "Disponível em tamanho único."}
+    ],
+    "avaliacoes": [
+      {"id": 12, "nota": 4.9, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+    ]
+  },
+  {
+    "id": 6,
+    "nomeProduto": "Produto 6",
+    "notaDeAvaliacao": 4.6,
+    "imagemProduto": ["./assets/racao.png", "./assets/racao.png"],
+    "precoAntigoDoProduto": 29.99,
+    "desconto": "10%",
+    "precoNovo": 26.99,
+    "marca": "HappyPets",
+    "precoAssinantes": 24.29,
+    "tamanho": ["Único"],
+    "disponivel": true,
+    "codigo": 10031110007722,
+    "descricao": [
+      "- Indicado para cães e gatos;",
+      "- Fabricado em material resistente;",
+      "- Design ergonômico e funcional;",
+      "- Fácil de limpar;",
+      "- Estampa colorida e divertida;",
+      "- Disponível em embalagem com 1 unidade."
+    ],
+    "especificacoes": [
+      {"topico": "Idade", "resposta": "Filhote e Adulto"},
+      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
+      {"topico": "Pet", "resposta": "Cães e Gatos"},
+      {"topico": "Cor", "resposta": "Roxo"},
+      {"topico": "Tipo", "resposta": "Comedouro"},
+      {"topico": "Material", "resposta": "Plástico"},
+      {"topico": "Apresentação", "resposta": "Disponível em tamanho único."}
+    ],
+    "avaliacoes": [
+      {"id": 15, "nota": 4.7, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+    ]
+  },
+  {
+    "id": 7,
+    "nomeProduto": "Produto 7",
+    "notaDeAvaliacao": 4.3,
+    "imagemProduto": ["./assets/racao.png", "./assets/racao.png"],
+    "precoAntigoDoProduto": 8.99,
+    "desconto": "5%",
+    "precoNovo": 8.54,
+    "marca": "Pawsome",
+    "precoAssinantes": 7.69,
+    "tamanho": ["Único"],
+    "disponivel": true,
+    "codigo": 10031110007723,
+    "descricao": [
+      "- Indicado para cães;",
+      "- Confeccionado em material atóxico e resistente;",
+      "- Ideal para brincadeiras interativas;",
+      "- Textura especial para estimular a mastigação saudável;",
+      "- Em formato divertido e colorido;",
+      "- Disponível em embalagem com 1 unidade."
+    ],
+    "especificacoes": [
+      {"topico": "Idade", "resposta": "Filhote e Adulto"},
+      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
+      {"topico": "Pet", "resposta": "Cães"},
+      {"topico": "Cor", "resposta": "Azul e Amarelo"},
+      {"topico": "Tipo", "resposta": "Brinquedo para cães"},
+      {"topico": "Material", "resposta": "Borracha"},
+      {"topico": "Apresentação", "resposta": "Disponível em tamanho único."}
+    ],
+    "avaliacoes": [
+      {"id": 18, "nota": 4.0, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+    ]
+  },
+  {
+    "id": 8,
+    "nomeProduto": "Produto 8",
+    "notaDeAvaliacao": 4.0,
+    "imagemProduto": ["./assets/racao.png", "./assets/racao.png"],
+    "precoAntigoDoProduto": 24.99,
+    "desconto": "20%",
+    "precoNovo": 19.99,
+    "marca": "DogFashion",
+    "precoAssinantes": 17.99,
+    "tamanho": ["G", "M", "P"],
+    "disponivel": true,
+    "codigo": 10031110007724,
+    "descricao": [
+      "- Indicada para cães;",
+      "- Fabricada em material resistente e confortável;",
+      "- Ideal para passeios seguros e confortáveis;",
+      "- Fecho seguro com sistema de segurança de 4 pontos;",
+      "- Regulável, para melhor ajuste no pescoço do seu cachorro;",
+      "- Design moderno e elegante;",
+      "- Disponível em embalagem com 1 unidade;",
+      "- Disponível nos tamanhos PP, P, M e G."
+    ],
+    "especificacoes": [
+      {"topico": "Idade", "resposta": "Filhote e Adulto"},
+      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
+      {"topico": "Pet", "resposta": "Cães"},
+      {"topico": "Cor", "resposta": "Vermelho"},
+      {"topico": "Tipo", "resposta": "Coleira para cães"},
+      {"topico": "Material", "resposta": "Nylon"},
+      {"topico": "Apresentação", "resposta": "Disponível nos tamanhos PP, P, M e G."}
+    ],
+    "avaliacoes": [
+      {"id": 20, "nota": 3.5, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+    ]
+  },
+  {
+    "id": 9,
+    "nomeProduto": "Produto 9",
+    "notaDeAvaliacao": 4.4,
+    "imagemProduto": ["./assets/racao.png", "./assets/racao.png"],
+    "precoAntigoDoProduto": 34.99,
+    "desconto": "15%",
+    "precoNovo": 29.74,
+    "marca": "PetDreams",
+    "precoAssinantes": 26.77,
+    "tamanho": ["G", "M", "P"],
+    "disponivel": true,
+    "codigo": 10031110007725,
+    "descricao": [
+      "- Indicada para cães e gatos;",
+      "- Fabricada em material resistente e durável;",
+      "- Confortável e aconchegante;",
+      "- Design moderno e elegante;",
+      "- Ideal para uso em ambientes internos;",
+      "- Em embalagem com 1 unidade;",
+      "- Disponível nos tamanhos PP, P, M e G."
+    ],
+    "especificacoes": [
+      {"topico": "Idade", "resposta": "Filhote e Adulto"},
+      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
+      {"topico": "Pet", "resposta": "Cães e Gatos"},
+      {"topico": "Cor", "resposta": "Verde"},
+      {"topico": "Tipo", "resposta": "Cama para pets"},
+      {"topico": "Material", "resposta": "Algodão"},
+      {"topico": "Apresentação", "resposta": "Disponível nos tamanhos PP, P, M e G."}
+    ],
+    "avaliacoes": [
+      {"id": 22, "nota": 4.2, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+    ]
+  },
+  {
+    "id": 10,
+    "nomeProduto": "Produto 10",
+    "notaDeAvaliacao": 4.9,
+    "imagemProduto": ["./assets/racao.png", "./assets/racao.png"],
+    "precoAntigoDoProduto": 11.99,
+    "desconto": "10%",
+    "precoNovo": 10.79,
+    "marca": "FurryFriends",
+    "precoAssinantes": 9.71,
+    "tamanho": ["Único"],
+    "disponivel": true,
+    "codigo": 10031110007726,
+    "descricao": [
+      "- Indicado para cães e gatos;",
+      "- Confeccionado em material resistente e durável;",
+      "- Ideal para brincadeiras interativas e enriquecimento ambiental;",
+      "- Textura especial para estimular a mastigação saudável;",
+      "- Design divertido e colorido;",
+      "- Disponível em embalagem com 1 unidade."
+    ],
+    "especificacoes": [
+      {"topico": "Idade", "resposta": "Filhote e Adulto"},
+      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
+      {"topico": "Pet", "resposta": "Cães e Gatos"},
+      {"topico": "Cor", "resposta": "Azul e Vermelho"},
+      {"topico": "Tipo", "resposta": "Brinquedo para pets"},
+      {"topico": "Material", "resposta": "Poliéster"},
+      {"topico": "Apresentação", "resposta": "Disponível em tamanho único."}
+    ],
+    "avaliacoes": [
+      {"id": 25, "nota": 5.0, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+    ]
+  }
 ]

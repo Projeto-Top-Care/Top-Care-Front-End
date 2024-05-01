@@ -37,11 +37,11 @@ export default function HeaderLogado() {
                     <a><img className="md:w-[70px] w-[40px]" src="assets/logo.png"/></a>
                 </div>
 
-                <div className="md:flex w-2/3 px-4 hidden">
+                <div className="flex w-2/3 px-4 max-sm:hidden">
                     <BarraPesquisa placeholder="O que você precisa hoje?" />
                 </div>
                 
-                <div className='md:flex hidden flex-row gap-4 items-center justify-end'>
+                <div className='flex maz-sm:hidden flex-row gap-4 items-center justify-end'>
                     <button><FiShoppingBag size={'1.2rem'} style={{ color: "#322828"}} /></button>
                     <button><FaRegHeart size={'1.3rem'} style={{color: "#32282"}} /></button>
                     <button><FaUserCircle size={'1.8rem'} style={{color: "#32282"}} /></button>
@@ -52,11 +52,11 @@ export default function HeaderLogado() {
                 </div>
             </div> 
 
-            <div className="bg-terciaria md:flex hidden flex-row justify-center">
+            <div className="bg-terciaria flex maz-sm:hidden flex-row justify-center">
                 <div className="font-poppins flex flex-row justify-between md:gap-12 gap-2 py-3">
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Produtos</a>
+                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/produtos">Produtos</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Serviços</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Lojas</a>
+                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/lojas">Lojas</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Pets</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Planos</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Ajuda</a>
