@@ -19,8 +19,6 @@ export default function PaginaInicial() {
                 <Carrossel slides={slidesCarrosselMobile} options={OPTIONS} />
             </section>
 
-            <Loading/>
-
             <section>
                 <TituloLinha titulo="Seu pet vai adorar, e você também" />
                 <EmblaCarousel/>
