@@ -46,7 +46,7 @@ export default function sobreNos() {
                 </div>
             </section>
             
-            <section className="pt-8 pb-24">
+            <section className="pt-6 pb-24">
                 <TituloLinha titulo="Nossa missão, visão e valores" />
                 <div className="flex flex-col-reverse items-center lg:flex-row lg:items-start">
                     <div className="w-[40%] mt-4 flex justify-center items-center md:mt-8 md:mr-4 md:w-[82%] lg:w-80 lg:mt-2 lg:ml-20">
