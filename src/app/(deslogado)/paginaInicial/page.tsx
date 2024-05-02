@@ -1,8 +1,10 @@
 'use client'
+import BotaoCategoriaPgInicial from "@/components/Botao-categoria-pgInicial/botao-categoria-pgInicial"
 import Carrossel from "@/components/Carrossel/Carrossel"
 import EmblaCarousel from "@/components/CarrosselProduto/Carrossel"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import { EmblaOptionsType } from "embla-carousel"
+import Loading from "../loading/page"
 
 export default function PaginaInicial() {
     const slidesCarrosselDesktop: string[] = ['./assets/slidesDesktop/Banner1.svg', './assets/slidesDesktop/Banner2.svg', './assets/slidesDesktop/Banner3.svg']
@@ -17,26 +19,43 @@ export default function PaginaInicial() {
                 <Carrossel slides={slidesCarrosselMobile} options={OPTIONS} />
             </section>
 
+            <Loading/>
+
             <section>
                 <TituloLinha titulo="Seu pet vai adorar, e você também" />
                 <EmblaCarousel/>
             </section>
 
+            <section className="py-6 flex flex-col gap-2 sm:gap-4">
+                <TituloLinha titulo="Categorias de produtos" />
+
+                <div className="flex flex-col sm:flex-row justify-center px-4 sm:gap-8 gap-6 sm:px-16 py-4">
+
+                    <BotaoCategoriaPgInicial title="Alimentação" image="./assets/alimentacao.png" pagina="/lojas" />
+                    
+                    <BotaoCategoriaPgInicial title="Brinquedos e acessórios" image="./assets/acessorios.png" pagina="/lojas" />
+
+                    <BotaoCategoriaPgInicial title="Higiene" image="./assets/higiene.png" pagina="/lojas" />
+
+                    <BotaoCategoriaPgInicial title="Medicamentos" image="./assets/medicamentos.png" pagina="/lojas" />
+                    
+                </div>
+            </section>
+
             <section>
-                <TituloLinha titulo="Alimentação" />
+                <TituloLinha titulo="Produtos mais bem avaliados" />
                 <EmblaCarousel/>
             </section>
 
             <section>
-                <TituloLinha titulo="Acessórios e brinquedos" />
+                <TituloLinha titulo="Quase acabando" />
                 <EmblaCarousel/>
             </section>
 
             <section>
-                <TituloLinha titulo="Higiene e medicamentos" />
+                <TituloLinha titulo="Promoções relâmpago" />
                 <EmblaCarousel/>
             </section>
         </main>
-        // <CardProduto nomeProduto={"Ração Úmida Pedigree Sabor Carne Bovina para Cães Adultos - 400g"} notaDeAvaliacao={4.6} imagemProduto={"./assets/racao.png"} precoAntigoDoProduto={12.50} desconto={"10%"} precoNovo={10.50} />
     )
 }
