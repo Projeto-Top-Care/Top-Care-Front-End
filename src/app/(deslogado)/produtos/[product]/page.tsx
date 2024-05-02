@@ -5,7 +5,11 @@ import { AiOutlineStar } from "react-icons/ai";
 import { buscarProduto } from '@/server/produtos/action'
 import { ProdutoCompleto } from '@/types/produto'
 import { useEffect, useState } from 'react'
-import { array } from 'zod';
+import SelectTamanho from '@/components/SelectTamanho/SelectTamanho';
+import BotaoMedio from '@/components/BotaoMedio/BotaoMedio';
+import BotaoPequeno from '@/components/BotaoPequeno';
+import BotaoGrande from '@/components/BotaoGrande/BotaoGrande';
+import QuantidadeProduto from '@/components/QuantidadeProduto/QuantidadeProduto';
 
 interface PropsProduct {
   searchParams: { id: number }
@@ -13,25 +17,23 @@ interface PropsProduct {
 
 export default function ProdutoDetails({ searchParams }: PropsProduct) {
   const [produtoProcurado, setProdutoProcurado] = useState<ProdutoCompleto>()
-   
-  const construirEstrelas = () =>{
-    // const notaAvaliacao = new Array(produtoProcurado?.notaDeAvaliacao)
-    // const notaRestante = new Array(5 - notaAvaliacao.length)
-    const arrayEmpty = new Array(2)
-    return(
-      <div>
-        {arrayEmpty.map((avaliacao, i)=>(
+  const [tamanho, setTamanho] = useState<string>();
+
+  const construirEstrelas = () => {
+    const arrayFull = new Array(Math.round(produtoProcurado?.notaDeAvaliacao!)).fill(null)
+    const arrayEmpty = new Array(5 - arrayFull.length).fill(null)
+    return (
+      <div className='flex flex-row'>
+        {arrayFull.map((avaliacao, i) => (
           <div key={i}>
             <AiFillStar style={{ color: "#FFD601", }} size={25} />
           </div>
         ))}
-        {
-          arrayEmpty.map((avaliacao, i)=>(
-            <div>
-              <AiOutlineStar style={{ color: "#FFD601", }} size={25} />
-            </div>
-          ))
-        }
+        {arrayEmpty.map((a, i) => (
+          <div key={i}>
+            <AiOutlineStar style={{ color: "#FFD601", }} size={25} />
+          </div>
+        ))}
       </div>
     )
   }
@@ -40,7 +42,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
   }, [])
 
   if (!produtoProcurado) return (
-    <div>Carregando...</div>
+    <div className='font-poppins'>Carregando...</div>
   )
   else {
     return (
@@ -59,10 +61,49 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
               <p> Ver descrição completa</p>
               <p>| {produtoProcurado.marca}</p>
             </div>
-            <div>
+            <div className='mt-1 flex flex-row'>
               {construirEstrelas()}
+              <p className={`font-poppins ml-2 ${produtoProcurado.disponivel ? 'text-verde': 'text-error'} font-bold`}>{produtoProcurado.disponivel ? "| Disponível" : "| Indisponível"}</p>
+            </div>
+            <div className='w-[85%] mt-2'>
+              <SelectTamanho options={produtoProcurado.tamanho.map((tamanho)=>{return tamanho})} opcaoSelecionada={()=>setTamanho} label='Selecione o Tamanho'/>
+            </div>
+            <div className='flex flex-row items-center justify-between w-[85%] h-20'>
+              <div className='flex flex-row items-end gap-3'>
+                <p className='font-poppins font-bold text-2xl text-preto'>R$ {produtoProcurado.precoNovo.toString().replace(".", ",")}</p>
+                <s className='font-poppins font-bold text-base text-cinza'>R$ {produtoProcurado.precoAntigoDoProduto.toString().replace(".", ",")}</s>
+              </div>
+              <div>
+                <BotaoGrande background='bg-primaria' fontSize='text-xs lg:text-sm' type='button' title='Calcular Frete'/>
+              </div>
+            </div>
+            <div className='rounded-lg bg-terciaria w-[85%] px-6 py-4'>
+                <p className='font-poppins '>R$ {produtoProcurado.precoAssinantes.toString().replace(".", ",")} para assinantes</p>
+                <div className='mt-1'>
+                  <p className='font-poppins'>*   10% OFF em todas as compras no app, site e lojas físicas</p>
+                  <p className='font-poppins'>*   Sem custo ou mensalidade. Cancele ou pause quando quiser</p>
+                  <p className='font-poppins'>*   Assine os produtos na sacola e garanta os benefícios</p>
+                </div>
+            </div>
+            <div className='flex flex-row items-start gap-4 w-[85%] mt-4'>
+                <div className='w-[30%]'>
+                  <QuantidadeProduto />
+                  <p className='font-poppins text-cinza-escuro text-center mt-1'>Em estoque: {produtoProcurado.estoque}</p>
+                </div>
+                <div className='w-[15%]'>
+                  <BotaoGrande title='../assets/sacola.svg' background={'bg-primaria'} type={'button'} fontSize={'w-[40%] m-auto'}/>
+                </div>
+                <div className='h-8 flex items-center'>
+                  <p className='font-poppins'>ou</p>
+                </div>
+                <div className='w-[50%]'>
+                  <BotaoGrande title='Comprar Agora' type='button' background='bg-secundaria' />
+                </div>
             </div>
           </section>
+        </section>
+        <section>
+          a
         </section>
       </main>
     )

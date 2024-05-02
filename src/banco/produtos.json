@@ -2,7 +2,7 @@
   {
     "id": 1,
     "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
-    "notaDeAvaliacao": 4.5,
+    "notaDeAvaliacao": 4.0,
     "imagemProduto": ["./assets/racao.png", "./assets/racao.png"],
     "precoAntigoDoProduto": 20.99,
     "desconto": "15%",
@@ -12,6 +12,7 @@
     "tamanho": ["G", "M", "P", "PP"],
     "disponivel": true,
     "codigo": 10031110007717,
+    "estoque": 12,
     "descricao": [
       "- Indicada para cães;",
       "- Com uma nova tecnologia com ultra proteção externa de borracha de PVC chamada neopro;",
@@ -51,6 +52,7 @@
     "tamanho": ["Único"],
     "disponivel": true,
     "codigo": 10031110007718,
+    "estoque": 12,
     "descricao": [
       "- Indicada para gatos;",
       "- Confeccionada em nylon resistente;",
@@ -86,6 +88,7 @@
     "tamanho": ["G", "M", "P"],
     "disponivel": true,
     "codigo": 10031110007719,
+    "estoque": 12,
     "descricao": [
       "- Indicada para cães e gatos;",
       "- Confortável e resistente;",
@@ -122,6 +125,7 @@
     "tamanho": ["Único"],
     "disponivel": true,
     "codigo": 10031110007720,
+    "estoque": 12,
     "descricao": [
       "- Indicado para cães;",
       "- Confeccionado em material atóxico e resistente;",
@@ -156,6 +160,7 @@
     "tamanho": ["Único"],
     "disponivel": true,
     "codigo": 10031110007721,
+    "estoque": 12,
     "descricao": [
       "- Indicado para gatos;",
       "- Estrutura resistente e durável;",
@@ -190,6 +195,7 @@
     "tamanho": ["Único"],
     "disponivel": true,
     "codigo": 10031110007722,
+    "estoque": 12,
     "descricao": [
       "- Indicado para cães e gatos;",
       "- Fabricado em material resistente;",
@@ -224,6 +230,7 @@
     "tamanho": ["Único"],
     "disponivel": true,
     "codigo": 10031110007723,
+    "estoque": 12,
     "descricao": [
       "- Indicado para cães;",
       "- Confeccionado em material atóxico e resistente;",
@@ -258,6 +265,7 @@
     "tamanho": ["G", "M", "P"],
     "disponivel": true,
     "codigo": 10031110007724,
+    "estoque": 12,
     "descricao": [
       "- Indicada para cães;",
       "- Fabricada em material resistente e confortável;",
@@ -294,6 +302,7 @@
     "tamanho": ["G", "M", "P"],
     "disponivel": true,
     "codigo": 10031110007725,
+    "estoque": 12,
     "descricao": [
       "- Indicada para cães e gatos;",
       "- Fabricada em material resistente e durável;",
@@ -329,6 +338,7 @@
     "tamanho": ["Único"],
     "disponivel": true,
     "codigo": 10031110007726,
+    "estoque": 12,
     "descricao": [
       "- Indicado para cães e gatos;",
       "- Confeccionado em material resistente e durável;",

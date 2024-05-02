@@ -20,6 +20,7 @@ export interface ProdutoCompleto{
     tamanho: string[]
     disponivel: boolean
     codigo: number
+    estoque: number
     descricao: string[]
     especificacoes: object[]
     avaliacoes: object[]

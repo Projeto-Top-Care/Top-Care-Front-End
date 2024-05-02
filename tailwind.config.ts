@@ -17,7 +17,8 @@ const config: Config = {
         'cinza': '#BDBDBD',
         'cinza-escuro': '#4F4F4F',
         'fundo-modal': 'rgba(0, 0, 0, 0.3)',
-        'error' : '#E94444'
+        'error' : '#E94444',
+        'verde': '#37BC2C'
       },
       fontFamily: {
         'poppins': ['Poppins'],

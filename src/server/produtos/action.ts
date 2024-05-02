@@ -10,3 +10,8 @@ export function buscarProduto(id: number) {
     })
     return produtoEncontrado
 }
+export function buscarTodos() {
+    return produtos.map((produto)=>{
+        return produto;
+    })
+}

@@ -1,13 +1,17 @@
 import React from 'react'
-import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import "./css/embla.css"
-import CardProduto from '../CardProduto/CardProduto'
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
+import { EmblaOptionsType } from 'embla-carousel';
+import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 
-const EmblaCarousel = () => {
-  const options: EmblaOptionsType = { loop: true, align: 'start'}
-  const slides = ['']
+type PropType = {
+  slides: string[] | React.JSX.Element[]
+  options?: EmblaOptionsType
+}
+
+const EmblaCarousel: React.FC<PropType> = (props) => {
+  const { slides, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
   return (
