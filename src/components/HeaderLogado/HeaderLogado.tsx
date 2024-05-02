@@ -17,8 +17,6 @@ import { useEffect, useState } from "react";
 
 export default function HeaderLogado() {
 
-    const {push} = useRouter();
-
     const [navAberta, setNavAberta] = useState(false)
     const [navStyle, setNavStyle] = useState("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-0 overflow-x-hidden animation duration-300");
 
@@ -34,7 +32,7 @@ export default function HeaderLogado() {
         <div>
             <div className="bg-primaria md:px-20 px-10 md:py-3 py-2 flex flex-row-reverse md:flex-row font-poppins justify-between items-center text-preto">
                 <div className='px-3'>
-                    <a><img className="md:w-[70px] w-[40px]" src="assets/logo.png"/></a>
+                    <a><img className="md:w-[70px] w-[40px]" src="../assets/logo.png"/></a>
                 </div>
 
                 <div className="flex w-2/3 px-4 max-sm:hidden">

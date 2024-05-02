@@ -2,18 +2,21 @@
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { AiFillStar } from "react-icons/ai";
 import { AiOutlineStar } from "react-icons/ai";
-import { buscarProduto } from '@/server/produtos/action'
+import { buscarProduto, buscarTodos } from '@/server/produtos/action'
 import { ProdutoCompleto } from '@/types/produto'
 import { useEffect, useState } from 'react'
 import SelectTamanho from '@/components/SelectTamanho/SelectTamanho';
-import BotaoMedio from '@/components/BotaoMedio/BotaoMedio';
-import BotaoPequeno from '@/components/BotaoPequeno';
 import BotaoGrande from '@/components/BotaoGrande/BotaoGrande';
 import QuantidadeProduto from '@/components/QuantidadeProduto/QuantidadeProduto';
+import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
+import CardProduto from '@/components/CardProduto/CardProduto';
 
 interface PropsProduct {
   searchParams: { id: number }
 }
+
+const carrosselProdutos = buscarTodos().map((produto)=>{return <CardProduto id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
+precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={`.${produto.imagemProduto[0]}`} desconto={produto.desconto}/>})
 
 export default function ProdutoDetails({ searchParams }: PropsProduct) {
   const [produtoProcurado, setProdutoProcurado] = useState<ProdutoCompleto>()
@@ -102,8 +105,11 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             </div>
           </section>
         </section>
-        <section>
-          a
+        <section className='mt-20'>
+          <div>
+            <TituloLinha titulo='Você também pode gostar...' />
+            <CarrosselProduto slides={[carrosselProdutos]}/>
+          </div>
         </section>
       </main>
     )

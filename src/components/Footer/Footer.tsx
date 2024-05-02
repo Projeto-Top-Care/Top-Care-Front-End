@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="bg-secundaria font-poppins font-light">
             <div className="md:px-20 px-5 md:py-8 py-4 justify-between grid md:grid-cols-5 grid-cols-3 md:gap-9 gap-3.5 items-start text-lg md:w-[100%]">
                 <div className="md:w-[5rem] w-[4rem] col-start-1 col-span-3 md:col-span-1 flex items-center">
-                    <img className="" src="./assets/logo.png" />
+                    <img className="" src="../assets/logo.png" />
                 </div>
                 <div className="flex flex-col gap-1 text-xs md:text-base">
                     <h5>Empresa</h5>

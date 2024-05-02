@@ -1,7 +1,7 @@
 'use client'
 import BotaoCategoriaPgInicial from "@/components/Botao-categoria-pgInicial/botao-categoria-pgInicial"
 import Carrossel from "@/components/Carrossel/Carrossel"
-import EmblaCarousel from "@/components/CarrosselProduto/Carrossel"
+import CarrosselProduto from "@/components/CarrosselProduto/Carrossel"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import { EmblaOptionsType } from "embla-carousel"
 import Loading from "../loading/page"
@@ -21,7 +21,7 @@ export default function PaginaInicial() {
 
             <section>
                 <TituloLinha titulo="Seu pet vai adorar, e você também" />
-                <EmblaCarousel/>
+                <CarrosselProduto options={OPTIONS} slides={['']}/>
             </section>
 
             <section className="py-6 flex flex-col gap-2 sm:gap-4">
@@ -42,17 +42,17 @@ export default function PaginaInicial() {
 
             <section>
                 <TituloLinha titulo="Produtos mais bem avaliados" />
-                <EmblaCarousel/>
+                <CarrosselProduto options={OPTIONS} slides={['']}/>
             </section>
 
             <section>
                 <TituloLinha titulo="Quase acabando" />
-                <EmblaCarousel/>
+                <CarrosselProduto options={OPTIONS} slides={['']}/>
             </section>
 
             <section>
                 <TituloLinha titulo="Promoções relâmpago" />
-                <EmblaCarousel/>
+                <CarrosselProduto options={OPTIONS} slides={['']}/>
             </section>
         </main>
     )

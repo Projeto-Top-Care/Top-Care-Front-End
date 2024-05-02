@@ -25,7 +25,7 @@ const CardProduto = ({id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnti
     }
 
     return (
-        <div className='cursor-pointer flex flex-col gap-3 border-cinza border-[1px] rounded-lg w-48 font-poppins px-2 py-3' onClick={()=>push(`/produtos/${nomeProduto}?id=${id}`)}>
+        <div className='cursor-pointer flex flex-col gap-3 border-cinza border-[1px] rounded-lg w-48 font-poppins px-2 py-3 ' onClick={()=>push(`/produtos/${nomeProduto}?id=${id}`)}>
             <div className='flex flex-row justify-between items-center' >
                 <div className='flex flex-row gap-[0.2rem] items-center justify-center'>
                     <AiFillStar style={{ color: "#FFD601", }} className="w-5"/>
