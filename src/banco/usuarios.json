@@ -27,6 +27,20 @@
           "numero": 5000,
           "complemento": "casa"
         }
+      ],
+      "pets": [
+        {
+          "nome": "Rex",
+          "especie": "Cachorro",
+          "raca": "Golden Retriever",
+          "idade": 3
+        },
+        {
+          "nome": "Luna",
+          "especie": "Gata",
+          "raca": "Siamês",
+          "idade": 2
+        }
       ]
     },
     {
@@ -56,6 +70,20 @@
           "rua": "Rua dos Andradas",
           "numero": 3000,
           "complemento": ""
+        }
+      ],
+      "pets": [
+        {
+          "nome": "Tobi",
+          "especie": "Cachorro",
+          "raca": "Labrador Retriever",
+          "idade": 1
+        },
+        {
+          "nome": "Belinha",
+          "especie": "Gata",
+          "raca": "Persa",
+          "idade": 4
         }
       ]
     },
@@ -87,6 +115,20 @@
           "numero": 5000,
           "complemento": ""
         }
+      ],
+      "pets": [
+        {
+          "nome": "Thor",
+          "especie": "Cachorro",
+          "raca": "Rottweiler",
+          "idade": 5
+        },
+        {
+          "nome": "Lola",
+          "especie": "Gata",
+          "raca": "Sphynx",
+          "idade": 6
+        }
       ]
     },
     {
@@ -116,6 +158,20 @@
           "rua": "Avenida Beira Mar",
           "numero": 7000,
           "complemento": "casa"
+        }
+      ],
+      "pets": [
+        {
+          "nome": "Max",
+          "especie": "Cachorro",
+          "raca": "Beagle",
+          "idade": 7
+        },
+        {
+          "nome": "Mel",
+          "especie": "Gata",
+          "raca": "Maine Coon",
+          "idade": 8
         }
       ]
     },
@@ -147,6 +203,20 @@
           "numero": 19000,
           "complemento": "apto 607"
         }
+      ],
+      "pets": [
+        {
+          "nome": "Charlie",
+          "especie": "Cachorro",
+          "raca": "Yorkshire Terrier",
+          "idade": 9
+        },
+        {
+          "nome": "Kiara",
+          "especie": "Gata",
+          "raca": "Ragdoll",
+          "idade": 10
+        }
       ]
     },
     {
@@ -176,6 +246,20 @@
           "rua": "Avenida Dr. José Pontes",
           "numero": 9000,
           "complemento": "apto 304"
+        }
+      ],
+      "pets": [
+        {
+          "nome": "Lucky",
+          "especie": "Cachorro",
+          "raca": "Bulldog Francês",
+          "idade": 11
+        },
+        {
+          "nome": "Nina",
+          "especie": "Gata",
+          "raca": "Abissínio",
+          "idade": 12
         }
       ]
     },
@@ -207,6 +291,20 @@
           "numero": 21000,
           "complemento": ""
         }
+      ],
+      "pets": [
+        {
+          "nome": "Duke",
+          "especie": "Cachorro",
+          "raca": "Doberman Pinscher",
+          "idade": 13
+        },
+        {
+          "nome": "Maya",
+          "especie": "Gata",
+          "raca": "Bengal",
+          "idade": 14
+        }
       ]
     },
     {
@@ -236,6 +334,20 @@
           "rua": "Avenida Mato Grosso",
           "numero": 13000,
           "complemento": "apto 405"
+        }
+      ],
+      "pets": [
+        {
+          "nome": "Bela",
+          "especie": "Gata",
+          "raca": "Siamês",
+          "idade": 4
+        },
+        {
+          "nome": "Billy",
+          "especie": "Cachorro",
+          "raca": "Golden Retriever",
+          "idade": 2
         }
       ]
     },
@@ -267,6 +379,20 @@
           "numero": 15000,
           "complemento": ""
         }
+      ],
+      "pets": [
+        {
+          "nome": "Nina",
+          "especie": "Gata",
+          "raca": "Persa",
+          "idade": 5
+        },
+        {
+          "nome": "Rex",
+          "especie": "Cachorro",
+          "raca": "Labrador Retriever",
+          "idade": 1
+        }
       ]
     },
     {
@@ -296,6 +422,20 @@
           "rua": "Avenida Brigadeiro Eduardo Gomes",
           "numero": 17000,
           "complemento": ""
+        }
+      ],
+      "pets": [
+        {
+          "nome": "Luna",
+          "especie": "Gata",
+          "raca": "Sphynx",
+          "idade": 3
+        },
+        {
+          "nome": "Max",
+          "especie": "Cachorro",
+          "raca": "Rottweiler",
+          "idade": 6
         }
       ]
     }

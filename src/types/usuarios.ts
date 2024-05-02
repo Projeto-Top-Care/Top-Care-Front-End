@@ -7,4 +7,11 @@ export interface Usuario{
     cpf: number
     dataNascimento: string
     enderecos: object[]
+    pets: object[]
+}
+export interface Pet{
+    nome: string
+    especie: string
+    raca: string
+    idade: number
 }
