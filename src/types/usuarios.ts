@@ -1,5 +1,6 @@
 export interface Usuario{
     id: number,
+    foto: string
     nomeCompleto: string,
     email: string
     celular: number

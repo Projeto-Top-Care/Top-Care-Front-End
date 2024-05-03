@@ -1,7 +1,7 @@
 [
     {
       "id": 1,
-      "foto": "",
+      "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Maria Silva Souza",
       "email": "maria.silva@email.com",
       "celular": 551199999999,
@@ -45,7 +45,7 @@
     },
     {
       "id": 2,
-      "foto": "",
+      "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "João Oliveira Santos",
       "email": "joao.oliveira@email.com",
       "celular": 551288888888,
@@ -89,7 +89,7 @@
     },
     {
       "id": 3,
-      "foto": "",
+      "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Ana Pereira Mendes",
       "email": "ana.pereira@email.com",
       "celular": 551377777777,
@@ -133,7 +133,7 @@
     },
     {
       "id": 4,
-      "foto": "",
+      "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Pedro Cardoso Gomes",
       "email": "pedro.cardoso@email.com",
       "celular": 551466666666,
@@ -177,7 +177,7 @@
     },
     {
       "id": 5,
-      "foto": "",
+      "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Camila Almeida Rocha",
       "email": "camila.almeida@email.com",
       "celular": 551555555555,
@@ -221,7 +221,7 @@
     },
     {
       "id": 6,
-      "foto": "",
+      "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Bruno Ferreira Lima",
       "email": "bruno.ferreira@email.com",
       "celular": 551644444444,
@@ -265,7 +265,7 @@
     },
     {
       "id": 7,
-      "foto": "",
+      "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Gabriela Souza Costa",
       "email": "gabriela.souza@email.com",
       "celular": 551733333333,
@@ -309,7 +309,7 @@
     },
     {
       "id": 8,
-      "foto": "",
+      "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Felipe Oliveira Silva",
       "email": "felipe.oliveira@email.com",
       "celular": 551822222222,
@@ -353,7 +353,7 @@
     },
     {
       "id": 9,
-      "foto": "",
+      "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Mariana Santos Mendes",
       "email": "mariana.santos@email.com",
       "celular": 551911111111,
@@ -397,7 +397,7 @@
     },
     {
       "id": 10,
-      "foto": "",
+      "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Diego Pereira Gomes",
       "email": "diego.pereira@email.com",
       "celular": 552000000000,

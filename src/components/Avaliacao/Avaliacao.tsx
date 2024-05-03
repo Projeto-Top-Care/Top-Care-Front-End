@@ -6,9 +6,10 @@ type avaliacaotype = {
     nomeUsuario: string
     avaliacaoUsuario: string
     fotoUsuario: string
+    estrelas: JSX.Element
 }
 
-const Avaliacao = ({nomeUsuario, avaliacaoUsuario, fotoUsuario}: avaliacaotype) => {
+const Avaliacao = ({nomeUsuario, avaliacaoUsuario, fotoUsuario, estrelas}: avaliacaotype) => {
     return (
         
         <div className='flex flex-row px-20 font-poppins'>
@@ -17,18 +18,11 @@ const Avaliacao = ({nomeUsuario, avaliacaoUsuario, fotoUsuario}: avaliacaotype) 
                 <div className='h-14 w-14 border rounded-full'>
                     <img className='w-full h-full rounded-full' src={fotoUsuario} />
                 </div>
-
                 <div className='w-full'>
 
                     <div className='flex flex-row justify-between py-2'>
                         <p className='pl-2 font-regular text-sm text-preto'>{nomeUsuario}</p>
-                        <div className="flex flex-row gap-2">
-                            <AiOutlineStar size={20} style={{ color: "#FFD601", }}/>
-                            <AiFillStar size={20} style={{ color: "#FFD601", }}/>
-                            <AiFillStar size={20} style={{ color: "#FFD601", }}/>
-                            <AiFillStar size={20} style={{ color: "#FFD601", }}/>
-                            <AiFillStar size={20} style={{ color: "#FFD601", }}/>
-                        </div>
+                        {estrelas}
                     </div>
                    
                     <div className='h-[1px] bg-preto w-full'>

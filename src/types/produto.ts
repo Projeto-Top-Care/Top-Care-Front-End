@@ -25,3 +25,13 @@ export interface ProdutoCompleto{
     especificacoes: object[]
     avaliacoes: object[]
 }
+
+export interface Especificacao{
+    topico: string
+    resposta: string
+}
+export interface AvaliacaoType{
+    id: number
+    nota: number
+    descricao: string
+}

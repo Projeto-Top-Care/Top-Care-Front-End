@@ -4,14 +4,17 @@ import useEmblaCarousel from 'embla-carousel-react'
 import "./css/embla.css"
 import CardProduto from '../CardProduto/CardProduto'
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
+import { buscarTodos } from '@/server/produtos/action'
 
-interface PropsCarousel {
-  slides: any[]
+type PropType = {
+  slides: string[] | React.JSX.Element[]
+  options?: EmblaOptionsType
 }
 
-const EmblaCarousel: React.FC<PropsCarousel> = (props) => {
-  const {slides} = props;
+const EmblaCarousel: React.FC<PropType> = (props) => {
+  const {slides} = props
   const options: EmblaOptionsType = { loop: true, align: 'start'}
+  
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
   return (
@@ -19,7 +22,7 @@ const EmblaCarousel: React.FC<PropsCarousel> = (props) => {
       <div className="embla__viewport w-full" ref={emblaRef}>
         <div className="embla__container flex flex-row justify-start">
           {slides.map((produto, i) => (
-            <div className="flex items-center justify-center h-30 h-80 w-full md:w-1/3 sm:w-1/2 xl:w-1/4" key={i}>
+            <div className="flex items-center justify-center h-30 shrink-0 h-80 w-full md:w-1/3 sm:w-1/2 xl:w-1/4" key={i}>
               <div className="embla__slide__number select-none">{produto}</div>
             </div>
           ))}
