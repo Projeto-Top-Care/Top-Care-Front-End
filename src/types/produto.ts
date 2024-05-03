@@ -2,7 +2,7 @@ export interface Produto{
     id: number
     nomeProduto: string
     notaDeAvaliacao: number
-    imagemProduto: string
+    imagemProduto: string[]
     precoAntigoDoProduto: number
     desconto: string
     precoNovo: number
@@ -11,7 +11,7 @@ export interface ProdutoCompleto{
     id: number
     nomeProduto: string
     notaDeAvaliacao: number
-    imagemProduto: string
+    imagemProduto: string[]
     precoAntigoDoProduto: number
     desconto: string
     precoNovo: number

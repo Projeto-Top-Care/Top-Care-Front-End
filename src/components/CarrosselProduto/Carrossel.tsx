@@ -2,9 +2,7 @@ import React from 'react'
 import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import "./css/embla.css"
-import CardProduto from '../CardProduto/CardProduto'
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
-import { buscarTodos } from '@/server/produtos/action'
 
 type PropType = {
   slides: string[] | React.JSX.Element[]

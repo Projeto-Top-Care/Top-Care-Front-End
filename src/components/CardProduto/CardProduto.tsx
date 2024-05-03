@@ -42,7 +42,7 @@ const CardProduto = ({id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnti
 
             <div className='flex flex-col items-center'>
                 <p className='text-sm sm:text-xs h-9 font-medium text-preto text-center'>{nomeProduto}</p>
-                <img src={imagemProduto} />
+                <img src={imagemProduto[0]} className='w-[70%]'/>
                 <h5 className='text-xs font-medium text-cinza-escuro'><span className='line-through'>R${precoAntigoDoProduto} </span><span className='text-[11px]'>{desconto}</span></h5>
                 <h5 className='sm:text-base text-sm font-semibold text-preto'>R${precoNovo}</h5>
             </div>

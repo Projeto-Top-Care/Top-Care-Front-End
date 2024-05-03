@@ -26,18 +26,13 @@ const EscreverAvaliacao = ({ nomeUsuario, fotoUsuario }: avaliacaotype) => {
     }, [avaliado])
 
     const construirEstrelas = () => {
-        const arrayFull = new Array(nota).fill(null)
-        const arrayEmpty = new Array(5 - arrayFull.length).fill(null)
+        const estrelasVazias = 5 - nota
+        const array5 = new Array(5).fill(null);
         return (
             <div className='flex flex-row'>
-                {arrayFull.map((avaliacao, i) => (
-                    <div key={i}>
-                        <AiFillStar style={{ color: "#FFD601", }} size={25} />
-                    </div>
-                ))}
-                {arrayEmpty.map((a, i) => (
-                    <div onClick={()=>setNota(i+1)} key={i}>
-                        <AiOutlineStar style={{ color: "#FFD601", }} size={25} />
+                {array5.map((a, i) => (
+                    <div key={i} onClick={() => (!avaliado ? setNota(i + 1) : '')}>
+                        {nota > i ? <AiFillStar style={{ color: "#FFD601", }} size={25} /> : <AiOutlineStar style={{ color: "#FFD601", }} size={25} />}
                     </div>
                 ))}
             </div>
@@ -56,6 +51,7 @@ const EscreverAvaliacao = ({ nomeUsuario, fotoUsuario }: avaliacaotype) => {
 
                     <div className='flex flex-row justify-between py-2'>
                         <p className='pl-2 font-regular text-sm text-preto'>{nomeUsuario}</p>
+                        {avaliado ? construirEstrelas() : ''}
                     </div>
 
                     <div className='h-[1px] bg-cinza-escuro w-full' />
