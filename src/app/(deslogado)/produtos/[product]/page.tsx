@@ -65,14 +65,14 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
               <div className='lg:h-full mt-3 w-full lg:w-[30%] md:m-auto flex flex-row items-center justify-center gap-1 lg:block'>
                 <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='bg-branco md:hidden font-poppins border border-black w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
                 {produtoProcurado.imagemProduto.map((image, i) => (
-                  <div onClick={() => setNumeroImagem(i)} key={i} className='flex items-center justify-center cursor-pointer md:h-16 lg:w-[50%] h-10 w-10 md:w-[40%] rounded-xl md:rounded-2xl lg:m-auto border border-cinza-escuro md:mt-5'>
-                    <img src={image} alt="" className='w-[60%] object-cover' />
+                  <div onClick={() => setNumeroImagem(i)} key={i} className={`flex items-center justify-center cursor-pointer md:h-16 lg:w-[50%] lg:m-auto h-10 w-10 md:w-[40%] rounded-xl md:rounded-2xl border ${numeroImagem == i ? 'border-cinza-escuro': 'border-cinza'} md:mt-5 lg:mb-5`}>
+                    <img src={image} alt="" className='w-[60%] 2xl:w-[50%] object-cover' />
                   </div>
                 ))}
                 <button onClick={() => setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='bg-branco md:hidden font-poppins border border-black w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
               </div>
               <div className='h-44 md:h-full border border-cinza rounded-2xl w-full lg:w-[70%] flex items-center justify-center'>
-                <img src={produtoProcurado.imagemProduto[numeroImagem]} alt="" className='w-[50%] md:w-full' />
+                <img src={produtoProcurado.imagemProduto[numeroImagem]} alt="" className='w-[50%] md:w-full 2xl:w-[80%]' />
                 <div className='flex-row md:w-[42%] lg:w-[30%] absolute justify-between flex max-sm:hidden'>
                   <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='bg-branco font-poppins border border-black lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
                   <button onClick={() => setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='bg-branco font-poppins border border-black lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
@@ -129,7 +129,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
           </section>
         </section>
         <section className='md:mt-20 mt-8'>
-          <div>
+          <div className='flex flex-col gap-10'>
             <TituloLinha titulo='Você também pode gostar...' />
             <CarrosselProduto slides={carrosselProdutos} />
           </div>
