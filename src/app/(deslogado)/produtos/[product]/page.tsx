@@ -56,66 +56,70 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
   else {
     return (
       <main>
-        <section className='mt-11'>
+        <section className='mt-6 md:mt-11'>
           <TituloLinha titulo='Produto' />
         </section>
-        <section className='flex flex-row w-[90%] m-auto mt-24'>
-          <section className='w-[45%] h-auto'>
-            <div className='h-full w-[90%] flex flex-row justify-end'>
-              <div className='h-full w-[30%] m-auto'>
+        <section className='flex flex-col md:flex-row w-[90%] m-auto mt-8 md:mt-24'>
+          <section className='w-full md:w-[45%] h-auto'>
+            <div className='h-full md:w-[90%] w-full flex flex-col-reverse lg:flex-row justify-end'>
+              <div className='lg:h-full mt-3 w-full lg:w-[30%] md:m-auto flex flex-row items-center justify-center gap-1 lg:block'>
+                <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='bg-branco md:hidden font-poppins border border-black w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
                 {produtoProcurado.imagemProduto.map((image, i) => (
-                  <div onClick={() => setNumeroImagem(i)} key={i} className='flex items-center justify-center cursor-pointer h-16 w-[50%] rounded-2xl m-auto border border-cinza-escuro mt-5'>
+                  <div onClick={() => setNumeroImagem(i)} key={i} className='flex items-center justify-center cursor-pointer md:h-16 lg:w-[50%] h-10 w-10 md:w-[40%] rounded-xl md:rounded-2xl lg:m-auto border border-cinza-escuro md:mt-5'>
                     <img src={image} alt="" className='w-[60%] object-cover' />
                   </div>
                 ))}
+                <button onClick={() => setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='bg-branco md:hidden font-poppins border border-black w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
               </div>
-              <div className='h-full border border-preto rounded-2xl w-[70%] flex items-center justify-center'>
-                <button onClick={()=>setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='mr-[21rem] absolute bg-branco font-poppins border border-black w-14 h-14 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
-                <img src={produtoProcurado.imagemProduto[numeroImagem]} alt="" className='w-full' />
-                <button onClick={()=>setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='ml-[21rem] absolute bg-branco font-poppins border border-black w-14 h-14 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
+              <div className='h-44 md:h-full border border-cinza rounded-2xl w-full lg:w-[70%] flex items-center justify-center'>
+                <img src={produtoProcurado.imagemProduto[numeroImagem]} alt="" className='w-[50%] md:w-full' />
+                <div className='flex-row md:w-[42%] lg:w-[30%] absolute justify-between flex max-sm:hidden'>
+                  <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='bg-branco font-poppins border border-black lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
+                  <button onClick={() => setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='bg-branco font-poppins border border-black lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
+                </div>
               </div>
             </div>
           </section>
-          <section className='w-[55%] flex flex-col'>
-            <p className='font-poppins text-xl font-normal text-preto'>{produtoProcurado.nomeProduto}</p>
-            <div className='flex flex-row gap-1 text-sm font-poppins font-normal text-preto'>
+          <section className='md:w-[55%] w-full flex flex-col max-sm:mt-4'>
+            <p className='font-poppins md:text-xl text-base font-normal text-preto'>{produtoProcurado.nomeProduto}</p>
+            <div className='flex flex-col md:flex-row md:gap-1 lg:text-sm text-xs font-poppins font-normal text-preto'>
               <p>Código: {produtoProcurado.codigo} |</p>
               <p> Ver descrição completa</p>
-              <p>| {produtoProcurado.marca}</p>
+              <p className='max-sm:hidden'>| {produtoProcurado.marca}</p>
             </div>
-            <div className='mt-1 flex flex-row'>
+            <div className='md:mt-1 mt-2 flex flex-row items-center'>
               {construirEstrelas(produtoProcurado?.notaDeAvaliacao!)}
-              <p className={`font-poppins ml-2 ${produtoProcurado.disponivel ? 'text-verde' : 'text-error'} font-bold`}>{produtoProcurado.disponivel ? "| Disponível" : "| Indisponível"}</p>
+              <p className={`font-poppins ml-2 text-base ${produtoProcurado.disponivel ? 'text-verde' : 'text-error'} font-bold`}>{produtoProcurado.disponivel ? "| Disponível" : "| Indisponível"}</p>
             </div>
-            <div className='w-[85%] mt-2'>
+            <div className='w-full lg:w-[85%] mt-2'>
               <SelectTamanho options={produtoProcurado.tamanho.map((tamanho) => { return tamanho })} opcaoSelecionada={() => setTamanho} label='Selecione o Tamanho' />
             </div>
-            <div className='flex flex-row items-center justify-between w-[85%] h-20'>
-              <div className='flex flex-row items-end gap-3'>
-                <p className='font-poppins font-bold text-2xl text-preto'>R$ {produtoProcurado.precoNovo.toString().replace(".", ",")}</p>
-                <s className='font-poppins font-bold text-base text-cinza'>R$ {produtoProcurado.precoAntigoDoProduto.toString().replace(".", ",")}</s>
+            <div className='flex flex-col md:flex-row md:items-center md:justify-between w-full lg:w-[85%] gap-3 md:gap-0 h-20 max-sm:mt-3'>
+              <div className='flex flex-row items-center gap-3'>
+                <p className='font-poppins font-bold md:text-2xl text-xl text-preto'>R$ {produtoProcurado.precoNovo.toString().replace(".", ",")}</p>
+                <s className='font-poppins font-bold md:text-base text-sm text-cinza'>R$ {produtoProcurado.precoAntigoDoProduto.toString().replace(".", ",")}</s>
               </div>
-              <div>
+              <div className='max-sm:w-full'>
                 <BotaoGrande background='bg-primaria' fontSize='text-xs lg:text-sm' type='button' title='Calcular Frete' />
               </div>
             </div>
-            <div className='rounded-lg bg-terciaria w-[85%] px-6 py-4'>
-              <p className='font-poppins '>R$ {produtoProcurado.precoAssinantes.toString().replace(".", ",")} para assinantes</p>
-              <div className='mt-1'>
-                <p className='font-poppins'>*   10% OFF em todas as compras no app, site e lojas físicas</p>
-                <p className='font-poppins'>*   Sem custo ou mensalidade. Cancele ou pause quando quiser</p>
-                <p className='font-poppins'>*   Assine os produtos na sacola e garanta os benefícios</p>
+            <div className='rounded-lg bg-terciaria w-full lg:w-[85%] px-6 py-4'>
+              <p className='font-poppins md:text-base text-sm '>R$ {produtoProcurado.precoAssinantes.toString().replace(".", ",")} para assinantes</p>
+              <div className='md:mt-1 mt-2 flex flex-col md:gap-0 gap-2'>
+                <p className='font-poppins md:text-base text-sm'>*   10% OFF em todas as compras no app, site e lojas físicas</p>
+                <p className='font-poppins md:text-base text-sm'>*   Sem custo ou mensalidade. Cancele ou pause quando quiser</p>
+                <p className='font-poppins md:text-base text-sm'>*   Assine os produtos na sacola e garanta os benefícios</p>
               </div>
             </div>
-            <div className='flex flex-row items-start gap-4 w-[85%] mt-4'>
+            <div className='flex flex-row items-start gap-4 w-full lg:w-[85%] mt-4'>
               <div className='w-[30%]'>
                 <QuantidadeProduto />
-                <p className='font-poppins text-cinza-escuro text-center mt-1'>Em estoque: {produtoProcurado.estoque}</p>
+                <p className='font-poppins text-cinza-escuro text-center mt-1 lg:text-base md:text-xs text-[10px]'>Em estoque: {produtoProcurado.estoque}</p>
               </div>
               <div className='w-[15%]'>
-                <BotaoGrande title='../assets/sacola.svg' background={'bg-primaria'} type={'button'} fontSize={'w-[40%] m-auto'} />
+                <BotaoGrande title={'../assets/sacola.svg'} background={'bg-primaria'} type={'button'} />
               </div>
-              <div className='h-8 flex items-center'>
+              <div className='h-8 flex items-center max-md:hidden'>
                 <p className='font-poppins'>ou</p>
               </div>
               <div className='w-[50%]'>
@@ -124,17 +128,17 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             </div>
           </section>
         </section>
-        <section className='mt-20'>
+        <section className='md:mt-20 mt-8'>
           <div>
             <TituloLinha titulo='Você também pode gostar...' />
             <CarrosselProduto slides={carrosselProdutos} />
           </div>
         </section>
-        <section className='mt-20'>
+        <section className='md:mt-20 mt-8'>
           <div>
             <TituloLinha titulo='Descrição' />
           </div>
-          <div className='mt-10 w-[90%] m-auto'>
+          <div className='mt-10 w-[90%] m-auto md:text-base text-sm'>
             {
               produtoProcurado.descricao.map((linha, i) => (
                 <p className='font-poppins mb-0.5' key={i}>{linha}</p>
@@ -142,16 +146,16 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             }
           </div>
         </section>
-        <section className='mt-20'>
+        <section className='md:mt-20 mt-8'>
           <div>
             <TituloLinha titulo='Especificações' />
           </div>
           <div className='w-[90%] m-auto mt-8'>
             {
               produtoProcurado.especificacoes.map((item, i) => (
-                <div key={i} className={`flex flex-row w-full h-10 items-center ${i % 2 == 0 ? 'bg-terciaria' : ''} rounded-lg`}>
-                  <div className='w-[50%] font-poppins text-lg ml-2'>{(item as Especificacao).topico}</div>
-                  <div className='w-[50%] font-poppins text-base'>{(item as Especificacao).resposta}</div>
+                <div key={i} className={`flex flex-row w-full h-10 items-center max-sm:justify-between ${i % 2 == 0 ? 'bg-terciaria' : ''} rounded-lg`}>
+                  <div className='md:w-[50%] font-poppins md:text-lg text-sm ml-2'>{(item as Especificacao).topico}</div>
+                  <div className='md:w-[50%] font-poppins md:text-base text-xs max-sm:flex max-sm:justify-end max-sm:text-end'>{(item as Especificacao).resposta}</div>
                 </div>
               ))
             }
@@ -167,7 +171,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
                 <div key={i}>
                   <Avaliacao nomeUsuario={(buscarUsuario((avaliacao as AvaliacaoType).id)! as Usuario).nomeCompleto}
                     fotoUsuario={(buscarUsuario((avaliacao as AvaliacaoType).id)! as Usuario).foto} avaliacaoUsuario={(avaliacao as AvaliacaoType).descricao}
-                    estrelas={construirEstrelas((avaliacao as AvaliacaoType).nota)} />
+                    estrelas={construirEstrelas((avaliacao as AvaliacaoType).nota)} notaAvaliacao={(avaliacao as AvaliacaoType).nota}/>
                 </div>
               ))
             }

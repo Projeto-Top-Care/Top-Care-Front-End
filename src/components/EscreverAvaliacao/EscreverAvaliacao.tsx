@@ -40,28 +40,41 @@ const EscreverAvaliacao = ({ nomeUsuario, fotoUsuario }: avaliacaotype) => {
     }
 
     return (
-        <div className='flex flex-row px-20 font-poppins'>
-            <div className='flex flex-row bg-terciaria gap-2 shadow-lg p-4 rounded-lg w-full items-start'>
-
-                <div className='h-14 w-14 border rounded-full'>
-                    <img className='w-full h-full rounded-full' src={fotoUsuario} />
+        <div className='flex flex-row w-[90%] m-auto font-poppins'>
+            <div className='flex md:flex-row flex-col bg-terciaria gap-2 shadow-lg p-4 rounded-lg w-full items-start'>
+                <div className="flex flex-row w-full">
+                    <div className='md:h-14 md:w-14 h-12 w-14 border rounded-full md:mr-2 mr-0'>
+                        <img className='w-full h-full rounded-full' src={fotoUsuario} />
+                    </div>
+                    <div className='flex flex-col justify-center items-end w-full'>
+                        <div className="flex flex-row w-full justify-between items-end mb-2">
+                            <p className='pl-2 font-regular md:text-sm text-xs text-preto'>{nomeUsuario}</p>
+                            <p className="max-sm:hidden">{avaliado ? construirEstrelas() : ''}</p>
+                            {
+                                avaliado && (
+                                    <div className="font-poppins text-xs text-cinza-escuro md:hidden flex flex-row items-center">
+                                        <div>
+                                            {nota}
+                                        </div>
+                                        <AiFillStar style={{ color: "#FFD601", }} size={18} />
+                                    </div>
+                                )
+                            }
+                        </div>
+                        <div className='h-[1px] bg-preto w-full'></div>
+                    </div>
                 </div>
 
                 <div className='w-full'>
-
-                    <div className='flex flex-row justify-between py-2'>
-                        <p className='pl-2 font-regular text-sm text-preto'>{nomeUsuario}</p>
-                        {avaliado ? construirEstrelas() : ''}
-                    </div>
-
-                    <div className='h-[1px] bg-cinza-escuro w-full' />
-
                     {!avaliado && (
-                        <div className='flex flex-col items-center p-3'>
-                            <div>
-                                <p className='pl-2 py-3 font-regular text-xs text-cinza-escuro'>
+                        <div className='flex flex-col items-center'>
+                            <div className="flex flex-col items-center mb-2">
+                                <p className='font-regular text-xs text-cinza-escuro'>
                                     Deixe sua avaliação aqui também!
                                 </p>
+                                <div className="flex items-center md:hidden">
+                                    {construirEstrelas()}
+                                </div>
                             </div>
 
                             <div className='w-full flex flex-row justify-center gap-2'>
@@ -72,7 +85,7 @@ const EscreverAvaliacao = ({ nomeUsuario, fotoUsuario }: avaliacaotype) => {
                                         onChange={(e) => setAvaliacao(e.target.value)}
                                         value={avaliacao}
                                     />
-                                    <div className="flex items-center">
+                                    <div className="flex items-center max-sm:hidden">
                                         {construirEstrelas()}
                                     </div>
                                 </div>
@@ -85,7 +98,7 @@ const EscreverAvaliacao = ({ nomeUsuario, fotoUsuario }: avaliacaotype) => {
                         </div>
                     )}
                     {avaliado && (
-                        <div className='flex flex-col items-start p-3 pl-5'>
+                        <div className='flex flex-col items-start pl-5'>
                             <p className='py-2 font-regular text-sm text-preto break-words hyphens-auto'>
                                 {avaliacao}
                             </p>

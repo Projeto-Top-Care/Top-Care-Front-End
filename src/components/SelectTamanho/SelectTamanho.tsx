@@ -33,7 +33,7 @@ export default function SelectTamanho({ label, options, opcaoSelecionada }: ISel
 
     return (
         <div ref={selectRef}>
-            <div className={`relative bg-terciaria h-16 w-full rounded-lg flex items-center select-none ${open ? 'outline outline-[1.9px] outline-black' : 'outline-none'}`} onClick={() => setOpen(!open)}>
+            <div className={`relative bg-terciaria md:h-16 h-10 w-full rounded-lg flex items-center select-none ${open ? 'outline outline-[1.9px] outline-black' : 'outline-none'}`} onClick={() => setOpen(!open)}>
                 <div className="flex flex-row items-center justify-between w-[95%] m-auto">
                     <div className="p-0">
                         <label htmlFor="" className={`font-poppins text-preto md:text-base text-xs pointer-events-none`}>{label}</label>
@@ -42,7 +42,7 @@ export default function SelectTamanho({ label, options, opcaoSelecionada }: ISel
                     <p className="transition-all duration-7000">{open? <FaChevronUp /> : <FaChevronDown />}</p>
                 </div>
                 {open && (
-                    <ul className="absolute transition-all bg-terciaria flex flex-col top-[4.2rem] w-full rounded-lg max-h-60 shadow shadow-cinza overflow-y-auto select-none z-50">
+                    <ul className="absolute transition-all bg-terciaria flex flex-col mt:top-[4.2rem] md:top-[4.5rem] top-11 w-full rounded-lg max-h-60 shadow shadow-cinza overflow-y-auto select-none z-50">
                         {options.map((opcao, i) => (
                             <li value={opcao} key={i} className="font-poppins md:text-sm text-xs pl-3 py-2 h-10" onClick={() => {
                                 setOpcao(opcao)

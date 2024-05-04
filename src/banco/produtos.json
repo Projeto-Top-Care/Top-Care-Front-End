@@ -28,12 +28,12 @@
     ],
     "especificacoes": [
       {"topico": "Idade", "resposta": "Sênior, Filhote e Adulto"},
-      {"topico": "Porte da Raça", "resposta": "Grande, Pequeno, Mini, Gigante e Médio"},
+      {"topico": "Porte da Raça", "resposta": "Todos"},
       {"topico": "Pet", "resposta": "Cachorros"},
       {"topico": "Cor", "resposta": "Rosa"},
       {"topico": "Tipo", "resposta": "Coleira para cães"},
       {"topico": "Material", "resposta": "Poliéster, zinco e borracha"},
-      {"topico": "Apresentação", "resposta": "Disponível nos tamanhos PP, P, M e G."}
+      {"topico": "Apresentação", "resposta": "PP, P, M e G."}
     ],
     "avaliacoes": [
       {"id": 3, "nota": 3, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
@@ -69,7 +69,7 @@
       {"topico": "Cor", "resposta": "Verde"},
       {"topico": "Tipo", "resposta": "Guia para gatos"},
       {"topico": "Material", "resposta": "Nylon"},
-      {"topico": "Apresentação", "resposta": "Disponível em tamanho único."}
+      {"topico": "Apresentação", "resposta": "Único."}
     ],
     "avaliacoes": [
       {"id": 5, "nota": 4, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
@@ -106,7 +106,7 @@
       {"topico": "Cor", "resposta": "Azul"},
       {"topico": "Tipo", "resposta": "Cama para pets"},
       {"topico": "Material", "resposta": "Algodão"},
-      {"topico": "Apresentação", "resposta": "Disponível nos tamanhos PP, P, M e G."}
+      {"topico": "Apresentação", "resposta": "PP, P, M e G."}
     ],
     "avaliacoes": [
       {"id": 8, "nota": 1, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
@@ -141,7 +141,7 @@
       {"topico": "Cor", "resposta": "Vermelho, Azul e Amarelo"},
       {"topico": "Tipo", "resposta": "Brinquedo para cães"},
       {"topico": "Material", "resposta": "Borracha"},
-      {"topico": "Apresentação", "resposta": "Disponível em tamanho único."}
+      {"topico": "Apresentação", "resposta": "Único."}
     ],
     "avaliacoes": [
       {"id": 10, "nota": 4.8, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
@@ -151,7 +151,7 @@
     "id": 5,
     "nomeProduto": "Produto 5",
     "notaDeAvaliacao": 4.9,
-    "imagemProduto": ["../assets/produtos/racao.png", "../assets/produtos/racao1.png"],
+    "imagemProduto": ["../assets/produtos/racao.png", "../assets/produtos/racao1.png", "../assets/produtos/racao1.png", "../assets/produtos/racao1.png", "../assets/produtos/racao1.png"],
     "precoAntigoDoProduto": 49.99,
     "desconto": "25%",
     "precoNovo": 37.49,
@@ -176,7 +176,7 @@
       {"topico": "Cor", "resposta": "Bege"},
       {"topico": "Tipo", "resposta": "Arranhador para gatos"},
       {"topico": "Material", "resposta": "Sisal"},
-      {"topico": "Apresentação", "resposta": "Disponível em tamanho único."}
+      {"topico": "Apresentação", "resposta": "Único."}
     ],
     "avaliacoes": [
       {"id": 2, "nota": 4.9, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
@@ -211,7 +211,7 @@
       {"topico": "Cor", "resposta": "Roxo"},
       {"topico": "Tipo", "resposta": "Comedouro"},
       {"topico": "Material", "resposta": "Plástico"},
-      {"topico": "Apresentação", "resposta": "Disponível em tamanho único."}
+      {"topico": "Apresentação", "resposta": "Único."}
     ],
     "avaliacoes": [
       {"id": 2, "nota": 4.7, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
@@ -246,7 +246,7 @@
       {"topico": "Cor", "resposta": "Azul e Amarelo"},
       {"topico": "Tipo", "resposta": "Brinquedo para cães"},
       {"topico": "Material", "resposta": "Borracha"},
-      {"topico": "Apresentação", "resposta": "Disponível em tamanho único."}
+      {"topico": "Apresentação", "resposta": "Único."}
     ],
     "avaliacoes": [
       {"id": 2, "nota": 4.0, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
@@ -283,7 +283,7 @@
       {"topico": "Cor", "resposta": "Vermelho"},
       {"topico": "Tipo", "resposta": "Coleira para cães"},
       {"topico": "Material", "resposta": "Nylon"},
-      {"topico": "Apresentação", "resposta": "Disponível nos tamanhos PP, P, M e G."}
+      {"topico": "Apresentação", "resposta": "PP, P, M e G."}
     ],
     "avaliacoes": [
       {"id": 2, "nota": 3.5, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
@@ -319,7 +319,7 @@
       {"topico": "Cor", "resposta": "Verde"},
       {"topico": "Tipo", "resposta": "Cama para pets"},
       {"topico": "Material", "resposta": "Algodão"},
-      {"topico": "Apresentação", "resposta": "Disponível nos tamanhos PP, P, M e G."}
+      {"topico": "Apresentação", "resposta": "PP, P, M e G."}
     ],
     "avaliacoes": [
       {"id": 2, "nota": 4.2, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
@@ -354,7 +354,7 @@
       {"topico": "Cor", "resposta": "Azul e Vermelho"},
       {"topico": "Tipo", "resposta": "Brinquedo para pets"},
       {"topico": "Material", "resposta": "Poliéster"},
-      {"topico": "Apresentação", "resposta": "Disponível em tamanho único."}
+      {"topico": "Apresentação", "resposta": "Único."}
     ],
     "avaliacoes": [
       {"id": 5, "nota": 5.0, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
