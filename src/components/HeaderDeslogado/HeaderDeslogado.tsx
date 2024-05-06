@@ -7,6 +7,7 @@ import { FiShoppingBag } from "react-icons/fi";
 import { PiBoneFill } from "react-icons/pi";
 
 import { useEffect, useState } from "react";
+import BotaoPequeno from "../BotaoPequeno";
 
 export default function HeaderDeslogado() {
     const {push} = useRouter();
@@ -34,9 +35,10 @@ export default function HeaderDeslogado() {
                 </div>
 
                 <div className='flex max-sm:hidden flex-row gap-6 items-center justify-end'>
-                    <button className='bg-terciaria rounded-lg w-[112px] py-[5px] px-2 transition ease-in-out delay-150 duration-200 hover:bg-[#c4d5f3]' onClick={()=>push('login')}>
+                    {/* <button className='bg-terciaria rounded-lg w-[112px] py-[5px] px-2 transition ease-in-out delay-150 duration-200 hover:bg-[#c4d5f3]' onClick={()=>push('login')}>
                         Login
-                    </button> 
+                    </button>  */}
+                    <BotaoPequeno onClick={() => push('login')} title="Login"/>
                 </div>
 
                 <div className="md:hidden flex">
@@ -47,6 +49,7 @@ export default function HeaderDeslogado() {
             <div className="bg-terciaria flex max-sm:hidden flex-row justify-center">
                 <div className="font-poppins flex flex-row justify-between md:gap-12 gap-2 py-3">
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/produtos">Produtos</a>
+                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/carrinho">Carrinho</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/lojas">Lojas</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/contato">Contato</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Ajuda</a>
@@ -60,16 +63,11 @@ export default function HeaderDeslogado() {
                         <h3 className="font-semibold text-sm">Conta</h3>
 
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
-                            <FaUserCircle  size={'0.9rem'} style={{color: "#322828"}} />
-                            <a href="#" className="hover:underline">Perfil</a>
-                        </div>
-                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
-                            <FaRegHeart  size={'0.9rem'} style={{color: "#322828"}} />
-                            <a href="#" className="hover:underline">Sacola</a>
+                            <BotaoPequeno title="Login" />
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FiShoppingBag  size={'0.9rem'} style={{color: "#322828"}} />
-                            <a href="#" className="hover:underline">Favritos</a>
+                            <a href="/carrinho" className="hover:underline">Sacola</a>
                         </div>
                     </div>
 
@@ -78,7 +76,7 @@ export default function HeaderDeslogado() {
 
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <PiBoneFill  size={'0.9rem'} style={{color: "#322828"}} />
-                            <a href="#" className="hover:underline">Ver produtos</a>
+                            <a href="/produtos" className="hover:underline">Ver produtos</a>
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaSearch  size={'0.9rem'} style={{color: "#322828"}} />
@@ -86,7 +84,7 @@ export default function HeaderDeslogado() {
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaStore  size={'0.9rem'} style={{color: "#322828"}} />
-                            <a href="#" className="hover:underline">Lojas</a>
+                            <a href="/lojas" className="hover:underline">Lojas</a>
                         </div>
                     </div>
 

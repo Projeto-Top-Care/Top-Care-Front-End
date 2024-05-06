@@ -69,15 +69,15 @@ export default function HeaderLogado() {
 
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaUserCircle  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline cursor">Perfil</p>
+                            <a href="/perfil" className="hover:underline cursor">Perfil</a>
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaRegHeart  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline cursor">Sacola</p>
+                            <a href="" className="hover:underline cursor">Sacola</a>
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FiShoppingBag  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline cursor">Favritos</p>
+                            <a href="" className="hover:underline cursor">Favoritos</a>
                         </div>
                     </div>
 
@@ -86,19 +86,19 @@ export default function HeaderLogado() {
 
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <PiBoneFill  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline cursor">Ver produtos</p>
+                            <a href="/produtos" className="hover:underline cursor">Ver produtos</a>
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaSearch  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline cursor">Buscar produtos</p>
+                            <a href="" className="hover:underline cursor">Buscar produtos</a>
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <FaStore  size={'0.9rem'} style={{color: "#322828"}} />
-                            <p className="hover:underline cursor">Lojas</p>
+                            <a href="/lojas" className="hover:underline cursor">Lojas</a>
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-1 font-poppins text-preto">
+                    {/* <div className="flex flex-col gap-1 font-poppins text-preto">
                         <h3 className="font-semibold text-sm">Serviços</h3>
 
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
@@ -113,7 +113,7 @@ export default function HeaderLogado() {
                             <MdOutlinePets  size={'0.9rem'} style={{color: "#322828"}} />
                             <p className="hover:underline cursor">Pets</p>
                         </div>
-                    </div>
+                    </div> */}
                     
                 </div>
             </div>
