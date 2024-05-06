@@ -12,14 +12,14 @@ const Footer = () => {
                 </div>
                 <div className="flex flex-col gap-1 text-xs md:text-base">
                     <h5>Empresa</h5>
-                    <a className="underline text-cinza-escuro md:text-sm text-[10px]">Sobre nós</a>
+                    <a href="/SobreNos" className="underline text-cinza-escuro md:text-sm text-[10px]">Sobre nós</a>
                     <a className="underline text-cinza-escuro md:text-sm text-[10px]">Perguntas frequentes</a>
                 </div>
 
                 <div className="flex flex-col gap-1 text-xs md:text-base">
                     <h5>Fale conosco</h5>
-                    <a className="underline text-cinza-escuro md:text-sm text-[10px]">Email</a>
-                    <a className="underline text-cinza-escuro md:text-sm text-[10px]">Telefone/ SMS</a>
+                    <a href="/contato" className="underline text-cinza-escuro md:text-sm text-[10px]">Email</a>
+                    <a href="/contato" className="underline text-cinza-escuro md:text-sm text-[10px]">Telefone/ SMS</a>
                 </div>
 
                 <div className="flex flex-col items-center">
