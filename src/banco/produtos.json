@@ -102,7 +102,7 @@
     "especificacoes": [
       {"topico": "Idade", "resposta": "Filhote e Adulto"},
       {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Cães e Gatos"},
+      {"topico": "Pet", "resposta": "Cachorros e Gatos"},
       {"topico": "Cor", "resposta": "Azul"},
       {"topico": "Tipo", "resposta": "Cama para pets"},
       {"topico": "Material", "resposta": "Algodão"},
@@ -137,7 +137,7 @@
     "especificacoes": [
       {"topico": "Idade", "resposta": "Filhote e Adulto"},
       {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Cães"},
+      {"topico": "Pet", "resposta": "Cachorros"},
       {"topico": "Cor", "resposta": "Vermelho, Azul e Amarelo"},
       {"topico": "Tipo", "resposta": "Brinquedo para cães"},
       {"topico": "Material", "resposta": "Borracha"},
@@ -207,7 +207,7 @@
     "especificacoes": [
       {"topico": "Idade", "resposta": "Filhote e Adulto"},
       {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Cães e Gatos"},
+      {"topico": "Pet", "resposta": "Cachorros e Gatos"},
       {"topico": "Cor", "resposta": "Roxo"},
       {"topico": "Tipo", "resposta": "Comedouro"},
       {"topico": "Material", "resposta": "Plástico"},
@@ -242,7 +242,7 @@
     "especificacoes": [
       {"topico": "Idade", "resposta": "Filhote e Adulto"},
       {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Cães"},
+      {"topico": "Pet", "resposta": "Cachorros"},
       {"topico": "Cor", "resposta": "Azul e Amarelo"},
       {"topico": "Tipo", "resposta": "Brinquedo para cães"},
       {"topico": "Material", "resposta": "Borracha"},
@@ -279,7 +279,7 @@
     "especificacoes": [
       {"topico": "Idade", "resposta": "Filhote e Adulto"},
       {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Cães"},
+      {"topico": "Pet", "resposta": "Cachorros"},
       {"topico": "Cor", "resposta": "Vermelho"},
       {"topico": "Tipo", "resposta": "Coleira para cães"},
       {"topico": "Material", "resposta": "Nylon"},
@@ -315,7 +315,7 @@
     "especificacoes": [
       {"topico": "Idade", "resposta": "Filhote e Adulto"},
       {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Cães e Gatos"},
+      {"topico": "Pet", "resposta": "Cachorros e Gatos"},
       {"topico": "Cor", "resposta": "Verde"},
       {"topico": "Tipo", "resposta": "Cama para pets"},
       {"topico": "Material", "resposta": "Algodão"},
@@ -350,7 +350,7 @@
     "especificacoes": [
       {"topico": "Idade", "resposta": "Filhote e Adulto"},
       {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Cães e Gatos"},
+      {"topico": "Pet", "resposta": "Roedores"},
       {"topico": "Cor", "resposta": "Azul e Vermelho"},
       {"topico": "Tipo", "resposta": "Brinquedo para pets"},
       {"topico": "Material", "resposta": "Poliéster"},

@@ -22,8 +22,8 @@ export interface ProdutoCompleto{
     codigo: number
     estoque: number
     descricao: string[]
-    especificacoes: object[]
-    avaliacoes: object[]
+    especificacoes: Especificacao[]
+    avaliacoes: AvaliacaoType[]
 }
 
 export interface Especificacao{

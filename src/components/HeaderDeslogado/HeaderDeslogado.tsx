@@ -30,7 +30,7 @@ export default function HeaderDeslogado() {
                 </div>
 
                 <div className="flex w-2/3 px-4 max-sm:hidden">
-                    <BarraPesquisa placeholder="O que você precisa hoje?" />
+                    <BarraPesquisa placeholder="O que seu pet precisa?" />
                 </div>
 
                 <div className='flex max-sm:hidden flex-row gap-6 items-center justify-end'>
