@@ -18,7 +18,7 @@ export default function Perfil() {
             </section>
             <section className="rounded-xl bg-terciaria lg:mx-32 mt-12 md:mx-20 mx-5">
                 <div className="xl:flex md:justify-around px-7 pb-7">
-                    <div className="min-w-80">
+                    <div className="md:min-w-80 sm-w-80">
                         <InputEstatico titulo="Nome completo" info="Kristian Erdmann" />
                         <InputEstatico titulo="Senha" info="**********" />
                         <InputEstatico titulo="Sexo" info="Masculino" />
@@ -37,7 +37,7 @@ export default function Perfil() {
                                 <div className="md:ml-7 md:w-56 lg:ml-12 lg:w-64"><InputEstatico titulo="Data de Nascimento" info="99/99/9999" /></div>
                             </div>
                         </div>
-                        <div className="mt-6 font-poppins">Cartões Salvos<CartoesSalvos tipoCartao="crédito" nome="Kristian Erdmann" dataValidade="12/28" finalCartao={9875} /></div>
+                        <div className="md:text-base text-sm mt-6 font-poppins">Cartões Salvos<CartoesSalvos tipoCartao="crédito" nome="Kristian Erdmann" dataValidade="12/28" finalCartao={9875} /></div>
                     </div>
                 </div>
             </section>

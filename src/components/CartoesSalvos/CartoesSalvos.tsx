@@ -10,13 +10,13 @@ interface ICartoesSalvos{
 
 const CartoesSalvos = ({tipoCartao, nome, dataValidade, finalCartao}:ICartoesSalvos) => {
     return (
-        <div className="bg-branco md:flex items-center p-4 font-poppins b rounded-lg text-sm">
+        <div className="bg-branco md:flex items-center p-4 font-poppins b rounded-lg md:text-sm text-xs">
             <div className="flex justify-around">
             <div className="flex flex-col">
                 <p>Cartão de {tipoCartao}</p>
                 <p>{nome}</p>
             </div>
-            <div className="text-3xl font-extralight md:mx-10">|</div>
+            <div className="text-3xl font-extralight md:mx-10 mx-4">|</div>
             <div className="">
                 <p>Validade {dataValidade}</p>
                 <p>Final {finalCartao}</p>
