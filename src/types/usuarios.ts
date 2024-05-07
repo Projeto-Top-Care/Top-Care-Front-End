@@ -1,13 +1,13 @@
 export interface Usuario{
     id: number,
-    foto: string
+    foto: string,
     nomeCompleto: string,
-    email: string
-    celular: string
-    senha: string
-    cpf: number
-    dataNascimento: string
-    enderecos: object[]
+    email: string,
+    celular: string,
+    senha: string,
+    cpf: number,
+    dataNascimento: string,
+    enderecos: object[],
     pets: object[]
 }
 export interface Pet{

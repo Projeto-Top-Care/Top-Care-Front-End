@@ -5,6 +5,8 @@ import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { useRouter  } from 'next/navigation'
 import { login } from '@/server/usuario/action'
 import React, { useState } from 'react'
+import { number } from 'zod'
+import { cookies } from 'next/headers'
 
 export default function Login() {
     const {push} = useRouter();
@@ -13,13 +15,14 @@ export default function Login() {
     const [senha, setSenha] = useState("")
 
     const verificarLogin = () =>{
-        let verificado = login(email, senha)
-        if(verificado) {
-            push('/cadastro')
-        } else {
-            push('/produtos')
+        let usuarioId = login(email, senha)
+        if(usuarioId != undefined){
+            console.log("deu")
+            localStorage.setItem("idUser", JSON.stringify(usuarioId))
+            push('/')
+        } else{
+            console.log("não deu")
         }
-        // ()=>
     }
 
     return (
@@ -30,11 +33,13 @@ export default function Login() {
             <section className='flex flex-col justify-center items-center w-full gap-16 my-20 lg:flex-row lg:gap-28 lg:my-24 md:gap-20'>
                 <section className='flex items-end h-full max-lg:w-full'>
                     <div className='w-[90%] m-auto flex flex-col gap-8 md:w-[70%] lg:w-80 lg:m-0'>
-                        <InputText value={email} onChange={() => setEmail(email)} type={'text'} placeholder='Email' />
+                        <InputText onChange={(e) => setEmail(e.target.value)} type={'text'} placeholder='Email' />
                         <div className='flex flex-col gap-2'>
-                            <InputText value={senha} onChange={() => setSenha(senha)} type={'password'} placeholder='Senha' />
+                            <InputText onChange={(e) => setSenha(e.target.value)} type={'password'} placeholder='Senha' />
                             <p className='underline text-cinza-escuro font-poppins text-xs select-none cursor-pointer w-36 mb-4'>Esqueçeu sua senha?</p>
-                            <BotaoGrande title='Avançar' background='bg-terciaria' type={'button'} />
+                            <div onClick={() => verificarLogin()}>
+                                <BotaoGrande title='Avançar' background='bg-terciaria' type={'button'} />
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -47,7 +52,9 @@ export default function Login() {
                         <h3 className='font-poppins text-lg font-medium text-preto'>Não possui conta?</h3>
                         <p className='font-poppins text-sm mt-2 text-preto'>Aperte no botão abaixo para poder ficar ligado em todas as promoções e serviços.</p>
                     </div>
-                    <div className='w-full mt-4' onClick={() => verificarLogin()}>
+                    <div>
+                    </div>
+                    <div className='w-full mt-4'>
                         <BotaoGrande title='Cadastrar' background='bg-terciaria' type={'button'} />
                     </div>
                 </section>
