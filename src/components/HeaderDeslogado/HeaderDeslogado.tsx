@@ -38,7 +38,7 @@ export default function HeaderDeslogado() {
                     {/* <button className='bg-terciaria rounded-lg w-[112px] py-[5px] px-2 transition ease-in-out delay-150 duration-200 hover:bg-[#c4d5f3]' onClick={()=>push('login')}>
                         Login
                     </button>  */}
-                    <BotaoPequeno onClick={() => push('login')} title="Login"/>
+                    <BotaoPequeno onClick={() => push('/login')} title="Login"/>
                 </div>
 
                 <div className="md:hidden flex">

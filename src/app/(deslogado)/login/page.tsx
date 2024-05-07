@@ -54,7 +54,7 @@ export default function Login() {
                     </div>
                     <div>
                     </div>
-                    <div className='w-full mt-4'>
+                    <div className='w-full mt-4' onClick={() => push('/cadastro')}>
                         <BotaoGrande title='Cadastrar' background='bg-terciaria' type={'button'} />
                     </div>
                 </section>
