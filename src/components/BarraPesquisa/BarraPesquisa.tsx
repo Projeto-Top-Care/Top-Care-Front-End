@@ -11,7 +11,7 @@ export default function BarraPesquisa({placeholder}: IBarraPesquisa){
                 <button><FaSearch style={{color: "#322828"}}/></button>
             </div>
             <div className="w-full flex items-center justify-start">
-                <input type="text" className="focus:outline-0 w-full rounded placeholder:text-cinza-escuro font-poppins bg-branco" placeholder={placeholder}/>
+                <input type="text" className="focus:outline-0 w-full text-xs sm:text-base rounded placeholder:text-cinza-escuro font-poppins bg-branco" placeholder={placeholder}/>
             </div>
         </div>
     )

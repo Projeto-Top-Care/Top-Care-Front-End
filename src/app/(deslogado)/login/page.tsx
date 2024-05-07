@@ -37,7 +37,7 @@ export default function Login() {
                         <div className='flex flex-col gap-2'>
                             <InputText onChange={(e) => setSenha(e.target.value)} type={'password'} placeholder='Senha' />
                             <p className='underline text-cinza-escuro font-poppins text-xs select-none cursor-pointer w-36 mb-4'>Esqueçeu sua senha?</p>
-                            <div onClick={() => verificarLogin()}>
+                            <div >
                                 <BotaoGrande title='Avançar' background='bg-terciaria' type={'button'} />
                             </div>
                         </div>
