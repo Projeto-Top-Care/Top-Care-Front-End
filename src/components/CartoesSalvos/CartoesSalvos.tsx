@@ -10,21 +10,29 @@ interface ICartoesSalvos{
 
 const CartoesSalvos = ({tipoCartao, nome, dataValidade, finalCartao}:ICartoesSalvos) => {
     return (
-        <div className="bg-branco flex flex-row items-center p-4 font-poppins b rounded-lg text-sm">
+        <div className="bg-branco md:flex items-center p-4 font-poppins b rounded-lg text-sm">
+            <div className="flex justify-around">
             <div className="flex flex-col">
-                <p className="mb-[2%]">Cartão de {tipoCartao}</p>
+                <p>Cartão de {tipoCartao}</p>
                 <p>{nome}</p>
             </div>
-            <div className="px-10 text-3xl font-extralight">|</div>
+            <div className="text-3xl font-extralight md:mx-10">|</div>
             <div className="">
-                <p className="mb-[2%]">Validade {dataValidade}</p>
+                <p>Validade {dataValidade}</p>
                 <p>Final {finalCartao}</p>
             </div>  
-            <img src="./assets/logo-mastercard.png" className="px-10" alt="Mastercard Logo" />
-            <button className="bg-primaria rounded-full w-8 h-8 font-bold ">+</button>
-            <div className="text-base font-regular flex flex-col pl-10">
+            </div>
+            <div className="flex items-center justify-between md:mt-0 mt-4">
+            <img src="./assets/logo-mastercard.png" className="md:px-10" alt="Mastercard Logo" />
+            <div className="md:hidden text-base font-regular">
                 <button className=""><FaAngleDown/></button>
             </div>
+            <button className="bg-primaria rounded-full w-8 h-8 font-bold md:mx-0">+</button>
+            <div className="md:flex hidden text-base font-regular ml-10">
+                <button className=""><FaAngleDown/></button>
+            </div>
+            </div>
+            
         </div>
     );
 }
