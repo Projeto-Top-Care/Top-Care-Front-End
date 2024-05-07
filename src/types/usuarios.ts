@@ -3,7 +3,7 @@ export interface Usuario{
     foto: string
     nomeCompleto: string,
     email: string
-    celular: number
+    celular: string
     senha: string
     cpf: number
     dataNascimento: string
