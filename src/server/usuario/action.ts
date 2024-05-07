@@ -11,13 +11,13 @@ export function buscarUsuario(id: number) {
 }
 
 export function login(email: string, senha: string) {
-    let login = false;
+    let id;
     usuarios.forEach((usuario) =>{
         if(usuario.email == email) {
             if(usuario.senha == senha) {
-                login = true;
+                id = usuario.id
             }
         }
     })
-    return login;
+    return id
 }
