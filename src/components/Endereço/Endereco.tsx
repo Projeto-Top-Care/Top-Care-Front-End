@@ -11,9 +11,9 @@ interface IEndereco{
 const Endereco = ({titulo, cep, estado, bairro, rua,numero, complemento}:IEndereco) => {
 
     return (
-        <div className="font-poppins">
+        <div className="font-poppins w-[340px] break-normal	">
             <p className="font-bold text-lg">{titulo}</p>
-            <div className="flex flex-row justify-around p-2 bg-branco rounded-lg border-2">
+            <div className="flex flex-row justify-around p-2 bg-branco rounded-lg border-2 ">
                 <div className="flex flex-col justify-between font-medium divide-y divide-slate-200 ">
                     <p className="py-2">CEP</p>
                     <p className="py-2">Estado</p>
