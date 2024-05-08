@@ -2,15 +2,21 @@
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import InputText from "@/components/InputText/InputText";
 import { useRouter } from "next/navigation"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Erro from "@/components/Pop-up/Erro/Erro";
+import { buscarUsuarioEmail } from '@/server/usuario/action'
+import { Usuario } from '@/types/usuarios'
 
 export default function RecuperacaoSenhaDeslogado() {
 
+    const [usuarioProcurado, setUsuarioProcurado] = useState<Usuario>()
     const [modalError, setModalError] = useState<boolean>(false)
     const [email, setEmail] = useState<string>("");
 
-    console.log(email)
+    useEffect(() => {
+        setUsuarioProcurado(buscarUsuarioEmail(email))
+    }, [email])
+
     const { push } = useRouter();
 
     const showModalError = () => {
@@ -24,16 +30,15 @@ export default function RecuperacaoSenhaDeslogado() {
     }
 
     const verificaForms = () => {
-        if (email === "") {
+        if (email === "" || !usuarioProcurado) {
             setModalError(true)
             setTimeout(() => {
                 setModalError(false)
             }, 4000)
-        }else{
-            push('./confirmarCodigo') 
+        } else {
+            push('./confirmarCodigo')
         }
     }
-
     return (
         <main >
             {showModalError()}
@@ -48,7 +53,7 @@ export default function RecuperacaoSenhaDeslogado() {
                             <InputText placeholder="Digite seu email" type={'email'} id='email' className="peer " onChange={(e) => setEmail(e.target.value)} />
                         </label>
                         <div className="mt-8 mb-20">
-                            <BotaoGrande title="Continuar" type='submit' background="bg-secundaria"/>
+                            <BotaoGrande title="Continuar" type='submit' background="bg-secundaria" />
                         </div>
                     </form>
                 </div>
