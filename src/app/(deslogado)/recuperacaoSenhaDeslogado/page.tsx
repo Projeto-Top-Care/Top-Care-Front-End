@@ -39,6 +39,7 @@ export default function RecuperacaoSenhaDeslogado() {
             push('./confirmarCodigo')
         }
     }
+    
     return (
         <main >
             {showModalError()}
