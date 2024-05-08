@@ -29,9 +29,30 @@ const config: Config = {
           '0%': {transform: 'translateY(-10px) translateX(-50%)', opacity: '0'},
           '100%': {transform: 'translateY(0px) translateX(-50%)', opacity: '1'},
         },
+        checked: {
+          '0%': {fontSize: '2px'},
+          '50%': {fontSize: '14px'},
+          '100%': {fontSize: '10px'}
+        },
+        slideLeft: {
+          '0%': {transform: 'translateX(-50%)', opacity: '0'},
+          '100%': {transform: 'translateX(0px)', opacity: '1'},
+        },
+        slideRight: {
+          '0%': {transform: 'translateX(0px)', opacity: '1'},
+          '100%': {transform: 'translateX(-50%)', opacity: '0'},
+        },
+        growUp:{
+          '0%': {transform: 'scale(.9)'},
+          '100%': {transform: 'scale(1)'}
+        }
       },
       animation: {
-        'slide-down': 'slideDown 0.2s linear'
+        'slide-down': 'slideDown 0.2s linear',
+        'checked': 'checked 0.2s linear',
+        'slide-left': 'slideLeft 0.3s linear',
+        'slide-right': 'slideRight 0.3s linear',
+        'grow-up': 'growUp 0.3s linear'
       }
     },
   },

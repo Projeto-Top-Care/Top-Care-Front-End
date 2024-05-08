@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default function PalavraFiltro() {
+interface PalavraFiltro{
+  palavra: string
+}
+
+export default function PalavraFiltro({palavra}: PalavraFiltro) {
   return (
-    <div>PalavraFiltro</div>
+    <label className='font-poppins'>{palavra}</label>
   )
 }
