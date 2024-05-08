@@ -65,7 +65,7 @@ export default function HeaderDeslogado() {
                     <div className="flex flex-col gap-1 font-poppins text-preto">
                         <h3 className="font-medium text-sm">Conta</h3>
 
-                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
+                        <div onClick={() => push('/login')} className="flex flex-row gap-2 items-center ml-6 text-xs">
                             <BotaoPequeno title="Login" />
                         </div>
                         <div className="flex flex-row gap-2 items-center ml-6 text-xs">
