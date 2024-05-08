@@ -64,7 +64,7 @@ export default function RecuperacaoSenhaDeslogado({ searchParams }: PropsUsuario
                 <label className='font-poppins md:text-base text-xs font-normal text-cinza-escuro'>{esconderCelular(usuarioProcurado.celular)}</label>
               </div>
             </section>
-            <div className="lg:w-[31%] md:w-[50%] w-[80%] md:mb-[5%] mb-[10%] mt-8">
+            <div className="lg:w-[31%] md:w-[50%] w-[80%] md:mb-[10%] mb-[20%] mt-8">
               <BotaoGrande title="Continuar" type='submit' background="bg-secundaria" />
             </div>
           </div>
