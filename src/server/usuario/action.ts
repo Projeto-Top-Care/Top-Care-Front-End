@@ -21,3 +21,13 @@ export function login(email: string, senha: string) {
     })
     return id
 }
+
+export function buscarUsuarioEmail(email:string){
+    let usuarioEncontrado;
+    usuarios.forEach((usuario)=>{
+        if(usuario.email == email){
+            usuarioEncontrado = usuario;
+        }
+    })
+    return usuarioEncontrado
+}
