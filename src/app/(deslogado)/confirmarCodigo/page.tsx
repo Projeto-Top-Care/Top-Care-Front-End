@@ -9,7 +9,7 @@ export default function confirmarCodigo() {
                 <div className="flex flex-col justify-center items-center mt-[10%] gap-4 md:mt-[5%]">
                     <div className="flex flex-col justify-center items-center gap-3 lg:w-[31%] md:w-[50%] w-[80%]">
                         <p className="font-averia font-semibold text-xl md:text-3xl">Esqueceu a senha?</p>
-                        <p className="font-poppins  text-xs text-center md:text-sm">Um código foi enviado para seu email registrado, verifique sua caixa de entrada ou Spam</p>
+                        <p className="font-poppins  text-xs text-center md:text-sm">Um código foi enviado para seu email registrado, verifique sua caixa de entrada ou SPAM</p>
                     </div>
                     <div className="mt-5 w-[80%] md:w-[50%] lg:w-[31%]">
                         <InputText placeholder="Código"/>
