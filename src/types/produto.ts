@@ -21,6 +21,7 @@ export interface ProdutoCompleto{
     disponivel: boolean
     codigo: number
     estoque: number
+    quantidadeVendas: number
     descricao: string[]
     especificacoes: Especificacao[]
     avaliacoes: AvaliacaoType[]
