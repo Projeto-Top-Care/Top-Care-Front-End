@@ -4,12 +4,15 @@
       "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Maria Silva Souza",
       "email": "maria.silva@email.com",
-      "celular": 551199999999,
+      "ddd": 11,
+      "celular": 5599999999,
       "senha": "senha1234",
       "cpf": "000.000.000-00",
       "dataNascimento": "1980-01-01",
-      "endereços": [
+      "sexo":"Feminino",
+      "enderecos": [
         {
+          "titulo": "Casa",
           "cep": "12345-678", 
           "estado": "SP",
           "cidade": "São Paulo",
@@ -19,6 +22,7 @@
           "complemento": "apto 101"
         },
         {
+          "titulo": "Casa vó",
           "cep": "87654-321",
           "estado": "RJ",
           "cidade": "Rio de Janeiro",
@@ -48,12 +52,15 @@
       "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "João Oliveira Santos",
       "email": "joao.oliveira@email.com",
-      "celular": 551288888888,
+      "ddd": 12,
+      "celular": 5588888888,
       "senha": "senha4321",
       "cpf": "111.111.111-11",
       "dataNascimento": "1990-02-02",
+      "sexo":"Masculino",
       "enderecos": [
         {
+          "titulo": "Casa mãe",
           "cep": "98765-432",
           "estado": "MG",
           "cidade": "Belo Horizonte",
@@ -63,6 +70,7 @@
           "complemento": "sala 202"
         },
         {
+          "titulo": "Casa",
           "cep": "76543-210",
           "estado": "RS",
           "cidade": "Porto Alegre",
@@ -92,12 +100,15 @@
       "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Ana Pereira Mendes",
       "email": "ana.pereira@email.com",
-      "celular": 551377777777,
+      "ddd": 13,
+      "celular": 5577777777,
       "senha": "senha5678",
       "cpf": "222.222.222-22",
       "dataNascimento": "2000-03-03",
-      "endereços": [
+      "sexo":"Feminino",
+      "enderecos": [
         {
+          "titulo": "Trabalho",
           "cep": "54321-098",
           "estado": "SC",
           "cidade": "Florianópolis",
@@ -107,6 +118,7 @@
           "complemento": ""
         },
         {
+          "titulo": "Casa",
           "cep": "32109-876",
           "estado": "PR",
           "cidade": "Curitiba",
@@ -136,12 +148,15 @@
       "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Pedro Cardoso Gomes",
       "email": "pedro.cardoso@email.com",
-      "celular": 551466666666,
+      "ddd": 14,
+      "celular": 5566666666,
       "senha": "senha9012",
       "cpf": "333.333.333-33",
       "dataNascimento": "2010-04-04",
-      "endereços": [
+      "sexo":"Masculino",
+      "enderecos": [
         {
+          "titulo": "Casa",
           "cep": "10987-654",
           "estado": "BA",
           "cidade": "Salvador",
@@ -151,6 +166,7 @@
           "complemento": "apto 203"
         },
         {
+          "titulo": "Casa tia",
           "cep": "21098-765",
           "estado": "CE",
           "cidade": "Fortaleza",
@@ -180,12 +196,15 @@
       "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Camila Almeida Rocha",
       "email": "camila.almeida@email.com",
-      "celular": 551555555555,
+      "ddd": 15,
+      "celular": 5555555555,
       "senha": "senhasecreta",
       "cpf": "444.444.444-44",
       "dataNascimento": "2020-05-05",
-      "endereços": [
+      "sexo":"Feminino",
+      "enderecos": [
         {
+          "titulo": "Casa",
           "cep": "43210-987",
           "estado": "AM",
           "cidade": "Manaus",
@@ -195,6 +214,7 @@
           "complemento": "casa"
         },
         {
+          "titulo": "Sitio",
           "cep": "54321-098",
           "estado": "PA",
           "cidade": "Belém",
@@ -224,12 +244,15 @@
       "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Bruno Ferreira Lima",
       "email": "bruno.ferreira@email.com",
-      "celular": 551644444444,
+      "ddd": 16,
+      "celular": 5544444444,
       "senha": "senha123456",
       "cpf": "555.555.555-55",
       "dataNascimento": "1985-06-06",
-      "endereços": [
+      "sexo":"Masculino",
+      "enderecos": [
         {
+          "titulo": "Casa praia",
           "cep": "32109-876",
           "estado": "PE",
           "cidade": "Recife",
@@ -239,6 +262,7 @@
           "complemento": ""
         },
         {
+          "titulo": "Casa",
           "cep": "43210-987",
           "estado": "AL",
           "cidade": "Maceió",
@@ -268,12 +292,15 @@
       "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Gabriela Souza Costa",
       "email": "gabriela.souza@email.com",
-      "celular": 551733333333,
+      "ddd": 17,
+      "celular": 5533333333,
       "senha": "senhamui Segura",
       "cpf": "666.666.666-66",
       "dataNascimento": "1995-07-07",
-      "endereços": [
+      "sexo":"Feminino",
+      "enderecos": [
         {
+          "titulo": "Casa",
           "cep": "65432-109",
           "estado": "MA",
           "cidade": "São Luís",
@@ -283,6 +310,7 @@
           "complemento": ""
         },
         {
+          "titulo": "Trabalho",
           "cep": "76543-210",
           "estado": "PI",
           "cidade": "Teresina",
@@ -312,12 +340,15 @@
       "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Felipe Oliveira Silva",
       "email": "felipe.oliveira@email.com",
-      "celular": 551822222222,
+      "ddd": 18,
+      "celular": 5522222222,
       "senha": "senha12345678",
       "cpf": "777.777.777-77",
       "dataNascimento": "2005-08-08",
-      "endereços": [
+      "sexo":"Masculino",
+      "enderecos": [
         {
+          "titulo": "Casa",
           "cep": "98765-432",
           "estado": "GO",
           "cidade": "Goiânia",
@@ -327,6 +358,7 @@
           "complemento": "casa"
         },
         {
+          "titulo": "Sitio",
           "cep": "76543-210",
           "estado": "MT",
           "cidade": "Cuiabá",
@@ -356,12 +388,15 @@
       "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Mariana Santos Mendes",
       "email": "mariana.santos@email.com",
-      "celular": 551911111111,
+      "ddd": 19,
+      "celular": 5511111111,
       "senha": "senhasegura123",
       "cpf": "888.888.888-88",
       "dataNascimento": "2015-09-09",
-      "endereços": [
+      "sexo":"Feminino",
+      "enderecos": [
         {
+          "titulo": "Casa",
           "cep": "54321-098",
           "estado": "MS",
           "cidade": "Campo Grande",
@@ -371,6 +406,7 @@
           "complemento": ""
         },
         {
+          "titulo": "Casa pai",
           "cep": "32109-876",
           "estado": "TO",
           "cidade": "Palmas",
@@ -400,13 +436,16 @@
       "foto": "../assets/gatoFotoUsuario.png",
       "nomeCompleto": "Diego Pereira Gomes",
       "email": "diego.pereira@email.com",
-      "celular": 552000000000,
+      "ddd": 20,
+      "celular": 5500000000,
       "senha": "umasenhalegal123",
       "cpf": "999.999.999-99",
       "dataNascimento": "1234-56-78",
-      "endereços": [
+      "sexo":"Masculino",
+      "enderecos": [
         {
           "cep": "10987-654",
+          "titulo": "Casa",
           "estado": "AP",
           "cidade": "Macapá",
           "bairro": "Tracoeria",
@@ -415,6 +454,7 @@
           "complemento": "apto 506"
         },
         {
+          "titulo": "Casa mãe",
           "cep": "21098-765",
           "estado": "RR",
           "cidade": "Boa Vista",

@@ -1,6 +1,6 @@
 interface IInputEstatico{
     titulo: string,
-    info: string,
+    info: string | number,
 }
 
 const InputEstatico = ({titulo, info}:IInputEstatico) => {
