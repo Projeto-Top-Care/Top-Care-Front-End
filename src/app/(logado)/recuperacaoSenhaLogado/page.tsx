@@ -1,4 +1,5 @@
 'use client'
+import Loading from '@/app/(deslogado)/loading/page'
 import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
 import { buscarUsuario } from '@/server/usuario/action'
 import { Usuario } from '@/types/usuarios'
@@ -36,7 +37,7 @@ export default function RecuperacaoSenhaDeslogado({ searchParams }: PropsUsuario
   }, [])
 
   if (!usuarioProcurado) return (
-    <div>Carregando...</div>
+    <Loading/>
   )
   else {
     return (
