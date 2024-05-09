@@ -1,4 +1,6 @@
 export interface Usuario{
+    ddd: string
+    sexo: string
     id: number,
     foto: string,
     nomeCompleto: string,
@@ -7,12 +9,22 @@ export interface Usuario{
     senha: string,
     cpf: number,
     dataNascimento: string,
-    enderecos: object[],
-    pets: object[]
+    enderecos: Endereco[],
+    pets: Pet[]
 }
 export interface Pet{
     nome: string
     especie: string
     raca: string
     idade: number
+}
+export interface Endereco{
+    titulo: string,
+    cep: string,
+    estado: string,
+    cidade: string,
+    bairro: string,
+    rua: string,
+    numero: number,
+    complemento: string
 }
