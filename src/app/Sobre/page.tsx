@@ -23,7 +23,7 @@ export default function sobreNos() {
                 <div className="flex flex-col items-center lg:flex-row lg:items-start lg:w-[90%]">
                     <div className="md:w-[100%] w-[95%] lg:w-[90%]">
                         <div className="flex flex-col justify-center w-[98%] text-sm md:w-[85%] md:ml-14 md:px-6 md:text-base lg:w-[90%] lg:block">
-                            <p className=" font-poppins text-justify md:mx-0 mx-4">Tudo começou com uma ideia de transformar a
+                            <p className=" font-poppins text-justify md:mx-0 mx-4 mt-2">Tudo começou com uma ideia de transformar a
                                 paixão por animais em algo mais. A visão de criar uma comunidade onde todos os animais
                                 pudessem encontrar produtos de qualidade e
                                 amorosos cuidados começou a ganhar forma para se tornar a Top Care de hoje.</p>
@@ -39,9 +39,9 @@ export default function sobreNos() {
                                 buscam transmitir o espírito familiar e afetuoso que buscamos nutrir dentro da Top Care.</p>
                         </div>
                     </div>
-                    <div className="w-[40%] mt-4 flex justify-center items-center md:mt-8 md:w-[82%] md:ml-4 lg:w-80 lg:mt-2">
-                        <img className="md:w-[100%] md:h-[70%] md:hidden lg:flex lg:w-fit" src="/assets/cachorro-brincando.png" alt="cachorro correndo atras da bola" />
-                        <img className="hidden md:flex md:w-[100%] md:h-[70%] md:rounded lg:hidden" src="/assets/banner-cachorro-brincando.png" alt="banner pra tablet"/>
+                    <div className="w-[85%] mt-4 flex justify-center items-center md:mt-8 md:w-[82%] md:ml-4 lg:w-80 lg:mt-2">
+                        <img className="w-[100%] hidden lg:flex lg:w-fit" src="/assets/cachorro-brincando.png" alt="cachorro correndo atras da bola" />
+                        <img className="lg:hidden w-full" src="/assets/banner-cachorro-brincando.png" alt="banner pra tablet"/>
                     </div>
                 </div>
             </section>
@@ -49,13 +49,13 @@ export default function sobreNos() {
             <section className="pt-6 pb-24">
                 <TituloLinha titulo="Nossa missão, visão e valores" />
                 <div className="flex flex-col-reverse items-center lg:flex-row lg:items-start">
-                    <div className="w-[40%] mt-4 flex justify-center items-center md:mt-8 md:mr-4 md:w-[82%] lg:w-80 lg:mt-2 lg:ml-20">
-                        <img className="md:w-[100%] md:h-[70%] md:hidden lg:flex lg:w-fit" src="/assets/gato-filhote.png" alt="cachorro correndo atras da bola" />
-                        <img className="hidden md:flex md:w-[100%] md:h-[70%] md:rounded lg:hidden" src="/assets/banner-gato-filhote.png" alt="" />
+                    <div className="w-[85%] mt-4 flex justify-center items-center md:mt-8 md:mr-4 md:w-[82%] lg:w-80 lg:mt-2 lg:ml-20">
+                        <img className="w-[100%] hidden lg:flex lg:w-fit" src="/assets/gato-filhote.png" alt="cachorro correndo atras da bola" />
+                        <img className="lg:hidden w-full" src="/assets/banner-gato-filhote.png" alt="" />
                     </div>
                     <div className="md:w-[100%] w-[95%] lg:w-[90%]">
                         <div className="flex flex-col justify-center w-[98%] text-sm md:w-[85%] md:ml-14 md:px-6 md:text-base lg:w-[90%] lg:justify-end">
-                            <p className=" font-poppins text-justify md:mx-0 mx-4">A Top Care preza prioritariamente pelo bem estar de seus clientes e por isso tem como missão
+                            <p className="font-poppins text-justify md:mx-0 mx-4 mt-2">A Top Care preza prioritariamente pelo bem estar de seus clientes e por isso tem como missão
                                 oferecer produtos e serviços de alta qualidade, permitindo assim que tantos seus pets quanto
                                 seus donos aproveitem da melhor maneria possível pagando um preço justo. Com nosso constante
                                 crescimento, visamos ser referência no mercado nacional de  pet shops, oferendo nossos
