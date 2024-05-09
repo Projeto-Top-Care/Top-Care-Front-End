@@ -5,7 +5,7 @@ export default function redefinirSenha() {
     return (
         <main>
             <section>
-                <div className="flex flex-col justify-center items-center mt-[10%] gap-4 md:mt-[5%]">
+                <div className="flex flex-col justify-center items-center mt-[10%] gap-4 md:mt-[6%]">
                     <div className="flex flex-col justify-center items-center gap-3 w-[80%] md:w-[50%] lg:w-[32%]">
                         <p className="font-averia text-xl font-semibold md:text-3xl">Redefina sua Senha</p>
                         <p className="font-poppins text-xs text-center md:text-sm">Crie uma nova senha forte que você se lembre</p>

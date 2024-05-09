@@ -14,12 +14,12 @@ export default function confirmarCodigo() {
                     <div className="mt-5 w-[80%] md:w-[50%] lg:w-[31%]">
                         <InputText placeholder="Código"/>
                     </div>
-                    <div className="flex flex-row w-[80%] mb-[10%] justify-between md:w-[50%] md:gap-10 md:mb-[5%] lg:w-[31%]">
+                    <div className="flex flex-row w-[80%] mb-[20%] justify-between md:w-[50%] md:gap-10 md:mb-[5%] lg:w-[31%]">
                         <div className="mt-3 w-[55%] md:w-[50%] lg:w-[55%]">
                             <BotaoGrande title="Reenviar código" background="bg-terciaria" type="button"/>
                         </div>
                         <div className="mt-3 w-[40%] md:[60%]">
-                            <BotaoGrande title="Continuar" background="bg-secundaria" type="button"/>
+                            <BotaoGrande title="Confirmar" background="bg-secundaria" type="button"/>
                         </div>
                     </div>
                 </div>
