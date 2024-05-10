@@ -1,0 +1,153 @@
+[
+    {
+        "Categoria": "Compras e pedidos",
+        "Perguntas": [
+          {
+            "pergunta": "Como faço para fazer um pedido?",
+            "resposta": "Você pode fazer um pedido navegando pelo nosso site, selecionando os produtos desejados e seguindo as instruções de checkout."
+          },
+          {
+            "pergunta": "Posso cancelar meu pedido?",
+            "resposta": "Sim, você pode cancelar seu pedido antes que ele seja processado. Entre em contato com nosso suporte ao cliente para obter assistência."
+          },
+          {
+            "pergunta": "Como faço para acompanhar meu pedido?",
+            "resposta": "Você pode acompanhar seu pedido usando o código de rastreamento fornecido por e-mail após o envio. Basta inserir o código em nossa página de rastreamento."
+          },
+          {
+            "pergunta": "Posso fazer alterações no meu pedido depois de ter sido feito?",
+            "resposta": "Infelizmente, não podemos garantir alterações após o pedido ser feito, mas entre em contato conosco imediatamente e faremos o possível para ajudar."
+          },
+          {
+            "pergunta": "Quanto tempo leva para processar um pedido?",
+            "resposta": "O tempo de processamento varia, mas geralmente leva de 1 a 3 dias úteis antes do envio. Você receberá uma notificação por e-mail assim que seu pedido for enviado."
+          }
+        ]
+    },
+    {
+        "Categoria": "Pagamento",
+        "Perguntas": [
+          {
+            "pergunta": "Quais métodos de pagamento vocês aceitam?",
+            "resposta": "Aceitamos cartões de crédito, débito e também PayPal como formas de pagamento."
+          },
+          {
+            "pergunta": "Posso pagar com boleto bancário?",
+            "resposta": "Atualmente não aceitamos pagamento por boleto bancário. No entanto, oferecemos outras opções de pagamento seguro."
+          },
+          {
+            "pergunta": "Meu pagamento foi recusado. O que devo fazer?",
+            "resposta": "Se seu pagamento foi recusado, verifique se os detalhes do cartão estão corretos e se há fundos suficientes. Se o problema persistir, entre em contato com seu banco ou tente um método de pagamento alternativo."
+          },
+          {
+            "pergunta": "Quando meu cartão será cobrado?",
+            "resposta": "Seu cartão será cobrado assim que o pedido for processado e enviado."
+          },
+          {
+            "pergunta": "Posso solicitar uma fatura para meu pedido?",
+            "resposta": "Sim, você pode solicitar uma fatura entrando em contato com nosso suporte ao cliente após fazer seu pedido."
+          }
+        ]
+    },
+    {
+        "Categoria": "Serviços",
+        "Perguntas": [
+          {
+            "pergunta": "Quais serviços vocês oferecem?",
+            "resposta": "Oferecemos uma variedade de serviços, incluindo entrega rápida, suporte ao cliente 24/7 e garantia de satisfação do cliente."
+          },
+          {
+            "pergunta": "Vocês oferecem instalação para os produtos adquiridos?",
+            "resposta": "Atualmente não oferecemos serviços de instalação, mas fornecemos instruções detalhadas para ajudá-lo a configurar seus produtos."
+          },
+          {
+            "pergunta": "Como posso entrar em contato com o suporte ao cliente?",
+            "resposta": "Você pode entrar em contato conosco por e-mail, telefone ou através do chat ao vivo em nosso site."
+          },
+          {
+            "pergunta": "Vocês têm uma política de privacidade?",
+            "resposta": "Sim, temos uma política de privacidade detalhada que pode ser encontrada em nosso site. Respeitamos a privacidade de nossos clientes e protegemos suas informações pessoais."
+          },
+          {
+            "pergunta": "Vocês oferecem garantia para os produtos?",
+            "resposta": "Sim, oferecemos garantia para todos os produtos vendidos. Consulte nossa página de garantia para obter mais detalhes."
+          }
+        ]
+    },
+    {
+        "Categoria": "Lojas físicas",
+        "Perguntas": [
+          {
+            "pergunta": "Vocês têm lojas físicas?",
+            "resposta": "Sim, temos lojas físicas em várias localidades. Consulte nosso site para encontrar a loja mais próxima de você."
+          },
+          {
+            "pergunta": "Quais são os horários de funcionamento das lojas físicas?",
+            "resposta": "Os horários de funcionamento podem variar de acordo com a localização da loja. Consulte nosso site ou entre em contato diretamente com a loja para obter informações atualizadas."
+          },
+          {
+            "pergunta": "Posso devolver um produto comprado em uma loja física?",
+            "resposta": "Sim, você pode devolver um produto comprado em uma de nossas lojas físicas, desde que cumpra nossa política de devolução."
+          },
+          {
+            "pergunta": "Vocês oferecem retirada na loja para compras online?",
+            "resposta": "Sim, oferecemos a opção de retirada na loja para compras feitas online. Selecione essa opção durante o checkout e escolha a loja onde deseja retirar."
+          },
+          {
+            "pergunta": "Vocês têm uma lista de todas as lojas físicas?",
+            "resposta": "Sim, você pode encontrar uma lista de todas as nossas lojas físicas em nosso site."
+          }
+        ]
+    },
+    {
+        "Categoria": "Entrega",
+        "Perguntas": [
+          {
+            "pergunta": "Qual é o prazo de entrega padrão?",
+            "resposta": "O prazo de entrega padrão varia de acordo com a localização e o método de entrega selecionado. Geralmente, varia de 3 a 7 dias úteis."
+          },
+          {
+            "pergunta": "Vocês oferecem entrega expressa?",
+            "resposta": "Sim, oferecemos entrega expressa para clientes que desejam receber seus pedidos mais rapidamente. Consulte as opções de entrega durante o checkout."
+          },
+          {
+            "pergunta": "Como faço para alterar o endereço de entrega?",
+            "resposta": "Se seu pedido ainda não foi enviado, entre em contato conosco imediatamente para solicitar uma alteração no endereço de entrega. Se o pedido já foi enviado, entre em contato com a transportadora para fazer a alteração."
+          },
+          {
+            "pergunta": "Posso rastrear minha entrega?",
+            "resposta": "Sim, você pode rastrear sua entrega usando o código de rastreamento fornecido por e-mail após o envio. Basta inserir o código em nossa página de rastreamento."
+          },
+          {
+            "pergunta": "Vocês entregam internacionalmente?",
+            "resposta": "Sim, entregamos internacionalmente para a maioria dos países. Consulte as opções de entrega durante o checkout para obter mais informações."
+          }
+        ]
+    },
+    {
+        "Categoria": "Reembolso",
+        "Perguntas": [
+          {
+            "pergunta": "Como solicito um reembolso?",
+            "resposta": "Para solicitar um reembolso, entre em contato com nosso suporte ao cliente e forneça os detalhes do seu pedido. Faremos o possível para processar seu reembolso o mais rápido possível."
+          },
+          {
+            "pergunta": "Quanto tempo leva para processar um reembolso?",
+            "resposta": "O tempo de processamento de um reembolso pode variar, mas geralmente é concluído dentro de 5 a 10 dias úteis após recebermos o item devolvido."
+          },
+          {
+            "pergunta": "Como receberei meu reembolso?",
+            "resposta": "O reembolso será processado de acordo com o método de pagamento original. Se você pagou com cartão de crédito, o reembolso será creditado de volta em seu cartão."
+          },
+          {
+            "pergunta": "Posso devolver um produto para obter um reembolso?",
+            "resposta": "Sim, você pode devolver um produto dentro do prazo de devolução estabelecido para obter um reembolso, desde que o produto esteja em condições originais."
+          },
+          {
+            "pergunta": "Quais são as políticas de reembolso da empresa?",
+            "resposta": "Nossas políticas de reembolso podem ser encontradas em nosso site. Recomendamos que você revise nossas políticas antes de fazer uma compra."
+          }
+        ]
+      }
+      
+]
