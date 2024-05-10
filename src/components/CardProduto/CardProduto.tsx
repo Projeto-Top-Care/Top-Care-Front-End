@@ -25,7 +25,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
     }
 
     return (
-        <div className='flex flex-col gap-3 border-cinza border-[1px] rounded-lg w-48 font-poppins px-2 py-3 '>
+        <div className='flex flex-col gap-3 border-cinza border-[1px] rounded-lg w-52 font-poppins px-2 py-3 '>
             <div className='flex flex-row justify-between items-center' >
                 <div className='flex flex-row gap-[0.2rem] items-center justify-center'>
                     <AiFillStar style={{ color: "#FFD601", }} className="w-5" />
@@ -42,8 +42,8 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
 
             <div className='flex flex-col items-center cursor-pointer' onClick={() => push(`/produtos/${nomeProduto}?id=${id}`)}>
                 <div className="items-center justify-center flex flex-col-reverse md:flex-col">
-                    <p className='text-xs md:text-sm h-9 font-medium text-preto text-center'>{nomeProduto}</p>
-                    <img src={imagemProduto[0]} className='w-[70%] py-2' />
+                    <p className='text-xs md:text-sm h-10 font-medium text-preto text-center overflow-hidden line-clamp-2'>{nomeProduto}</p>
+                    <img src={imagemProduto[0]} className='w-[60%] my-3' />
                 </div>
                 <h5 className='text-xs font-medium text-cinza-escuro'><span className='line-through'>R${precoAntigoDoProduto} </span><span className='text-[11px]'>{desconto}</span></h5>
                 <h5 className='sm:text-base text-sm font-semibold text-preto'>R${precoNovo}</h5>

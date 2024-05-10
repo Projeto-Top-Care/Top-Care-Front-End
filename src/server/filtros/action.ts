@@ -42,7 +42,9 @@ export const filtrarPrecos = (produtos: ProdutoCompleto[]) => {
         return quantidade;
     })
     return arrayPrecosString.map((preco, i)=>{
-        return preco + `(${quantidades[i]})`
+        return (quantidades[i] > 0 ? preco + `(${quantidades[i]})`: '')
+    }).filter((filtro)=>{
+        return filtro != ''
     })
 }
 
@@ -86,7 +88,9 @@ export const filtrarPorte = (produtos: ProdutoCompleto[]) =>{
     })
 
     return portesPadrao.map((porte, i)=>{
-        return porte + `(${quantidades[i]})`
+        return (quantidades[i] > 0 ? porte + `(${quantidades[i]})` : '')
+    }).filter((filtrado)=>{
+        return filtrado != ''
     })
 }
 export const filtrarTamanhos = (produtos: ProdutoCompleto[]) =>{
@@ -105,7 +109,9 @@ export const filtrarTamanhos = (produtos: ProdutoCompleto[]) =>{
         return quantidade!;
     })
     return tamanhoPadrao.map((tamanho, i)=>{
-        return tamanho + `(${quantidades[i]})`
+        return (quantidades[i] > 0 ? tamanho + `(${quantidades[i]})` : '')
+    }).filter((filtrado)=>{
+        return filtrado != ''
     })
 
 }

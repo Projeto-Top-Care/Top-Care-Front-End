@@ -7,13 +7,13 @@ import { filtrarAnimais, filtrarMarcas, filtrarPorte, filtrarPrecos, filtrarTama
 
 interface FiltroGrande {
     produtos: ProdutoCompleto[]
-    close: Dispatch<SetStateAction<boolean>>
+    close?: Dispatch<SetStateAction<boolean>>
 }
 
 export default function FiltroGrande({ produtos, close }: FiltroGrande) {
     return (
-        <div className='w-72 bg-branco border-r border-y border-cinza rounded-e-md pb-5'>
-            <div className='flex justify-end py-1 pr-1'><img src="../assets/Sair.svg" alt="" className='w-[10%]' onClick={()=>close(false)}/></div>
+        <div className='w-64 bg-branco border-r border-y md:border-l md:rounded-md border-cinza rounded-e-md pb-5'>
+            <div className='flex justify-end py-1 pr-1 md:invisible'><img src="../assets/Sair.svg" alt="" className='w-[10%]' onClick={()=>close!(false)}/></div>
             <div className='font-poppins ml-5'>
                 <h1 className='font-bold'>Filtrar Produtos</h1>
                 <p className='underline text-sm'>Limpar Filtros</p>
