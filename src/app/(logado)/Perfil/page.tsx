@@ -15,6 +15,8 @@ import { buscarTodos } from "@/server/produtos/action";
 import CardProduto from "@/components/CardProduto/CardProduto";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import React, { useState } from "react";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+
 
 
 export default function Perfil() {
@@ -22,6 +24,14 @@ export default function Perfil() {
     const usuarioLogado: Usuario = buscarUsuario(1)!
     const [showPassword, setShowPassword] = useState(false);
     const senha = usuarioLogado.senha
+    const [showAllAddresses, setShowAllAddresses] = useState(false);
+
+    const toggleShowAllAddresses = () => {
+        setShowAllAddresses(!showAllAddresses);
+    };
+
+    const displayedAddresses = showAllAddresses ? usuarioLogado.enderecos : usuarioLogado.enderecos.slice(0, 3);
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -45,7 +55,7 @@ export default function Perfil() {
                 </div>
             </section>
             <section className="rounded-xl bg-terciaria lg:mx-32 mt-12 md:mx-20 mx-5">
-                <div className="xl:flex md:justify-around px-7 pb-7">
+                <div className="xl:flex md:justify-around xl:px-0 px-4 pb-7">
                     <div className="md:min-w-80 sm-w-80">
                         <InputEstatico titulo="Nome completo" info={usuarioLogado.nomeCompleto} />
                         <div className="font-poppins text-preto pt-6">
@@ -53,9 +63,9 @@ export default function Perfil() {
                             <div className="flex items-center bg-branco p-3 rounded">
                                 <input type={showPassword ? "text" : "password"} value={senha} className="bg-branco w-80 md:text-sm text-xs text-cinza-escuro" readOnly></input>
                                 {showPassword ? (
-                                    <AiOutlineEyeInvisible onClick={togglePasswordVisibility} />
+                                    <AiOutlineEyeInvisible onClick={togglePasswordVisibility} className="cursor-pointer" />
                                 ) : (
-                                    <AiOutlineEye onClick={togglePasswordVisibility} />
+                                    <AiOutlineEye onClick={togglePasswordVisibility} className="cursor-pointer" />
                                 )}
                             </div>
                             <a href="/recuperacaoSenhaLogado" className="flex justify-end text-xs underline decoration-solid mb-[-16px]">Trocar senha</a>
@@ -86,7 +96,7 @@ export default function Perfil() {
             <section className="grid place-content-center">
                 <div className="grid gap-11 mt-8 mb-12 lg:grid-cols-2 xl:grid-cols-3">
                     {
-                        usuarioLogado.enderecos.map((endereco, i) => (
+                        displayedAddresses.map((endereco, i) => (
                             <div key={i}>
                                 <Endereco titulo={endereco.titulo} cep={endereco.cep} estado={endereco.estado} bairro={endereco.bairro} rua={endereco.rua} numero={endereco.numero} complemento={endereco.complemento} />
                             </div>
@@ -94,10 +104,18 @@ export default function Perfil() {
                     }
 
                 </div>
-                <div className="w-56 justify-self-center">
-                    <BotaoGrande title="Adicionar Endereço" background={"bg-secundaria"} type={"button"} />
-                </div>
             </section>
+            <div className="grid grid-cols-2 w-full justify-items-center">
+                <div className="md:w-44 w-32 ">
+                    <BotaoGrande title="+ endereço " background={"bg-secundaria"} type={"button"} />
+                </div>
+                <div className="">
+                    <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria  p-1 rounded-lg md:w-44 w-32 h-8 hover:bg-[#9EBF40] justify-around' onClick={toggleShowAllAddresses}>
+                        {showAllAddresses ? "Mostrar menos"  : "Mostrar todos "}
+                        {showAllAddresses ? <FaAngleUp className="mt-1"/> : <FaAngleDown className="mt-1"/>}
+                    </button>
+                </div>
+            </div>
             <section className="mt-8">
                 <TituloLinha titulo="Pedido em andamento" />
             </section>
