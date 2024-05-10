@@ -1,6 +1,4 @@
 'use client'
-import { FaAngleUp, FaAngleDown } from "react-icons/fa";
-import duvidas from '@/banco/duvidas.json'
 import { buscarCategoria } from "@/server/duvidas/action";
 import { Duvida, Duvidas } from "@/types/duvidads";
 import ItemAcordiao from "../ItemAcordeao/itemAcordeao";
@@ -25,10 +23,3 @@ const Acordeao = ({categoria}:IAcordiao) => {
     )
 }
 export default Acordeao;
-
-        {/* <div className='flex flex-row flex-wrap justify-center gap-10 mt-10'>
-        // {produtos.map((produto, index) => (
-        // <CardProduto key={index} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
-        // precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />
-        // ))}
-        // </div> */}
