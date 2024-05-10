@@ -1,4 +1,5 @@
 'use client'
+import { IoExitOutline } from "react-icons/io5";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CardPetPequeno from "@/components/CardPetPequeno/CardPetPequeno";
 import CartoesSalvos from "@/components/CartoesSalvos/CartoesSalvos";
@@ -12,11 +13,19 @@ import { Usuario } from "@/types/usuarios";
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import { buscarTodos } from "@/server/produtos/action";
 import CardProduto from "@/components/CardProduto/CardProduto";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import React, { useState } from "react";
 
 
 export default function Perfil() {
     const id = localStorage.getItem('idUser')
     const usuarioLogado: Usuario = buscarUsuario(1)!
+    const [showPassword, setShowPassword] = useState(false);
+    const senha = usuarioLogado.senha
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const carrosselProdutos = buscarTodos().map((produto, i) => (<CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
         precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />))
@@ -24,6 +33,13 @@ export default function Perfil() {
         <main className="bg-branco text-preto">
             <section className="mt-6">
                 <TituloLinha titulo="Minha conta" />
+                <div className="flex justify-end w-[90%]">
+                    <div className="mt-5">
+                        <a href="/paginaInicial">
+                            <button className='flex md:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-28 w-20 h-8 hover:bg-[#9EBF40] justify-around'> Logout <IoExitOutline className="mt-1" /></button>
+                        </a>
+                    </div>
+                </div>
                 <div className="mt-10 md:ml-44 ml-6">
                     <PerfilFoto src="./assets/cachorro-perfil.png/" nome={usuarioLogado.nomeCompleto} />
                 </div>
@@ -32,7 +48,18 @@ export default function Perfil() {
                 <div className="xl:flex md:justify-around px-7 pb-7">
                     <div className="md:min-w-80 sm-w-80">
                         <InputEstatico titulo="Nome completo" info={usuarioLogado.nomeCompleto} />
-                        <InputEstatico titulo="Senha" info={usuarioLogado.senha} />
+                        <div className="font-poppins text-preto pt-6">
+                            <p className="md:text-base text-sm">Senha</p>
+                            <div className="flex items-center bg-branco p-3 rounded">
+                                <input type={showPassword ? "text" : "password"} value={senha} className="bg-branco w-80 md:text-sm text-xs text-cinza-escuro" readOnly></input>
+                                {showPassword ? (
+                                    <AiOutlineEyeInvisible onClick={togglePasswordVisibility} />
+                                ) : (
+                                    <AiOutlineEye onClick={togglePasswordVisibility} />
+                                )}
+                            </div>
+                            <a href="/recuperacaoSenhaLogado" className="flex justify-end text-xs underline decoration-solid mb-[-16px]">Trocar senha</a>
+                        </div>
                         <InputEstatico titulo="Sexo" info={usuarioLogado.sexo} />
                     </div>
                     <div className="">
@@ -76,10 +103,10 @@ export default function Perfil() {
             </section>
             <section className="md:mx-20 mt-8 flex justify-center">
                 <div className="grid lg:grid-cols-2 gap-x-20 gap-y-4">
-                <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
-                <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
-                <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
-                </div> 
+                    <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
+                    <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
+                    <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
+                </div>
             </section>
             <section className="mt-8">
                 <TituloLinha titulo="Ultimas compras" />
