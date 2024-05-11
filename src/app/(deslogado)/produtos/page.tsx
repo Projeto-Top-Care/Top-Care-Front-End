@@ -92,14 +92,14 @@ import { useSearchParams } from 'next/navigation';
           {
             filtroOpen && (
               <div className={`absolute ${animation ? 'animate-slide-left' : 'animate-slide-right'} z-50`}>
-                <FiltroGrande produtos={produtosMostrados} close={setAnimation} />
+                <FiltroGrande produtos={produtos} close={setAnimation} setNovosProdutos={setProdutosMostrados}/>
               </div>
             )
           }
         </section>
         <div className='md:flex md:flex-row mt-5 md:mt-10 md:w-[90%] md:m-auto'>
           <div className='hidden md:!flex w-[25%]'>
-            <FiltroGrande produtos={produtosMostrados} />
+            <FiltroGrande produtos={produtos} setNovosProdutos={setProdutosMostrados}/>
           </div>
           <section className='w-full md:w-[75%]'>
             <div className='w-full flex items-center flex-col-reverse md:flex-row justify-between'>
