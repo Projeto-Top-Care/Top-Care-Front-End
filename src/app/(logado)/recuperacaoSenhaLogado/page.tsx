@@ -4,6 +4,7 @@ import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
 import { buscarUsuario } from '@/server/usuario/action'
 import { Usuario } from '@/types/usuarios'
 import { useEffect, useState } from 'react'
+import { useRouter  } from 'next/navigation'
 
 interface PropsUsuario {
   searchParams: { id: number };
@@ -12,6 +13,7 @@ interface PropsUsuario {
 export default function RecuperacaoSenhaDeslogado({
   searchParams,
 }: PropsUsuario) {
+  const {push} = useRouter();
   const [usuarioProcurado, setUsuarioProcurado] = useState<Usuario>();
   const [checked1, setChecked1] = useState<boolean>(true);
   const [checked2, setChecked2] = useState<boolean>(false);
@@ -56,7 +58,7 @@ export default function RecuperacaoSenhaDeslogado({
             </div>
             <section className="lg:w-[31%] md:w-[50%] w-[90%] mt-8">
               <div
-                className="border rounded border-cinza p-1 flex items-center gap-4 "
+                className="border rounded border-cinza p-0.5 flex items-center gap-4 "
                 onClick={() => {
                   setChecked1(true);
                   setChecked2(false);
@@ -100,7 +102,7 @@ export default function RecuperacaoSenhaDeslogado({
               </div>
 
               <div
-                className="border rounded border-cinza p-1 mt-4 flex items-center gap-4 "
+                className="border rounded border-cinza p-0.5 mt-4 flex items-center gap-4 "
                 onClick={() => {
                   setChecked2(true);
                   setChecked1(false);
@@ -143,7 +145,7 @@ export default function RecuperacaoSenhaDeslogado({
                 </div>
               </div>
             </section>
-            <div className="lg:w-[31%] md:w-[50%] w-[90%] md:mb-[10%] mb-[20%] md:mt-8 mt-4">
+            <div onClick={() => push('/confirmarCodigoLogado')} className="lg:w-[31%] md:w-[50%] w-[90%] md:mb-[10%] mb-[20%] md:mt-7 mt-4" >
               <BotaoGrande
                 title="Continuar"
                 type="submit"
