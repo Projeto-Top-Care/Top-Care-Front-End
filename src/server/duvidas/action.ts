@@ -9,6 +9,7 @@ export function buscarCategoria(categoria: string): Duvida[] {
         // Verificar se a categoria foi encontrada
         if (categoriaEncontrada) {
             // Retornar o array de perguntas da categoria encontrada
+            
             return categoriaEncontrada.Perguntas;
         } else {
             // Se a categoria não for encontrada, retornar um array vazio ou lançar uma exceção, dependendo do comportamento desejado
