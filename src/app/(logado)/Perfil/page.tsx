@@ -16,10 +16,12 @@ import CardProduto from "@/components/CardProduto/CardProduto";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import React, { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
 
 
 
 export default function Perfil() {
+    const [open, setOpen] = useState<boolean>(false)
     const id = localStorage.getItem('idUser')
     const usuarioLogado: Usuario = buscarUsuario(1)!
     const [showPassword, setShowPassword] = useState(false);
@@ -90,11 +92,11 @@ export default function Perfil() {
                     </div>
                 </div>
             </section>
-            <section className="mt-8">
+            <section className="mt-10">
                 <TituloLinha titulo="Endereços" />
             </section>
             <section className="grid place-content-center">
-                <div className="grid gap-11 mt-8 mb-12 lg:grid-cols-2 xl:grid-cols-3">
+                <div className="grid gap-11 mt-8 mb-8 lg:grid-cols-2 xl:grid-cols-3">
                     {
                         displayedAddresses.map((endereco, i) => (
                             <div key={i}>
@@ -106,17 +108,17 @@ export default function Perfil() {
                 </div>
             </section>
             <div className="grid grid-cols-2 w-full justify-items-center">
-                <div className="md:w-44 w-32 ">
-                    <BotaoGrande title="+ endereço " background={"bg-secundaria"} type={"button"} />
+                <div className="md:w-44 w-32" onClick={() => setOpen(true)}>
+                    <BotaoGrande title='+ Endereço' background='bg-secundaria' type={'button'} />
                 </div>
                 <div className="">
                     <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria  p-1 rounded-lg md:w-44 w-32 h-8 hover:bg-[#9EBF40] justify-around' onClick={toggleShowAllAddresses}>
-                        {showAllAddresses ? "Mostrar menos"  : "Mostrar todos "}
-                        {showAllAddresses ? <FaAngleUp className="mt-1"/> : <FaAngleDown className="mt-1"/>}
+                        {showAllAddresses ? "Mostrar menos" : "Mostrar todos "}
+                        {showAllAddresses ? <FaAngleUp className="mt-1" /> : <FaAngleDown className="mt-1" />}
                     </button>
                 </div>
             </div>
-            <section className="mt-8">
+            <section className="mt-10">
                 <TituloLinha titulo="Pedido em andamento" />
             </section>
             <section className="md:mx-20 mt-8 flex justify-center">
@@ -148,8 +150,15 @@ export default function Perfil() {
                 <BotaoGrande title="Cadastrar Pet" background={"bg-primaria"} type={"button"} />
                 </div>
             </section> */}
+            {open && (
+                <div className='overflow-hidden'>
+                    <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpen(false)}></div>
+                    <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
+                        <CadastroEndereco setOpen={setOpen} />
+                    </div>
+                </div>
+            )}
         </main>
     )
 }
-
 
