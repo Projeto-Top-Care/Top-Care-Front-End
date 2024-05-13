@@ -13,11 +13,13 @@ interface FiltroGrande {
 }
 
 export default function FiltroGrande({ produtos, close, setNovosProdutos }: FiltroGrande) {
-    const [novosProdutos, setProdutos] = useState<ProdutoCompleto[]>(produtos)
+    const [produtosFiltrados, setProdutosFiltrados] = useState<ProdutoCompleto[]>([])
+    const [produtosNovos, setProdutos] = useState<ProdutoCompleto[]>(produtos)
 
     useEffect(()=>{
-        setNovosProdutos(novosProdutos)
-    }, [novosProdutos])
+        setNovosProdutos(produtosNovos)
+        setProdutosFiltrados(produtosNovos.length < produtos.length ? produtosNovos : [])
+    }, [produtosNovos])
 
     return (
         <div className='w-64 bg-branco border-r border-y md:border-l md:rounded-md border-cinza rounded-e-md pb-5'>
@@ -34,7 +36,7 @@ export default function FiltroGrande({ produtos, close, setNovosProdutos }: Filt
                     {
                         filtrarAnimais(produtos).map((animal, i) => (
                             <div key={animal} className='flex items-center'>
-                                <Checkbox checkProdutos={setProdutos} label={animal} produtos={produtos}/>
+                                <Checkbox checkProdutos={setProdutos} labels={filtrarAnimais(produtos)} label={animal} produtos={produtos} produtosFiltrados={produtosFiltrados}/>
                                 <PalavraFiltro palavra={animal} />
                             </div>
                         ))
@@ -48,8 +50,8 @@ export default function FiltroGrande({ produtos, close, setNovosProdutos }: Filt
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
                         filtrarPrecos(produtos).map((preco, i) => (
-                            <div key={i} className='flex items-center'>
-                                <Checkbox checkProdutos={setProdutos} label={preco} produtos={produtos}/>
+                            <div key={preco} className='flex items-center'>
+                                <Checkbox checkProdutos={setProdutos} labels={filtrarPrecos(produtos)} label={preco} produtos={produtos} produtosFiltrados={produtosFiltrados}/>
                                 <PalavraFiltro palavra={preco} />
                             </div>
                         ))
@@ -63,8 +65,8 @@ export default function FiltroGrande({ produtos, close, setNovosProdutos }: Filt
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
                         filtrarMarcas(produtos).map((marca, i) => (
-                            <div key={i} className='flex items-center'>
-                                <Checkbox checkProdutos={setProdutos} label={marca} produtos={produtos}/>
+                            <div key={marca} className='flex items-center'>
+                                <Checkbox checkProdutos={setProdutos} labels={filtrarMarcas(produtos)} label={marca} produtos={produtos} produtosFiltrados={produtosFiltrados}/>
                                 <PalavraFiltro palavra={marca} />
                             </div>
                         ))
@@ -78,8 +80,8 @@ export default function FiltroGrande({ produtos, close, setNovosProdutos }: Filt
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
                         filtrarPorte(produtos).map((porte, i) => (
-                            <div key={i} className='flex items-center'>
-                                <Checkbox checkProdutos={setProdutos} label={porte} produtos={produtos}/>
+                            <div key={porte} className='flex items-center'>
+                                <Checkbox checkProdutos={setProdutos} labels={filtrarPorte(produtos)} label={porte} produtos={produtos} produtosFiltrados={produtosFiltrados}/>
                                 <PalavraFiltro palavra={porte} />
                             </div>
                         ))
@@ -93,8 +95,8 @@ export default function FiltroGrande({ produtos, close, setNovosProdutos }: Filt
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
                         filtrarTamanhos(produtos).map((tamanho, i) => (
-                            <div key={i} className='flex items-center'>
-                                <Checkbox checkProdutos={setProdutos} label={tamanho} produtos={produtos}/>
+                            <div key={tamanho} className='flex items-center'>
+                                <Checkbox checkProdutos={setProdutos} labels={filtrarTamanhos(produtos)} label={tamanho} produtos={produtos} produtosFiltrados={produtosFiltrados}/>
                                 <PalavraFiltro palavra={tamanho} />
                             </div>
                         ))

@@ -21,7 +21,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
     const iconeFavorito = () => {
         return (favorito ?
             <FaHeart style={{ color: "#B5A6F3", }} className="w-4" /> :
-            <FaRegHeart style={{ color: "#4f4f4f", }} className="w-4" />)
+            <FaRegHeart style={{ color: "#4f4f4f", }} className="w-4" />) 
     }
 
     return (

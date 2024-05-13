@@ -1,12 +1,11 @@
   'use client'
   import CardProduto from '@/components/CardProduto/CardProduto'
   import produtos from '@/banco/produtos.json'
-  import React, { useEffect, useRef, useState } from 'react'
+  import React, { useEffect, useState } from 'react'
   import { FaFilter } from "react-icons/fa";
   import FiltroGrande from '@/components/Filtro/FiltroGrande'
   import { ProdutoCompleto } from '@/types/produto'
   import Select from '@/components/Select/Select';
-import { useSearchParams } from 'next/navigation';
 
   interface InterfaceProdutos {
     searchParams?: { q: string }
@@ -15,13 +14,14 @@ import { useSearchParams } from 'next/navigation';
   export default function Produtos({ searchParams }: InterfaceProdutos) {
     const query = searchParams?.q;
     const [produtosMostrados, setProdutosMostrados] = useState<ProdutoCompleto[]>(produtos)
+    const [produtosFiltrados, setProdutosFiltrados] = useState<ProdutoCompleto[]>(produtos)
     const [filtroOpen, setFiltroOpen] = useState<boolean>(false)
     const [animation, setAnimation] = useState<boolean>(false)
     const [escolha, setEscolha] = useState<string>('');
 
     const filtrarPorQuery = () =>{
       if(query){
-        const produtosFiltrados = [...produtos].filter((produto)=>{
+        const produtosFiltrados1 = [...produtos].filter((produto)=>{
           return produto.nomeProduto
           .toLowerCase()
             .normalize('NFD')
@@ -33,7 +33,8 @@ import { useSearchParams } from 'next/navigation';
                               .replace(/[\u0300-\u036f]/g, "")
                                 )
         })
-        setProdutosMostrados(produtosFiltrados)
+        setProdutosMostrados(produtosFiltrados1)
+        setProdutosFiltrados(produtosFiltrados1)
       }
     }
     useEffect(()=>{
@@ -92,14 +93,14 @@ import { useSearchParams } from 'next/navigation';
           {
             filtroOpen && (
               <div className={`absolute ${animation ? 'animate-slide-left' : 'animate-slide-right'} z-50`}>
-                <FiltroGrande produtos={produtos} close={setAnimation} setNovosProdutos={setProdutosMostrados}/>
+                <FiltroGrande produtos={query ? produtosFiltrados : produtos} close={setAnimation} setNovosProdutos={setProdutosMostrados}/>
               </div>
             )
           }
         </section>
         <div className='md:flex md:flex-row mt-5 md:mt-10 md:w-[90%] md:m-auto'>
           <div className='hidden md:!flex w-[25%]'>
-            <FiltroGrande produtos={produtos} setNovosProdutos={setProdutosMostrados}/>
+            <FiltroGrande produtos={query ? produtosFiltrados : produtos} setNovosProdutos={setProdutosMostrados}/>
           </div>
           <section className='w-full md:w-[75%]'>
             <div className='w-full flex items-center flex-col-reverse md:flex-row justify-between'>
