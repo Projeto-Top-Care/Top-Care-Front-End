@@ -68,11 +68,11 @@ export default function PaginaCompra() {
 
                 <TituloLinha titulo="Quase lá..." />
 
-                <section className="flex flex-col gap-1 sm:gap-8 lg:flex-col w-[90%] px-2">
+                <section className="flex flex-col gap-1 sm:gap-4 lg:flex-col w-[90%] px-2">
                     <h2 className="font-bold text-base sm:text-lg pb-2">Escolha o método de pagamento</h2>
                     
                     <div className="flex flex-col md:flex-row justify-between gap-8">
-                        <form className="flex flex-col justify-center">
+                        <form className="flex flex-col justify-center gap-4">
                             <div className="flex flex-row gap-4">
                                 <input className="" type="radio" value="cartao" name="endereco" id="cartao" />
                                 <label className="text-sm sm:text-base" htmlFor="cartao">Cartão de crédito</label>
