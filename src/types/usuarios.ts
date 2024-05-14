@@ -8,8 +8,10 @@ export interface Usuario{
     cpf: number,
     dataNascimento: string,
     enderecos: object[],
-    pets: object[]
+    pets: object[],
+    pedidos: object[]
 }
+
 export interface Pet{
     nome: string
     especie: string
