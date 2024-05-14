@@ -11,9 +11,25 @@ interface IResumoPedido{
 
 export default function ResumoPedido({produtos, quantidades, precos, desconto, frete}:IResumoPedido) {
 
-    const [subtotal, setSubtotal] = useState()
+    const calcularSubtotal = () => {
+        let soma = 0
+        precos.map(function(preco, i) {
+            soma = soma + preco
+        })
+        return soma
+    }
 
-    const [total, setTotal] = useState(0)
+    const calcularTotal = () => {
+        let final = calcularSubtotal()
+
+        return ((final - desconto) + frete).toFixed(2)
+    }
+
+    const [subtotal, setSubtotal] = useState(calcularSubtotal())
+   
+    const [total, setTotal] = useState(calcularTotal())
+
+    
 
     return (
         <main>
@@ -38,7 +54,7 @@ export default function ResumoPedido({produtos, quantidades, precos, desconto, f
                     <div className="flex flex-col border-t-[1px] border-cinza py-4">
                         <div className="flex flex-row justify-between">
                             <p className="font-medium text-sm sm:text-base">Subtotal</p>
-                            <p className="text-xs sm:text-sm">R$47,00</p>
+                            <p className="text-xs sm:text-sm">R${subtotal}</p>
                         </div>
 
                         <div className="flex flex-row justify-between">
@@ -48,13 +64,13 @@ export default function ResumoPedido({produtos, quantidades, precos, desconto, f
 
                         <div className="flex flex-row justify-between">
                             <p className="font-medium text-sm sm:text-base">Frete</p>
-                            <p className="text-xs sm:text-sm">{frete}</p>                            
+                            <p className="text-xs sm:text-sm">R${frete}</p>                            
                         </div>
                     </div>
 
                     <div className="flex flex-row justify-between border-t-[1px] border-cinza pt-4">
                         <p className="font-medium text-sm sm:text-base">Valor total</p>
-                        <p className="text-xs sm:text-sm">R$38,30</p>
+                        <p className="text-xs sm:text-sm">R${total}</p>
                     </div>
 
                 </div>                
