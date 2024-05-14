@@ -26,29 +26,29 @@ export const filtrarAnimais = (produtos: ProdutoCompleto[]) => {
 export const filtrarPrecos = (produtos: ProdutoCompleto[]) => {
     const arrayPrecos = [50, 100, 200, 300, 300]
     const arrayPrecosString = ['R$0,00 - R$50,00', 'R$50,00 - R$100,00', 'R$100,00 - R$200,00', 'R$200,00 - R$300,00', '+ R$300,00'];
-    
-    const quantidades = arrayPrecos.map((preco, i)=>{
+
+    const quantidades = arrayPrecos.map((preco, i) => {
         let quantidade = 0
-        produtos.forEach((produto,index)=>{
+        produtos.forEach((produto, index) => {
             const precoProduto = produto.precoNovo;
-            if(i == 0){
+            if (i == 0) {
                 (precoProduto <= preco && precoProduto > 0 ? quantidade++ : '')
-            }else if(i == 4){
+            } else if (i == 4) {
                 (precoProduto > preco ? quantidade++ : '')
-            }else{
-                (precoProduto <= preco && precoProduto > arrayPrecos[i-1] ? quantidade++ : '')
+            } else {
+                (precoProduto <= preco && precoProduto > arrayPrecos[i - 1] ? quantidade++ : '')
             }
         })
         return quantidade;
     })
-    return arrayPrecosString.map((preco, i)=>{
-        return (quantidades[i] > 0 ? preco + `(${quantidades[i]})`: '')
-    }).filter((filtro)=>{
+    return arrayPrecosString.map((preco, i) => {
+        return (quantidades[i] > 0 ? preco + `(${quantidades[i]})` : '')
+    }).filter((filtro) => {
         return filtro != ''
     })
 }
 
-export const filtrarMarcas = (produtos: ProdutoCompleto[]) =>{
+export const filtrarMarcas = (produtos: ProdutoCompleto[]) => {
     const marcas = produtos.map((produto) => {
         return produto.marca
     })
@@ -71,7 +71,7 @@ export const filtrarMarcas = (produtos: ProdutoCompleto[]) =>{
     });
 }
 
-export const filtrarPorte = (produtos: ProdutoCompleto[]) =>{
+export const filtrarPorte = (produtos: ProdutoCompleto[]) => {
     const portes = produtos.map((produto) => {
         return produto.especificacoes[1].resposta
     })
@@ -87,13 +87,13 @@ export const filtrarPorte = (produtos: ProdutoCompleto[]) =>{
         return quantidade!;
     })
 
-    return portesPadrao.map((porte, i)=>{
+    return portesPadrao.map((porte, i) => {
         return (quantidades[i] > 0 ? porte + `(${quantidades[i]})` : '')
-    }).filter((filtrado)=>{
+    }).filter((filtrado) => {
         return filtrado != ''
     })
 }
-export const filtrarTamanhos = (produtos: ProdutoCompleto[]) =>{
+export const filtrarTamanhos = (produtos: ProdutoCompleto[]) => {
     const tamanhos = produtos.map((produto) => {
         return produto.tamanho
     })
@@ -108,10 +108,24 @@ export const filtrarTamanhos = (produtos: ProdutoCompleto[]) =>{
         })
         return quantidade!;
     })
-    return tamanhoPadrao.map((tamanho, i)=>{
+    return tamanhoPadrao.map((tamanho, i) => {
         return (quantidades[i] > 0 ? tamanho + `(${quantidades[i]})` : '')
-    }).filter((filtrado)=>{
+    }).filter((filtrado) => {
         return filtrado != ''
     })
 
+}
+
+export function aplicarFiltros(produtos: ProdutoCompleto[], label: string, produtosFiltrados: ProdutoCompleto[]) {
+    let produtosMostrados: ProdutoCompleto[] = [...produtosFiltrados];
+
+    produtos.forEach((produto) => {
+        if (produto.especificacoes[2].resposta.includes(label)) {
+            produtosMostrados.push(produto)
+        }
+    })
+
+    return produtosMostrados.filter((valor, index, self) => {
+        return self.indexOf(valor) === index;
+    });
 }
