@@ -32,7 +32,7 @@ export default function PaginaCompra() {
                 <TituloLinha titulo="Confirmação do pedido" />
 
                 <section className="flex flex-col justify-center gap-8 lg:flex-row w-[90%]">
-                    <section className=" py-4 lg:w-[68%]">
+                    <section className="py-4 lg:w-[68%]">
                         <ResumoPedido produtos={produtos} quantidades={quantidades} precos={precos} desconto={9.2} frete={12} />
                     </section>
 
@@ -62,40 +62,42 @@ export default function PaginaCompra() {
                                 <BotaoGrande title={"Adicionar novo endereço"} background={"bg-terciaria"} type={"button"} />
                             </div>
                         </div>
-                        <p className="w-full text-center md:text-xs text-[0.6rem]">Escolha uma das opções ou adicione um novo endereço!</p>
+                        <p className="w-full text-center md:text-sm text-xs text-cinza-escuro">Escolha uma das opções ou adicione um novo endereço!</p>
                     </section>
                 </section>
 
                 <TituloLinha titulo="Quase lá..." />
-                <section className="flex flex-col gap-8 lg:flex-row ">
-                    {/* px-4 md:px-8 lg:px-20 py-4 */}
-                    <img className="w-[35%]" src="./assets/dognagrama.png" />
 
-                    <div className="w-full flex flex-col ">
-                        <h2 className="font-bold text-base sm:text-lg pb-2">Escolha o método de pagamento</h2>
-                        <div className="flex flex-row justify-between">
-                            <form className="flex flex-col justify-center">
-                                <div className="flex flex-row-reverse justify-end gap-4">
-                                    <label className="text-sm sm:text-base" htmlFor="cartao">Cartão de crédito</label>
-                                    <input type="radio" value="cartao" name="endereco" id="cartao" />
-                                </div>
-                                <div className="flex flex-row-reverse justify-end gap-4">
-                                    <label className="text-sm sm:text-base" htmlFor="boleto">Boleto bancário</label>
-                                    <input type="radio" value="boleto" name="endereco" id="boleto" />
-                                </div>
-                                <div className="flex flex-row-reverse justify-end gap-4">
-                                    <label className="text-sm sm:text-base" htmlFor="pix">PIX</label>
-                                    <input type="radio" value="pix" name="endereco" id="pix" />
-                                </div>
-                            </form>
-                            <div>
-                                <p>Aqui vai os cartões</p>
+                <section className="flex flex-col gap-1 sm:gap-8 lg:flex-col w-[90%] px-2">
+                    <h2 className="font-bold text-base sm:text-lg pb-2">Escolha o método de pagamento</h2>
+                    
+                    <div className="flex flex-col md:flex-row justify-between gap-8">
+                        <form className="flex flex-col justify-center">
+                            <div className="flex flex-row gap-4">
+                                <input className="" type="radio" value="cartao" name="endereco" id="cartao" />
+                                <label className="text-sm sm:text-base" htmlFor="cartao">Cartão de crédito</label>
                             </div>
+                            <div className="flex flex-row gap-4">
+                                <input className="" type="radio" value="boleto" name="endereco" id="boleto" />
+                                <label className="text-sm sm:text-base" htmlFor="boleto">Boleto bancário</label>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <input className="" type="radio" value="pix" name="endereco" id="pix" />
+                                <label className="text-sm sm:text-base" htmlFor="pix">PIX</label>
+                            </div>
+                        </form>
+
+                        <div>
+                            <p>Aqui vai os cartões</p>
                         </div>
-                        <p className="text-sm sm:text-base text-cinza-escuro">Após conferir seu pedido, clique no botão abaixo para confirmar a compra e realizar o pagamento</p>
+                    </div>
+                    <div className="flex flex-col items-end py-8 gap-2">
+                        <div className="w-[60%] md:w-[22%] lg:w-[20%]">
+                           <BotaoGrande title={"Finalizar compra"} background={"bg-secundaria"} type={"button"} />
+                        </div>
+                        <p className="text-end text-xs sm:text-sm text-cinza-escuro">Após conferir seu pedido, clique no botão acima para confirmar a compra e realizar o pagamento.</p>
                     </div>
                 </section>
-
             </div>
         </main>
     )
