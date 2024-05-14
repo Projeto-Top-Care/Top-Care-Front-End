@@ -1,13 +1,11 @@
 export interface Usuario{
-    ddd: string
-    sexo: string
     id: number,
     foto: string,
     nomeCompleto: string,
     email: string,
     celular: string,
     senha: string,
-    cpf: number,
+    cpf: string,
     dataNascimento: string,
     enderecos: Endereco[],
     pets: Pet[]
@@ -21,7 +19,7 @@ export interface Pet{
     idade: number
 }
 export interface Endereco{
-    titulo: string,
+    nome: string,
     cep: string,
     estado: string,
     cidade: string,

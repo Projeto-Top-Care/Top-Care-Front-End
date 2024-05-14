@@ -8,8 +8,9 @@
     "senha": "senha1234",
     "cpf": "000.000.000-00",
     "dataNascimento": "1980-01-01",
-    "endereços": [
+    "enderecos": [
       {
+        "nome": "Casa Mãe",
         "cep": "12345-678",
         "estado": "SP",
         "cidade": "São Paulo",
@@ -19,6 +20,7 @@
         "complemento": "apto 101"
       },
       {
+        "nome": "Casa Vó",
         "cep": "87654-321",
         "estado": "RJ",
         "cidade": "Rio de Janeiro",
