@@ -71,11 +71,28 @@ export default function PaginaCompra() {
                     {/* px-4 md:px-8 lg:px-20 py-4 */}
                     <img className="w-[35%]" src="./assets/dognagrama.png" />
 
-                    <div className="">
+                    <div className="w-full flex flex-col ">
                         <h2 className="font-bold text-base sm:text-lg pb-2">Escolha o método de pagamento</h2>
-                        <div>
-                            
+                        <div className="flex flex-row justify-between">
+                            <form className="flex flex-col justify-center">
+                                <div className="flex flex-row-reverse justify-end gap-4">
+                                    <label className="text-sm sm:text-base" htmlFor="cartao">Cartão de crédito</label>
+                                    <input type="radio" value="cartao" name="endereco" id="cartao" />
+                                </div>
+                                <div className="flex flex-row-reverse justify-end gap-4">
+                                    <label className="text-sm sm:text-base" htmlFor="boleto">Boleto bancário</label>
+                                    <input type="radio" value="boleto" name="endereco" id="boleto" />
+                                </div>
+                                <div className="flex flex-row-reverse justify-end gap-4">
+                                    <label className="text-sm sm:text-base" htmlFor="pix">PIX</label>
+                                    <input type="radio" value="pix" name="endereco" id="pix" />
+                                </div>
+                            </form>
+                            <div>
+                                <p>Aqui vai os cartões</p>
+                            </div>
                         </div>
+                        <p className="text-sm sm:text-base text-cinza-escuro">Após conferir seu pedido, clique no botão abaixo para confirmar a compra e realizar o pagamento</p>
                     </div>
                 </section>
 
