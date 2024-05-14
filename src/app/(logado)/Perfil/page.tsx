@@ -1,4 +1,5 @@
 'use client'
+import { IoExitOutline } from "react-icons/io5";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CardPetPequeno from "@/components/CardPetPequeno/CardPetPequeno";
 import CartoesSalvos from "@/components/CartoesSalvos/CartoesSalvos";
@@ -12,11 +13,31 @@ import { Usuario } from "@/types/usuarios";
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import { buscarTodos } from "@/server/produtos/action";
 import CardProduto from "@/components/CardProduto/CardProduto";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import React, { useState } from "react";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
+
 
 
 export default function Perfil() {
+    const [open, setOpen] = useState<boolean>(false)
     const id = localStorage.getItem('idUser')
     const usuarioLogado: Usuario = buscarUsuario(1)!
+    const [showPassword, setShowPassword] = useState(false);
+    const senha = usuarioLogado.senha
+    const [showAllAddresses, setShowAllAddresses] = useState(false);
+
+    const toggleShowAllAddresses = () => {
+        setShowAllAddresses(!showAllAddresses);
+    };
+
+    const displayedAddresses = showAllAddresses ? usuarioLogado.enderecos : usuarioLogado.enderecos.slice(0, 3);
+
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const carrosselProdutos = buscarTodos().map((produto, i) => (<CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
         precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />))
@@ -24,15 +45,33 @@ export default function Perfil() {
         <main className="bg-branco text-preto">
             <section className="mt-6">
                 <TituloLinha titulo="Minha conta" />
+                <div className="flex justify-end w-[90%]">
+                    <div className="mt-5">
+                        <a href="/paginaInicial">
+                            <button className='flex md:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-28 w-20 h-8 hover:bg-[#9EBF40] justify-around'> Logout <IoExitOutline className="mt-1" /></button>
+                        </a>
+                    </div>
+                </div>
                 <div className="mt-10 md:ml-44 ml-6">
                     <PerfilFoto src="./assets/cachorro-perfil.png/" nome={usuarioLogado.nomeCompleto} />
                 </div>
             </section>
             <section className="rounded-xl bg-terciaria lg:mx-32 mt-12 md:mx-20 mx-5">
-                <div className="xl:flex md:justify-around px-7 pb-7">
+                <div className="xl:flex md:justify-around xl:px-0 px-4 pb-7">
                     <div className="md:min-w-80 sm-w-80">
                         <InputEstatico titulo="Nome completo" info={usuarioLogado.nomeCompleto} />
-                        <InputEstatico titulo="Senha" info={usuarioLogado.senha} />
+                        <div className="font-poppins text-preto pt-6">
+                            <p className="md:text-base text-sm">Senha</p>
+                            <div className="flex items-center bg-branco p-3 rounded">
+                                <input type={showPassword ? "text" : "password"} value={senha} className="bg-branco w-80 md:text-sm text-xs text-cinza-escuro" readOnly></input>
+                                {showPassword ? (
+                                    <AiOutlineEyeInvisible onClick={togglePasswordVisibility} className="cursor-pointer" />
+                                ) : (
+                                    <AiOutlineEye onClick={togglePasswordVisibility} className="cursor-pointer" />
+                                )}
+                            </div>
+                            <a href="/recuperacaoSenhaLogado" className="flex justify-end text-xs underline decoration-solid mb-[-16px]">Trocar senha</a>
+                        </div>
                         <InputEstatico titulo="Sexo" info={usuarioLogado.sexo} />
                     </div>
                     <div className="">
@@ -53,13 +92,13 @@ export default function Perfil() {
                     </div>
                 </div>
             </section>
-            <section className="mt-8">
+            <section className="mt-10">
                 <TituloLinha titulo="Endereços" />
             </section>
             <section className="grid place-content-center">
-                <div className="grid gap-11 mt-8 mb-12 lg:grid-cols-2 xl:grid-cols-3">
+                <div className="grid gap-11 mt-8 mb-8 lg:grid-cols-2 xl:grid-cols-3">
                     {
-                        usuarioLogado.enderecos.map((endereco, i) => (
+                        displayedAddresses.map((endereco, i) => (
                             <div key={i}>
                                 <Endereco titulo={endereco.titulo} cep={endereco.cep} estado={endereco.estado} bairro={endereco.bairro} rua={endereco.rua} numero={endereco.numero} complemento={endereco.complemento} />
                             </div>
@@ -67,19 +106,27 @@ export default function Perfil() {
                     }
 
                 </div>
-                <div className="w-56 justify-self-center">
-                    <BotaoGrande title="Adicionar Endereço" background={"bg-secundaria"} type={"button"} />
-                </div>
             </section>
-            <section className="mt-8">
+            <div className="grid grid-cols-2 w-full justify-items-center">
+                <div className="md:w-44 w-32" onClick={() => setOpen(true)}>
+                    <BotaoGrande title='+ Endereço' background='bg-secundaria' type={'button'} />
+                </div>
+                <div className="">
+                    <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria  p-1 rounded-lg md:w-44 w-32 h-8 hover:bg-[#9EBF40] justify-around' onClick={toggleShowAllAddresses}>
+                        {showAllAddresses ? "Mostrar menos" : "Mostrar todos "}
+                        {showAllAddresses ? <FaAngleUp className="mt-1" /> : <FaAngleDown className="mt-1" />}
+                    </button>
+                </div>
+            </div>
+            <section className="mt-10">
                 <TituloLinha titulo="Pedido em andamento" />
             </section>
             <section className="md:mx-20 mt-8 flex justify-center">
                 <div className="grid lg:grid-cols-2 gap-x-20 gap-y-4">
-                <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
-                <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
-                <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
-                </div> 
+                    <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
+                    <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
+                    <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
+                </div>
             </section>
             <section className="mt-8">
                 <TituloLinha titulo="Ultimas compras" />
@@ -103,8 +150,15 @@ export default function Perfil() {
                 <BotaoGrande title="Cadastrar Pet" background={"bg-primaria"} type={"button"} />
                 </div>
             </section> */}
+            {open && (
+                <div className='overflow-hidden'>
+                    <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpen(false)}></div>
+                    <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
+                        <CadastroEndereco setOpen={setOpen} />
+                    </div>
+                </div>
+            )}
         </main>
     )
 }
-
 

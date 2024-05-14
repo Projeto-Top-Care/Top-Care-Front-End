@@ -11,7 +11,9 @@ export interface Usuario{
     dataNascimento: string,
     enderecos: Endereco[],
     pets: Pet[]
+    pedidos: object[]
 }
+
 export interface Pet{
     nome: string
     especie: string
