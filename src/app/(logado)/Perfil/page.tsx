@@ -65,7 +65,6 @@ export default function Perfil() {
                             </div>
                         ))
                     }
-
                 </div>
                 <div className="w-56 justify-self-center">
                     <BotaoGrande title="Adicionar Endereço" background={"bg-secundaria"} type={"button"} />
