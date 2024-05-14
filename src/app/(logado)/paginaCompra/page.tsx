@@ -27,16 +27,16 @@ export default function PaginaCompra() {
 
     return (
         <main className="text-preto font-poppins py-12">
-            <div className="flex flex-col gap-4">
+            <div className="items-center flex flex-col gap-4 w-full">
 
                 <TituloLinha titulo="Confirmação do pedido" />
 
-                <section className="flex flex-col w-[85%] justify-between gap-8 lg:flex-row ">
-                    <section className="p-4 w-full lg:w-[70%]">
+                <section className="flex flex-col justify-center gap-8 lg:flex-row w-[90%]">
+                    <section className=" py-4 lg:w-[68%]">
                             <ResumoPedido produtos={produtos} quantidades={quantidades} precos={precos} desconto={9.2} frete={12} />
                     </section> 
 
-                    <section className="p-4 min-[1025px]:w-[30%]">
+                    <section className="py-4 lg:w-[28%]">
                         <h2 className="font-bold text-base sm:text-lg pb-2">Endereço de entrega</h2>
                         <div className="border-[1px] border-cinza rounded-lg ">
                             <div className="p-4">
@@ -68,7 +68,8 @@ export default function PaginaCompra() {
                 </section>
 
                 <TituloLinha titulo="Quase lá..."/>
-                <section className="flex flex-col gap-8 lg:flex-row px-4 md:px-8 lg:px-20 py-4">
+                <section className="flex flex-col gap-8 lg:flex-row ">
+{/* px-4 md:px-8 lg:px-20 py-4 */}
                         <img className="w-[35%]" src="./assets/dognagrama.png"/>
 
                         <div className="">
