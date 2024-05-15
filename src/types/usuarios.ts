@@ -1,4 +1,17 @@
 export interface Usuario{
+<<<<<<< HEAD
+=======
+    produto: any
+    favoritos: Favoritos[]
+    precoNovo: number
+    notaDeAvaliacao: number
+    imagemProduto: string[]
+    desconto: string
+    precoAntigoDoProduto: number
+    nomeProduto: string
+    ddd: string
+    sexo: string
+>>>>>>> Feature/Pagina-produtosFavoritos
     id: number,
     foto: string,
     nomeCompleto: string,
@@ -27,4 +40,14 @@ export interface Endereco{
     rua: string,
     numero: number,
     complemento: string
+}
+
+export interface Favoritos{
+    id: number
+    nomeProduto: string
+    notaDeAvaliacao: number
+    imagemProduto: string[]
+    precoAntigoDoProduto: number
+    desconto: string
+    precoNovo: number
 }

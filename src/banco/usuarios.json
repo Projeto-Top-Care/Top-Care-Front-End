@@ -4,6 +4,7 @@
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Maria Silva Souza",
     "email": "maria.silva@email.com",
+<<<<<<< HEAD
     "celular": "+55 (20)00000-0009",
     "senha": "senha1234",
     "cpf": "000.000.000-00",
@@ -11,6 +12,17 @@
     "enderecos": [
       {
         "nome": "Casa Mãe",
+=======
+    "celular": "+55 00000-0009",
+    "ddd": 11,
+    "senha": "senha1234",
+    "cpf": "000.000.000-00",
+    "dataNascimento": "1980-01-01",
+    "sexo": "Feminino",
+    "enderecos": [
+      {
+        "titulo": "Casa",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "12345-678",
         "estado": "SP",
         "cidade": "São Paulo",
@@ -20,7 +32,11 @@
         "complemento": "apto 101"
       },
       {
+<<<<<<< HEAD
         "nome": "Casa Vó",
+=======
+        "titulo": "Casa vó",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "87654-321",
         "estado": "RJ",
         "cidade": "Rio de Janeiro",
@@ -44,6 +60,7 @@
         "idade": 2
       }
     ],
+<<<<<<< HEAD
     "pedidos": [
       {
         "codigo": 123456789,
@@ -137,6 +154,140 @@
           }
         ]
         
+=======
+    "favoritos": [
+      {
+        "nomeProduto": "abcd",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "abcd",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+>>>>>>> Feature/Pagina-produtosFavoritos
       }
     ]
   },
@@ -145,12 +296,24 @@
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "João Oliveira Santos",
     "email": "joao.oliveira@email.com",
+<<<<<<< HEAD
     "celular": "+55 (20)00000-0008",
     "senha": "senha4321",
     "cpf": "111.111.111-11",
     "dataNascimento": "1990-02-02",
     "enderecos": [
       {
+=======
+    "celular": "+55 00000-0008",
+    "ddd": 12,
+    "senha": "senha4321",
+    "cpf": "111.111.111-11",
+    "dataNascimento": "1990-02-02",
+    "sexo": "Masculino",
+    "enderecos": [
+      {
+        "titulo": "Casa mãe",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "98765-432",
         "estado": "MG",
         "cidade": "Belo Horizonte",
@@ -160,6 +323,10 @@
         "complemento": "sala 202"
       },
       {
+<<<<<<< HEAD
+=======
+        "titulo": "Casa",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "76543-210",
         "estado": "RS",
         "cidade": "Porto Alegre",
@@ -182,6 +349,55 @@
         "raca": "Persa",
         "idade": 4
       }
+<<<<<<< HEAD
+=======
+    ],
+    "favoritos": [
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      }
+>>>>>>> Feature/Pagina-produtosFavoritos
     ]
   },
   {
@@ -189,12 +405,24 @@
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Ana Pereira Mendes",
     "email": "ana.pereira@email.com",
+<<<<<<< HEAD
     "celular": "+55 (20)00000-0007",
     "senha": "senha5678",
     "cpf": "222.222.222-22",
     "dataNascimento": "2000-03-03",
     "endereços": [
       {
+=======
+    "celular": "+55 00000-0007",
+    "ddd": 13,
+    "senha": "senha5678",
+    "cpf": "222.222.222-22",
+    "dataNascimento": "2000-03-03",
+    "sexo": "Feminino",
+    "enderecos": [
+      {
+        "titulo": "Trabalho",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "54321-098",
         "estado": "SC",
         "cidade": "Florianópolis",
@@ -204,6 +432,10 @@
         "complemento": ""
       },
       {
+<<<<<<< HEAD
+=======
+        "titulo": "Casa",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "32109-876",
         "estado": "PR",
         "cidade": "Curitiba",
@@ -226,6 +458,55 @@
         "raca": "Sphynx",
         "idade": 6
       }
+<<<<<<< HEAD
+=======
+    ],
+    "favoritos": [
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      }
+>>>>>>> Feature/Pagina-produtosFavoritos
     ]
   },
   {
@@ -233,12 +514,24 @@
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Pedro Cardoso Gomes",
     "email": "pedro.cardoso@email.com",
+<<<<<<< HEAD
     "celular": "+55 (20)00000-0006",
     "senha": "senha9012",
     "cpf": "333.333.333-33",
     "dataNascimento": "2010-04-04",
     "endereços": [
       {
+=======
+    "celular": "+55 00000-0006",
+    "ddd": 14,
+    "senha": "senha9012",
+    "cpf": "333.333.333-33",
+    "dataNascimento": "2010-04-04",
+    "sexo": "Masculino",
+    "enderecos": [
+      {
+        "titulo": "Casa",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "10987-654",
         "estado": "BA",
         "cidade": "Salvador",
@@ -248,6 +541,10 @@
         "complemento": "apto 203"
       },
       {
+<<<<<<< HEAD
+=======
+        "titulo": "Casa tia",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "21098-765",
         "estado": "CE",
         "cidade": "Fortaleza",
@@ -277,12 +574,24 @@
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Camila Almeida Rocha",
     "email": "camila.almeida@email.com",
+<<<<<<< HEAD
     "celular": "+55 (20)00000-0005",
     "senha": "senhasecreta",
     "cpf": "444.444.444-44",
     "dataNascimento": "2020-05-05",
     "endereços": [
       {
+=======
+    "celular": "+55 00000-0005",
+    "ddd": 15,
+    "senha": "senhasecreta",
+    "cpf": "444.444.444-44",
+    "dataNascimento": "2020-05-05",
+    "sexo": "Feminino",
+    "enderecos": [
+      {
+        "titulo": "Casa",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "43210-987",
         "estado": "AM",
         "cidade": "Manaus",
@@ -292,6 +601,10 @@
         "complemento": "casa"
       },
       {
+<<<<<<< HEAD
+=======
+        "titulo": "Sitio",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "54321-098",
         "estado": "PA",
         "cidade": "Belém",
@@ -314,6 +627,55 @@
         "raca": "Ragdoll",
         "idade": 10
       }
+<<<<<<< HEAD
+=======
+    ],
+    "favoritos": [
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      }
+>>>>>>> Feature/Pagina-produtosFavoritos
     ]
   },
   {
@@ -321,12 +683,24 @@
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Bruno Ferreira Lima",
     "email": "bruno.ferreira@email.com",
+<<<<<<< HEAD
     "celular": "+55 (20)00000-0004",
     "senha": "senha123456",
     "cpf": "555.555.555-55",
     "dataNascimento": "1985-06-06",
     "endereços": [
       {
+=======
+    "celular": "+55 00000-0004",
+    "ddd": 16,
+    "senha": "senha123456",
+    "cpf": "555.555.555-55",
+    "dataNascimento": "1985-06-06",
+    "sexo": "Masculino",
+    "enderecos": [
+      {
+        "titulo": "Casa praia",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "32109-876",
         "estado": "PE",
         "cidade": "Recife",
@@ -336,6 +710,10 @@
         "complemento": ""
       },
       {
+<<<<<<< HEAD
+=======
+        "titulo": "Casa",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "43210-987",
         "estado": "AL",
         "cidade": "Maceió",
@@ -358,6 +736,55 @@
         "raca": "Abissínio",
         "idade": 12
       }
+<<<<<<< HEAD
+=======
+    ],
+    "favoritos": [
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      }
+>>>>>>> Feature/Pagina-produtosFavoritos
     ]
   },
   {
@@ -365,12 +792,24 @@
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Gabriela Souza Costa",
     "email": "gabriela.souza@email.com",
+<<<<<<< HEAD
     "celular": "+55 (20)00000-0003",
     "senha": "senhamui Segura",
     "cpf": "666.666.666-66",
     "dataNascimento": "1995-07-07",
     "endereços": [
       {
+=======
+    "celular": "+55 00000-0003",
+    "ddd": 17,
+    "senha": "senhamui Segura",
+    "cpf": "666.666.666-66",
+    "dataNascimento": "1995-07-07",
+    "sexo": "Feminino",
+    "enderecos": [
+      {
+        "titulo": "Casa",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "65432-109",
         "estado": "MA",
         "cidade": "São Luís",
@@ -380,6 +819,10 @@
         "complemento": ""
       },
       {
+<<<<<<< HEAD
+=======
+        "titulo": "Trabalho",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "76543-210",
         "estado": "PI",
         "cidade": "Teresina",
@@ -402,6 +845,55 @@
         "raca": "Bengal",
         "idade": 14
       }
+<<<<<<< HEAD
+=======
+    ],
+    "favoritos": [
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      }
+>>>>>>> Feature/Pagina-produtosFavoritos
     ]
   },
   {
@@ -409,12 +901,24 @@
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Felipe Oliveira Silva",
     "email": "felipe.oliveira@email.com",
+<<<<<<< HEAD
     "celular": "+55 (20)00000-0002",
     "senha": "senha12345678",
     "cpf": "777.777.777-77",
     "dataNascimento": "2005-08-08",
     "endereços": [
       {
+=======
+    "celular": "+55 00000-0002",
+    "ddd": 18,
+    "senha": "senha12345678",
+    "cpf": "777.777.777-77",
+    "dataNascimento": "2005-08-08",
+    "sexo": "Masculino",
+    "enderecos": [
+      {
+        "titulo": "Casa",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "98765-432",
         "estado": "GO",
         "cidade": "Goiânia",
@@ -424,6 +928,10 @@
         "complemento": "casa"
       },
       {
+<<<<<<< HEAD
+=======
+        "titulo": "Sitio",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "76543-210",
         "estado": "MT",
         "cidade": "Cuiabá",
@@ -446,6 +954,55 @@
         "raca": "Golden Retriever",
         "idade": 2
       }
+<<<<<<< HEAD
+=======
+    ],
+    "favoritos": [
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      }
+>>>>>>> Feature/Pagina-produtosFavoritos
     ]
   },
   {
@@ -453,12 +1010,24 @@
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Mariana Santos Mendes",
     "email": "mariana.santos@email.com",
+<<<<<<< HEAD
     "celular": "+55 (20)00000-0001",
     "senha": "senhasegura123",
     "cpf": "888.888.888-88",
     "dataNascimento": "2015-09-09",
     "endereços": [
       {
+=======
+    "celular": "+55 00000-0001",
+    "ddd": 19,
+    "senha": "senhasegura123",
+    "cpf": "888.888.888-88",
+    "dataNascimento": "2015-09-09",
+    "sexo": "Feminino",
+    "enderecos": [
+      {
+        "titulo": "Casa",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "54321-098",
         "estado": "MS",
         "cidade": "Campo Grande",
@@ -468,6 +1037,10 @@
         "complemento": ""
       },
       {
+<<<<<<< HEAD
+=======
+        "titulo": "Casa pai",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "32109-876",
         "estado": "TO",
         "cidade": "Palmas",
@@ -490,6 +1063,55 @@
         "raca": "Labrador Retriever",
         "idade": 1
       }
+<<<<<<< HEAD
+=======
+    ],
+    "favoritos": [
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      }
+>>>>>>> Feature/Pagina-produtosFavoritos
     ]
   },
   {
@@ -497,6 +1119,7 @@
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Diego Pereira Gomes",
     "email": "diego.pereira@email.com",
+<<<<<<< HEAD
     "celular": "+55 (20)00000-0000",
     "senha": "umasenhalegal123",
     "cpf": "999.999.999-99",
@@ -504,6 +1127,18 @@
     "endereços": [
       {
         "cep": "10987-654",
+=======
+    "celular": "+55 00000-0000",
+    "ddd": 20,
+    "senha": "umasenhalegal123",
+    "cpf": "999.999.999-99",
+    "dataNascimento": "1234-56-78",
+    "sexo": "Masculino",
+    "enderecos": [
+      {
+        "cep": "10987-654",
+        "titulo": "Casa",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "estado": "AP",
         "cidade": "Macapá",
         "bairro": "Tracoeria",
@@ -512,6 +1147,10 @@
         "complemento": "apto 506"
       },
       {
+<<<<<<< HEAD
+=======
+        "titulo": "Casa mãe",
+>>>>>>> Feature/Pagina-produtosFavoritos
         "cep": "21098-765",
         "estado": "RR",
         "cidade": "Boa Vista",
@@ -534,6 +1173,55 @@
         "raca": "Rottweiler",
         "idade": 6
       }
+<<<<<<< HEAD
+=======
+    ],
+    "favoritos": [
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      }
+>>>>>>> Feature/Pagina-produtosFavoritos
     ]
   }
 ]
