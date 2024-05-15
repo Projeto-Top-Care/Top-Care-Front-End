@@ -9,19 +9,9 @@ import { filtrarAnimais, filtrarMarcas, filtrarPorte, filtrarPrecos, filtrarTama
 interface FiltroGrande {
     produtos: ProdutoCompleto[]
     close?: Dispatch<SetStateAction<boolean>>
-    setNovosProdutos: Dispatch<SetStateAction<ProdutoCompleto[]>>
 }
 
-export default function FiltroGrande({ produtos, close, setNovosProdutos }: FiltroGrande) {
-    const [produtosFiltrados, setProdutosFiltrados] = useState<ProdutoCompleto[]>([])
-    const [produtosNovos, setProdutos] = useState<ProdutoCompleto[]>(produtos)
-    const [checked, setChecked] = useState<boolean>(false)
-    const [label, setLabel] = useState<string>('')
-
-    useEffect(()=>{
-        console.log(checked + " " + label)
-    },[checked])
-
+export default function FiltroGrande({ produtos, close }: FiltroGrande) {
 
     return (
         <div className='w-64 bg-branco border-r border-y md:border-l md:rounded-md border-cinza rounded-e-md pb-5'>
@@ -38,7 +28,7 @@ export default function FiltroGrande({ produtos, close, setNovosProdutos }: Filt
                     {
                         filtrarAnimais(produtos).map((animal, i) => (
                             <div key={animal} className='flex items-center'>
-                                <Checkbox check={setChecked} label={animal.split("(")[0]} setLabel={setLabel} />
+                                <Checkbox label={animal.split("(")[0]} />
                                 <PalavraFiltro palavra={animal} />
                             </div>
                         ))
@@ -53,7 +43,7 @@ export default function FiltroGrande({ produtos, close, setNovosProdutos }: Filt
                     {
                         filtrarPrecos(produtos).map((preco, i) => (
                             <div key={preco} className='flex items-center'>
-                                <Checkbox check={setChecked} label={preco.split("(")[0]} setLabel={setLabel} />
+                                <Checkbox label={preco.split("(")[0]} />
                                 <PalavraFiltro palavra={preco} />
                             </div>
                         ))
@@ -66,9 +56,9 @@ export default function FiltroGrande({ produtos, close, setNovosProdutos }: Filt
                 </div>
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
-                        filtrarMarcas(produtosFiltrados.length != 0 ? produtosFiltrados : produtos).map((marca, i) => (
+                        filtrarMarcas(produtos).map((marca, i) => (
                             <div key={marca} className='flex items-center'>
-                                <Checkbox check={setChecked} label={marca.split("(")[0]} setLabel={setLabel} />
+                                <Checkbox label={marca.split("(")[0]}/>
                                 <PalavraFiltro palavra={marca} />
                             </div>
                         ))
@@ -81,9 +71,9 @@ export default function FiltroGrande({ produtos, close, setNovosProdutos }: Filt
                 </div>
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
-                        filtrarPorte(produtosFiltrados.length != 0 ? produtosFiltrados : produtos).map((porte, i) => (
+                        filtrarPorte(produtos).map((porte, i) => (
                             <div key={porte} className='flex items-center'>
-                                <Checkbox check={setChecked} label={porte.split("(")[0]} setLabel={setLabel} />
+                                <Checkbox label={porte.split("(")[0]}/>
                                 <PalavraFiltro palavra={porte} />
                             </div>
                         ))
@@ -96,9 +86,9 @@ export default function FiltroGrande({ produtos, close, setNovosProdutos }: Filt
                 </div>
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
-                        filtrarTamanhos(produtosFiltrados.length != 0 ? produtosFiltrados : produtos).map((tamanho, i) => (
+                        filtrarTamanhos(produtos).map((tamanho, i) => (
                             <div key={tamanho} className='flex items-center'>
-                                <Checkbox check={setChecked} label={tamanho.split("(")[0]} setLabel={setLabel} />
+                                <Checkbox label={tamanho.split("(")[0]}/>
                                 <PalavraFiltro palavra={tamanho} />
                             </div>
                         ))

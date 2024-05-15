@@ -116,7 +116,23 @@ export const filtrarTamanhos = (produtos: ProdutoCompleto[]) => {
 
 }
 
-export function aplicarFiltros(produtos: ProdutoCompleto[], label: string, produtosFiltrados: ProdutoCompleto[]) {
+let produtos: ProdutoCompleto[] = []
+let produtosFiltrados: ProdutoCompleto[] = []
+
+export function definirProdutos(produtosMostrados: ProdutoCompleto[]){
+    produtos = produtosMostrados
+}
+
+export function definirProdutosFiltrados(produtosMostrados: ProdutoCompleto[]){
+    produtosFiltrados = produtosMostrados
+}
+
+export function returnProdutos(){
+    return (produtosFiltrados.length == 0 ? produtos : produtosFiltrados)
+}
+
+
+export function aplicarFiltros(label: string) {
     let produtosMostrados: ProdutoCompleto[] = [...produtosFiltrados];
 
     produtos.forEach((produto) => {
@@ -128,4 +144,25 @@ export function aplicarFiltros(produtos: ProdutoCompleto[], label: string, produ
     return produtosMostrados.filter((valor, index, self) => {
         return self.indexOf(valor) === index;
     });
+}
+
+export function tirarFiltros(label: string) {
+    let produtosMostrados: ProdutoCompleto[] = [...produtosFiltrados];
+
+    produtosMostrados = produtosMostrados.filter((produto)=>{
+        return !(produto.especificacoes[2].resposta.includes(label) && !produto.especificacoes[2].resposta.includes(" e "))
+    })
+    const filtrados = produtosMostrados.filter((valor, index, self) => {
+        return self.indexOf(valor) === index;
+    });
+
+    return (verficarLista() ? produtos : filtrados)
+}
+
+function verficarLista(){
+    const verificacao = produtosFiltrados.filter((produto)=>{
+        return !(produto.especificacoes[2].resposta.includes(" e "))
+    })
+
+    return verificacao.length == 0
 }
