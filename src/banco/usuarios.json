@@ -112,6 +112,72 @@
         "precoAntigoDoProduto": 20.99,
         "desconto": "15%",
         "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "abcd",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
+      },
+      {
+        "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
+        "notaDeAvaliacao": 4.0,
+        "imagemProduto": [
+          "../assets/produtos/racao.png",
+          "../assets/produtos/racao1.png"
+        ],
+        "precoAntigoDoProduto": 20.99,
+        "desconto": "15%",
+        "precoNovo": 17.84
       }
     ]
   },
