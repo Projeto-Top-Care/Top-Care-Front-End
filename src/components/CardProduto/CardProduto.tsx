@@ -9,9 +9,9 @@ import {Produto} from '@/types/produto'
 import { useEffect, useState } from 'react'
 import React from "react";
 
-const CardProduto = ({id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo}: Produto) => {
+const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo, favoritosPage: paginaFavoritos }: Produto & { favoritosPage: boolean }) => {
 
-    const [favorito, setFavorito] = useState<boolean>(false);
+    const [favorito, setFavorito] = useState<boolean>(paginaFavoritos ? true : false);
     const {push} = useRouter()
 
     useEffect(() => {
