@@ -23,7 +23,7 @@ export default function pagamentoBoleto() {
                         <ResumoPedido produtos={produtos} quantidades={quantidades} precos={precos} desconto={9} frete={0} />
                     </section> 
 
-                    <section className="font-poppins gap-4 text-preto flex flex-col justify-center items-center sm:w-[50%]">
+                    <section className="font-poppins px-2 sm:px-0 gap-4 text-preto flex flex-col justify-center items-center sm:w-[50%]">
                         <div className="w-full flex flex-col justify-center lg:items-end items-center">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 min-[1025px]:gap-x-12 gap-y-4 sm:gap-y-8 w-full">
                                 <InputText placeholder="Nome*" />

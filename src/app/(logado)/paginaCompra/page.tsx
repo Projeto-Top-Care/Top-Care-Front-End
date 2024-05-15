@@ -5,6 +5,7 @@ import { Usuario, Endereco } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
 import { useState } from "react";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
+import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
 
 export default function PaginaCompra() {
 
@@ -17,6 +18,7 @@ export default function PaginaCompra() {
     const produtos = ["Kit para banho Sanol Cachorros e Gatos", "Pote para ração em formato de pata de cachorro", "Coleira com pingente tamanho M unissex para cães e gatos"]
     const quantidades = [1, 1, 1]
     const precos = [11.1, 11.1, 11.1]
+    const [eCartao, setECartao] = useState(false)
 
     //const setarEnderecoEscolhido = (rua: string, numero: number, bairro: string, cidade: string, estado: string, complemento: string) => {
     const setarEnderecoEscolhido = (endereco: Endereco) => {
@@ -70,30 +72,37 @@ export default function PaginaCompra() {
 
                 <section className="flex flex-col gap-1 sm:gap-4 lg:flex-col w-[90%] px-2">
                     <h2 className="font-bold text-base sm:text-lg pb-2">Escolha o método de pagamento</h2>
-                    
-                    <div className="flex flex-col md:flex-row justify-between gap-8">
+
+                    <div className="flex flex-col md:flex-row justify-between items-start gap-8">
                         <form className="flex flex-col justify-center gap-4">
                             <div className="flex flex-row gap-4">
-                                <input className="" type="radio" value="cartao" name="endereco" id="cartao" />
+                                <input className="" type="radio" value="cartao" name="endereco" id="cartao" onClick={() => setECartao(true)} />
                                 <label className="text-sm sm:text-base" htmlFor="cartao">Cartão de crédito</label>
                             </div>
                             <div className="flex flex-row gap-4">
-                                <input className="" type="radio" value="boleto" name="endereco" id="boleto" />
+                                <input className="" type="radio" value="boleto" name="endereco" id="boleto" onClick={() => setECartao(false)} />
                                 <label className="text-sm sm:text-base" htmlFor="boleto">Boleto bancário</label>
                             </div>
                             <div className="flex flex-row gap-4">
-                                <input className="" type="radio" value="pix" name="endereco" id="pix" />
+                                <input className="" type="radio" value="pix" name="endereco" id="pix" onClick={() => setECartao(false)} />
                                 <label className="text-sm sm:text-base" htmlFor="pix">PIX</label>
                             </div>
                         </form>
 
-                        <div>
-                            <p>Aqui vai os cartões</p>
-                        </div>
+                        {
+                            eCartao ?
+                                <div className="flex flex-col gap-2 w-[67%]">
+                                    <CardCartaoSalvo titulo={"Cartão 1"} numero={"12342222"} validade={"12/24"} tipo={"Mastercard"} />
+                                    <CardCartaoSalvo titulo={"Cartão 1"} numero={"12342222"} validade={"12/24"} tipo={"Mastercard"} />
+                                    <CardCartaoSalvo titulo={"Cartão 1"} numero={"12342222"} validade={"12/24"} tipo={"Mastercard"} />
+                                </div>
+                            : <p></p>
+                        }
+
                     </div>
                     <div className="flex flex-col items-end py-8 gap-2">
                         <div className="w-[60%] md:w-[22%] lg:w-[20%]">
-                           <BotaoGrande title={"Finalizar compra"} background={"bg-secundaria"} type={"button"} />
+                            <BotaoGrande title={"Finalizar compra"} background={"bg-secundaria"} type={"button"} />
                         </div>
                         <p className="text-end text-xs sm:text-sm text-cinza-escuro">Após conferir seu pedido, clique no botão acima para confirmar a compra e realizar o pagamento.</p>
                     </div>

@@ -57,8 +57,8 @@ export default function pagamentoPix() {
                         <div className="sm:w-[50%] w-[80%]">
                             <p className="text-sm">Pix copia e cola</p>
                             <div className="flex flex-row justify-between items-center gap-4 border-[1px] border-cinza rounded-md p-2">
-                                    <p className="font-poppins md:text-xs text-sm text-cinza-escuro break-all">(47) 00000-0000</p>
-                                    <IoCopyOutline color="#4F4F4F" onClick={() => copyContent("(47) 00000-0000")} className='cursor-pointer' />
+                                    <p className="line-clamp-1 font-poppins md:text-xs text-sm text-cinza-escuro break-all">01010101sfsdasdafdasfsdf01010101010101010101010101010101</p>
+                                    <IoCopyOutline color="#4F4F4F" onClick={() => copyContent("01010101sfsdasdafdasfsdf01010101010101010101010101010101")} className='cursor-pointer' />
                             </div>
                         </div>
                     </section>                    
