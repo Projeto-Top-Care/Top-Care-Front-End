@@ -44,9 +44,19 @@
     ],
     "pedidos": [
       {
-        "codigo": "123456789",
-        "pagamento": "Cartão de crédito",
-        "endereço": [
+        "codigoPedido": 12345657,
+        "dataCompra": "24/04/2024",
+        "pagamento": [
+          {
+            "formaPagamento": "Cartão de crédito",
+            "pago": true,
+            "subtotal": 50.50,
+            "descontos": 10.10,
+            "frete": 10.00,
+            "valorTotal": 50.40
+          }
+        ],
+        "enderecoEntrega": [
           {
             "nome": "Casa Mãe",
             "cep": "87654-321",
@@ -60,12 +70,11 @@
         ],
         "produtos": [
           {
-            "id": 1,
+            "codigo": 135465,
             "quantidadeComprada": 1,
             "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
             "notaDeAvaliacao": 4.0,
             "imagemProduto": [
-              "../assets/produtos/racao.png",
               "../assets/produtos/racao1.png"
             ],
             "precoAntigoDoProduto": 20.99,
@@ -80,7 +89,6 @@
               "PP"
             ],
             "disponivel": true,
-            "codigo": 10031110007717,
             "estoque": 12,
             "descricao": [
               "- Indicada para cães;",
@@ -134,7 +142,6 @@
             ]
           }
         ]
-        
       }
     ]
   },
