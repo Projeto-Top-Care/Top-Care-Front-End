@@ -2,32 +2,47 @@
 import ResumoPedido from "@/components/ResumoPedido/resumoPedido";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { FaPlus } from "react-icons/fa6";
-import { Usuario, Endereco } from "@/types/usuarios";
+import { Usuario, Endereco, Pedido, QntProduto } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
 import { useState } from "react";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
 import { useRouter } from "next/navigation";
+import { Produto } from "@/types/produto";
 
 export default function PaginaCompra() {
-
-    const {push} = useRouter();
-
+    
+    
+    const { push } = useRouter();
+    
     const idUser = 1
-    // const usuarioLogado: Usuario = buscarUsuario(idUser)!
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario>(buscarUsuario(idUser)!)
+    
     const [enderecoEscolhido, setEnderecoEscolhido] = useState<Endereco>()
     const [enderecoUsuario, setEnderecoUsuario] = useState("-")
     const [complemento, setComplemento] = useState("-")
-    const produtos = ["Kit para banho Sanol Cachorros e Gatos", "Pote para ração em formato de pata de cachorro", "Coleira com pingente tamanho M unissex para cães e gatos"]
-    const quantidades = [1, 1, 1]
-    const precos = [11.1, 11.1, 11.1]
+    
+    const [pedido, setPedido] = useState<Pedido>(usuarioLogado.pedidos[0])
+    console.log(usuarioLogado);
+    // const produtos = ["Kit para banho Sanol Cachorros e Gatos", "Pote para ração em formato de pata de cachorro", "Coleira com pingente tamanho M unissex para cães e gatos"]
+    const [produtosCompra, setProdutosCompra] = useState<Produto>()
+    const [qntProdutos, setQntProdutos] = useState<QntProduto[]>()
+    // const quantidades = [1, 1, 1]
+    // const precos = [11.1, 11.1, 11.1]
     const [eCartao, setECartao] = useState(false)
 
     const setarEnderecoEscolhido = (endereco: Endereco) => {
         setEnderecoUsuario(`${endereco.rua}, ${endereco.numero}, ${endereco.bairro}. ${endereco.cidade} - ${endereco.estado}, Brasil`)
         setComplemento(endereco.complemento)
         setEnderecoEscolhido(endereco)
+    }
+    const setarResumoPedido = () => {
+        
+
+        // codigo: number,
+        // pagamento: string,
+        // endereço: number,
+        // produtos: QntProduo[]
     }
 
     return (
@@ -38,7 +53,8 @@ export default function PaginaCompra() {
 
                 <section className="flex flex-col justify-center gap-8 lg:flex-row w-[90%]">
                     <section className="py-4 lg:w-[68%]">
-                        <ResumoPedido produtos={produtos} quantidades={quantidades} precos={precos} desconto={9.2} frete={12} />
+                        <ResumoPedido produtos={pedido.produtos} desconto={9.2} frete={12} />
+                        
                     </section>
 
                     <section className="py-4 lg:w-[28%]">
@@ -95,12 +111,16 @@ export default function PaginaCompra() {
                         {
                             eCartao ?
                                 <div className="flex flex-col justify-end gap-2 ">
-                                    <CardCartaoSalvo titulo={"Cartão 1"} numero={"12342222"} validade={"12/24"} tipo={"Mastercard"} />
-                                    <CardCartaoSalvo titulo={"Cartão 1"} numero={"12342222"} validade={"12/24"} tipo={"Mastercard"} />
-                                    <CardCartaoSalvo titulo={"Cartão 1"} numero={"12342222"} validade={"12/24"} tipo={"Mastercard"} />
+                                    {
+                                        usuarioLogado.cartoes?.map((cartao, i) => (
+                                            <div>
+                                                <CardCartaoSalvo titulo={cartao.nome} numero={cartao.numero} validade={cartao.validade} tipo={cartao.agencia}  />
+                                            </div>
+                                        ))
+                                    }
                                     <button onClick={() => push('/recuperacaoSenhaDeslogado')} className="hover:bg-indigo-200 size-8 self-end bg-primaria rounded-lg p-2"><FaPlus /></button>
                                 </div>
-                            : <p></p>
+                                : <></>
                         }
 
                     </div>
