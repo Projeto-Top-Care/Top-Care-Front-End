@@ -1,17 +1,4 @@
-export interface Usuario{
-<<<<<<< HEAD
-=======
-    produto: any
-    favoritos: Favoritos[]
-    precoNovo: number
-    notaDeAvaliacao: number
-    imagemProduto: string[]
-    desconto: string
-    precoAntigoDoProduto: number
-    nomeProduto: string
-    ddd: string
-    sexo: string
->>>>>>> Feature/Pagina-produtosFavoritos
+export interface Usuario {
     id: number,
     foto: string,
     nomeCompleto: string,
@@ -19,19 +6,22 @@ export interface Usuario{
     celular: string,
     senha: string,
     cpf: string,
+    sexo: string,
     dataNascimento: string,
     enderecos: Endereco[],
     pets: Pet[]
-    pedidos: object[]
+    pedidos: Pedido[],
+    favoritos: Favoritos[],
+    cartoes: Cartao[]
 }
 
-export interface Pet{
+export interface Pet {
     nome: string
     especie: string
     raca: string
     idade: number
 }
-export interface Endereco{
+export interface Endereco {
     nome: string,
     cep: string,
     estado: string,
@@ -42,7 +32,7 @@ export interface Endereco{
     complemento: string
 }
 
-export interface Favoritos{
+export interface Favoritos {
     id: number
     nomeProduto: string
     notaDeAvaliacao: number
@@ -50,4 +40,23 @@ export interface Favoritos{
     precoAntigoDoProduto: number
     desconto: string
     precoNovo: number
+}
+
+export interface Pedido {
+    codigo: number,
+    pagamento: string,
+    endereço: number,
+    produtos: QntProduo[]
+}
+
+export interface Cartao {
+    nome: string,
+    numero: number,
+    validade: string,
+    agencia: string
+}
+
+export interface QntProduo {
+    id: number,
+    quantidadeComprada: number
 }
