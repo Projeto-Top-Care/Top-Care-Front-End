@@ -33,13 +33,3 @@ export function buscarUsuarioEmail(email:string){
     })
     return usuarioEncontrado
 }
-
-export function buscarPedido(codigo: number) {
-    let pedidoEncontrado;
-    pedidos.forEach((pedido)=>{
-        if(pedido.codigo == codigo){
-            pedidoEncontrado = pedido;
-        }
-    })
-    return pedidoEncontrado
-}
