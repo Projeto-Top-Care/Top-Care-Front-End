@@ -6,7 +6,7 @@ import { FaFilter } from "react-icons/fa";
 import FiltroGrande from '@/components/Filtro/FiltroGrande'
 import { ProdutoCompleto } from '@/types/produto'
 import Select from '@/components/Select/Select';
-import { definirProdutos, returnProdutos } from '@/server/filtros/action';
+import { definirProdutos, getLabel, returnProdutos } from '@/server/filtros/action';
 
 interface InterfaceProdutos {
   searchParams?: { q: string }
@@ -20,6 +20,7 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
   const [animation, setAnimation] = useState<boolean>(false)
   const [bool, setBool] = useState<boolean>(false)
   const [escolha, setEscolha] = useState<string>('');
+  const [titulo, setTitulo] = useState<string>('');
 
   const filtrarPorQuery = () => {
     if (query) {
@@ -45,12 +46,12 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
     filtrarPorQuery()
     definirProdutos(filtrarPorQuery()) 
     setProdutosMostradosQuery(filtrarPorQuery())
+    setTitulo(getLabel())
   }, [query])
 
 
   useEffect(() => {
     const produtosMostra = returnProdutos()
-    console.log(produtosMostra)
     setProdutosMostrados(produtosMostra)
   }, [bool])
 
@@ -107,14 +108,14 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
         {
           filtroOpen && (
             <div className={`absolute ${animation ? 'animate-slide-left' : 'animate-slide-right'} z-50`}>
-              <FiltroGrande produtos={produtosMostradosQuery} close={setAnimation} />
+              <FiltroGrande produtos={produtosMostradosQuery} close={setAnimation} titulo={titulo}/>
             </div>
           )
         }
       </section>
       <div className='md:flex md:flex-row mt-5 md:mt-10 md:w-[90%] md:m-auto'>
         <div className='hidden md:!flex w-[25%]'>
-          <FiltroGrande produtos={produtosMostradosQuery} />
+          <FiltroGrande produtos={produtosMostradosQuery} titulo={titulo} />
         </div>
         <section className='w-full md:w-[75%]'>
           <div className='w-full flex items-center flex-col-reverse md:flex-row justify-between'>

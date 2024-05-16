@@ -1,22 +1,24 @@
 'use client'
 import { aplicarFiltros, definirProdutosFiltrados, tirarFiltros } from '@/server/filtros/action';
-import React, {useEffect, useState } from 'react';
+import React, {Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { FaCheck } from "react-icons/fa6";
 
 interface IChecked {
     label: string
+    titulo: string
+    setCheck: Dispatch<SetStateAction<boolean>>
 }
 
-export default function Checkbox({ label }: IChecked) {
+export default function Checkbox({ label, titulo, setCheck }: IChecked) {
     const [checked, setChecked] = useState<boolean>(false)
 
     useEffect(() => {
-        console.log(checked)
         if (checked) {
-            definirProdutosFiltrados(aplicarFiltros(label));
+            definirProdutosFiltrados(aplicarFiltros(label, titulo));
         } else {
-            definirProdutosFiltrados(tirarFiltros(label));
+            definirProdutosFiltrados(tirarFiltros(label, titulo));
         }
+        setCheck(checked)
     }, [checked])
 
     return (
