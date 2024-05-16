@@ -56,6 +56,14 @@
           {
             "id": 1,
             "quantidadeComprada": 1
+          },
+          {
+            "id": 2,
+            "quantidadeComprada": 3
+          },
+          {
+            "id": 3,
+            "quantidadeComprada": 1
           }
         ]
       }
