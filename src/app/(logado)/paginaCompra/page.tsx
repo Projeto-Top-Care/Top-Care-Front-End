@@ -24,11 +24,8 @@ export default function PaginaCompra() {
     
     const [pedido, setPedido] = useState<Pedido>(usuarioLogado.pedidos[0])
     console.log(usuarioLogado);
-    // const produtos = ["Kit para banho Sanol Cachorros e Gatos", "Pote para ração em formato de pata de cachorro", "Coleira com pingente tamanho M unissex para cães e gatos"]
     const [produtosCompra, setProdutosCompra] = useState<Produto>()
     const [qntProdutos, setQntProdutos] = useState<QntProduto[]>()
-    // const quantidades = [1, 1, 1]
-    // const precos = [11.1, 11.1, 11.1]
     const [eCartao, setECartao] = useState(false)
 
     const setarEnderecoEscolhido = (endereco: Endereco) => {
