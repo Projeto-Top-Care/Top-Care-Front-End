@@ -1,4 +1,5 @@
 'use client'
+import BarraProcesso from "@/components/BarraProcesso/BarraProcesso";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { buscarUsuario } from '@/server/usuario/action'
 import { Usuario } from '@/types/usuarios'
@@ -20,6 +21,9 @@ export default function Pedido({ searchParams }: PropsUsuario) {
 
     return (
         <main>
+            <section className="w-full m-auto mt-10">
+                <BarraProcesso primeiroPasso="Pedido criado" segundoPasso="Pagamento aprovado" terceiroPasso="Separando o pedido" quartoPasso="Pedido com a transportadora" quintoPasso="Entregue"/>
+            </section>
             <section className="">
                 <div className="mt-10">
                     <TituloLinha titulo="Seu pedido"></TituloLinha>
@@ -52,6 +56,62 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                                 <div className="lg:p-8 p-4 w-full">
                                     <p className="font-poppins text-preto font-medium lg:text-lg md:text-base text-sm">Produtos</p>
                                     <div className="flex flex-col">
+                                        <div className="flex mt-12">
+                                            <div className="flex justify-between items-center mb-4">
+                                                <p className="font-poppins text-preto font-medium md:text-base text-sm">{usuarioProcurado?.pedidos[0].produtos[0].quantidadeComprada}x </p>
+                                                {
+                                                    usuarioProcurado?.pedidos[0].produtos[0].imagemProduto.map((imagem) => (
+                                                        <div key={imagem} className="md:w-16 w-12">
+                                                            <img src={imagem} alt="" className="" />
+                                                        </div>
+                                                    ))
+                                                }
+                                                <p className="font-poppins text-preto md:text-sm text-xs lg:w-[54%] md:w-[70%] w-[38%]">{usuarioProcurado?.pedidos[0].produtos[0].nomeProduto}</p>
+                                                <p className="font-poppins text-preto md:text-base text-sm ">R$ {usuarioProcurado?.pedidos[0].produtos[0].precoNovo}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex mt-12">
+                                            <div className="flex justify-between items-center mb-4">
+                                                <p className="font-poppins text-preto font-medium md:text-base text-sm">{usuarioProcurado?.pedidos[0].produtos[0].quantidadeComprada}x </p>
+                                                {
+                                                    usuarioProcurado?.pedidos[0].produtos[0].imagemProduto.map((imagem) => (
+                                                        <div key={imagem} className="md:w-16 w-12">
+                                                            <img src={imagem} alt="" className="" />
+                                                        </div>
+                                                    ))
+                                                }
+                                                <p className="font-poppins text-preto md:text-sm text-xs lg:w-[54%] md:w-[70%] w-[38%]">{usuarioProcurado?.pedidos[0].produtos[0].nomeProduto}</p>
+                                                <p className="font-poppins text-preto md:text-base text-sm ">R$ {usuarioProcurado?.pedidos[0].produtos[0].precoNovo}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex mt-12">
+                                            <div className="flex justify-between items-center mb-4">
+                                                <p className="font-poppins text-preto font-medium md:text-base text-sm">{usuarioProcurado?.pedidos[0].produtos[0].quantidadeComprada}x </p>
+                                                {
+                                                    usuarioProcurado?.pedidos[0].produtos[0].imagemProduto.map((imagem) => (
+                                                        <div key={imagem} className="md:w-16 w-12">
+                                                            <img src={imagem} alt="" className="" />
+                                                        </div>
+                                                    ))
+                                                }
+                                                <p className="font-poppins text-preto md:text-sm text-xs lg:w-[54%] md:w-[70%] w-[38%]">{usuarioProcurado?.pedidos[0].produtos[0].nomeProduto}</p>
+                                                <p className="font-poppins text-preto md:text-base text-sm ">R$ {usuarioProcurado?.pedidos[0].produtos[0].precoNovo}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex mt-12">
+                                            <div className="flex justify-between items-center mb-4">
+                                                <p className="font-poppins text-preto font-medium md:text-base text-sm">{usuarioProcurado?.pedidos[0].produtos[0].quantidadeComprada}x </p>
+                                                {
+                                                    usuarioProcurado?.pedidos[0].produtos[0].imagemProduto.map((imagem) => (
+                                                        <div key={imagem} className="md:w-16 w-12">
+                                                            <img src={imagem} alt="" className="" />
+                                                        </div>
+                                                    ))
+                                                }
+                                                <p className="font-poppins text-preto md:text-sm text-xs lg:w-[54%] md:w-[70%] w-[38%]">{usuarioProcurado?.pedidos[0].produtos[0].nomeProduto}</p>
+                                                <p className="font-poppins text-preto md:text-base text-sm ">R$ {usuarioProcurado?.pedidos[0].produtos[0].precoNovo}</p>
+                                            </div>
+                                        </div>
                                         <div className="flex mt-12">
                                             <div className="flex justify-between items-center mb-4">
                                                 <p className="font-poppins text-preto font-medium md:text-base text-sm">{usuarioProcurado?.pedidos[0].produtos[0].quantidadeComprada}x </p>
