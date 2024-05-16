@@ -40,7 +40,7 @@ export default function Perfil() {
     };
 
     const carrosselProdutos = buscarTodos().map((produto, i) => (<CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
-        precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />))
+        precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} favoritosPage={false} />))
     return (
         <main className="bg-branco text-preto">
             <section className="mt-6">
@@ -79,8 +79,10 @@ export default function Perfil() {
                             <div className="md:flex">
                                 <div className="md:w-80"><InputEstatico titulo="Email" info={usuarioLogado.email} /></div>
                                 <div className="flex">
-                                    <div className="mr-4 md:ml-7 lg:ml-12"><InputEstatico titulo="DDD +" info={usuarioLogado.ddd} /></div>
-                                    <div className="lg:w-48 md:w-36 w-full"><InputEstatico titulo="Celular" info={usuarioLogado.celular} /></div>
+                                    <div className="mr-4 md:ml-7 lg:ml-12">
+                                        <InputEstatico titulo="DDD +" info={usuarioLogado.celular.substring(5, 7)} />
+                                    </div>
+                                    <div className="lg:w-48 md:w-36 w-full"><InputEstatico titulo="Celular" info={usuarioLogado.celular.substring(8)} /></div>
                                 </div>
                             </div>
                             <div className="md:flex">
@@ -100,7 +102,7 @@ export default function Perfil() {
                     {
                         displayedAddresses.map((endereco, i) => (
                             <div key={i}>
-                                <Endereco titulo={endereco.titulo} cep={endereco.cep} estado={endereco.estado} bairro={endereco.bairro} rua={endereco.rua} numero={endereco.numero} complemento={endereco.complemento} />
+                                <Endereco titulo={endereco.nome} cep={endereco.cep} estado={endereco.estado} bairro={endereco.bairro} rua={endereco.rua} numero={endereco.numero} complemento={endereco.complemento} />
                             </div>
                         ))
                     }
