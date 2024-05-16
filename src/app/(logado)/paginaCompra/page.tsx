@@ -1,13 +1,17 @@
 'use client'
 import ResumoPedido from "@/components/ResumoPedido/resumoPedido";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
+import { FaPlus } from "react-icons/fa6";
 import { Usuario, Endereco } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
 import { useState } from "react";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
+import { useRouter } from "next/navigation";
 
 export default function PaginaCompra() {
+
+    const {push} = useRouter();
 
     const idUser = 1
     // const usuarioLogado: Usuario = buscarUsuario(idUser)!
@@ -20,7 +24,6 @@ export default function PaginaCompra() {
     const precos = [11.1, 11.1, 11.1]
     const [eCartao, setECartao] = useState(false)
 
-    //const setarEnderecoEscolhido = (rua: string, numero: number, bairro: string, cidade: string, estado: string, complemento: string) => {
     const setarEnderecoEscolhido = (endereco: Endereco) => {
         setEnderecoUsuario(`${endereco.rua}, ${endereco.numero}, ${endereco.bairro}. ${endereco.cidade} - ${endereco.estado}, Brasil`)
         setComplemento(endereco.complemento)
@@ -73,7 +76,7 @@ export default function PaginaCompra() {
                 <section className="flex flex-col gap-1 sm:gap-4 lg:flex-col w-[90%] px-2">
                     <h2 className="font-bold text-base sm:text-lg pb-2">Escolha o método de pagamento</h2>
 
-                    <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+                    <div className="flex flex-col md:flex-row justify-between items-start gap-8 w-full">
                         <form className="flex flex-col justify-center gap-4">
                             <div className="flex flex-row gap-4">
                                 <input className="" type="radio" value="cartao" name="endereco" id="cartao" onClick={() => setECartao(true)} />
@@ -91,10 +94,11 @@ export default function PaginaCompra() {
 
                         {
                             eCartao ?
-                                <div className="flex flex-col gap-2 w-[67%]">
+                                <div className="flex flex-col justify-end gap-2 ">
                                     <CardCartaoSalvo titulo={"Cartão 1"} numero={"12342222"} validade={"12/24"} tipo={"Mastercard"} />
                                     <CardCartaoSalvo titulo={"Cartão 1"} numero={"12342222"} validade={"12/24"} tipo={"Mastercard"} />
                                     <CardCartaoSalvo titulo={"Cartão 1"} numero={"12342222"} validade={"12/24"} tipo={"Mastercard"} />
+                                    <button onClick={() => push('/recuperacaoSenhaDeslogado')} className="hover:bg-indigo-200 size-8 self-end bg-primaria rounded-lg p-2"><FaPlus /></button>
                                 </div>
                             : <p></p>
                         }
