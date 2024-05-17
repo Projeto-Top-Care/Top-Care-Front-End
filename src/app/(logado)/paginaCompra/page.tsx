@@ -2,7 +2,7 @@
 import ResumoPedido from "@/components/ResumoPedido/resumoPedido";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { FaPlus } from "react-icons/fa6";
-import { Usuario, Endereco, Pedido, QntProduto } from "@/types/usuarios";
+import { Usuario, Endereco, Pedido, QntProduto, Cartao } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
 import { useState } from "react";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
@@ -11,47 +11,56 @@ import { useRouter } from "next/navigation";
 import { Produto } from "@/types/produto";
 
 export default function PaginaCompra() {
-    
-    
+
+
     const { push } = useRouter();
-    
+
     const idUser = 1
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario>(buscarUsuario(idUser)!)
-    
+
     const [enderecoEscolhido, setEnderecoEscolhido] = useState<Endereco>()
     const [enderecoUsuario, setEnderecoUsuario] = useState("-")
     const [complemento, setComplemento] = useState("-")
-    
+
     const [pedido, setPedido] = useState<Pedido>(usuarioLogado.pedidos[0])
-    console.log(usuarioLogado);
-    const [produtosCompra, setProdutosCompra] = useState<Produto>()
-    const [qntProdutos, setQntProdutos] = useState<QntProduto[]>()
+
     const [eCartao, setECartao] = useState(false)
+    const [eBoleto, setEBoleto] = useState(false)
+    const [ePix, setEPix] = useState(false)
+    const [cartaoEscolhido, setCartaoEscolhido] = useState<Cartao>()
 
     const setarEnderecoEscolhido = (endereco: Endereco) => {
         setEnderecoUsuario(`${endereco.rua}, ${endereco.numero}, ${endereco.bairro}. ${endereco.cidade} - ${endereco.estado}, Brasil`)
         setComplemento(endereco.complemento)
         setEnderecoEscolhido(endereco)
     }
-    const setarResumoPedido = () => {
+    const verificarEnderecoEscolhido = (nomeEndereco:string) => {
+        if(enderecoEscolhido?.nome == nomeEndereco) {
+            return true
+        } else {
+            return false
+        }
+    }
+    const verificarFormaPagamentoEscolhida = (formaPagamento:string) => {
         
-
-        // codigo: number,
-        // pagamento: string,
-        // endereço: number,
-        // produtos: QntProduo[]
+    }
+    const verificarCartao = (nomeCartao:string) => {
+        if(cartaoEscolhido?.nome == nomeCartao) {
+            return true
+        } else {
+            return false
+        }
     }
 
     return (
         <main className="text-preto font-poppins py-12">
             <div className="items-center flex flex-col gap-4 w-full">
-
                 <TituloLinha titulo="Confirmação do pedido" />
 
                 <section className="flex flex-col justify-center gap-8 lg:flex-row w-[90%]">
                     <section className="py-4 lg:w-[68%]">
                         <ResumoPedido produtos={pedido.produtos} desconto={9.2} frete={12} />
-                        
+
                     </section>
 
                     <section className="py-4 lg:w-[28%]">
@@ -62,7 +71,7 @@ export default function PaginaCompra() {
                                     usuarioLogado.enderecos?.map((endereco, i) => (
                                         <div onClick={() => setarEnderecoEscolhido(endereco)} className="py-1 cursor-pointer flex flex-row justify-between" key={i}>
                                             <p className="text-xs sm:text-sm">{endereco.nome}</p>
-                                            <p className="bg-primaria">o</p>
+                                            <input className="w-5 h-5 checked: accent-purple-500" type="radio" checked={verificarEnderecoEscolhido(endereco.nome)} />
                                         </div>
                                     ))
                                 }
@@ -92,30 +101,30 @@ export default function PaginaCompra() {
                     <div className="flex flex-col md:flex-row justify-between items-start gap-8 w-full">
                         <form className="flex flex-col justify-center gap-4">
                             <div className="flex flex-row gap-4">
-                                <input className="" type="radio" value="cartao" name="endereco" id="cartao" onClick={() => setECartao(true)} />
+                                <input className="w-5 h-5 checked: accent-purple-500" type="radio"  value="cartao" name="pagamento" id="cartao" onClick={() => setECartao(true)} />
                                 <label className="text-sm sm:text-base" htmlFor="cartao">Cartão de crédito</label>
                             </div>
                             <div className="flex flex-row gap-4">
-                                <input className="" type="radio" value="boleto" name="endereco" id="boleto" onClick={() => setECartao(false)} />
+                                <input className="w-5 h-5 checked: accent-purple-500" type="radio" value="boleto" name="pagamento" id="boleto" onClick={() => setECartao(false)}/>
                                 <label className="text-sm sm:text-base" htmlFor="boleto">Boleto bancário</label>
                             </div>
                             <div className="flex flex-row gap-4">
-                                <input className="" type="radio" value="pix" name="endereco" id="pix" onClick={() => setECartao(false)} />
+                                <input className="w-5 h-5 checked: accent-purple-500" type="radio" value="pix" name="pagamento" id="pix" onClick={() => setECartao(false)} />
                                 <label className="text-sm sm:text-base" htmlFor="pix">PIX</label>
                             </div>
                         </form>
 
                         {
                             eCartao ?
-                                <div className="flex flex-col justify-end gap-2 ">
+                                <div className="flex flex-col justify-end gap-2 w-full sm:w-[40%]">
                                     {
                                         usuarioLogado.cartoes?.map((cartao, i) => (
-                                            <div>
-                                                <CardCartaoSalvo titulo={cartao.nome} numero={cartao.numero} validade={cartao.validade} tipo={cartao.agencia}  />
+                                            <div onClick={() => setCartaoEscolhido(cartao)}>
+                                                <CardCartaoSalvo checked={verificarCartao(cartao.nome)} titulo={cartao.nome} numero={cartao.numero} validade={cartao.validade} tipo={cartao.agencia} />
                                             </div>
                                         ))
                                     }
-                                    <button onClick={() => push('/recuperacaoSenhaDeslogado')} className="hover:bg-indigo-200 size-8 self-end bg-primaria rounded-lg p-2"><FaPlus /></button>
+                                    <button onClick={() => push('/adicionarCartao')} className="hover:bg-indigo-200 size-8 self-end bg-primaria rounded-lg p-2"><FaPlus /></button>
                                 </div>
                                 : <></>
                         }

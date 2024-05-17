@@ -44,7 +44,8 @@ export interface Favoritos {
 
 export interface Pedido {
     codigo: number,
-    pagamento: string,
+    dataCompra: string,
+    pagamento: Pagamento[],
     endereço: number,
     produtos: QntProduto[]
 }
@@ -59,4 +60,13 @@ export interface Cartao {
 export interface QntProduto {
     id: number,
     quantidadeComprada: number
+}
+
+export interface Pagamento {
+    metodo: string, 
+    pago: boolean
+    subtotal: number,
+    descontos: number,
+    frete: number,
+    valorTotal: number
 }

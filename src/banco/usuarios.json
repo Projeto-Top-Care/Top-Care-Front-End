@@ -50,7 +50,18 @@
     "pedidos": [
       {
         "codigo": 123456789,
-        "pagamento": "Cartão de crédito",
+        "dataCompra": "12/12/2012",
+        "endereco": 1,
+        "pagamento": [
+          {
+            "metodo": "cartao",
+            "pago": true,
+            "subtotal": 100,
+            "descontos": 9.00,
+            "frete": 12.00,
+            "valorTotal": 103.00
+          }
+        ],
         "endereço": 1,
         "produtos": [
           {
@@ -140,11 +151,26 @@
     "pedidos": [
       {
         "codigo": 987654321,
-        "pagamento": "Boleto",
+        "dataCompra": "12/12/2012",
+        "endereco": 1,
+        "pagamento": [
+          {
+            "metodo": "pix",
+            "pago": true,
+            "subtotal": 100,
+            "descontos": 9.00,
+            "frete": 12.00,
+            "valorTotal": 103.00
+          }
+        ],
         "endereço": 2,
         "produtos": [
           {
             "id": 2,
+            "quantidadeComprada": 2
+          },
+          {
+            "id": 3,
             "quantidadeComprada": 2
           }
         ]
@@ -172,7 +198,7 @@
     ]
   },
   {
-    "id": 1,
+    "id": 3,
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Maria Silva Souza",
     "email": "maria.silva@email.com",
@@ -222,7 +248,18 @@
     "pedidos": [
       {
         "codigo": 123456789,
-        "pagamento": "Cartão de crédito",
+        "dataCompra": "12/12/2012",
+        "endereco": 1,
+        "pagamento": [
+          {
+            "metodo": "cartao",
+            "pago": true,
+            "subtotal": 100,
+            "descontos": 9.00,
+            "frete": 12.00,
+            "valorTotal": 103.00
+          }
+        ],
         "endereço": 1,
         "produtos": [
           {
@@ -254,7 +291,7 @@
     ]
   },
   {
-    "id": 2,
+    "id": 4,
     "foto": "../assets/gatoFotoUsuario2.png",
     "nomeCompleto": "Carlos Pereira Lima",
     "email": "carlos.lima@email.com",
@@ -304,7 +341,18 @@
     "pedidos": [
       {
         "codigo": 987654321,
-        "pagamento": "Boleto",
+        "dataCompra": "12/12/2012",
+        "endereco": 1,
+        "pagamento": [
+          {
+            "metodo": "boleto",
+            "pago": true,
+            "subtotal": 100,
+            "descontos": 9.00,
+            "frete": 12.00,
+            "valorTotal": 103.00
+          }
+        ],
         "endereço": 2,
         "produtos": [
           {

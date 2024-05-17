@@ -13,14 +13,6 @@ interface IResumoPedido {
 export default function ResumoPedido({ produtos, desconto, frete }: IResumoPedido) {
 
     const setarProdutosResumo = () => {
-        // const prods: Produto[] =[];
-        // produtos.map((item, i) => {
-        //     let produto:Produto = (buscarProduto(item.id)! as Produto ) 
-        //     prods.push(produto)
-        // })
-        // console.log(prods);
-        // return prods
-        // setProdutosResumo((produtosResumo) => [...produtosResumo, ...prods])
         const prods: Produto[] = produtos.map((item, i) => {
             return (buscarProduto(item.id)! as Produto);
         })
@@ -28,48 +20,23 @@ export default function ResumoPedido({ produtos, desconto, frete }: IResumoPedid
         return prods
 
     }
-    // const [produtosResumo, setProdutosResumo] = useState<Produto[]>(
-    //     produtos.map((item, i) => {
-    //         return (buscarProduto(item.id)! as Produto);
-    //     }))
-
     const [produtosResumo, setProdutosResumo] = useState<Produto[]>(setarProdutosResumo())
-
-    const nomeProduto = (id: number) => {
-        let nome: String = ""
-        produtosResumo.map((item, i) => {
-            if (item.id == id) {
-                nome = item.nomeProduto
-            }
-        })
-        return nome
-    }
-
-    const precoProduto = (id: number) => {
-        let preco: number = 0
-        produtosResumo.map((item, i) => {
-            if (item.id == id) {
-                preco = item.precoNovo
-            }
-        })
-        return preco
-    }
 
     const calcularSubtotal = () => {
         let soma = 0
         produtosResumo.map((item, i) => {
-            soma += item.precoNovo
+            soma += item.precoNovo * produtos[i].quantidadeComprada
         })
         return soma
     }
 
     const calcularTotal = () => {
         let final = calcularSubtotal()
-        return ((final - desconto) + frete).toFixed(2)
+        return (final - desconto) + frete
     }
 
-    const [subtotal, setSubtotal] = useState(calcularSubtotal())
-    const [total, setTotal] = useState(calcularTotal())
+    const subtotal = (calcularSubtotal())
+    const total = (calcularTotal())
 
     return (
         <main>
@@ -85,49 +52,29 @@ export default function ResumoPedido({ produtos, desconto, frete }: IResumoPedid
                             {
                                 produtosResumo.map((item, i) => (
                                     <div className="flex flex-row justify-between sm:gap-8 gap-2" key={i}>
-                                        <p className="text-xs sm:text-sm">{produtos[i].quantidadeComprada}</p>
+                                        <p className="text-xs sm:text-sm">{produtos[i].quantidadeComprada}x</p>
                                         <p className="w-full text-start line-clamp-1 text-xs sm:text-sm">{item.nomeProduto}</p>
-                                        <p className="text-xs sm:text-sm">R${item.precoNovo}</p>
+                                        <p className="text-xs sm:text-sm">R${(item.precoNovo * produtos[1].quantidadeComprada).toFixed(2)}</p>
                                     </div>
                                 ))
                             }
                         </div>
                     }
-                    {/*                     
-                            esse map só retorna 1 produto
-                            {produtos.map((produto, i) => (
-                                <div className="flex flex-row justify-between sm:gap-8 gap-2" key={i}>
-                                    <p className="text-xs sm:text-sm">{produto.quantidadeComprada}x</p>
-                                    <p className="w-full text-start line-clamp-1 text-xs sm:text-sm">{nomeProduto(produto.id)}</p>
-                                    <p className="text-xs sm:text-sm">R${precoProduto(produto.id)}</p>
-                                </div>
-                            ))}
-                    {
-                        <div className="flex flex-col text-sm py-4">
-                            {produtos.map((item, index) => (
-                                <div className="flex flex-row justify-between sm:gap-8 gap-2" key={index}>
-                                    <p className="text-xs sm:text-sm">{quantidades[index]}x</p>
-                                    <p className="w-full text-start line-clamp-1 text-xs sm:text-sm">{item}</p>
-                                    <p className="text-xs sm:text-sm">R${precos[index]}</p> 
-                                </div>
-                            ))}
-                        </div>
-                    } */}
 
                     <div className="flex flex-col border-t-[1px] border-cinza py-4">
                         <div className="flex flex-row justify-between">
                             <p className="font-medium text-sm sm:text-base">Subtotal</p>
-                            <p className="text-xs sm:text-sm">R${subtotal}</p>
+                            <p className="text-xs sm:text-sm">R${(subtotal).toFixed(2)}</p>
                         </div>
 
                         <div className="flex flex-row justify-between">
                             <p className="font-medium text-sm sm:text-base">Desconto</p>
-                            <p className="text-xs sm:text-sm">R${desconto}</p>
+                            <p className="text-xs sm:text-sm">R${(desconto).toFixed(2)}</p>
                         </div>
 
                         <div className="flex flex-row justify-between">
                             <p className="font-medium text-sm sm:text-base">Frete</p>
-                            <p className="text-xs sm:text-sm">R${frete}</p>
+                            <p className="text-xs sm:text-sm">R${(frete).toFixed(2)}</p>
                         </div>
                     </div>
 
