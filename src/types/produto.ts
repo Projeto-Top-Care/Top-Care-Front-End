@@ -21,9 +21,10 @@ export interface ProdutoCompleto{
     disponivel: boolean
     codigo: number
     estoque: number
+    quantidadeVendas: number
     descricao: string[]
-    especificacoes: object[]
-    avaliacoes: object[]
+    especificacoes: Especificacao[]
+    avaliacoes: AvaliacaoType[]
 }
 
 export interface Especificacao{

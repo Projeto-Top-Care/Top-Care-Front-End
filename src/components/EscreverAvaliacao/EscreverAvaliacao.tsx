@@ -31,7 +31,7 @@ const EscreverAvaliacao = ({ nomeUsuario, fotoUsuario }: avaliacaotype) => {
         return (
             <div className='flex flex-row'>
                 {array5.map((a, i) => (
-                    <div key={i} onClick={() => (!avaliado ? setNota(i + 1) : '')}>
+                    <div key={i} onClick={() => (!avaliado ? setNota(i + 1) : '')} className='cursor-pointer'>
                         {nota > i ? <AiFillStar style={{ color: "#FFD601", }} size={25} /> : <AiOutlineStar style={{ color: "#FFD601", }} size={25} />}
                     </div>
                 ))}

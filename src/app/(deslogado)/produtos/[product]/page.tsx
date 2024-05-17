@@ -154,8 +154,8 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             {
               produtoProcurado.especificacoes.map((item, i) => (
                 <div key={i} className={`flex flex-row w-full h-10 items-center max-sm:justify-between ${i % 2 == 0 ? 'bg-terciaria' : ''} rounded-lg`}>
-                  <div className='md:w-[50%] font-poppins md:text-lg text-sm ml-2'>{(item as Especificacao).topico}</div>
-                  <div className='md:w-[50%] font-poppins md:text-base text-xs max-sm:flex max-sm:justify-end max-sm:text-end'>{(item as Especificacao).resposta}</div>
+                  <div className='md:w-[50%] font-poppins md:text-lg text-sm ml-2'>{item.topico}</div>
+                  <div className='md:w-[50%] font-poppins md:text-base text-xs max-sm:flex max-sm:justify-end max-sm:text-end'>{item.resposta}</div>
                 </div>
               ))
             }
@@ -170,8 +170,8 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
               produtoProcurado.avaliacoes.map((avaliacao, i) => (
                 <div key={i}>
                   <Avaliacao nomeUsuario={(buscarUsuario((avaliacao as AvaliacaoType).id)! as Usuario).nomeCompleto}
-                    fotoUsuario={(buscarUsuario((avaliacao as AvaliacaoType).id)! as Usuario).foto} avaliacaoUsuario={(avaliacao as AvaliacaoType).descricao}
-                    estrelas={construirEstrelas((avaliacao as AvaliacaoType).nota)} notaAvaliacao={(avaliacao as AvaliacaoType).nota}/>
+                    fotoUsuario={(buscarUsuario(avaliacao.id)! as Usuario).foto} avaliacaoUsuario={avaliacao.descricao}
+                    estrelas={construirEstrelas(avaliacao.nota)} notaAvaliacao={avaliacao.nota}/>
                 </div>
               ))
             }
