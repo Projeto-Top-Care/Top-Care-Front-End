@@ -9,21 +9,22 @@ import { aplicarFiltros, definirProdutosFiltrados, filtrarAnimais, filtrarMarcas
 interface FiltroGrande {
     produtos: ProdutoCompleto[]
     close?: Dispatch<SetStateAction<boolean>>
-    titulo: string
     setLabel1: Dispatch<SetStateAction<string>>
     setCheck: Dispatch<SetStateAction<boolean>>
 }
 
-export default function FiltroGrande({ produtos, close, titulo, setLabel1, setCheck }: FiltroGrande) {
+export default function FiltroGrande({ produtos, close, setLabel1, setCheck }: FiltroGrande) {
 
     const [checked, setChecked] = useState<boolean>(false);
     const [label, setLabel] = useState<string>('');
+    const [titulo, setTitulo] = useState<string>('');
+    const [produtosFiltrados, setProdutosFiltrados] = useState<ProdutoCompleto[]>(produtos)
 
     useEffect(()=>{
         if (checked) {
-            definirProdutosFiltrados(aplicarFiltros(label, titulo));
+            aplicarFiltros(label, titulo);
         } else if(!checked){
-            definirProdutosFiltrados(tirarFiltros(label, titulo));
+            tirarFiltros(label, titulo)
         }
         setLabel1(label)
         setCheck(checked)
@@ -42,9 +43,12 @@ export default function FiltroGrande({ produtos, close, titulo, setLabel1, setCh
                 </div>
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
-                        filtrarAnimais(titulo == 'pet' || titulo == '' ? produtos : returnProdutos()).map((animal, i) => (
+                        filtrarAnimais(produtos).map((animal, i) => (
                             <div key={animal} className='flex items-center'>
-                                <Checkbox check={setChecked} onClick={()=>{setLabel(animal.split("(")[0])}}/>
+                                <Checkbox check={setChecked} onClick={()=>{
+                                    setLabel(animal.split("(")[0])
+                                    setTitulo('pet')
+                                }}/>
                                 <PalavraFiltro palavra={animal} />
                             </div>
                         ))
@@ -57,9 +61,12 @@ export default function FiltroGrande({ produtos, close, titulo, setLabel1, setCh
                 </div>
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
-                        filtrarPrecos(titulo == 'preco' || titulo == '' ? produtos : returnProdutos()).map((preco, i) => (
+                        filtrarPrecos(produtos).map((preco, i) => (
                             <div key={preco} className='flex items-center'>
-                                <Checkbox check={setChecked}/>
+                                <Checkbox check={setChecked} onClick={()=>{
+                                    setLabel(preco.split("(")[0])
+                                    setTitulo('preco')
+                                }}/>
                                 <PalavraFiltro palavra={preco} />
                             </div>
                         ))
@@ -72,9 +79,12 @@ export default function FiltroGrande({ produtos, close, titulo, setLabel1, setCh
                 </div>
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
-                        filtrarMarcas(titulo == 'marca' || titulo == '' ? produtos : returnProdutos()).map((marca, i) => (
+                        filtrarMarcas(produtos).map((marca, i) => (
                             <div key={marca} className='flex items-center'>
-                                <Checkbox check={setChecked}/>
+                                <Checkbox check={setChecked} onClick={()=>{
+                                    setLabel(marca.split("(")[0])
+                                    setTitulo('marca')
+                                }}/>
                                 <PalavraFiltro palavra={marca} />
                             </div>
                         ))
@@ -87,9 +97,12 @@ export default function FiltroGrande({ produtos, close, titulo, setLabel1, setCh
                 </div>
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
-                        filtrarPorte(titulo == 'porte' || titulo == '' ? produtos : returnProdutos()).map((porte, i) => (
+                        filtrarPorte(produtos).map((porte, i) => (
                             <div key={porte} className='flex items-center'>
-                                <Checkbox check={setChecked}/>
+                                <Checkbox check={setChecked} onClick={()=>{
+                                    setLabel(porte.split("(")[0])
+                                    setTitulo('porte')   
+                                }}/>
                                 <PalavraFiltro palavra={porte} />
                             </div>
                         ))
@@ -102,9 +115,12 @@ export default function FiltroGrande({ produtos, close, titulo, setLabel1, setCh
                 </div>
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
-                        filtrarTamanhos(titulo == 'tamanhos' || titulo == '' ? produtos : returnProdutos()).map((tamanho, i) => (
+                        filtrarTamanhos(produtos).map((tamanho, i) => (
                             <div key={tamanho} className='flex items-center'>
-                                <Checkbox check={setChecked}/>
+                                <Checkbox check={setChecked} onClick={()=>{
+                                    setLabel(tamanho.split("(")[0])
+                                    setTitulo('tamanhos')
+                                }}/>
                                 <PalavraFiltro palavra={tamanho} />
                             </div>
                         ))

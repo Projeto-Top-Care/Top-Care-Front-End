@@ -150,7 +150,7 @@ export function aplicarFiltros(label: string, titulo: string) {
         }
     })
 
-    return produtosMostrados.filter((valor, index, self) => {
+    produtosFiltrados = produtosMostrados.filter((valor, index, self) => {
         return self.indexOf(valor) === index;
     });
 }
@@ -168,7 +168,6 @@ export function tirarFiltros(label: string, titulo: string) {
         }else if(produto.especificacoes[2].resposta == "Cachorros"){
             isCachorro = true
         }
-        console.log(isGato + " "+ isCachorro)
     })
 
     produtosMostrados = produtosMostrados.filter((produto)=>{
@@ -181,7 +180,7 @@ export function tirarFiltros(label: string, titulo: string) {
         return self.indexOf(valor) === index;
     });
 
-    return verficarLista(filtrados)
+    produtosFiltrados = verficarLista(filtrados)
 }
 
 export function verficarLista(filtrados: ProdutoCompleto[]){
