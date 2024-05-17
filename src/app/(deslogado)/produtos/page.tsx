@@ -94,7 +94,7 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
       produtosMostrados.map((produto) => (
         <div key={produto.id}>
           <CardProduto id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
-            precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} favoritosPage />
+            precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />
         </div>
       ))
     )

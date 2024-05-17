@@ -14,6 +14,7 @@
     "codigo": 10031110007717,
     "estoque": 12,
     "quantidadeVendas": 4,
+    "favorito": true,
     "descricao": [
       "- Indicada para cães;",
       "- Com uma nova tecnologia com ultra proteção externa de borracha de PVC chamada neopro;",
@@ -56,6 +57,7 @@
     "codigo": 10031110007718,
     "estoque": 12,
     "quantidadeVendas": 1,
+    "favorito": true,
     "descricao": [
       "- Indicada para gatos;",
       "- Confeccionada em nylon resistente;",
@@ -94,6 +96,7 @@
     "codigo": 10031110007719,
     "estoque": 12,
     "quantidadeVendas": 10,
+    "favorito": true,
     "descricao": [
       "- Indicada para cães e gatos;",
       "- Confortável e resistente;",
@@ -133,6 +136,7 @@
     "codigo": 10031110007720,
     "estoque": 12,
     "quantidadeVendas": 101,
+    "favorito": false,
     "descricao": [
       "- Indicado para cães;",
       "- Confeccionado em material atóxico e resistente;",
@@ -170,6 +174,7 @@
     "codigo": 10031110007721,
     "estoque": 12,
     "quantidadeVendas": 1001,
+    "favorito": false,
     "descricao": [
       "- Indicado para gatos;",
       "- Estrutura resistente e durável;",
@@ -207,6 +212,7 @@
     "codigo": 10031110007722,
     "estoque": 12,
     "quantidadeVendas": 7,
+    "favorito": false,
     "descricao": [
       "- Indicado para cães e gatos;",
       "- Fabricado em material resistente;",
@@ -244,6 +250,7 @@
     "codigo": 10031110007723,
     "estoque": 12,
     "quantidadeVendas": 798,
+    "favorito": false,
     "descricao": [
       "- Indicado para cães;",
       "- Confeccionado em material atóxico e resistente;",
@@ -281,6 +288,7 @@
     "codigo": 10031110007724,
     "estoque": 12,
     "quantidadeVendas": 387,
+    "favorito": false,
     "descricao": [
       "- Indicada para cães;",
       "- Fabricada em material resistente e confortável;",
@@ -320,6 +328,7 @@
     "codigo": 10031110007725,
     "estoque": 12,
     "quantidadeVendas": 896,
+    "favorito": false,
     "descricao": [
       "- Indicada para cães e gatos;",
       "- Fabricada em material resistente e durável;",
@@ -358,6 +367,7 @@
     "codigo": 10031110007726,
     "estoque": 12,
     "quantidadeVendas": 36,
+    "favorito": false,
     "descricao": [
       "- Indicado para cães e gatos;",
       "- Confeccionado em material resistente e durável;",

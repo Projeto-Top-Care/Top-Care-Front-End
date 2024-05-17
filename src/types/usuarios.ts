@@ -11,7 +11,7 @@ export interface Usuario {
     enderecos: Endereco[],
     pets: Pet[]
     pedidos: Pedido[],
-    favoritos: Favoritos[],
+    favoritos: number[],
     cartoes: Cartao[]
 }
 
@@ -30,16 +30,6 @@ export interface Endereco {
     rua: string,
     numero: number,
     complemento: string
-}
-
-export interface Favoritos {
-    id: number
-    nomeProduto: string
-    notaDeAvaliacao: number
-    imagemProduto: string[]
-    precoAntigoDoProduto: number
-    desconto: string
-    precoNovo: number
 }
 
 export interface Pedido {

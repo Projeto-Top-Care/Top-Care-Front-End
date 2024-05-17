@@ -9,17 +9,17 @@ import { Produto } from '@/types/produto'
 import { useEffect, useState } from 'react'
 import React from "react";
 
-const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo, favoritosPage: paginaFavoritos }: Produto & { favoritosPage: boolean }) => {
+const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo, favorito}: Produto) => {
 
-    const [favorito, setFavorito] = useState<boolean>(paginaFavoritos);
+    const [favoritoCard, setFavoritoCard] = useState<boolean>(favorito ? true : false);
     const {push} = useRouter()
 
     useEffect(() => {
         iconeFavorito()
-    }, [favorito])
+    }, [favoritoCard])
 
     const iconeFavorito = () => {
-        return (favorito ?
+        return (favoritoCard ?
             <FaHeart style={{ color: "#B5A6F3", }} className="w-4" /> :
             <FaRegHeart style={{ color: "#4f4f4f", }} className="w-4" />) 
     }
@@ -33,7 +33,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
                 </div>
 
                 <div>
-                    <button onClick={() => setFavorito(!favorito)} className="transition duration-100 active:scale-75 z-50">
+                    <button onClick={() => setFavoritoCard(!favoritoCard)} className="transition duration-100 active:scale-75 z-50">
                         {iconeFavorito()}
                     </button>
                 </div>

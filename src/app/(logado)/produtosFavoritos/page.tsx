@@ -1,29 +1,42 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { buscarUsuario } from '@/server/usuario/action';
-import { Favoritos, Usuario } from '@/types/usuarios';
+import { Usuario } from '@/types/usuarios';
 import TituloLinha from '@/components/TituloLinha/TituloLinha';
 import CardProduto from '@/components/CardProduto/CardProduto';
 import { FaAngleUp, FaAngleDown } from 'react-icons/fa6';
 import { FaSearch } from 'react-icons/fa';
+import { buscarProduto } from '@/server/produtos/action';
+import { Produto, ProdutoCompleto } from '@/types/produto';
 
 export default function ProdutoFavoritos() {
     const [showAllProducts, setShowAllProducts] = useState(false);
     const usuarioLogado: Usuario = buscarUsuario(1)!;
     const [pesquisa, setPesquisa] = useState('');
-    const [resultado, setResultado] = useState<Favoritos[]>([]);
+    const [produtosFavoritos, setProdutosFavoritos] = useState<Produto[]>([]);
     const [numDisplayedProducts, setNumDisplayedProducts] = useState(10);
 
     useEffect(() => {
-        let produtosFiltrados = usuarioLogado.favoritos;
+        let produtosFavoritos: Produto[] = usuarioLogado.favoritos.map((id)=>{
+            return buscarProduto(id)!;
+        })
 
         if (pesquisa.trim() !== '') {
-            produtosFiltrados = produtosFiltrados.filter((favorito) =>
-                favorito.nomeProduto.toLowerCase().includes(pesquisa.toLowerCase())
+            produtosFavoritos = produtosFavoritos.filter((favorito) =>
+                favorito.nomeProduto
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, "")
+                .includes(
+                  pesquisa
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, "")
+                )
             );
         }
 
-        setResultado(showAllProducts ? produtosFiltrados : produtosFiltrados.slice(0, numDisplayedProducts));
+        setProdutosFavoritos(showAllProducts ? produtosFavoritos : produtosFavoritos.slice(0, numDisplayedProducts));
     }, [pesquisa, showAllProducts, usuarioLogado.favoritos, numDisplayedProducts]);
 
     useEffect(() => {
@@ -65,20 +78,20 @@ export default function ProdutoFavoritos() {
                     />
                 </div>
             </div>
-            <section className='w-[90%] grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  justify-items-center gap-10 mt-10 ml-[5%]'>                {resultado.map((produto: { id: number; nomeProduto: string; precoAntigoDoProduto: number; precoNovo: number; notaDeAvaliacao: number; imagemProduto: string[]; desconto: string; }, index: React.Key | null | undefined) => (
-                <CardProduto
-                    key={index}
-                    id={produto.id}
-                    nomeProduto={produto.nomeProduto}
-                    precoAntigoDoProduto={produto.precoAntigoDoProduto}
-                    precoNovo={produto.precoNovo}
-                    notaDeAvaliacao={produto.notaDeAvaliacao}
-                    imagemProduto={produto.imagemProduto}
-                    desconto={produto.desconto}
-                    favoritosPage={true}
-                />
-
-            ))}
+            <section className='w-[90%] grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  justify-items-center gap-10 mt-10 ml-[5%]'>
+                {produtosFavoritos.map((produto) => (
+                    <CardProduto
+                        key={produto.id}
+                        id={produto.id}
+                        nomeProduto={produto.nomeProduto}
+                        precoAntigoDoProduto={produto.precoAntigoDoProduto}
+                        precoNovo={produto.precoNovo}
+                        notaDeAvaliacao={produto.notaDeAvaliacao}
+                        imagemProduto={produto.imagemProduto}
+                        desconto={produto.desconto}
+                        favorito={true}
+                    />
+                ))}
             </section>
             <div className='w-full flex justify-end pr-[6%] my-10'>
                 <button
