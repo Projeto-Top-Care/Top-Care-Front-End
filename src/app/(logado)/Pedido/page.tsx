@@ -21,14 +21,11 @@ export default function Pedido({ searchParams }: PropsUsuario) {
 
     return (
         <main>
-            <section className="w-full m-auto mt-10">
-                <BarraProcesso primeiroPasso="Pedido criado" segundoPasso="Pagamento aprovado" terceiroPasso="Separando o pedido" quartoPasso="Pedido com a transportadora" quintoPasso="Entregue"/>
-            </section>
             <section className="">
                 <div className="mt-10">
                     <TituloLinha titulo="Seu pedido"></TituloLinha>
                 </div>
-                <section className="lg:p-20 md:p-10 p-4 mb-10">
+                <section className="lg:p-16 lg:ml-2 md:p-10 p-5 mb-12">
                     <section>
                         <div className="md:flex md:justify-between">
                             <div className="">
@@ -40,8 +37,11 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                                 <p className="font-poppins text-cinza-escuro md:text-base text-xs">Data da compra: {usuarioProcurado?.pedidos[0].dataCompra}</p>
                             </div>
                         </div>
+                        <section className="w-full m-auto md:mt-24 mt-8">
+                            <BarraProcesso type={"pedido"} primeiroPasso="Pedido criado" segundoPasso="Pagamento aprovado" terceiroPasso="Separando o pedido" quartoPasso="Pedido com a transportadora" quintoPasso="Entregue" />
+                        </section>
                     </section>
-                    <section className="md:mt-20 mt-10">
+                    <section className="md:mt-20 mt-4">
                         <div className="grid">
                             <div className="flex flex-col justify-between mt-5">
                                 <button className="hidden flex-row justify-center items-center md:mb-3 mb-1 md:text-base text-sm gap-2 lg:w-[24%] md:w-[30%] w-[100%] md:h-10 h-8 text-preto font-poppins bg-primaria rounded-lg">
