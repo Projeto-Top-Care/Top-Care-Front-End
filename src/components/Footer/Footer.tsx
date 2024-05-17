@@ -13,7 +13,7 @@ const Footer = () => {
                 <div className="flex flex-col gap-1 text-xs md:text-base">
                     <h5>Empresa</h5>
                     <a href="/SobreNos" className="underline text-cinza-escuro md:text-sm text-[10px]">Sobre nós</a>
-                    <a className="underline text-cinza-escuro md:text-sm text-[10px]">Perguntas frequentes</a>
+                    <a href="/duvidasFrequentes" className="underline text-cinza-escuro md:text-sm text-[10px]">Perguntas frequentes</a>
                 </div>
 
                 <div className="flex flex-col gap-1 text-xs md:text-base">

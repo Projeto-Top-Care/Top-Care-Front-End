@@ -38,7 +38,8 @@
     ],
     "avaliacoes": [
       {"id": 3, "nota": 3, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ]
+    ],
+    "tags":["acessório", "passeio", "diversão", "entreterimento", "beleza"]
   },
   {
     "id": 2,
@@ -75,7 +76,8 @@
     ],
     "avaliacoes": [
       {"id": 5, "nota": 4, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ]
+    ],
+    "tags":["passeio", "diversão", "entreterimento", "acessório", "beleza"]
   },
   {
     "id": 3,
@@ -113,7 +115,8 @@
     ],
     "avaliacoes": [
       {"id": 8, "nota": 1, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ]
+    ],
+    "tags":["dormir", "sono", "noite"]
   },
   {
     "id": 4,
@@ -149,7 +152,8 @@
     ],
     "avaliacoes": [
       {"id": 10, "nota": 4.8, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ]
+    ],
+    "tags":["higiene", "limpeza", "banho"]
   },
   {
     "id": 5,
@@ -185,7 +189,8 @@
     ],
     "avaliacoes": [
       {"id": 2, "nota": 4.9, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ]
+    ],
+    "tags":["brinquedos", "diversão", "entreterimento"]
   },
   {
     "id": 6,
@@ -221,7 +226,8 @@
     ],
     "avaliacoes": [
       {"id": 2, "nota": 4.7, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ]
+    ],
+    "tags":["comer", "pote", "beber", "comida", "água"]
   },
   {
     "id": 7,
@@ -257,7 +263,8 @@
     ],
     "avaliacoes": [
       {"id": 2, "nota": 4.0, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ]
+    ],
+    "tags":["brinquedos", "diversão", "bolinha"]
   },
   {
     "id": 8,
@@ -295,7 +302,8 @@
     ],
     "avaliacoes": [
       {"id": 2, "nota": 3.5, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ]
+    ],
+    "tags":["acessório", "roupa", "passeio", "diversão"]
   },
   {
     "id": 9,
@@ -332,7 +340,8 @@
     ],
     "avaliacoes": [
       {"id": 2, "nota": 4.2, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ]
+    ],
+    "tags": ["conforto", "sono", "noite"]
   },
   {
     "id": 10,
@@ -368,6 +377,7 @@
     ],
     "avaliacoes": [
       {"id": 5, "nota": 5.0, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ]
+    ],
+    "tags":["diversão", "brinquedos", "bolinha"]
   }
 ]

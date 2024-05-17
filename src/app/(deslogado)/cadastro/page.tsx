@@ -92,7 +92,7 @@ export default function Cadastro() {
             <section className='flex justify-center mt-8'>
                 <h1 className='font-averia font-bold text-2xl'>Endereço</h1>
             </section>
-            <section className='md:mt-16 mt-10 flex flex-col gap-5 lg:gap-8'>
+            <section className=' md:mt-16 mt-10 flex flex-col items-center gap-5 lg:gap-8'>
                 <section className='flex flex-col gap-5'>
                     <div className='flex flex-col gap-5 lg:gap-8 lg:m-auto lg:flex-row'>
                         <MoldeInput>
