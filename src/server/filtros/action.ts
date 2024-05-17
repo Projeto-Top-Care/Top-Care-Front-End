@@ -136,7 +136,7 @@ export function definirProdutosFiltrados(produtosMostrados: ProdutoCompleto[]){
 }
 
 export function returnProdutos(){
-    return (produtosFiltrados.length == 0 ? produtos : produtosFiltrados)
+    return produtosFiltrados
 }
 
 
@@ -159,20 +159,34 @@ export function tirarFiltros(label: string, titulo: string) {
     setLabel(titulo)
     let produtosMostrados: ProdutoCompleto[] = [...produtosFiltrados];
 
+    let isGato = false
+    let isCachorro = false
+
+    produtosMostrados.forEach((produto)=>{
+        if(produto.especificacoes[2].resposta == "Gatos"){
+            isGato = true
+        }else if(produto.especificacoes[2].resposta == "Cachorros"){
+            isCachorro = true
+        }
+        console.log(isGato + " "+ isCachorro)
+    })
+
     produtosMostrados = produtosMostrados.filter((produto)=>{
+        if((isCachorro && !isGato) || (isGato && !isCachorro)){
+            return !(produto.especificacoes[2].resposta.includes(label))
+        }
         return !(produto.especificacoes[2].resposta.includes(label) && !produto.especificacoes[2].resposta.includes(" e "))
     })
     const filtrados = produtosMostrados.filter((valor, index, self) => {
         return self.indexOf(valor) === index;
     });
 
-    return (verficarLista(filtrados) ? produtos : filtrados)
+    return verficarLista(filtrados)
 }
 
 export function verficarLista(filtrados: ProdutoCompleto[]){
     const verificacao = filtrados.filter((produto)=>{
         return !(produto.especificacoes[2].resposta.includes(" e "))
     })
-
-    return verificacao.length == 0
+    return verificacao.length == 0 ? [] : filtrados
 }

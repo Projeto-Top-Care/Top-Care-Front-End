@@ -18,10 +18,11 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
   const [produtosMostradosQuery, setProdutosMostradosQuery] = useState<ProdutoCompleto[]>([])
   const [filtroOpen, setFiltroOpen] = useState<boolean>(false)
   const [animation, setAnimation] = useState<boolean>(false)
-  const [bool, setBool] = useState<boolean>(false)
+  const [label, setLabel] = useState<string>('')
+  const [checked, setChecked] = useState<boolean>(false)
   const [escolha, setEscolha] = useState<string>('');
   const [titulo, setTitulo] = useState<string>('');
-
+  
   const filtrarPorQuery = () => {
     if (query) {
       const produtosFiltrados1 = [...produtos].filter((produto) => {
@@ -51,9 +52,9 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
 
 
   useEffect(() => {
-    const produtosMostra = returnProdutos()
-    setProdutosMostrados(produtosMostra)
-  }, [bool])
+    const produtosMostra = returnProdutos();
+    setProdutosMostrados(produtosMostra.length == 0 ? (produtosMostradosQuery.length == 0 ? produtosMostrados : produtosMostradosQuery) : produtosMostra);
+  }, [label, checked]);
 
   useEffect(() => {
     if (escolha == 'A a Z') {
@@ -102,20 +103,19 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
   }
 
   return (
-    <main className='w-full'>
-      <button onClick={() => setBool(!bool)}>a</button>
+    <main className='w-full'>   
       <section className='flex items-start'>
         {
           filtroOpen && (
             <div className={`absolute ${animation ? 'animate-slide-left' : 'animate-slide-right'} z-50`}>
-              <FiltroGrande produtos={produtosMostradosQuery} close={setAnimation} titulo={titulo}/>
+              <FiltroGrande produtos={produtosMostradosQuery} close={setAnimation} titulo={titulo} setLabel1={setLabel} setCheck={setChecked}/>
             </div>
           )
         }
       </section>
       <div className='md:flex md:flex-row mt-5 md:mt-10 md:w-[90%] md:m-auto'>
         <div className='hidden md:!flex w-[25%]'>
-          <FiltroGrande produtos={produtosMostradosQuery} titulo={titulo} />
+          <FiltroGrande produtos={produtosMostradosQuery} titulo={titulo} setLabel1={setLabel} setCheck={setChecked}/>
         </div>
         <section className='w-full md:w-[75%]'>
           <div className='w-full flex items-center flex-col-reverse md:flex-row justify-between'>
