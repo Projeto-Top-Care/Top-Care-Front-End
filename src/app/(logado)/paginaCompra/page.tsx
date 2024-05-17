@@ -12,7 +12,6 @@ import { Produto } from "@/types/produto";
 
 export default function PaginaCompra() {
 
-
     const { push } = useRouter();
 
     const idUser = 1
@@ -34,18 +33,30 @@ export default function PaginaCompra() {
         setComplemento(endereco.complemento)
         setEnderecoEscolhido(endereco)
     }
-    const verificarEnderecoEscolhido = (nomeEndereco:string) => {
-        if(enderecoEscolhido?.nome == nomeEndereco) {
+    const verificarEnderecoEscolhido = (nomeEndereco: string) => {
+        if (enderecoEscolhido?.nome == nomeEndereco) {
             return true
         } else {
             return false
         }
     }
-    const verificarFormaPagamentoEscolhida = (formaPagamento:string) => {
-        
+    const verificarFormaPagamentoEscolhida = (formaPagamento: string) => {
+        if (formaPagamento == "cartao") {
+            setECartao(true)
+            setEBoleto(false)
+            setEPix(false)
+        } else if (formaPagamento == "boleto") {
+            setECartao(false)
+            setEBoleto(true)
+            setEPix(false)
+        } else {
+            setECartao(false)
+            setEBoleto(false)
+            setEPix(true)
+        }
     }
-    const verificarCartao = (nomeCartao:string) => {
-        if(cartaoEscolhido?.nome == nomeCartao) {
+    const verificarCartao = (nomeCartao: string) => {
+        if (cartaoEscolhido?.nome == nomeCartao) {
             return true
         } else {
             return false
@@ -60,7 +71,6 @@ export default function PaginaCompra() {
                 <section className="flex flex-col justify-center gap-8 lg:flex-row w-[90%]">
                     <section className="py-4 lg:w-[68%]">
                         <ResumoPedido produtos={pedido.produtos} desconto={9.2} frete={12} />
-
                     </section>
 
                     <section className="py-4 lg:w-[28%]">
@@ -98,43 +108,65 @@ export default function PaginaCompra() {
                 <section className="flex flex-col gap-1 sm:gap-4 lg:flex-col w-[90%] px-2">
                     <h2 className="font-bold text-base sm:text-lg pb-2">Escolha o método de pagamento</h2>
 
-                    <div className="flex flex-col md:flex-row justify-between items-start gap-8 w-full">
-                        <form className="flex flex-col justify-center gap-4">
+                    <div className="flex flex-col lg:flex-row justify-between items-start gap-8 w-full">
+                        <div className="flex flex-col sm:flex-row lg:flex-col justify-center gap-4">
                             <div className="flex flex-row gap-4">
-                                <input className="w-5 h-5 checked: accent-purple-500" type="radio"  value="cartao" name="pagamento" id="cartao" onClick={() => setECartao(true)} />
+                                <input className="w-5 h-5 checked: accent-purple-500"
+                                    type="radio"
+                                    value="cartao"
+                                    name="pagamento"
+                                    id="cartao"
+                                    checked={eCartao}
+                                    onClick={() => verificarFormaPagamentoEscolhida("cartao")}
+                                />
                                 <label className="text-sm sm:text-base" htmlFor="cartao">Cartão de crédito</label>
                             </div>
                             <div className="flex flex-row gap-4">
-                                <input className="w-5 h-5 checked: accent-purple-500" type="radio" value="boleto" name="pagamento" id="boleto" onClick={() => setECartao(false)}/>
+                                <input className="w-5 h-5 checked: accent-purple-500"
+                                    type="radio"
+                                    value="boleto"
+                                    name="pagamento"
+                                    id="boleto"
+                                    checked={eBoleto}
+                                    onClick={() => verificarFormaPagamentoEscolhida("boleto")}
+                                />
                                 <label className="text-sm sm:text-base" htmlFor="boleto">Boleto bancário</label>
                             </div>
                             <div className="flex flex-row gap-4">
-                                <input className="w-5 h-5 checked: accent-purple-500" type="radio" value="pix" name="pagamento" id="pix" onClick={() => setECartao(false)} />
+                                <input className="w-5 h-5 checked: accent-purple-500"
+                                    type="radio"
+                                    value="pix"
+                                    name="pagamento"
+                                    id="pix"
+                                    checked={ePix}
+                                    onClick={() => verificarFormaPagamentoEscolhida("pix")}
+                                />
                                 <label className="text-sm sm:text-base" htmlFor="pix">PIX</label>
                             </div>
-                        </form>
+                        </div>
 
-                        {
-                            eCartao ?
-                                <div className="flex flex-col justify-end gap-2 w-full sm:w-[40%]">
-                                    {
-                                        usuarioLogado.cartoes?.map((cartao, i) => (
-                                            <div onClick={() => setCartaoEscolhido(cartao)}>
-                                                <CardCartaoSalvo checked={verificarCartao(cartao.nome)} titulo={cartao.nome} numero={cartao.numero} validade={cartao.validade} tipo={cartao.agencia} />
-                                            </div>
-                                        ))
-                                    }
-                                    <button onClick={() => push('/adicionarCartao')} className="hover:bg-indigo-200 size-8 self-end bg-primaria rounded-lg p-2"><FaPlus /></button>
-                                </div>
-                                : <></>
-                        }
-
+                        <div className="flex flex-col self-end justify-end gap-2 w-full sm:w- lg:w-[40%]">
+                            {
+                                eCartao ?
+                                    <div className="flex flex-col justify-end gap-2">
+                                        {
+                                            usuarioLogado.cartoes?.map((cartao, i) => (
+                                                <div onClick={() => setCartaoEscolhido(cartao)}>
+                                                    <CardCartaoSalvo checked={verificarCartao(cartao.nome)} titulo={cartao.nome} numero={cartao.numero} validade={cartao.validade} tipo={cartao.agencia} />
+                                                </div>
+                                            ))
+                                        }
+                                        <button onClick={() => push('/adicionarCartao')} className="hover:bg-indigo-200 size-8 self-start lg:self-end bg-primaria rounded-lg p-2"><FaPlus /></button>
+                                    </div>
+                                    : <></>
+                            }
+                        </div>
                     </div>
-                    <div className="flex flex-col items-end py-8 gap-2">
+                    <div className="flex flex-col items-start lg:items-end py-8 gap-2">
                         <div className="w-[60%] md:w-[22%] lg:w-[20%]">
                             <BotaoGrande title={"Finalizar compra"} background={"bg-secundaria"} type={"button"} />
                         </div>
-                        <p className="text-end text-xs sm:text-sm text-cinza-escuro">Após conferir seu pedido, clique no botão acima para confirmar a compra e realizar o pagamento.</p>
+                        <p className="text-start lg:text-end text-xs sm:text-sm text-cinza-escuro">Após conferir seu pedido, clique no botão acima para confirmar a compra e realizar o pagamento.</p>
                     </div>
                 </section>
             </div>
