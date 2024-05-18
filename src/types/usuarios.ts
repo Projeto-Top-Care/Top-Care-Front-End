@@ -8,6 +8,7 @@ export interface Usuario {
     cpf: string,
     sexo: string,
     dataNascimento: string,
+    produtosCarrinho: number[]
     enderecos: Endereco[],
     pets: Pet[]
     pedidos: Pedido[],

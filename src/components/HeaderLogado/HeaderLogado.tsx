@@ -8,10 +8,6 @@ import { FaUserCircle } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 import { PiBoneFill } from "react-icons/pi";
 import { FaStore } from "react-icons/fa";
-import { GiSittingDog } from "react-icons/gi";
-import { MdOutlinePets } from "react-icons/md";
-import { RiFilePaperLine } from "react-icons/ri";
-import { FaSearch } from "react-icons/fa";
 
 import { useEffect, useState } from "react";
 
@@ -19,6 +15,7 @@ export default function HeaderLogado() {
 
     const [navAberta, setNavAberta] = useState(false)
     const [navStyle, setNavStyle] = useState("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-0 overflow-x-hidden animation duration-300");
+    const {push} = useRouter()
 
     useEffect(() => {
         if (navAberta) {
@@ -40,7 +37,7 @@ export default function HeaderLogado() {
                 </div>
                 
                 <div className='flex max-sm:hidden flex-row gap-4 items-center justify-end'>
-                    <button><FiShoppingBag size={'1.2rem'} style={{ color: "#322828"}} /></button>
+                    <button onClick={()=>push('/carrinho')}><FiShoppingBag size={'1.2rem'} style={{ color: "#322828"}} /></button>
                     <button><FaRegHeart size={'1.3rem'} style={{color: "#32282"}} /></button>
                     <button><FaUserCircle size={'1.8rem'} style={{color: "#32282"}} /></button>
                 </div>
