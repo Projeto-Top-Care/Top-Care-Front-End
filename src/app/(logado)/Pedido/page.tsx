@@ -33,7 +33,7 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                                 <p className="font-poppins text-cinza-escuro md:text-base text-xs">Código de rastreio:</p>
                             </div>
                             <div>
-                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Número do pedido: {usuarioProcurado?.pedidos[0].codigoPedido}</p>
+                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Número do pedido: {usuarioProcurado?.pedidos[0].codigo}</p>
                                 <p className="font-poppins text-cinza-escuro md:text-base text-xs">Data da compra: {usuarioProcurado?.pedidos[0].dataCompra}</p>
                             </div>
                         </div>
@@ -125,7 +125,7 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                                     <div className="">
                                         <p className="font-poppins text-preto font-medium lg:text-lg md:text-base text-sm md:mb-8 mb-4">Pagamento</p>
                                         <div  className="flex flex-row justify-between items-center mt-4">
-                                            <p>{usuarioProcurado?.pedidos[0].pagamento[0].formaPagamento}</p>
+                                            <p>{usuarioProcurado?.pedidos[0].pagamento[0].metodo}</p>
                                             <p></p>
                                         </div>
                                         <div className="flex flex-row justify-between items-center mt-4">
