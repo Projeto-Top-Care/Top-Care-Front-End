@@ -9,14 +9,17 @@ import PedidoAndamentoPerfil from "@/components/PedidoAndamentoPerfil/PedidoAnda
 import PerfilFoto from "@/components/PerfilFoto/PerfilFoto";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { buscarUsuario } from "@/server/usuario/action";
-import { Usuario } from "@/types/usuarios";
+import { Pedido, QntProduo, Usuario } from "@/types/usuarios";
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
-import { buscarTodos } from "@/server/produtos/action";
+import { buscarProduto, buscarTodos } from "@/server/produtos/action";
 import CardProduto from "@/components/CardProduto/CardProduto";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import React, { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
+import Produtos from "@/app/(deslogado)/produtos/page";
+import { Produto } from "@/types/produto";
+
 
 
 
@@ -27,6 +30,9 @@ export default function Perfil() {
     const [showPassword, setShowPassword] = useState(false);
     const senha = usuarioLogado.senha
     const [showAllAddresses, setShowAllAddresses] = useState(false);
+    const produtos: QntProduo = buscarProduto(usuarioLogado.id)!
+    const produto: Produto = buscarProduto(produtos.id)!
+
 
     const toggleShowAllAddresses = () => {
         setShowAllAddresses(!showAllAddresses);
@@ -34,13 +40,14 @@ export default function Perfil() {
 
     const displayedAddresses = showAllAddresses ? usuarioLogado.enderecos : usuarioLogado.enderecos.slice(0, 3);
 
-
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
+
     const carrosselProdutos = buscarTodos().map((produto, i) => (<CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
         precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} favoritosPage={false} />))
+
     return (
         <main className="bg-branco text-preto">
             <section className="mt-6">
@@ -82,7 +89,7 @@ export default function Perfil() {
                                     <div className="mr-4 md:ml-7 lg:ml-12">
                                         <InputEstatico titulo="DDD +" info={usuarioLogado.celular.substring(5, 7)} />
                                     </div>
-                                    <div className="lg:w-48 md:w-36 w-full"><InputEstatico titulo="Celular" info={usuarioLogado.celular.substring(8)} /></div>
+                                    <div className="lg:w-48 md:w-36 w-[76.2%]"><InputEstatico titulo="Celular" info={usuarioLogado.celular.substring(8)} /></div>
                                 </div>
                             </div>
                             <div className="md:flex">
@@ -122,11 +129,14 @@ export default function Perfil() {
             <section className="mt-10">
                 <TituloLinha titulo="Pedido em andamento" />
             </section>
-            <section className="md:mx-20 mt-8 flex justify-center">
+            <section className="md:mx-40 mt-8 ">
                 <div className="grid lg:grid-cols-2 gap-x-20 gap-y-4">
-                    <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
-                    <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
-                    <PedidoAndamentoPerfil src="./assets/ProdutoAndamentoPerfil.png/" titulo="Kit banho diora cachorro ..." link="http://localhost:3000/Perfil" valor="49,50" />
+                    {
+                        usuarioLogado.pedidos.map((pedido, i) => (
+                            <div key={i}>
+                                <PedidoAndamentoPerfil data={"17/05/2024"} numPedido={pedido.codigo} status={""} valor={produto.precoNovo} src={produto.imagemProduto} />
+                            </div>
+                        ))}
                 </div>
             </section>
             <section className="mt-8">

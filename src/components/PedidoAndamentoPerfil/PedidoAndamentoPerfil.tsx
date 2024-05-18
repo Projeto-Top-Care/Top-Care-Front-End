@@ -1,21 +1,49 @@
+'use client'
+import React from 'react';
+import BotaoGrande from "../BotaoGrande/BotaoGrande";
+import { FaBoxOpen } from "react-icons/fa6";
+import { buscarProduto } from '@/server/produtos/action';
+import { Usuario, QntProduo } from '@/types/usuarios';
+import { Produto } from '@/types/produto';
+import { buscarUsuario } from '@/server/usuario/action';
+
 interface IPedidoAndamentoPerfil {
-    src: string,
-    titulo: string,
-    link: string,
-    valor: string
+    data: string;
+    numPedido: number;
+    status: string;
+    valor: number[];
+    src: string[]; 
 }
 
-const PedidoAndamentoPerfil = ({ src, titulo, link, valor }: IPedidoAndamentoPerfil) => {
+const PedidoAndamentoPerfil = ({ data, numPedido, status, valor, src = [] }:IPedidoAndamentoPerfil) => {
+    
+    const usuarioLogado: Usuario = buscarUsuario(1)!
+    const produtos: QntProduo = buscarProduto(usuarioLogado.id)!
+    // estamos pegando qual produto vai ser
+    const produto: Produto = buscarProduto(produtos.id)!
+
     return (
-        <div className="mt-7 font-poppins text-preto md:p-4 p-2 flex shadow-lg rounded-lg md:w-[420px] w-[276px]">
-            <img className="md:h-20 md:w-20 h-16 w-16" src={src} />
-            <div className="ml-4 w-full">
-                <p className="md:text-lg text-xs">{titulo}</p>
-                <p className="md:text-end md:text-base text-xs  style-link text-blue-600 visited:text-purple-600 underline">ver mais</p>
-                <p className="md:text-lg text-sm font-medium">{valor}R$</p>
+        <div className="w-full font-poppins border-2 border-cinza-claro rounded-xl">
+            <div className="flex justify-between border-b-2 border-cinza-claro">
+                <span className="m-4">{data}</span>
+                <span className="m-4 text-cinza-escuro">Pedido n° {numPedido}</span>
             </div>
-        </div>                  
+            <div className="m-4">
+                <div>
+                    <span className="flex items-center"><FaBoxOpen className='mt-1 mr-2' />Pedido {status}</span>
+                    <div className="flex flex-wrap">
+                        {src.map((url, index) => (
+                            <img key={index} src={url} className="w-16 h-16 object-cover m-2" />
+                        ))}
+                    </div>
+                    <span className="font-medium">Valor total R${valor}</span>
+                </div>
+                <div className="mt-2">
+                    <BotaoGrande title={"Ver detalhes"} background={"bg-terciaria"} type={"submit"} />
+                </div>
+            </div>
+        </div>
+    );
+};
 
-    )
-}
 export default PedidoAndamentoPerfil;
