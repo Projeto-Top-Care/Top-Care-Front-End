@@ -4,11 +4,10 @@ import Carrossel from "@/components/Carrossel/Carrossel"
 import CarrosselProduto from "@/components/CarrosselProduto/Carrossel"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import { EmblaOptionsType } from "embla-carousel"
-import Loading from "../loading/page"
 
 export default function PaginaInicial() {
-    const slidesCarrosselDesktop: string[] = ['./assets/slidesDesktop/Banner1.svg', './assets/slidesDesktop/Banner2.svg', './assets/slidesDesktop/Banner3.svg']
-    const slidesCarrosselMobile: string[] = ['./assets/slidesMobile/Banner1.svg', './assets/slidesMobile/Banner2.svg', './assets/slidesMobile/Banner3.svg']
+    const slidesCarrosselDesktop: string[] = ['./assets/slidesDesktop/Banner1.svg', './assets/slidesDesktop/Banner2.svg', './assets/slidesDesktop/Banner3.svg', './assets/slidesDesktop/Banner4.svg']
+    const slidesCarrosselMobile: string[] = ['./assets/slidesMobile/Banner1.svg', './assets/slidesMobile/Banner2.svg', './assets/slidesMobile/Banner3.svg', './assets/slidesMobile/Banner4.svg']
     const OPTIONS: EmblaOptionsType = { loop: true }
 
     return (
