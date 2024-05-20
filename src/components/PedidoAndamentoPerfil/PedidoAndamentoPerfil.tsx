@@ -6,6 +6,8 @@ import { buscarProduto } from '@/server/produtos/action';
 import { Usuario, QntProduo } from '@/types/usuarios';
 import { Produto } from '@/types/produto';
 import { buscarUsuario } from '@/server/usuario/action';
+import usuarios from '@/banco/usuarios.json'
+
 
 interface IPedidoAndamentoPerfil {
     data: string;
@@ -19,11 +21,10 @@ const PedidoAndamentoPerfil = ({ data, numPedido, status, valor, src = [] }:IPed
     
     const usuarioLogado: Usuario = buscarUsuario(1)!
     const produtos: QntProduo = buscarProduto(usuarioLogado.id)!
-    // estamos pegando qual produto vai ser
     const produto: Produto = buscarProduto(produtos.id)!
 
     return (
-        <div className="w-full font-poppins border-2 border-cinza-claro rounded-xl">
+        <div className="w-full font-poppins border-2 border-cinza-claro rounded-xl md:text-base text-sm">
             <div className="flex justify-between border-b-2 border-cinza-claro">
                 <span className="m-4">{data}</span>
                 <span className="m-4 text-cinza-escuro">Pedido n° {numPedido}</span>
@@ -32,9 +33,7 @@ const PedidoAndamentoPerfil = ({ data, numPedido, status, valor, src = [] }:IPed
                 <div>
                     <span className="flex items-center"><FaBoxOpen className='mt-1 mr-2' />Pedido {status}</span>
                     <div className="flex flex-wrap">
-                        {src.map((url, index) => (
-                            <img key={index} src={url} className="w-16 h-16 object-cover m-2" />
-                        ))}
+                            <img src={src[0]} className="w-16 h-16 object-cover m-2" />
                     </div>
                     <span className="font-medium">Valor total R${valor}</span>
                 </div>

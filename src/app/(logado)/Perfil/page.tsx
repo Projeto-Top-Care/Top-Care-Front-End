@@ -20,13 +20,10 @@ import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEnder
 import Produtos from "@/app/(deslogado)/produtos/page";
 import { Produto } from "@/types/produto";
 
-
-
-
 export default function Perfil() {
     const [open, setOpen] = useState<boolean>(false)
     const id = localStorage.getItem('idUser')
-    const usuarioLogado: Usuario = buscarUsuario(1)!
+    const usuarioLogado: Usuario = buscarUsuario(2)!
     const [showPassword, setShowPassword] = useState(false);
     const senha = usuarioLogado.senha
     const [showAllAddresses, setShowAllAddresses] = useState(false);
@@ -59,7 +56,7 @@ export default function Perfil() {
                         </a>
                     </div>
                 </div>
-                <div className="mt-10 md:ml-44 ml-6">
+                <div className="mt-10 lg:ml-32 md:ml-20 ml-4">
                     <PerfilFoto src="./assets/cachorro-perfil.png/" nome={usuarioLogado.nomeCompleto} />
                 </div>
             </section>
@@ -70,7 +67,7 @@ export default function Perfil() {
                         <div className="font-poppins text-preto pt-6">
                             <p className="md:text-base text-sm">Senha</p>
                             <div className="flex items-center bg-branco p-3 rounded">
-                                <input type={showPassword ? "text" : "password"} value={senha} className="bg-branco w-80 md:text-sm text-xs text-cinza-escuro" readOnly></input>
+                                <input type={showPassword ? "text" : "password"} value={senha} className="bg-branco w-[100%] md:text-sm text-xs text-cinza-escuro" readOnly></input>
                                 {showPassword ? (
                                     <AiOutlineEyeInvisible onClick={togglePasswordVisibility} className="cursor-pointer" />
                                 ) : (
@@ -129,8 +126,8 @@ export default function Perfil() {
             <section className="mt-10">
                 <TituloLinha titulo="Pedido em andamento" />
             </section>
-            <section className="md:mx-40 mt-8 ">
-                <div className="grid lg:grid-cols-2 gap-x-20 gap-y-4">
+            <section className="mt-8 grid place-content-center">
+                <div className=" grid lg:grid-cols-2 gap-x-20 gap-y-4">
                     {
                         usuarioLogado.pedidos.map((pedido, i) => (
                             <div key={i}>
