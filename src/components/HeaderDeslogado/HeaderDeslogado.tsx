@@ -55,7 +55,7 @@ export default function HeaderDeslogado() {
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/carrinho">Carrinho</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/lojas">Lojas</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/contato">Contato</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Ajuda</a>
+                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/duvidasFrequentes">Ajuda</a>
                 </div>
             </div>
 
@@ -99,24 +99,6 @@ export default function HeaderDeslogado() {
                             <a href="/SobreNos" className="hover:underline">Sobre nós</a>
                         </div>
                     </div>
-
-                    {/* <div className="flex flex-col gap-1 font-poppins text-preto">
-                        <h3 className="font-semibold text-sm">Serviços</h3>
-
-                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
-                            <GiSittingDog  size={'0.9rem'} style={{color: "#322828"}} />
-                            <a href="#" className="hover:underline">Ver serviços</a>
-                        </div>
-                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
-                            <RiFilePaperLine  size={'0.9rem'} style={{color: "#322828"}} />
-                            <a href="#" className="hover:underline">Planos</a>
-                        </div>
-                        <div className="flex flex-row gap-2 items-center ml-6 text-xs">
-                            <MdOutlinePets  size={'0.9rem'} style={{color: "#322828"}} />
-                            <a href="#" className="hover:underline">Pets</a>
-                        </div>
-                    </div> */}
-                    
                 </div>
             </div>
         </div>

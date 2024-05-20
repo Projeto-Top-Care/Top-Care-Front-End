@@ -16,6 +16,7 @@ import { FaSearch } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 export default function HeaderLogado() {
+    const {push} = useRouter();
 
     const [navAberta, setNavAberta] = useState(false)
     const [navStyle, setNavStyle] = useState("bg-primaria drop-shadow-2xl block h-screen fixed top-0 left-0 w-0 overflow-x-hidden animation duration-300");
@@ -32,7 +33,7 @@ export default function HeaderLogado() {
         <div>
             <div className="bg-primaria md:px-20 px-6 md:py-3 py-2 flex flex-row-reverse sm:flex-row font-poppins justify-between items-center text-preto">
                 <div className='px-3'>
-                    <a><img className="md:w-[70px] w-[40px]" src="../assets/logo.png"/></a>
+                    <a href="/"><img className="md:w-[70px] w-[40px]" src="../assets/logo.png"/></a>
                 </div>
 
                 <div className="flex w-2/3 px-4 max-sm:hidden">
@@ -40,9 +41,9 @@ export default function HeaderLogado() {
                 </div>
                 
                 <div className='flex max-sm:hidden flex-row gap-4 items-center justify-end'>
-                    <button><FiShoppingBag size={'1.2rem'} style={{ color: "#322828"}} /></button>
-                    <button><FaRegHeart size={'1.3rem'} style={{color: "#32282"}} /></button>
-                    <button><FaUserCircle size={'1.8rem'} style={{color: "#32282"}} /></button>
+                    <button onClick={() => push('./carrinho')}><FiShoppingBag size={'1.2rem'} style={{ color: "#322828"}} /></button>
+                    <button onClick={() => push('./produtosFavoritos')}><FaRegHeart size={'1.3rem'} style={{color: "#32282"}} /></button>
+                    <button onClick={() => push('./perfil')}><FaUserCircle size={'1.8rem'} style={{color: "#32282"}} /></button>
                 </div>
 
                 <div className="sm:hidden flex">
@@ -57,11 +58,11 @@ export default function HeaderLogado() {
             <div className="bg-terciaria flex max-sm:hidden flex-row justify-center">
                 <div className="font-poppins flex flex-row justify-between md:gap-12 gap-2 py-3">
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/produtos">Produtos</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Serviços</a>
+                    {/* <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Serviços</a> */}
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/lojas">Lojas</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Pets</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Planos</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Ajuda</a>
+                    {/* <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Planos</a> */}
+                    <a className="hover:underline md:text-sm text-[0.78rem]" href="./duvidasFrequentes">Ajuda</a>
                 </div>
             </div>
 
