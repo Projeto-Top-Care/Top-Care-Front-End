@@ -9,7 +9,7 @@ import PedidoAndamentoPerfil from "@/components/PedidoAndamentoPerfil/PedidoAnda
 import PerfilFoto from "@/components/PerfilFoto/PerfilFoto";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { buscarUsuario } from "@/server/usuario/action";
-import { Pedido, QntProduo, Usuario } from "@/types/usuarios";
+import { Pedido, QntProduto, Usuario } from "@/types/usuarios";
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import { buscarProduto, buscarTodos } from "@/server/produtos/action";
 import CardProduto from "@/components/CardProduto/CardProduto";
@@ -27,7 +27,7 @@ export default function Perfil() {
     const [showPassword, setShowPassword] = useState(false);
     const senha = usuarioLogado.senha
     const [showAllAddresses, setShowAllAddresses] = useState(false);
-    const produtos: QntProduo = buscarProduto(usuarioLogado.id)!
+    const produtos: QntProduto = buscarProduto(usuarioLogado.id)!
     const produto: Produto = buscarProduto(produtos.id)!
 
 
@@ -126,7 +126,7 @@ export default function Perfil() {
             <section className="mt-10">
                 <TituloLinha titulo="Pedido em andamento" />
             </section>
-            <section className="mt-8 grid place-content-center">
+            <section className="mt-8 w-[70%] m-auto">
                 <div className=" grid lg:grid-cols-2 gap-x-20 gap-y-4">
                     {
                         usuarioLogado.pedidos.map((pedido, i) => (
