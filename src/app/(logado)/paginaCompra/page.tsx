@@ -15,7 +15,22 @@ export default function PaginaCompra() {
     const { push } = useRouter();
 
     const idUser = 1
-    const [usuarioLogado, setUsuarioLogado] = useState<Usuario>(buscarUsuario(idUser)!)
+    const usuarioLogado: Usuario = (buscarUsuario(idUser)!)
+
+    const [open, setOpen] = useState<string>("")
+    const showError = () => {
+        if (open != "") {
+            return (
+                <div className="z-50">
+                    <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down drop-shadow-lg`}>
+                        <div className="flex items-center justify-center lg:h-10 h-8 bg-terciaria rounded font-poppins">
+                            <p className="text-xs lg:text-base">{open}</p>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+    }
 
     const [enderecoEscolhido, setEnderecoEscolhido] = useState<Endereco>()
     const [enderecoUsuario, setEnderecoUsuario] = useState("-")
@@ -62,9 +77,29 @@ export default function PaginaCompra() {
             return false
         }
     }
+    const pagar = () => {
+        if (ePix) {
+            push('./pagamentoPix')
+        } if (eBoleto) {
+            push('./pagamentoBoleto')
+        } if (eCartao) {
+            push('./perfil')
+        } if (enderecoEscolhido == null) {
+            setOpen("Selecione um endereco antes de avançar!")
+            setTimeout(() => {
+                setOpen("")
+            }, 4000)
+        } else {
+            setOpen("Selecione uma forma de pagamento antes de avançar!")
+            setTimeout(() => {
+                setOpen("")
+            }, 4000)
+        }
+    }
 
     return (
         <main className="text-preto font-poppins py-12">
+            {showError()}
             <div className="items-center flex flex-col gap-4 w-full">
                 <TituloLinha titulo="Confirmação do pedido" />
 
@@ -163,7 +198,7 @@ export default function PaginaCompra() {
                         </div>
                     </div>
                     <div className="flex flex-col items-start lg:items-end py-8 gap-2">
-                        <div className="w-[60%] md:w-[22%] lg:w-[20%]">
+                        <div className="w-[60%] md:w-[22%] lg:w-[20%]" onClick={() => pagar()}>
                             <BotaoGrande title={"Finalizar compra"} background={"bg-secundaria"} type={"button"} />
                         </div>
                         <p className="text-start lg:text-end text-xs sm:text-sm text-cinza-escuro">Após conferir seu pedido, clique no botão acima para confirmar a compra e realizar o pagamento.</p>
