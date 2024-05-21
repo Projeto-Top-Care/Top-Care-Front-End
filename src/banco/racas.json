@@ -3,7 +3,7 @@
         "id": 1,
         "tipo": "cachorro",
         "raca": "Bulldog Francês",
-        "foto": "./assets/raca-cachorros/bulldog-frances.png",
+        "foto": "./assets/raca-cachorros/bulldogfrances-foto.png",
         "descricao": "O Bulldog Francês é uma raça de cão pequeno e robusto, conhecida por sua aparência distintiva, com uma cabeça larga e plana, orelhas grandes e eretas, e um focinho curto. Sua pelagem é curta e de várias cores. Apesar de sua aparência musculosa, é uma raça bastante amigável e dócil, sendo uma excelente companhia para famílias e indivíduos que procuram um cão de estimação afetuoso e de fácil convívio.",
         "expectativaVida": 10,
         "tamanho": 30,
