@@ -60,7 +60,7 @@ export default function BarraPesquisa({ placeholder }: IBarraPesquisa) {
                 <button><FaSearch style={{ color: "#322828" }} onClick={() => enviarQuery()} /></button>
             </div>
             <div className="w-full peer flex flex-col items-center justify-start">
-                <input type="text" id="search" className="peer focus:outline-0 w-full rounded placeholder:text-cinza-escuro font-poppins bg-branco" 
+                <input type="text" id="search" className="peer text-sm sm:text-base focus:outline-0 w-full rounded placeholder:text-cinza-escuro font-poppins bg-branco" 
                 placeholder={placeholder} 
                 onChange={(e) => setQuery(e.target.value)} 
                 onKeyDown={(e) => enter(e)}

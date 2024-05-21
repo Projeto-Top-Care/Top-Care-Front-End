@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "tipo": "cachorro",
+        "raca": "Bulldog Francês",
+        "foto": "./assets/raca-cachorros/bulldog-frances.png",
+        "descricao": "O Bulldog Francês é uma raça de cão pequeno e robusto, conhecida por sua aparência distintiva, com uma cabeça larga e plana, orelhas grandes e eretas, e um focinho curto. Sua pelagem é curta e de várias cores. Apesar de sua aparência musculosa, é uma raça bastante amigável e dócil, sendo uma excelente companhia para famílias e indivíduos que procuram um cão de estimação afetuoso e de fácil convívio.",
+        "expectativaVida": 10,
+        "tamanho": 30,
+        "peso": 9,
+        "adaptacao": 4,
+        "latido": 2,
+        "amizada": 5,
+        "tosa": 3,
+        "territorialismo": 3,
+        "sociabilidade": 5,
+        "apego": 5,
+        "treinamento": 3,
+        "relatos": [
+            {
+                "id": 1,
+                "relato":"Meu Bulldog Francês é a alegria da casa. Ele adora brincar com as crianças e sempre está disposto a fazer companhia. Seu temperamento é tão dócil que nunca tive problemas em levá-lo para passear no parque, onde ele interage amigavelmente com outros cães. Ele se apega muito a mim e sempre está por perto, seja na hora de assistir TV ou durante um cochilo à tarde. Embora às vezes seja teimoso durante o treinamento, com paciência e reforço positivo, ele aprende rápido e se mostra muito obediente."
+            }
+        ]
+    },
+    {
+        "id":2, 
+        "tipo": "cachorro",
+        "raca": "Bulldog inglês",
+        "foto": "./assets/raca-cachorros/bulldog-ingles.png",
+        "descricao": "O Bulldog inglês é uma raça de cão pequeno e robusto, conhecida por sua aparência distintiva, com uma cabeça larga e plana, orelhas grandes e eretas, e um focinho curto. Sua pelagem é curta e de várias cores. Apesar de sua aparência musculosa, é uma raça bastante amigável e dócil, sendo uma excelente companhia para famílias e indivíduos que procuram um cão de estimação afetuoso e de fácil convívio.",
+        "expectativaVida": 11,
+        "tamanho": 31,
+        "peso": 10,
+        "adaptacao": 5,
+        "latido": 3,
+        "amizada": 4,
+        "tosa": 4,
+        "territorialismo": 3,
+        "sociabilidade": 5,
+        "apego": 5,
+        "treinamento": 3,
+        "relatos": [
+            {
+                "id": 1,
+                "relato":"Meu Bulldog inglês é a alegria da casa. Ele adora brincar com as crianças e sempre está disposto a fazer companhia. Seu temperamento é tão dócil que nunca tive problemas em levá-lo para passear no parque, onde ele interage amigavelmente com outros cães. Ele se apega muito a mim e sempre está por perto, seja na hora de assistir TV ou durante um cochilo à tarde. Embora às vezes seja teimoso durante o treinamento, com paciência e reforço positivo, ele aprende rápido e se mostra muito obediente."
+            }
+        ]
+    }
+]
