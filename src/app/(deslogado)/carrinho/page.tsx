@@ -19,7 +19,7 @@ export default function Carrinho() {
   const produtos: Produto[] = usuarioLogado.produtosCarrinho.map((id) => {
     return buscarProduto(id)!
   })
-  const [frete, setFrete] = useState<number>(0)
+  const [frete, setFrete] = useState<number | string>(0)
   const [desconto, setDesconto] = useState<number>(0)
   const [cep, setCep] = useState<string>('')
   const [openCupons, setOpenCupons] = useState<boolean>(false)
@@ -29,6 +29,10 @@ export default function Carrinho() {
 
   useEffect(() => {
     if (cep.length != 9) {
+      if(cupom?.tipo == 'frete'){
+        setFrete("Gratuito")
+        return
+      }
       setFrete(0)
       setInexistente(false)
       setErro(false)
@@ -38,6 +42,16 @@ export default function Carrinho() {
   useEffect(()=>{
     setOpenCupons(false)
     calcularDesconto()
+    if (!cupom){
+      setDesconto(0)
+      if(cep.length == 9){
+        enviarFrete()
+      }
+    }
+    if(cupom?.tipo == 'frete'){
+      setFrete("Gratuito")
+      return
+    }
   },[cupom])
 
   const somaTotal = () => {
@@ -56,6 +70,9 @@ export default function Carrinho() {
       return
     }else if(cep == '11111-111'){
       setInexistente(true)
+      return
+    }else if(cupom?.tipo == 'frete'){
+      setFrete("Gratuito")
       return
     }
     setErro(false)
@@ -128,9 +145,9 @@ export default function Carrinho() {
             <div className='mt-6'>
               <Topico topico='Frete' preco={frete} />
               <div className='border-t border-cinza'></div>
-              <Topico topico='Descontos' preco={desconto} />
+              <Topico topico='Descontos' preco={desconto == 0 ? 0 : desconto.toFixed(2)} />
               <div className='border-t border-cinza'></div>
-              <Topico topico='Total' preco={somaTotal() + frete - desconto} />
+              <Topico topico='Total' preco={(somaTotal() + (typeof frete == 'number' ? frete : 0) - desconto).toFixed(2)} />
             </div>
 
           </section>
