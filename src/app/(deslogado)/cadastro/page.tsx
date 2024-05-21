@@ -13,7 +13,7 @@ export default function Cadastro() {
     const [sexo, setSexo] = useState<string>('');
     const [estado, setEstado] = useState<string>('');
     return (
-        <main className={`w-full overflow-hidden`}>
+        <main className={`w-full overflow-hidden text-preto`}>
             <section className='w-[90%] m-auto mt-10 md:w-full'>
                 <h1 className='font-averia text-center text-2xl font-bold'>Faça o cadastro e entre para a família Top Care!</h1>
             </section>
@@ -87,13 +87,13 @@ export default function Cadastro() {
                 </section>
             </section>
             <section>
-                <div className='border-t border-cinza mt-12 md:mt-20 w-[75%] m-auto lg:mt-32'></div>
+                <div className='border-t border-cinza mt-12 md:mt-20 w-[90%] m-auto lg:mt-32'></div>
             </section>
             <section className='flex justify-center mt-8'>
                 <h1 className='font-averia font-bold text-2xl'>Endereço</h1>
             </section>
-            <section className=' md:mt-16 mt-10 flex flex-col items-center gap-5 lg:gap-8'>
-                <section className='flex flex-col gap-5'>
+            <section className='md:mt-16 mt-10 w-full flex flex-col items-center gap-5 lg:gap-8'>
+                <section className='flex flex-col gap-5 w-[90%]'>
                     <div className='flex flex-col gap-5 lg:gap-8 lg:m-auto lg:flex-row'>
                         <MoldeInput>
                             <ResponsiveInput>
@@ -113,7 +113,7 @@ export default function Cadastro() {
                         </MoldeInput>
                     </div>
                 </section>
-                <section className='flex flex-col gap-5'>
+                <section className='flex flex-col gap-5 w-[90%]'>
                     <div className='flex flex-col gap-5 lg:gap-8 lg:m-auto lg:flex-row'>
                         <MoldeInput>
                             <ResponsiveInput>
@@ -134,8 +134,8 @@ export default function Cadastro() {
                     </div>
                 </section>
             </section>
-            <section className='w-full flex justify-center items-center mt-14 mb-14'>
-                <div className='w-52'>
+            <section className='w-full flex justify-center items-center mt-8 sm:mt-14 mb-14'>
+                <div className='w-[80%]'>
                     <BotaoGrande background='bg-terciaria' title='Cadastrar' type={'button'} />
                 </div>
             </section>
