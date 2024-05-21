@@ -101,7 +101,7 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
   }
 
   return (
-    <main className='w-full'>   
+    <main className='w-full text-preto'>   
       <section className='flex items-start'>
         {
           filtroOpen && (
