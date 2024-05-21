@@ -20,6 +20,7 @@ export default function Carrinho() {
     return buscarProduto(id)!
   })
   const [frete, setFrete] = useState<number>(0)
+  const [desconto, setDesconto] = useState<number>(0)
   const [cep, setCep] = useState<string>('')
   const [openCupons, setOpenCupons] = useState<boolean>(false)
   const [cupom, setCupom] = useState<Cupom>()
@@ -36,6 +37,7 @@ export default function Carrinho() {
 
   useEffect(()=>{
     setOpenCupons(false)
+    calcularDesconto()
   },[cupom])
 
   const somaTotal = () => {
@@ -56,8 +58,14 @@ export default function Carrinho() {
       setInexistente(true)
       return
     }
+    setErro(false)
     setFrete(34)
 
+  }
+  const calcularDesconto = () =>{
+    if(cupom){
+      setDesconto(cupom.porcentagem * somaTotal())
+    }
   }
 
   return (
@@ -120,9 +128,9 @@ export default function Carrinho() {
             <div className='mt-6'>
               <Topico topico='Frete' preco={frete} />
               <div className='border-t border-cinza'></div>
-              <Topico topico='Descontos' preco={0} />
+              <Topico topico='Descontos' preco={desconto} />
               <div className='border-t border-cinza'></div>
-              <Topico topico='Total' preco={somaTotal() + frete} />
+              <Topico topico='Total' preco={somaTotal() + frete - desconto} />
             </div>
 
           </section>
