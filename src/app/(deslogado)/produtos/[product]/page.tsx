@@ -2,6 +2,8 @@
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { AiFillStar } from "react-icons/ai";
 import { AiOutlineStar } from "react-icons/ai";
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa6";
 import { buscarProduto, buscarTodos } from '@/server/produtos/action'
 import { ProdutoCompleto, Especificacao, AvaliacaoType } from '@/types/produto'
 import { useEffect, useState } from 'react'
@@ -26,6 +28,7 @@ const carrosselProdutos = buscarTodos().map((produto, i) => (<CardProduto key={i
 export default function ProdutoDetails({ searchParams }: PropsProduct) {
   const [produtoProcurado, setProdutoProcurado] = useState<ProdutoCompleto>()
   const [numeroImagem, setNumeroImagem] = useState<number>(0)
+  const [favorito, setFavorito] = useState<boolean>(false)
   const [tamanho, setTamanho] = useState<string>();
 
   const construirEstrelas = (numEstrelas: number) => {
@@ -65,7 +68,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
               <div className='lg:h-full mt-3 w-full lg:w-[30%] md:m-auto flex flex-row items-center justify-center gap-1 lg:block'>
                 <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='bg-branco md:hidden font-poppins border border-black w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
                 {produtoProcurado.imagemProduto.map((image, i) => (
-                  <div onClick={() => setNumeroImagem(i)} key={i} className={`flex items-center justify-center cursor-pointer md:h-16 lg:w-[50%] lg:m-auto h-10 w-10 md:w-[40%] rounded-xl md:rounded-2xl border ${numeroImagem == i ? 'border-cinza-escuro': 'border-cinza'} md:mt-5 lg:mb-5`}>
+                  <div onClick={() => setNumeroImagem(i)} key={i} className={`flex items-center justify-center cursor-pointer md:h-16 lg:w-[50%] lg:m-auto h-10 w-10 md:w-[40%] rounded-xl md:rounded-2xl border ${numeroImagem == i ? 'border-cinza-escuro' : 'border-cinza'} md:mt-5 lg:mb-5`}>
                     <img src={image} alt="" className='w-[60%] 2xl:w-[50%] object-cover' />
                   </div>
                 ))}
@@ -81,7 +84,10 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             </div>
           </section>
           <section className='md:w-[55%] w-full flex flex-col max-sm:mt-4'>
-            <p className='font-poppins md:text-xl text-base font-normal text-preto'>{produtoProcurado.nomeProduto}</p>
+            <div className='flex flex-row items-center justify-between lg:w-[85%]'>
+              <p className='font-poppins md:text-xl text-base font-normal text-preto'>{produtoProcurado.nomeProduto}</p>
+              <div className="transition duration-100 active:scale-75 z-50" onClick={()=>setFavorito(!favorito)}>{favorito ? <FaHeart size={20} style={{ color: "#B5A6F3", }}/> : <FaRegHeart size={20} style={{ color: "#4f4f4f", }}/> }</div>
+            </div>
             <div className='flex flex-col md:flex-row md:gap-1 lg:text-sm text-xs font-poppins font-normal text-preto'>
               <p>Código: {produtoProcurado.codigo} |</p>
               <p> Ver descrição completa</p>
@@ -171,7 +177,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
                 <div key={i}>
                   <Avaliacao nomeUsuario={(buscarUsuario((avaliacao as AvaliacaoType).id)! as Usuario).nomeCompleto}
                     fotoUsuario={(buscarUsuario(avaliacao.id)! as Usuario).foto} avaliacaoUsuario={avaliacao.descricao}
-                    estrelas={construirEstrelas(avaliacao.nota)} notaAvaliacao={avaliacao.nota}/>
+                    estrelas={construirEstrelas(avaliacao.nota)} notaAvaliacao={avaliacao.nota} />
                 </div>
               ))
             }

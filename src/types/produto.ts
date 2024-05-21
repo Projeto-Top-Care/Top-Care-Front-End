@@ -20,13 +20,13 @@ export interface ProdutoCompleto{
     precoAssinantes: number
     tamanho: string[]
     disponivel: boolean,
-    favorito: boolean
     codigo: number
     estoque: number
     quantidadeVendas: number
     descricao: string[]
     especificacoes: Especificacao[]
     avaliacoes: AvaliacaoType[]
+    tags: string[],
 }
 
 export interface Especificacao{

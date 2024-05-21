@@ -40,7 +40,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
 
             </div>
 
-            <div className='flex flex-col items-center cursor-pointer' onClick={() => push(`/produtos/${nomeProduto}?id=${id}`)}>
+            <div className='flex flex-col items-center cursor-pointer' onClick={() => push(`/produtos/${nomeProduto.replace(" ","-")}?id=${id}`)}>
                 <div className="items-center justify-center flex flex-col-reverse md:flex-col">
                     <p className='text-xs md:text-sm h-10 font-medium text-preto text-center overflow-hidden line-clamp-2'>{nomeProduto}</p>
                     <img src={imagemProduto[0]} className='w-[60%] my-3' />

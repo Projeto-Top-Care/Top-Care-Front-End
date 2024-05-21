@@ -13,7 +13,8 @@ export interface Usuario {
     pets: Pet[]
     pedidos: Pedido[],
     favoritos: number[],
-    cartoes: Cartao[]
+    cartoes: Cartao[],
+    cupons: Cupom[]
 }
 
 export interface Pet {
@@ -60,4 +61,12 @@ export interface Pagamento {
     descontos: number,
     frete: number,
     valorTotal: number
+}
+
+export interface Cupom{
+    tipo: string
+    desconto: string
+    porcentagem: number
+    nome: string
+    limite: number
 }
