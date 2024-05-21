@@ -8,10 +8,6 @@ import { FaUserCircle } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 import { PiBoneFill } from "react-icons/pi";
 import { FaStore } from "react-icons/fa";
-import { GiSittingDog } from "react-icons/gi";
-import { MdOutlinePets } from "react-icons/md";
-import { RiFilePaperLine } from "react-icons/ri";
-import { FaSearch } from "react-icons/fa";
 
 import { useEffect, useRef, useState } from "react";
 

@@ -8,11 +8,13 @@ export interface Usuario {
     cpf: string,
     sexo: string,
     dataNascimento: string,
+    produtosCarrinho: number[]
     enderecos: Endereco[],
     pets: Pet[]
     pedidos: Pedido[],
     favoritos: number[],
-    cartoes: Cartao[]
+    cartoes: Cartao[],
+    cupons: Cupom[]
 }
 
 export interface Pet {
@@ -127,4 +129,12 @@ export interface AvaliacaoType{
     id: number
     nota: number
     descricao: string
+}
+
+export interface Cupom{
+    tipo: string
+    desconto: string
+    porcentagem: number
+    nome: string
+    limite: number
 }

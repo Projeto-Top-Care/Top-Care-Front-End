@@ -382,5 +382,153 @@
         "agencia": "elo"
       }
     ]
+  },
+  {
+    "id": 10,
+    "foto": "../assets/gatoFotoUsuario.png",
+    "nomeCompleto": "Maria Silva Souza",
+    "email": "maria.silva@email.com",
+    "celular": "+55 (20)00000-0009",
+    "senha": "senha1234",
+    "cpf": "000.000.000-00",
+    "sexo": "feminino",
+    "dataNascimento": "1980-01-01",
+    "produtosCarrinho": [
+      1,3,10,4,5,6
+    ],
+    "cupons": [
+      {
+        "tipo": "frete",
+        "desconto": "frete grátis",
+        "porcentagem": 1,
+        "nome": "FreteFree",
+        "limite": 20
+      },
+      {
+        "tipo": "desconto",
+        "desconto": "20%",
+        "porcentagem": 0.2,
+        "nome": "20Off",
+        "limite": 100
+      },
+      {
+        "tipo": "frete",
+        "desconto": "frete grátis",
+        "porcentagem": 1,
+        "nome": "TopTopCare",
+        "limite": 50
+      },
+      {
+        "tipo": "desconto",
+        "desconto": "40%",
+        "porcentagem": 0.4,
+        "nome": "40Off",
+        "limite": 200
+      },
+      {
+        "tipo": "desconto",
+        "desconto": "40%",
+        "porcentagem": 0.4,
+        "nome": "40Off",
+        "limite": 200
+      },
+      {
+        "tipo": "desconto",
+        "desconto": "40%",
+        "porcentagem": 0.4,
+        "nome": "40Off",
+        "limite": 200
+      }
+    ],
+    "enderecos": [
+      {
+        "id": 1,
+        "nome": "Casa",
+        "cep": "12345-678",
+        "estado": "SP",
+        "cidade": "São Paulo",
+        "bairro": "Bairro dos Jardins",
+        "rua": "Rua Augusta",
+        "numero": 1000,
+        "complemento": "apto 101"
+      },
+      {
+        "id": 2,
+        "nome": "Casa Vó",
+        "cep": "87654-321",
+        "estado": "RJ",
+        "cidade": "Rio de Janeiro",
+        "bairro": "Copacabana",
+        "rua": "Avenida Atlântica",
+        "numero": 5000,
+        "complemento": "casa"
+      }
+    ],
+    "pets": [
+      {
+        "nome": "Rex",
+        "especie": "Cachorro",
+        "raca": "Golden Retriever",
+        "idade": 3
+      },
+      {
+        "nome": "Luna",
+        "especie": "Gata",
+        "raca": "Siamês",
+        "idade": 2
+      }
+    ],
+    "pedidos": [
+      {
+        "codigo": 123456789,
+        "dataCompra": "12/12/2012",
+        "endereco": 1,
+        "pagamento": [
+          {
+            "metodo": "cartao",
+            "pago": true,
+            "subtotal": 100,
+            "descontos": 9.00,
+            "frete": 12.00,
+            "valorTotal": 103.00
+          }
+        ],
+        "endereço": 1,
+        "produtos": [
+          {
+            "id": 1,
+            "quantidadeComprada": 1
+          },
+          {
+            "id": 2,
+            "quantidadeComprada": 3
+          },
+          {
+            "id": 3,
+            "quantidadeComprada": 1
+          }
+        ]
+      }
+    ],
+    "favoritos": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "cartoes": [
+      {
+        "nome": "Cartao 1",
+        "numero": 12345678,
+        "validade": "12/26",
+        "agencia": "mastercard"
+      },
+      {
+        "nome": "Cartao 2",
+        "numero": 87654321,
+        "validade": "12/26",
+        "agencia": "visa"
+      }
+    ]
   }
 ]

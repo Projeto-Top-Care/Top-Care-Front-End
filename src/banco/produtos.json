@@ -14,7 +14,6 @@
     "codigo": 10031110007717,
     "estoque": 12,
     "quantidadeVendas": 4,
-    "favorito": true,
     "descricao": [
       "- Indicada para cães;",
       "- Com uma nova tecnologia com ultra proteção externa de borracha de PVC chamada neopro;",
@@ -57,7 +56,6 @@
     "codigo": 10031110007718,
     "estoque": 12,
     "quantidadeVendas": 1,
-    "favorito": true,
     "descricao": [
       "- Indicada para gatos;",
       "- Confeccionada em nylon resistente;",
@@ -77,7 +75,7 @@
       {"topico": "Apresentação", "resposta": "Único."}
     ],
     "avaliacoes": [
-      {"id": 5, "nota": 4, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+      {"id": 2, "nota": 4, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
     ],
     "tags":["passeio", "diversão", "entreterimento", "acessório", "beleza"]
   },
@@ -96,7 +94,6 @@
     "codigo": 10031110007719,
     "estoque": 12,
     "quantidadeVendas": 10,
-    "favorito": true,
     "descricao": [
       "- Indicada para cães e gatos;",
       "- Confortável e resistente;",
@@ -117,7 +114,7 @@
       {"topico": "Apresentação", "resposta": "PP, P, M e G."}
     ],
     "avaliacoes": [
-      {"id": 8, "nota": 1, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+      {"id": 2, "nota": 1, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
     ],
     "tags":["dormir", "sono", "noite"]
   },
@@ -136,7 +133,6 @@
     "codigo": 10031110007720,
     "estoque": 12,
     "quantidadeVendas": 101,
-    "favorito": false,
     "descricao": [
       "- Indicado para cães;",
       "- Confeccionado em material atóxico e resistente;",
@@ -174,7 +170,6 @@
     "codigo": 10031110007721,
     "estoque": 12,
     "quantidadeVendas": 1001,
-    "favorito": false,
     "descricao": [
       "- Indicado para gatos;",
       "- Estrutura resistente e durável;",
@@ -212,7 +207,6 @@
     "codigo": 10031110007722,
     "estoque": 12,
     "quantidadeVendas": 7,
-    "favorito": false,
     "descricao": [
       "- Indicado para cães e gatos;",
       "- Fabricado em material resistente;",
@@ -250,7 +244,6 @@
     "codigo": 10031110007723,
     "estoque": 12,
     "quantidadeVendas": 798,
-    "favorito": false,
     "descricao": [
       "- Indicado para cães;",
       "- Confeccionado em material atóxico e resistente;",
@@ -288,7 +281,6 @@
     "codigo": 10031110007724,
     "estoque": 12,
     "quantidadeVendas": 387,
-    "favorito": false,
     "descricao": [
       "- Indicada para cães;",
       "- Fabricada em material resistente e confortável;",
@@ -328,7 +320,6 @@
     "codigo": 10031110007725,
     "estoque": 12,
     "quantidadeVendas": 896,
-    "favorito": false,
     "descricao": [
       "- Indicada para cães e gatos;",
       "- Fabricada em material resistente e durável;",
@@ -367,7 +358,6 @@
     "codigo": 10031110007726,
     "estoque": 12,
     "quantidadeVendas": 36,
-    "favorito": false,
     "descricao": [
       "- Indicado para cães e gatos;",
       "- Confeccionado em material resistente e durável;",
@@ -386,7 +376,7 @@
       {"topico": "Apresentação", "resposta": "Único."}
     ],
     "avaliacoes": [
-      {"id": 5, "nota": 5.0, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+      {"id": 1, "nota": 5.0, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
     ],
     "tags":["diversão", "brinquedos", "bolinha"]
   }
