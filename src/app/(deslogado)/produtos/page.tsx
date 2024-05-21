@@ -136,4 +136,3 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
     </main>
   )
 }
-
