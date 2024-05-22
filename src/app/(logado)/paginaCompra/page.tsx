@@ -24,7 +24,7 @@ export default function PaginaCompra() {
                 <div className="z-50">
                     <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down drop-shadow-lg`}>
                         <div className="flex items-center justify-center lg:h-10 h-8 bg-error rounded font-poppins">
-                            <p className="text-xs lg:text-base text-branco">{open}</p>
+                            <p className="text-xs lg:text-base text-brancon">{open}</p>
                         </div>
                     </div>
                 </div>

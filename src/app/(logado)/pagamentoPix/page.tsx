@@ -9,7 +9,7 @@ import { Usuario, QntProduto, Pedido } from "@/types/usuarios"
 import { buscarUsuario } from "@/server/usuario/action"
 
 export default function pagamentoPix() {
-    
+
     const idUser = 1
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario>(buscarUsuario(idUser)!)
     const [pedido, setPedido] = useState<Pedido>(usuarioLogado.pedidos[0])
@@ -48,22 +48,24 @@ export default function pagamentoPix() {
                 <section className="flex flex-col-reverse gap-2 sm:flex-row sm:px-2 md:px-8 lg:px-20">
                     <section className="p-4">
                         <ResumoPedido produtos={pedido.produtos} desconto={9} frete={0} />
-                    </section> 
+                    </section>
 
-                    <section className="font-poppins gap-4 text-preto flex flex-col justify-center items-center sm:w-[50%]">
-                        <p className="text-xs sm:text-sm">Você tem até 1 hora para pagar!</p>
+                    <section className="font-poppins gap-8 text-preto flex flex-col justify-center items-center sm:w-[50%]">
+                        <div className="flex flex-col items-center gap-2">
+                            <p className="text-xs sm:text-sm">Você tem até 1 hora para pagar!</p>
 
-                        <img className="size-36" src="./assets/qrcode.png" />
+                            <img className="size-36" src="./assets/qrcode.png" />
+                        </div>
 
-                        <div className="sm:w-[50%] w-[80%]">
+                        <div className="sm:w-[70%] w-[80%] flex flex-col gap-2">
                             <p className="text-sm">Pix copia e cola</p>
-                            <div className="flex flex-row justify-between items-center gap-4 border-[1px] border-cinza rounded-md p-2">
-                                    <p className="line-clamp-1 font-poppins md:text-xs text-sm text-cinza-escuro break-all">01010101sfsdasdafdasfsdf01010101010101010101010101010101</p>
-                                    <IoCopyOutline color="#4F4F4F" onClick={() => copyContent("01010101sfsdasdafdasfsdf01010101010101010101010101010101")} className='cursor-pointer' />
+                            <div className="flex flex-row justify-between items-center gap-4 border-[1px] border-cinza rounded-md px-4 py-3">
+                                <p className="line-clamp-1 font-poppins md:text-xs text-sm text-cinza-escuro break-all">01010101sfsdasdafdasfsdf01010101010101010101010101010101</p>
+                                <IoCopyOutline size={25} color="#4F4F4F" onClick={() => copyContent("01010101sfsdasdafdasfsdf01010101010101010101010101010101")} className='cursor-pointer' />
                             </div>
                         </div>
-                    </section>                    
-                </section>   
+                    </section>
+                </section>
 
             </div>
         </main>
