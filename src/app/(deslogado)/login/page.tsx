@@ -5,11 +5,9 @@ import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { useRouter  } from 'next/navigation'
 import { login } from '@/server/usuario/action'
 import React, { useState } from 'react'
-import { number } from 'zod'
-import { cookies } from 'next/headers'
 
 export default function Login() {
-    const {push} = useRouter();
+    const router = useRouter();
 
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
@@ -17,11 +15,10 @@ export default function Login() {
     const verificarLogin = () =>{
         let usuarioId = login(email, senha)
         if(usuarioId != undefined){
-            console.log("deu")
             localStorage.setItem("idUser", JSON.stringify(usuarioId))
-            push('/')
+            return "/"
         } else{
-            console.log("não deu")
+            return "#"
         }
     }
 
@@ -36,10 +33,10 @@ export default function Login() {
                         <InputText onChange={(e) => setEmail(e.target.value)} type={'text'} placeholder='Email' />
                         <div className='flex flex-col gap-2'>
                             <InputText onChange={(e) => setSenha(e.target.value)} type={'password'} placeholder='Senha' />
-                            <p onClick={() => push('/recuperacaoSenhaDeslogado')} className='underline text-cinza-escuro font-poppins text-xs select-none cursor-pointer w-36 mb-4'>Esqueçeu sua senha?</p>
-                            <div onClick={() => verificarLogin()}>
-                                <BotaoGrande title='Avançar' background='bg-terciaria' type={'button'} />
-                            </div>
+                            <p onClick={() => router.push('/recuperacaoSenhaDeslogado')} className='underline text-cinza-escuro font-poppins text-xs select-none cursor-pointer w-36 mb-4'>Esqueçeu sua senha?</p>
+                            <a href={verificarLogin()}>
+                                <BotaoGrande title='Login' background='bg-terciaria' type={'button'} />
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -54,7 +51,7 @@ export default function Login() {
                     </div>
                     <div>
                     </div>
-                    <div className='w-full mt-4' onClick={() => push('/cadastro')}>
+                    <div className='w-full mt-4' onClick={() => router.push('/cadastro')}>
                         <BotaoGrande title='Cadastrar' background='bg-terciaria' type={'button'} />
                     </div>
                 </section>

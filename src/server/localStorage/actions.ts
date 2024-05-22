@@ -1,8 +1,15 @@
 'use client'
+
+import { useEffect, useState } from "react"
+
 export const getLocalStorageArray = (pesquisa: string) =>{
+    let itens: string[] = []
     const items = window.localStorage.getItem(`${pesquisa}`)!
-    return (items != null ? JSON.parse(items) : [])
+    itens = (items != null ? JSON.parse(items) : [])
+    return itens 
 }
 export const getLocalStorageItem = (pesquisa: string) =>{
-    return localStorage.getItem(pesquisa);
+    let item: string | null
+    item = localStorage.getItem(pesquisa);
+    return item!
 }

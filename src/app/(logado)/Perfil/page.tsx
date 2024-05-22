@@ -17,13 +17,12 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import React, { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
-import Produtos from "@/app/(deslogado)/produtos/page";
 import { Produto } from "@/types/produto";
 
 export default function Perfil() {
     const [open, setOpen] = useState<boolean>(false)
     const id = localStorage.getItem('idUser')
-    const usuarioLogado: Usuario = buscarUsuario(2)!
+    const usuarioLogado: Usuario = buscarUsuario(Number.parseInt(id!))!
     const [showPassword, setShowPassword] = useState(false);
     const senha = usuarioLogado.senha
     const [showAllAddresses, setShowAllAddresses] = useState(false);
@@ -41,6 +40,9 @@ export default function Perfil() {
         setShowPassword(!showPassword);
     };
 
+    const logout = () =>{
+        localStorage.setItem('idUser', '')
+    }
 
     const carrosselProdutos = buscarTodos().map((produto, i) => (<CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
         precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />))
@@ -51,8 +53,8 @@ export default function Perfil() {
                 <TituloLinha titulo="Minha conta" />
                 <div className="flex justify-end w-[90%]">
                     <div className="mt-5">
-                        <a href="/paginaInicial">
-                            <button className='flex md:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-28 w-20 h-8 hover:bg-[#9EBF40] justify-around'> Logout <IoExitOutline className="mt-1" /></button>
+                        <a href="/">
+                            <button className='flex md:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-28 w-20 h-8 hover:bg-[#9EBF40] justify-around' onClick={()=>logout()}> Logout <IoExitOutline className="mt-1" /></button>
                         </a>
                     </div>
                 </div>

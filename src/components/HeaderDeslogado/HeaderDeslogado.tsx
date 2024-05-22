@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation"
 import BarraPesquisa from "../BarraPesquisa/BarraPesquisa";
 import { IoMenu, IoClose } from "react-icons/io5";
-import { FaRegHeart, FaUserCircle, FaSearch, FaStore } from "react-icons/fa";
+import { FaStore } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 import { PiBoneFill } from "react-icons/pi";
 import { FaBook, FaPhone, FaQuestion } from "react-icons/fa6";
@@ -56,7 +56,7 @@ export default function HeaderDeslogado() {
                 </div>
 
                 <div className='flex max-sm:hidden flex-row gap-4 items-center justify-end'>
-                    <FiShoppingBag onClick={() => push('/paginaCompra')} size={'1.4rem'} style={{ color: "#322828" }} />
+                    <FiShoppingBag onClick={() => push('/carrinho')} className='cursor-pointer' size={'1.4rem'} style={{ color: "#322828" }} />
                     <BotaoPequeno onClick={() => push('/login')} title="Login" />
                 </div>
 

@@ -51,7 +51,7 @@ export interface Cartao {
 
 export interface QntProduto {
     id: number,
-    quantidadeComprada: number
+    quantidade: number
 }
 
 export interface Pagamento {
