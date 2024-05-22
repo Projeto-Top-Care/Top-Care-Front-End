@@ -14,7 +14,6 @@ export default function Home() {
 
     useEffect(()=>{
         setUser(buscarUsuario(parseInt(idUser!)))
-        console.log(idUser)
     },[user])
 
     const renderizarHeader = () =>{

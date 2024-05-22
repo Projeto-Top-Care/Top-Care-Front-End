@@ -44,7 +44,7 @@ export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Prod
         const carrinho = getLocalStorageArray('carrinho')
         const newCarrinho = carrinho.map((item)=>{
             if((item as unknown as QntProduto).id == id){
-                (item as unknown as QntProduto).quantidade = quantidade
+                return {id: id, quantidade: quantidade}
             }
         })
         localStorage.setItem('carrinho', JSON.stringify(newCarrinho))

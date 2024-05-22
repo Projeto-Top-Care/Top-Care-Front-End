@@ -106,7 +106,7 @@ export default function PaginaCompra() {
 
                 <section className="flex flex-col justify-center gap-8 lg:flex-row w-[90%]">
                     <section className="py-4 lg:w-[68%]">
-                        <ResumoPedido produtos={pedido} desconto={9.2} frete={12} />
+                        <ResumoPedido produtos={pedido} desconto={0} frete={0} />
                     </section>
 
                     <section className="py-4 lg:w-[28%]">

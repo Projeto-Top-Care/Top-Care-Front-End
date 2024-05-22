@@ -7,12 +7,14 @@ import { useState } from "react"
 import { IoCopyOutline } from "react-icons/io5"
 import { Usuario, QntProduto, Pedido } from "@/types/usuarios"
 import { buscarUsuario } from "@/server/usuario/action"
+import { getLocalStorageArray } from "@/server/localStorage/actions"
+import { buscarProduto } from "@/server/produtos/action"
 
 export default function pagamentoPix() {
     
     const idUser = 1
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario>(buscarUsuario(idUser)!)
-    const [pedido, setPedido] = useState<Pedido>(usuarioLogado.pedidos[0])
+    const pedido: QntProduto[] = (getLocalStorageArray('carrinho') as unknown as QntProduto[])
 
     const [open, setOpen] = useState<boolean>(false)
 
@@ -47,7 +49,7 @@ export default function pagamentoPix() {
 
                 <section className="flex flex-col-reverse gap-2 sm:flex-row sm:px-2 md:px-8 lg:px-20">
                     <section className="p-4">
-                        <ResumoPedido produtos={pedido.produtos} desconto={9} frete={0} />
+                        <ResumoPedido produtos={pedido} desconto={0} frete={0} />
                     </section> 
 
                     <section className="font-poppins gap-4 text-preto flex flex-col justify-center items-center sm:w-[50%]">
