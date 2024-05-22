@@ -45,6 +45,8 @@ export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Prod
         const newCarrinho = carrinho.map((item)=>{
             if((item as unknown as QntProduto).id == id){
                 return {id: id, quantidade: quantidade}
+            }else{
+                return item
             }
         })
         localStorage.setItem('carrinho', JSON.stringify(newCarrinho))

@@ -101,8 +101,8 @@ export default function Carrinho() {
       <section className='mt-10'>
         <TituloLinha titulo='Minha Sacola' />
       </section>
-      <section className=' w-[90%] m-auto flex flex-row justify-between mt-14 mb-24 h-[35rem]'>
-        <section className='border border-cinza rounded-lg w-[65%] px-6 py-4 overflow-auto scroll max-h-'>
+      <section className=' w-[90%] m-auto flex md:flex-row flex-col justify-between mt-14 mb-24 md:h-[35rem]'>
+        <section className='border border-cinza rounded-lg md:w-[65%] w-full px-6 py-4 overflow-auto scroll h-[20rem]'>
           <h1 className='font-poppins text-xl font-medium'>Produtos</h1>
           <p className='font-poppins underline text-sm mt-1 cursor-pointer'>Limpar sacola</p>
           <div className='flex mt-5 flex-col gap-10'>
@@ -115,12 +115,12 @@ export default function Carrinho() {
             }
           </div>
         </section>
-        <section className='flex flex-col w-[33%] items-end justify-between'>
+        <section className='flex flex-col md:w-[33%] w-full items-end justify-between'>
           <section className='rounded-lg bg-terciaria w-full py-3 px-4'>
             <h1 className='font-poppins font-bold text-xl'>Sumário</h1>
             <div className='flex flex-row justify-between mt-6'>
               <p className='font-poppins font-medium'>Subtotal</p>
-              <p className='font-poppins'>R${somaTotal().toString().replace(".", ",")}</p>
+              <p className='font-poppins'>R${somaTotal().toFixed(2).replace(".", ",")}</p>
             </div>
             <div className='mt-5'>
               <p className='font-poppins font-medium'>Cupons</p>
