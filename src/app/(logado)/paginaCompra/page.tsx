@@ -24,8 +24,8 @@ export default function PaginaCompra() {
             return (
                 <div className="z-50">
                     <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down drop-shadow-lg`}>
-                        <div className="flex items-center justify-center lg:h-10 h-8 bg-terciaria rounded font-poppins">
-                            <p className="text-xs lg:text-base">{open}</p>
+                        <div className="flex items-center justify-center lg:h-10 h-8 bg-error rounded font-poppins">
+                            <p className="text-xs lg:text-base text-branco">{open}</p>
                         </div>
                     </div>
                 </div>
@@ -79,19 +79,24 @@ export default function PaginaCompra() {
         }
     }
     const pagar = () => {
-        if (ePix) {
-            push('./pagamentoPix')
-        } if (eBoleto) {
-            push('./pagamentoBoleto')
-        } if (eCartao) {
-            push('./perfil')
-        } if (enderecoEscolhido == null) {
+        if (enderecoEscolhido == null) {
             setOpen("Selecione um endereco antes de avançar!")
             setTimeout(() => {
                 setOpen("")
             }, 4000)
-        } else {
+        } else if (!eCartao && !ePix && !eBoleto){
             setOpen("Selecione uma forma de pagamento antes de avançar!")
+            setTimeout(() => {
+                setOpen("")
+            }, 4000)
+        } else if (ePix) {
+            push('./pagamentoPix')
+        } else if (eBoleto) {
+            push('./pagamentoBoleto')
+        } else if (eCartao && cartaoEscolhido != null) {
+            push('./Perfil')
+        } else {
+            setOpen("Selecione um cartão antes de avançar!")
             setTimeout(() => {
                 setOpen("")
             }, 4000)
