@@ -6,6 +6,7 @@ export interface Produto{
     precoAntigoDoProduto: number
     desconto: string
     precoNovo: number
+    favorito?: boolean
 }
 export interface ProdutoCompleto{
     id: number
@@ -18,12 +19,14 @@ export interface ProdutoCompleto{
     marca: string
     precoAssinantes: number
     tamanho: string[]
-    disponivel: boolean
+    disponivel: boolean,
+    favorito: boolean
     codigo: number
     estoque: number
+    quantidadeVendas: number
     descricao: string[]
-    especificacoes: object[]
-    avaliacoes: object[]
+    especificacoes: Especificacao[]
+    avaliacoes: AvaliacaoType[]
 }
 
 export interface Especificacao{

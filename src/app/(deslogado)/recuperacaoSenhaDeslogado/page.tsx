@@ -51,7 +51,7 @@ export default function RecuperacaoSenhaDeslogado() {
                     </div>
                     <form className="mt-5 lg:w-[31%] md:w-[50%] w-[80%] " action={() => verificaForms()}>
                         <label className="block " >
-                            <InputText placeholder="Digite seu email" type={'email'} id='email' className="peer " onChange={(e) => setEmail(e.target.value)} />
+                            <InputText placeholder="Digite seu email" type={email} id='email' className="peer " onChange={(e) => setEmail(e.target.value)} />
                         </label>
                         <div className="mt-8 mb-20">
                             <BotaoGrande title="Continuar" type='submit' background="bg-secundaria" />

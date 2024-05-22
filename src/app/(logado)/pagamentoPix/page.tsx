@@ -5,15 +5,16 @@ import ResumoPedido from "@/components/ResumoPedido/resumoPedido"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import { useState } from "react"
 import { IoCopyOutline } from "react-icons/io5"
+import { Usuario, QntProduto, Pedido } from "@/types/usuarios"
+import { buscarUsuario } from "@/server/usuario/action"
 
 export default function pagamentoPix() {
-
-    const produtos = ["Kit para banho Sanol Cachorros e Gatos", "Pote para ração em formato de pata de cachorro", "Coleira com pingente tamanho M unissex para cães e gatos"]
-    const quantidades = [1, 1, 1]
-    const precos = [11.1, 11.1, 11.1]
+    
+    const idUser = 1
+    const [usuarioLogado, setUsuarioLogado] = useState<Usuario>(buscarUsuario(idUser)!)
+    const [pedido, setPedido] = useState<Pedido>(usuarioLogado.pedidos[0])
 
     const [open, setOpen] = useState<boolean>(false)
-    const [openModal, setOpenModal] = useState<boolean>(false)
 
     const copyContent = (content: string) => {
         navigator.clipboard.writeText(content);
@@ -46,7 +47,7 @@ export default function pagamentoPix() {
 
                 <section className="flex flex-col-reverse gap-2 sm:flex-row sm:px-2 md:px-8 lg:px-20">
                     <section className="p-4">
-                        <ResumoPedido produtos={produtos} quantidades={quantidades} precos={precos} desconto={9} frete={0} />
+                        <ResumoPedido produtos={pedido.produtos} desconto={9} frete={0} />
                     </section> 
 
                     <section className="font-poppins gap-4 text-preto flex flex-col justify-center items-center sm:w-[50%]">
