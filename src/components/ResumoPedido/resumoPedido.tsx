@@ -16,7 +16,6 @@ export default function ResumoPedido({ produtos, desconto, frete }: IResumoPedid
         const prods: Produto[] = produtos.map((item, i) => {
             return (buscarProduto(item.id)! as Produto);
         })
-        console.log(prods);
         return prods
 
     }
@@ -25,7 +24,7 @@ export default function ResumoPedido({ produtos, desconto, frete }: IResumoPedid
     const calcularSubtotal = () => {
         let soma = 0
         produtosResumo.map((item, i) => {
-            soma += item.precoNovo * produtos[i].quantidadeComprada
+            soma += item.precoNovo * produtos[i].quantidade
         })
         return soma
     }
@@ -47,14 +46,13 @@ export default function ResumoPedido({ produtos, desconto, frete }: IResumoPedid
                     <h4 className="font-medium text-sm sm:text-base">Produtos</h4>
 
                     {
-
                         <div className="flex flex-col text-sm py-4">
                             {
                                 produtosResumo.map((item, i) => (
                                     <div className="flex flex-row justify-between sm:gap-8 gap-2" key={i}>
-                                        <p className="text-xs sm:text-sm">{produtos[i].quantidadeComprada}x</p>
+                                        <p className="text-xs sm:text-sm">{produtos[i].quantidade}x</p>
                                         <p className="w-full text-start line-clamp-1 text-xs sm:text-sm">{item.nomeProduto}</p>
-                                        <p className="text-xs sm:text-sm">R${(item.precoNovo * produtos[1].quantidadeComprada).toFixed(2)}</p>
+                                        <p className="text-xs sm:text-sm">R${(item.precoNovo * produtos[i].quantidade).toFixed(2)}</p>
                                     </div>
                                 ))
                             }

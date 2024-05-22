@@ -33,7 +33,7 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                                 <p className="font-poppins text-cinza-escuro md:text-base text-xs">Código de rastreio:</p>
                             </div>
                             <div>
-                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Número do pedido: {usuarioProcurado?.pedidos[0].codigoPedido}</p>
+                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Número do pedido: {usuarioProcurado?.pedidos[0].codigo}</p>
                                 <p className="font-poppins text-cinza-escuro md:text-base text-xs">Data da compra: {usuarioProcurado?.pedidos[0].dataCompra}</p>
                             </div>
                         </div>

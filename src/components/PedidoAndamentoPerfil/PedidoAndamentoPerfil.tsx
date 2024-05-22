@@ -13,7 +13,7 @@ interface IPedidoAndamentoPerfil {
     data: string;
     numPedido: number;
     status: string;
-    valor: number[];
+    valor: number;
     src: string[]; 
 }
 

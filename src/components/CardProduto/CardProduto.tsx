@@ -8,10 +8,12 @@ import { Produto } from '@/types/produto'
 
 import { useEffect, useState } from 'react'
 import React from "react";
+import { getLocalStorageArray } from "@/server/localStorage/actions";
 
 const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo, favorito}: Produto) => {
 
     const [favoritoCard, setFavoritoCard] = useState<boolean>(favorito ? true : false);
+    const [open, setOpen] = useState<boolean>(false)
     const {push} = useRouter()
 
     useEffect(() => {
@@ -24,8 +26,37 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
             <FaRegHeart style={{ color: "#4f4f4f", }} className="w-4" />) 
     }
 
+    const adicionarCarrinho = () =>{
+        const carrinho = getLocalStorageArray('carrinho')
+        const newProduto = {
+            id: id,
+            quantidade: 1,
+        }
+        const carrinhoAtualizado = [...carrinho, newProduto]
+        localStorage.setItem('carrinho', JSON.stringify(carrinhoAtualizado))
+        setOpen(true)
+        setTimeout(() => {
+            setOpen(false)
+        }, 4000)
+    }
+
+    const adicionadoCarrinho = () => {
+        if (open) {
+            return (
+                <div className="z-50">
+                    <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down`}>
+                        <div className="flex items-center justify-center lg:h-10 h-8 bg-terciaria rounded font-poppins">
+                            <p className="text-xs lg:text-base">Adicionado ao Carrinho!</p>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+    }
+
     return (
         <div className='flex flex-col gap-3 border-cinza border-[1px] rounded-lg w-52 font-poppins px-2 py-3 '>
+            {adicionadoCarrinho()}
             <div className='flex flex-row justify-between items-center' >
                 <div className='flex flex-row gap-[0.2rem] items-center justify-center'>
                     <AiFillStar style={{ color: "#FFD601", }} className="w-5" />
@@ -52,7 +83,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
             <div className='flex flex-row gap-1 justify-between'>
                 <button className='transition ease-in-out delay-150 duration-200 text-xs text-preto font-medium bg-secundaria rounded-lg w-[76%] h-7 hover:bg-[#9EBF40]'>Comprar agora</button>
                 <button className='bg-primaria rounded-lg w-[24%] transition ease-in-out delay-150 duration-200 hover:bg-[#826cda] flex justify-center items-center'>
-                    <FiShoppingBag style={{ color: "#322828", }} className="w-3 sm:w-4" />
+                    <FiShoppingBag style={{ color: "#322828", }} className="w-3 sm:w-4" onClick={()=>adicionarCarrinho()}/>
                 </button>
             </div>
         </div>

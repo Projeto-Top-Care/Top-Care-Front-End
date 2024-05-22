@@ -2,20 +2,21 @@
 import ResumoPedido from "@/components/ResumoPedido/resumoPedido";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { FaPlus } from "react-icons/fa6";
-import { Usuario, Endereco, Pedido, QntProduto, Cartao } from "@/types/usuarios";
+import { Usuario, Endereco, QntProduto, Cartao } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
 import { useState } from "react";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
 import { useRouter } from "next/navigation";
-import { Produto } from "@/types/produto";
+import { getLocalStorageArray, getLocalStorageItem } from "@/server/localStorage/actions";
+import { buscarProduto } from "@/server/produtos/action";
 
 export default function PaginaCompra() {
 
     const { push } = useRouter();
 
-    const idUser = 1
-    const usuarioLogado: Usuario = (buscarUsuario(idUser)!)
+    const idUser = getLocalStorageItem('idUser')
+    const usuarioLogado: Usuario = (buscarUsuario(parseInt(idUser))!)
 
     const [open, setOpen] = useState<string>("")
     const showError = () => {
@@ -36,7 +37,7 @@ export default function PaginaCompra() {
     const [enderecoUsuario, setEnderecoUsuario] = useState("-")
     const [complemento, setComplemento] = useState("-")
 
-    const [pedido, setPedido] = useState<Pedido>(usuarioLogado.pedidos[0])
+    const pedido: QntProduto[] = (getLocalStorageArray('carrinho') as unknown as QntProduto[])
 
     const [eCartao, setECartao] = useState(false)
     const [eBoleto, setEBoleto] = useState(false)
@@ -105,7 +106,7 @@ export default function PaginaCompra() {
 
                 <section className="flex flex-col justify-center gap-8 lg:flex-row w-[90%]">
                     <section className="py-4 lg:w-[68%]">
-                        <ResumoPedido produtos={pedido.produtos} desconto={9.2} frete={12} />
+                        <ResumoPedido produtos={pedido} desconto={9.2} frete={12} />
                     </section>
 
                     <section className="py-4 lg:w-[28%]">

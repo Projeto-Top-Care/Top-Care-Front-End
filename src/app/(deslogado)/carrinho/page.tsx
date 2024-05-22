@@ -1,11 +1,14 @@
 'use client'
 import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
 import InputMask from '@/components/InputMask/InputMask'
+import DoisBotoes from '@/components/Pop-up/DoisBotoes/DoisBotoes'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
+import { getLocalStorageArray, getLocalStorageItem } from '@/server/localStorage/actions'
 import { buscarProduto } from '@/server/produtos/action'
 import { buscarUsuario } from '@/server/usuario/action'
 import { Produto } from '@/types/produto'
-import { Usuario, Cupom } from '@/types/usuarios'
+import { Usuario, Cupom, QntProduto } from '@/types/usuarios'
+import { useRouter } from 'next/navigation'
 
 import React, { useEffect, useState } from 'react'
 import CupomPequeno from './CupomPequeno'
@@ -14,10 +17,10 @@ import Produtos from './Produtos'
 import Topico from './Topico'
 
 export default function Carrinho() {
-  const idUser = 10
-  const usuarioLogado: Usuario = buscarUsuario(idUser)!
-  const produtos: Produto[] = usuarioLogado.produtosCarrinho.map((id) => {
-    return buscarProduto(id)!
+  const idUser = getLocalStorageItem('idUser');
+  const usuarioLogado: Usuario | undefined = buscarUsuario(Number.parseInt(idUser!))
+  const produtos: Produto[] = getLocalStorageArray('carrinho').map((item)=>{
+    return buscarProduto((item as unknown as QntProduto).id)!
   })
   const [frete, setFrete] = useState<number | string>(0)
   const [desconto, setDesconto] = useState<number>(0)
@@ -26,10 +29,11 @@ export default function Carrinho() {
   const [cupom, setCupom] = useState<Cupom>()
   const [erro, setErro] = useState<boolean>(false)
   const [inexitente, setInexistente] = useState<boolean>(false)
+  const router = useRouter()
 
   useEffect(() => {
     if (cep.length != 9) {
-      if(cupom?.tipo == 'frete'){
+      if (cupom?.tipo == 'frete') {
         setFrete("Gratuito")
         return
       }
@@ -39,39 +43,42 @@ export default function Carrinho() {
     }
   }, [cep])
 
-  useEffect(()=>{
+  useEffect(() => {
     setOpenCupons(false)
     calcularDesconto()
-    if (!cupom){
+    if (!cupom) {
       setDesconto(0)
-      if(cep.length == 9){
+      if (cep.length == 9) {
         enviarFrete()
       }
     }
-    if(cupom?.tipo == 'frete'){
+    if (cupom?.tipo == 'frete') {
       setFrete("Gratuito")
       return
     }
-  },[cupom])
+  }, [cupom])
 
   const somaTotal = () => {
-    let total = 0
+    if (typeof produtos != undefined) {
+      let total = 0
 
-    produtos.forEach((produto) => [
-      total += produto.precoNovo
-    ])
+      produtos!.forEach((produto) => [
+        total += produto.precoNovo
+      ])
 
-    return total;
+      return total;
+    }
+    return 0
   }
 
-  const enviarFrete = () =>{
-    if (cep.length !== 9){
+  const enviarFrete = () => {
+    if (cep.length !== 9) {
       setErro(true)
       return
-    }else if(cep == '11111-111'){
+    } else if (cep == '11111-111') {
       setInexistente(true)
       return
-    }else if(cupom?.tipo == 'frete'){
+    } else if (cupom?.tipo == 'frete') {
       setFrete("Gratuito")
       return
     }
@@ -79,10 +86,14 @@ export default function Carrinho() {
     setFrete(34)
 
   }
-  const calcularDesconto = () =>{
-    if(cupom){
+  const calcularDesconto = () => {
+    if (cupom) {
       setDesconto(cupom.porcentagem * somaTotal())
     }
+  }
+
+  const adicionarCarrinho = () =>{
+    router.push('/paginaCompra')
   }
 
   return (
@@ -96,9 +107,9 @@ export default function Carrinho() {
           <p className='font-poppins underline text-sm mt-1 cursor-pointer'>Limpar sacola</p>
           <div className='flex mt-5 flex-col gap-10'>
             {
-              produtos.map((produto) => (
+              produtos!.map((produto) => (
                 <div key={produto.id}>
-                  <Produtos nomeProduto={produto.nomeProduto} imagemProduto={produto.imagemProduto[0]} preco={produto.precoNovo} />
+                  <Produtos id={produto.id} nomeProduto={produto.nomeProduto} imagemProduto={produto.imagemProduto[0]} preco={produto.precoNovo}/>
                 </div>
               ))
             }
@@ -114,15 +125,15 @@ export default function Carrinho() {
             <div className='mt-5'>
               <p className='font-poppins font-medium'>Cupons</p>
               <p className='font-poppins font-regular text-sm my-2'>Clique no botão abaixo e escolha um cupom de desconto</p>
-              <BotaoGrande title='Cupons' background='bg-secundaria' type='button' onClick={()=>setOpenCupons(!openCupons)}/>
+              <BotaoGrande title='Cupons' background='bg-secundaria' type='button' onClick={() => setOpenCupons(!openCupons)} />
               {
                 openCupons && (
                   <div className='relative'>
-                    <Cupons cupons={usuarioLogado.cupons} setCupom={setCupom}/>
+                    <Cupons cupons={typeof usuarioLogado != undefined ? usuarioLogado!.cupons : []} setCupom={setCupom} />
                   </div>
-                ) || 
+                ) ||
                 cupom && (
-                  <CupomPequeno cupom={cupom} deleteCupom={setCupom}/>
+                  <CupomPequeno cupom={cupom} deleteCupom={setCupom} />
                 )
               }
             </div>
@@ -130,14 +141,14 @@ export default function Carrinho() {
               <p className='font-poppins font-medium'>Calcular Frete</p>
               <p className='font-poppins font-regular text-xs'>Infrorme seu CEP</p>
               <div className='flex flex-row justify-between'>
-                <div className='w-[60%]'><InputMask placeholder='_____-___' mask='_____-___' replacement={{ _: /\d/ }} onMasks={(e: any) => setCep(e.target.value)} error={erro || inexitente}/></div>
+                <div className='w-[60%]'><InputMask placeholder='_____-___' mask='_____-___' replacement={{ _: /\d/ }} onMasks={(e: any) => setCep(e.target.value)} error={erro || inexitente} /></div>
                 <div className='w-[32%]' onClick={() => enviarFrete()}><BotaoGrande title='Calcular' type='button' background='bg-secundaria' height='h-10' fontSize='text-sm font-medium' /></div>
               </div>
               {
                 erro && (
                   <span className='absolute font-poppins text-error text-sm'>Digite todos os número de um CEP</span>
                 ) ||
-                inexitente &&(
+                inexitente && (
                   <span className='absolute font-poppins text-error text-sm'>O CEP informado não existe!</span>
                 )
               }
@@ -147,12 +158,12 @@ export default function Carrinho() {
               <div className='border-t border-cinza'></div>
               <Topico topico='Descontos' preco={desconto == 0 ? 0 : desconto.toFixed(2)} />
               <div className='border-t border-cinza'></div>
-              <Topico topico='Total' preco={(somaTotal() + (typeof frete == 'number' ? frete : 0) - desconto).toFixed(2)} />
+              <Topico topico='Total' preco={parseInt((somaTotal() + (typeof frete == 'number' ? frete : 0) - desconto).toFixed(2))} />
             </div>
 
           </section>
           <div className='w-1/2'>
-            <BotaoGrande title='Continuar' background='bg-secundaria' type='button' />
+            <BotaoGrande title='Continuar' background='bg-secundaria' type='button' onClick={()=>adicionarCarrinho()}/>
           </div>
         </section>
       </section>

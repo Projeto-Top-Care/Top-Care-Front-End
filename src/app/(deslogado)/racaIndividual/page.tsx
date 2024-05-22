@@ -1,7 +1,7 @@
 import AvaliacaoPet from "@/components/AvaliacaoPet/avaliacaoPet"
 import EmblaCarousel from "@/components/Carrossel/Carrossel"
 import EscreverAvaliacao from "@/components/EscreverAvaliacao/EscreverAvaliacao"
-import InfoPet from "@/components/infoPet/infopet"
+import InfoPet from "@/components/InfoPet/infopet"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import { buscarRaca } from "@/server/racas/action"
 import { Raca } from "@/types/racas"
