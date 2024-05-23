@@ -27,11 +27,11 @@ export default function CadastroEndereco({ setOpen }: ICadastroEndereco) {
             <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 items-center justify-between p-4 m-auto lg:gap-6 md:gap-2 gap-1">
                 <div className="flex flex-col lg:gap-6 md:gap-2 gap-1 ">
                     <InputText placeholder="Cep*" type="text" onChange={(e) => setCep(e.target.value)} />
-                    <InputText placeholder="Rua*" type="number" onChange={(e) => setRua(e.target.value)} />
+                    <InputText placeholder="Rua*" type="text" onChange={(e) => setRua(e.target.value)} />
                 </div>
                 <div className="flex flex-col lg:gap-6 md:gap-2 gap-1 ">
                     <Select label="Estado*" options={estados} opcaoSelecionada={setEstado} />
-                    <InputText placeholder="Numero*" type="number" onChange={(e) => setNumero(e.target.value)} />
+                    <InputText placeholder="Numero*" type="number" min={1} onChange={(e) => setNumero(e.target.value)} />
                 </div>
                 <div className="flex flex-col lg:gap-6 md:gap-2 gap-1 ">
                     <InputText placeholder="Cidade*" type="text" onChange={(e) => setCidade(e.target.value)} />
