@@ -119,10 +119,6 @@ export default function HeaderDeslogado() {
                                     <FaPhone size={'0.9rem'} style={{ color: "#322828" }} />
                                     <a onClick={() => handleLinkClick('/contato')} className="hover:underline">Contato</a>
                                 </div>
-                                <div className="flex flex-row gap-2 items-center ml-6 text-xs">
-                                    <FaBook size={'0.9rem'} style={{ color: "#322828" }} />
-                                    <a onClick={() => handleLinkClick('/SobreNos')} className="hover:underline">Sobre nós</a>
-                                </div>
                             </div>
                         </div>
                     </div>

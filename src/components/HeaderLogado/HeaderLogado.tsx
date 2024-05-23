@@ -76,7 +76,6 @@ export default function HeaderLogado() {
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/produtos">Produtos</a>
                     {/* <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Serviços</a> */}
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/lojas">Lojas</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Pets</a>
                     {/* <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Planos</a> */}
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="./duvidasFrequentes">Ajuda</a>
                 </div>
@@ -126,10 +125,6 @@ export default function HeaderLogado() {
                                 <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                                     <FaPhone size={'0.9rem'} style={{ color: "#322828" }} />
                                     <a onClick={() => handleLinkClick('/contato')} className="hover:underline">Contato</a>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center ml-6 text-xs">
-                                    <FaBook size={'0.9rem'} style={{ color: "#322828" }} />
-                                    <a onClick={() => handleLinkClick('/SobreNos')} className="hover:underline">Sobre nós</a>
                                 </div>
                             </div>
                         </div>
