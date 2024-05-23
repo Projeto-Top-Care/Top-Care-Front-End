@@ -135,7 +135,7 @@ export default function Cadastro() {
                 </section>
             </section>
             <section className='w-full flex justify-center items-center mt-8 sm:mt-14 mb-14'>
-                <div className='w-[80%]'>
+                <div className='md:w-[25%] lg:w-[15%] w-[90%]'>
                     <BotaoGrande background='bg-terciaria' title='Cadastrar' type={'button'} />
                 </div>
             </section>
