@@ -9,7 +9,7 @@ import PedidoAndamentoPerfil from "@/components/PedidoAndamentoPerfil/PedidoAnda
 import PerfilFoto from "@/components/PerfilFoto/PerfilFoto";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { buscarUsuario } from "@/server/usuario/action";
-import { Pedido, QntProduto, Usuario } from "@/types/usuarios";
+import { Pedido, Pet, QntProduto, Usuario } from "@/types/usuarios";
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import { buscarProduto, buscarTodos } from "@/server/produtos/action";
 import CardProduto from "@/components/CardProduto/CardProduto";
@@ -19,6 +19,7 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
 import Produtos from "@/app/(deslogado)/produtos/page";
 import { Produto } from "@/types/produto";
+import CadastroPet from "@/components/Pop-up/CadastroPet/CadastroPet";
 
 export default function Perfil() {
     const [open, setOpen] = useState<boolean>(false)
@@ -29,6 +30,9 @@ export default function Perfil() {
     const [showAllAddresses, setShowAllAddresses] = useState(false);
     const produtos: QntProduto = buscarProduto(usuarioLogado.id)!
     const produto: Produto = buscarProduto(produtos.id)!
+
+    const [openEndereco, setOpenEndereco] = useState(false);
+    const [openPet, setOpenPet] = useState(false);
 
 
     const toggleShowAllAddresses = () => {
@@ -98,11 +102,11 @@ export default function Perfil() {
                     </div>
                 </div>
             </section>
-            <section className="mt-10">
+            <section className="mt-20">
                 <TituloLinha titulo="Endereços" />
             </section>
-            <section className="grid place-content-center">
-                <div className="grid gap-11 mt-8 mb-8 lg:grid-cols-2 xl:grid-cols-3">
+            <section className=" mt-14 grid place-content-center">
+                <div className="grid gap-24 mb-8 lg:grid-cols-2 xl:grid-cols-3">
                     {
                         displayedAddresses.map((endereco, i) => (
                             <div key={i}>
@@ -112,9 +116,9 @@ export default function Perfil() {
                     }
                 </div>
             </section>
-            <div className="grid grid-cols-2 w-full justify-items-center">
-                <div className="md:w-44 w-32" onClick={() => setOpen(true)}>
-                    <BotaoGrande title='+ Endereço' background='bg-secundaria' type={'button'} />
+            <div className="grid grid-cols-2 justify-items-center">
+                <div className="md:w-44 w-32" onClick={() => setOpenEndereco(true)}>
+                    <BotaoGrande title='+ Endereço' background='bg-terciaria' type={'button'} />
                 </div>
                 <div className="">
                     <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria  p-1 rounded-lg md:w-44 w-32 h-8 hover:bg-[#9EBF40] justify-around' onClick={toggleShowAllAddresses}>
@@ -123,50 +127,62 @@ export default function Perfil() {
                     </button>
                 </div>
             </div>
-            <section className="mt-10">
+            <section className="mt-20">
                 <TituloLinha titulo="Pedido em andamento" />
             </section>
-            <section className="mt-8 w-[70%] m-auto">
-                <div className=" grid lg:grid-cols-2 gap-x-20 gap-y-4">
+            <section className="mt-14">
+                <div className="grid gap-10 mt-8 mb-8 lg:grid-cols-2 xl:grid-cols-3 w-[90%] m-auto">
                     {
                         usuarioLogado.pedidos.map((pedido, i) => (
                             <div key={i}>
-                                <PedidoAndamentoPerfil data={"17/05/2024"} numPedido={pedido.codigo} status={""} valor={produto.precoNovo} src={produto.imagemProduto} />
+                                <PedidoAndamentoPerfil data={"17/05/2024"} numPedido={pedido.codigo} status={"em separação"} valor={produto.precoNovo} src={produto.imagemProduto} />
                             </div>
                         ))}
                 </div>
             </section>
-            <section className="mt-8">
+            <section className="mt-20">
                 <TituloLinha titulo="Ultimas compras" />
             </section>
-            <section className="mt-8 mb-24">
+            <section className="mt-14">
                 <CarrosselProduto slides={carrosselProdutos} />
             </section>
-            {/* <section>
+            <section className="mt-20">
                 <TituloLinha titulo="Meus pets" />
             </section>
-            <section className="grid grid-cols-4 mx-20 mt-8">
-                <CardPetPequeno fotoPet={"./assets/cachorro-perfil.png"} nomePet={"Nino"} racaPet={"vira-lata"} idadePet={6} tipoAnimal={"cachorro"} />
-                <CardPetPequeno fotoPet={"./assets/cachorro-perfil.png"} nomePet={"Nino"} racaPet={"vira-lata"} idadePet={6} tipoAnimal={"cachorro"} />
-                <CardPetPequeno fotoPet={"./assets/cachorro-perfil.png"} nomePet={"Nino"} racaPet={"vira-lata"} idadePet={6} tipoAnimal={"cachorro"} />
-                <CardPetPequeno fotoPet={"./assets/cachorro-perfil.png"} nomePet={"Nino"} racaPet={"vira-lata"} idadePet={6} tipoAnimal={"cachorro"} />
+            <section className="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 gap-2 justify-items-center w-[90%] m-auto mt-14">
+                {
+                    usuarioLogado.pets.map((pets, i) => (
+                        <div key={i}>
+                            <CardPetPequeno fotoPet={"./assets/cachorro-perfil.png"} nomePet={pets.nome} racaPet={pets.raca} idadePet={pets.idade} tipoAnimal={pets.especie} />
+                        </div>
+                    ))}
             </section>
-            <section className="font-poppins mt-16 ml-20 mb-24">
-                <p className="text-xl font-medium">Pet novo ?</p>
-                <p className="text-sm my-3">Cadastre aqui pra ele não perder nenhuma oportunidade!</p>
-                <div className="w-[174px]">
-                <BotaoGrande title="Cadastrar Pet" background={"bg-primaria"} type={"button"} />
+            <section className="font-poppins mt-16 sm:ml-20 mb-24 w-[90%] m-auto">
+                <p className="md:text-xl text-lg font-medium m-auto">Pet novo ?</p>
+                <p className="md:text-sm text-xs my-3 m-auto">Cadastre aqui pra ele não perder nenhuma oportunidade!</p>
+                <div className="sm:w-[174px]" onClick={() => setOpenPet(true)}>
+                    <BotaoGrande title="Cadastrar Pet" background={"bg-primaria"} type={"button"} />
                 </div>
-            </section> */}
-            {open && (
+            </section>
+
+            {openEndereco && (
                 <div className='overflow-hidden'>
-                    <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpen(false)}></div>
+                    <div className='fixed top-0 left-0 w-full h-full z-50 bg-fundo-modal' onClick={() => setOpenEndereco(false)}></div>
                     <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
-                        <CadastroEndereco setOpen={setOpen} />
+                        <CadastroEndereco setOpen={setOpenEndereco} />
+                    </div>
+                </div>
+            )}
+
+            {openPet && (
+                <div className='overflow-hidden'>
+                    <div className='fixed top-0 left-0 w-full h-full z-50 bg-fundo-modal' onClick={() => setOpenPet(false)}></div>
+                    <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
+                        <CadastroPet setOpen={setOpenPet} />
                     </div>
                 </div>
             )}
         </main>
-    )
+    );
 }
 
