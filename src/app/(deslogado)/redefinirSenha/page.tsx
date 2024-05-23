@@ -15,7 +15,7 @@ export default function redefinirSenha() {
                         <InputText placeholder="Digite sua nova senha" type={'password'} />
                         <InputText placeholder="Confirme a nova senha" type={'password'} />
                     </div>
-                    <div className="flex flex-col justify-center items-center gap-2 w-[80%] md:w-[60%] md:items-start lg:w-[32%] lg:items-center">
+                    <div className="flex flex-col justify-center items-center gap-2 w-[80%] md:w-[60%] lg:w-[32%]">
                         <p className="font-poppins font-semibold text-sm text-start lg:text-base">Sua senha deve conter:</p>
                         <div className="flex flex-col gap-2 md:flex-row md:w-full md:justify-between lg:justify-evenly">
                             <div className="flex flex-col justify-center items-start gap-2 md:items-start">
@@ -29,7 +29,7 @@ export default function redefinirSenha() {
                         </div>
 
                     </div>
-                    <div className="mt-3 mb-[10%] w-[80%] md:w-[60%] md:mb-[5%] lg:w-[20%]">
+                    <div className="mt-3 mb-[10%] w-[80%] md:w-[60%] md:mb-[5%] lg:w-[32%]">
                         <BotaoGrande title="Redefinir" background="bg-secundaria" type="button" />
                     </div>
                 </div>
