@@ -15,7 +15,7 @@ const CardPetPequeno = ({tipoAnimal, fotoPet, nomePet, racaPet, idadePet}: petty
                 <img className='rounded-full' src={fotoPet} />
             </div>
             <div className="text-sm text-preto font-poppins">
-                <p className="mb-4 text-lg">{nomePet}</p>
+                <p className="mb-4 lg:text-lg ">{nomePet}</p>
                 <p>Animal: {tipoAnimal}</p>
                 <p>Raça: {racaPet}</p>
                 <p>Idade: {idadePet} anos</p>
