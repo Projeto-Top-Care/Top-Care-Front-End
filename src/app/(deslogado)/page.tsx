@@ -4,11 +4,14 @@ import Carrossel from "@/components/Carrossel/Carrossel"
 import CarrosselProduto from "@/components/CarrosselProduto/Carrossel"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import { EmblaOptionsType } from "embla-carousel"
+import { useRouter } from "next/navigation";
 
 export default function PaginaInicial() {
     const slidesCarrosselDesktop: string[] = ['./assets/slidesDesktop/Banner1.svg', './assets/slidesDesktop/Banner2.svg', './assets/slidesDesktop/Banner3.svg', './assets/slidesDesktop/Banner4.svg']
     const slidesCarrosselMobile: string[] = ['./assets/slidesMobile/Banner1.svg', './assets/slidesMobile/Banner2.svg', './assets/slidesMobile/Banner3.svg', './assets/slidesMobile/Banner4.svg']
     const OPTIONS: EmblaOptionsType = { loop: true }
+
+    const { push } = useRouter();
 
     return (
         <main className="bg-branco">
@@ -29,13 +32,13 @@ export default function PaginaInicial() {
 
                 <div className="flex flex-col sm:flex-row justify-center px-4 sm:gap-8 gap-6 sm:px-16 py-4">
 
-                    <BotaoCategoriaPgInicial title="Alimentação" image="./assets/alimentacao.png" pagina="/lojas" />
+                    <BotaoCategoriaPgInicial title="Alimentação" image="./assets/alimentacao.png" pagina="/produtos?q=alimentos" />
                     
-                    <BotaoCategoriaPgInicial title="Brinquedos e acessórios" image="./assets/acessorios.png" pagina="/lojas" />
+                    <BotaoCategoriaPgInicial title="Acessórios" image="./assets/acessorios.png" pagina="/produtos?q=brinquedo" />
 
-                    <BotaoCategoriaPgInicial title="Higiene" image="./assets/higiene.png" pagina="/lojas" />
+                    <BotaoCategoriaPgInicial title="Higiene" image="./assets/higiene.png" pagina="/produtos?q=higiene" />
 
-                    <BotaoCategoriaPgInicial title="Medicamentos" image="./assets/medicamentos.png" pagina="/lojas" />
+                    <BotaoCategoriaPgInicial title="Medicamentos" image="./assets/medicamentos.png" pagina="/produtos?q=medicamentos" />
                     
                 </div>
             </section>

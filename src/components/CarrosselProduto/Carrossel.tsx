@@ -26,8 +26,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           ))}
         </div>
       </div>
-      <button onClick={()=>emblaApi?.scrollPrev()} className='hover:shadow-md hover:-translate-x-2 animation duration-200 mr-5 absolute lg:left-20 md:left-6 left-2 bg-branco font-poppins border border-black w-10 h-10 rounded-full flex items-center justify-center' ><FaChevronLeft/></button>
-      <button onClick={()=>emblaApi?.scrollNext()} className='hover:shadow-md hover:translate-x-2 animation duration-200 ml-5 absolute lg:right-20 md:right-6 right-2 bg-branco font-poppins border border-black w-10 h-10 rounded-full flex items-center justify-center' ><FaChevronRight/></button>
+      <button onClick={()=>emblaApi?.scrollPrev()} className='hover:shadow-md hover:-translate-x-2 animation duration-200 mr-5 absolute lg:left-20 md:left-6 left-2 bg-branco font-poppins border border-preto size-10 rounded-full flex items-center justify-center' ><FaChevronLeft style={{ color: "#322828" }}/></button>
+      <button onClick={()=>emblaApi?.scrollNext()} className='hover:shadow-md hover:translate-x-2 animation duration-200 ml-5 absolute lg:right-20 md:right-6 right-2 bg-branco font-poppins border border-preto size-10 rounded-full flex items-center justify-center' ><FaChevronRight style={{ color: "#322828" }}/></button>
         
     </section>
   )

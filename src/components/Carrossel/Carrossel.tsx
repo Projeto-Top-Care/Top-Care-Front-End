@@ -27,8 +27,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           ))}
         </div>
       </div>
-      <button className='hover:shadow-md hover:translate-x-[-0.5rem] animation duration-200 mr-5 absolute sm:left-12 left-3 bg-branco font-poppins border border-preto sm:w-10 sm:h-10 w-5 h-5 rounded-full flex items-center justify-center' onClick={() => emblaApi?.scrollPrev()}><FaChevronLeft className='sm:text-sm text-xs'/></button>
-      <button className='hover:shadow-md hover:translate-x-2 animation duration-200 ml-5 absolute sm:right-12 right-3 bg-branco font-poppins border border-preto sm:w-10 sm:h-10 w-5 h-5 rounded-full flex items-center justify-center' onClick={() => emblaApi?.scrollNext()}><FaChevronRight className='sm:text-sm text-xs'/></button>
+      <button className='hover:shadow-md hover:translate-x-[-0.5rem] animation duration-200 mr-5 absolute sm:left-12 left-3 bg-branco font-poppins border border-preto  size-10 rounded-full flex items-center justify-center' onClick={() => emblaApi?.scrollPrev()}><FaChevronLeft style={{ color: "#322828" }} className='sm:text-sm text-xs'/></button>
+      <button className='hover:shadow-md hover:translate-x-2 animation duration-200 ml-5 absolute sm:right-12 right-3 bg-branco font-poppins border border-preto  size-10 rounded-full flex items-center justify-center' onClick={() => emblaApi?.scrollNext()}><FaChevronRight style={{ color: "#322828" }} className='sm:text-sm text-xs'/></button>
     </section>
   )
 }
