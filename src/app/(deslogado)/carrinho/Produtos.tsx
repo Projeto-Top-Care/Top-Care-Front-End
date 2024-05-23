@@ -24,7 +24,7 @@ export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Prod
     }
 
     const removeItem = () => {
-        if(sim == 0) return
+        if (sim == 0) return
 
         if (sim) {
             const carrinho = getLocalStorageArray('carrinho')
@@ -33,52 +33,54 @@ export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Prod
             })
             localStorage.setItem('carrinho', JSON.stringify(carrinhoAtualizado))
             location.reload()
-            setOpen(true)
-            setTimeout(() => {
-                setOpen(false)
-            }, 4000)
         }
     }
 
-    const atualizarCarrinho = () =>{
+    const atualizarCarrinho = () => {
         const carrinho = getLocalStorageArray('carrinho')
-        const newCarrinho = carrinho.map((item)=>{
-            if((item as unknown as QntProduto).id == id){
-                return {id: id, quantidade: quantidade}
-            }else{
+        const newCarrinho = carrinho.map((item) => {
+            if ((item as unknown as QntProduto).id == id) {
+                return { id: id, quantidade: quantidade }
+            } else {
                 return item
             }
         })
         localStorage.setItem('carrinho', JSON.stringify(newCarrinho))
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         atualizarCarrinho()
-    },[quantidade])
+    }, [quantidade])
 
     useEffect(() => {
-      removeItem()
+        removeItem()
     }, [sim])
-    
+
 
     return (
         <div>
-            <div className='flex flex-row items-start justify-between'>
-                <div className='flex flex-row items-center justify-between'>
-                    <div>
-                        <Checkbox check={setChecked} />
+            <div className='flex flex-row items-start justify-between md:h-24 h-16'>
+                <div className='flex flex-row items-center h-full w-full'>
+                    <div className='flex flex-row justify-center items-center md:w-28 w-20 h-full'>
+                        <div>
+                            <Checkbox check={setChecked} />
+                        </div>
+                        <div className='flex flex-row items-center justify-center w-[100%]'>
+                            <img src={imagemProduto} alt="" className='w-[100%]' />
+                        </div>
                     </div>
-                    <div className='flex flex-row items-center w-96 h-24'>
-                        <img src={imagemProduto} alt="" className='w-[23%] mx-4' />
-                        <p className='font-poppins text-sm w-96'>{nomeProduto}</p>
+                    <div className='flex flex-col md:flex-row items-start h-full md:w-[80%] w-[70%] md:justify-between justify-center'>
+                        <div className='flex items-center justify-center md:h-full h-auto'>
+                            <p className='font-poppins md:text-sm text-xs overflow-hidden line-clamp-1 md:line-clamp-2 w-full md:w-full'>{nomeProduto}</p>
+                        </div>
+                        <div className='flex flex-col'>
+                            <InputQuantidade valorQuantidade={setQuantidade} abrirPopUp={abrirPopUp} value={quantidade} />
+                        </div>
                     </div>
                 </div>
-                <div className='flex flex-col'>
-                    <InputQuantidade valorQuantidade={setQuantidade} abrirPopUp={abrirPopUp} value={quantidade} />
-                </div>
-                <div className='flex flex-col items-center'>
-                    <p className='font-poppins'>Preço</p>
-                    <p className='font-poppins mt-2'>{preco}</p>
+                <div className='flex flex-col items-center w-24'>
+                    <p className='font-poppins md:!flex hidden'>Preço</p>
+                    <p className='font-poppins mt-2 md:text-base text-sm'>{preco}</p>
                 </div>
             </div>
 
