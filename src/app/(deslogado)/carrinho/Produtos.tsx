@@ -47,7 +47,6 @@ export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Prod
         })
         localStorage.setItem('carrinho', JSON.stringify(newCarrinho))
     }
-
     useEffect(() => {
         atualizarCarrinho()
     }, [quantidade])

@@ -1,16 +1,17 @@
     'use client'
-    import React, { SetStateAction, useEffect, useState } from 'react'
+    import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
     interface QuantidadeProduto {
-        propsQuantidade: SetStateAction<number>
+        propsQuantidade: Dispatch<SetStateAction<number>>
         estoqueDisponivel: number
     }
 
-    export default function QuantidadeProduto({estoqueDisponivel}: QuantidadeProduto) {
+    export default function QuantidadeProduto({estoqueDisponivel, propsQuantidade}: QuantidadeProduto) {
         const [quantidade, setQuantidade] = useState<number>(1);
         
         useEffect(() => {
             quantidade > estoqueDisponivel ? setQuantidade(estoqueDisponivel) : setQuantidade(quantidade)
+            propsQuantidade(quantidade)
           }, [quantidade])
 
         return (
