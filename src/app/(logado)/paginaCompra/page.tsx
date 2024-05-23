@@ -10,6 +10,7 @@ import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
 import { useRouter } from "next/navigation";
 import { getLocalStorageArray, getLocalStorageItem } from "@/server/localStorage/actions";
 import { buscarProduto } from "@/server/produtos/action";
+import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
 
 export default function PaginaCompra() {
 
@@ -19,13 +20,15 @@ export default function PaginaCompra() {
     const usuarioLogado: Usuario = (buscarUsuario(parseInt(idUser))!)
 
     const [open, setOpen] = useState<string>("")
+    const [openEndereco, setOpenEndereco] = useState<boolean>(false)
+    
     const showError = () => {
         if (open != "") {
             return (
                 <div className="z-50">
                     <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down drop-shadow-lg`}>
                         <div className="flex items-center justify-center lg:h-10 h-8 bg-error rounded font-poppins">
-                            <p className="text-xs lg:text-base text-brancon">{open}</p>
+                            <p className="text-xs lg:text-base text-branco">{open}</p>
                         </div>
                     </div>
                 </div>
@@ -136,7 +139,7 @@ export default function PaginaCompra() {
                                 <h4 className="font-medium text-sm sm:text-base">Complemento</h4>
                                 <p className="text-xs sm:text-sm">{complemento}</p>
                             </div>
-                            <div className="p-4">
+                            <div onClick={() => setOpenEndereco(true)} className="p-4">
                                 <BotaoGrande title={"Adicionar novo endereço"} background={"bg-terciaria"} type={"button"} />
                             </div>
                         </div>
@@ -211,6 +214,14 @@ export default function PaginaCompra() {
                     </div>
                 </section>
             </div>
+            {openEndereco && (
+                <div className='overflow-hidden'>
+                    <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpenEndereco(false)}></div>
+                    <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
+                        <CadastroEndereco setOpen={setOpenEndereco} />
+                    </div>
+                </div>
+            )}
         </main>
     )
 }

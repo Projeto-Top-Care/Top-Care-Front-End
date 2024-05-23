@@ -5,14 +5,14 @@ import { BsTwitterX } from "react-icons/bs";
 
 const Footer = () => {
     return (
-        <div className="bg-secundaria font-poppins font-light">
+        <div className="bg-secundaria font-poppins text-preto font-light">
             <div className="md:px-20 px-5 md:py-8 py-4 justify-between grid md:grid-cols-5 grid-cols-3 md:gap-9 gap-3.5 items-start text-lg md:w-[100%]">
                 <div className="md:w-[5rem] w-[4rem] col-start-1 col-span-3 md:col-span-1 flex items-center">
                     <img className="" src="../assets/logo.png" />
                 </div>
                 <div className="flex flex-col gap-1 text-xs md:text-base">
                     <h5>Empresa</h5>
-                    <a href="/SobreNos" className="underline text-cinza-escuro md:text-sm text-[10px]">Sobre nós</a>
+                    <a href="/Sobre" className="underline text-cinza-escuro md:text-sm text-[10px]">Sobre nós</a>
                     <a href="/duvidasFrequentes" className="underline text-cinza-escuro md:text-sm text-[10px]">Perguntas frequentes</a>
                 </div>
 
@@ -22,7 +22,7 @@ const Footer = () => {
                     <a href="/contato" className="underline text-cinza-escuro md:text-sm text-[10px]">Telefone/ SMS</a>
                 </div>
 
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-start lg:items-center">
                     <h5 className="md:text-base text-xs">Nossas redes sociais</h5>
                     <div className="flex justify-center gap-2 pt-2 w-full md:w-[80%]">
                         <FaInstagram style={{ color: "#322828", fontSize: "1.4rem" }} />
@@ -36,7 +36,15 @@ const Footer = () => {
 
                 <div className="flex flex-col">
                     <h5 className="md:text-base text-xs mb-[2%]">Métodos de pagamento</h5>
-                    <img className="md:w-[190px]" src="assets/footer-pagamento.png" />
+                    {/* <img className="md:w-[190px]" src="assets/footer-pagamento.png" /> */}
+                    <div className="grid grid-cols-3 gap-1">
+                        <img className="w-4 sm:w-[1.4rem] lg:w-10 self-center" src="./assets/logo-mastercard.png" />
+                        <img className="w-4 sm:w-[1.4rem] lg:w-10 self-center" src="./assets/logo-elo.png" />
+                        <img className="w-4 sm:w-[1.4rem] lg:w-10 self-center" src="./assets/logo-american-express.png" />
+                        <img className="w-4 sm:w-[1.4rem] lg:w-10 self-center" src="./assets/logo-visa.png" />
+                        <img className="w-4 sm:w-[1.4rem] lg:w-10 self-center" src="./assets/logo-pix.png" />
+                        <img className="w-4 sm:w-[1.4rem] lg:w-10 self-center" src="./assets/logo-boleto.png" />
+                    </div>
                 </div>
             </div>
 
