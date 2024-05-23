@@ -22,7 +22,7 @@ export default function Cupons({ cupons, setCupom }: ICupons) {
                             <div className='flex flex-col'>
                                 <div className='flex lg:flex-row flex-col font-poppins text-sm'>
                                     <p className='text-sm'>Cupom de {cupom.desconto} - </p>
-                                    <p className='font-semibold text-sm'>"{cupom.nome}"</p>
+                                    <p className='font-semibold text-sm'>{`"${cupom.nome}"`}</p>
                                 </div>
                                 <div>
                                     <p className='font-poppins text-xs'>Válido para compras {cupom.tipo == 'frete' ? `de até R$${cupom.limite}` : `a partir de R$${cupom.limite}`}</p>

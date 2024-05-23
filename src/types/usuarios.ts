@@ -24,6 +24,7 @@ export interface Pet {
     idade: number
 }
 export interface Endereco {
+    id: number
     nome: string,
     cep: string,
     estado: string,
@@ -35,9 +36,11 @@ export interface Endereco {
 }
 
 export interface Pedido {
+    id: number
     codigo: number,
     dataCompra: string,
-    pagamento: Pagamento[],
+    status: string
+    pagamento: Pagamento,
     endereço: number,
     produtos: QntProduto[]
 }
@@ -91,6 +94,7 @@ export interface pagamento{
 }
 
 export interface enderecoEntrega{
+    id: number
     nome: string
     cep: string
     estado: string

@@ -12,7 +12,7 @@ import InputData from "@/components/InputData/InputData"
 import { getLocalStorageArray } from "@/server/localStorage/actions"
 import { useRouter } from "next/navigation"
 
-export default function pagamentoBoleto() {
+export default function PagamentoBoleto() {
     const { push } = useRouter();
     
     const idUser = 1

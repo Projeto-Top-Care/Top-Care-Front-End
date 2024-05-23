@@ -4,9 +4,9 @@ import BotaoCategoriaPergunta from "@/components/BotaoCategoriaPergunta/botaoCat
 import ItemAcordiao from "@/components/ItemAcordeao/itemAcordeao";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { buscarCategoria } from "@/server/duvidas/action";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function duvidasFrequentes() {
+export default function DuvidasFrequentes() {
 
     const categorias = [{ categoria: "Compras e pedidos", ativo: false },
     { categoria: "Pagamento", ativo: false },

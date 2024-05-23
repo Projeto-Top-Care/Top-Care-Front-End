@@ -3,18 +3,14 @@ import Loading from '@/app/(deslogado)/loading/page'
 import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
 import { buscarUsuario } from '@/server/usuario/action'
 import { Usuario } from '@/types/usuarios'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter  } from 'next/navigation'
+import { getLocalStorageItem } from '@/server/localStorage/actions'
 
-interface PropsUsuario {
-  searchParams: { id: number };
-}
-
-export default function RecuperacaoSenhaDeslogado({
-  searchParams,
-}: PropsUsuario) {
+export default function RecuperacaoSenhaDeslogado() {
   const {push} = useRouter();
-  const [usuarioProcurado, setUsuarioProcurado] = useState<Usuario>();
+  const userId = parseInt(getLocalStorageItem('idUser'))
+  const usuarioLogado: Usuario = buscarUsuario(userId)!
   const [checked1, setChecked1] = useState<boolean>(true);
   const [checked2, setChecked2] = useState<boolean>(false);
 
@@ -36,15 +32,8 @@ export default function RecuperacaoSenhaDeslogado({
     return celularFinal.join("") + "-" + arrayCelular[1];
   };
 
-  useEffect(() => {
-    setUsuarioProcurado(buscarUsuario(searchParams.id));
-  }, []);
-
   return (
     <main>
-      {!usuarioProcurado ? (
-        <div>Carregando...</div>
-      ) : (
         <section className="mt-11">
           <div className="flex flex-col justify-center items-center md:mt-[5%] mt-[10%]">
             <div className="flex flex-col justify-center items-center gap-3 lg:w-[31%] md:w-[50%] w-[90%] text-center">
@@ -96,7 +85,7 @@ export default function RecuperacaoSenhaDeslogado({
                     className="mt-px font-poppins text-cinza-escuro md:text-base text-xs cursor-pointer select-none"
                     htmlFor="primeira"
                   >
-                    {esconderEmail(usuarioProcurado?.email)}
+                    {esconderEmail(usuarioLogado.email)}
                   </label>
                 </div>
               </div>
@@ -140,7 +129,7 @@ export default function RecuperacaoSenhaDeslogado({
                     className="mt-px font-poppins text-cinza-escuro md:text-base text-xs cursor-pointer select-none"
                     htmlFor="segunda"
                   >
-                    {esconderCelular(usuarioProcurado?.celular)}
+                    {esconderCelular(usuarioLogado.celular)}
                   </label>
                 </div>
               </div>
@@ -154,7 +143,6 @@ export default function RecuperacaoSenhaDeslogado({
             </div>
           </div>
         </section>
-      )}
     </main>
   );
 }

@@ -8,7 +8,7 @@ import { buscarUsuario } from "@/server/usuario/action"
 import { getLocalStorageArray } from "@/server/localStorage/actions"
 import { useRouter } from "next/navigation"
 
-export default function pagamentoPix() {
+export default function PagamentoPix() {
 
     const { push } = useRouter();
     
