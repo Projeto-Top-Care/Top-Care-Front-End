@@ -2,7 +2,6 @@
     import React, { SetStateAction, useEffect, useState } from 'react'
 
     interface QuantidadeProduto {
-        propsQuantidade: SetStateAction<number>
         estoqueDisponivel: number
     }
 

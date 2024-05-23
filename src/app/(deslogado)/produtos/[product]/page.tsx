@@ -157,7 +157,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             </div>
             <div className='flex flex-row items-start gap-4 w-full lg:w-[85%] mt-4'>
               <div className='w-[30%]'>
-                <QuantidadeProduto propsQuantidade={0} estoqueDisponivel={produtoProcurado.estoque} />
+                <QuantidadeProduto estoqueDisponivel={produtoProcurado.estoque} />
                 <p className='font-poppins text-cinza-escuro text-center mt-1 lg:text-base md:text-xs text-[10px]'>Em estoque: {produtoProcurado.estoque}</p>
               </div>
 
