@@ -19,7 +19,7 @@ import Topico from './Topico'
 export default function Carrinho() {
   const idUser = getLocalStorageItem('idUser');
   const usuarioLogado: Usuario | undefined = buscarUsuario(Number.parseInt(idUser!))
-  const produtos: Produto[] = getLocalStorageArray('carrinho').map((item)=>{
+  const produtos: Produto[] = getLocalStorageArray('carrinho').map((item) => {
     return buscarProduto((item as unknown as QntProduto).id)!
   })
   const [frete, setFrete] = useState<number | string>(0)
@@ -29,6 +29,8 @@ export default function Carrinho() {
   const [cupom, setCupom] = useState<Cupom>()
   const [erro, setErro] = useState<boolean>(false)
   const [inexitente, setInexistente] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false)
+  const [sim, setSim] = useState<boolean | number>(0)
   const router = useRouter()
 
   useEffect(() => {
@@ -57,6 +59,19 @@ export default function Carrinho() {
       return
     }
   }, [cupom])
+
+  const limparCarrinho = () => {
+    if (sim == 0) return
+
+    if (sim) {
+        localStorage.setItem('carrinho', JSON.stringify([]))
+        location.reload()
+    }
+  }
+
+  useEffect(() => {
+    limparCarrinho()
+}, [sim])
 
   const somaTotal = () => {
     if (typeof produtos != undefined) {
@@ -92,7 +107,7 @@ export default function Carrinho() {
     }
   }
 
-  const adicionarCarrinho = () =>{
+  const adicionarCarrinho = () => {
     router.push('/paginaCompra')
   }
 
@@ -101,15 +116,15 @@ export default function Carrinho() {
       <section className='mt-10'>
         <TituloLinha titulo='Minha Sacola' />
       </section>
-      <section className=' w-[90%] m-auto flex md:flex-row flex-col justify-between mt-14 mb-24 md:h-[35rem]'>
-        <section className='border border-cinza rounded-lg md:w-[65%] w-full px-6 py-4 overflow-auto scroll h-[20rem]'>
-          <h1 className='font-poppins text-xl font-medium'>Produtos</h1>
-          <p className='font-poppins underline text-sm mt-1 cursor-pointer'>Limpar sacola</p>
+      <section className=' w-[90%] m-auto flex md:flex-row flex-col md:gap-0 gap-10 justify-between mt-14 mb-24 md:h-[35rem]'>
+        <section className='border border-cinza rounded-lg md:w-[65%] w-full md:px-6 px-3 py-4 overflow-auto scroll'>
+          <h1 className='font-poppins md:text-xl text-lg font-medium'>Produtos</h1>
+          <p className='font-poppins underline md:text-sm text-xs mt-1 cursor-pointer' onClick={()=>setOpen(true)}>Limpar sacola</p>
           <div className='flex mt-5 flex-col gap-10'>
             {
               produtos!.map((produto) => (
                 <div key={produto.id}>
-                  <Produtos id={produto.id} nomeProduto={produto.nomeProduto} imagemProduto={produto.imagemProduto[0]} preco={produto.precoNovo}/>
+                  <Produtos id={produto.id} nomeProduto={produto.nomeProduto} imagemProduto={produto.imagemProduto[0]} preco={produto.precoNovo} />
                 </div>
               ))
             }
@@ -139,10 +154,10 @@ export default function Carrinho() {
             </div>
             <div className='mt-2'>
               <p className='font-poppins font-medium'>Calcular Frete</p>
-              <p className='font-poppins font-regular text-xs'>Infrorme seu CEP</p>
-              <div className='flex flex-row justify-between'>
-                <div className='w-[60%]'><InputMask placeholder='_____-___' mask='_____-___' replacement={{ _: /\d/ }} onMasks={(e: any) => setCep(e.target.value)} error={erro || inexitente} /></div>
-                <div className='w-[32%]' onClick={() => enviarFrete()}><BotaoGrande title='Calcular' type='button' background='bg-secundaria' height='h-10' fontSize='text-sm font-medium' /></div>
+              <p className='font-poppins font-regular text-xs md:!flex hidden'>Infrorme seu CEP</p>
+              <div className='flex lg:flex-row flex-col lg:gap-0 gap-3 justify-between lg:mt-0 mt-2'>
+                <div className='lg:w-[60%] w-full'><InputMask placeholder='_____-___' mask='_____-___' replacement={{ _: /\d/ }} onMasks={(e: any) => setCep(e.target.value)} error={erro || inexitente} /></div>
+                <div className='lg:w-[32%] w-full' onClick={() => enviarFrete()}><BotaoGrande title='Calcular' type='button' background='bg-secundaria' height='lg:h-10 h-8' fontSize='text-sm font-medium' /></div>
               </div>
               {
                 erro && (
@@ -162,11 +177,19 @@ export default function Carrinho() {
             </div>
 
           </section>
-          <div className='w-1/2'>
-            <BotaoGrande title='Continuar' background='bg-secundaria' type='button' onClick={()=>adicionarCarrinho()}/>
+          <div className='lg:w-1/2 w-full lg:mt-0 mt-2'>
+            <BotaoGrande title='Continuar' background='bg-secundaria' type='button' onClick={() => adicionarCarrinho()} />
           </div>
         </section>
       </section>
+      {open && (
+                <div className="w-full">
+                    <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpen(false)}></div>
+                    <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 lg:w-[25%] w-[60%]`}>
+                        <DoisBotoes texto="Você deseja limpar a sacola?" openParms={setOpen} sim={setSim} />
+                    </div>
+                </div>
+            )}
     </main>
   )
 }

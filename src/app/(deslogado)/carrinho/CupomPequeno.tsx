@@ -14,7 +14,8 @@ export default function CupomPequeno({ cupom, deleteCupom }: ICupom) {
     <div className='flex flex-row justify-between border-cinza border bg-branco h-10 items-center mt-2 px-2 rounded-lg'>
       <div className='flex flex-row items-center gap-2 font-poppins text-sm'>
         <div>{cupom.tipo == 'frete' ? <TbTruckDelivery size={25} color={'#37BC2C'} /> : <CiDiscount1 size={25} color={'#37BC2C'} />}</div>
-        <p>Cupom "{cupom.nome}"" aplicado!</p>
+        <p className='lg:!flex hidden'>Cupom "{cupom.nome}"" aplicado!</p>
+        <p className='lg:hidden flex'>{cupom.nome}</p>
       </div>
       <button onClick={()=>deleteCupom(undefined)}><FaRegTrashCan color='#E94444'/></button>
     </div>
