@@ -78,7 +78,7 @@ export default function ResumoPedido({ produtos, desconto, frete }: IResumoPedid
 
                     <div className="flex flex-row justify-between border-t-[1px] border-cinza pt-4">
                         <p className="font-medium text-sm sm:text-base">Valor total</p>
-                        <p className="text-xs sm:text-sm">R${total}</p>
+                        <p className="text-xs sm:text-sm">R${(total).toFixed(2)}</p>
                     </div>
                 </div>
             </div>

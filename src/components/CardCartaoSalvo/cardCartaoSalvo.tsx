@@ -29,14 +29,6 @@ const CardCartaoSalvo = ({titulo, numero, validade, tipo, checked}: ICartao) => 
         })
         return numeroEscondido;
     }
-    // const esconderEmail = (email: string) => {
-    //     const arrayEmail = email.split("@");
-    //     const emailEscondido = arrayEmail[0].split("");
-    //     const emailFinal = emailEscondido.map((letra, i) => {
-    //       return i == 0 ? letra : "*";
-    //     });
-    //     return emailFinal.join("") + "@" + arrayEmail[1];
-    //   };
 
     return (
         <div className={`flex flex-row border-[1px] border-cinza w-full justify-between font-poppins ${checked? `text-preto` : `text-cinza`}  items-center gap-2 sm:gap-4 sm:py-4 py-2 px-4 sm:px-6 rounded-lg bg-branco`}>
