@@ -21,7 +21,7 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
   const [label, setLabel] = useState<string>('')
   const [checked, setChecked] = useState<boolean>(false)
   const [escolha, setEscolha] = useState<string>('');
-  
+
   const filtrarPorQuery = () => {
     if (query) {
       const produtosFiltrados1 = [...produtos].filter((produto) => {
@@ -44,7 +44,7 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
 
   useEffect(() => {
     filtrarPorQuery()
-    definirProdutos(filtrarPorQuery()) 
+    definirProdutos(filtrarPorQuery())
     setProdutosMostradosQuery(filtrarPorQuery())
   }, [query])
 
@@ -101,23 +101,23 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
   }
 
   return (
-    <main className='w-full text-preto'>   
+    <main className='w-full text-preto pb-20'>
       <section className='flex items-start'>
         {
           filtroOpen && (
             <div className={`absolute ${animation ? 'animate-slide-left' : 'animate-slide-right'} z-50`}>
-              <FiltroGrande produtos={produtosMostradosQuery} close={setAnimation} setLabel1={setLabel} setCheck={setChecked}/>
+              <FiltroGrande produtos={produtosMostradosQuery} close={setAnimation} setLabel1={setLabel} setCheck={setChecked} />
             </div>
           )
         }
       </section>
       <div className='md:flex md:flex-row mt-5 md:mt-10 md:w-[90%] md:m-auto'>
         <div className='hidden md:!flex w-[25%]'>
-          <FiltroGrande produtos={produtosMostradosQuery} setLabel1={setLabel} setCheck={setChecked}/>
+          <FiltroGrande produtos={produtosMostradosQuery} setLabel1={setLabel} setCheck={setChecked} />
         </div>
         <section className='w-full md:w-[75%]'>
           <div className='w-full flex items-center flex-col-reverse md:flex-row justify-between'>
-            <p className='font-poppins text-lg font-bold mt-5 md:mt-0 md:text-2xl'>{query ? `Resultados para "${query}"` : "Produtos"}</p>
+            <p className='font-poppins text-lg font-bold mt-5 pl-0 sm:pl-6 lg:pl-2 md:mt-0 md:text-2xl'>{query ? `Resultados para "${query}"` : "Produtos"}</p>
             <div className='w-full md:w-[25%] flex justify-between'>
               <div className='flex flex-row gap-2 items-center justify-center border w-[25%] p-1 rounded-lg border-cinza ml-2 font-poppins text-sm md:hidden' onClick={() => setFiltroOpen(true)}>
                 <p>Filtrar</p>

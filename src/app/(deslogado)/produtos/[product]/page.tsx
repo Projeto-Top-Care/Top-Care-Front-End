@@ -17,6 +17,9 @@ import { Usuario } from '@/types/usuarios';
 import Avaliacao from '@/components/Avaliacao/Avaliacao';
 import EscreverAvaliacao from '@/components/EscreverAvaliacao/EscreverAvaliacao';
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
+import { FiShoppingBag } from 'react-icons/fi';
+import { useRouter } from "next/navigation";
+import { getLocalStorageArray } from '@/server/localStorage/actions';
 
 interface PropsProduct {
   searchParams: { id: number }
@@ -26,10 +29,14 @@ const carrosselProdutos = buscarTodos().map((produto, i) => (<CardProduto key={i
   precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />))
 
 export default function ProdutoDetails({ searchParams }: PropsProduct) {
+
+  const { push } = useRouter();
+
   const [produtoProcurado, setProdutoProcurado] = useState<ProdutoCompleto>()
   const [numeroImagem, setNumeroImagem] = useState<number>(0)
   const [favorito, setFavorito] = useState<boolean>(false)
   const [tamanho, setTamanho] = useState<string>();
+  const [open, setOpen] = useState<boolean>(false)
 
   const construirEstrelas = (numEstrelas: number) => {
     const arrayFull = new Array(Math.round(numEstrelas)).fill(null)
@@ -53,12 +60,43 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
     setProdutoProcurado(buscarProduto(searchParams.id))
   }, [])
 
+
+
+  const adicionarCarrinho = () => {
+    const carrinho = getLocalStorageArray('carrinho')
+    const newProduto = {
+      id: produtoProcurado?.id,
+      quantidade: 1,
+    }
+    const carrinhoAtualizado = [...carrinho, newProduto]
+    localStorage.setItem('carrinho', JSON.stringify(carrinhoAtualizado))
+    setOpen(true)
+    setTimeout(() => {
+      setOpen(false)
+    }, 4000)
+  }
+
+  const adicionadoCarrinho = () => {
+    if (open) {
+      return (
+        <div className="z-50">
+          <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down`}>
+            <div className="flex items-center justify-center lg:h-10 h-8 bg-terciaria rounded font-poppins">
+              <p className="text-xs lg:text-base">Adicionado ao Carrinho!</p>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  }
+
   if (!produtoProcurado) return (
     <div className='font-poppins'>Carregando...</div>
   )
   else {
     return (
-      <main>
+      <main className='text-preto'>
+        {adicionadoCarrinho()}
         <section className='mt-6 md:mt-11'>
           <TituloLinha titulo='Produto' />
         </section>
@@ -86,7 +124,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
           <section className='md:w-[55%] w-full flex flex-col max-sm:mt-4'>
             <div className='flex flex-row items-center justify-between lg:w-[85%]'>
               <p className='font-poppins md:text-xl text-base font-normal text-preto'>{produtoProcurado.nomeProduto}</p>
-              <div className="transition duration-100 active:scale-75 z-50" onClick={()=>setFavorito(!favorito)}>{favorito ? <FaHeart size={20} style={{ color: "#B5A6F3", }}/> : <FaRegHeart size={20} style={{ color: "#4f4f4f", }}/> }</div>
+              <div className="transition duration-100 active:scale-75 z-50" onClick={() => setFavorito(!favorito)}>{favorito ? <FaHeart size={20} style={{ color: "#B5A6F3", }} /> : <FaRegHeart size={20} style={{ color: "#4f4f4f", }} />}</div>
             </div>
             <div className='flex flex-col md:flex-row md:gap-1 lg:text-sm text-xs font-poppins font-normal text-preto'>
               <p>Código: {produtoProcurado.codigo} |</p>
@@ -119,12 +157,14 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             </div>
             <div className='flex flex-row items-start gap-4 w-full lg:w-[85%] mt-4'>
               <div className='w-[30%]'>
-                <QuantidadeProduto />
+                <QuantidadeProduto propsQuantidade={0} estoqueDisponivel={produtoProcurado.estoque} />
                 <p className='font-poppins text-cinza-escuro text-center mt-1 lg:text-base md:text-xs text-[10px]'>Em estoque: {produtoProcurado.estoque}</p>
               </div>
-              <div className='w-[15%]'>
-                <BotaoGrande title={'../assets/sacola.svg'} background={'bg-primaria'} type={'button'} />
-              </div>
+
+              <button className='bg-primaria rounded-lg w-[15%] p-2 transition ease-in-out delay-150 duration-200 hover:bg-[#826cda] flex justify-center items-center' onClick={() => adicionarCarrinho()}>
+                <FiShoppingBag style={{ color: "#322828", }} className="w-4" />
+              </button>
+
               <div className='h-8 flex items-center max-md:hidden'>
                 <p className='font-poppins'>ou</p>
               </div>
@@ -171,10 +211,10 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
           <div>
             <TituloLinha titulo='Avaliações' />
           </div>
-          <div className='mt-14'>
+          <div className='mt-4 sm:mt-8 md:mt-14'>
             {
               produtoProcurado.avaliacoes.map((avaliacao, i) => (
-                <div key={i}>
+                <div key={i} className="flex flex-col gap-4 sm:gap-14">
                   <Avaliacao nomeUsuario={(buscarUsuario((avaliacao as AvaliacaoType).id)! as Usuario).nomeCompleto}
                     fotoUsuario={(buscarUsuario(avaliacao.id)! as Usuario).foto} avaliacaoUsuario={avaliacao.descricao}
                     estrelas={construirEstrelas(avaliacao.nota)} notaAvaliacao={avaliacao.nota} />
@@ -182,7 +222,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
               ))
             }
           </div>
-          <div className='mt-14 mb-20'>
+          <div className='mt-4 sm:mt-14 mb-20'>
             <EscreverAvaliacao nomeUsuario={"Kristian Erdmann"} fotoUsuario="../assets/gatoFotoUsuario.png" />
           </div>
         </section>

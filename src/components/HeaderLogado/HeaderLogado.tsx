@@ -57,7 +57,7 @@ export default function HeaderLogado() {
                 </div>
 
                 <div className='flex max-sm:hidden flex-row gap-4 items-center justify-end'>
-                    <button onClick={() => push('./carrinho')}><FiShoppingBag size={'1.2rem'} style={{ color: "#322828"}} /></button>
+                    <button onClick={() => push('/carrinho')}><FiShoppingBag size={'1.2rem'} style={{ color: "#322828"}} /></button>
                     <button onClick={() => push('./produtosFavoritos')}><FaRegHeart size={'1.3rem'} style={{color: "#32282"}} /></button>
                     <button onClick={() => push('./Perfil')}><FaUserCircle size={'1.8rem'} style={{color: "#32282"}} /></button>
                 </div>
@@ -96,11 +96,11 @@ export default function HeaderLogado() {
                                 </div>
                                 <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                                     <FaRegHeart size={'0.9rem'} style={{ color: "#322828" }} />
-                                    <a onClick={() => handleLinkClick('/carrinho')} className="hover:underline cursor">Sacola</a>
+                                    <a onClick={() => handleLinkClick('/produtosFavoritos')} className="hover:underline cursor">Favoritos</a>
                                 </div>
                                 <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                                     <FiShoppingBag size={'0.9rem'} style={{ color: "#322828" }} />
-                                    <a onClick={() => handleLinkClick('/produtosFavoritos')} className="hover:underline cursor">Favoritos</a>
+                                    <a onClick={() => handleLinkClick('/carrinho')} className="hover:underline cursor">Sacola</a>
                                 </div>
                             </div>
 

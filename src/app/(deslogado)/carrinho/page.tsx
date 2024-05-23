@@ -112,7 +112,7 @@ export default function Carrinho() {
   }
 
   return (
-    <main>
+    <main className='text-preto'>
       <section className='mt-10'>
         <TituloLinha titulo='Minha Sacola' />
       </section>
