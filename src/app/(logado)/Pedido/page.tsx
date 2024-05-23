@@ -1,6 +1,7 @@
 'use client'
 import BarraProcesso from "@/components/BarraProcesso/BarraProcesso";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
+import { getLocalStorageItem } from "@/server/localStorage/actions";
 import { buscarUsuario } from '@/server/usuario/action'
 import { Usuario } from '@/types/usuarios'
 import { useEffect, useState } from 'react'
@@ -12,10 +13,14 @@ interface PropsUsuario {
 }
 
 export default function Pedido({ searchParams }: PropsUsuario) {
+    const userId = getLocalStorageItem('idUser')
+    const produtoId = searchParams.id
     const [usuarioProcurado, setUsuarioProcurado] = useState<Usuario>()
 
+    const pedido = usuarioProcurado?.pedidos[produtoId]
+
     useEffect(() => {
-        setUsuarioProcurado(buscarUsuario(searchParams.id))
+        setUsuarioProcurado(buscarUsuario(parseInt(userId)))
     }, [])
 
 
@@ -33,8 +38,8 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                                 <p className="font-poppins text-cinza-escuro md:text-base text-xs">Código de rastreio:</p>
                             </div>
                             <div>
-                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Número do pedido: {usuarioProcurado?.pedidos[0].codigo}</p>
-                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Data da compra: {usuarioProcurado?.pedidos[0].dataCompra}</p>
+                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Número do pedido: {usuarioProcurado?.pedidos[produtoId].codigo}</p>
+                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Data da compra: {usuarioProcurado?.pedidos[produtoId].dataCompra}</p>
                             </div>
                         </div>
                         <section className="w-full m-auto md:mt-24 mt-8">
