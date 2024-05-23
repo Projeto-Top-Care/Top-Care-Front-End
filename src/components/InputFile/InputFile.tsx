@@ -42,7 +42,7 @@ interface IInput {
 const Input = ({ dropzone, rounded }: IInput) => {
     const { getRootProps, getInputProps, isDragActive } = dropzone;
     return (
-        <div {...getRootProps()} className={`border border-black ${rounded} h-full w-full bg-branco flex justify-center items-center ${isDragActive ? 'border-primaria' : 'border-black'}`}>
+        <div {...getRootProps()} className={`border border-cinza ${rounded} h-full w-full bg-branco flex justify-center items-center ${isDragActive ? 'border-primaria' : 'border-black'}`}>
             <img src="./assets/galeria.svg" alt="" className="w-[40%]"/>
             <input {...getInputProps()} className="hidden" />
         </div>

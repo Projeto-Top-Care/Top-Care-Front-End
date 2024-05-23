@@ -17,30 +17,30 @@ export default function CadastroPet({setOpen}: ICadastroPet) {
     const [nome, setNome] = useState("");
     const [idade, setIdade] = useState("");
     return (
-        <div className="border border-black max-h-screen w-full h-64 flex justify-center flex-col bg-branco rounded-lg">
-            <div className="flex items-center w-full justify-between">
-                <div className="w-[33%]"></div>
-                <div className="w-[33%%] flex justify-center">
-                    <h1 className="font-poppins font-bold text-center text-2xl mt-4">Cadastre seu pet!</h1>
+        <div className="border max-h-screen lg:w-full md:w-[90%] w-full lg:h-[30%] h-[70%] lg:flex grid justify-center lg:flex-col bg-branco rounded-lg">
+            <div className="flex lg:items-center w-full justify-between ">
+                <div className="lg:w-[33%] "></div>
+                <div className="lg:w-[33%] md:w-full w-[80%] flex justify-center ml-4">
+                    <h1 className="font-poppins font-bold md:text-2xl text-lg mt-4">Cadastre seu pet!</h1>
                 </div>
-                <div className="w-[33%] flex justify-end mr-2">
-                    <img src="./assets/Sair.svg" alt="" className="w-[11%] cursor-pointer" onClick={()=>setOpen(false)}/>
+                <div className="lg:w-[33%] w-[50%] flex justify-end mr-2">
+                    <img src="./assets/Sair.svg" alt="" className="lg:w-[11%] md:w-[25%] w-[35%] cursor-pointer" onClick={()=>setOpen(false)}/>
                 </div>
             </div>
-            <div className="flex flex-row items-center justify-between w-[80%] m-auto">
-                <div className="w-32 h-32">
+            <div className="flex lg:flex-row flex-col items-center justify-between w-[90%] m-auto gap-4">
+                <div className="md:w-32 md:h-32 h-24 w-24 md:mt-8 mt-4">
                     <InputFile rounded="rounded-full" />
                 </div>
-                <div className="flex flex-col gap-4 w-[35%]">
+                <div className="flex flex-col gap-4  lg:w-[35%] md:w-96 w-full">
                     <Select label="Qual o seu pet?" options={animais} opcaoSelecionada={setPet}/>
                     <Select label="Qual a raça do seu pet" options={racasCachorro} opcaoSelecionada={setRaca}/>
                 </div>
-                <div className="flex flex-col gap-4 w-[35%]">
+                <div className="flex flex-col gap-4 lg:w-[35%] md:w-96 w-full">
                     <InputText placeholder="Qual o nome do pet?" type="text" onChange={(e)=>setNome(e.target.value)}/>
                     <InputText placeholder="Qual a idade?" type="number" onChange={(e)=>setIdade(e.target.value)}/>
                 </div>
             </div>
-            <div className="w-full flex justify-center mb-4">
+            <div className="w-full flex justify-center mb-4 mt-4">
                 <BotaoMedio title="Cadastrar" />
             </div>
         </div>
