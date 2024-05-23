@@ -137,7 +137,7 @@ export default function Perfil() {
                     {
                         usuarioLogado.pedidos.map((pedido, i) => (
                             <div key={i}>
-                                <PedidoAndamentoPerfil data={"17/05/2024"} numPedido={pedido.codigo} status={"em separação"} valor={produto.precoNovo} src={produto.imagemProduto} />
+                                <PedidoAndamentoPerfil {...pedido} />
                             </div>
                         ))}
                 </div>

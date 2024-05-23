@@ -1,9 +1,11 @@
 'use client'
 import BarraProcesso from "@/components/BarraProcesso/BarraProcesso";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
-import { buscarUsuario } from '@/server/usuario/action'
-import { Usuario } from '@/types/usuarios'
-import { useEffect, useState } from 'react'
+import { getLocalStorageItem } from "@/server/localStorage/actions";
+import { buscarProduto } from "@/server/produtos/action";
+import { buscarEndereco, buscarPedido, buscarUsuario } from '@/server/usuario/action'
+import type { Endereco, Pedido, QntProduto, Usuario } from '@/types/usuarios'
+import { Produto } from '@/types/produto'
 import { MdBlock } from "react-icons/md";
 import { TfiReload } from "react-icons/tfi";
 
@@ -12,12 +14,20 @@ interface PropsUsuario {
 }
 
 export default function Pedido({ searchParams }: PropsUsuario) {
-    const [usuarioProcurado, setUsuarioProcurado] = useState<Usuario>()
+    const userId = parseInt(getLocalStorageItem('idUser'))
+    const produtoId = searchParams.id
+    const usuarioProcurado: Usuario = buscarUsuario(userId)!
 
-    useEffect(() => {
-        setUsuarioProcurado(buscarUsuario(searchParams.id))
-    }, [])
+    const pedidoBuscado: Pedido = buscarPedido(produtoId, userId)!
+    
+    const produtos: QntProduto[] = pedidoBuscado.produtos.map((produto) => {
+        return produto;
+    })
 
+    const produtosCompletos: Produto[] = produtos.map((produto) => {
+        return buscarProduto(produto.id)!
+    })
+    const endereco: Endereco = buscarEndereco(pedidoBuscado.endereço, userId)!
 
     return (
         <main>
@@ -33,8 +43,8 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                                 <p className="font-poppins text-cinza-escuro md:text-base text-xs">Código de rastreio:</p>
                             </div>
                             <div>
-                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Número do pedido: {usuarioProcurado?.pedidos[0].codigo}</p>
-                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Data da compra: {usuarioProcurado?.pedidos[0].dataCompra}</p>
+                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Número do pedido: {pedidoBuscado.codigo}</p>
+                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Data da compra: {pedidoBuscado.dataCompra}</p>
                             </div>
                         </div>
                         <section className="w-full m-auto md:mt-24 mt-8">
@@ -55,68 +65,20 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                             <div className="md:p-4 lg:w-[50%]">
                                 <div className="lg:p-8 p-4 ">
                                     <p className="font-poppins text-preto font-medium lg:text-lg md:text-base text-sm">Produtos</p>
-                                    <div className="flex flex-col gap-8">
-                                        <div className="flex flex-row justify-between items-center mb-4 mt-12">
-                                            <p className="font-poppins text-preto font-medium md:text-base text-sm">{usuarioProcurado?.pedidos[0].produtos[0].quantidadeComprada}x </p>
-                                            {
-                                                usuarioProcurado?.pedidos[0].produtos[0].imagemProduto.map((imagem) => (
-                                                    <div key={imagem} className="md:w-16 w-12">
-                                                        <img src={imagem} alt="" className="" />
+                                    {
+                                        produtosCompletos.map((produto, i) => (
+                                            <div className="flex flex-col gap-8" key={produto.id}>
+                                                <div className="flex flex-row justify-between items-center mb-4 mt-12">
+                                                    <p className="font-poppins text-preto font-medium md:text-base text-sm">{produtos[i].quantidade}x </p>
+                                                    <div key={produto.imagemProduto[0]} className="md:w-16 w-12">
+                                                        <img src={produto.imagemProduto[0]} alt="" className="" />
                                                     </div>
-                                                ))
-                                            }
-                                            <p className="font-poppins text-preto md:text-sm text-xs lg:w-[55%] md:w-[75%] w-[40%]">{usuarioProcurado?.pedidos[0].produtos[0].nomeProduto}</p>
-                                            <p className="font-poppins text-preto md:text-base text-sm ">R$ {usuarioProcurado?.pedidos[0].produtos[0].precoNovo}</p>
-                                        </div>
-                                        <div className="flex flex-row justify-between items-center mb-4">
-                                            <p className="font-poppins text-preto font-medium md:text-base text-sm">{usuarioProcurado?.pedidos[0].produtos[0].quantidadeComprada}x </p>
-                                            {
-                                                usuarioProcurado?.pedidos[0].produtos[0].imagemProduto.map((imagem) => (
-                                                    <div key={imagem} className="md:w-16 w-12">
-                                                        <img src={imagem} alt="" className="" />
-                                                    </div>
-                                                ))
-                                            }
-                                            <p className="font-poppins text-preto md:text-sm text-xs lg:w-[55%] md:w-[75%] w-[40%]">{usuarioProcurado?.pedidos[0].produtos[0].nomeProduto}</p>
-                                            <p className="font-poppins text-preto md:text-base text-sm ">R$ {usuarioProcurado?.pedidos[0].produtos[0].precoNovo}</p>
-                                        </div>
-                                        <div className="flex flex-row justify-between items-center mb-4">
-                                            <p className="font-poppins text-preto font-medium md:text-base text-sm">{usuarioProcurado?.pedidos[0].produtos[0].quantidadeComprada}x </p>
-                                            {
-                                                usuarioProcurado?.pedidos[0].produtos[0].imagemProduto.map((imagem) => (
-                                                    <div key={imagem} className="md:w-16 w-12">
-                                                        <img src={imagem} alt="" className="" />
-                                                    </div>
-                                                ))
-                                            }
-                                            <p className="font-poppins text-preto md:text-sm text-xs lg:w-[55%] md:w-[75%] w-[40%]">{usuarioProcurado?.pedidos[0].produtos[0].nomeProduto}</p>
-                                            <p className="font-poppins text-preto md:text-base text-sm ">R$ {usuarioProcurado?.pedidos[0].produtos[0].precoNovo}</p>
-                                        </div>
-                                        <div className="flex flex-row justify-between items-center mb-4">
-                                            <p className="font-poppins text-preto font-medium md:text-base text-sm">{usuarioProcurado?.pedidos[0].produtos[0].quantidadeComprada}x </p>
-                                            {
-                                                usuarioProcurado?.pedidos[0].produtos[0].imagemProduto.map((imagem) => (
-                                                    <div key={imagem} className="md:w-16 w-12">
-                                                        <img src={imagem} alt="" className="" />
-                                                    </div>
-                                                ))
-                                            }
-                                            <p className="font-poppins text-preto md:text-sm text-xs lg:w-[55%] md:w-[75%] w-[40%]">{usuarioProcurado?.pedidos[0].produtos[0].nomeProduto}</p>
-                                            <p className="font-poppins text-preto md:text-base text-sm">R$ {usuarioProcurado?.pedidos[0].produtos[0].precoNovo}</p>
-                                        </div>
-                                        <div className="flex flex-row justify-between items-center mb-4">
-                                            <p className="font-poppins text-preto font-medium md:text-base text-sm">{usuarioProcurado?.pedidos[0].produtos[0].quantidadeComprada}x </p>
-                                            {
-                                                usuarioProcurado?.pedidos[0].produtos[0].imagemProduto.map((imagem) => (
-                                                    <div key={imagem} className="md:w-16 w-12">
-                                                        <img src={imagem} alt="" className="" />
-                                                    </div>
-                                                ))
-                                            }
-                                            <p className="font-poppins text-preto md:text-sm text-xs lg:w-[55%] md:w-[75%] w-[40%]">{usuarioProcurado?.pedidos[0].produtos[0].nomeProduto}</p>
-                                            <p className="font-poppins text-preto md:text-base text-sm ">R$ {usuarioProcurado?.pedidos[0].produtos[0].precoNovo}</p>
-                                        </div>
-                                    </div>
+                                                    <p className="font-poppins text-preto md:text-sm text-xs lg:w-[55%] md:w-[75%] w-[40%]">{produto.nomeProduto}</p>
+                                                    <p className="font-poppins text-preto md:text-base text-sm ">R$ {produto.precoNovo}</p>
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
                                 </div>
                             </div>
                             <div className="border border-cinza-claro lg:grid flex lg:items-center lg:justify-center"></div>
@@ -124,35 +86,35 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                                 <div className="md:p-4 grid lg:flex-col grid-cols-1 divide-y divide-cinza-claro font-poppins text-preto md:text-base text-sm items-start">
                                     <div className="">
                                         <p className="font-poppins text-preto font-medium lg:text-lg md:text-base text-sm md:mb-8 mb-4">Pagamento</p>
-                                        <div  className="flex flex-row justify-between items-center mt-4">
-                                            <p>{usuarioProcurado?.pedidos[0].pagamento[0].formaPagamento}</p>
+                                        <div className="flex flex-row justify-between items-center mt-4">
+                                            <p>{pedidoBuscado.pagamento.metodo}</p>
                                             <p></p>
                                         </div>
-                                        <div className="flex flex-row justify-between items-center mt-4">
+                                        <div className="flex flex-row justify-between items-center mt-8">
                                             <p >Subtotal</p>
-                                            <p>R$ {usuarioProcurado?.pedidos[0].pagamento[0].subtotal}</p>
+                                            <p>R$ {pedidoBuscado.pagamento.subtotal}</p>
                                         </div>
                                         <div className="flex flex-row justify-between items-center mt-2">
                                             <p>Descontos</p>
-                                            <p>R$ {usuarioProcurado?.pedidos[0].pagamento[0].descontos}</p>
+                                            <p>R$ {pedidoBuscado.pagamento.descontos}</p>
                                         </div>
                                         <div className="flex flex-row justify-between items-center mt-2">
                                             <p>Frete</p>
-                                            <p>R$ {usuarioProcurado?.pedidos[0].pagamento[0].frete}</p>
+                                            <p>R$ {pedidoBuscado.pagamento.frete}</p>
                                         </div>
                                         <div className="flex flex-row justify-between items-center  font-semibold mt-2 md:mb-8 mb-4">
                                             <p>Valor total</p>
-                                            <p>R$ {usuarioProcurado?.pedidos[0].pagamento[0].valorTotal}</p>
+                                            <p>R$ {pedidoBuscado.pagamento.valorTotal}</p>
                                         </div>
                                     </div>
                                     <div className="">
                                         <p className="font-poppins text-preto font-medium lg:text-lg md:text-base text-sm md:mt-8 mt-4">Endereço para entrega</p>
-                                        <p className="font-poppins text-preto md:text-sm text-xs mt-2">{usuarioProcurado?.pedidos[0].enderecoEntrega[0].nome}</p>
-                                        <p className="font-poppins text-cinza-escuro md:text-sm text-xs md:mb-8 mb-4">{usuarioProcurado?.pedidos[0].enderecoEntrega[0].rua}, {usuarioProcurado?.pedidos[0].enderecoEntrega[0].numero}, {usuarioProcurado?.pedidos[0].enderecoEntrega[0].bairro}, {usuarioProcurado?.pedidos[0].enderecoEntrega[0].complemento} | {usuarioProcurado?.pedidos[0].enderecoEntrega[0].cidade} - {usuarioProcurado?.pedidos[0].enderecoEntrega[0].estado}</p>
+                                        <p className="font-poppins text-preto md:text-sm text-xs mt-2">{endereco.nome}</p>
+                                        <p className="font-poppins text-cinza-escuro md:text-sm text-xs md:mb-8 mb-4">{endereco.rua}, {endereco.numero}, {endereco.bairro}, {endereco.complemento} | {endereco.cidade} - {endereco.estado}</p>
                                     </div>
                                     <div className="">
                                         <p className="font-poppins text-preto font-medium lg:text-lg md:text-base text-sm  md:mt-8 mt-4">Destinatário</p>
-                                        <p className="font-poppins text-preto md:text-sm text-xs mt-2 md:mb-8 mb-4">{usuarioProcurado?.nomeCompleto}</p>
+                                        <p className="font-poppins text-preto md:text-sm text-xs mt-2 md:mb-8 mb-4">{usuarioProcurado.nomeCompleto}</p>
                                     </div>
                                 </div>
                             </div>

@@ -195,7 +195,7 @@ export default function PaginaCompra() {
                                     <div className="flex flex-col justify-end gap-2">
                                         {
                                             usuarioLogado.cartoes?.map((cartao, i) => (
-                                                <div onClick={() => setCartaoEscolhido(cartao)}>
+                                                <div key={cartao.numero} onClick={() => setCartaoEscolhido(cartao)}>
                                                     <CardCartaoSalvo checked={verificarCartao(cartao.nome)} titulo={cartao.nome} numero={cartao.numero} validade={cartao.validade} tipo={cartao.agencia} />
                                                 </div>
                                             ))

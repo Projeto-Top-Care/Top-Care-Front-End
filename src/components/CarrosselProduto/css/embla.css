@@ -8,15 +8,7 @@
   --slide-spacing-lg: 2rem;
   --slide-size-lg: 25%  ;
 }
-.embla__viewport {
-  overflow: hidden;
-}
 .embla__container {
   backface-visibility: hidden;
   touch-action: pan-y;
-}
-.embla__slide__number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

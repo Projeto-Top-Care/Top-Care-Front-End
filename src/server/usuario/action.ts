@@ -33,3 +33,25 @@ export function buscarUsuarioEmail(email:string){
     })
     return usuarioEncontrado
 }
+
+export function buscarEndereco(idEndereco: number, idUsuario: number){
+    const usuario: Usuario = buscarUsuario(idUsuario)!
+    let enderecoEncontrado;
+    usuario.enderecos.forEach((endereco)=>{
+        if(endereco.id == idEndereco){
+            enderecoEncontrado = endereco 
+        }
+    })
+    return enderecoEncontrado;
+}
+
+export function buscarPedido(idPedido: number, idUsuario: number){
+    const usuario: Usuario = buscarUsuario(idUsuario)!
+    let pedidoEncontrado;
+    usuario.pedidos.forEach((pedido)=>{
+        if(pedido.id == idPedido){
+            pedidoEncontrado = pedido 
+        }
+    })
+    return pedidoEncontrado;
+}

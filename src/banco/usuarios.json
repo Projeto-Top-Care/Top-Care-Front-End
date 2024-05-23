@@ -50,10 +50,12 @@
     ],
     "pedidos": [
       {
+        "id": 1,
         "codigo": 123456789,
         "dataCompra": "12/12/2012",
         "endereco": 1,
-        "pagamento": [
+        "status": "Em Andamento",
+        "pagamento":
           {
             "metodo": "cartao",
             "pago": true,
@@ -62,20 +64,20 @@
             "frete": 12.00,
             "valorTotal": 103.00
           }
-        ],
+        ,
         "endereço": 1,
         "produtos": [
           {
             "id": 1,
-            "quantidadeComprada": 1
+            "quantidade": 1
           },
           {
             "id": 2,
-            "quantidadeComprada": 3
+            "quantidade": 3
           },
           {
             "id": 3,
-            "quantidadeComprada": 1
+            "quantidade": 1
           }
         ]
       }
@@ -152,10 +154,12 @@
     ],
     "pedidos": [
       {
+        "id": 1,
         "codigo": 987654321,
         "dataCompra": "12/12/2012",
         "endereco": 1,
-        "pagamento": [
+        "status": "Em Andamento",
+        "pagamento":
           {
             "metodo": "pix",
             "pago": true,
@@ -164,16 +168,15 @@
             "frete": 12.00,
             "valorTotal": 103.00
           }
-        ],
-        "endereço": 2,
+        ,
         "produtos": [
           {
             "id": 2,
-            "quantidadeComprada": 2
+            "quantidade": 2
           },
           {
             "id": 3,
-            "quantidadeComprada": 2
+            "quantidade": 2
           }
         ]
       }
@@ -250,10 +253,12 @@
     ],
     "pedidos": [
       {
+        "id": 1,
         "codigo": 123456789,
         "dataCompra": "12/12/2012",
         "endereco": 1,
-        "pagamento": [
+        "status": "Em Andamento",
+        "pagamento":
           {
             "metodo": "cartao",
             "pago": true,
@@ -261,13 +266,12 @@
             "descontos": 9.00,
             "frete": 12.00,
             "valorTotal": 103.00
-          }
-        ],
+          },
         "endereço": 1,
         "produtos": [
           {
             "id": 1,
-            "quantidadeComprada": 1
+            "quantidade": 1
           }
         ]
       }
@@ -303,7 +307,7 @@
     "cpf": "111.111.111-11",
     "sexo": "masculino",
     "dataNascimento": "1990-02-02",
-    "cupons": [],
+    "cupons": [], 
     "enderecos": [
       {
         "id": 1,
@@ -344,10 +348,12 @@
     ],
     "pedidos": [
       {
+        "id": 1,
         "codigo": 987654321,
         "dataCompra": "12/12/2012",
         "endereco": 1,
-        "pagamento": [
+        "status": "Em Andamento",
+        "pagamento":
           {
             "metodo": "boleto",
             "pago": true,
@@ -356,12 +362,12 @@
             "frete": 12.00,
             "valorTotal": 103.00
           }
-        ],
+        ,
         "endereço": 2,
         "produtos": [
           {
             "id": 2,
-            "quantidadeComprada": 2
+            "quantidade": 2
           }
         ]
       }
@@ -393,7 +399,7 @@
     "nomeCompleto": "Maria Silva Souza",
     "email": "maria.silva@email.com",
     "celular": "+55 (20)00000-0009",
-    "senha": "senha1234",
+    "senha": "senha12345",
     "cpf": "000.000.000-00",
     "sexo": "feminino",
     "dataNascimento": "1980-01-01",
@@ -481,10 +487,12 @@
     ],
     "pedidos": [
       {
+        "id": 1,
         "codigo": 123456789,
         "dataCompra": "12/12/2012",
         "endereco": 1,
-        "pagamento": [
+        "status": "Em Andamento",
+        "pagamento":
           {
             "metodo": "cartao",
             "pago": true,
@@ -493,20 +501,20 @@
             "frete": 12.00,
             "valorTotal": 103.00
           }
-        ],
+        ,
         "endereço": 1,
         "produtos": [
           {
             "id": 1,
-            "quantidadeComprada": 1
+            "quantidade": 1
           },
           {
             "id": 2,
-            "quantidadeComprada": 3
+            "quantidade": 3
           },
           {
             "id": 3,
-            "quantidadeComprada": 1
+            "quantidade": 1
           }
         ]
       }
@@ -519,12 +527,14 @@
     ],
     "cartoes": [
       {
+        "id": 1,
         "nome": "Cartao 1",
         "numero": 12345678,
         "validade": "12/26",
         "agencia": "mastercard"
       },
       {
+        "id": 2,
         "nome": "Cartao 2",
         "numero": 87654321,
         "validade": "12/26",

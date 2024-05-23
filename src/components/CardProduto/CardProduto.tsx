@@ -10,11 +10,11 @@ import { useEffect, useState } from 'react'
 import React from "react";
 import { getLocalStorageArray } from "@/server/localStorage/actions";
 
-const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo, favorito}: Produto) => {
+const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo, favorito }: Produto) => {
 
     const [favoritoCard, setFavoritoCard] = useState<boolean>(favorito ? true : false);
     const [open, setOpen] = useState<boolean>(false)
-    const {push} = useRouter()
+    const { push } = useRouter()
 
     useEffect(() => {
         iconeFavorito()
@@ -23,10 +23,10 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
     const iconeFavorito = () => {
         return (favoritoCard ?
             <FaHeart style={{ color: "#B5A6F3", }} className="w-4" /> :
-            <FaRegHeart style={{ color: "#4f4f4f", }} className="w-4" />) 
+            <FaRegHeart style={{ color: "#4f4f4f", }} className="w-4" />)
     }
 
-    const adicionarCarrinho = () =>{
+    const adicionarCarrinho = () => {
         const carrinho = getLocalStorageArray('carrinho')
         const newProduto = {
             id: id,
@@ -55,8 +55,10 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
     }
 
     return (
-        <div className='flex flex-col gap-3 border-cinza border-[1px] rounded-lg w-52 font-poppins px-2 py-3 '>
-            {adicionadoCarrinho()}
+        <div className='flex flex-col justify-center gap-3 border-cinza border-[1px] rounded-lg w-52 h-80 font-poppins px-2 py-3 '>
+            <div className="absolute">
+                {adicionadoCarrinho()}
+            </div>
             <div className='flex flex-row justify-between items-center' >
                 <div className='flex flex-row gap-[0.2rem] items-center justify-center'>
                     <AiFillStar style={{ color: "#FFD601", }} className="w-5" />
@@ -71,7 +73,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
 
             </div>
 
-            <div className='flex flex-col items-center cursor-pointer' onClick={() => push(`/produtos/${nomeProduto.replace(" ","-")}?id=${id}`)}>
+            <div className='flex flex-col items-center cursor-pointer' onClick={() => push(`/produtos/${nomeProduto.replace(" ", "-")}?id=${id}`)}>
                 <div className="items-center justify-center flex flex-col-reverse md:flex-col">
                     <p className='text-xs md:text-sm h-10 font-medium text-preto text-center overflow-hidden line-clamp-2'>{nomeProduto}</p>
                     <img src={imagemProduto[0]} className='w-[60%] my-3' />
@@ -83,7 +85,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
             <div className='flex flex-row gap-1 justify-between'>
                 <button className='transition ease-in-out delay-150 duration-200 text-xs text-preto font-medium bg-secundaria rounded-lg w-[76%] h-7 hover:bg-[#9EBF40]'>Comprar agora</button>
                 <button className='bg-primaria rounded-lg w-[24%] transition ease-in-out delay-150 duration-200 hover:bg-[#826cda] flex justify-center items-center'>
-                    <FiShoppingBag style={{ color: "#322828", }} className="w-3 sm:w-4" onClick={()=>adicionarCarrinho()}/>
+                    <FiShoppingBag style={{ color: "#322828", }} className="w-3 sm:w-4" onClick={() => adicionarCarrinho()} />
                 </button>
             </div>
         </div>
