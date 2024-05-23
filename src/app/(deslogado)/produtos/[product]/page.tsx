@@ -37,6 +37,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
   const [favorito, setFavorito] = useState<boolean>(false)
   const [tamanho, setTamanho] = useState<string>();
   const [open, setOpen] = useState<boolean>(false)
+  const [quantidade, setQuantidade] = useState<number>(1)
 
   const construirEstrelas = (numEstrelas: number) => {
     const arrayFull = new Array(Math.round(numEstrelas)).fill(null)
@@ -66,7 +67,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
     const carrinho = getLocalStorageArray('carrinho')
     const newProduto = {
       id: produtoProcurado?.id,
-      quantidade: 1,
+      quantidade: quantidade,
     }
     const carrinhoAtualizado = [...carrinho, newProduto]
     localStorage.setItem('carrinho', JSON.stringify(carrinhoAtualizado))
@@ -157,7 +158,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             </div>
             <div className='flex flex-row items-start gap-4 w-full lg:w-[85%] mt-4'>
               <div className='w-[30%]'>
-                <QuantidadeProduto estoqueDisponivel={produtoProcurado.estoque} />
+                <QuantidadeProduto propsQuantidade={setQuantidade} estoqueDisponivel={produtoProcurado.estoque} />
                 <p className='font-poppins text-cinza-escuro text-center mt-1 lg:text-base md:text-xs text-[10px]'>Em estoque: {produtoProcurado.estoque}</p>
               </div>
 
