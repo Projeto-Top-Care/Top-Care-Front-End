@@ -1,8 +1,12 @@
+'use client'
 import InputText from "@/components/InputText/InputText"
 import InputEstatico from "@/components/InputEstatico/InputEstatico"
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande"
+import { useRouter  } from 'next/navigation'
+
 
 export default function confirmarCodigo() {
+    const {push} = useRouter();
     return (
         <main>
             <section>
@@ -14,12 +18,12 @@ export default function confirmarCodigo() {
                     <div className="mt-5 w-[80%] md:w-[50%] lg:w-[31%]">
                         <InputText placeholder="Código"/>
                     </div>
-                    <div className="flex flex-row w-[80%] mb-[20%] justify-between md:w-[50%] md:gap-10 md:mb-[5%] lg:w-[31%]">
-                        <div className="mt-3 w-[55%] md:w-[50%] lg:w-[55%]">
+                    <div className="flex flex-row w-[80%] mb-[20%] justify-between md:w-[50%] md:gap-10 md:mb-[5%] lg:w-[31%] lg:gap-4">
+                        <div className="mt-3 w-[55%] md:w-[50%] lg:w-[50%]">
                             <BotaoGrande title="Reenviar código" background="bg-terciaria" type="button"/>
                         </div>
-                        <div className="mt-3 w-[40%] md:[60%]">
-                            <BotaoGrande title="Confirmar" background="bg-secundaria" type="button"/>
+                        <div className="mt-3 w-[40%] md:w-[50%] lg:w-[50%]">
+                            <BotaoGrande title="Continuar" background="bg-secundaria" type="button" onClick={() => push('/redefinirSenha')}/>
                         </div>
                     </div>
                 </div>
