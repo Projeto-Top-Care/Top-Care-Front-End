@@ -49,21 +49,21 @@ export default function PaginaInicial() {
 
             <section className='md:mt-20 mt-8'>
                 <div className='flex flex-col gap-10'>
-                    <TituloLinha titulo='Você também pode gostar...' />
+                    <TituloLinha titulo='Mais bem Avaliados' />
                     <CarrosselProduto slides={carrosselProdutos} />
                 </div>
             </section>
 
             <section className='md:mt-20 mt-8'>
                 <div className='flex flex-col gap-10'>
-                    <TituloLinha titulo='Você também pode gostar...' />
+                    <TituloLinha titulo='Quase acabando' />
                     <CarrosselProduto slides={carrosselProdutos} />
                 </div>
             </section>
 
             <section className='md:mt-20 mt-8 mb-10'>
                 <div className='flex flex-col gap-10'>
-                    <TituloLinha titulo='Você também pode gostar...' />
+                    <TituloLinha titulo='Promoções relâmpago' />
                     <CarrosselProduto slides={carrosselProdutos} />
                 </div>
             </section>
