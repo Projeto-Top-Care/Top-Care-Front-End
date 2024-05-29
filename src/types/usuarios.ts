@@ -6,7 +6,7 @@ export interface Usuario {
     celular: string,
     senha: string,
     cpf: string,
-    sexo: string,
+    sexo: 'Feminino' | 'Masculino' | "Prefiro não Informar"
     dataNascimento: string,
     produtosCarrinho: number[]
     enderecos: Endereco[],
@@ -141,4 +141,13 @@ export interface Cupom{
     porcentagem: number
     nome: string
     limite: number
+}
+export interface ViaCEP{
+    bairro: string
+    cep: string
+    complemento: string
+    localidade: string
+    logradouro: string
+    uf: string
+    erro: boolean
 }

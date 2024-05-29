@@ -1,17 +1,84 @@
 'use client'
 import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
 import InputFile from '@/components/InputFile/InputFile'
+import InputMask from '@/components/InputMask/InputMask'
 import InputText from '@/components/InputText/InputText'
 import MoldeInput from '@/components/MoldeInput'
 import CadastroPet from '@/components/Pop-up/CadastroPet/CadastroPet'
 import ResponsiveInput from '@/components/ResponsiveInput'
 import Select from '@/components/Select/Select'
+import { ViaCEP } from '@/types/usuarios'
 import React, { useState } from 'react'
+
+const siglasEstados = [
+    "AC", // Acre
+    "AL", // Alagoas
+    "AP", // Amapá
+    "AM", // Amazonas
+    "BA", // Bahia
+    "CE", // Ceará
+    "DF", // Distrito Federal
+    "ES", // Espírito Santo
+    "GO", // Goiás
+    "MA", // Maranhão
+    "MT", // Mato Grosso
+    "MS", // Mato Grosso do Sul
+    "MG", // Minas Gerais
+    "PA", // Pará
+    "PB", // Paraíba
+    "PR", // Paraná
+    "PE", // Pernambuco
+    "PI", // Piauí
+    "RJ", // Rio de Janeiro
+    "RN", // Rio Grande do Norte
+    "RS", // Rio Grande do Sul
+    "RO", // Rondônia
+    "RR", // Roraima
+    "SC", // Santa Catarina
+    "SP", // São Paulo
+    "SE", // Sergipe
+    "TO"  // Tocantins
+];
 
 export default function Cadastro() {
     const [open, setOpen] = useState<boolean>(false)
     const [sexo, setSexo] = useState<string>('');
+    const [cep, setCep] = useState<string>('');
+    const [messageCep, setMessageCep] = useState<string>('');
     const [estado, setEstado] = useState<string>('');
+    const [cidade, setCidade] = useState<string>('');
+    const [rua, setRua] = useState<string>('');
+    const [complemento, setComplemento] = useState<string>('');
+    const [bairro, setBairro] = useState<string>('');
+
+    const [erro, setErro] = useState<boolean>(false)
+    const [inexistente, setInexistente] = useState<boolean>(false)
+
+    const buscarCep = async () => {
+        try {
+            if(cep.length < 9){
+                setErro(true)
+                setMessageCep("CEP inválido!")
+                return
+            }
+
+            const infosEndereco = await fetch('https://viacep.com.br/ws/' + cep + '/json/')
+            const consultarCEPConvert: ViaCEP = await infosEndereco.json()
+
+            if(consultarCEPConvert.erro){
+                throw Error('CEP inexistente')
+            }
+            setCidade(consultarCEPConvert.localidade)
+            setRua(consultarCEPConvert.logradouro)
+            setComplemento(consultarCEPConvert.complemento)
+            setBairro(consultarCEPConvert.bairro)
+            setEstado(consultarCEPConvert.uf)
+        }catch(erro){
+            setInexistente(true)
+            setMessageCep("CEP inexistente!")
+        } 
+    }
+
     return (
         <main className={`w-full overflow-hidden text-preto`}>
             <section className='w-[90%] m-auto mt-10 md:w-full'>
@@ -50,7 +117,7 @@ export default function Cadastro() {
                             <InputText placeholder='CPF' type={'text'} />
                         </ResponsiveInput>
                         <ResponsiveInput>
-                            <Select label='Sexo' options={['', 'Masculino', 'Feminino', 'Prefiro não Informar']} opcaoSelecionada={setSexo} />
+                            <Select label='Sexo' options={['', 'Masculino', 'Feminino', 'Prefiro não Informar']} opcaoSelecionada={setSexo} opcao={sexo} />
                         </ResponsiveInput>
                     </MoldeInput>
                     <MoldeInput>
@@ -97,18 +164,31 @@ export default function Cadastro() {
                     <div className='flex flex-col gap-5 lg:gap-8 lg:m-auto lg:flex-row'>
                         <MoldeInput>
                             <ResponsiveInput>
-                                <InputText placeholder='CEP' type={'number'} />
+                                <InputMask placeholder='CEP'
+                                    type={'text'}
+                                    onChange={(e) => setCep(e.target.value)}
+                                    value={cep}
+                                    onBlur={() => buscarCep()}
+                                    onFocus={()=>{
+                                        setErro(false)
+                                        setInexistente(false)
+                                    }}
+                                    mask={'_____-___'}
+                                    replacement={{ _: /\d/ }}
+                                    error={erro || inexistente}
+                                    message={messageCep}
+                                />
                             </ResponsiveInput>
                             <ResponsiveInput>
-                                <Select label='Estado' options={['', 'SC', 'SP', 'MG', 'RJ']} opcaoSelecionada={setEstado} />
+                                <Select label='Estado' options={siglasEstados} opcaoSelecionada={setEstado} opcao={estado} />
                             </ResponsiveInput>
                         </MoldeInput>
                         <MoldeInput>
                             <ResponsiveInput>
-                                <InputText placeholder='Cidade' type={'text'} />
+                                <InputText placeholder='Cidade' type={'text'} value={cidade} onChange={(e) => setCidade(e.target.value)} />
                             </ResponsiveInput>
                             <ResponsiveInput>
-                                <InputText placeholder='Bairro' type={'text'} />
+                                <InputText placeholder='Bairro' type={'text'} value={bairro} onChange={(e) => setBairro(e.target.value)} />
                             </ResponsiveInput>
                         </MoldeInput>
                     </div>
@@ -117,15 +197,15 @@ export default function Cadastro() {
                     <div className='flex flex-col gap-5 lg:gap-8 lg:m-auto lg:flex-row'>
                         <MoldeInput>
                             <ResponsiveInput>
-                                <InputText placeholder='Rua' type={'text'} />
+                                <InputText placeholder='Rua' type={'text'} value={rua} onChange={(e) => setRua(e.target.value)} />
                             </ResponsiveInput>
                             <ResponsiveInput>
-                                <InputText placeholder='Número' type={'number'} />    
+                                <InputText placeholder='Número' type={'number'} />
                             </ResponsiveInput>
                         </MoldeInput>
                         <MoldeInput>
                             <ResponsiveInput>
-                                <InputText placeholder='Complemento' type={'text'} />
+                                <InputText placeholder='Complemento' type={'text'} value={complemento} onChange={(e) => setComplemento(e.target.value)} />
                             </ResponsiveInput>
                             <ResponsiveInput>
                                 <InputText placeholder='Nome para o Endereço' type={'text'} />
