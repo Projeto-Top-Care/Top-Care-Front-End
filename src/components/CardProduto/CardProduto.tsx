@@ -46,7 +46,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
                 <div className="z-50">
                     <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down`}>
                         <div className="flex items-center justify-center lg:h-10 h-8 bg-terciaria rounded font-poppins">
-                            <p className="text-xs lg:text-base">Adicionado ao Carrinho!</p>
+                            <p className="text-xs lg:text-base">Adicionado na sacola!</p>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
 
     return (
         <div className='flex flex-col justify-center gap-3 border-cinza border-[1px] rounded-lg w-52 h-80 font-poppins px-2 py-3 '>
-            <div className="absolute">
+            <div className="fixed">
                 {adicionadoCarrinho()}
             </div>
             <div className='flex flex-row justify-between items-center' >
