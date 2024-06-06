@@ -7,6 +7,7 @@ import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import { buscarTodos } from "@/server/produtos/action"
 import { EmblaOptionsType } from "embla-carousel"
 import { useRouter } from "next/navigation";
+import { useEffect } from "react"
 
 const carrosselProdutos = buscarTodos().map((produto, i) => (<CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
     precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />))
@@ -17,6 +18,7 @@ export default function PaginaInicial() {
     const OPTIONS: EmblaOptionsType = { loop: true }
 
     const { push } = useRouter();
+
 
     return (
         <main className="bg-branco">

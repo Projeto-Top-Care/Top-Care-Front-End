@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
+import AppProvider from "@/context";
 import type { Metadata } from "next";
 import "../globals.css";
 
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-branco">
         <Header/>
-        {children}
+          <AppProvider>
+            {children}
+          </AppProvider>
         <Footer />
       </body>
     </html>

@@ -124,7 +124,7 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
                 <FaFilter style={{ color: "#BDBDBD", }} />
               </div>
               <div className='w-[50%] md:w-full mr-2 md:mr-0'>
-                <Select options={['A a Z', 'Mais Populares', 'Menor Preço', 'Maior Preço', 'Mais bem Avaliados']} opcaoSelecionada={setEscolha} label={'Ordenar Por'} />
+                <Select options={['A a Z', 'Mais Populares', 'Menor Preço', 'Maior Preço', 'Mais bem Avaliados']} opcaoSelecionada={setEscolha} label={'Ordenar Por'} opcao={''} />
               </div>
             </div>
           </div>

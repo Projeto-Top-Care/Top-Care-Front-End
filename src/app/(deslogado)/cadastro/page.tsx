@@ -197,7 +197,11 @@ export default function Cadastro() {
                     <div className='flex flex-col gap-5 lg:gap-8 lg:m-auto lg:flex-row'>
                         <MoldeInput>
                             <ResponsiveInput>
-                                <InputText placeholder='Rua' type={'text'} value={rua} onChange={(e) => setRua(e.target.value)} />
+                                <InputText 
+                                placeholder='Rua' 
+                                type={'text'} 
+                                value={rua} 
+                                onChange={(e) => setRua(e.target.value)} />
                             </ResponsiveInput>
                             <ResponsiveInput>
                                 <InputText placeholder='Número' type={'number'} />
