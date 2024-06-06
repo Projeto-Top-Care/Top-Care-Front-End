@@ -27,7 +27,7 @@ export default function Login() {
 
     return (
         <main className='bg-branco'>
-            <Erro/>
+            <Erro />
             <section className='mt-8 md:mt-12'>
                 <TituloLinha titulo='Login' />
             </section>

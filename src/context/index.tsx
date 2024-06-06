@@ -1,10 +1,13 @@
 import React from 'react'
-import { ErrorProvider } from './ErrorContext'
+import { ConfirmacaoProvider } from './confirmacaoContext'
+import { ErrorProvider} from './ErrorContext'
 
-export default function AppProvider({children}: {children: React.ReactNode}) {
+export default function AppProvider({ children }: { children: React.ReactNode }) {
   return (
     <ErrorProvider>
+      <ConfirmacaoProvider>
         {children}
+      </ConfirmacaoProvider>
     </ErrorProvider>
   )
 }
