@@ -1,38 +1,83 @@
 'use client'
 import BarraPesquisa from "@/components/BarraPesquisa/BarraPesquisa";
-import BotaoCategoriaPergunta from "@/components/BotaoCategoriaPergunta/botaoCategoriaPergunta";
-import ItemAcordiao from "@/components/ItemAcordeao/itemAcordeao";
+import CardServico from "@/components/cardServicos/cardServicos";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
-import { buscarCategoria } from "@/server/duvidas/action";
+import servicos from '@/banco/servicos.json'
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 
 export default function informacoesServicos() {
 
-    const categorias = [{ categoria: "Compras e pedidos", ativo: false },
-    { categoria: "Pagamento", ativo: false },
-    { categoria: "Serviços", ativo: false },
-    { categoria: "Lojas físicas", ativo: false },
-    { categoria: "Entrega", ativo: false },
-    { categoria: "Reembolso", ativo: false }]
+    const [filtro, setFiltro] = useState("Todos")
 
-    const [categoriaEscolhida, setCategoriaEscolhida] = useState("")
+    const opcaoFiltro = (opcao: string) => {
+        if (opcao == "Saúde") {
+            (filtro == "Saúde" ? setFiltro("Todos") : setFiltro("Saúde"))
+        } else if (opcao == "Bem estar") {
+            (filtro == "Bem estar" ? setFiltro("Todos") : setFiltro("Bem estar"))
+        } else if (opcao == "Todos") {
+            (filtro == "Todos" ? setFiltro("Todos") : setFiltro("Todos"))
+        }
+    }
+
+    const filtrar = () => {
+        if (filtro == "Saúde") {
+            return (
+                <div className="w-[90%] self-center flex flex-col gap-6">
+                    {
+                        servicos.map((item, i) => (
+                            (item.nome == "Consultas" || item.nome == "Vacinação" ? 
+                            <CardServico key={i} id={item.id} nome={item.nome} imagem={item.imagem} descricao={item.descricao} /> :
+                            <></>)
+                    ))
+                    }
+                </div>
+            )
+        } else if (filtro == "Bem estar") {
+            return (
+                <div className="w-[90%] self-center flex flex-col gap-6">
+                    {
+                        servicos.map((item, i) => (
+                            (item.nome == "Banho" || item.nome == "Banho e tosa" ? 
+                            <CardServico key={i} id={item.id} nome={item.nome} imagem={item.imagem} descricao={item.descricao} /> :
+                            <p></p>)
+                        ))
+                    }
+                </div>
+            )
+        } 
+        else if (filtro == "Todos") {
+            return (
+                <div className="w-[90%] self-center flex flex-col gap-6">
+                    {
+                        servicos.map((item, i) => (
+                            <CardServico key={i} id={item.id} nome={item.nome} imagem={item.imagem} descricao={item.descricao} />
+                        ))
+                    }
+                </div>
+            )
+        }
+    }
 
     return (
-        <main className="flex flex-col justify-center bg-branco w-full gap-6 lg:gap-12 mt-10 mb-24">
+        <main className="flex flex-col justify-center bg-branco w-full gap-12 pb-24">
             <TituloLinha titulo="Serviços" />
 
-            <div>
-                <div className="border-[1px] border-cinza-escuro rounded-lg">
+            <div className="flex felx-row w-[90%] self-center gap-4">
+                <div className="border-[1px] border-cinza-escuro rounded-lg w-1/2">
                     <BarraPesquisa placeholder={"Exemplo: 'banho e tosa'"} />
                 </div>
 
                 <div className="flex flex-row gap-4 font-poppins">
-                    <button className="text-cinza-escuro active:text-[#405989] active:bg-terciaria active:border-[#405989] py-2 px-6 border-[1px] border-cinza rounded-xl"><IoClose />Saúde</button>
-                    <button className="text-cinza-escuro active:text-[#405989] active:bg-terciaria active:border-[#405989] py-2 px-6 border-[1px] border-cinza rounded-xl"><IoClose />Bem estar</button>
-                    <button className="text-cinza-escuro active:text-[#405989] active:bg-terciaria active:border-[#405989] py-2 px-6 border-[1px] border-cinza rounded-xl"><IoClose />Todos</button>
+                    <button onClick={() => opcaoFiltro("Saúde")} className={`text-cinza-escuro flex flex-row items-center gap-2 ${filtro == "Saúde" ? `text-[#405989] border-[#405989] bg-terciaria` : `text-cinza-escuro border-cinza bg-branco`} py-1 px-6 border-[1px] border-cinza rounded-lg`}>{filtro == "Saúde" ? <IoClose /> : ""}Saúde</button>
+                    <button onClick={() => opcaoFiltro("Bem estar")} className={`text-cinza-escuro flex flex-row items-center gap-2 ${filtro == "Bem estar" ? `text-[#405989] border-[#405989] bg-terciaria` : `text-cinza-escuro border-cinza bg-branco`} py-1 px-6 border-[1px] border-cinza rounded-lg`}>{filtro == "Bem estar" ? <IoClose /> : ""}Bem estar</button>
+                    <button onClick={() => opcaoFiltro("Todos")} className={`text-cinza-escuro flex flex-row items-center gap-2 ${filtro == "Todos" ? `text-[#405989] border-[#405989] bg-terciaria` : `text-cinza-escuro border-cinza bg-branco`} py-1 px-6 border-[1px] border-cinza rounded-lg`}>{filtro == "Todos" ? <IoClose /> : ""}Todos</button>
                 </div>
             </div>
+
+            <h4 className="font-averia md:text-2xl text-xl font-bold text-preto w-[90%] self-center">Todos os serviços</h4>
+
+            {filtrar()}
         </main>
     )
 }
