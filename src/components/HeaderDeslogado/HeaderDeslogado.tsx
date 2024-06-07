@@ -73,6 +73,7 @@ export default function HeaderDeslogado() {
             <div className="bg-terciaria flex max-sm:hidden flex-row justify-center">
                 <div className="font-poppins flex flex-row justify-between md:gap-12 gap-2 py-3">
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/produtos">Produtos</a>
+                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/informacoesServicos">Serviços</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/lojas">Lojas</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/contato">Contato</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/duvidasFrequentes">Ajuda</a>

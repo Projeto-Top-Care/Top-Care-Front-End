@@ -75,8 +75,6 @@ export default function informacoesServicos() {
                 </div>
             </div>
 
-            <h4 className="font-averia md:text-2xl text-xl font-bold text-preto w-[90%] self-center">Todos os serviços</h4>
-
             {filtrar()}
         </main>
     )

@@ -1,3 +1,5 @@
+import { useRouter } from "next/navigation";
+
 interface ICardServico {
     id: number,
     nome: string,
@@ -6,6 +8,9 @@ interface ICardServico {
 }
 
 const CardServico = ({ id, nome, imagem, descricao }: ICardServico) => {
+
+    const { push } = useRouter();
+
     return (
         <div className='w-full flex flex-row items-center gap-8 border-[1px] border-cinza-escuro rounded-xl p-6'>
             <div className="">
@@ -17,8 +22,7 @@ const CardServico = ({ id, nome, imagem, descricao }: ICardServico) => {
                 <p className="font-poppins text-base text-preto">{descricao}</p>
                 <p className="font-poppins text-base text-cinza-escuro">A partir de {12.99}</p>
 
-                <button className="self-end bg-secundaria hover:bg-[#a8cf38] font-poppins px-4 h-6 sm:h-8 rounded-lg duration-700">Agende agora!</button>
-                {/* <BotaoPequeno title="Agende agora!" color="" /> */}
+                <button onClick={() => push('/Servicos')} className="self-end bg-secundaria hover:bg-[#a8cf38] font-poppins px-4 h-6 sm:h-8 rounded-lg duration-700">Agende agora!</button>
             </div>
         </div>
     )
