@@ -5,9 +5,12 @@ import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { useRouter  } from 'next/navigation'
 import { login } from '@/server/usuario/action'
 import React, { useState } from 'react'
+import Erro from '@/components/Pop-up/Erro/Erro'
+import { useError } from '@/context/ErrorContext'
 
 export default function Login() {
     const router = useRouter();
+    const {addError} = useError()!;
 
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
@@ -16,14 +19,15 @@ export default function Login() {
         let usuarioId = login(email, senha)
         if(usuarioId != undefined){
             localStorage.setItem("idUser", JSON.stringify(usuarioId))
-            return "/"
+            router.push('/')
         } else{
-            return "#"
+            addError("Falha no Login, verifique seu email e senha!")
         }
     }
 
     return (
         <main className='bg-branco'>
+            <Erro />
             <section className='mt-8 md:mt-12'>
                 <TituloLinha titulo='Login' />
             </section>
@@ -34,9 +38,11 @@ export default function Login() {
                         <div className='flex flex-col gap-2'>
                             <InputText onChange={(e) => setSenha(e.target.value)} type={'password'} placeholder='Senha' />
                             <p onClick={() => router.push('/recuperacaoSenhaDeslogado')} className='underline text-cinza-escuro font-poppins text-xs select-none cursor-pointer w-36 mb-4'>Esqueçeu sua senha?</p>
-                            <a href={verificarLogin()}>
-                                <BotaoGrande title='Login' background='bg-terciaria' type={'button'} />
-                            </a>
+                            <BotaoGrande 
+                            title='Login' 
+                            background='bg-terciaria' 
+                            type={'button'} 
+                            onClick={()=>verificarLogin()}/>
                         </div>
                     </div>
                 </section>

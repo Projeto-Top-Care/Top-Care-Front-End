@@ -3,6 +3,7 @@ import BotaoCategoriaPgInicial from "@/components/Botao-categoria-pgInicial/bota
 import CardProduto from "@/components/CardProduto/CardProduto"
 import Carrossel from "@/components/Carrossel/Carrossel"
 import CarrosselProduto from "@/components/CarrosselProduto/Carrossel"
+import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import { buscarTodos } from "@/server/produtos/action"
 import { EmblaOptionsType } from "embla-carousel"
@@ -20,6 +21,7 @@ export default function PaginaInicial() {
 
     return (
         <main className="bg-branco">
+            <Confirmacao />
             <section className='mt-10 mb-10 max-sm:hidden'>
                 <Carrossel slides={slidesCarrosselDesktop} options={OPTIONS} />
             </section>

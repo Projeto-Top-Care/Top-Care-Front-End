@@ -5,16 +5,17 @@ import { FiShoppingBag } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { Produto } from '@/types/produto'
-
+import { useConfirmacao } from "@/context/confirmacaoContext"
 import { useEffect, useState } from 'react'
 import React from "react";
 import { getLocalStorageArray } from "@/server/localStorage/actions";
+import Confirmacao from "../Pop-up/Confirmacao/Confirmacao";
 
 const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo, favorito }: Produto) => {
 
     const [favoritoCard, setFavoritoCard] = useState<boolean>(favorito ? true : false);
-    const [open, setOpen] = useState<boolean>(false)
     const { push } = useRouter()
+    const { addConfirmacao } = useConfirmacao()!
 
     useEffect(() => {
         iconeFavorito()
@@ -34,31 +35,12 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
         }
         const carrinhoAtualizado = [...carrinho, newProduto]
         localStorage.setItem('carrinho', JSON.stringify(carrinhoAtualizado))
-        setOpen(true)
-        setTimeout(() => {
-            setOpen(false)
-        }, 4000)
-    }
-
-    const adicionadoCarrinho = () => {
-        if (open) {
-            return (
-                <div className="z-50">
-                    <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down`}>
-                        <div className="flex items-center justify-center lg:h-10 h-8 bg-terciaria rounded font-poppins">
-                            <p className="text-xs lg:text-base">Adicionado ao Carrinho!</p>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
+        addConfirmacao("Adicionado a Sacola!")
+        
     }
 
     return (
         <div className='flex flex-col justify-center gap-3 border-cinza border-[1px] rounded-lg w-52 h-80 font-poppins px-2 py-3 '>
-            <div className="absolute">
-                {adicionadoCarrinho()}
-            </div>
             <div className='flex flex-row justify-between items-center' >
                 <div className='flex flex-row gap-[0.2rem] items-center justify-center'>
                     <AiFillStar style={{ color: "#FFD601", }} className="w-5" />

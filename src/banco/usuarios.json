@@ -111,7 +111,7 @@
     "celular": "+55 (21)99999-8888",
     "senha": "senha5678",
     "cpf": "111.111.111-11",
-    "sexo": "masculino",
+    "sexo": "Masculino",
     "dataNascimento": "1990-02-02",
     "cupons": [],
     "enderecos": [
@@ -305,7 +305,7 @@
     "celular": "+55 (21)99999-8888",
     "senha": "senha5678",
     "cpf": "111.111.111-11",
-    "sexo": "masculino",
+    "sexo": "Masculino",
     "dataNascimento": "1990-02-02",
     "cupons": [], 
     "enderecos": [
@@ -402,7 +402,7 @@
     "senha": "senha12345",
     "cpf": "000.000.000-00",
     "sexo": "feminino",
-    "dataNascimento": "1980-01-01",
+    "dataNascimento": "01/01/1980",
     "cupons": [
       {
         "tipo": "frete",

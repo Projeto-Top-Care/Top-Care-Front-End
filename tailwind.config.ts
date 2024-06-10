@@ -28,7 +28,7 @@ const config: Config = {
       },
       keyframes: {
         slideDown: {
-          '0%': {transform: 'translateY(-10px) translateX(-50%)', opacity: '0'},
+          '0%': {transform: 'translateY(-30px) translateX(-50%)', opacity: '0'},
           '100%': {transform: 'translateY(0px) translateX(-50%)', opacity: '1'},
         },
         checked: {
