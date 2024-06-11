@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { useUserID } from '@/context/UserIDContext';
 import { buscarUsuario } from '@/server/usuario/action';
 import { Usuario } from '@/types/usuarios';
 import TituloLinha from '@/components/TituloLinha/TituloLinha';
@@ -10,8 +11,10 @@ import { buscarProduto } from '@/server/produtos/action';
 import { Produto, ProdutoCompleto } from '@/types/produto';
 
 export default function ProdutoFavoritos() {
+    const {userID} = useUserID()
+
     const [showAllProducts, setShowAllProducts] = useState(false);
-    const usuarioLogado: Usuario = buscarUsuario(1)!;
+    const usuarioLogado: Usuario = buscarUsuario(parseInt(userID!))!;
     const [pesquisa, setPesquisa] = useState('');
     const [produtosFavoritos, setProdutosFavoritos] = useState<Produto[]>([]);
     const [numDisplayedProducts, setNumDisplayedProducts] = useState(10);

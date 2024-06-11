@@ -8,16 +8,19 @@ import { useState } from "react";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
 import { useRouter } from "next/navigation";
-import { getLocalStorageArray, getLocalStorageItem } from "@/server/localStorage/actions";
 import { buscarProduto } from "@/server/produtos/action";
 import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
+import { useUserID } from "@/context/UserIDContext";
+import { useCarrinho } from "@/context/CarrinhoContext";
 
 export default function PaginaCompra() {
 
     const { push } = useRouter();
+    const {userID} = useUserID()
+    const {items} = useCarrinho()
 
-    const idUser = getLocalStorageItem('idUser')
-    const usuarioLogado: Usuario = (buscarUsuario(parseInt(idUser))!)
+    const idUser = userID
+    const usuarioLogado: Usuario = (buscarUsuario(parseInt(idUser!))!)
 
     const [open, setOpen] = useState<string>("")
     const [openEndereco, setOpenEndereco] = useState<boolean>(false)
@@ -40,7 +43,7 @@ export default function PaginaCompra() {
     const [enderecoUsuario, setEnderecoUsuario] = useState("-")
     const [complemento, setComplemento] = useState("-")
 
-    const pedido: QntProduto[] = (getLocalStorageArray('carrinho') as unknown as QntProduto[])
+    const pedido: QntProduto[] = (items as unknown as QntProduto[])
 
     const [eCartao, setECartao] = useState(false)
     const [eBoleto, setEBoleto] = useState(false)

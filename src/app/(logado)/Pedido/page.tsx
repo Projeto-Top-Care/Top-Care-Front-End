@@ -1,7 +1,7 @@
 'use client'
 import BarraProcesso from "@/components/BarraProcesso/BarraProcesso";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
-import { getLocalStorageItem } from "@/server/localStorage/actions";
+import { useUserID } from "@/context/UserIDContext";
 import { buscarProduto } from "@/server/produtos/action";
 import { buscarEndereco, buscarPedido, buscarUsuario } from '@/server/usuario/action'
 import type { Endereco, Pedido, QntProduto, Usuario } from '@/types/usuarios'
@@ -14,7 +14,9 @@ interface PropsUsuario {
 }
 
 export default function Pedido({ searchParams }: PropsUsuario) {
-    const userId = parseInt(getLocalStorageItem('idUser'))
+    const {userID} = useUserID()
+
+    const userId = parseInt(userID!)
     const produtoId = searchParams.id
     const usuarioProcurado: Usuario = buscarUsuario(userId)!
 

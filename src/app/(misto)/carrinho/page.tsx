@@ -3,7 +3,8 @@ import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
 import InputMask from '@/components/InputMask/InputMask'
 import DoisBotoes from '@/components/Pop-up/DoisBotoes/DoisBotoes'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
-import { getLocalStorageArray, getLocalStorageItem } from '@/server/localStorage/actions'
+import { useCarrinho } from '@/context/CarrinhoContext'
+import { useUserID } from '@/context/UserIDContext'
 import { buscarProduto } from '@/server/produtos/action'
 import { buscarUsuario } from '@/server/usuario/action'
 import { Produto } from '@/types/produto'
@@ -17,9 +18,13 @@ import Produtos from './Produtos'
 import Topico from './Topico'
 
 export default function Carrinho() {
-  const idUser = getLocalStorageItem('idUser');
-  const usuarioLogado: Usuario | undefined = buscarUsuario(Number.parseInt(idUser!))
-  const produtos: Produto[] = getLocalStorageArray('carrinho').map((item) => {
+
+  const {userID} = useUserID()
+  const {items} = useCarrinho()
+
+  const idUser = userID || ''
+  const usuarioLogado: Usuario | undefined = buscarUsuario(parseInt(idUser!))
+  const produtos: Produto[] = items.map((item) => {
     return buscarProduto((item as unknown as QntProduto).id)!
   })
   const [frete, setFrete] = useState<number | string>(0)
@@ -156,7 +161,7 @@ export default function Carrinho() {
               <p className='font-poppins font-medium'>Calcular Frete</p>
               <p className='font-poppins font-regular text-xs md:!flex hidden'>Infrorme seu CEP</p>
               <div className='flex lg:flex-row flex-col lg:gap-0 gap-3 justify-between lg:mt-0 mt-2'>
-                <div className='lg:w-[60%] w-full'><InputMask placeholder='_____-___' mask='_____-___' replacement={{ _: /\d/ }} onMasks={(e: any) => setCep(e.target.value)} error={erro || inexitente} /></div>
+                <div className='lg:w-[60%] w-full'><InputMask placeholder='_____-___' mask='_____-___' replacement={{ _: /\d/ }} onMasks={(e: any) => setCep(e.target.value)} erro={erro || inexitente} /></div>
                 <div className='lg:w-[32%] w-full' onClick={() => enviarFrete()}><BotaoGrande title='Calcular' type='button' background='bg-secundaria' height='lg:h-10 h-8' fontSize='text-sm font-medium' /></div>
               </div>
               {

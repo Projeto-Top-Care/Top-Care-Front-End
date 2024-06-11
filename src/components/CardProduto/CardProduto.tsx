@@ -8,10 +8,10 @@ import { Produto } from '@/types/produto'
 import { useConfirmacao } from "@/context/confirmacaoContext"
 import { useEffect, useState } from 'react'
 import React from "react";
-import { getLocalStorageArray } from "@/server/localStorage/actions";
+import { useCarrinho } from "@/context/CarrinhoContext";
 
 const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo, favorito }: Produto) => {
-
+    const {items} = useCarrinho()
     const [favoritoCard, setFavoritoCard] = useState<boolean>(favorito ? true : false);
     const { push } = useRouter()
     const { addConfirmacao } = useConfirmacao()!
@@ -27,7 +27,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
     }
 
     const adicionarCarrinho = () => {
-        const carrinho = getLocalStorageArray('carrinho')
+        const carrinho = items
         const newProduto = {
             id: id,
             quantidade: 1,

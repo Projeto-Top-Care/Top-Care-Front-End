@@ -1,7 +1,7 @@
 'use client'
 import Checkbox from '@/components/Checkbox/Checkbox'
 import DoisBotoes from '@/components/Pop-up/DoisBotoes/DoisBotoes'
-import { getLocalStorageArray } from '@/server/localStorage/actions'
+import { useCarrinho } from '@/context/CarrinhoContext'
 import { QntProduto } from '@/types/usuarios'
 import React, { useEffect, useState } from 'react'
 import InputQuantidade from './InputQuantidade'
@@ -14,6 +14,7 @@ interface Produtos {
 }
 
 export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Produtos) {
+    const {items} = useCarrinho()
     const [quantidade, setQuantidade] = useState<number>(1)
     const [checked, setChecked] = useState<boolean>(false)
     const [open, setOpen] = useState<boolean>(false)
@@ -27,7 +28,7 @@ export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Prod
         if (sim == 0) return
 
         if (sim) {
-            const carrinho = getLocalStorageArray('carrinho')
+            const carrinho = items
             const carrinhoAtualizado = carrinho.filter((item) => {
                 return !((item as unknown as QntProduto).id == id)
             })
@@ -37,7 +38,7 @@ export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Prod
     }
 
     const atualizarCarrinho = () => {
-        const carrinho = getLocalStorageArray('carrinho')
+        const carrinho = items
         const newCarrinho = carrinho.map((item) => {
             if ((item as unknown as QntProduto).id == id) {
                 return { id: id, quantidade: quantidade }

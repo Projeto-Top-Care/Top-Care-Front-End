@@ -1,31 +1,32 @@
 'use client'
-
-import { getLocalStorageItem } from "@/server/localStorage/actions"
-import { buscarUsuario } from "@/server/usuario/action"
-import { Usuario } from "@/types/usuarios"
-import { useEffect, useState } from "react"
-import HeaderDeslogado from "../HeaderDeslogado/HeaderDeslogado"
-import HeaderLogado from "../HeaderLogado/HeaderLogado"
+import { useUserID } from "@/context/UserIDContext";
+import { buscarUsuario } from "@/server/usuario/action";
+import { Usuario } from "@/types/usuarios";
+import { useEffect, useState } from "react";
+import HeaderDeslogado from "../HeaderDeslogado/HeaderDeslogado";
+import HeaderLogado from "../HeaderLogado/HeaderLogado";
 
 export default function Home() {
-    const idUser = getLocalStorageItem('idUser');
-    const usuario: Usuario | undefined = buscarUsuario(parseInt(idUser!));
-    const [user, setUser] = useState<Usuario | undefined>(usuario)
+    const { userID } = useUserID();
 
-    useEffect(()=>{
-        setUser(buscarUsuario(parseInt(idUser!)))
-    },[user])
+    const [user, setUser] = useState<Usuario | undefined>(undefined);
 
-    const renderizarHeader = () =>{
-        return (
-            <>
-                {user ? <HeaderLogado/> : <HeaderDeslogado/>}
-            </>
-        )
-    }
+    useEffect(() => {
+        if (userID) {
+            const usuario = buscarUsuario(parseInt(userID));
+            setUser(usuario);
+        } else {
+            setUser(undefined);
+        }
+    }, [userID]);
+
+    const renderizarHeader = () => {
+        return user ? <HeaderLogado /> : <HeaderDeslogado />;
+    };
+
     return (
         <main className="">
             {renderizarHeader()}
         </main>
-    )
+    );
 }

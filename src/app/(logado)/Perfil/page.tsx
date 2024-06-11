@@ -1,5 +1,6 @@
 'use client'
 import { IoExitOutline } from "react-icons/io5";
+import { useUserID } from "@/context/UserIDContext";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CardPetPequeno from "@/components/CardPetPequeno/CardPetPequeno";
 import CartoesSalvos from "@/components/CartoesSalvos/CartoesSalvos";
@@ -9,7 +10,7 @@ import PedidoAndamentoPerfil from "@/components/PedidoAndamentoPerfil/PedidoAnda
 import PerfilFoto from "@/components/PerfilFoto/PerfilFoto";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { buscarUsuario } from "@/server/usuario/action";
-import { Pedido, Pet, QntProduto, Usuario } from "@/types/usuarios";
+import { QntProduto, Usuario } from "@/types/usuarios";
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import { buscarProduto, buscarTodos } from "@/server/produtos/action";
 import CardProduto from "@/components/CardProduto/CardProduto";
@@ -22,8 +23,10 @@ import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico"
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 
 export default function Perfil() {
-    const id = localStorage.getItem('idUser')
-    const usuarioLogado: Usuario = buscarUsuario(Number.parseInt(id!))!
+    const {userID} = useUserID()
+
+    const id = userID
+    const usuarioLogado: Usuario = buscarUsuario(parseInt(id!))!
     const [showAllAddresses, setShowAllAddresses] = useState(false);
     const produtos: QntProduto = buscarProduto(usuarioLogado.id)!
     const produto: Produto = buscarProduto(produtos.id)!

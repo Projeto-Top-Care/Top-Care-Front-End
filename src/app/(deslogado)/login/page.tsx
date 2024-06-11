@@ -7,10 +7,12 @@ import { login } from '@/server/usuario/action'
 import React, { useState } from 'react'
 import Erro from '@/components/Pop-up/Erro/Erro'
 import { useError } from '@/context/ErrorContext'
+import { useUserID } from '@/context/UserIDContext'
 
 export default function Login() {
     const router = useRouter();
     const {addError} = useError()!;
+    const {setUserId} = useUserID()
 
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
@@ -18,7 +20,7 @@ export default function Login() {
     const verificarLogin = () =>{
         let usuarioId = login(email, senha)
         if(usuarioId != undefined){
-            localStorage.setItem("idUser", JSON.stringify(usuarioId))
+            setUserId(usuarioId)
             router.refresh()
         } else{
             addError("Falha no Login, verifique seu email e senha!")

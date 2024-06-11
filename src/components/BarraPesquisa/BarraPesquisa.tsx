@@ -1,4 +1,5 @@
-import { getLocalStorageArray } from "@/server/localStorage/actions";
+'use client'
+import { useSearch } from "@/context/SearchContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
@@ -11,8 +12,9 @@ interface IBarraPesquisa {
 
 export default function BarraPesquisa({ placeholder }: IBarraPesquisa) {
     const router = useRouter()
+    const {items} = useSearch()
     const [query, setQuery] = useState<string>('')
-    const [ultimasPesquisas, setUltimasPesquisas] = useState<string[]>(getLocalStorageArray('ultimasPesquisas'))
+    const [ultimasPesquisas, setUltimasPesquisas] = useState<string[]>(items)
 
     const pesquisas = (): string[] =>{
         const ultimasPesquisasTemp = [...ultimasPesquisas]

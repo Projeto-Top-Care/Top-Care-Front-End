@@ -1,15 +1,16 @@
 'use client'
-import Loading from '@/app/(deslogado)/loading/page'
+import Loading from '@/app/(misto)/loading/page'
 import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
 import { buscarUsuario } from '@/server/usuario/action'
 import { Usuario } from '@/types/usuarios'
 import { useState } from 'react'
 import { useRouter  } from 'next/navigation'
-import { getLocalStorageItem } from '@/server/localStorage/actions'
+import { useUserID } from '@/context/UserIDContext'
 
 export default function RecuperacaoSenhaDeslogado() {
   const {push} = useRouter();
-  const userId = parseInt(getLocalStorageItem('idUser'))
+  const {userID} = useUserID()
+  const userId = parseInt(userID!)
   const usuarioLogado: Usuario = buscarUsuario(userId)!
   const [checked1, setChecked1] = useState<boolean>(true);
   const [checked2, setChecked2] = useState<boolean>(false);

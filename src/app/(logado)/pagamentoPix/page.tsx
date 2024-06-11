@@ -5,16 +5,19 @@ import { useState } from "react"
 import { IoCopyOutline } from "react-icons/io5"
 import { Usuario, QntProduto, Pedido } from "@/types/usuarios"
 import { buscarUsuario } from "@/server/usuario/action"
-import { getLocalStorageArray } from "@/server/localStorage/actions"
 import { useRouter } from "next/navigation"
+import { useUserID } from "@/context/UserIDContext"
+import { useCarrinho } from "@/context/CarrinhoContext"
 
 export default function PagamentoPix() {
 
     const { push } = useRouter();
+    const {userID} = useUserID()
+    const {items} = useCarrinho()
     
-    const idUser = 1
+    const idUser = parseInt(userID!)
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario>(buscarUsuario(idUser)!)
-    const pedido: QntProduto[] = (getLocalStorageArray('carrinho') as unknown as QntProduto[])
+    const pedido: QntProduto[] = (items as unknown as QntProduto[])
 
     const [open, setOpen] = useState<boolean>(false)
 
