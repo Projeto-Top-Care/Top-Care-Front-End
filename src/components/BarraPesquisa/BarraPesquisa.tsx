@@ -69,7 +69,7 @@ export default function BarraPesquisa({ placeholder }: IBarraPesquisa) {
                 />
                 <div className="peer-focus:!flex hover:!flex flex-col max-h-40 hidden border border-cinza bg-branco top-0 left-0 w-full absolute z-50 mt-9 rounded-lg">
                     {pesquisas().map((pesquisa, i)=>(
-                        <div key={i} className="font-poppins flex flex-row h-10 items-center hover:bg-gray-200" >
+                        <div key={i} className="font-poppins flex flex-row h-10 items-center hover:bg-cinza-claro" >
                             <div className="w-[96%] flex flex-row cursor-pointer items-center" onClick={()=>enviarPesquisa(pesquisa)}>
                                 <div className="size-[2rem] flex items-center justify-center">
                                     <TbReload />

@@ -39,7 +39,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
     }
 
     return (
-        <div className='flex flex-col justify-center gap-3 border-cinza border-[1px] rounded-lg w-52 h-80 font-poppins px-2 py-3 '>
+        <div className=' hover:scale-105 duration-100 flex flex-col justify-center gap-3 border-cinza border-[1px] rounded-lg w-52 h-80 font-poppins px-2 py-3 '>
             <div className='flex flex-row justify-between items-center' >
                 <div className='flex flex-row gap-[0.2rem] items-center justify-center'>
                     <AiFillStar style={{ color: "#FFD601", }} className="w-5" />

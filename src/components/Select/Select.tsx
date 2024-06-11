@@ -8,11 +8,9 @@ interface ISelect {
     options: string[],
     opcaoSelecionada: Dispatch<SetStateAction<string>>,
     opcao: string
-    erro?: boolean
-    erroMessage?: string
 }
 
-export default function Select({ label, options, opcaoSelecionada, opcao, erro, erroMessage }: ISelect) {
+export default function Select({ label, options, opcaoSelecionada, opcao }: ISelect) {
     const [open, setOpen] = useState<boolean>(false);
 
     const selectRef: MutableRefObject<any> = useRef(null);
@@ -35,19 +33,16 @@ export default function Select({ label, options, opcaoSelecionada, opcao, erro, 
 
     return (
         <div ref={selectRef}>
-            <div className={`relative border border-cinza ${erro && !open ? "border-error": ""} h-10 w-full rounded-lg flex items-center select-none ${open ? 'outline outline-[1.9px] outline-black' : 'outline-none'}`} onClick={() => setOpen(!open)}>
+            <div className={`cursor-pointer relative border border-cinza h-10 w-full rounded-lg flex items-center select-none ${open ? 'outline outline-[1.9px] outline-black' : 'outline-none'}`} onClick={() => setOpen(!open)}>
                 <div className="flex flex-row items-center justify-between w-[90%] m-auto">
                     <label htmlFor="" className={`font-poppins text-cinza-escuro md:text-sm text-xs absolute transition-all bg-branco px-1 pointer-events-none left-2 ${open || opcao ? 'md:-top-3 -top-2 left-1.5': ""}`}>{label}</label>
                     <p className="font-poppins text-cinza-escuro lg:text-sm text-xs">{opcao ? opcao : ""}</p>
                     <p className="transition-all duration-7000">{open? <FaChevronUp /> : <FaChevronDown />}</p>
                 </div>
-                {erro && !open && (
-                    <span className="absolute -bottom-5 font-poppins text-sm text-error">{erroMessage}</span>
-                )}
                 {open && (
                     <ul className="absolute transition-all bg-white flex flex-col top-11 w-full rounded-lg max-h-60 shadow shadow-cinza overflow-y-auto select-none z-50">
                         {options.map((opcao, i) => (
-                            <li value={opcao} key={i} className="font-poppins md:text-sm text-xs pl-3 py-2 h-10" onClick={() => {
+                            <li value={opcao} key={i} className="font-poppins md:text-sm text-xs pl-3 py-2 h-10 hover:bg-cinza-claro " onClick={() => {
                                 opcaoSelecionada(opcao)
                                 setOpen(false)    
                             }}>
