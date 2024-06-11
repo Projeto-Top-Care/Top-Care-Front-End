@@ -7,6 +7,7 @@ import FiltroGrande from '@/components/Filtro/FiltroGrande'
 import { ProdutoCompleto } from '@/types/produto'
 import Select from '@/components/Select/Select';
 import { definirProdutos, returnProdutos } from '@/server/filtros/action';
+import Confirmacao from '@/components/Pop-up/Confirmacao/Confirmacao';
 
 interface InterfaceProdutos {
   searchParams?: { q: string }
@@ -102,6 +103,7 @@ export default function Produtos({ searchParams }: InterfaceProdutos) {
 
   return (
     <main className='w-full text-preto pb-20'>
+      <Confirmacao />
       <section className='flex items-start'>
         {
           filtroOpen && (

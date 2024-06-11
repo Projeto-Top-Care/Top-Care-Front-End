@@ -9,7 +9,6 @@ import { useConfirmacao } from "@/context/confirmacaoContext"
 import { useEffect, useState } from 'react'
 import React from "react";
 import { getLocalStorageArray } from "@/server/localStorage/actions";
-import Confirmacao from "../Pop-up/Confirmacao/Confirmacao";
 
 const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo, favorito }: Produto) => {
 

@@ -19,7 +19,7 @@ export default function Login() {
         let usuarioId = login(email, senha)
         if(usuarioId != undefined){
             localStorage.setItem("idUser", JSON.stringify(usuarioId))
-            router.push('/')
+            router.refresh()
         } else{
             addError("Falha no Login, verifique seu email e senha!")
         }

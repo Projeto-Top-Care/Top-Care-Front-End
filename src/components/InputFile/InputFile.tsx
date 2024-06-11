@@ -2,12 +2,13 @@
 import { useCallback } from "react";
 import { useState } from "react"
 import { useDropzone } from "react-dropzone";
+import { PiPen } from "react-icons/pi";
 
 interface IInputFile {
     rounded: string,
 }
 
-export default function InputFile({rounded}:IInputFile) {
+export default function InputFile({ rounded }: IInputFile) {
     const [file, setFile] = useState("");
 
     const onDrop = useCallback((files: any) => {
@@ -30,7 +31,7 @@ export default function InputFile({rounded}:IInputFile) {
             'image/jpg': ['.jpg']
         }
     })
-    if (file) return <HasFile file={file} rounded={rounded}/>;
+    if (file) return <HasFile file={file} rounded={rounded} dropzone={dropzone} />;
 
     return <Input dropzone={dropzone} rounded={rounded} />
 
@@ -38,12 +39,13 @@ export default function InputFile({rounded}:IInputFile) {
 interface IInput {
     dropzone: any,
     rounded: string,
+    imagem?: string
 }
-const Input = ({ dropzone, rounded }: IInput) => {
+const Input = ({ dropzone, rounded, imagem }: IInput) => {
     const { getRootProps, getInputProps, isDragActive } = dropzone;
     return (
         <div {...getRootProps()} className={`border border-cinza ${rounded} h-full w-full bg-branco flex justify-center items-center ${isDragActive ? 'border-primaria' : 'border-black'}`}>
-            <img src="./assets/galeria.svg" alt="" className="w-[40%]"/>
+            <img src={imagem ? imagem : './assets/galeria.svg'} alt="" className="w-[40%]" />
             <input {...getInputProps()} className="hidden" />
         </div>
     )
@@ -51,11 +53,15 @@ const Input = ({ dropzone, rounded }: IInput) => {
 interface IHasFile {
     file: any,
     rounded: string,
+    dropzone: any
 }
-const HasFile = ({ file, rounded }: IHasFile) => {
+const HasFile = ({ file, rounded, dropzone }: IHasFile) => {
     return (
-        <div className={`${rounded} h-full w-full bg-branco`}>
-            <img src={file} alt="" className={`w-full h-full ${rounded}`}/>
+        <div className={`${rounded} relative flex flex-col items-end justify-end h-full w-full bg-branco border border-cinza`}>
+            <img src={file} alt="" className={`w-full h-full ${rounded}`} />
+            <div className="h-8 w-8 -bottom-3 -right-3 flex items-center justify-center bg-branco rounded-full absolute">
+                <Input dropzone={dropzone} rounded={'rounded-full'} imagem={'./assets/lapis.svg'}/>
+            </div>
         </div>
     )
 }

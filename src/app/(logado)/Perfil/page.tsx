@@ -13,13 +13,13 @@ import { Pedido, Pet, QntProduto, Usuario } from "@/types/usuarios";
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import { buscarProduto, buscarTodos } from "@/server/produtos/action";
 import CardProduto from "@/components/CardProduto/CardProduto";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import React, { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
 import { Produto } from "@/types/produto";
 import CadastroPet from "@/components/Pop-up/CadastroPet/CadastroPet";
 import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico";
+import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 
 export default function Perfil() {
     const id = localStorage.getItem('idUser')
@@ -62,6 +62,7 @@ export default function Perfil() {
 
     return (
         <main className="bg-branco text-preto">
+            <Confirmacao />
             <section className="mt-6">
                 <TituloLinha titulo="Minha conta" />
                 <div className="flex justify-end w-[90%]">
@@ -85,7 +86,8 @@ export default function Perfil() {
                             edition={edicao}
                             error={nome == ''}
                             onChange={(e)=>setNome(e.target.value)}
-                            message={"O nome não pode ser vazio"}/>
+                            message={"O nome não pode ser vazio"}
+                            />
 
                             <InputEstatico 
                             titulo="Senha" 
@@ -128,7 +130,8 @@ export default function Perfil() {
                                         <InputMaskEstatico 
                                         titulo="Celular" 
                                         info={usuarioLogado.celular.substring(8)} 
-                                        edition={edicao} mask={'_____-____'} 
+                                        edition={edicao} 
+                                        mask={'_____-____'} 
                                         replacement={{ _: /\d/ }} 
                                         error={numero.length != 10} 
                                         onMasks={(e)=>setNumero(e.target.value)}

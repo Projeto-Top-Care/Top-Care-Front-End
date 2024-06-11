@@ -1,12 +1,13 @@
 import React from 'react'
 
 export default function ResponsiveInput({
-    children,
+    children, size
   }: Readonly<{
     children: React.ReactNode;
+    size: string
   }>) {
   return (
-    <div className='md:w-72 w-full m-auto'>
+    <div className={`md:${size} w-full m-auto`}>
         {children}
     </div>
   )
