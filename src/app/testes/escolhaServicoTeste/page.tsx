@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import ServicosAgendamento from "@/components/ServicosAgendamento/ServicosAgendamento";
 import { FiPlus, FiMinus } from "react-icons/fi";
+import BotaoGrande from '@/components/BotaoGrande/BotaoGrande';
 
 export default function EscolhaServico() {
     const [selectedServico, setSelectedServico] = useState<string>('Consulta');
@@ -80,6 +81,14 @@ export default function EscolhaServico() {
                     </div>
                 )}
             </section>
+            <div className='lg:p-28 md:p-4 flex md:flex-row flex-col gap-4 mt-8 justify-between'>
+                <div className='lg:w-[12%] md:w-[16%] w-full'>
+                    <BotaoGrande title="Anterior" background='bg-terciaria' type={"button"} />
+                </div>
+                <div className='lg:w-[12%] md:w-[16%] w-ful'>
+                    <BotaoGrande title="Próximo" background='bg-secundaria' type={"button"} />
+                </div>
+            </div>
         </main>
     );
 }
