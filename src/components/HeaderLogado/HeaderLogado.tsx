@@ -76,7 +76,7 @@ export default function HeaderLogado() {
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/produtos">Produtos</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/informacoesServicos">Serviços</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="/lojas">Lojas</a>
-                    {/* <a className="hover:underline md:text-sm text-[0.78rem]" href="#">Planos</a> */}
+                    <a className="hover:underline md:text-sm text-[0.78rem]" href="./planos">Planos</a>
                     <a className="hover:underline md:text-sm text-[0.78rem]" href="./duvidasFrequentes">Ajuda</a>
                 </div>
             </div>
