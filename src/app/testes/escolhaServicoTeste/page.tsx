@@ -16,14 +16,14 @@ export default function EscolhaServico() {
     };
 
     return (
-        <main className="w-full mt-12">
+        <main className="p-8 w-full mt-12">
             <div className='flex items-center justify-center'>
                 <p className='font-poppins text-preto font-medium text-xl text-center'>
                     Selecione o serviço desejado a partir das opções abaixo
                 </p>
             </div>
             <section>
-                <div className='p-8 md:flex md:justify-center md:items-center md:gap-8 w-full mt-8'>
+                <div className='lg:flex grid md:grid-cols-2 lg:justify-center lg:items-center gap-8 w-full mt-8'>
                     <ServicosAgendamento
                         servico="Consulta"
                         preco="79,90"
@@ -42,40 +42,40 @@ export default function EscolhaServico() {
                         isSelected={selectedServico === 'Banho'}
                         onSelect={() => handleSelectServico('Banho')}
                     />
-                    <div className='flex items-center flex-col cursor-pointer' onClick={toggleVacinas}>
+                    <div className='flex items-center justify-center flex-col cursor-pointer md:w-[10%] w-full' onClick={toggleVacinas}>
                         <div className='p-3 rounded-full bg-terciaria'>
                             {showVacinas ? <FiMinus size={20} /> : <FiPlus size={20} />}
                         </div>
-                        <p className='font-poppins text-preto text-sm text-center'>
+                        <p className='font-poppins text-preto text-sm text-center '>
                             {showVacinas ? 'Esconder vacinas' : 'Ver vacinas'}
                         </p>
                     </div>
                 </div>
                 {showVacinas && (
-                    <div className='p-8 md:flex md:justify-center md:items-center md:gap-8 w-full mt-4'>
+                    <div className='lg:flex grid md:grid-cols-2 lg:justify-center lg:items-center gap-8 w-full mt-8'>
                         <ServicosAgendamento
-                            servico="Vacina 1"
-                            preco="49,90"
-                            isSelected={selectedServico === 'Vacina 1'}
-                            onSelect={() => handleSelectServico('Vacina 1')}
+                            servico="Vacina antirrábica"
+                            preco="89,99"
+                            isSelected={selectedServico === 'Vacina antirrábica'}
+                            onSelect={() => handleSelectServico('Vacina antirrábica')}
                         />
                         <ServicosAgendamento
-                            servico="Vacina 2"
-                            preco="59,90"
-                            isSelected={selectedServico === 'Vacina 2'}
-                            onSelect={() => handleSelectServico('Vacina 2')}
+                            servico="Vacina gripe canina "
+                            preco="99,40"
+                            isSelected={selectedServico === 'Vacina gripe canina '}
+                            onSelect={() => handleSelectServico('Vacina gripe canina ')}
                         />
                         <ServicosAgendamento
-                            servico="Vacina 3"
-                            preco="69,90"
-                            isSelected={selectedServico === 'Vacina 3'}
-                            onSelect={() => handleSelectServico('Vacina 3')}
+                            servico="Vacina V8"
+                            preco="100,50"
+                            isSelected={selectedServico === 'Vacina V8'}
+                            onSelect={() => handleSelectServico('Vacina V8')}
                         />
                         <ServicosAgendamento
-                            servico="Vacina 4"
-                            preco="69,90"
-                            isSelected={selectedServico === 'Vacina 4'}
-                            onSelect={() => handleSelectServico('Vacina 4')}
+                            servico="Vacina V10"
+                            preco="105,50"
+                            isSelected={selectedServico === 'Vacina V10'}
+                            onSelect={() => handleSelectServico('Vacina V10')}
                         />
                     </div>
                 )}

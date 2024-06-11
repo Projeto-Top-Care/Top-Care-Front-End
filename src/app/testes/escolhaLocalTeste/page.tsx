@@ -10,12 +10,12 @@ export default function EscolhaLocal() {
     };
 
     return (
-        <main className="w-full mt-12">
+        <main className="p-8 w-full mt-12">
             <div className='flex items-center justify-center'>
                 <p className='font-poppins text-preto font-medium text-xl text-center'>Selecione uma de nossas lojas físicas para realizar o atendimento</p>
             </div>
             <section>
-                <div className='p-8 md:flex md:justify-center md:items-center md:gap-8 w-full mt-8'>
+                <div className='lg:flex grid md:grid-cols-2 lg:justify-center lg:items-center lg:gap-8 '>
                     <LocalAgendamento
                         nomeFilial='Camboriu - SC'
                         rua='Dom Henrique, 424'
@@ -30,7 +30,7 @@ export default function EscolhaLocal() {
                     />
                     <LocalAgendamento
                         nomeFilial='Curitiba - PR'
-                        rua='Honório Pedri, 82'
+                        rua='Rua Antônio Gomes, 106'
                         isSelected={selectedLocal === 'Curitiba - PR'}
                         onSelect={() => handleSelectLocal('Curitiba - PR')}
                     />
