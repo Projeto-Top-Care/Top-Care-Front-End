@@ -39,30 +39,30 @@ export default function Pedidos() {
             <section className="mb-24 flex justify-center font-poppins text-sm">
                 <table className="table-auto w-[90%]">
                     <thead>
-                        <tr className="text-center">
-                            <th className="">Cod pedido</th>
-                            <th>Dt. pedido</th>
+                        <tr className="text-center text-preto">
+                            <th>Cod pedido</th>
+                            <th className="hidden md:table-cell">Dt. pedido</th>
                             <th>Produto</th>
-                            <th>Quantidade</th>
-                            <th>Cliente</th>
-                            <th>Destino</th>
+                            <th className="hidden md:table-cell">Quantidade</th>
+                            <th className="hidden sm:table-cell">Cliente</th>
+                            <th className="hidden sm:table-cell">Destino</th>
                             <th>Valor</th>
                             <th>Status</th>
-                            <th>Pagamento</th>
+                            <th className="hidden sm:table-cell">Pagamento</th>
                         </tr>
                     </thead>
-                    <tbody className="text-center text-preto break-all">
+                    <tbody className="lg:text-sm text-xs text-center text-preto break-word border-2 border-cinza">
                         {pedidosPesquisa.map((pedido, index) => (
                             <tr key={pedido.id} className={index % 2 === 0 ? 'bg-cinza-claro' : ''}>
-                                <td className="md:max-lg:hidden border border-cinza py-3.5 px-1.5">{pedido.Cod_pedido}</td>
-                                <td className="border border-cinza py-3.5 px-1.5">{pedido.Dt_pedido}</td>
-                                <td className="border border-cinza py-3.5 px-1.5">{pedido.Produto}</td>
-                                <td className="border border-cinza py-3.5 px-1.5">{pedido.Quantidade}</td>
-                                <td className="border border-cinza py-3.5 px-1.5">{pedido.Cliente}</td>
-                                <td className="border border-cinza py-3.5 px-1.5">{pedido.Destino}</td>
-                                <td className="border border-cinza py-3.5 px-1.5">{pedido.Valor}</td>
-                                <td className="border border-cinza py-3.5 px-1.5">{pedido.Status}</td>
-                                <td className="border border-cinza py-3.5 px-1.5">{pedido.Pagamento}</td>
+                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Cod_pedido}</td>
+                                <td className="hidden md:table-cell border border-x-cinza py-3.5 px-1.5">{pedido.Dt_pedido}</td>
+                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Produto}</td>
+                                <td className="hidden md:table-cell border border-x-cinza py-3.5 px-1.5">{pedido.Quantidade}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Cliente}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Destino}</td>
+                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Valor}</td>
+                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Status}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Pagamento}</td>
                             </tr>
                         ))}
                     </tbody>

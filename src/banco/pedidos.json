@@ -7,7 +7,7 @@
       "Quantidade": 2,
       "Cliente": "Kristian Erdmann",
       "Destino": "Sen. Luiz Henrique da Silveira | SC",
-      "Valor": "R$ 200",
+      "Valor": "R$200",
       "Status": "Pagamento aprovado",
       "Pagamento": "Crédito 2x R$100"
     },
@@ -19,7 +19,7 @@
       "Quantidade": 5,
       "Cliente": "Laura Pereira",
       "Destino": "Av. Brasil, 1500 | RJ",
-      "Valor": "R$ 500",
+      "Valor": "R$500",
       "Status": "Pagamento aprovado",
       "Pagamento": "Débito"
     },
@@ -31,7 +31,7 @@
       "Quantidade": 1,
       "Cliente": "Carlos Silva",
       "Destino": "Rua das Flores, 300 | SP",
-      "Valor": "R$ 50",
+      "Valor": "R$50",
       "Status": "Pagamento pendente",
       "Pagamento": "Boleto"
     },
@@ -43,7 +43,7 @@
       "Quantidade": 3,
       "Cliente": "Ana Souza",
       "Destino": "Av. Independência, 200 | RS",
-      "Valor": "R$ 300",
+      "Valor": "R$300",
       "Status": "Pagamento aprovado",
       "Pagamento": "Pix"
     },
@@ -55,7 +55,7 @@
       "Quantidade": 2,
       "Cliente": "Beatriz Lima",
       "Destino": "Rua das Acácias, 45 | MG",
-      "Valor": "R$ 60",
+      "Valor": "R$60",
       "Status": "Pagamento pendente",
       "Pagamento": "Boleto"
     },
@@ -67,7 +67,7 @@
       "Quantidade": 10,
       "Cliente": "Roberto Costa",
       "Destino": "Av. Paulista, 1000 | SP",
-      "Valor": "R$ 150",
+      "Valor": "R$150",
       "Status": "Pagamento aprovado",
       "Pagamento": "Crédito 1x R$150"
     },
@@ -79,7 +79,7 @@
       "Quantidade": 1,
       "Cliente": "Fernanda Oliveira",
       "Destino": "Rua das Palmeiras, 500 | PR",
-      "Valor": "R$ 250",
+      "Valor": "R$250",
       "Status": "Pagamento aprovado",
       "Pagamento": "Crédito 3x R$83.33"
     },
@@ -91,7 +91,7 @@
       "Quantidade": 4,
       "Cliente": "Marcos Santos",
       "Destino": "Rua das Laranjeiras, 400 | RJ",
-      "Valor": "R$ 400",
+      "Valor": "R$400",
       "Status": "Pagamento pendente",
       "Pagamento": "Boleto"
     },
@@ -103,7 +103,7 @@
       "Quantidade": 3,
       "Cliente": "Juliana Almeida",
       "Destino": "Av. Ipiranga, 700 | SP",
-      "Valor": "R$ 90",
+      "Valor": "R$90",
       "Status": "Pagamento aprovado",
       "Pagamento": "Débito"
     },
@@ -115,7 +115,7 @@
       "Quantidade": 1,
       "Cliente": "Lucas Fernandes",
       "Destino": "Rua das Hortências, 123 | BA",
-      "Valor": "R$ 180",
+      "Valor": "R$180",
       "Status": "Pagamento aprovado",
       "Pagamento": "Crédito 2x R$90"
     }
