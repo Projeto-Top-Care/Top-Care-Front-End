@@ -13,7 +13,7 @@ interface ILoja{
 
 const Lojas = ({src, cidade, estado, endereco, contato, funcionamentoDias, funcionamentoHora}:ILoja) => {
     return (
-        <div className="font-poppins w-[300px]">
+        <div className="font-poppins w-[300px] hover:scale-105 duration-100">
             <img className=" rounded-t-lg w-full" src={src} />
             <div className="flex justify-center border border-preto border-t-0 rounded-b-lg w-full">
                 <div className="mt-[5%] w-20px h-20px md:mr-3 mr-1">

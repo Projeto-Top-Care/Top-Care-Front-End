@@ -6,6 +6,6 @@ interface PalavraFiltro{
 
 export default function PalavraFiltro({palavra}: PalavraFiltro) {
   return (
-    <label className='font-poppins'>{palavra}</label>
+    <label className='font-poppins cursor-pointer'>{palavra}</label>
   )
 }

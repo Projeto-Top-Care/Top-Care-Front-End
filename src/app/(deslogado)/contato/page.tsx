@@ -129,7 +129,7 @@ export default function Contato() {
                                     </div>
                                     <div className="w-full mt-[8%] lg:w-[48%] lg:mt-0">
                                         <div className="text-xs">
-                                            <Select label="Tipo de atendimento*" options={['Serviço', 'Dúvidas', 'Sugestões', 'Reclamações', 'Compras', 'Agendamento']} opcaoSelecionada={setAtendimento} />
+                                            <Select label="Tipo de atendimento*" options={['Serviço', 'Dúvidas', 'Sugestões', 'Reclamações', 'Compras', 'Agendamento']} opcaoSelecionada={setAtendimento} opcao={atendimento} />
                                         </div>
                                     </div>
                                 </div>
@@ -137,10 +137,10 @@ export default function Contato() {
                                     <div>
                                         <div className="flex flex-col justify-between lg:mt-[5%] mt-[8%] lg:flex-row">
                                             <div className="w-full lg:w-[48%]">
-                                                <Select label="Filial*" options={['Top Care Balneário Camboriú - SC', 'Top Care Curitiba - PR', 'Top Care Gramado - RS', "Top Care Joinville - SC", "Top Care Jaraguá do Sul - SC", "Top Care Corupá - SC"]} opcaoSelecionada={setFilial} />
+                                                <Select label="Filial*" options={['Top Care Balneário Camboriú - SC', 'Top Care Curitiba - PR', 'Top Care Gramado - RS', "Top Care Joinville - SC", "Top Care Jaraguá do Sul - SC", "Top Care Corupá - SC"]} opcaoSelecionada={setFilial} opcao={filial} />
                                             </div>
                                             <div className="w-full mt-[8%] lg:w-[48%] lg:mt-0">
-                                                <Select label="Serviço*" options={['Consulta', 'Passeio', 'Vacinação', 'Hospedagem', 'Adestramento', 'Exames', 'Banho', 'Tosa', 'Banho e Tosa']} opcaoSelecionada={setServico} />
+                                                <Select label="Serviço*" options={['Consulta', 'Passeio', 'Vacinação', 'Hospedagem', 'Adestramento', 'Exames', 'Banho', 'Tosa', 'Banho e Tosa']} opcaoSelecionada={setServico} opcao={servico} />
                                             </div>
                                         </div>
                                         <div className="flex flex-col justify-between lg:mt-[5%] mt-[8%] lg:flex-row">
@@ -148,7 +148,7 @@ export default function Contato() {
                                                 <InputData dataSelecionada={setData} />
                                             </div>
                                             <div className="w-full mt-[8%] lg:w-[48%] lg:mt-0">
-                                                <Select label="Horario*" options={['9:30', '10:00', '11:30', '13:30', '15:30', '16:30']} opcaoSelecionada={setHorario} />
+                                                <Select label="Horario*" options={['9:30', '10:00', '11:30', '13:30', '15:30', '16:30']} opcaoSelecionada={setHorario} opcao={horario} />
                                             </div>
                                         </div>
                                     </div>
