@@ -60,18 +60,18 @@ export default function informacoesServicos() {
     }
 
     return (
-        <main className="flex flex-col justify-center bg-branco w-full gap-12 pb-24">
+        <main className="flex flex-col justify-center bg-branco w-full gap-8 sm:gap-12 pb-24">
             <TituloLinha titulo="Serviços" />
 
-            <div className="flex felx-row w-[90%] self-center gap-4">
-                <div className="border-[1px] border-cinza-escuro rounded-lg w-1/2">
+            <div className="flex flex-col lg:flex-row w-[90%] self-center gap-4">
+                <div className="border-[1px] border-cinza-escuro rounded-lg w-full lg:w-1/2">
                     <BarraPesquisa placeholder={"Exemplo: 'banho e tosa'"} />
                 </div>
 
                 <div className="flex flex-row gap-4 font-poppins">
-                    <button onClick={() => opcaoFiltro("Saúde")} className={`text-cinza-escuro flex flex-row items-center gap-2 ${filtro == "Saúde" ? `text-[#405989] border-[#405989] bg-terciaria` : `text-cinza-escuro border-cinza bg-branco`} py-1 px-6 border-[1px] border-cinza rounded-lg`}>{filtro == "Saúde" ? <IoClose /> : ""}Saúde</button>
-                    <button onClick={() => opcaoFiltro("Bem estar")} className={`text-cinza-escuro flex flex-row items-center gap-2 ${filtro == "Bem estar" ? `text-[#405989] border-[#405989] bg-terciaria` : `text-cinza-escuro border-cinza bg-branco`} py-1 px-6 border-[1px] border-cinza rounded-lg`}>{filtro == "Bem estar" ? <IoClose /> : ""}Bem estar</button>
-                    <button onClick={() => opcaoFiltro("Todos")} className={`text-cinza-escuro flex flex-row items-center gap-2 ${filtro == "Todos" ? `text-[#405989] border-[#405989] bg-terciaria` : `text-cinza-escuro border-cinza bg-branco`} py-1 px-6 border-[1px] border-cinza rounded-lg`}>{filtro == "Todos" ? <IoClose /> : ""}Todos</button>
+                    <button onClick={() => opcaoFiltro("Saúde")} className={`text-sm sm:text-base text-cinza-escuro duration-200 hover:bg-terciaria flex flex-row items-center gap-1 sm:gap-2 ${filtro == "Saúde" ? `text-[#405989] border-[#405989] bg-terciaria` : `text-cinza-escuro border-cinza bg-branco`} py-1 sm:px-6 px-3 border-[1px] border-cinza rounded-lg`}>{filtro == "Saúde" ? <IoClose /> : ""}Saúde</button>
+                    <button onClick={() => opcaoFiltro("Bem estar")} className={`text-sm sm:text-base text-cinza-escuro duration-200 hover:bg-terciaria flex flex-row items-center gap-1 sm:gap-2 ${filtro == "Bem estar" ? `text-[#405989] border-[#405989] bg-terciaria` : `text-cinza-escuro border-cinza bg-branco`} py-1 sm:px-6 px-3 border-[1px] border-cinza rounded-lg`}>{filtro == "Bem estar" ? <IoClose /> : ""}Bem estar</button>
+                    <button onClick={() => opcaoFiltro("Todos")} className={`text-sm sm:text-base text-cinza-escuro duration-200 hover:bg-terciaria flex flex-row items-center gap-1 sm:gap-2 ${filtro == "Todos" ? `text-[#405989] border-[#405989] bg-terciaria` : `text-cinza-escuro border-cinza bg-branco`} py-1 sm:px-6 px-3 border-[1px] border-cinza rounded-lg`}>{filtro == "Todos" ? <IoClose /> : ""}Todos</button>
                 </div>
             </div>
 

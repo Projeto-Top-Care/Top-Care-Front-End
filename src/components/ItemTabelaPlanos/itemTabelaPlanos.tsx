@@ -57,16 +57,9 @@ const TabelaPlanos = ({ titulo, preco, item1, item2, item3, item4, item5, item6,
 
                 <div className="flex flex-row justify-between w-full bg-cinza-claro text-center h-12 lg:h-14 text-lg lg:text-xl items-center">
                     <p className="sm:hidden flex items-start text-start px-2 w-full font-poppins text-preto font-normal text-xs lg:text-sm">Plantão 24 horas</p>
-                    <p className={`w-full bg-cinza-claro text-center h-12 lg:h-14 text-2xl lg:text-3xl flex sm:justify-center justify-end sm:pr-0 pr-2 items-center border-cinza-escuro ${item7 ? `text-[#6954C0]` : `text-cinza`}`}>{item7 ? <FaCheck /> : <IoClose />}</p>                    
+                    <p className={`w-full bg-cinza-claro text-center h-12 lg:h-14 text-2xl lg:text-3xl flex sm:justify-center justify-end sm:pr-0 pr-2 items-center border-cinza-escuro ${item7 ? `text-[#6954C0]` : `text-cinza`}`}>{item7 ? <FaCheck /> : <IoClose />}</p>
                 </div>
-
-                {/* <p className="w-full bg-branco text-center h-12 lg:h-14 text-lg lg:text-xl flex justify-center items-center ">{item2}</p> */}
-                {/* <p className="w-full bg-cinza-claro text-center h-12 lg:h-14 text-lg lg:text-xl flex justify-center items-center ">{item3}</p> */}
-                {/* <p className="w-full bg-branco text-center h-12 lg:h-14 text-lg lg:text-xl flex justify-center items-center ">{item4}</p> */}
-                {/* <p className="w-full bg-cinza-claro text-center h-12 lg:h-14 text-lg lg:text-xl flex justify-center items-center ">{item5}</p> */}
-                {/* <p className={`w-full bg-branco text-center h-12 lg:h-14 text-2xl lg:text-3xl flex justify-center items-center  ${item6 ? `text-[#6954C0]` : `text-cinza`}`}>{item6 ? <FaCheck /> : <IoClose />}</p> */}
-                {/* <p className={`w-full bg-cinza-claro text-center h-12 lg:h-14 text-2xl lg:text-3xl flex justify-center items-center  border-cinza-escuro${item7 ? `text-[#6954C0]` : `text-cinza`}`}>{item7 ? <FaCheck /> : <IoClose />}</p> */}
-                <div className="text-preto w-full bg-branco h-12 lg:h-14 flex justify-center items-center "><BotaoPequeno color="primaria" title="Assinar" /></div>
+                <div className="text-preto w-full bg-branco h-12 lg:h-14 flex justify-center items-center sm:rounded-none rounded-b-lg border-b-[1px] border-cinza-escuro"><BotaoPequeno color="primaria" title="Assinar" /></div>
             </div>
         </div>
 
