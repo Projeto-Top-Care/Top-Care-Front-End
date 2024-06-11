@@ -1,21 +1,27 @@
+import React from 'react';
+
 interface IServicosAgendamento {
-    servico: string,
-    preco: string,
-    src: string
+    servico: string;
+    preco: string;
+    isSelected?: boolean;
+    onSelect?: () => void;
 }
 
-const ServicosAgendamento = ({ servico, preco, src }: IServicosAgendamento) => {
+const ServicosAgendamento = ({ servico, preco, isSelected, onSelect }: IServicosAgendamento) => {
     return (
-        <div className="flex items-center justify-start text-preto p-5 rounded-lg font-poppins border-2 mb-12 border-cinza-claro w-[18%] mt-12">
-            <div className="flex ml-2 items-center gap-4 ">
-                <img className="" src={src}/>
-                <div className=" flex flex-col">
-                    <p className=" text-lg font-medium">{servico}</p>
-                    <p className="text-lg ">R$ {preco}</p>
-                </div>
+        <div
+            onClick={onSelect}
+            className={`flex items-center justify-center text-preto p-4 rounded-lg font-poppins border-2 lg:w-[18%] md:w-[28%] w-full cursor-pointer ${
+                isSelected ? '' : 'bg-transparent opacity-50'
+            }`}
+            style={{ borderColor: isSelected ? '#6954C0' : '#BDBDBD' }}
+        >
+            <div className="flex flex-col justify-center items-center ">
+                <p className="text-lg font-medium">{servico}</p>
+                <p className="text-lg">R$ {preco}</p>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default ServicosAgendamento;
