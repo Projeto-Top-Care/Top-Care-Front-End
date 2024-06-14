@@ -14,7 +14,7 @@ import { QntProduto, Usuario } from "@/types/usuarios";
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import { buscarProduto, buscarTodos } from "@/server/produtos/action";
 import CardProduto from "@/components/CardProduto/CardProduto";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
 import { Produto } from "@/types/produto";
@@ -23,25 +23,42 @@ import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico"
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 
 export default function Perfil() {
-    const {userID} = useUserID()
+    const { userID, getUserID } = useUserID()
 
-    const id = userID
-    const usuarioLogado: Usuario = buscarUsuario(parseInt(id!))!
+    const [usuarioLogado, setUsuarioLogado] = useState<Usuario | null>(null);
     const [showAllAddresses, setShowAllAddresses] = useState(false);
-    const produtos: QntProduto = buscarProduto(usuarioLogado.id)!
-    const produto: Produto = buscarProduto(produtos.id)!
-
     const [openEndereco, setOpenEndereco] = useState(false);
     const [openPet, setOpenPet] = useState(false);
     const [edicao, setEdicao] = useState(false);
+    const [nome, setNome] = useState<string>('')
+    const [email, setEmail] = useState<string>('')
+    const [sexo, setSexo] = useState<'Feminino' | 'Masculino' | "Prefiro não Informar">('Prefiro não Informar')
+    const [ddd, setDdd] = useState<string>('')
+    const [numero, setNumero] = useState<string>('')
+    const [dataNascimento, setDataNascimento] = useState<string>('')
 
-    const [nome, setNome] = useState<string>(usuarioLogado.nomeCompleto)
-    const [email, setEmail] = useState<string>(usuarioLogado.email)
-    const [sexo, setSexo] = useState<'Feminino' | 'Masculino' | "Prefiro não Informar">(usuarioLogado.sexo)
-    const [ddd, setDdd] = useState<string>(usuarioLogado.celular.substring(5,7))
-    const [numero, setNumero] = useState<string>(usuarioLogado.celular.substring(8))
-    const [dataNascimento, setDataNascimento] = useState<string>(usuarioLogado.dataNascimento)
+    useEffect(() => {
+        const fetchedID = getUserID();
+        if (fetchedID) {
+            const usuario: Usuario = buscarUsuario(parseInt(fetchedID))!;
+            if (usuario) {
+                setUsuarioLogado(usuario);
+                setNome(usuario.nomeCompleto);
+                setEmail(usuario.email);
+                setSexo(usuario.sexo);
+                setDdd(usuario.celular.substring(5, 7));
+                setNumero(usuario.celular.substring(8));
+                setDataNascimento(usuario.dataNascimento);
+            }
+        }
+    }, []);
 
+    if (!usuarioLogado) {
+        return <div>Loading...</div>;
+    }
+
+    const produtos: QntProduto = buscarProduto(usuarioLogado.id)!
+    const produto: Produto = buscarProduto(produtos.id)!
 
     const toggleShowAllAddresses = () => {
         setShowAllAddresses(!showAllAddresses);
@@ -49,19 +66,21 @@ export default function Perfil() {
 
     const displayedAddresses = showAllAddresses ? usuarioLogado.enderecos : usuarioLogado.enderecos.slice(0, 3);
 
-    const verificarEdicao = () =>{
-        if(nome == "" || email == "" || numero.length != 10 || ddd.length != 2 || dataNascimento.length != 10){
-            return true
+    const verificarEdicao = () => {
+        if (nome === "" || email === "" || numero.length !== 10 || ddd.length !== 2 || dataNascimento.length !== 10) {
+            return true;
         }
-        return false
+        return false;
     }
 
     const logout = () => {
         localStorage.setItem('idUser', '')
     }
 
-    const carrosselProdutos = buscarTodos().map((produto, i) => (<CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
-        precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />))
+    const carrosselProdutos = buscarTodos().map((produto, i) => (
+        <CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
+            precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />
+    ))
 
     return (
         <main className="bg-branco text-preto">
@@ -71,7 +90,7 @@ export default function Perfil() {
                 <div className="flex justify-end w-[90%]">
                     <div className="mt-5">
                         <a href="/">
-                            <button className='flex md:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-28 w-20 h-8 hover:bg-[#9EBF40] justify-around' onClick={() => logout()}> Logout <IoExitOutline className="mt-1" /></button>
+                            <button className='flex md:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-28 w-20 h-8 hover:bg-[#9EBF40] justify-around' onClick={logout}> Logout <IoExitOutline className="mt-1" /></button>
                         </a>
                     </div>
                 </div>
@@ -85,9 +104,9 @@ export default function Perfil() {
                         <div className="w-80 flex flex-col gap-6">
                             <InputEstatico 
                             titulo="Nome Completo" 
-                            info={usuarioLogado.nomeCompleto} 
+                            info={nome} 
                             edition={edicao}
-                            error={nome == ''}
+                            error={nome === ''}
                             onChange={(e)=>setNome(e.target.value)}
                             message={"O nome não pode ser vazio"}
                             />
@@ -100,7 +119,7 @@ export default function Perfil() {
 
                             <InputEstatico 
                             titulo="Sexo" 
-                            info={usuarioLogado.sexo} 
+                            info={sexo} 
                             edition={edicao}/>
                         </div>
                     </div>
@@ -109,9 +128,9 @@ export default function Perfil() {
                             <div className="w-80 flex flex-col gap-6">
                                 <InputEstatico 
                                 titulo="Email" 
-                                info={usuarioLogado.email} 
+                                info={email} 
                                 edition={edicao}
-                                error={email == ''}
+                                error={email === ''}
                                 onChange={(e)=>setEmail(e.target.value)}
                                 message={"O email precisa ser válido"}/>
 
@@ -122,32 +141,32 @@ export default function Perfil() {
                                     <div className="w-14">
                                         <InputMaskEstatico 
                                         titulo='DDD' 
-                                        info={usuarioLogado.celular.substring(5, 7)} 
+                                        info={ddd} 
                                         edition={edicao} mask={'__'} 
                                         replacement={{ _: /\d/ }} 
-                                        error={ddd.length != 2} 
+                                        error={ddd.length !== 2} 
                                         onMasks={(e)=>setDdd(e.target.value)}
                                         message={'O ddd precisa ser válido'}/>
                                     </div>
                                     <div className="w-40">
                                         <InputMaskEstatico 
                                         titulo="Celular" 
-                                        info={usuarioLogado.celular.substring(8)} 
+                                        info={numero} 
                                         edition={edicao} 
                                         mask={'_____-____'} 
                                         replacement={{ _: /\d/ }} 
-                                        error={numero.length != 10} 
+                                        error={numero.length !== 10} 
                                         onMasks={(e)=>setNumero(e.target.value)}
                                         message={"O telefone precisa ser válido"}/>
                                     </div>
                                 </div>
                                 <InputMaskEstatico 
                                 titulo="Data de Nascimento" 
-                                info={usuarioLogado.dataNascimento} 
+                                info={dataNascimento} 
                                 edition={edicao} 
                                 mask={'dd/mm/yyyy'} 
                                 replacement={{ d: /\d/, m: /\d/, y: /\d/ }} 
-                                error={dataNascimento.length != 10} 
+                                error={dataNascimento.length !== 10} 
                                 onMasks={(e)=>setDataNascimento(e.target.value)}
                                 message={"A data de nascimento precisa ser válida"}/>
                             </div>
@@ -262,4 +281,3 @@ export default function Perfil() {
         </main>
     );
 }
-

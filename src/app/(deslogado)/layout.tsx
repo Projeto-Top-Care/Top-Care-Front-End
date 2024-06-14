@@ -18,11 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-branco">
-        <HeaderDeslogado/>
-          <AppProvider>
+        <AppProvider>
+          <HeaderDeslogado />
             {children}
-          </AppProvider>
-        <Footer />
+          <Footer />
+        </AppProvider>
       </body>
     </html>
   );

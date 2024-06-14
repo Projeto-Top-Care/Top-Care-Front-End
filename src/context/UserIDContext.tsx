@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 interface UserIDProps {
   userID: string | undefined;
   setUserId: (item: string) => void;
+  getUserID: () => string | null
 }
 
 const UserIDContext = createContext<UserIDProps | undefined>(undefined);
@@ -27,8 +28,12 @@ const UserIDProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     setUserID(newItem);
   };
 
+  const getUserID = () =>{
+    return localStorage.getItem('idUser');
+  }
+
   return (
-    <UserIDContext.Provider value={{ userID, setUserId}}>
+    <UserIDContext.Provider value={{ userID, setUserId, getUserID}}>
       {children}
     </UserIDContext.Provider>
   );

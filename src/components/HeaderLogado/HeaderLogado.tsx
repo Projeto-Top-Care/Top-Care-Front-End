@@ -10,9 +10,11 @@ import { PiBoneFill } from "react-icons/pi";
 import { FaStore } from "react-icons/fa";
 
 import { useEffect, useRef, useState } from "react";
+import { useUserID } from "@/context/UserIDContext";
 
 export default function HeaderLogado() {
     const { push } = useRouter();
+    const {userID, setUserId} = useUserID()
     const navRef = useRef<HTMLDivElement>(null)
 
     const [navAberta, setNavAberta] = useState(false)
@@ -26,6 +28,11 @@ export default function HeaderLogado() {
             }, 290)
         }
     }, [animation])
+
+    useEffect(() => {
+        const storedItem = localStorage.getItem('idUser');
+        if (storedItem) setUserId(storedItem);
+      }, []);
 
     const handleClickOutside = (event: MouseEvent) => {
         if (navRef.current && !navRef.current.contains(event.target as Node)) {

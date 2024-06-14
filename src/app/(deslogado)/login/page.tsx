@@ -21,6 +21,7 @@ export default function Login() {
         let usuarioId = login(email, senha)
         if(usuarioId != undefined){
             setUserId(usuarioId)
+            router.push('/')
             router.refresh()
         } else{
             addError("Falha no Login, verifique seu email e senha!")
