@@ -78,12 +78,12 @@ export default function Pagamento() {
     }
 
     return (
-        <main className="p-8 mt-12 w-full flex flex-col gap-12">
+        <main className="p-8 mt-12 w-full flex justify-center items-center flex-col gap-12">
             {showError()}
             <div className='flex items-center justify-center'>
                 <p className='font-poppins text-preto font-medium text-xl text-center'>Seu agendamento está quase concluído, confime os dados para concluí-lo</p>
             </div>
-            <div className='p-8 w-full flex justify-between items-start gap-12'>
+            <div className='p-8 w-full flex md:flex-row flex-col justify-center items-start gap-12'>
                 <div className='md:p-5 p-4 border rounded-md border-cinza-escuro'>
                     <div className='text-preto font-poppins flex items-center justify-between md:gap-24 md:text-base text-sm'>
                         <div className='font-medium flex flex-col gap-4'>
@@ -109,7 +109,7 @@ export default function Pagamento() {
                         <p className='md:text-lg text-sm text-end '>R$79,90</p>
                     </div>
                 </div>
-                <div className="flex flex-col justify-start items-start gap-8 w-[60%]">
+                <div className="flex flex-col justify-end items-start gap-8 w-[60%]">
                     <p>Escolha o método de pagamento</p>
                     <div className="flex flex-row  gap-4">
                         <div className="flex flex-row gap-4">
@@ -165,12 +165,12 @@ export default function Pagamento() {
                     </div>
                 </div>
             </div>
-            <div className='md:p-4 flex md:flex-row flex-col gap-4 mt-8 justify-between'>
-                <div className='lg:w-[12%] md:w-[16%] w-full'>
+            <div className='lg:p-28 flex md:flex-row flex-col gap-4 mt-8 justify-between'>
+                <div className='lg:w-[14%] md:w-[25%] w-full'>
                     <BotaoGrande title="Anterior" background='bg-terciaria' type={"button"} />
                 </div>
-                <div className='lg:w-[12%] md:w-[16%] w-ful'>
-                    <BotaoGrande title="Próximo" background='bg-secundaria' type={"button"} />
+                <div className='lg:w-[14%] md:w-[25%] w-full'>
+                    <BotaoGrande title="Confirmar" background='bg-secundaria' type={"button"} />
                 </div>
             </div>
         </main>

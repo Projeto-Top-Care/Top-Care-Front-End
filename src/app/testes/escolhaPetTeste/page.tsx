@@ -17,10 +17,10 @@ export default function EscolhaPet() {
                     <p className='font-averia text-preto font-bold text-2xl'>Gostaria de cadastrar um pet?</p>
                     <p className='font-poppins text-preto text-lg mt-2 text-start md:w-[55%] w-full'>Clique no botão abaixo para cadastrar, depois continue os procedimentos para agendar um serviço para o seu mais novo pet :)</p>
                     <div className='md:flex flex-col md:flex-row justify-between mt-4'>
-                        <div className='lg:w-[12%] md:w-[16%] w-full mt-4' onClick={() => setOpenPet(true)}>
+                        <div className='lg:w-[14%] md:w-[25%] w-full mt-4' onClick={() => setOpenPet(true)}>
                             <BotaoGrande title="Cadastrar" background='bg-terciaria' type={"button"} />
                         </div>
-                        <div className='lg:w-[12%] md:w-[16%] w-full md:mt-4 mt-8'>
+                        <div className='lg:w-[14%] md:w-[25%] w-full md:mt-4 mt-8'>
                             <BotaoGrande title="Próximo" background='bg-secundaria' type={"button"} />
                         </div>
                     </div>
