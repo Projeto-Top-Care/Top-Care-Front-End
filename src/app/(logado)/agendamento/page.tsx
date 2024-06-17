@@ -49,7 +49,7 @@ export default function agendamento() {
 
             <div className="flex w-[90%] justify-between">
                 <div className="w-2/12">
-                    <BotaoGrande onClick={() => estado <= -1 ? setEstado(0) : setEstado(estado - 1)} title={"Anterior"} background={"bg-terciaria"} type={"button"} />
+                    <BotaoGrande onClick={() => estado <= -1 ? setEstado(0) : setEstado(estado - 1)} title={estado <= 0 ? "Cadastrar pet" : "Anterior"} background={"bg-terciaria"} type={"button"} />
                 </div>
                 <div className="w-2/12">
                     <BotaoGrande onClick={() => estado >= 5 ? setEstado(4) : setEstado(estado + 1)} title={"Próximo"} background={"bg-secundaria"} type={"button"} />
