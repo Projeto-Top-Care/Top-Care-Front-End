@@ -3,7 +3,7 @@ import EscolhaEndereco from "@/components/Agendamento/escolhaEndereco";
 import EscolhaHorario from "@/components/Agendamento/escolhaHorario";
 import EscolhaPet from "@/components/Agendamento/escolhaPet";
 import EscolhaServico from "@/components/Agendamento/escolhaServico";
-import BarraProcesso from "@/components/BarraProcesso/BarraProcesso";
+import BarraProcessoAgendamento from "@/components/BarraProcesso/BarraProcessoAgendamento";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import { useState } from "react";
 
@@ -15,14 +15,7 @@ export default function agendamento() {
         <main className="w-full flex flex-col items-center py-12">
 
             <div className="w-full">
-                <BarraProcesso
-                    primeiroPasso={"Pet"}
-                    segundoPasso={"Serviço"}
-                    terceiroPasso={"Local"}
-                    quartoPasso={"Data, hora e profissional"}
-                    quintoPasso={"Resumo final"}
-                    type={"agendamento"}
-                    estado={estado} />
+                <BarraProcessoAgendamento estado={estado}/>
             </div>
 
             <div className="w-[90%] flex items-center">

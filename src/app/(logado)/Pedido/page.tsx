@@ -1,5 +1,5 @@
 'use client'
-import BarraProcesso from "@/components/BarraProcesso/BarraProcesso";
+import BarraProcesso from "@/components/BarraProcesso/BarraProcessoPedido";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { useUserID } from "@/context/UserIDContext";
 import { buscarProduto } from "@/server/produtos/action";
@@ -50,7 +50,7 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                             </div>
                         </div>
                         <section className="w-full m-auto md:mt-24 mt-8">
-                            <BarraProcesso type={"pedido"} primeiroPasso="Pedido criado" segundoPasso="Pagamento aprovado" terceiroPasso="Separando o pedido" quartoPasso="Pedido com a transportadora" quintoPasso="Entregue" />
+                            <BarraProcesso primeiroPasso="Pedido criado" segundoPasso="Pagamento aprovado" terceiroPasso="Separando o pedido" quartoPasso="Pedido com a transportadora" quintoPasso="Entregue" />
                         </section>
                     </section>
                     <section className="md:mt-20 mt-4">
