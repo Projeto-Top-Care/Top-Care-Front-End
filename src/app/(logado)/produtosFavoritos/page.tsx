@@ -11,38 +11,20 @@ import { buscarProduto } from '@/server/produtos/action';
 import { Produto, ProdutoCompleto } from '@/types/produto';
 
 export default function ProdutoFavoritos() {
-    const {userID} = useUserID()
+    const [usuarioLogado, setUsuarioLogado] = useState<Usuario | undefined>()
+    const { getUserID } = useUserID()
 
     const [showAllProducts, setShowAllProducts] = useState(false);
-    const usuarioLogado: Usuario = buscarUsuario(parseInt(userID!))!;
     const [pesquisa, setPesquisa] = useState('');
     const [produtosFavoritos, setProdutosFavoritos] = useState<Produto[]>([]);
     const [numDisplayedProducts, setNumDisplayedProducts] = useState(10);
-
+    
     useEffect(() => {
-        let produtosFavoritos: Produto[] = usuarioLogado.favoritos.map((id)=>{
-            return buscarProduto(id)!;
-        })
-
-        if (pesquisa.trim() !== '') {
-            produtosFavoritos = produtosFavoritos.filter((favorito) =>
-                favorito.nomeProduto
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, "")
-                .includes(
-                  pesquisa
-                    .toLowerCase()
-                    .normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, "")
-                )
-            );
+        const idFetched = getUserID()
+        if (idFetched) {
+            const usuario: Usuario = buscarUsuario(parseInt(idFetched!))!;
+            setUsuarioLogado(usuario)
         }
-
-        setProdutosFavoritos(showAllProducts ? produtosFavoritos : produtosFavoritos.slice(0, numDisplayedProducts));
-    }, [pesquisa, showAllProducts, usuarioLogado.favoritos, numDisplayedProducts]);
-
-    useEffect(() => {
         function handleResize() {
             if (window.innerWidth <= 640) {
                 setNumDisplayedProducts(4);
@@ -60,10 +42,37 @@ export default function ProdutoFavoritos() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    useEffect(() => {
+        let produtosFavoritos: Produto[] | undefined = usuarioLogado?.favoritos.map((id) => {
+            return buscarProduto(id)!;
+        })
+
+        if (pesquisa.trim() !== '') {
+            produtosFavoritos = produtosFavoritos?.filter((favorito) =>
+                favorito.nomeProduto
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .includes(
+                        pesquisa
+                            .toLowerCase()
+                            .normalize('NFD')
+                            .replace(/[\u0300-\u036f]/g, "")
+                    )
+            );
+        }
+        if(produtosFavoritos){
+            setProdutosFavoritos(showAllProducts ? produtosFavoritos : produtosFavoritos.slice(0, numDisplayedProducts));
+        }
+    }, [pesquisa, showAllProducts, usuarioLogado?.favoritos, numDisplayedProducts]);
+
     const toggleShowAllProducts = () => {
         setShowAllProducts(!showAllProducts);
     };
 
+    if(!usuarioLogado){
+        return <div>Carregando...</div>
+    }
     return (
         <section className="mt-8">
             <TituloLinha titulo={"Meus produtos favoritos"} />

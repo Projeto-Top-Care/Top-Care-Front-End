@@ -53,7 +53,7 @@ export interface Cartao {
 }
 
 export interface QntProduto {
-    id: number,
+    id: number | undefined,
     quantidade: number
 }
 

@@ -23,7 +23,7 @@ import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico"
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 
 export default function Perfil() {
-    const { userID, getUserID } = useUserID()
+    const { getUserID } = useUserID()
 
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario | null>(null);
     const [showAllAddresses, setShowAllAddresses] = useState(false);
@@ -58,7 +58,7 @@ export default function Perfil() {
     }
 
     const produtos: QntProduto = buscarProduto(usuarioLogado.id)!
-    const produto: Produto = buscarProduto(produtos.id)!
+    const produto: Produto = buscarProduto(produtos.id!)!
 
     const toggleShowAllAddresses = () => {
         setShowAllAddresses(!showAllAddresses);

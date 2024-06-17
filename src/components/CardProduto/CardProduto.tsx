@@ -11,7 +11,7 @@ import React from "react";
 import { useCarrinho } from "@/context/CarrinhoContext";
 
 const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo, favorito }: Produto) => {
-    const {items} = useCarrinho()
+    const {addProduct} = useCarrinho()
     const [favoritoCard, setFavoritoCard] = useState<boolean>(favorito ? true : false);
     const { push } = useRouter()
     const { addConfirmacao } = useConfirmacao()!
@@ -27,13 +27,11 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
     }
 
     const adicionarCarrinho = () => {
-        const carrinho = items
         const newProduto = {
             id: id,
             quantidade: 1,
         }
-        const carrinhoAtualizado = [...carrinho, newProduto]
-        localStorage.setItem('carrinho', JSON.stringify(carrinhoAtualizado))
+        addProduct(newProduto)
         addConfirmacao("Adicionado a Sacola!")
         
     }

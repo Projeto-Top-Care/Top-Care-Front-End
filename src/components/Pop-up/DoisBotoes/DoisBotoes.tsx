@@ -3,7 +3,7 @@ import React, { SetStateAction, useEffect, useState } from 'react'
 interface IPopUp {
     texto: string,
     openParms: React.Dispatch<SetStateAction<boolean>>
-    sim: React.Dispatch<SetStateAction<boolean | number>>
+    sim: React.Dispatch<SetStateAction<boolean>>
 }
 
 export default function DoisBotoes({ texto, openParms, sim }: IPopUp) {

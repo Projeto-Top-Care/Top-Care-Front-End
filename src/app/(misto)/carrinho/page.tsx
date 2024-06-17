@@ -20,12 +20,17 @@ import Topico from './Topico'
 export default function Carrinho() {
 
   const {userID} = useUserID()
-  const {items} = useCarrinho()
+  const [carrinho, setCarrinho] = useState<QntProduto[]>([])
+  const { getCarrinho } = useCarrinho()
+
+  useEffect(()=>{
+    setCarrinho(getCarrinho())
+  },[])
 
   const idUser = userID || ''
   const usuarioLogado: Usuario | undefined = buscarUsuario(parseInt(idUser!))
-  const produtos: Produto[] = items.map((item) => {
-    return buscarProduto((item as unknown as QntProduto).id)!
+  const produtos: Produto[] = carrinho.map((item) => {
+    return buscarProduto((item as unknown as QntProduto).id!)!
   })
   const [frete, setFrete] = useState<number | string>(0)
   const [desconto, setDesconto] = useState<number>(0)
@@ -35,7 +40,7 @@ export default function Carrinho() {
   const [erro, setErro] = useState<boolean>(false)
   const [inexitente, setInexistente] = useState<boolean>(false)
   const [open, setOpen] = useState<boolean>(false)
-  const [sim, setSim] = useState<boolean | number>(0)
+  const [sim, setSim] = useState<boolean>(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -65,17 +70,11 @@ export default function Carrinho() {
     }
   }, [cupom])
 
-  const limparCarrinho = () => {
-    if (sim == 0) return
-
-    if (sim) {
-        localStorage.setItem('carrinho', JSON.stringify([]))
-        location.reload()
-    }
-  }
-
   useEffect(() => {
-    limparCarrinho()
+    if (sim) {
+      localStorage.setItem('carrinho', JSON.stringify([]))
+      location.reload()
+  }
 }, [sim])
 
   const somaTotal = () => {
@@ -110,10 +109,6 @@ export default function Carrinho() {
     if (cupom) {
       setDesconto(cupom.porcentagem * somaTotal())
     }
-  }
-
-  const adicionarCarrinho = () => {
-    router.push('/paginaCompra')
   }
 
   return (
@@ -161,7 +156,7 @@ export default function Carrinho() {
               <p className='font-poppins font-medium'>Calcular Frete</p>
               <p className='font-poppins font-regular text-xs md:!flex hidden'>Infrorme seu CEP</p>
               <div className='flex lg:flex-row flex-col lg:gap-0 gap-3 justify-between lg:mt-0 mt-2'>
-                <div className='lg:w-[60%] w-full'><InputMask placeholder='_____-___' mask='_____-___' replacement={{ _: /\d/ }} onMasks={(e: any) => setCep(e.target.value)} erro={erro || inexitente} /></div>
+                <div className='lg:w-[60%] w-full'><InputMask title='_____-___' mask='_____-___' replacement={{ _: /\d/ }} onMasks={(e: any) => setCep(e.target.value)} erro={erro || inexitente} /></div>
                 <div className='lg:w-[32%] w-full' onClick={() => enviarFrete()}><BotaoGrande title='Calcular' type='button' background='bg-secundaria' height='lg:h-10 h-8' fontSize='text-sm font-medium' /></div>
               </div>
               {
@@ -183,7 +178,7 @@ export default function Carrinho() {
 
           </section>
           <div className='lg:w-1/2 w-full lg:mt-0 mt-2'>
-            <BotaoGrande title='Continuar' background='bg-secundaria' type='button' onClick={() => adicionarCarrinho()} />
+            <BotaoGrande title='Continuar' background='bg-secundaria' type='button' onClick={() => router.push('/paginaCompra')} />
           </div>
         </section>
       </section>
