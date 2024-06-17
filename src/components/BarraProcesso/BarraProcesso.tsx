@@ -9,16 +9,17 @@ interface IBarraProcesso {
     terceiroPasso: string,
     quartoPasso: string,
     quintoPasso: string,
-    type: string
+    type: string,
+    estado: number
 }
 
-const BarraProcesso = ({ primeiroPasso, segundoPasso, terceiroPasso, quartoPasso, quintoPasso, type }: IBarraProcesso) => {
+const BarraProcesso = ({ primeiroPasso, segundoPasso, terceiroPasso, quartoPasso, quintoPasso, type, estado }: IBarraProcesso) => {
 
     return (
         <div className="w-full relative md:flex md:flex-col grid md:items-center items-start">
             <div className="w-[78%] mt-3.5 absolute m-auto md:flex hidden">
-                <div className="border-t-2 border-cinza-claro w-full absolute -z-50"></div>
-                <div className="border-t-2 border-secundaria w-[0%] absolute -z-10"></div>
+                <div className={`border-t-2 border-cinza-claro w-full absolute -z-50`}></div>
+                <div className={`border-t-2 ${estado >= 0 ? `border-secundaria` : `border-cinza-claro`} ${estado == 1 ? `w-1/4` : estado == 2 ? `w-1/2` : estado == 3 ? `w-3/4` : estado >= 4 ? `w-full` : `w-[0%]`}  absolute -z-10`}></div>
             </div>
             <div className="md:hidden flex ml-3.5" >
                 <div className="border-l-2 h-full border-cinza-claro absolute -z-50"></div>
