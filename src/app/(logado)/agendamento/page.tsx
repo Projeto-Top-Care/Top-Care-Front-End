@@ -36,7 +36,9 @@ export default function agendamento() {
                                     <EscolhaHorario />
                                 </div>
                                 :
-                                <div > aa</div>
+                                <div>
+                                    <EscolhaEndereco/>
+                                </div>
                 )}
             </div>
 
