@@ -48,7 +48,7 @@ export default function HeaderDeslogado() {
         <div>
             <div className="bg-primaria md:px-20 px-6 md:py-3 py-2 flex flex-row-reverse sm:flex-row font-poppins justify-between items-center text-preto">
                 <div className='px-6'>
-                    <a href="/"><img className="md:w-[64px] w-[40px] " src="../assets/logo.png" /></a>
+                    <div onClick={()=> push('/')}><img className="md:w-[64px] w-[40px] " src="../assets/logo.png" /></div>
                 </div>
 
                 <div className="flex w-2/3 px-4 max-sm:hidden">
@@ -72,11 +72,11 @@ export default function HeaderDeslogado() {
 
             <div className="bg-terciaria flex max-sm:hidden flex-row justify-center">
                 <div className="font-poppins flex flex-row justify-between md:gap-12 gap-2 py-3">
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/produtos">Produtos</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/informacoesServicos">Serviços</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/lojas">Lojas</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/planos">Planos</a>
-                    <a className="hover:underline md:text-sm text-[0.78rem]" href="/contato">Contato</a>
+                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={()=>push("/produtos")} >Produtos</div>
+                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={()=>push("/informacoesServicos")} >Serviços</div>
+                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={()=>push("/lojas")} >Lojas</div>
+                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={()=>push("/planos")} >Planos</div>
+                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={()=>push("/contato")}>Contato</div>
                 </div>
             </div>
             {

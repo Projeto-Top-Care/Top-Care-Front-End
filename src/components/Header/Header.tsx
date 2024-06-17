@@ -7,9 +7,14 @@ import HeaderDeslogado from "../HeaderDeslogado/HeaderDeslogado";
 import HeaderLogado from "../HeaderLogado/HeaderLogado";
 
 export default function Home() {
-    const { userID } = useUserID();
+    const { getUserID } = useUserID();
 
     const [user, setUser] = useState<Usuario | undefined>(undefined);
+    const [userID, setUserID] = useState<string | null>(null);
+
+    useEffect(()=>{
+        setUserID(getUserID())
+    },[])
 
     useEffect(() => {
         if (userID) {

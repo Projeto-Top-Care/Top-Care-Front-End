@@ -13,13 +13,15 @@ import QuantidadeProduto from '@/components/QuantidadeProduto/QuantidadeProduto'
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import CardProduto from '@/components/CardProduto/CardProduto';
 import { buscarUsuario } from '@/server/usuario/action';
-import { Usuario } from '@/types/usuarios';
+import { QntProduto, Usuario } from '@/types/usuarios';
 import Avaliacao from '@/components/Avaliacao/Avaliacao';
 import EscreverAvaliacao from '@/components/EscreverAvaliacao/EscreverAvaliacao';
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import { FiShoppingBag } from 'react-icons/fi';
 import { useRouter } from "next/navigation";
-import { getLocalStorageArray } from '@/server/localStorage/actions';
+import { useCarrinho } from '@/context/CarrinhoContext';
+import { useConfirmacao } from '@/context/confirmacaoContext';
+import Confirmacao from '@/components/Pop-up/Confirmacao/Confirmacao';
 
 interface PropsProduct {
   searchParams: { id: number }
@@ -31,6 +33,8 @@ const carrosselProdutos = buscarTodos().map((produto, i) => (<CardProduto key={i
 export default function ProdutoDetails({ searchParams }: PropsProduct) {
 
   const { push } = useRouter();
+  const { addProduct } = useCarrinho()
+  const { addConfirmacao} = useConfirmacao()!
 
   const [produtoProcurado, setProdutoProcurado] = useState<ProdutoCompleto>()
   const [numeroImagem, setNumeroImagem] = useState<number>(0)
@@ -64,31 +68,12 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
 
 
   const adicionarCarrinho = () => {
-    const carrinho = getLocalStorageArray('carrinho')
-    const newProduto = {
+    const newProduto: QntProduto = {
       id: produtoProcurado?.id,
       quantidade: quantidade,
     }
-    const carrinhoAtualizado = [...carrinho, newProduto]
-    localStorage.setItem('carrinho', JSON.stringify(carrinhoAtualizado))
-    setOpen(true)
-    setTimeout(() => {
-      setOpen(false)
-    }, 4000)
-  }
-
-  const adicionadoCarrinho = () => {
-    if (open) {
-      return (
-        <div className="z-50">
-          <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down`}>
-            <div className="flex items-center justify-center lg:h-10 h-8 bg-terciaria rounded font-poppins">
-              <p className="text-xs lg:text-base">Adicionado ao Carrinho!</p>
-            </div>
-          </div>
-        </div>
-      )
-    }
+    addProduct(newProduto)
+    addConfirmacao("Produto adiconado na sacola")
   }
 
   if (!produtoProcurado) return (
@@ -97,7 +82,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
   else {
     return (
       <main className='text-preto'>
-        {adicionadoCarrinho()}
+        <Confirmacao />
         <section className='mt-6 md:mt-11'>
           <TituloLinha titulo='Produto' />
         </section>
