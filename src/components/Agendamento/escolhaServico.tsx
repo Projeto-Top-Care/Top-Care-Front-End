@@ -5,6 +5,7 @@ import { FiPlus, FiMinus } from "react-icons/fi";
 
 const EscolhaServico = () => {
 
+<<<<<<< HEAD
     const [selectedServico, setSelectedServico] = useState<string>('Consulta');
     const [showVacinas, setShowVacinas] = useState<boolean>(false);
 
@@ -81,6 +82,11 @@ const EscolhaServico = () => {
                 )}
             </div>
         </main>
+=======
+        <div className='flex flex-row w-[90%] m-auto font-poppins'>
+            <h1>escolha do servico</h1>
+        </div>
+>>>>>>> Feature/Pagina-Agendamento
     )
 }
 
