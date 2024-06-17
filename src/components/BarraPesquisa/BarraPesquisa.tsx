@@ -11,54 +11,54 @@ interface IBarraPesquisa {
 }
 
 export default function BarraPesquisa({ placeholder }: IBarraPesquisa) {
-    // const router = useRouter()
-    // const {items} = useSearch()
-    // const [query, setQuery] = useState<string>('')
-    // const [ultimasPesquisas, setUltimasPesquisas] = useState<string[]>(items)
+    const router = useRouter()
+    const {items} = useSearch()
+    const [query, setQuery] = useState<string>('')
+    const [ultimasPesquisas, setUltimasPesquisas] = useState<string[]>(items)
 
-    // const pesquisas = (): string[] =>{
-    //     const ultimasPesquisasTemp = [...ultimasPesquisas]
-    //     let ultimasPesquisas3 = new Array().fill(null);
-    //     if(ultimasPesquisasTemp.length > 3){
-    //        ultimasPesquisasTemp.forEach((pesquisa, i)=>{
-    //         (i < 4 ? ultimasPesquisas3[i] = pesquisa : '')
-    //        })
-    //        return ultimasPesquisas3;
-    //     }
-    //     return ultimasPesquisasTemp
-    // }
+    const pesquisas = (): string[] =>{
+        const ultimasPesquisasTemp = [...ultimasPesquisas]
+        let ultimasPesquisas3 = new Array().fill(null);
+        if(ultimasPesquisasTemp.length > 3){
+           ultimasPesquisasTemp.forEach((pesquisa, i)=>{
+            (i < 4 ? ultimasPesquisas3[i] = pesquisa : '')
+           })
+           return ultimasPesquisas3;
+        }
+        return ultimasPesquisasTemp
+    }
 
-    // const excluirItem = (excluido: string) =>{
-    //     const newPesquisas = pesquisas().filter((pesquisa)=>{
-    //         return pesquisa != excluido
-    //     })
-    //     setUltimasPesquisas(newPesquisas)
-    // }
+    const excluirItem = (excluido: string) =>{
+        const newPesquisas = pesquisas().filter((pesquisa)=>{
+            return pesquisa != excluido
+        })
+        setUltimasPesquisas(newPesquisas)
+    }
 
-    // useEffect(()=>{
-    //     localStorage.setItem('ultimasPesquisas', JSON.stringify(pesquisas()))
-    // }, [ultimasPesquisas])
+    useEffect(()=>{
+        localStorage.setItem('ultimasPesquisas', JSON.stringify(pesquisas()))
+    }, [ultimasPesquisas])
 
-    // const enter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    //     if (e.key == 'Enter') {
-    //         if (query != '') {
-    //             document.getElementById('search')?.blur()
-    //             setUltimasPesquisas([query, ...ultimasPesquisas])
-    //             router.push('/produtos?q=' + query)
-    //         }
-    //     }
-    // }
-    // const enviarQuery = () => {
-    //     if (query != '') {
-    //         router.push('/produtos?q=' + query)
-    //     }
-    // }
-    // const enviarPesquisa = (pesquisa: string) =>{
-    //     router.push('/produtos?q=' + pesquisa)
-    // }
+    const enter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key == 'Enter') {
+            if (query != '') {
+                document.getElementById('search')?.blur()
+                setUltimasPesquisas([query, ...ultimasPesquisas])
+                router.push('/produtos?q=' + query)
+            }
+        }
+    }
+    const enviarQuery = () => {
+        if (query != '') {
+            router.push('/produtos?q=' + query)
+        }
+    }
+    const enviarPesquisa = (pesquisa: string) =>{
+        router.push('/produtos?q=' + pesquisa)
+    }
     return (
         <div className="relative bg-branco flex items-center w-full rounded-lg h-8">
-            {/* <div className="size-[2rem] flex items-center justify-center">
+            <div className="size-[2rem] flex items-center justify-center">
                 <button><FaSearch style={{ color: "#322828" }} onClick={() => enviarQuery()} /></button>
             </div>
             <div className="w-full peer flex flex-col items-center justify-start">
@@ -80,7 +80,7 @@ export default function BarraPesquisa({ placeholder }: IBarraPesquisa) {
                         </div>
                     ))}
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }
