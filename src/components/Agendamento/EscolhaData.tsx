@@ -17,14 +17,6 @@ export default function EscolhaData() {
                     <InputData dataSelecionada={setData} />
                 </div>
             </div>
-            <div className='lg:p-28 md:p-4 flex md:flex-row flex-col gap-4 mt-8 justify-between'>
-                <div className='lg:w-[12%] md:w-[25%] w-full'>
-                    <BotaoGrande title="Anterior" background='bg-terciaria' type={"button"} />
-                </div>
-                <div className='lg:w-[12%] md:w-[25%] w-ful'>
-                    <BotaoGrande title="Próximo" background='bg-secundaria' type={"button"} />
-                </div>
-            </div>
         </main>
     );
 }

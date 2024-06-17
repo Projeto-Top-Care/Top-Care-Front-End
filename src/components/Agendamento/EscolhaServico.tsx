@@ -1,10 +1,10 @@
 'use client'
 import React, { useState } from 'react';
-import ServicosAgendamento from "@/components/ServicosAgendamento/ServicosAgendamento";
+import ServicosAgendamento from '../ServicosAgendamento/ServicosAgendamento';
 import { FiPlus, FiMinus } from "react-icons/fi";
-import BotaoGrande from '@/components/BotaoGrande/BotaoGrande';
 
-export default function EscolhaServico() {
+const EscolhaServico = () => {
+
     const [selectedServico, setSelectedServico] = useState<string>('Consulta');
     const [showVacinas, setShowVacinas] = useState<boolean>(false);
 
@@ -16,14 +16,13 @@ export default function EscolhaServico() {
         setShowVacinas(!showVacinas);
     };
 
+
     return (
-        <main className="p-8 w-full mt-12">
-            <div className='flex items-center justify-center'>
-                <p className='font-poppins text-preto font-medium text-xl text-center'>
-                    Selecione o serviço desejado a partir das opções abaixo
-                </p>
-            </div>
-            <section>
+        <main className='p-8'>
+            <div className="mt-12 w-full flex flex-col gap-12">
+                <div className='flex items-center justify-center'>
+                    <p className='font-poppins text-preto font-medium text-xl text-center'>Selecione uma data para o agendamento</p>
+                </div>
                 <div className='lg:flex grid md:grid-cols-2 lg:justify-center lg:items-center gap-8 w-full mt-8'>
                     <ServicosAgendamento
                         servico="Consulta"
@@ -80,15 +79,9 @@ export default function EscolhaServico() {
                         />
                     </div>
                 )}
-            </section>
-            <div className='lg:p-24 flex md:flex-row flex-col gap-4 mt-8 justify-between'>
-                <div className='lg:w-[14%] md:w-[25%] w-full'>
-                    <BotaoGrande title="Anterior" background='bg-terciaria' type={"button"} />
-                </div>
-                <div className='lg:w-[14%] md:w-[25%] w-ful'>
-                    <BotaoGrande title="Próximo" background='bg-secundaria' type={"button"} />
-                </div>
             </div>
         </main>
-    );
+    )
 }
+
+export default EscolhaServico;
