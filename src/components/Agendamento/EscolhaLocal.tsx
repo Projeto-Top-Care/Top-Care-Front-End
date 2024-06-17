@@ -1,10 +1,9 @@
 'use client'
 import React, { useState } from 'react';
 import LocalAgendamento from '@/components/LocalAgendamento/LocalAgendamento';
-import BarraProcessoAgendamento from '@/components/BarraProcesso/BarraProcessoAgendamento';
-import BotaoGrande from '@/components/BotaoGrande/BotaoGrande';
 
-export default function EscolhaLocal() {
+const EscolhaLocal = () => {
+
     const [selectedLocal, setSelectedLocal] = useState<string>('Camboriu - SC');
 
     const handleSelectLocal = (servico: string) => {
@@ -12,9 +11,12 @@ export default function EscolhaLocal() {
     };
 
     return (
-        <main className="p-8 w-full mt-12">
-            <section>
-                <div className=' lg:flex grid md:grid-cols-2 lg:justify-center lg:items-center gap-4 mt-12'>
+        <main className='p-8'>
+            <div className="mt-12 w-full flex flex-col gap-12">
+                <div className='flex items-center justify-center'>
+                    <p className='font-poppins text-preto font-medium text-xl text-center'>Selecione uma data para o agendamento</p>
+                </div>
+                <div className='lg:flex lg:justify-center lg:items-center grid md:grid-cols-2 gap-4 mt-12'>
                     <LocalAgendamento
                         nomeFilial='Camboriu - SC'
                         rua='Dom Henrique, 424'
@@ -34,15 +36,9 @@ export default function EscolhaLocal() {
                         onSelect={() => handleSelectLocal('Curitiba - PR')}
                     />
                 </div>
-            </section>
-            <div className='lg:p-28 md:p-4 flex md:flex-row flex-col gap-4 mt-8 justify-between'>
-                <div className='lg:w-[14%] md:w-[25%] w-full'>
-                    <BotaoGrande title="Anterior" background='bg-terciaria' type={"button"} />
-                </div>
-                <div className='lg:w-[14%] md:w-[25%] w-ful'>
-                    <BotaoGrande title="Próximo" background='bg-secundaria' type={"button"} />
-                </div>
             </div>
         </main>
-    );
+    )
 }
+
+export default EscolhaLocal;

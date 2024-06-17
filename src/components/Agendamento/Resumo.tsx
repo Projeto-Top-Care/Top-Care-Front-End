@@ -1,14 +1,13 @@
 'use client'
 import React, { useState } from 'react';
-import BotaoGrande from '@/components/BotaoGrande/BotaoGrande';
 import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
 import { Usuario, Cartao } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
 import { useRouter } from "next/navigation";
 import { getLocalStorageItem } from "@/server/localStorage/actions";
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa";
 
-export default function Pagamento() {
+const Resumo = () => {
 
     const [eCartao, setECartao] = useState(false)
     const [eBoleto, setEBoleto] = useState(false)
@@ -77,8 +76,9 @@ export default function Pagamento() {
         }
     }
 
+
     return (
-        <main className="p-8 mt-12 w-full flex justify-center items-center flex-col gap-12">
+        <main className='p-8'>
             {showError()}
             <div className='flex items-center justify-center'>
                 <p className='font-poppins text-preto font-medium text-xl text-center'>Seu agendamento está quase concluído, confime os dados para concluí-lo</p>
@@ -86,7 +86,7 @@ export default function Pagamento() {
             <div className='p-8 w-full flex md:flex-row flex-col justify-center items-start gap-12'>
                 <div className='md:p-5 p-4 border rounded-md border-cinza-escuro'>
                     <div className='text-preto font-poppins flex items-center justify-between md:gap-24 md:text-base text-sm'>
-                        <div className='font-medium flex flex-col gap-4'>
+                        <div className='font-medium flex flex-col md:gap-4 gap-7'>
                             <p>Serviço</p>
                             <p>Pet</p>
                             <p>Local</p>
@@ -109,11 +109,11 @@ export default function Pagamento() {
                         <p className='md:text-lg text-sm text-end '>R$79,90</p>
                     </div>
                 </div>
-                <div className="flex flex-col justify-end items-start gap-8 w-[60%]">
+                <div className="flex flex-col justify-end items-start font-poppins text-preto gap-8 md:w-[60%] w-full">
                     <p>Escolha o método de pagamento</p>
-                    <div className="flex flex-row  gap-4">
+                    <div className="flex flex-row gap-4">
                         <div className="flex flex-row gap-4">
-                            <input className="w-5 h-5 checked: accent-purple-500"
+                            <input className="w-5 h-5 checked: accent-purple-500 "
                                 type="radio"
                                 value="cartao"
                                 name="pagamento"
@@ -165,14 +165,8 @@ export default function Pagamento() {
                     </div>
                 </div>
             </div>
-            <div className='lg:p-28 flex md:flex-row flex-col gap-4 mt-8 justify-between'>
-                <div className='lg:w-[14%] md:w-[25%] w-full'>
-                    <BotaoGrande title="Anterior" background='bg-terciaria' type={"button"} />
-                </div>
-                <div className='lg:w-[14%] md:w-[25%] w-full'>
-                    <BotaoGrande title="Confirmar" background='bg-secundaria' type={"button"} />
-                </div>
-            </div>
         </main>
-    );
+    )
 }
+
+export default Resumo;
