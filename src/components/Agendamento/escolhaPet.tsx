@@ -8,7 +8,6 @@ export default function EscolhaPet() {
     const [openPet, setOpenPet] = useState(false);
 
     return (
-<<<<<<< HEAD
         <main className="p-8 mt-12 w-full flex flex-col items-center justify-center gap-12">
             <div className='flex items-center justify-center'>
                 <p className='font-poppins text-preto font-medium text-xl text-center'>Para qual pet é o agendamento?</p>
@@ -38,12 +37,3 @@ export default function EscolhaPet() {
         </main>
     );
 }
-=======
-
-        <div className='flex flex-row w-[90%] m-auto font-poppins'>
-            <h1>escolha do pet</h1>
-        </div>
-    )
-}
-export default EscolhaPet;
->>>>>>> Feature/Pagina-Agendamento
