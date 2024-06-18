@@ -21,6 +21,7 @@ import { Produto } from "@/types/produto";
 import CadastroPet from "@/components/Pop-up/CadastroPet/CadastroPet";
 import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico";
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
+import Carregando from "@/components/Carregando/Carregando";
 
 export default function Perfil() {
     const { getUserID } = useUserID()
@@ -54,7 +55,7 @@ export default function Perfil() {
     }, []);
 
     if (!usuarioLogado) {
-        return <div>Loading...</div>;
+        return <Carregando />
     }
 
     const produtos: QntProduto = buscarProduto(usuarioLogado.id)!
