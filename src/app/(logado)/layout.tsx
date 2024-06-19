@@ -19,15 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-branco">
         <AppProvider>
-<<<<<<< HEAD
-          <HeaderLogado />
-            {children}
-          <Footer />
-=======
-        <Header />
+        <HeaderLogado/>
           {children}
         <Footer />
->>>>>>> Feature/Pagina-Agendamento
         </AppProvider>
       </body>
     </html>
