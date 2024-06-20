@@ -27,7 +27,7 @@ export default function EscolhaData({setDataSelecionada, setHoraSelecionada, set
     }, [data, hora, profissional])
 
     return (
-        <main className='p-8 w-full'>
+        <main className='p-2 sm:p-8 w-full'>
             <div className="mt-8 sm:mt-12 w-full flex flex-col gap-6 sm:gap-12">
                 <div className='flex flex-col items-center justify-center'>
                     <div className='flex items-center justify-center'>

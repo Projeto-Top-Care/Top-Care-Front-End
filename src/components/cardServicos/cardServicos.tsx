@@ -21,7 +21,7 @@ const CardServico = ({ id, nome, imagem, descricao }: ICardServico) => {
                 <p className="font-poppins text-justify text-sm sm:text-base text-preto">{descricao}</p>
                 <p className="font-poppins text-justify text-sm sm:text-base text-cinza-escuro">A partir de {12.99}</p>
 
-                <button onClick={() => push('/Servicos')} className="text-sm sm:text-base self-start sm:self-end bg-secundaria hover:bg-[#a8cf38] font-poppins px-4 h-6 sm:h-8 rounded-lg duration-700">Agende agora!</button>
+                <button onClick={() => push('/agendamento')} className="text-sm sm:text-base self-start sm:self-end bg-secundaria hover:bg-[#a8cf38] font-poppins px-4 h-6 sm:h-8 rounded-lg duration-700">Agende agora!</button>
             </div>
         </div>
     )
