@@ -6,10 +6,12 @@ import HorarioAgendamento from '../HorarioAgendamento/HorarioAgendamento';
 export default function EscolhaData() {
 
     const [data, setData] = useState<string>("");
-    const [selectedLocal, setSelectedLocal] = useState<string>('');
+    const [hora, setHora] = useState<string>("");
+    const [profissional, setProfissional] = useState<string>("");
 
-    const handleSelectLocal = (servico: string) => {
-        setSelectedLocal(servico);
+    const handleSelect = (hora: string, profissional: string) => {
+        setHora(hora);
+        setProfissional(profissional);
     };
 
     return (
@@ -33,20 +35,20 @@ export default function EscolhaData() {
                         <div className='flex gap-4 justify-start items-start'>
                             <div className=''>
                                 <HorarioAgendamento horario='09:30'
-                                    isSelected={selectedLocal === 'horario1'}
-                                    onSelect={() => handleSelectLocal('horario1')}
+                                    isSelected={hora === 'horario1'}
+                                    onSelect={() => handleSelect('horario1', "Doutora Kamila Fagundes")}
                                 />
                             </div>
                             <div className=''>
                                 <HorarioAgendamento horario='11:30'
-                                    isSelected={selectedLocal === 'horario2'}
-                                    onSelect={() => handleSelectLocal('horario2')}
+                                    isSelected={hora === 'horario2'}
+                                    onSelect={() => handleSelect('horario2', "Doutora Kamila Fagundes")}
                                 />
                             </div>
                             <div className=''>
                                 <HorarioAgendamento horario='14:30'
-                                    isSelected={selectedLocal === 'horario3'}
-                                    onSelect={() => handleSelectLocal('horario3')}
+                                    isSelected={hora === 'horario3'}
+                                    onSelect={() => handleSelect('horario3', "Doutora Kamila Fagundes")}
                                 />
                             </div>
                         </div>
@@ -59,32 +61,32 @@ export default function EscolhaData() {
                         <div className='flex gap-4 justify-start items-start'>
                             <div className=''>
                                 <HorarioAgendamento horario='07:30'
-                                    isSelected={selectedLocal === 'horario4'}
-                                    onSelect={() => handleSelectLocal('horario4')}
+                                    isSelected={hora === 'horario4'}
+                                    onSelect={() => handleSelect('horario4', "Doutor Flávio Almeida")}
                                 />
                             </div>
                             <div className=''>
                                 <HorarioAgendamento horario='09:00'
-                                    isSelected={selectedLocal === 'horario5'}
-                                    onSelect={() => handleSelectLocal('horario5')}
+                                    isSelected={hora === 'horario5'}
+                                    onSelect={() => handleSelect('horario5', "Doutor Flávio Almeida")}
                                 />
                             </div>
                             <div className=''>
                                 <HorarioAgendamento horario='10:30'
-                                    isSelected={selectedLocal === 'horario6'}
-                                    onSelect={() => handleSelectLocal('horario6')}
+                                    isSelected={hora === 'horario6'}
+                                    onSelect={() => handleSelect('horario6', "Doutor Flávio Almeida")}
                                 />
                             </div>
                             <div className=''>
                                 <HorarioAgendamento horario='13:00'
-                                    isSelected={selectedLocal === 'horario7'}
-                                    onSelect={() => handleSelectLocal('horario7')}
+                                    isSelected={hora === 'horario7'}
+                                    onSelect={() => handleSelect('horario7', "Doutor Flávio Almeida")}
                                 />
                             </div>
                             <div className=''>
                                 <HorarioAgendamento horario='14:30'
-                                    isSelected={selectedLocal === 'horario8'}
-                                    onSelect={() => handleSelectLocal('horario8')}
+                                    isSelected={hora === 'horario8'}
+                                    onSelect={() => handleSelect('horario8', "Doutor Flávio Almeida")}
                                 />
                             </div>
                         </div>
