@@ -2,6 +2,7 @@
     {
         "id": 1,
         "nome": "Banho",
+        "categoria": "Bem estar",
         "imagem": "./assets/banho.png",
         "descricao": "Utilizamos produtos de alta qualidade e específicos para cada tipo de pelagem, garantindo um banho suave e eficaz, que deixa o seu animal limpo, cheiroso e com a pele saudável. Além disso, oferecemos uma variedade de serviços adicionais, como hidratação, desembaraço de pelos, corte de unhas.",
         "precos": [
@@ -26,6 +27,7 @@
         "id": 2,
         "imagem": "./assets/tosa.png",
         "nome": "Banho e tosa",
+        "categoria": "Bem estar",
         "descricao": "Na tosa, os profissionais realizam cortes adequados às necessidades de cada raça, garantindo um visual bonito e saudável. Além disso, o serviço inclui a limpeza de ouvidos, corte de unhas e, muitas vezes, verificação geral da saúde do animal. Com atenção e carinho, o banho e tosa ajudam a manter os pets limpos, confortáveis e felizes.",
         "precos": [
             {
@@ -49,6 +51,7 @@
         "id": 3,
         "imagem": "./assets/consultas.png",
         "nome": "Consultas",
+        "categoria": "Saude",
         "descricao": "O serviço de consultas médicas em um pet shop garante a saúde e o bem-estar dos animais de estimação. Veterinários experientes realizam exames de rotina, diagnósticos e tratamentos necessários, além de orientações sobre cuidados preventivos.",
         "precos": [
             {
@@ -62,6 +65,7 @@
         "id": 4,
         "imagem": "./assets/vacinacao.png",
         "nome": "Vacinação",
+        "categoria": "Saude",
         "descricao": "O serviço de vacinação em um pet shop protege a saúde dos animais de estimação. Veterinários aplicam vacinas essenciais para prevenir doenças graves, garantindo a imunidade necessária. Com profissionais qualificados, seu pet recebe a proteção adequada para uma vida longa e saudável.",
         "precos": [
             {
@@ -77,12 +81,12 @@
             {
                 "id": 3,
                 "tipo": "Vacina V8",
-                "preco": 71.90
+                "preco": 93.90
             },
             {
                 "id": 4,
                 "tipo": "Vacina V10",
-                "preco": 71.90
+                "preco": 45.90
             }
         ]
     }
