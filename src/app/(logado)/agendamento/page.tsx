@@ -10,9 +10,11 @@ import CadastroPet from "@/components/Pop-up/CadastroPet/CadastroPet";
 import Erro from "@/components/Pop-up/Erro/Erro";
 import { useError } from "@/context/ErrorContext";
 import { useState } from "react";
+import { useRouter } from "next/navigation"
 
 export default function agendamento() {
 
+    const { push } = useRouter();
     const [estado, setEstado] = useState(0)
     const [openPet, setOpenPet] = useState(false);
     const {addError} = useError()!;
@@ -23,6 +25,7 @@ export default function agendamento() {
     const [data, setData] = useState("");
     const [hora, setHora] = useState("");
     const [profissional, setProfissional] = useState("");
+    const [metodoPagamento, setMetodoPagamento] = useState("");
 
     const proximoPasso = () => {
         if(estado <= 0) {
@@ -42,6 +45,13 @@ export default function agendamento() {
 
     const passoAnterior = () => {
         estado <= -1 ? (setEstado(0)) : setEstado(estado - 1)
+    }
+
+    const concluirCompra = () => {
+        metodoPagamento == "cartao" ? push('./pagamentoCartao') : 
+        metodoPagamento == "boleto" ? push('./pagamentoBoleto') :
+        metodoPagamento == "pix" ? push('./pagamentoPix') : addError("Selecione o método de pagamento!")
+        
     }
 
     return (
@@ -80,8 +90,8 @@ export default function agendamento() {
                                     <EscolhaData setDataSelecionada={setData} setHoraSelecionada={setHora} setProfissionalSelecionada={setProfissional} />
                                 </div>
                                 :
-                                <div className="w-[80%] flex ">
-                                    <Resumo local={local} servico={servico} data={data} hora={hora} profissional={profissional} />
+                                <div className="w-[80%] flex">
+                                    <Resumo local={local} servico={servico} data={data} hora={hora} profissional={profissional} setMetodoPagamento={setMetodoPagamento} />
                                 </div>
                 )}
             </div>
@@ -97,7 +107,7 @@ export default function agendamento() {
                     </div>
                 </div>
                 <div className="w-full sm:w-2/12">
-                    <BotaoGrande onClick={() => proximoPasso()} title={estado >= 4 ? "Concluir" : "Próximo"} background={"bg-secundaria"} type={"button"} />
+                    <BotaoGrande onClick={() => estado >= 4 ? concluirCompra() : proximoPasso()} title={estado >= 4 ? "Concluir" : "Próximo"} background={"bg-secundaria"} type={"button"} />
                 </div>
             </div>
         </main>

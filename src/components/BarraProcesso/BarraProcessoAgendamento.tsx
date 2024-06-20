@@ -11,7 +11,7 @@ const BarraProcessoAgendamento = ({ estado }: IBarraProcesso) => {
 
     return (
         <div className="w-full md:relative flex flex-col md:justify-start items-center justify-center">
-            <div className="md:w-[78%] w-full md:mt-3.5 md:absolute md:m-auto flex ">
+            <div className="md:w-[78%] w-full md:mt-3.5 md:absolute md:m-auto flex">
                 <div className={`border-t-4 sm:border-t-2 border-cinza-claro w-full absolute -z-50`}></div>
                 <div className={`border-t-4 sm:border-t-2 ${estado >= 0 ? `border-secundaria` : `border-cinza-claro`} ${estado == 1 ? `w-1/4` : estado == 2 ? `w-1/2` : estado == 3 ? `w-3/4` : estado >= 4 ? `w-full` : `w-[0%]`}  absolute -z-10`}></div>
             </div>
