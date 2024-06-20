@@ -3,7 +3,6 @@ export interface Pedidos {
     Cod_pedido: string;
     Dt_pedido: string;
     Produto: string;
-    Quantidade: number;
     Cliente: string;
     Destino: string;
     Valor: string;
