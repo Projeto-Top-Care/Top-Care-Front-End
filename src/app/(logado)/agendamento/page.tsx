@@ -7,13 +7,21 @@ import Resumo from "@/components/Agendamento/Resumo";
 import BarraProcessoAgendamento from "@/components/BarraProcesso/BarraProcessoAgendamento";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CadastroPet from "@/components/Pop-up/CadastroPet/CadastroPet";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function agendamento() {
 
     const [estado, setEstado] = useState(0)
 
     const [openPet, setOpenPet] = useState(false);
+
+    const [pet, setPet] = useState("");
+    const [local, setLocal] = useState("");
+    const [servico, setServico] = useState("");
+
+    useEffect(() => {
+        
+    }, [estado])
 
     return (
         <main className="w-full flex flex-col items-center py-12">
@@ -40,11 +48,11 @@ export default function agendamento() {
                     </div>
                     : estado == 1 ?
                         <div className="w-full">
-                            <EscolhaServico />
+                            <EscolhaServico setServicoEscolhido={setServico} />
                         </div>
                         : estado == 2 ?
                             <div className="w-full">
-                                <EscolhaLocal />
+                                <EscolhaLocal setLocalEscolhido={setLocal} />
                             </div>
                             : estado == 3 ?
                                 <div className="w-full">
@@ -52,7 +60,7 @@ export default function agendamento() {
                                 </div>
                                 :
                                 <div className="w-full flex justify-center">
-                                    <Resumo />
+                                    <Resumo local={local} servico={servico} />
                                 </div>
                 )}
             </div>
@@ -60,8 +68,8 @@ export default function agendamento() {
             <div className="flex w-[90%] justify-between items-end">
                 <div className="w-full flex flex-col gap-4">
                     <div className={`${estado <= 0 ? `flex flex-col` : `hidden`}`}>
-                        <p className='font-averia text-preto font-bold text-2xl'>Gostaria de cadastrar um pet?</p>
-                        <p className='font-poppins text-preto text-md mt-2 text-start md:w-[55%] w-full'>Clique no botão abaixo para cadastrar, depois continue os procedimentos para agendar um serviço para o seu mais novo pet :)</p>
+                        <p className='font-averia text-preto font-bold text-xl sm:text-2xl'>Gostaria de cadastrar um pet?</p>
+                        <p className='font-poppins text-preto text-sm sm:text-md mt-2 text-start md:w-[55%] w-full'>Clique no botão abaixo para cadastrar, depois continue os procedimentos para agendar um serviço para o seu mais novo pet :)</p>
                     </div>
                     <div className="w-2/12" onClick={() => estado <= -1 ? setOpenPet(true) : setOpenPet(false)}>
                         <BotaoGrande onClick={() => estado <= -1 ? (setEstado(0)) : setEstado(estado - 1)} title={estado <= 0 ? "Cadastrar pet" : "Anterior"} background={"bg-terciaria"} type={"button"} />

@@ -2,7 +2,7 @@ import React from 'react';
 
 interface IServicosAgendamento {
     servico: string;
-    preco: string;
+    preco: number;
     isSelected?: boolean;
     onSelect?: () => void;
 }
@@ -11,8 +11,8 @@ const ServicosAgendamento = ({ servico, preco, isSelected, onSelect }: IServicos
     return (
         <div
             onClick={onSelect}
-            className={`flex items-center justify-center text-preto p-4 rounded-lg font-poppins border-2 lg:w-[18%] w-full cursor-pointer ${
-                isSelected ? '' : 'bg-transparent opacity-50'
+            className={`flex items-center justify-center text-preto p-4 rounded-lg font-poppins border-2 lg:w-[20%] w-full cursor-pointer ${
+                isSelected ? 'scale-105 duration-100' : 'bg-transparent opacity-50'
             }`}
             style={{ borderColor: isSelected ? '#6954C0' : '#BDBDBD' }}
         >

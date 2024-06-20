@@ -1,10 +1,17 @@
 'use client'
-import React, { useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import LocalAgendamento from '@/components/LocalAgendamento/LocalAgendamento';
 
-const EscolhaLocal = () => {
+interface ILocal {
+    setLocalEscolhido: React.Dispatch<SetStateAction<string>>
+}
+
+const EscolhaLocal = ({setLocalEscolhido}: ILocal) => {
 
     const [selectedLocal, setSelectedLocal] = useState<string>('Camboriu - SC');
+    useEffect(() => {
+        setLocalEscolhido(selectedLocal)
+    }, [selectedLocal])
 
     const handleSelectLocal = (servico: string) => {
         setSelectedLocal(servico);
@@ -16,7 +23,7 @@ const EscolhaLocal = () => {
                 <div className='flex items-center justify-center'>
                     <p className='font-poppins text-preto font-medium text-xl text-center'>Selecione uma data para o agendamento</p>
                 </div>
-                <div className='lg:flex lg:justify-center lg:items-center grid md:grid-cols-2 gap-4 mt-12'>
+                <div className='lg:flex lg:justify-center lg:items-center grid md:grid-cols-2 gap-8 mt-12'>
                     <LocalAgendamento
                         nomeFilial='Camboriu - SC'
                         rua='Dom Henrique, 424'

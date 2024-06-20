@@ -4,10 +4,14 @@ import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
 import { Usuario, Cartao } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
 import { useRouter } from "next/navigation";
-// import { getLocalStorageItem } from "@/server/localStorage/actions";
 import { FaPlus } from "react-icons/fa";
 
-const Resumo = () => {
+interface IResumo {
+    local: string,
+    servico: string
+}
+
+const Resumo = ({ local, servico }: IResumo) => {
 
     const [eCartao, setECartao] = useState(false)
     const [eBoleto, setEBoleto] = useState(false)
@@ -16,9 +20,6 @@ const Resumo = () => {
     const [open, setOpen] = useState<string>("")
 
     const { push } = useRouter();
-
-    // const idUser = getLocalStorageItem('idUser')
-    // const usuarioLogado: Usuario = (buscarUsuario(parseInt(idUser))!)
 
     const usuarioLogado: Usuario = (buscarUsuario(1)!)
 
@@ -80,55 +81,55 @@ const Resumo = () => {
 
 
     return (
-        <main className='p-8 font-poppins w-full flex flex-col gap-8'>
+        <main className='m-12 p-8 font-poppins w-full flex flex-col gap-8'>
             {showError()}
             <div className='flex items-center justify-center'>
                 <p className='text-preto font-medium text-xl text-center'>Seu agendamento está quase concluído, confime os dados para concluí-lo</p>
             </div>
-            <div className='p-8 w-full flex md:flex-row flex-col justify-between items-start'>
+            <div className='p-8 w-full flex md:flex-row flex-col gap-16 justify-between items-start'>
 
-                <div className='flex flex-col text-preto gap-2'>
+                <div className='flex flex-col text-preto gap-2 w-1/2'>
                     <p className='font-bold text-base'>Escolha o método de pagamento</p>
                     <div className='md:p-5 p-4 border rounded-md border-cinza-escuro'>
                         <div className='flex-col text-preto font-poppins flex items-center justify-between md:gap-6 md:text-base text-sm'>
                             <div className='flex flex-row justify-between w-full gap-24'>
-                                <p className='font-medium'>Serviço</p>
-                                <p className="text-end">Banho e tosa</p>
+                                <p className='font-semibold'>Serviço</p>
+                                <p className="text-end">{servico}</p>
                             </div>
 
                             <div className='flex flex-row justify-between w-full gap-24'>
-                                <p className='font-medium'>Pet</p>
+                                <p className='font-semibold'>Pet</p>
                                 <p className="text-end">Nina</p>
                             </div>
 
                             <div className='flex flex-row justify-between w-full gap-24'>
-                                <p className='font-medium'>Local</p>
-                                <p className="text-end">Top Care Jaraguá do Sul - SC</p>
+                                <p className='font-semibold'>Local</p>
+                                <p className="text-end">{local}</p>
                             </div>
 
                             <div className='flex flex-row justify-between w-full gap-24'>
-                                <p className='font-medium'>Data</p>
+                                <p className='font-semibold'>Data</p>
                                 <p className="text-end">22/02/2024</p>
                             </div>
 
                             <div className='flex flex-row justify-between w-full gap-24'>
-                                <p className='font-medium'>Horário</p>
+                                <p className='font-semibold'>Horário</p>
                                 <p className="text-end">08:00h</p>
                             </div>
 
                             <div className='flex flex-row justify-between w-full gap-24'>
-                                <p className='font-medium'>Profissional</p>
+                                <p className='font-semibold'>Profissional</p>
                                 <p className="text-end">Vilson de Souza</p>
                             </div>
                         </div>
                         <div className="border border-cinza-claro lg:grid flex lg:items-center lg:justify-center mt-5"></div>
                         <div className='text-preto font-poppins flex items-center justify-between mt-4'>
-                            <p className='font-medium md:text-base text-sm'>Valor do serviço</p>
+                            <p className='font-semibold md:text-base text-sm'>Valor do serviço</p>
                             <p className='md:text-lg text-sm text-end '>R$79,90</p>
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col justify-end items-start font-poppins text-preto gap-8 md:w-[60%] w-full">
+                <div className="w-full flex flex-col justify-end items-start font-poppins text-preto gap-8 md:w-[60%]">
                     <p className='font-bold text-base'>Escolha o método de pagamento</p>
                     <div className="flex flex-row gap-4">
                         <div className="flex flex-row gap-4">
@@ -166,7 +167,7 @@ const Resumo = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-2 w-full sm:w- lg:w-[70%]">
+                    <div className="flex flex-col gap-2 w-full sm:w-full">
                         {
                             eCartao ?
                                 <div className="flex flex-col justify-end gap-2">

@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "nome": "Max",
+        "imagem": "./assets/banho.png",
+        "especie": "Cachorro",
+        "raca": "Beagle",
+        "idade": 4,
+        "porte": "Medio"
+    },
+    {
+        "id": 2,
+        "nome": "Belinha",
+        "imagem": "./assets/banho.png",
+        "especie": "Cachorro",
+        "raca": "Pinscher",
+        "idade": 11,
+        "porte": "Pequeno"
+    },
+    {
+        "id": 1,
+        "nome": "Bobby",
+        "imagem": "./assets/banho.png",
+        "especie": "Cachorro",
+        "raca": "Poodle",
+        "idade": 3,
+        "porte": "Pequeno"
+    }
+]
