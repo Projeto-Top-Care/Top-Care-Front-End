@@ -18,21 +18,21 @@ export default function agendamento() {
                 <BarraProcessoAgendamento estado={estado}/>
             </div>
 
-            <div className="w-[90%] flex items-center">
+            <div className="w-full flex items-center">
                 {(estado <= 0 ?
-                    <div>
+                    <div className="w-full">
                         <EscolhaPet />
-                    </div>
+                    </div >
                     : estado == 1 ?
-                        <div>
+                        <div className="w-full">
                             <EscolhaServico />
                         </div>
                         : estado == 2 ?
-                            <div>
+                            <div className="w-full">
                                 <EscolhaEndereco />
                             </div>
                             : estado == 3 ?
-                                <div>
+                                <div className="w-full">
                                     <EscolhaHorario />
                                 </div>
                                 :
