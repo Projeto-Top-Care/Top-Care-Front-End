@@ -48,6 +48,24 @@ const Dashboard = () => {
         }
     };
 
+    const dataColum = [
+        ["Semana", "Vendas", { role: "style" }],
+        ["Dom", 8.94, "#b87333"], // RGB value
+        ["Seg", 10.49, "silver"], // English color name
+        ["Ter", 19.3, "gold"],
+        ["Qua", 21.45, "color: #e5e4e2"],
+        ["Qui", 23.45, "color: #e5e4e2"],
+        ["Sex", 24.45, "color: #e5e4e2"],
+        ["Sab", 28.45, "color: #e5e4e2"], // CSS-style declaration
+      ];
+
+      const optionsColum = {
+        bars: 'horizontal',
+        legend: {
+            position: "none"
+        }
+      }
+
     return (
         <div>
             <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
@@ -74,6 +92,18 @@ const Dashboard = () => {
                             height="300px"
                             data={dataLine}
                             options={optionsLine}
+                        />
+                    </section>
+                </div>
+                <div className="container p-4 w-[40%]">
+                    <section className="rounded-lg shadow-md p-4 mb-6 ">
+                        <h2 className="text-xl font-semibold mb-2 poppins">Vendas Mensais</h2>
+                        <Chart
+                            chartType="ColumnChart"
+                            width="100%"
+                            height="400px"
+                            data={dataColum}
+                            options={optionsColum}
                         />
                     </section>
                 </div>
