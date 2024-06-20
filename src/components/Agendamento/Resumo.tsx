@@ -8,10 +8,13 @@ import { FaPlus } from "react-icons/fa";
 
 interface IResumo {
     local: string,
-    servico: string
+    servico: string,
+    data: string,
+    hora: string,
+    profissional: string
 }
 
-const Resumo = ({ local, servico }: IResumo) => {
+const Resumo = ({ local, servico, data, hora, profissional }: IResumo) => {
 
     const [eCartao, setECartao] = useState(false)
     const [eBoleto, setEBoleto] = useState(false)
@@ -81,45 +84,46 @@ const Resumo = ({ local, servico }: IResumo) => {
 
 
     return (
-        <main className='p-8 font-poppins w-full flex flex-col gap-8 mt-12'>=
+        <main className='p-8 font-poppins w-full flex flex-col gap-8 mt-12'>
             {showError()}
             <div className='flex items-center justify-center'>
                 <p className='text-preto font-medium text-xl text-center'>Seu agendamento está quase concluído, confime os dados para concluí-lo</p>
             </div>
-            <div className='p-8 w-full flex md:flex-row flex-col justify-between items-start gap-8'>
+            <div className='p-8 w-full flex md:flex-row flex-col justify-between items-start gap-12'>
 
-                <div className='flex flex-col text-preto gap-2 w-1/2'>
+                <div className='flex flex-col text-preto gap-2 w-full sm:w-1/2'>
                     <p className='font-bold text-base'>Escolha o método de pagamento</p>
+
                     <div className='md:p-5 p-4 border rounded-md border-cinza-escuro'>
                         <div className='flex-col text-preto font-poppins flex items-center justify-between md:gap-6 md:text-base text-sm'>
-                            <div className='flex flex-row justify-between w-full gap-24'>
+                            <div className='flex flex-row justify-between w-full gap-4 sm:gap-24'>
                                 <p className='font-semibold'>Serviço</p>
                                 <p className="text-end">{servico}</p>
                             </div>
 
-                            <div className='flex flex-row justify-between w-full gap-24'>
+                            <div className='flex flex-row justify-between w-full gap-4 sm:gap-24'>
                                 <p className='font-semibold'>Pet</p>
                                 <p className="text-end">Nina</p>
                             </div>
 
-                            <div className='flex flex-row justify-between w-full gap-24'>
+                            <div className='flex flex-row justify-between w-full gap-4 sm:gap-24'>
                                 <p className='font-semibold'>Local</p>
                                 <p className="text-end">{local}</p>
                             </div>
 
-                            <div className='flex flex-row justify-between w-full gap-24'>
+                            <div className='flex flex-row justify-between w-full gap-4 sm:gap-24'>
                                 <p className='font-semibold'>Data</p>
-                                <p className="text-end">22/02/2024</p>
+                                <p className="text-end">{data}</p>
                             </div>
 
-                            <div className='flex flex-row justify-between w-full gap-24'>
+                            <div className='flex flex-row justify-between w-full gap-4 sm:gap-24'>
                                 <p className='font-semibold'>Horário</p>
-                                <p className="text-end">08:00h</p>
+                                <p className="text-end">{hora}</p>
                             </div>
 
-                            <div className='flex flex-row justify-between w-full gap-24'>
+                            <div className='flex flex-row justify-between w-full gap-4 sm:gap-24'>
                                 <p className='font-semibold'>Profissional</p>
-                                <p className="text-end">Vilson de Souza</p>
+                                <p className="text-end">{profissional}</p>
                             </div>
                         </div>
                         <div className="border border-cinza-claro lg:grid flex lg:items-center lg:justify-center mt-5"></div>

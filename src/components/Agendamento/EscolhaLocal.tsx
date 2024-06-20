@@ -8,7 +8,7 @@ interface ILocal {
 
 const EscolhaLocal = ({setLocalEscolhido}: ILocal) => {
 
-    const [selectedLocal, setSelectedLocal] = useState<string>('Camboriu - SC');
+    const [selectedLocal, setSelectedLocal] = useState<string>('');
     useEffect(() => {
         setLocalEscolhido(selectedLocal)
     }, [selectedLocal])
@@ -19,9 +19,9 @@ const EscolhaLocal = ({setLocalEscolhido}: ILocal) => {
 
     return (
         <main className='p-8'>
-            <div className="mt-12 w-full flex flex-col gap-12">
+            <div className="mt-8 sm:mt-12 w-full flex flex-col gap-6 sm:gap-12">
                 <div className='flex items-center justify-center'>
-                    <p className='font-poppins text-preto font-medium text-xl text-center'>Selecione uma data para o agendamento</p>
+                    <p className='font-poppins text-preto font-medium text-xl text-center'>Selecione um local para o agendamento</p>
                 </div>
                 <div className='lg:flex lg:justify-center lg:items-center grid md:grid-cols-2 gap-8 mt-12'>
                     <LocalAgendamento

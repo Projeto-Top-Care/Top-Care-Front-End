@@ -19,11 +19,11 @@
     },
     {
         "id": 1,
-        "nome": "Bobby",
+        "nome": "Snoopy",
         "imagem": "./assets/banho.png",
         "especie": "Cachorro",
         "raca": "Poodle",
-        "idade": 3,
+        "idade": 7,
         "porte": "Pequeno"
     }
 ]

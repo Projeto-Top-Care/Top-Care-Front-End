@@ -12,7 +12,7 @@ interface IServico {
 
 const EscolhaServico = ({ setServicoEscolhido }: IServico) => {
 
-    const [selectedServico, setSelectedServico] = useState<string>('Banho');
+    const [selectedServico, setSelectedServico] = useState<string>('');
     const [showVacinas, setShowVacinas] = useState<boolean>(false);
 
     const vacinas: Precos[] = buscarPrecos(4)!
@@ -27,11 +27,11 @@ const EscolhaServico = ({ setServicoEscolhido }: IServico) => {
 
     return (
         <main className='p-8'>
-            <div className="mt-12 w-full flex flex-col gap-6">
+            <div className="mt-8 sm:mt-12 w-full flex flex-col gap-6 sm:gap-12">
                 <div className='flex items-center justify-center'>
                     <p className='font-poppins text-preto font-medium text-xl text-center'>Selecione um serviço para o agendamento</p>
                 </div>
-                <div className='lg:flex grid md:grid-cols-2 lg:justify-center lg:items-center gap-8 w-full mt-8'>
+                <div className='lg:flex grid md:grid-cols-2 lg:justify-center lg:items-center gap-4 sm:gap-8 w-full mt-8'>
                     {
                         servicos.map((item, i) => (
                             (item.nome == "Vacinação" ?
@@ -39,7 +39,7 @@ const EscolhaServico = ({ setServicoEscolhido }: IServico) => {
                                 :
                                 <ServicosAgendamento
                                     servico={item.nome}
-                                    preco={105.50}
+                                    preco={102.5}
                                     isSelected={selectedServico === item.nome}
                                     onSelect={() => handleSelectServico(item.nome)}
                                 />
