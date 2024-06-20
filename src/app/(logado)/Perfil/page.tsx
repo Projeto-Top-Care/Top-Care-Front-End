@@ -249,7 +249,7 @@ export default function Perfil() {
                 {
                     usuarioLogado.pets.map((pets, i) => (
                         <div key={i}>
-                            <CardPetPequeno fotoPet={"./assets/cachorro-perfil.png"} nomePet={pets.nome} racaPet={pets.raca} idadePet={pets.idade} tipoAnimal={pets.especie} />
+                            <CardPetPequeno fotoPet={"./assets/cachorro-perfil.png"} nomePet={pets.nome} racaPet={pets.raca} tipoAnimal={pets.especie} porte={pets.porte} />
                         </div>
                     ))}
             </section>
