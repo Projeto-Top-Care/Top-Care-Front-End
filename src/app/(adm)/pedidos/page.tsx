@@ -43,7 +43,6 @@ export default function Pedidos() {
                             <th>Cod pedido</th>
                             <th className="hidden md:table-cell">Dt. pedido</th>
                             <th>Produto</th>
-                            <th className="hidden md:table-cell">Quantidade</th>
                             <th className="hidden sm:table-cell">Cliente</th>
                             <th className="hidden sm:table-cell">Destino</th>
                             <th>Valor</th>
@@ -57,7 +56,6 @@ export default function Pedidos() {
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Cod_pedido}</td>
                                 <td className="hidden md:table-cell border border-x-cinza py-3.5 px-1.5">{pedido.Dt_pedido}</td>
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Produto}</td>
-                                <td className="hidden md:table-cell border border-x-cinza py-3.5 px-1.5">{pedido.Quantidade}</td>
                                 <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Cliente}</td>
                                 <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Destino}</td>
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Valor}</td>
