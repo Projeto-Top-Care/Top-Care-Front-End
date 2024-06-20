@@ -81,12 +81,12 @@ const Resumo = ({ local, servico }: IResumo) => {
 
 
     return (
-        <main className='m-12 p-8 font-poppins w-full flex flex-col gap-8'>
+        <main className='p-8 font-poppins w-full flex flex-col gap-8 mt-12'>=
             {showError()}
             <div className='flex items-center justify-center'>
                 <p className='text-preto font-medium text-xl text-center'>Seu agendamento está quase concluído, confime os dados para concluí-lo</p>
             </div>
-            <div className='p-8 w-full flex md:flex-row flex-col gap-16 justify-between items-start'>
+            <div className='p-8 w-full flex md:flex-row flex-col justify-between items-start gap-8'>
 
                 <div className='flex flex-col text-preto gap-2 w-1/2'>
                     <p className='font-bold text-base'>Escolha o método de pagamento</p>
