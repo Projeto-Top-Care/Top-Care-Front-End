@@ -21,7 +21,8 @@ export interface Pet {
     nome: string
     especie: string
     raca: string
-    idade: number
+    idade: string
+    porte: string 
 }
 export interface Endereco {
     id: number
