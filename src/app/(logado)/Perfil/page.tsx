@@ -245,11 +245,11 @@ export default function Perfil() {
             <section className="mt-20">
                 <TituloLinha titulo="Meus pets" />
             </section>
-            <section className="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 gap-2 justify-items-center w-[90%] m-auto mt-14">
+            <section className="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 gap-12 justify-items-center w-[90%] m-auto mt-14">
                 {
                     usuarioLogado.pets.map((pets, i) => (
                         <div key={i}>
-                            <CardPetPequeno fotoPet={"./assets/cachorro-perfil.png"} nomePet={pets.nome} racaPet={pets.raca} tipoAnimal={pets.especie} porte={pets.porte} />
+                            <CardPetPequeno fotoPet={"./assets/cachorro-perfil.png"} nomePet={pets.nome} racaPet={pets.raca} tipoAnimal={pets.especie} porte={pets.porte} isSelected={true} />
                         </div>
                     ))}
             </section>

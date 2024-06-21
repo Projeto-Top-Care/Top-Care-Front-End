@@ -11,6 +11,7 @@ import Erro from "@/components/Pop-up/Erro/Erro";
 import { useError } from "@/context/ErrorContext";
 import { useState } from "react";
 import { useRouter } from "next/navigation"
+import { Pet } from "@/types/usuarios";
 
 export default function agendamento() {
 
@@ -19,7 +20,7 @@ export default function agendamento() {
     const [openPet, setOpenPet] = useState(false);
     const {addError} = useError()!;
 
-    const [pet, setPet] = useState("");
+    const [pet, setPet] = useState<Pet | null>(null);
     const [servico, setServico] = useState("");
     const [local, setLocal] = useState("");
     const [data, setData] = useState("");
@@ -75,7 +76,7 @@ export default function agendamento() {
             <div className="w-full flex items-center justify-center pb-8">
                 {(estado <= 0 ?
                     <div className="w-full">
-                        <EscolhaPet />
+                        <EscolhaPet setPetEscolhido={setPet}/>
                     </div>
                     : estado == 1 ?
                         <div className="w-full">

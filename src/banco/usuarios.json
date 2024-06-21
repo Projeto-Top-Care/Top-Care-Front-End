@@ -152,7 +152,7 @@
         "especie": "Cachorro",
         "raca": "Beagle",
         "idade": 4,
-        "porte": "Medio"
+        "porte": "Médio"
       },
       {
         "id": 2,
@@ -161,7 +161,7 @@
         "especie": "Cachorro",
         "raca": "Beagle",
         "idade": 4,
-        "porte": "Medio"
+        "porte": "Médio"
       }
     ],
     "pedidos": [
