@@ -1,9 +1,10 @@
 export interface Servico{
     id: number,
     nome: string,
+    precoInicial: number
     imagem: string,
     descricao: string,
-    precos: Precos[]
+    variantes: Precos[]
 }
 
 export interface Precos{

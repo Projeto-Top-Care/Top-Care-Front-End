@@ -20,7 +20,7 @@ export default function VarianteServico({ variante, tipo, preco }: VarianteServi
                     <p className='cursor-pointer'><FaRegTrashCan/></p>
                 </div>
             </div>
-            <div className='w-full h-28 bg-terciaria flex flex-row items-center pl-5 gap-6'>
+            <div className='w-full h-28 bg-terciaria flex flex-row items-center pl-5 gap-6 rounded-lg'>
                 <div className='flex flex-row'>
                     <p className='font-semibold'>{variante}:&nbsp;</p> <p>{tipo}</p>
                 </div>

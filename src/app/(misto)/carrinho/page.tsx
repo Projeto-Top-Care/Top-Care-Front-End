@@ -156,7 +156,7 @@ export default function Carrinho() {
               <p className='font-poppins font-medium'>Calcular Frete</p>
               <p className='font-poppins font-regular text-xs md:!flex hidden'>Infrorme seu CEP</p>
               <div className='flex lg:flex-row flex-col lg:gap-0 gap-3 justify-between lg:mt-0 mt-2'>
-                <div className='lg:w-[60%] w-full'><InputMask title='_____-___' mask='_____-___' replacement={{ _: /\d/ }} onMasks={(e: any) => setCep(e.target.value)} erro={erro || inexitente} /></div>
+                <div className='lg:w-[60%] w-full'><InputMask title='_____-___' mask='_____-___' replacement={{ _: /\d/ }} onMasks={(e: any) => setCep(e.target.value)} error={erro || inexitente} /></div>
                 <div className='lg:w-[32%] w-full' onClick={() => enviarFrete()}><BotaoGrande title='Calcular' type='button' background='bg-secundaria' height='lg:h-10 h-8' fontSize='text-sm font-medium' /></div>
               </div>
               {
