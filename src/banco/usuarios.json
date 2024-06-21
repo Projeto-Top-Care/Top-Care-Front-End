@@ -36,16 +36,22 @@
     ],
     "pets": [
       {
-        "nome": "Rex",
+        "id": 1,
+        "nome": "Belinha",
+        "imagem": "./assets/banho.png",
         "especie": "Cachorro",
-        "raca": "Golden Retriever",
-        "idade": 3
+        "raca": "Pinscher",
+        "idade": 11,
+        "porte": "Pequeno"
       },
       {
-        "nome": "Luna",
-        "especie": "Gata",
-        "raca": "Siamês",
-        "idade": 2
+        "id": 2,
+        "nome": "Snoopy",
+        "imagem": "./assets/banho.png",
+        "especie": "Cachorro",
+        "raca": "Poodle",
+        "idade": 7,
+        "porte": "Pequeno"
       }
     ],
     "pedidos": [
@@ -140,16 +146,22 @@
     ],
     "pets": [
       {
+        "id": 1,
         "nome": "Max",
+        "imagem": "./assets/banho.png",
         "especie": "Cachorro",
         "raca": "Beagle",
-        "idade": 4
+        "idade": 4,
+        "porte": "Médio"
       },
       {
-        "nome": "Bella",
-        "especie": "Gata",
-        "raca": "Persa",
-        "idade": 1
+        "id": 2,
+        "nome": "Bob",
+        "imagem": "./assets/banho.png",
+        "especie": "Cachorro",
+        "raca": "Beagle",
+        "idade": 4,
+        "porte": "Médio"
       }
     ],
     "pedidos": [
@@ -239,16 +251,13 @@
     ],
     "pets": [
       {
-        "nome": "Rex",
+        "id": 1,
+        "nome": "Belinha",
+        "imagem": "./assets/banho.png",
         "especie": "Cachorro",
-        "raca": "Golden Retriever",
-        "idade": 3
-      },
-      {
-        "nome": "Luna",
-        "especie": "Gata",
-        "raca": "Siamês",
-        "idade": 2
+        "raca": "Pinscher",
+        "idade": 11,
+        "porte": "Pequeno"
       }
     ],
     "pedidos": [
@@ -334,16 +343,13 @@
     ],
     "pets": [
       {
-        "nome": "Max",
+        "id": 1,
+        "nome": "Belinha",
+        "imagem": "./assets/banho.png",
         "especie": "Cachorro",
-        "raca": "Beagle",
-        "idade": 4
-      },
-      {
-        "nome": "Bella",
-        "especie": "Gata",
-        "raca": "Persa",
-        "idade": 1
+        "raca": "Pinscher",
+        "idade": 11,
+        "porte": "Pequeno"
       }
     ],
     "pedidos": [
@@ -473,16 +479,13 @@
     ],
     "pets": [
       {
-        "nome": "Rex",
+        "id": 1,
+        "nome": "Belinha",
+        "imagem": "./assets/banho.png",
         "especie": "Cachorro",
-        "raca": "Golden Retriever",
-        "idade": 3
-      },
-      {
-        "nome": "Luna",
-        "especie": "Gata",
-        "raca": "Siamês",
-        "idade": 2
+        "raca": "Pinscher",
+        "idade": 11,
+        "porte": "Pequeno"
       }
     ],
     "pedidos": [
