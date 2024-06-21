@@ -1,10 +1,11 @@
+import { height } from "@mui/system";
 import { TextareaHTMLAttributes } from "react";
 
-export default function TextArea(props: TextareaHTMLAttributes<HTMLTextAreaElement>) {
+export default function TextArea(props: TextareaHTMLAttributes<HTMLTextAreaElement> & {height?: string}) {
     return (
-        <div className="relative h-full">
-            <textarea {...props} className="peer font-poppins px-2 py-2 rounded-md w-full h-full text-sm text-cinza-escuro border-cinza border
-            focus:bg-branco bg-branco placeholder-transparent focus:outline-none resize-none"/>
+        <div className={`relative ${props.height ? props.height : 'h-full'}`}>
+            <textarea {...props} className={`peer font-poppins px-2 py-2 rounded-md w-full ${props.height ? props.height : 'h-full'} text-sm text-cinza-escuro border-cinza border
+            focus:bg-branco bg-branco placeholder-transparent focus:outline-none resize-none`}/>
 
             <label htmlFor={props?.id} className="absolute left-1.5 font-poppins px-1 lg:text-sm text-xs transition-all bg-branco rounded lg:-top-2.5 -top-2
             md:peer-placeholder-shown:text-sm peer-placeholder-shown:text-xs peer-placeholder-shown:text-cinza-escuro peer-placeholder-shown:top-2.5

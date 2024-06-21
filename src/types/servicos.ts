@@ -3,7 +3,7 @@ export interface Servico{
     nome: string,
     imagem: string,
     descricao: string,
-    precos: Precos
+    precos: Precos[]
 }
 
 export interface Precos{

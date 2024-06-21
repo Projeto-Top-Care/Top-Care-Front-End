@@ -11,6 +11,10 @@ export function buscarServico(id: number){
     return servicoEncontrado
 }
 
+export function buscarServicos(){
+    return servicos
+}
+
 export function verMenorPreco(id: number) {
     const servico = buscarServico(id)
     const precos: Precos = servico.precos
