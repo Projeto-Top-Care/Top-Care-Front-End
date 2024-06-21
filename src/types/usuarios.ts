@@ -151,3 +151,12 @@ export interface ViaCEP{
     uf: string
     erro: boolean
 }
+
+export interface agendamentos{
+    servico: string,
+    horario: number,
+    profissional: string,
+    nomePet: string,
+    nomeCliente: string,
+    data: number
+}
