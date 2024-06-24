@@ -30,7 +30,7 @@ export default function agendamento() {
 
     const proximoPasso = () => {
         if(estado <= 0) {
-            setEstado(estado + 1)
+            pet == null ? addError("Selecione o pet para o agendamento") : setEstado(estado + 1)
         } else if(estado == 1) {
             servico == "" ? addError("Selecione o serviço para agendamento!") : setEstado(estado + 1)
         } else if(estado == 2) {
@@ -92,7 +92,7 @@ export default function agendamento() {
                                 </div>
                                 :
                                 <div className="w-[80%] flex">
-                                    <Resumo local={local} servico={servico} data={data} hora={hora} profissional={profissional} setMetodoPagamento={setMetodoPagamento} />
+                                    <Resumo pet={pet!} local={local} servico={servico} data={data} hora={hora} profissional={profissional} setMetodoPagamento={setMetodoPagamento} />
                                 </div>
                 )}
             </div>
