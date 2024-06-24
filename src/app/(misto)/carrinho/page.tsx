@@ -114,7 +114,7 @@ export default function Carrinho() {
   return (
     <main className='text-preto'>
       <section className='mt-10'>
-        <TituloLinha titulo='Minha Sacola' />
+        <TituloLinha voltar={false} titulo='Minha Sacola' />
       </section>
       <section className=' w-[90%] m-auto flex md:flex-row flex-col md:gap-0 gap-10 justify-between mt-14 mb-24 md:h-[35rem]'>
         <section className='border border-cinza rounded-lg md:w-[65%] w-full md:px-6 px-3 py-4 overflow-auto scroll'>

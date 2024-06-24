@@ -33,13 +33,13 @@ export default function PaginaInicial() {
 
             <section className='md:mt-20 mt-8'>
                 <div className='flex flex-col gap-10'>
-                    <TituloLinha titulo='Você também pode gostar...' />
+                    <TituloLinha voltar={false} titulo='Você também pode gostar...' />
                     <CarrosselProduto slides={carrosselProdutos} />
                 </div>
             </section>
 
             <section className="py-6 flex flex-col gap-2 sm:gap-4">
-                <TituloLinha titulo="Categorias de produtos" />
+                <TituloLinha voltar={false} titulo="Categorias de produtos" />
 
                 <div className="flex flex-col sm:flex-row justify-center px-4 sm:gap-8 gap-6 sm:px-16 py-4">
 
@@ -68,37 +68,36 @@ export default function PaginaInicial() {
 
             <section className='md:mt-20 mt-8'>
                 <div className='flex flex-col gap-10'>
-                    <TituloLinha titulo='Mais bem Avaliados' />
+                    <TituloLinha voltar={false} titulo='Mais bem Avaliados' />
                     <CarrosselProduto slides={carrosselProdutos} />
                 </div>
             </section>
 
             <section className="flex flex-col gap-8 py-6">
-                <TituloLinha titulo="Planos de cuiados" />
-                <h3 className="font-averia md:text-2xl text-xl text-center font-bold text-preto">Confira os melhores planos de cuidados da região! </h3>
+                <TituloLinha voltar={false} titulo="Planos de cuidados" />
 
-                <div className="flex sm:flex-row flex-col gap-8 w-[90%] justify-center self-center">
+                <div className="flex sm:flex-row flex-col gap-8 w-[90%] justify-center items-center self-center">
                     <PropagandaPlano titulo={"Básico"} descricao={"Plano básico oferece os serviços padroes mas ainda com total conforto para seu pet"} preco={22.9} />
                     <PropagandaPlano titulo={"Médio"} descricao={"Plano básico oferece os serviços padroes mas ainda com total conforto para seu pet"} preco={49.9} />
                     <PropagandaPlano titulo={"Premium"} descricao={"Plano básico oferece os serviços padroes mas ainda com total conforto para seu pet"} preco={99.9} />
                     <PropagandaPlano titulo={"Pro premium"} descricao={"Plano básico oferece os serviços padroes mas ainda com total conforto para seu pet"} preco={179.9} />
                 </div>
 
-                <div className="w-1/6 self-center">
+                <div className="w-[80%] sm:w-1/6 self-center">
                     <BotaoGrande onClick={() => push('./planos')} title={"Assine já"} background={"bg-primaria"} type={"button"} />
                 </div>
             </section>
 
             <section className='md:mt-20 mt-8'>
                 <div className='flex flex-col gap-10'>
-                    <TituloLinha titulo='Quase acabando' />
+                    <TituloLinha voltar={false} titulo='Quase acabando' />
                     <CarrosselProduto slides={carrosselProdutos} />
                 </div>
             </section>
 
             <section className='md:mt-20 mt-8 mb-10'>
                 <div className='flex flex-col gap-10'>
-                    <TituloLinha titulo='Promoções relâmpago' />
+                    <TituloLinha voltar={false} titulo='Promoções relâmpago' />
                     <CarrosselProduto slides={carrosselProdutos} />
                 </div>
             </section>

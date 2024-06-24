@@ -86,7 +86,7 @@ export default function Perfil() {
         <main className="bg-branco text-preto">
             <Confirmacao />
             <section className="mt-6">
-                <TituloLinha titulo="Minha conta" />
+                <TituloLinha voltar={false} titulo="Minha conta" />
                 <div className="flex justify-end w-[90%]">
                     <div className="mt-5">
                         <a href="/">
@@ -192,7 +192,7 @@ export default function Perfil() {
                 </div>
             </div>
             <section className="mt-20">
-                <TituloLinha titulo="Endereços" />
+                <TituloLinha voltar={false} titulo="Endereços" />
             </section>
             <section className=" mt-14 grid place-content-center">
                 <div className="grid gap-24 mb-8 lg:grid-cols-2 xl:grid-cols-3">
@@ -224,7 +224,7 @@ export default function Perfil() {
                 </div>
             </div>
             <section className="mt-20">
-                <TituloLinha titulo="Pedido em andamento" />
+                <TituloLinha voltar={false} titulo="Pedido em andamento" />
             </section>
             <section className="mt-14">
                 <div className="grid gap-10 mt-8 mb-8 lg:grid-cols-2 xl:grid-cols-3 w-[90%] m-auto">
@@ -237,13 +237,13 @@ export default function Perfil() {
                 </div>
             </section>
             <section className="mt-20">
-                <TituloLinha titulo="Ultimas compras" />
+                <TituloLinha voltar={false} titulo="Ultimas compras" />
             </section>
             <section className="mt-14">
                 <CarrosselProduto slides={carrosselProdutos} />
             </section>
             <section className="mt-20">
-                <TituloLinha titulo="Meus pets" />
+                <TituloLinha voltar={false} titulo="Meus pets" />
             </section>
             <section className="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 gap-12 justify-items-center w-[90%] m-auto mt-14">
                 {

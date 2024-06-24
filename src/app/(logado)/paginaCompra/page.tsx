@@ -105,7 +105,7 @@ export default function PaginaCompra() {
         <main className="text-preto font-poppins py-12">
             <Erro/>
             <div className="items-center flex flex-col gap-4 w-full">
-                <TituloLinha titulo="Confirmação do pedido" />
+                <TituloLinha voltar={true} titulo="Confirmação do pedido" />
 
                 <section className="flex flex-col justify-center gap-8 lg:flex-row w-[90%]">
                     <section className="py-4 lg:w-[68%]">
@@ -142,7 +142,7 @@ export default function PaginaCompra() {
                     </section>
                 </section>
 
-                <TituloLinha titulo="Quase lá..." />
+                <TituloLinha voltar={false} titulo="Quase lá..." />
 
                 <section className="flex flex-col gap-1 sm:gap-4 lg:flex-col w-[90%] px-2">
                     <h2 className="font-bold text-base sm:text-lg pb-2">Escolha o método de pagamento</h2>

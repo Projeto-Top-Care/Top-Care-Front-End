@@ -32,7 +32,7 @@ export default function Login() {
         <main className='bg-branco'>
             <Erro />
             <section className='mt-8 md:mt-12'>
-                <TituloLinha titulo='Login' />
+                <TituloLinha voltar={true} titulo='Login' />
             </section>
             <section className='flex flex-col justify-center items-center w-full gap-16 mt-11 mb-20 md:mt-11 md:mb-24 md:gap-20 lg:flex-row lg:gap-28 lg:my-24 '>
                 <section className='flex items-end h-full max-lg:w-full'>

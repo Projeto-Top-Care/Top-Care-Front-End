@@ -97,7 +97,7 @@ const Resumo = ({ pet, local, servico, data, hora, profissional, setMetodoPagame
             <div className='sm:p-8 w-full flex lg:flex-row flex-col justify-between items-start gap-12'>
 
                 <div className='flex flex-col text-preto gap-2 w-full lg:w-1/2'>
-                    <p className='font-bold text-sm sm:text-base'>Escolha o método de pagamento</p>
+                    <p className='font-bold text-sm sm:text-base'>Resumo do agendamento</p>
 
                     <div className='md:p-5 p-4 border rounded-md border-cinza-escuro'>
                         <div className='flex-col text-preto font-poppins gap-6 flex items-center justify-between md:gap-6 md:text-base text-sm'>

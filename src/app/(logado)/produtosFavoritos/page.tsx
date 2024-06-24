@@ -75,7 +75,7 @@ export default function ProdutoFavoritos() {
     }
     return (
         <section className="mt-8">
-            <TituloLinha titulo={"Meus produtos favoritos"} />
+            <TituloLinha voltar={false} titulo={"Meus produtos favoritos"} />
             <div className="flex flex-row justify-center mt-16 mb-12">
                 <div className="flex w-2/3 px-1 border border-preto rounded-lg h-8">
                     <div className="size-[2rem] flex items-center justify-center">

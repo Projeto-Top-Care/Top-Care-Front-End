@@ -35,7 +35,7 @@ export default function Pedido({ searchParams }: PropsUsuario) {
         <main>
             <section className="">
                 <div className="mt-10">
-                    <TituloLinha titulo="Seu pedido"></TituloLinha>
+                    <TituloLinha voltar={true} titulo="Seu pedido"></TituloLinha>
                 </div>
                 <section className="lg:p-16 lg:ml-2 md:p-10 p-5 mb-12">
                     <section>

@@ -83,10 +83,10 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
     return (
       <main className='text-preto'>
         <Confirmacao />
-        <section className='mt-6 md:mt-11'>
-          <TituloLinha titulo='Produto' />
+        <section className=''>
+          <TituloLinha voltar={true} titulo='Produto' />
         </section>
-        <section className='flex flex-col md:flex-row w-[90%] m-auto mt-8 md:mt-24'>
+        <section className='flex flex-col md:flex-row w-[90%] m-auto mt-8 md:mt-[2.5rem]'>
           <section className='w-full md:w-[45%] h-auto'>
             <div className='h-full md:w-[90%] w-full flex flex-col-reverse lg:flex-row justify-end'>
               <div className='lg:h-full mt-3 w-full lg:w-[30%] md:m-auto flex flex-row items-center justify-center gap-1 lg:block'>
@@ -162,13 +162,13 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
         </section>
         <section className='md:mt-20 mt-8'>
           <div className='flex flex-col gap-10'>
-            <TituloLinha titulo='Você também pode gostar...' />
+            <TituloLinha voltar={false} titulo='Você também pode gostar...' />
             <CarrosselProduto slides={carrosselProdutos} />
           </div>
         </section>
         <section className='md:mt-20 mt-8'>
           <div>
-            <TituloLinha titulo='Descrição' />
+            <TituloLinha voltar={false} titulo='Descrição' />
           </div>
           <div className='mt-10 w-[90%] m-auto md:text-base text-sm'>
             {
@@ -180,7 +180,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
         </section>
         <section className='md:mt-20 mt-8'>
           <div>
-            <TituloLinha titulo='Especificações' />
+            <TituloLinha voltar={false} titulo='Especificações' />
           </div>
           <div className='w-[90%] m-auto mt-8'>
             {
@@ -195,7 +195,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
         </section>
         <section className='mt-20'>
           <div>
-            <TituloLinha titulo='Avaliações' />
+            <TituloLinha voltar={false} titulo='Avaliações' />
           </div>
           <div className='mt-4 sm:mt-8 md:mt-14'>
             {

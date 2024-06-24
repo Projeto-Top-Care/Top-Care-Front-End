@@ -7,7 +7,7 @@ export default function racas() {
     return (
         <main>
             
-            <TituloLinha titulo="Conheça mais de cada pet!" />
+            <TituloLinha voltar={false} titulo="Conheça mais de cada pet!" />
 
             <section>
                 <p className="font-averia md:text-2xl text-xl font-bold text-preto">Cachorros</p>
