@@ -1,6 +1,6 @@
 'use client'
 import VarianteServico from '@/app/(adm)/cadastrarServico/VarianteServico'
-import { Servico } from '@/types/servicos'
+import { Servico, VariantesProps } from '@/types/servicos'
 import React, { useState } from 'react'
 import BotaoGrande from '../BotaoGrande/BotaoGrande'
 import Checkbox from '../Checkbox/Checkbox'
@@ -18,6 +18,7 @@ interface TabelaServicosProps{
 export default function TabelaServicos({servico}: TabelaServicosProps) {
     const [check, setCheck] = useState(false)
     const [openVariante, setOpenVariante] = useState<boolean>(false)
+    const [variantes, setVariantes] = useState<VariantesProps[]>([])
 
 
     return (
@@ -79,7 +80,11 @@ export default function TabelaServicos({servico}: TabelaServicosProps) {
                     <p className='font-averia text-2xl font-extrabold'>Váriações de Serviços</p>
                 </div>
                 <div>
-                    <VarianteServico tipo='Pequeno' variante='Porte' preco={89.99} />
+                    {
+                        variantes.map((variante)=>(
+                            <VarianteServico tipo={variante.tipo} variante={variante.nome} preco={variante.preco} />
+                        ))
+                    }
                 </div>
                 <div className='w-[40%] mt-4'>
                     <BotaoGrande title='Adicionar variação' type='button' background='bg-secundaria' onClick={() => setOpenVariante(true)} />
@@ -87,7 +92,7 @@ export default function TabelaServicos({servico}: TabelaServicosProps) {
             </section>
             {
                 openVariante && (
-                    <CadastroVariante openModalProps={setOpenVariante}/>
+                    <CadastroVariante openModalProps={setOpenVariante} variantesProps={servico?.variantes} setVariantesProps={setVariantes}/>
                 )
             }
         </section>

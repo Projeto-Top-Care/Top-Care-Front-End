@@ -3,7 +3,7 @@ import { FaPencil } from "react-icons/fa6";
 import { FaRegTrashCan } from "react-icons/fa6";
 
 interface VarianteServicoProps {
-    variante: string
+    variante?: string
     tipo: string
     preco: number
 }

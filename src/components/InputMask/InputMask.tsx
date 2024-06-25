@@ -1,7 +1,7 @@
 import { InputHTMLAttributes, useRef, useState } from "react";
 import { InputMask, MaskEventHandler, Replacement } from '@react-input/mask';
 
-export default function InputText(props: InputHTMLAttributes<HTMLInputElement> & { mask?: string, replacement?: string | Replacement, onMasks?: MaskEventHandler | undefined, error?: boolean, erroMessage?: string }) {
+export default function InputTextMask(props: InputHTMLAttributes<HTMLInputElement> & { mask?: string, replacement?: string | Replacement, onMasks?: MaskEventHandler | undefined, error?: boolean, erroMessage?: string }) {
     const [focus, setFocus] = useState<boolean>(false)
     const inputRef = useRef<any>(null)
 

@@ -4,11 +4,12 @@ export interface Servico{
     precoInicial: number
     imagem: string,
     descricao: string,
-    variantes: Precos[]
+    variantes: VariantesProps[]
 }
 
-export interface Precos{
-    id: number,
+export interface VariantesProps{
+    id?: number,
+    nome?: string
     tipo: string,
     preco: number
 }
