@@ -60,7 +60,7 @@ export default function informacoesServicos() {
     }
 
     return (
-        <main className="flex flex-col justify-center bg-branco w-full gap-8 sm:gap-12 pb-24">
+        <main className="flex flex-col justify-center bg-branco w-full gap-4 sm:gap-12 pb-24">
             <TituloLinha voltar={false} titulo="Serviços" />
 
             <div className="flex flex-col lg:flex-row w-[90%] self-center gap-4">

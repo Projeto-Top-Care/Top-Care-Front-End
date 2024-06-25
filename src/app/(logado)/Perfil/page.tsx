@@ -1,5 +1,5 @@
 'use client'
-import { IoExitOutline } from "react-icons/io5";
+import { IoCloseOutline, IoExitOutline } from "react-icons/io5";
 import { useUserID } from "@/context/UserIDContext";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CardPetPequeno from "@/components/CardPetPequeno/CardPetPequeno";
@@ -83,18 +83,18 @@ export default function Perfil() {
     ))
 
     return (
-        <main className="bg-branco text-preto">
+        <main className="bg-branco text-preto flex flex-col gap-8">
             <Confirmacao />
-            <section className="mt-6">
+            <section className="mt-2">
                 <TituloLinha voltar={false} titulo="Minha conta" />
                 <div className="flex justify-end w-[90%]">
-                    <div className="mt-5">
+                    <div className="">
                         <a href="/">
                             <button className='flex md:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-28 w-20 h-8 hover:bg-[#9EBF40] justify-around' onClick={logout}> Logout <IoExitOutline className="mt-1" /></button>
                         </a>
                     </div>
                 </div>
-                <div className="mt-10 lg:ml-32 md:ml-20 ml-4">
+                <div className="lg:ml-32 md:ml-20 ml-4">
                     <PerfilFoto src="./assets/cachorro-perfil.png/" nome={usuarioLogado.nomeCompleto} />
                 </div>
             </section>
@@ -191,11 +191,11 @@ export default function Perfil() {
                     onClick={() => setEdicao(edicao ? verificarEdicao() : true)} />
                 </div>
             </div>
-            <section className="mt-20">
+            <section className="">
                 <TituloLinha voltar={false} titulo="Endereços" />
             </section>
-            <section className=" mt-14 grid place-content-center">
-                <div className="grid gap-24 mb-8 lg:grid-cols-2 xl:grid-cols-3">
+            <section className="grid place-content-center">
+                <div className="grid gap-8 sm:gap-20 mb-8 lg:grid-cols-2 xl:grid-cols-3">
                     {
                         displayedAddresses.map((endereco, i) => (
                             <div key={i}>
@@ -212,12 +212,12 @@ export default function Perfil() {
                     }
                 </div>
             </section>
-            <div className="grid grid-cols-2 justify-items-center">
-                <div className="md:w-44 w-32" onClick={() => setOpenEndereco(true)}>
-                    <BotaoGrande title='+ Endereço' background='bg-terciaria' type={'button'} />
+            <div className="flex sm:flex-row flex-col w-[90%] gap-8 p-0 justify-center sm:pl-20">
+                <div className="md:w-44 w-full" onClick={() => setOpenEndereco(true)}>
+                    <BotaoGrande title="+ Endereço" background='bg-primaria' type={'button'} />
                 </div>
                 <div className="">
-                    <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria  p-1 rounded-lg md:w-44 w-32 h-8 hover:bg-[#9EBF40] justify-around' onClick={toggleShowAllAddresses}>
+                    <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria  p-1 rounded-lg md:w-44 w-full h-8 hover:bg-[#9EBF40] justify-around' onClick={toggleShowAllAddresses}>
                         {showAllAddresses ? "Mostrar menos" : "Mostrar todos "}
                         {showAllAddresses ? <FaAngleUp className="mt-1" /> : <FaAngleDown className="mt-1" />}
                     </button>
@@ -226,8 +226,8 @@ export default function Perfil() {
             <section className="mt-20">
                 <TituloLinha voltar={false} titulo="Pedido em andamento" />
             </section>
-            <section className="mt-14">
-                <div className="grid gap-10 mt-8 mb-8 lg:grid-cols-2 xl:grid-cols-3 w-[90%] m-auto">
+            <section className="">
+                <div className="grid gap-10 mb-8 lg:grid-cols-2 xl:grid-cols-3 w-[90%] m-auto">
                     {
                         usuarioLogado.pedidos.map((pedido, i) => (
                             <div key={i}>
@@ -236,16 +236,16 @@ export default function Perfil() {
                         ))}
                 </div>
             </section>
-            <section className="mt-20">
+            <section className="">
                 <TituloLinha voltar={false} titulo="Ultimas compras" />
             </section>
-            <section className="mt-14">
+            <section className="">
                 <CarrosselProduto slides={carrosselProdutos} />
             </section>
-            <section className="mt-20">
+            <section className="">
                 <TituloLinha voltar={false} titulo="Meus pets" />
             </section>
-            <section className="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 gap-12 justify-items-center w-[90%] m-auto mt-14">
+            <section className="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 gap-12 justify-items-center w-[90%] m-auto">
                 {
                     usuarioLogado.pets.map((pets, i) => (
                         <div key={i}>
@@ -253,7 +253,7 @@ export default function Perfil() {
                         </div>
                     ))}
             </section>
-            <section className="font-poppins mt-16 sm:ml-20 mb-24 w-[90%] m-auto">
+            <section className="font-poppins sm:ml-18 mb-24 w-[90%] m-auto">
                 <p className="md:text-xl text-lg font-medium m-auto">Pet novo ?</p>
                 <p className="md:text-sm text-xs my-3 m-auto">Cadastre aqui pra ele não perder nenhuma oportunidade!</p>
                 <div className="sm:w-[174px]" onClick={() => setOpenPet(true)}>

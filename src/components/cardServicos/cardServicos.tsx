@@ -14,7 +14,7 @@ const CardServico = ({ id, nome, imagem, descricao }: ICardServico) => {
     return (
         <div className='w-full flex flex-col sm:flex-row items-center gap-4 sm:gap-8 border-[1px] border-cinza-escuro rounded-xl p-4 sm:p-6'>
             
-            <img className="w-[8rem] sm:w-[35rem] rounded-lg" src={imagem} />
+            <img className="sm:flex hidden w-[8rem] sm:w-[35rem] rounded-lg" src={imagem} />
 
             <div className="flex flex-col gap-2">
                 <h3 className="font-averia md:text-2xl text-xl font-bold text-preto">{nome}</h3>
