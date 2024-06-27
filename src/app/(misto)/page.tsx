@@ -1,9 +1,11 @@
 'use client'
 import BotaoCategoriaPgInicial from "@/components/Botao-categoria-pgInicial/botao-categoria-pgInicial"
+import BotaoGrande from "@/components/BotaoGrande/BotaoGrande"
 import CardProduto from "@/components/CardProduto/CardProduto"
 import Carrossel from "@/components/Carrossel/Carrossel"
 import CarrosselProduto from "@/components/CarrosselProduto/Carrossel"
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao"
+import PropagandaPlano from "@/components/PropagandaPlano/propagandaPlano"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import { buscarTodos } from "@/server/produtos/action"
 import { EmblaOptionsType } from "embla-carousel"
@@ -40,7 +42,7 @@ export default function PaginaInicial() {
                 <TituloLinha titulo="Categorias de produtos" />
 
                 <div className="flex flex-col sm:flex-row justify-center px-4 sm:gap-8 gap-6 sm:px-16 py-4">
-                    
+
                     <BotaoCategoriaPgInicial title="Acessórios" image="./assets/acessorios.png" pagina="/produtos?q=brinquedo" />
                     <BotaoCategoriaPgInicial title="Alimentação" image="./assets/alimentacao.png" pagina="/lojas" />
                     <BotaoCategoriaPgInicial title="Higiene" image="./assets/higiene.png" pagina="/produtos?q=higiene" />
@@ -49,10 +51,41 @@ export default function PaginaInicial() {
                 </div>
             </section>
 
+            <section className="flex flex-col gap-4 py-6">
+                <div className="flex flex-row bg-terciaria px-6 sm:px-36 justify-between py-8 lg:py-12">
+                    <div className="flex flex-col gap-4 w-full lg:w-3/5">
+                        <h3 className="font-averia md:text-2xl text-xl font-bold text-preto">Você sabia?</h3>
+                        <p className="font-poppins text-preto text-sm sm:text-lg">Nós da Top care também trabalhamos com serviços exclusivos e cuidamos do seu pet com todo o amor e carinho. Agende já uma consulta com a gente para seu pet ter os tratamentos que ele merece!</p>
+                        <div className="w-1/2 lg:w-1/4">
+                            <BotaoGrande onClick={() => push('./inforacoesServicos')} title={"Saiba mais!"} background={"bg-primaria"} type={"button"} />
+                        </div>
+                    </div>
+                    <div className="h-fit lg:flex hidden">
+                        <img src="./assets/banheira.png" />
+                    </div>
+                </div>
+            </section>
+
             <section className='md:mt-20 mt-8'>
                 <div className='flex flex-col gap-10'>
                     <TituloLinha titulo='Mais bem Avaliados' />
                     <CarrosselProduto slides={carrosselProdutos} />
+                </div>
+            </section>
+
+            <section className="flex flex-col gap-8 py-6">
+                <TituloLinha titulo="Planos de cuiados" />
+                <h3 className="font-averia md:text-2xl text-xl text-center font-bold text-preto">Confira os melhores planos de cuidados da região! </h3>
+
+                <div className="flex sm:flex-row flex-col gap-8 w-[90%] justify-center self-center">
+                    <PropagandaPlano titulo={"Básico"} descricao={"Plano básico oferece os serviços padroes mas ainda com total conforto para seu pet"} preco={22.9} />
+                    <PropagandaPlano titulo={"Médio"} descricao={"Plano básico oferece os serviços padroes mas ainda com total conforto para seu pet"} preco={49.9} />
+                    <PropagandaPlano titulo={"Premium"} descricao={"Plano básico oferece os serviços padroes mas ainda com total conforto para seu pet"} preco={99.9} />
+                    <PropagandaPlano titulo={"Pro premium"} descricao={"Plano básico oferece os serviços padroes mas ainda com total conforto para seu pet"} preco={179.9} />
+                </div>
+
+                <div className="w-1/6 self-center">
+                    <BotaoGrande onClick={() => push('./planos')} title={"Assine já"} background={"bg-primaria"} type={"button"} />
                 </div>
             </section>
 

@@ -16,12 +16,6 @@ export default function Loja() {
                     contato="+55 (47) 99999-9999" funcionamentoDias="Segunda a sábado" funcionamentoHora="8h as 20h" />
                 <Lojas src='./assets/lojaJoinville.png/' cidade="Joinville" estado="SC" endereco="Av. Getúlio Vargas, 328 - Anita Garibaldi, Joinville - SC, 89202-000"
                     contato="+55 (47) 99999-9999" funcionamentoDias="Segunda a sábado" funcionamentoHora="8h as 20h" />
-                <Lojas src='./assets/lojaCorupa.png/' cidade="Corupá" estado="SC" endereco="R. Roberto Seidel, 732 - Sala 2 - João Tozini, Corupá - SC, 89278-000"
-                    contato="+55 (47) 99999-9999" funcionamentoDias="Segunda a sábado" funcionamentoHora="8h as 20h" />
-                <Lojas src='./assets/lojaBalneario.png/' cidade="Balneário" estado="SC" endereco="R. 1800, 186 - Sala 39 - Centro, Balneário Camboriú - SC, 88330-508"
-                    contato="+55 (47) 99999-9999" funcionamentoDias="Segunda a sábado" funcionamentoHora="8h as 20h" />
-                <Lojas src='./assets/lojaJaragua.png/' cidade="Jaraguá" estado="SC" endereco="R. Guilherme Weege, 202 - Centro, Jaraguá do Sul - SC, 89251-610"
-                    contato="+55 (47) 99999-9999" funcionamentoDias="Segunda a sábado" funcionamentoHora="8h as 20h" />
             </section>
         </main>
     )

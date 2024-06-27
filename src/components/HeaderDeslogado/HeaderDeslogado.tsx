@@ -5,10 +5,11 @@ import { IoMenu, IoClose } from "react-icons/io5";
 import { FaStore } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 import { PiBoneFill } from "react-icons/pi";
-import { FaBook, FaPhone, FaQuestion } from "react-icons/fa6";
+import { FaBook, FaPhone, FaQuestion, FaStethoscope } from "react-icons/fa6";
 
 import { useEffect, useRef, useState } from "react";
 import BotaoPequeno from "../BotaoPequeno";
+import { BsClipboardHeart } from "react-icons/bs";
 
 export default function HeaderDeslogado() {
     const { push } = useRouter();
@@ -107,11 +108,19 @@ export default function HeaderDeslogado() {
                                     <FaStore size={'0.9rem'} style={{ color: "#322828" }} />
                                     <a onClick={() => handleLinkClick('/lojas')} className="hover:underline">Lojas</a>
                                 </div>
+                                <div className="flex flex-row gap-2 items-center ml-6 text-xs">
+                                    <FaStethoscope size={'0.9rem'} style={{ color: "#322828" }} />
+                                    <a onClick={() => handleLinkClick('/informacoesServicos')} className="hover:underline">Servicos</a>
+                                </div>
                             </div>
 
                             <div className="flex flex-col gap-1 font-poppins text-preto">
                                 <h3 className="font-medium text-sm">Outros</h3>
 
+                                <div className="flex flex-row gap-2 items-center ml-6 text-xs">
+                                    <BsClipboardHeart size={'0.9rem'} style={{ color: "#322828" }} />
+                                    <a onClick={() => handleLinkClick('/planos')} className="hover:underline">Planos</a>
+                                </div>
                                 <div className="flex flex-row gap-2 items-center ml-6 text-xs">
                                     <FaQuestion size={'0.9rem'} style={{ color: "#322828" }} />
                                     <a onClick={() => handleLinkClick('/duvidasFrequentes')} className="hover:underline">Dúvidas</a>
