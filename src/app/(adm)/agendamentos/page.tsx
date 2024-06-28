@@ -6,6 +6,9 @@ import CalendarioAgendamentoDia from "@/components/CalendarioAgendamentoDia/cale
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { Agendamentos } from '@/types/usuarios';
 import usuarios from '@/banco/usuarios.json';
+import FiltroGrande from "@/components/Filtro/FiltroGrande";
+import { setLabel } from "@/server/filtros/action";
+import { FaFilter } from "react-icons/fa6";
 
 export default function Agendamentos() {
     const [agendamentos, setAgendamentos] = useState<Agendamentos[]>([]);
@@ -52,10 +55,10 @@ export default function Agendamentos() {
                             <th className="hidden md:table-cell">Pet</th>
                             <th>Local</th>
                             <th className="hidden md:table-cell">Data</th>
-                            <th className="hidden sm:table-cell">Horario</th>
-                            <th className="hidden sm:table-cell">Profissional</th>
-                            <th>Valor</th>
-                            <th>Status</th>
+                            <th>Horario</th>
+                            <th>Profissional</th>
+                            <th className="hidden sm:table-cell">Valor</th>
+                            <th className="hidden sm:table-cell">Status</th>
                             <th className="hidden sm:table-cell">Pagamento</th>
                         </tr>
                     </thead>
@@ -66,10 +69,10 @@ export default function Agendamentos() {
                                 <td className="hidden md:table-cell border border-x-cinza py-3.5 px-1.5">{agendamento.nomePet}</td>
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.local}</td>
                                 <td className="hidden md:table-cell border border-x-cinza py-3.5 px-1.5">{agendamento.data}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.horario}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.profissional}</td>
-                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">R${agendamento.valor}</td>
-                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.status}</td>
+                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.horario}</td>
+                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.profissional}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">R${agendamento.valor}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.status}</td>
                                 <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.pagamento}</td>
                             </tr>
                         ))}
