@@ -281,9 +281,9 @@ export default function Perfil() {
                 </div>
             )}
             <div className="">
-                <TituloLinha titulo="Histórico de agendamentos" />
+                <TituloLinha voltar={false} titulo="Histórico de agendamentos" />
             </div>
-            <div className="md:p-8 p-4 grid lg:grid-cols-3 md:grid-cols-2 justify-center items-center mt-8 mb-12 gap-8 lg:w-[90%] md:w-full lg:ml-16">
+            <div className="md:p-8 p-4 grid lg:grid-cols-3 md:grid-cols-2 justify-center items-center mb-12 gap-8 lg:w-[90%] md:w-full lg:ml-16">
                 <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
                 <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
                 <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />

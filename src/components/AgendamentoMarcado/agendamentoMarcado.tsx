@@ -36,7 +36,7 @@ const AgendamentoMarcado = ({ fotoPet, nomePet, servico, data, hora, profissiona
                     </div>
                 </div>
                 <div className="md:p-4 p-2 w-full">
-                    <BotaoGrande color={"text-branco"} title={"Cancelar"} fontSize={"text-sm"} background={"bg-error"} type={"button"} height='md:h-8 h-6' />
+                    <BotaoGrande textColor={"text-branco"} title={"Cancelar"} fontSize={"text-sm"} background={"bg-error"} type={"button"} height='md:h-8 h-6' />
                 </div>
             </div>
         </div>
