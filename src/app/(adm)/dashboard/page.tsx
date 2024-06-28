@@ -70,7 +70,7 @@ const Dashboard = () => {
     return (
         <main>
             <section className="my-10">
-                <TituloLinha titulo="Dashboard" />
+                <TituloLinha titulo="Dashboard" voltar={false} />
             </section>
             <section className="w-[90%] mx-auto">
                 <section>
