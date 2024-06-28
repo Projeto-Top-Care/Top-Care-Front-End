@@ -58,7 +58,7 @@ interface IHasFile {
 const HasFile = ({ file, rounded, dropzone }: IHasFile) => {
     return (
         <div className={`${rounded} relative flex flex-col items-end justify-end h-full w-full bg-branco border border-cinza`}>
-            <img src={file} alt="" className={`w-full h-full ${rounded}`} />
+            <img src={file} alt="" className={`w-full h-full object-cover ${rounded}`} />
             <div className="h-8 w-8 -bottom-3 -right-3 flex items-center justify-center bg-branco rounded-full absolute">
                 <Input dropzone={dropzone} rounded={'rounded-full'} imagem={'./assets/lapis.svg'}/>
             </div>

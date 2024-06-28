@@ -18,15 +18,13 @@ export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Prod
     const [quantidade, setQuantidade] = useState<number>(1)
     const [checked, setChecked] = useState<boolean>(false)
     const [open, setOpen] = useState<boolean>(false)
-    const [sim, setSim] = useState<boolean | number>(0)
+    const [sim, setSim] = useState<boolean>(false)
 
     const abrirPopUp = () => {
         setOpen(true)
     }
 
     const removeItem = () => {
-        if (sim == 0) return
-
         if (sim) {
             const carrinho = items
             const carrinhoAtualizado = carrinho.filter((item) => {

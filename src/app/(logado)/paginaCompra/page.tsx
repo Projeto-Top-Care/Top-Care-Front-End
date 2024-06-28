@@ -14,6 +14,7 @@ import { useUserID } from "@/context/UserIDContext";
 import { useCarrinho } from "@/context/CarrinhoContext";
 import { useError } from "@/context/ErrorContext";
 import Erro from "@/components/Pop-up/Erro/Erro";
+import Carregando from "@/components/Carregando/Carregando";
 
 export default function PaginaCompra() {
 
@@ -48,7 +49,7 @@ export default function PaginaCompra() {
     }, [])
 
     if(!usuarioLogado){
-        return <div>Carregando...</div>
+        return <Carregando />
     }
 
     const setarEnderecoEscolhido = (endereco: Endereco) => {

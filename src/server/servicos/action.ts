@@ -1,5 +1,5 @@
 import servicos from '@/banco/servicos.json'
-import { Precos, Servico } from '@/types/servicos'
+import { VariantesProps, Servico } from '@/types/servicos'
 
 export function buscarServico(id: number) {
     let servicoEncontrado: Servico | undefined = undefined
@@ -11,10 +11,14 @@ export function buscarServico(id: number) {
     if (servicoEncontrado) return servicoEncontrado as Servico
 }
 
+export function buscarServicos(){
+    return servicos
+}
+
 export function buscarPrecos(id: number) {
     const servico = buscarServico(id)
     if (servico) {
-        const precos: Precos[] = servico.precos
+        const precos: VariantesProps[] = servico.variantes
         return precos
     }
 }
