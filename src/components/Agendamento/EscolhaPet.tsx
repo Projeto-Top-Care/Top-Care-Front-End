@@ -4,6 +4,7 @@ import CardPetPequeno from '../CardPetPequeno/CardPetPequeno';
 import { Usuario, Pet } from "@/types/usuarios";
 import { useUserID } from '@/context/UserIDContext';
 import { buscarUsuario } from '@/server/usuario/action';
+import Loading from '@/app/(misto)/loading/page';
 
 interface IPet {
     setPetEscolhido: React.Dispatch<SetStateAction<Pet | null>>
@@ -34,7 +35,7 @@ export default function EscolhaPet({ setPetEscolhido }: IPet) {
     }, [])
 
     if (!usuarioLogado) {
-        return <div>Carregando...</div>
+        return <Loading/>
     }
 
     return (
