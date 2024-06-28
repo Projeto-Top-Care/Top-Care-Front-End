@@ -4,11 +4,11 @@ import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import CardDashboard from "./CardDashboard";
 import { Chart } from "react-google-charts";
 
-const randonValues = () =>{
-    let values: (string | number)[][] = [["Dias", "Vendas"], [0, 0]]
+const randonValues = () => {
+    let values: (string | number)[][] = [["Dias", "Vendas"]]
 
-    for(let i=1; i<31; i++){
-        values.push([i, Math.floor(Math.random()*50)])
+    for (let i = 1; i < 31; i++) {
+        values.push([i, Math.floor(Math.random() * 50)])
     }
 
     return values
@@ -18,20 +18,28 @@ const randonValues = () =>{
 const dataLine = randonValues()
 
 const optionsLine = {
+    title: "Vendas Diárias",
+    titleTextStyle: {
+        fontName: "Poppins",
+        fontSize: 16,
+        bold: false
+    },
+    backgroundColor: '#F9F9F9',
     legend: {
         position: 'none'
     },
     colors: ['#C9E47B'],
     chartArea: {
-        height: '20%',
+        height: '60%',
+        width: '80%',
     },
     fontName: 'Poppins',
-    lineWidth: 0.5,
-    pointShape: 'diamond',
+    lineWidth: 2,
+    pointShape: 'circle',
     tootip: {
         fontName: 'Poppins'
     }
-};
+}
 
 const dataPie = [
     ["Vendas por Categoria", "Vendas"],
@@ -48,12 +56,12 @@ const optionsPie = {
     legend: 'none',
     fontName: 'Poppins',
     fontSize: 14,
-    colors: ['#B5A6F3', '#C9E47B', '#DFEAFF', '#DFEAFF'],
+    colors: ['#B5A6F3', '#C9E47B', '#DFEAFF', '#FFD601'],
     pieSliceTextStyle: {
         color: 'black'
     },
     chartArea: {
-        height: '70%',
+        height: '100%',
         width: '100%'
     }
 };
@@ -73,23 +81,25 @@ const Dashboard = () => {
                                 <CardDashboard background="bg-primaria" titulo="Produtos Vendidos" variavel={234} />
                                 <CardDashboard background="bg-secundaria" titulo="Ganhos" variavel={234} valor={true} />
                             </div>
-                            <div className="w-[30%] flex items-center justify-center">
+                            <div className="w-[30%] h-56 flex flex-col items-center justify-center">
+                                <h1 className="z-50 mb-2 font-poppins text-lg">Vendas por Categoria</h1>
                                 <Chart
+                                    className=""
                                     chartType="PieChart"
-                                    width="90%"
-                                    height="350px"
+                                    width="100%"
+                                    height="100%"
                                     data={dataPie}
                                     options={optionsPie}
                                 />
                             </div>
-                            <div className="w-[30%] bg-cinza-claro">
+                            <div className="w-[35%] bg-cinza-claro p-6 rounded-lg">
                                 <Chart
-                                    chartType="Line"
+                                    chartType="LineChart"
                                     width="100%"
-                                    height="300px"
+                                    height="250px"
                                     data={dataLine}
                                     options={optionsLine}
-                                    className={'px-8 py-5'}
+                                    className="rounded-lg"
                                 />
                             </div>
                         </div>
