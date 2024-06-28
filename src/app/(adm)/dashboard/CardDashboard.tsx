@@ -5,12 +5,13 @@ interface CardDashboardProps{
     titulo: string
     valor?: boolean
     variavel: number
+    height?: string
 }
 
-export default function CardDashboard({background, titulo, variavel, valor}: CardDashboardProps) {
+export default function CardDashboard({background, titulo, variavel, valor, height}: CardDashboardProps) {
 
     return (
-        <div className={`border border-preto w-full h-24 rounded-lg`}>
+        <div className={`border border-preto w-full ${height ? height : 'h-24'} rounded-lg`}>
             <div className={`h-[25%] ${background} rounded-t-lg`}>
 
             </div>

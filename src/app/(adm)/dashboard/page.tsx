@@ -43,10 +43,10 @@ const optionsLine = {
 
 const dataPie = [
     ["Vendas por Categoria", "Vendas"],
-    ["Alimentos", 11],
-    ["Acessórios", 2],
-    ["Higiene", 2],
-    ["Medicamentos", 2],
+    ["Alimentos", 29],
+    ["Acessórios", 45],
+    ["Higiene", 93],
+    ["Medicamentos", 128],
 ];
 
 const optionsPie = {
@@ -74,7 +74,7 @@ const Dashboard = () => {
             </section>
             <section className="w-[90%] mx-auto">
                 <section>
-                    <h1 className="text-averia text-2xl text-preto font-semibold">Produtos</h1>
+                    <h1 className="text-averia text-2xl text-preto font-semibold mb-4">Produtos</h1>
                     <div className="flex flex-row items-center border border-preto rounded-xl">
                         <div className="w-[90%] m-auto flex flex-row items-center justify-between">
                             <div className="w-[30%] flex flex-col gap-10">
@@ -100,6 +100,37 @@ const Dashboard = () => {
                                     data={dataLine}
                                     options={optionsLine}
                                     className="rounded-lg"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section className="w-[90%] mx-auto mt-14">
+                <section>
+                    <h1 className="text-averia text-2xl text-preto font-semibold mb-4">Pedidos e Agendamentos</h1>
+                    <div className="flex flex-row items-center border border-preto rounded-xl">
+                        <div className="w-[90%] m-auto flex flex-row items-center justify-between">
+                            <div className="w-[30%] flex flex-col gap-6">
+                                <CardDashboard background="bg-terciaria" titulo="Total Diário" variavel={58} height='h-20' />
+                                <CardDashboard background="bg-primaria" titulo="Ticket Médio" variavel={250} valor height='h-20' />
+                                <CardDashboard background="bg-secundaria" titulo="Total Realizados" variavel={2234} height='h-20' />
+                            </div>
+                            <div className="w-[30%] h-56 flex flex-col items-center justify-center">
+                                <h1 className="z-50 mb-2 font-poppins text-lg">Vendas por Categoria</h1>
+                                <Chart 
+                                    chartType="BarChart"
+                                />
+
+                            </div>
+                            <div className="w-[35%] bg-cinza-claro p-6 rounded-lg">
+                                <Chart
+                                    className=""
+                                    chartType="PieChart"
+                                    width="100%"
+                                    height="100%"
+                                    data={dataPie}
+                                    options={optionsPie}
                                 />
                             </div>
                         </div>
