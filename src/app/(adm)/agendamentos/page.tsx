@@ -8,7 +8,8 @@ import { Agendamentos } from '@/types/usuarios';
 import usuarios from '@/banco/usuarios.json';
 import FiltroGrande from "@/components/Filtro/FiltroGrande";
 import { setLabel } from "@/server/filtros/action";
-import { FaFilter } from "react-icons/fa6";
+import { IoIosArrowDown } from "react-icons/io";
+
 
 export default function Agendamentos() {
     const [agendamentos, setAgendamentos] = useState<Agendamentos[]>([]);
@@ -35,16 +36,24 @@ export default function Agendamentos() {
         <section>
             <section className="mt-9 mb-14">
                 <TituloLinha titulo={"Agendamentos"} />
-                <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8 mt-4 ml-[5%]">
-                    <div className="size-[2rem] flex">
-                        <button><FaSearch style={{ color: "#322828" }} /></button>
+                <div className="flex justify-between w-[90%] m-auto">
+                    <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8 mt-4 ">
+                        <div className="size-[2rem] flex">
+                            <button><FaSearch style={{ color: "#322828" }} /></button>
+                        </div>
+                        <input
+                            type="search"
+                            value={pesquisa}
+                            onChange={(e) => setPesquisa(e.target.value)}
+                            className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
+                            placeholder="Pesquise nos agendamentos" />
                     </div>
-                    <input
-                        type="search"
-                        value={pesquisa}
-                        onChange={(e) => setPesquisa(e.target.value)}
-                        className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
-                        placeholder="Pesquise nos agendamentos" />
+                    <div className="flex w-36 px-1 border border-cinza-claro rounded-lg h-8 mt-4 ml-[5%] font-poppins">
+                        <p className="w-full text-xs sm:text-base text-cinza-escuro md:mt-1 mt-1.5">Ordenar por</p>
+                        <button className="text-cinza-escuro">
+                            <IoIosArrowDown />
+                        </button>
+                    </div>
                 </div>
             </section>
             <section className="mb-24 flex justify-center font-poppins text-sm">
