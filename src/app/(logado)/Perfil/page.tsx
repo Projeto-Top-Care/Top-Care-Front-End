@@ -22,6 +22,7 @@ import CadastroPet from "@/components/Pop-up/CadastroPet/CadastroPet";
 import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico";
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 import Carregando from "@/components/Carregando/Carregando";
+import AgendamentoMarcado from "@/components/AgendamentoMarcado/agendamentoMarcado";
 
 export default function Perfil() {
     const { getUserID } = useUserID()
@@ -103,93 +104,93 @@ export default function Perfil() {
                 <div className="w-[90%] py-8 m-auto flex justify-between">
                     <div className="w-[35%]">
                         <div className="w-80 flex flex-col gap-6">
-                            <InputEstatico 
-                            titulo="Nome Completo" 
-                            info={nome} 
-                            edition={edicao}
-                            error={nome === ''}
-                            onChange={(e)=>setNome(e.target.value)}
-                            message={"O nome não pode ser vazio"}
+                            <InputEstatico
+                                titulo="Nome Completo"
+                                info={nome}
+                                edition={edicao}
+                                error={nome === ''}
+                                onChange={(e) => setNome(e.target.value)}
+                                message={"O nome não pode ser vazio"}
                             />
 
-                            <InputEstatico 
-                            titulo="Senha" 
-                            info={usuarioLogado.senha} 
-                            type={'password'} 
-                            edition={false}/>
+                            <InputEstatico
+                                titulo="Senha"
+                                info={usuarioLogado.senha}
+                                type={'password'}
+                                edition={false} />
 
-                            <InputEstatico 
-                            titulo="Sexo" 
-                            info={sexo} 
-                            edition={edicao}/>
+                            <InputEstatico
+                                titulo="Sexo"
+                                info={sexo}
+                                edition={edicao} />
                         </div>
                     </div>
                     <div className="flex flex-col w-[60%]">
                         <div className="flex flex-row justify-between">
                             <div className="w-80 flex flex-col gap-6">
-                                <InputEstatico 
-                                titulo="Email" 
-                                info={email} 
-                                edition={edicao}
-                                error={email === ''}
-                                onChange={(e)=>setEmail(e.target.value)}
-                                message={"O email precisa ser válido"}/>
+                                <InputEstatico
+                                    titulo="Email"
+                                    info={email}
+                                    edition={edicao}
+                                    error={email === ''}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    message={"O email precisa ser válido"} />
 
                                 <InputEstatico titulo="CPF" info={usuarioLogado.cpf} edition={false} />
                             </div>
                             <div className="w-56 flex flex-col gap-6">
                                 <div className="flex flex-row justify-between">
                                     <div className="w-14">
-                                        <InputMaskEstatico 
-                                        titulo='DDD' 
-                                        info={ddd} 
-                                        edition={edicao} mask={'__'} 
-                                        replacement={{ _: /\d/ }} 
-                                        error={ddd.length !== 2} 
-                                        onMasks={(e)=>setDdd(e.target.value)}
-                                        message={'O ddd precisa ser válido'}/>
+                                        <InputMaskEstatico
+                                            titulo='DDD'
+                                            info={ddd}
+                                            edition={edicao} mask={'__'}
+                                            replacement={{ _: /\d/ }}
+                                            error={ddd.length !== 2}
+                                            onMasks={(e) => setDdd(e.target.value)}
+                                            message={'O ddd precisa ser válido'} />
                                     </div>
                                     <div className="w-40">
-                                        <InputMaskEstatico 
-                                        titulo="Celular" 
-                                        info={numero} 
-                                        edition={edicao} 
-                                        mask={'_____-____'} 
-                                        replacement={{ _: /\d/ }} 
-                                        error={numero.length !== 10} 
-                                        onMasks={(e)=>setNumero(e.target.value)}
-                                        message={"O telefone precisa ser válido"}/>
+                                        <InputMaskEstatico
+                                            titulo="Celular"
+                                            info={numero}
+                                            edition={edicao}
+                                            mask={'_____-____'}
+                                            replacement={{ _: /\d/ }}
+                                            error={numero.length !== 10}
+                                            onMasks={(e) => setNumero(e.target.value)}
+                                            message={"O telefone precisa ser válido"} />
                                     </div>
                                 </div>
-                                <InputMaskEstatico 
-                                titulo="Data de Nascimento" 
-                                info={dataNascimento} 
-                                edition={edicao} 
-                                mask={'dd/mm/yyyy'} 
-                                replacement={{ d: /\d/, m: /\d/, y: /\d/ }} 
-                                error={dataNascimento.length !== 10} 
-                                onMasks={(e)=>setDataNascimento(e.target.value)}
-                                message={"A data de nascimento precisa ser válida"}/>
+                                <InputMaskEstatico
+                                    titulo="Data de Nascimento"
+                                    info={dataNascimento}
+                                    edition={edicao}
+                                    mask={'dd/mm/yyyy'}
+                                    replacement={{ d: /\d/, m: /\d/, y: /\d/ }}
+                                    error={dataNascimento.length !== 10}
+                                    onMasks={(e) => setDataNascimento(e.target.value)}
+                                    message={"A data de nascimento precisa ser válida"} />
                             </div>
                         </div>
                         <div className="md:text-base text-sm mt-6 font-poppins">
                             Cartões Salvos
-                            <CartoesSalvos 
-                            tipoCartao="crédito" 
-                            nome={usuarioLogado.nomeCompleto} 
-                            dataValidade="12/28" 
-                            finalCartao={9875} />
+                            <CartoesSalvos
+                                tipoCartao="crédito"
+                                nome={usuarioLogado.nomeCompleto}
+                                dataValidade="12/28"
+                                finalCartao={9875} />
                         </div>
                     </div>
                 </div>
             </section>
             <div className="mt-6 lg:mx-32 md:mx-20 mx-5 flex justify-end">
                 <div className="w-[20%]">
-                    <BotaoGrande 
-                    title={`${edicao ? 'Salvar Alteração' : 'Editar'}`} 
-                    background="bg-secundaria" 
-                    type="button" 
-                    onClick={() => setEdicao(edicao ? verificarEdicao() : true)} />
+                    <BotaoGrande
+                        title={`${edicao ? 'Salvar Alteração' : 'Editar'}`}
+                        background="bg-secundaria"
+                        type="button"
+                        onClick={() => setEdicao(edicao ? verificarEdicao() : true)} />
                 </div>
             </div>
             <section className="">
@@ -200,14 +201,14 @@ export default function Perfil() {
                     {
                         displayedAddresses.map((endereco, i) => (
                             <div key={i}>
-                                <Endereco 
-                                titulo={endereco.nome} 
-                                cep={endereco.cep} 
-                                estado={endereco.estado} 
-                                bairro={endereco.bairro} 
-                                rua={endereco.rua} 
-                                numero={endereco.numero} 
-                                complemento={endereco.complemento} />
+                                <Endereco
+                                    titulo={endereco.nome}
+                                    cep={endereco.cep}
+                                    estado={endereco.estado}
+                                    bairro={endereco.bairro}
+                                    rua={endereco.rua}
+                                    numero={endereco.numero}
+                                    complemento={endereco.complemento} />
                             </div>
                         ))
                     }
@@ -279,6 +280,15 @@ export default function Perfil() {
                     </div>
                 </div>
             )}
+            <div className="">
+                <TituloLinha titulo="Histórico de agendamentos" />
+            </div>
+            <div className="md:p-8 p-4 grid lg:grid-cols-3 md:grid-cols-2 justify-center items-center mt-8 mb-12 gap-8 lg:w-[90%] md:w-full lg:ml-16">
+                <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
+                <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
+                <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
+                <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
+            </div>
         </main>
     );
 }
