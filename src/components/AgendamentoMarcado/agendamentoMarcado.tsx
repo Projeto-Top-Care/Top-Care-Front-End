@@ -9,28 +9,21 @@ type agendamentotype = {
     hora: string
     profissional: string
     valor: number
-    status: string
 }
 
-const AgendamentoMarcado = ({ fotoPet, nomePet, servico, data, hora, profissional, valor, status }: agendamentotype) => {
+const AgendamentoMarcado = ({ fotoPet, nomePet, servico, data, hora, profissional, valor }: agendamentotype) => {
     return (
 
         <div className=''>
-            <div className=" flex flex-col items-center rounded-lg border border-cinza font-poppins ">
-                <div className="md:p-3 p-2 flex flex-row justify-start items-center mr-1 gap-2">
-                    <div className="flex flex-row justify-start items-center gap-2">
-                        <div className="lg:w-[24%] w-[30%]">
-                            <img className='rounded-full' src={fotoPet} />
-                        </div>
-                        <p className="md:text-base text-sm text-preto">{nomePet}</p>
+            <div className="flex flex-col items-center rounded-lg border border-cinza font-poppins">
+                <div className="p-3 flex justify-start items-center gap-2 mr-36">
+                    <div className="lg:w-[24%] w-[30%]">
+                        <img className='rounded-full' src={fotoPet} />
                     </div>
-                    <div className="ml-24">
-                        <p className="md:text-base text-sm text-preto">{status}</p>
-
-                    </div>
+                    <p className="md:text-base text-sm text-preto">{nomePet}</p>
                 </div>
                 <div className="border-t border-cinza grid items-center justify-center w-full"></div>
-                <div className="md:p-4 p-2 flex justify-start items-center gap-14">
+                <div className="p-4 flex justify-start items-center gap-16">
                     <div className="gap-2 flex flex-col justify-start items-start text-start">
                         <p className="md:text-base text-sm text-preto">{servico}</p>
                         <p className="md:text-sm text-xs text-cinza-escuro">Profissional</p>
@@ -43,7 +36,7 @@ const AgendamentoMarcado = ({ fotoPet, nomePet, servico, data, hora, profissiona
                     </div>
                 </div>
                 <div className="md:p-4 p-2 w-full">
-                    <BotaoGrande title={"Cancelar"} background={"bg-error"} type={"button"} height='md:h-8 h-6'/>
+                    <BotaoGrande color={"text-branco"} title={"Cancelar"} fontSize={"text-sm"} background={"bg-error"} type={"button"} height='md:h-8 h-6' />
                 </div>
             </div>
         </div>
