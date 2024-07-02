@@ -5,6 +5,7 @@ import { Pedidos } from "@/types/pedidos";
 import { useState } from "react";
 import { FaSearch } from 'react-icons/fa';
 import pedidos from "@/banco/pedidos.json"
+import { IoIosArrowDown } from "react-icons/io";
 
 export default function Pedidos() {
     const [pesquisa, setPesquisa] = useState('');
@@ -24,16 +25,24 @@ export default function Pedidos() {
         <section>
             <section className="mt-9  mb-28">
                 <TituloLinha titulo={"Pedidos"} />
-                <div className="flex w-2/3 px-1 border border-preto rounded-lg h-8 m-auto mt-16">
-                    <div className="size-[2rem] flex items-center justify-center">
-                        <button><FaSearch style={{ color: "#322828" }} /></button>
+                <div className="flex justify-between w-[90%] m-auto">
+                    <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8 mt-4 ">
+                        <div className="size-[2rem] flex">
+                            <button><FaSearch style={{ color: "#322828" }} /></button>
+                        </div>
+                        <input
+                            type="search"
+                            value={pesquisa}
+                            onChange={(e) => setPesquisa(e.target.value)}
+                            className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
+                            placeholder="Pesquise nos agendamentos" />
                     </div>
-                    <input
-                        type="search"
-                        value={pesquisa}
-                        onChange={(e) => setPesquisa(e.target.value)}
-                        className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
-                        placeholder="Pesquise nos favoritos" />
+                    <div className="flex w-36 px-1 border border-cinza-claro rounded-lg h-8 mt-4 ml-[5%] font-poppins">
+                        <p className="w-full text-xs sm:text-base text-cinza-escuro md:mt-1 mt-1.5">Ordenar por</p>
+                        <button className="text-cinza-escuro">
+                            <IoIosArrowDown />
+                        </button>
+                    </div>
                 </div>
             </section>
             <section className="mb-24 flex justify-center font-poppins text-sm">
