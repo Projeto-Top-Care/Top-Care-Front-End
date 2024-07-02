@@ -1,5 +1,7 @@
-import React from "react";
+'use client'
+import React, { useState } from "react";
 import BotaoGrande from "../BotaoGrande/BotaoGrande";
+import DoisBotoes from "../Pop-up/DoisBotoes/DoisBotoes";
 
 type agendamentotype = {
     fotoPet: string
@@ -12,9 +14,23 @@ type agendamentotype = {
 }
 
 const AgendamentoMarcado = ({ fotoPet, nomePet, servico, data, hora, profissional, valor }: agendamentotype) => {
+    
+    
+    //Isso será excluído, é apenas para deixar bonitinho
+    const [openConfirmacao, setOpenConfirmacao] = useState<boolean>(false)
+    const [cancelamentoConfirmado, setCancelamentoConfirmado] = useState<boolean>(false)
+
     return (
 
         <div className=''>
+            {openConfirmacao && (
+                <div className="w-full">
+                    <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpenConfirmacao(false)}></div>
+                    <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 lg:w-[25%] w-[60%]`}>
+                        <DoisBotoes texto="Deseja mesmo cancelar o agendamento?" openParms={setOpenConfirmacao} sim={setCancelamentoConfirmado} />
+                    </div>
+                </div>
+            )}
             <div className="flex flex-col items-center rounded-lg border border-cinza font-poppins">
                 <div className="p-3 flex justify-start items-center gap-2 mr-36">
                     <div className="lg:w-[24%] w-[30%]">
@@ -35,7 +51,7 @@ const AgendamentoMarcado = ({ fotoPet, nomePet, servico, data, hora, profissiona
                         <p className="md:text-sm text-xs text-cinza-escuro">R$ {valor}</p>
                     </div>
                 </div>
-                <div className="md:p-4 p-2 w-full">
+                <div onClick={() => setOpenConfirmacao(!openConfirmacao)} className="md:p-4 p-2 w-full">
                     <BotaoGrande textColor={"text-branco"} title={"Cancelar"} fontSize={"text-sm"} background={"bg-error"} type={"button"} height='md:h-8 h-6' />
                 </div>
             </div>

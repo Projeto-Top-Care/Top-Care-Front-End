@@ -1,5 +1,5 @@
 'use client'
-import { IoCloseOutline, IoExitOutline } from "react-icons/io5";
+import { IoExitOutline } from "react-icons/io5";
 import { useUserID } from "@/context/UserIDContext";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CardPetPequeno from "@/components/CardPetPequeno/CardPetPequeno";
@@ -23,12 +23,14 @@ import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico"
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 import Carregando from "@/components/Carregando/Carregando";
 import AgendamentoMarcado from "@/components/AgendamentoMarcado/agendamentoMarcado";
+import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
 
 export default function Perfil() {
     const { getUserID } = useUserID()
 
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario | null>(null);
     const [showAllAddresses, setShowAllAddresses] = useState(false);
+    const [showAllSchedulles, setShowAllSchedulles] = useState(false);
     const [openEndereco, setOpenEndereco] = useState(false);
     const [openPet, setOpenPet] = useState(false);
     const [edicao, setEdicao] = useState(false);
@@ -38,6 +40,14 @@ export default function Perfil() {
     const [ddd, setDdd] = useState<string>('')
     const [numero, setNumero] = useState<string>('')
     const [dataNascimento, setDataNascimento] = useState<string>('')
+
+    const agendamentos = [
+        <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
+        <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
+        <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
+        <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
+    ]
+    const historicoAgendamentos = showAllSchedulles ? agendamentos : agendamentos.slice(0, 3);
 
     useEffect(() => {
         const fetchedID = getUserID();
@@ -65,6 +75,9 @@ export default function Perfil() {
     const toggleShowAllAddresses = () => {
         setShowAllAddresses(!showAllAddresses);
     };
+    const toggleShowAllSchedulles = () => {
+        setShowAllSchedulles(!showAllSchedulles);
+    };
 
     const displayedAddresses = showAllAddresses ? usuarioLogado.enderecos : usuarioLogado.enderecos.slice(0, 3);
 
@@ -85,7 +98,7 @@ export default function Perfil() {
     ))
 
     return (
-        <main className="bg-branco text-preto flex flex-col gap-8">
+        <main className="bg-branco text-preto flex flex-col gap-6">
             <Confirmacao />
             <section className="mt-2">
                 <TituloLinha voltar={false} titulo="Minha conta" />
@@ -100,10 +113,12 @@ export default function Perfil() {
                     <PerfilFoto src="./assets/cachorro-perfil.png/" nome={usuarioLogado.nomeCompleto} />
                 </div>
             </section>
-            <section className="rounded-xl bg-terciaria lg:mx-32 mt-12 md:mx-20 mx-5">
-                <div className="w-[90%] py-8 m-auto flex justify-between">
-                    <div className="w-[35%]">
-                        <div className="w-80 flex flex-col gap-6">
+
+            <section className="rounded-xl bg-terciaria lg:mx-32 mt-2 md:mx-20 mx-5">
+                <div className="w-[90%] py-8 m-auto flex lg:flex-row flex-col justify-between">
+                    <div className="w-full lg:w-[35%]">
+                        <div className="w-full flex flex-col gap-6">
+                            
                             <InputEstatico
                                 titulo="Nome Completo"
                                 info={nome}
@@ -125,9 +140,9 @@ export default function Perfil() {
                                 edition={edicao} />
                         </div>
                     </div>
-                    <div className="flex flex-col w-[60%]">
-                        <div className="flex flex-row justify-between">
-                            <div className="w-80 flex flex-col gap-6">
+                    <div className="flex flex-col w-full lg:w-[60%] lg:pt-0 pt-6">
+                        <div className="flex flex-col sm:flex-row justify-between gap-4">
+                            <div className="w-full sm:w-1/2 lg:w-3/5 flex flex-col gap-6">
                                 <InputEstatico
                                     titulo="Email"
                                     info={email}
@@ -138,9 +153,9 @@ export default function Perfil() {
 
                                 <InputEstatico titulo="CPF" info={usuarioLogado.cpf} edition={false} />
                             </div>
-                            <div className="w-56 flex flex-col gap-6">
+                            <div className="w-full sm:w-56 flex flex-col gap-6 sm:pt-0 pt-6">
                                 <div className="flex flex-row justify-between">
-                                    <div className="w-14">
+                                    <div className="w-14 lg:w-1/4">
                                         <InputMaskEstatico
                                             titulo='DDD'
                                             info={ddd}
@@ -150,7 +165,7 @@ export default function Perfil() {
                                             onMasks={(e) => setDdd(e.target.value)}
                                             message={'O ddd precisa ser válido'} />
                                     </div>
-                                    <div className="w-40">
+                                    <div className="w-3/4 lg:w-[70%]">
                                         <InputMaskEstatico
                                             titulo="Celular"
                                             info={numero}
@@ -184,8 +199,9 @@ export default function Perfil() {
                     </div>
                 </div>
             </section>
-            <div className="mt-6 lg:mx-32 md:mx-20 mx-5 flex justify-end">
-                <div className="w-[20%]">
+
+            <div className="md:mt-6 mt-2 lg:mx-32 md:mx-20 mx-5 flex justify-end">
+                <div className="w-full md:w-[20%]">
                     <BotaoGrande
                         title={`${edicao ? 'Salvar Alteração' : 'Editar'}`}
                         background="bg-secundaria"
@@ -193,11 +209,13 @@ export default function Perfil() {
                         onClick={() => setEdicao(edicao ? verificarEdicao() : true)} />
                 </div>
             </div>
+
             <section className="">
                 <TituloLinha voltar={false} titulo="Endereços" />
             </section>
+
             <section className="grid place-content-center">
-                <div className="grid gap-8 sm:gap-20 mb-8 lg:grid-cols-2 xl:grid-cols-3">
+                <div className="grid gap-8 sm:gap-20 mb-2 sm:mb-8 lg:grid-cols-2 xl:grid-cols-3">
                     {
                         displayedAddresses.map((endereco, i) => (
                             <div key={i}>
@@ -214,20 +232,23 @@ export default function Perfil() {
                     }
                 </div>
             </section>
-            <div className="flex sm:flex-row flex-col w-[90%] gap-8 p-0 justify-center sm:pl-20">
-                <div className="md:w-44 w-full" onClick={() => setOpenEndereco(true)}>
+
+            <div className="flex flex-row w-[90%] gap-8 p-0 sm:pl-20 lg:self-start self-center">
+                <div className="md:w-44 w-1/2" onClick={() => setOpenEndereco(true)}>
                     <BotaoGrande title="+ Endereço" background='bg-primaria' type={'button'} />
                 </div>
-                <div className="">
+                <div className="w-1/2">
                     <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria  p-1 rounded-lg md:w-44 w-full h-8 hover:bg-[#9EBF40] justify-around' onClick={toggleShowAllAddresses}>
                         {showAllAddresses ? "Mostrar menos" : "Mostrar todos "}
                         {showAllAddresses ? <FaAngleUp className="mt-1" /> : <FaAngleDown className="mt-1" />}
                     </button>
                 </div>
             </div>
-            <section className="mt-20">
+
+            <section className="mt-12">
                 <TituloLinha voltar={false} titulo="Pedido em andamento" />
             </section>
+
             <section className="">
                 <div className="grid gap-10 mb-8 lg:grid-cols-2 xl:grid-cols-3 w-[90%] m-auto">
                     {
@@ -238,16 +259,20 @@ export default function Perfil() {
                         ))}
                 </div>
             </section>
+
             <section className="">
-                <TituloLinha voltar={false} titulo="Ultimas compras" />
+                <TituloLinha voltar={false} titulo="Últimas compras" />
             </section>
+
             <section className="">
                 <CarrosselProduto slides={carrosselProdutos} />
             </section>
+
             <section className="">
                 <TituloLinha voltar={false} titulo="Meus pets" />
             </section>
-            <section className="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 gap-12 justify-items-center w-[90%] m-auto">
+
+            <section className="grid lg:grid-cols-3 p-2 xl:grid-cols-4 md:grid-cols-2 gap-4 sm:gap-12 justify-items-center w-[90%] m-auto">
                 {
                     usuarioLogado.pets.map((pets, i) => (
                         <div key={i}>
@@ -255,7 +280,8 @@ export default function Perfil() {
                         </div>
                     ))}
             </section>
-            <section className="font-poppins sm:ml-18 mb-24 w-[90%] m-auto">
+            
+            <section className="font-poppins sm:ml-18 mb-6 w-[90%] m-auto">
                 <p className="md:text-xl text-lg font-medium m-auto">Pet novo ?</p>
                 <p className="md:text-sm text-xs my-3 m-auto">Cadastre aqui pra ele não perder nenhuma oportunidade!</p>
                 <div className="sm:w-[174px]" onClick={() => setOpenPet(true)}>
@@ -280,14 +306,24 @@ export default function Perfil() {
                     </div>
                 </div>
             )}
+
             <div className="">
                 <TituloLinha voltar={false} titulo="Histórico de agendamentos" />
             </div>
-            <div className="md:p-8 p-4 grid lg:grid-cols-3 md:grid-cols-2 justify-center items-center mb-12 gap-8 lg:w-[90%] md:w-full lg:ml-16">
-                <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
-                <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
-                <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
-                <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
+            <div className="flex flex-col">
+                <div className="md:p-8 p-4 grid lg:grid-cols-3 md:grid-cols-2 justify-center items-center sm:gap-8 gap-4 lg:w-[90%] md:w-full lg:ml-16">
+                    {
+                        historicoAgendamentos.map((item, i) => (
+                            <div key={i}>{item}</div>
+                        ))
+                    }
+                </div>
+                <div className="w-full sm:w-[90%] self-center flex md:px-8 pb-12 px-4">
+                    <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-44 w-full h-8 hover:bg-[#9EBF40] max-sm:gap-2 justify-center sm:justify-around items-center' onClick={toggleShowAllSchedulles}>
+                        {showAllSchedulles ? "Mostrar menos" : "Mostrar todos "}
+                        {showAllSchedulles ? <FaAngleUp className="mt-1" /> : <FaAngleDown className="mt-1" />}
+                    </button>
+                </div>
             </div>
         </main>
     );
