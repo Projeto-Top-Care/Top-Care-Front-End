@@ -19,13 +19,13 @@ import Topico from './Topico'
 
 export default function Carrinho() {
 
-  const {userID} = useUserID()
+  const { userID } = useUserID()
   const [carrinho, setCarrinho] = useState<QntProduto[]>([])
   const { getCarrinho } = useCarrinho()
 
-  useEffect(()=>{
+  useEffect(() => {
     setCarrinho(getCarrinho())
-  },[])
+  }, [])
 
   const idUser = userID || ''
   const usuarioLogado: Usuario | undefined = buscarUsuario(parseInt(idUser!))
@@ -74,8 +74,8 @@ export default function Carrinho() {
     if (sim) {
       localStorage.setItem('carrinho', JSON.stringify([]))
       location.reload()
-  }
-}, [sim])
+    }
+  }, [sim])
 
   const somaTotal = () => {
     if (typeof produtos != undefined) {
@@ -119,7 +119,7 @@ export default function Carrinho() {
       <section className=' w-[90%] m-auto flex md:flex-row flex-col md:gap-0 gap-10 justify-between mt-14 mb-24 md:h-[35rem]'>
         <section className='border border-cinza rounded-lg md:w-[65%] w-full md:px-6 px-3 py-4 overflow-auto scroll'>
           <h1 className='font-poppins md:text-xl text-lg font-medium'>Produtos</h1>
-          <p className='font-poppins underline md:text-sm text-xs mt-1 cursor-pointer' onClick={()=>setOpen(true)}>Limpar sacola</p>
+          <p className='font-poppins underline md:text-sm text-xs mt-1 cursor-pointer' onClick={() => setOpen(true)}>Limpar sacola</p>
           <div className='flex mt-5 flex-col gap-10'>
             {
               produtos!.map((produto) => (
@@ -183,13 +183,13 @@ export default function Carrinho() {
         </section>
       </section>
       {open && (
-                <div className="w-full">
-                    <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpen(false)}></div>
-                    <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 lg:w-[25%] w-[60%]`}>
-                        <DoisBotoes texto="Você deseja limpar a sacola?" openParms={setOpen} sim={setSim} />
-                    </div>
-                </div>
-            )}
+        <div className="w-full">
+          <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpen(false)}></div>
+          <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 lg:w-[25%] w-[60%]`}>
+            <DoisBotoes texto="Você deseja limpar a sacola?" openParms={setOpen} sim={setSim} />
+          </div>
+        </div>
+      )}
     </main>
   )
 }
