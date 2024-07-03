@@ -23,10 +23,10 @@ export default function Pedidos() {
 
     return (
         <section>
-            <section className="mt-9  mb-28">
+            <section className="mt-9  mb-14">
                 <TituloLinha titulo={"Pedidos"} voltar={false} />
                 <div className="flex justify-between w-[90%] m-auto">
-                    <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8 mt-4 ">
+                    <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8">
                         <div className="size-[2rem] flex">
                             <button><FaSearch style={{ color: "#322828" }} /></button>
                         </div>
@@ -37,7 +37,7 @@ export default function Pedidos() {
                             className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
                             placeholder="Pesquise nos agendamentos" />
                     </div>
-                    <div className="flex w-36 px-1 border border-cinza-claro rounded-lg h-8 mt-4 ml-[5%] font-poppins">
+                    <div className="flex w-36 px-1 border border-cinza-claro rounded-lg h-8 ml-[5%] font-poppins">
                         <p className="w-full text-xs sm:text-base text-cinza-escuro md:mt-1 mt-1.5">Ordenar por</p>
                         <button className="text-cinza-escuro">
                             <IoIosArrowDown />
