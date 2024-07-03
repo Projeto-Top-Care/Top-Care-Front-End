@@ -5,10 +5,11 @@ import { FaCheck } from "react-icons/fa6";
 interface IChecked {
     check: Dispatch<SetStateAction<boolean>>
     onClick?: React.MouseEventHandler<HTMLDivElement>
+    defautCheck?: boolean,
 }
 
-export default function Checkbox({ check, onClick}: IChecked) {
-    const [checked, setChecked] = useState<boolean>(false)
+export default function Checkbox({ check, onClick, defautCheck}: IChecked) {
+    const [checked, setChecked] = useState<boolean>(defautCheck ? defautCheck : false)
 
     useEffect(() => {
         check(checked)

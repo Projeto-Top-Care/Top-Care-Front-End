@@ -27,17 +27,17 @@ export default function Pedido({ searchParams }: PropsUsuario) {
     })
 
     const produtosCompletos: Produto[] = produtos.map((produto) => {
-        return buscarProduto(produto.id)!
+        return buscarProduto(produto.id!)!
     })
     const endereco: Endereco = buscarEndereco(pedidoBuscado.endereço, userId)!
 
     return (
         <main>
             <section className="">
-                <div className="mt-10">
-                    <TituloLinha titulo="Seu pedido"></TituloLinha>
+                <div className="">
+                    <TituloLinha voltar={true} titulo="Seu pedido"></TituloLinha>
                 </div>
-                <section className="lg:p-16 lg:ml-2 md:p-10 p-5 mb-12">
+                <section className="lg:px-16 lg:ml-2 md:px-10 px-5 py-4 mb-12">
                     <section>
                         <div className="md:flex md:justify-between">
                             <div className="">
@@ -71,12 +71,12 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                                         produtosCompletos.map((produto, i) => (
                                             <div className="flex flex-col gap-8" key={produto.id}>
                                                 <div className="flex flex-row justify-between items-center mb-4 mt-12">
-                                                    <p className="font-poppins text-preto font-medium md:text-base text-sm">{produtos[i].quantidade}x </p>
+                                                    <p className="font-poppins text-preto font-medium md:text-base text-sm">{produtos[i].quantidade}x</p>
                                                     <div key={produto.imagemProduto[0]} className="md:w-16 w-12">
                                                         <img src={produto.imagemProduto[0]} alt="" className="" />
                                                     </div>
                                                     <p className="font-poppins text-preto md:text-sm text-xs lg:w-[55%] md:w-[75%] w-[40%]">{produto.nomeProduto}</p>
-                                                    <p className="font-poppins text-preto md:text-base text-sm ">R$ {produto.precoNovo}</p>
+                                                    <p className="font-poppins text-preto md:text-base text-sm ">R${produto.precoNovo.toFixed(2).replace(".", ",")}</p>
                                                 </div>
                                             </div>
                                         ))
@@ -89,24 +89,24 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                                     <div className="">
                                         <p className="font-poppins text-preto font-medium lg:text-lg md:text-base text-sm md:mb-8 mb-4">Pagamento</p>
                                         <div className="flex flex-row justify-between items-center mt-4">
-                                            <p>{pedidoBuscado.pagamento.metodo}</p>
-                                            <p></p>
+                                            <p>{pedidoBuscado.pagamento.metodo == "cartao" ? "Cartão de crédito" : pedidoBuscado.pagamento.metodo}</p>
+                                            <p>************123</p>
                                         </div>
                                         <div className="flex flex-row justify-between items-center mt-8">
-                                            <p >Subtotal</p>
-                                            <p>R$ {pedidoBuscado.pagamento.subtotal}</p>
+                                            <p>Subtotal</p>
+                                            <p>R${pedidoBuscado.pagamento.subtotal.toFixed(2).replace(".", ",")}</p>
                                         </div>
                                         <div className="flex flex-row justify-between items-center mt-2">
                                             <p>Descontos</p>
-                                            <p>R$ {pedidoBuscado.pagamento.descontos}</p>
+                                            <p>R${pedidoBuscado.pagamento.descontos.toFixed(2).replace(".", ",")}</p>
                                         </div>
                                         <div className="flex flex-row justify-between items-center mt-2">
                                             <p>Frete</p>
-                                            <p>R$ {pedidoBuscado.pagamento.frete}</p>
+                                            <p>R${pedidoBuscado.pagamento.frete.toFixed(2).replace(".", ",")}</p>
                                         </div>
                                         <div className="flex flex-row justify-between items-center  font-semibold mt-2 md:mb-8 mb-4">
                                             <p>Valor total</p>
-                                            <p>R$ {pedidoBuscado.pagamento.valorTotal}</p>
+                                            <p>R${pedidoBuscado.pagamento.valorTotal.toFixed(2).replace(".", ",")}</p>
                                         </div>
                                     </div>
                                     <div className="">

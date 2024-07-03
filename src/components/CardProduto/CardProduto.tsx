@@ -57,8 +57,8 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
                     <p className='text-xs md:text-sm h-10 font-medium text-preto text-center overflow-hidden line-clamp-2'>{nomeProduto}</p>
                     <img src={imagemProduto[0]} className='w-[60%] my-3' />
                 </div>
-                <h5 className='text-xs font-medium text-cinza-escuro'><span className='line-through'>R${precoAntigoDoProduto} </span><span className='text-[11px]'>{desconto}</span></h5>
-                <h5 className='sm:text-base text-sm font-semibold text-preto'>R${precoNovo}</h5>
+                <h5 className='text-xs font-medium text-cinza-escuro'><span className='line-through'>R${precoAntigoDoProduto.toFixed(2).replace(".", ",")} </span><span className='text-[11px]'>{desconto}</span></h5>
+                <h5 className='sm:text-base text-sm font-semibold text-preto'>R${precoNovo.toFixed(2).replace(".", ",")}</h5>
             </div>
 
             <div className='flex flex-row gap-1 justify-between'>

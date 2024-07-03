@@ -14,7 +14,7 @@ const CardPetPequeno = ({tipoAnimal, fotoPet, nomePet, racaPet, porte, isSelecte
     return (
         <div 
         onClick={onSelect}
-        className={`mt-4 flex bg-branco border border-cinza justify-center items-center lg:gap-5 gap-4 rounded-lg w-full h-36 p-2 cursor-pointer ${
+        className={`flex bg-branco border border-cinza justify-center items-center lg:gap-5 gap-4 rounded-lg w-full h-36 p-2 cursor-pointer ${
             isSelected ? 'scale-105 duration-100' : 'bg-transparent opacity-50'
         }`}
         style={{ borderColor: isSelected ? '#6954C0' : '#BDBDBD' }} >

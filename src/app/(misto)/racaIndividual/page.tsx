@@ -14,7 +14,7 @@ export default function racaIndividual() {
     return (
         <main className="flex flex-col gap-12 w-full pb-20 pt-10">
 
-            <TituloLinha titulo={raca.raca} />
+            <TituloLinha voltar={true} titulo={raca.raca} />
 
             <section className="flex flex-col sm:flex-row w-4/5 self-center items-center">
                 <div className="sm:w-1/2">
@@ -24,7 +24,7 @@ export default function racaIndividual() {
             </section>
 
             <section className="flex flex-col w-full items-center gap-10 lg:gap-20">
-                <TituloLinha titulo="Características" />
+                <TituloLinha voltar={false} titulo="Características" />
                 <div className="flex flex-col sm:flex-row justify-between w-[90%] lg:w-[75%] gap-8 lg:gap-20">
                     <InfoPet cor={"secundaria"} titulo={"Expectativa de vida"} descrição={`${raca.expectativaVida} anos`} />
                     <InfoPet cor={"primaria"} titulo={"Tamanho"} descrição={`${raca.tamanho} cm`} />
@@ -48,7 +48,7 @@ export default function racaIndividual() {
             </section>
 
             <section className="flex flex-col gap-8">
-                <TituloLinha titulo="Relatos de donos" />
+                <TituloLinha voltar={false} titulo="Relatos de donos" />
                 <div className="flex flex-col w-full items-center gap-8">
                     <h2 className="w-[90%] text-preto text-lg text-center sm:text-2xl font-averia font-bold self-center">Também tem um pet? Deixe seu relato aqui!</h2>
                     <EscreverAvaliacao nomeUsuario={"Karol"} fotoUsuario={"./assets/doguinho.png"} />

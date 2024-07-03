@@ -17,8 +17,8 @@ const ServicosAgendamento = ({ servico, preco, isSelected, onSelect }: IServicos
             style={{ borderColor: isSelected ? '#6954C0' : '#BDBDBD' }}
         >
             <div className="flex flex-col justify-center items-center ">
-                <p className="text-lg font-medium text-center">{servico}</p>
-                <p className="text-lg">R$ {preco}</p>
+                <p className="text-sm md:text-lg font-medium text-center">{servico}</p>
+                <p className="text-sm md:text-lg">R$ {preco}</p>
             </div>
         </div>
     );

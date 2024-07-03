@@ -16,17 +16,15 @@ interface Produtos {
 export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Produtos) {
     const {items} = useCarrinho()
     const [quantidade, setQuantidade] = useState<number>(1)
-    const [checked, setChecked] = useState<boolean>(false)
+    const [checked, setChecked] = useState<boolean>(true)
     const [open, setOpen] = useState<boolean>(false)
-    const [sim, setSim] = useState<boolean | number>(0)
+    const [sim, setSim] = useState<boolean>(false)
 
     const abrirPopUp = () => {
         setOpen(true)
     }
 
     const removeItem = () => {
-        if (sim == 0) return
-
         if (sim) {
             const carrinho = items
             const carrinhoAtualizado = carrinho.filter((item) => {
@@ -80,7 +78,7 @@ export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Prod
                 </div>
                 <div className='flex flex-col items-center w-24'>
                     <p className='font-poppins md:!flex hidden'>Preço</p>
-                    <p className='font-poppins mt-2 md:text-base text-sm'>{preco}</p>
+                    <p className='font-poppins mt-2 md:text-base text-sm'>R${preco.toFixed(2).replace(".", ",")}</p>
                 </div>
             </div>
 

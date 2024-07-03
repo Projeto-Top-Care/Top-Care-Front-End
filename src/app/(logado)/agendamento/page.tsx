@@ -9,15 +9,20 @@ import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CadastroPet from "@/components/Pop-up/CadastroPet/CadastroPet";
 import Erro from "@/components/Pop-up/Erro/Erro";
 import { useError } from "@/context/ErrorContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
 import { Pet } from "@/types/usuarios";
+import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
 
 export default function agendamento() {
 
     const { push } = useRouter();
     const [estado, setEstado] = useState(0)
     const [openPet, setOpenPet] = useState(false);
+
+    const [openConfirmacao, setOpenConfirmacao] = useState<boolean>(false)
+    const [confirmado, setConfirmado] = useState<boolean>(false)
+
     const {addError} = useError()!;
 
     const [pet, setPet] = useState<Pet | null>(null);
@@ -30,7 +35,7 @@ export default function agendamento() {
 
     const proximoPasso = () => {
         if(estado <= 0) {
-            setEstado(estado + 1)
+            pet == null ? addError("Selecione o pet para o agendamento") : setEstado(estado + 1)
         } else if(estado == 1) {
             servico == "" ? addError("Selecione o serviço para agendamento!") : setEstado(estado + 1)
         } else if(estado == 2) {
@@ -49,11 +54,21 @@ export default function agendamento() {
     }
 
     const concluirCompra = () => {
-        metodoPagamento == "cartao" ? push('./pagamentoCartao') : 
-        metodoPagamento == "boleto" ? push('./pagamentoBoleto') :
-        metodoPagamento == "pix" ? push('./pagamentoPix') : addError("Selecione o método de pagamento!")
-        
+        if(metodoPagamento) {
+            setOpenConfirmacao(true)
+            if(confirmado) {
+                metodoPagamento == "cartao" ? push('./pagamentoCartao') : 
+                metodoPagamento == "boleto" ? push('./pagamentoBoleto') :
+                metodoPagamento == "pix" ? push('./pagamentoPix') : console.log("Chegou aqui");
+            }
+        } else if(estado >= 4) {
+            addError("Selecione o método de pagamento!")
+        }
     }
+
+    useEffect(() => {
+        concluirCompra()
+    }, [confirmado])
 
     return (
         <main className="w-full flex flex-col items-center py-12">
@@ -92,10 +107,19 @@ export default function agendamento() {
                                 </div>
                                 :
                                 <div className="w-[80%] flex">
-                                    <Resumo local={local} servico={servico} data={data} hora={hora} profissional={profissional} setMetodoPagamento={setMetodoPagamento} />
+                                    <Resumo pet={pet!} local={local} servico={servico} data={data} hora={hora} profissional={profissional} setMetodoPagamento={setMetodoPagamento} />
                                 </div>
                 )}
             </div>
+
+            {openConfirmacao && (
+                <div className="w-full">
+                    <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpenConfirmacao(false)}></div>
+                    <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 lg:w-[25%] w-[60%]`}>
+                        <DoisBotoes texto="Confirmar agendamento?" openParms={setOpenConfirmacao} sim={setConfirmado} />
+                    </div>
+                </div>
+            )}
 
             <div className={`flex w-[90%] gap-2 sm:flex-row ${estado <= 0 ? `flex-col` : `flex-col-reverse`} justify-between items-center sm:items-end`}>
                 <div className="w-full flex sm:items-start items-center flex-col gap-4">

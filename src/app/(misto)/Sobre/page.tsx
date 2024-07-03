@@ -22,7 +22,7 @@ export default function sobreNos() {
             </section>
 
             <section>
-                <TituloLinha titulo="Sobre a História da Nossa Empresa " />
+                <TituloLinha voltar={false} titulo="Sobre a História da Nossa Empresa " />
                 <div className="flex flex-col items-center lg:flex-row lg:items-start lg:w-[90%]">
                     <div className="md:w-[100%] w-[95%] lg:w-[90%]">
                         <div className="flex flex-col justify-center w-[98%] text-sm md:w-[85%] md:ml-14 md:px-6 md:text-base lg:w-[90%] lg:block">
@@ -50,7 +50,7 @@ export default function sobreNos() {
             </section>
             
             <section className="pt-6 pb-24">
-                <TituloLinha titulo="Nossa missão, visão e valores" />
+                <TituloLinha voltar={false} titulo="Nossa missão, visão e valores" />
                 <div className="flex flex-col-reverse items-center lg:flex-row lg:items-start">
                     <div className="w-[85%] mt-4 flex justify-center items-center md:mt-8 md:mr-4 md:w-[82%] lg:w-80 lg:mt-2 lg:ml-20">
                         <img className="w-[100%] hidden lg:flex lg:w-fit" src="/assets/gato-filhote.png" alt="cachorro correndo atras da bola" />

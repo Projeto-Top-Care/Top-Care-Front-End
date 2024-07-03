@@ -32,6 +32,28 @@
         "rua": "Avenida Atlântica",
         "numero": 5000,
         "complemento": "casa"
+      },
+      {
+        "id": 3,
+        "nome": "Casa asas",
+        "cep": "87654saa-321",
+        "estado": "RasdadJ",
+        "cidade": "Rioasdasd de Janeiro",
+        "bairro": "Copasdasdacabana",
+        "rua": "Aveniasdasdda Atlântica",
+        "numero": 2200,
+        "complemento": "cssasa"
+      },
+      {
+        "id": 4,
+        "nome": "Casasda Vó",
+        "cep": "87654-ccc321",
+        "estado": "RcccJ",
+        "cidade": "Rio dccce Janeiro",
+        "bairro": "Copacabccana",
+        "rua": "Avenida Atcclântica",
+        "numero": 50040,
+        "complemento": "cdsa"
       }
     ],
     "pets": [

@@ -18,8 +18,8 @@ export default function DuvidasFrequentes() {
     const [categoriaEscolhida, setCategoriaEscolhida] = useState("")
 
     return (
-        <main className="flex flex-col justify-center bg-branco w-full gap-6 lg:gap-12 mt-10 mb-24">
-            <TituloLinha titulo="Dúvidas frequentes" />
+        <main className="flex flex-col justify-center bg-branco w-full gap-6 lg:gap-12 mb-24">
+            <TituloLinha voltar={true} titulo="Dúvidas frequentes" />
 
             <section className="px-8 md:px-24 min-[1025]:px-20 justify-between gap-4 sm:gap-8 lg:gap-0 flex flex-col lg:flex-row w-full">
 

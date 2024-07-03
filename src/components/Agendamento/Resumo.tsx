@@ -1,12 +1,13 @@
 'use client'
 import React, { SetStateAction, useState } from 'react';
 import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
-import { Usuario, Cartao } from "@/types/usuarios";
+import { Usuario, Cartao, Pet } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
 import { useRouter } from "next/navigation";
 import { FaPlus } from "react-icons/fa";
 
 interface IResumo {
+    pet: Pet,
     local: string,
     servico: string,
     data: string,
@@ -15,7 +16,7 @@ interface IResumo {
     setMetodoPagamento: React.Dispatch<SetStateAction<string>>
 }
 
-const Resumo = ({ local, servico, data, hora, profissional, setMetodoPagamento }: IResumo) => {
+const Resumo = ({ pet, local, servico, data, hora, profissional, setMetodoPagamento }: IResumo) => {
 
     const [eCartao, setECartao] = useState(false)
     const [eBoleto, setEBoleto] = useState(false)
@@ -96,7 +97,7 @@ const Resumo = ({ local, servico, data, hora, profissional, setMetodoPagamento }
             <div className='sm:p-8 w-full flex lg:flex-row flex-col justify-between items-start gap-12'>
 
                 <div className='flex flex-col text-preto gap-2 w-full lg:w-1/2'>
-                    <p className='font-bold text-sm sm:text-base'>Escolha o método de pagamento</p>
+                    <p className='font-bold text-sm sm:text-base'>Resumo do agendamento</p>
 
                     <div className='md:p-5 p-4 border rounded-md border-cinza-escuro'>
                         <div className='flex-col text-preto font-poppins gap-6 flex items-center justify-between md:gap-6 md:text-base text-sm'>
@@ -107,7 +108,7 @@ const Resumo = ({ local, servico, data, hora, profissional, setMetodoPagamento }
 
                             <div className='flex flex-row justify-between items-center w-full gap-4 sm:gap-24'>
                                 <p className='font-semibold'>Pet</p>
-                                <p className="text-end">Nina</p>
+                                <p className="text-end">{pet.nome}</p>
                             </div>
 
                             <div className='flex flex-row justify-between items-center w-full gap-4 sm:gap-24'>

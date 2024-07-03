@@ -25,7 +25,7 @@ export default function PagamentoBoleto() {
     return (
         <main>
             <div className="py-6 sm:py-12 flex flex-col gap-4">
-                <TituloLinha titulo="Pagamento" />
+                <TituloLinha voltar={false} titulo="Pagamento" />
 
                 <section className="justify-between items-center flex flex-col-reverse gap-6 lg:flex-row px-4 md:px-8 lg:px-20">
                     <section className="p-4 w-full">
