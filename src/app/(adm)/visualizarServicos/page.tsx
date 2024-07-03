@@ -13,7 +13,7 @@ export default function VisualizarServicos() {
 
   return (
     <main>
-      <section className='mt-4'>
+      <section className=''>
         <TituloLinha titulo='Serviços' />
       </section>
       <section className='w-[90%] m-auto flex flex-row justify-evenly md:justify-between flex-wrap my-10'>

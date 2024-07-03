@@ -48,7 +48,7 @@ const AgendamentoMarcado = ({ fotoPet, nomePet, servico, data, hora, profissiona
                     <div className="flex flex-col justify-end items-end gap-2 text-end">
                         <p className="md:text-base text-sm text-preto">{data} ás {hora}</p>
                         <p className="md:text-sm text-xs text-cinza-escuro">{profissional}</p>
-                        <p className="md:text-sm text-xs text-cinza-escuro">R$ {valor}</p>
+                        <p className="md:text-sm text-xs text-cinza-escuro">R$ {valor.toFixed(2).replace(".", ",")}</p>
                     </div>
                 </div>
                 <div onClick={() => setOpenConfirmacao(!openConfirmacao)} className="md:p-4 p-2 w-full">

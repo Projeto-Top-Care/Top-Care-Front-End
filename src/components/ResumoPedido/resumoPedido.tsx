@@ -14,7 +14,7 @@ export default function ResumoPedido({ produtos, desconto, frete }: IResumoPedid
 
     const setarProdutosResumo = () => {
         const prods: Produto[] = produtos.map((item, i) => {
-            return (buscarProduto(item.id)! as Produto);
+            return (buscarProduto(item.id!)! as Produto);
         })
         return prods
 
@@ -52,7 +52,7 @@ export default function ResumoPedido({ produtos, desconto, frete }: IResumoPedid
                                     <div className="flex flex-row justify-between sm:gap-8 gap-2" key={i}>
                                         <p className="text-xs sm:text-sm">{produtos[i].quantidade}x</p>
                                         <p className="w-full text-start line-clamp-1 text-xs sm:text-sm">{item.nomeProduto}</p>
-                                        <p className="text-xs sm:text-sm">R${(item.precoNovo * produtos[i].quantidade).toFixed(2)}</p>
+                                        <p className="text-xs sm:text-sm">R${(item.precoNovo * produtos[i].quantidade).toFixed(2).replace(".", ",")}</p>
                                     </div>
                                 ))
                             }
@@ -62,23 +62,23 @@ export default function ResumoPedido({ produtos, desconto, frete }: IResumoPedid
                     <div className="flex flex-col border-t-[1px] border-cinza py-4">
                         <div className="flex flex-row justify-between">
                             <p className="font-medium text-sm sm:text-base">Subtotal</p>
-                            <p className="text-xs sm:text-sm">R${(subtotal).toFixed(2)}</p>
+                            <p className="text-xs sm:text-sm">R${(subtotal).toFixed(2).replace(".", ",")}</p>
                         </div>
 
                         <div className="flex flex-row justify-between">
                             <p className="font-medium text-sm sm:text-base">Desconto</p>
-                            <p className="text-xs sm:text-sm">R${(desconto).toFixed(2)}</p>
+                            <p className="text-xs sm:text-sm">R${(desconto).toFixed(2).replace(".", ",")}</p>
                         </div>
 
                         <div className="flex flex-row justify-between">
                             <p className="font-medium text-sm sm:text-base">Frete</p>
-                            <p className="text-xs sm:text-sm">R${(frete).toFixed(2)}</p>
+                            <p className="text-xs sm:text-sm">R${(frete).toFixed(2).replace(".", ",")}</p>
                         </div>
                     </div>
 
                     <div className="flex flex-row justify-between border-t-[1px] border-cinza pt-4">
                         <p className="font-medium text-sm sm:text-base">Valor total</p>
-                        <p className="text-xs sm:text-sm">R${(total).toFixed(2)}</p>
+                        <p className="text-xs sm:text-sm">R${(total).toFixed(2).replace(".", ",")}</p>
                     </div>
                 </div>
             </div>

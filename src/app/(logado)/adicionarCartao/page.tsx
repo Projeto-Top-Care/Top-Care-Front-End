@@ -8,7 +8,7 @@ export default function adicionarCartao() {
     
     return (
         <main>
-            <section className="mt-8 flex flex-col items-center">
+            <section className="flex flex-col items-center">
                     <TituloLinha voltar={true} titulo="Adicionar Cartão" />
                 <div className="flex flex-col w-full justify-center items-center md:gap-2 md:mt-4 lg:w-[90%] xl:w-[85%]">
                     <div className="w-[90%] mt-4 flex flex-col items-center md:flex-row md:justify-between">

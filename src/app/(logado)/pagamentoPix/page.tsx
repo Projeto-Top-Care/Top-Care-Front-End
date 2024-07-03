@@ -50,7 +50,7 @@ export default function PagamentoPix() {
                 <TituloLinha voltar={false} titulo="Pagamento" />
 
                 <section className="flex flex-col-reverse gap-2 sm:flex-row sm:px-2 md:px-8 lg:px-20">
-                    <section className="p-4">
+                    <section className="p-4 w-full sm:w-1/2">
                         <ResumoPedido produtos={pedido} desconto={0} frete={0} />
                     </section> 
 

@@ -113,7 +113,7 @@ export default function Carrinho() {
 
   return (
     <main className='text-preto'>
-      <section className='mt-10'>
+      <section className=''>
         <TituloLinha voltar={false} titulo='Minha Sacola' />
       </section>
       <section className=' w-[90%] m-auto flex md:flex-row flex-col md:gap-0 gap-10 justify-between mt-14 mb-24 md:h-[35rem]'>

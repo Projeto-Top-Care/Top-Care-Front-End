@@ -114,7 +114,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             </div>
             <div className='flex flex-col md:flex-row md:gap-1 lg:text-sm text-xs font-poppins font-normal text-preto'>
               <p>Código: {produtoProcurado.codigo} |</p>
-              <p> Ver descrição completa</p>
+              <a href='#' className='hover:underline'>Ver descrição completa</a>
               <p className='max-sm:hidden'>| {produtoProcurado.marca}</p>
             </div>
             <div className='md:mt-1 mt-2 flex flex-row items-center'>

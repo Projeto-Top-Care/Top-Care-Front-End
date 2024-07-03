@@ -4,9 +4,7 @@ import { useUserID } from "@/context/UserIDContext";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CardPetPequeno from "@/components/CardPetPequeno/CardPetPequeno";
 import CartoesSalvos from "@/components/CartoesSalvos/CartoesSalvos";
-import Endereco from "@/components/Endereço/Endereco";
 import InputEstatico from "@/components/InputEstatico/InputEstatico";
-import PedidoAndamentoPerfil from "@/components/PedidoAndamentoPerfil/PedidoAndamentoPerfil";
 import PerfilFoto from "@/components/PerfilFoto/PerfilFoto";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { buscarUsuario } from "@/server/usuario/action";
@@ -15,7 +13,6 @@ import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import { buscarProduto, buscarTodos } from "@/server/produtos/action";
 import CardProduto from "@/components/CardProduto/CardProduto";
 import React, { useEffect, useState } from "react";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
 import { Produto } from "@/types/produto";
 import CadastroPet from "@/components/Pop-up/CadastroPet/CadastroPet";
@@ -23,14 +20,19 @@ import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico"
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 import Carregando from "@/components/Carregando/Carregando";
 import AgendamentoMarcado from "@/components/AgendamentoMarcado/agendamentoMarcado";
-import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
+import HistoricoAgendamentos from "@/components/SecoesPerfil/historicoAgendamento";
+import EnderecosSalvos from "@/components/SecoesPerfil/enderecosSalvos";
+import PedidosEmAndamento from "@/components/SecoesPerfil/pedidosEmAndamento";
+import MeusPets from "@/components/SecoesPerfil/meusPets";
 
 export default function Perfil() {
     const { getUserID } = useUserID()
 
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario | null>(null);
+
     const [showAllAddresses, setShowAllAddresses] = useState(false);
     const [showAllSchedulles, setShowAllSchedulles] = useState(false);
+
     const [openEndereco, setOpenEndereco] = useState(false);
     const [openPet, setOpenPet] = useState(false);
     const [edicao, setEdicao] = useState(false);
@@ -40,6 +42,7 @@ export default function Perfil() {
     const [ddd, setDdd] = useState<string>('')
     const [numero, setNumero] = useState<string>('')
     const [dataNascimento, setDataNascimento] = useState<string>('')
+    const [selecao, setSelecao] = useState<number>(0)
 
     const agendamentos = [
         <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
@@ -47,7 +50,6 @@ export default function Perfil() {
         <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
         <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
     ]
-    const historicoAgendamentos = showAllSchedulles ? agendamentos : agendamentos.slice(0, 3);
 
     useEffect(() => {
         const fetchedID = getUserID();
@@ -69,17 +71,11 @@ export default function Perfil() {
         return <Carregando />
     }
 
+    const historicoAgendamentos = showAllSchedulles ? agendamentos : agendamentos.slice(0, 3);
+    const displayedAddresses = showAllAddresses ? usuarioLogado!.enderecos : usuarioLogado!.enderecos.slice(0, 3);
+
     const produtos: QntProduto = buscarProduto(usuarioLogado.id)!
     const produto: Produto = buscarProduto(produtos.id!)!
-
-    const toggleShowAllAddresses = () => {
-        setShowAllAddresses(!showAllAddresses);
-    };
-    const toggleShowAllSchedulles = () => {
-        setShowAllSchedulles(!showAllSchedulles);
-    };
-
-    const displayedAddresses = showAllAddresses ? usuarioLogado.enderecos : usuarioLogado.enderecos.slice(0, 3);
 
     const verificarEdicao = () => {
         if (nome === "" || email === "" || numero.length !== 10 || ddd.length !== 2 || dataNascimento.length !== 10) {
@@ -97,10 +93,20 @@ export default function Perfil() {
             precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />
     ))
 
+
+
+    const componetesSelecao = [
+        <HistoricoAgendamentos historicoAgendamentos={historicoAgendamentos} setShowAllSchedulles={setShowAllSchedulles} />,
+        <PedidosEmAndamento usuario={usuarioLogado} />,
+        <MeusPets usuario={usuarioLogado} setOpenPet={setOpenPet} />,
+        <CarrosselProduto slides={carrosselProdutos} />,
+        <EnderecosSalvos enderecos={displayedAddresses} setOpenEndereco={setOpenEndereco} setShowAllAdresses={setShowAllAddresses} />
+    ]
+
     return (
         <main className="bg-branco text-preto flex flex-col gap-6">
             <Confirmacao />
-            <section className="mt-2">
+            <section className="">
                 <TituloLinha voltar={false} titulo="Minha conta" />
                 <div className="flex justify-end w-[90%]">
                     <div className="">
@@ -118,7 +124,7 @@ export default function Perfil() {
                 <div className="w-[90%] py-8 m-auto flex lg:flex-row flex-col justify-between">
                     <div className="w-full lg:w-[35%]">
                         <div className="w-full flex flex-col gap-6">
-                            
+
                             <InputEstatico
                                 titulo="Nome Completo"
                                 info={nome}
@@ -199,7 +205,6 @@ export default function Perfil() {
                     </div>
                 </div>
             </section>
-
             <div className="md:mt-6 mt-2 lg:mx-32 md:mx-20 mx-5 flex justify-end">
                 <div className="w-full md:w-[20%]">
                     <BotaoGrande
@@ -210,82 +215,18 @@ export default function Perfil() {
                 </div>
             </div>
 
-            <section className="">
-                <TituloLinha voltar={false} titulo="Endereços" />
+            <section className="w-[90%] flex flex-col sm:flex-row justify-center text-md font-poppins gap-4 self-center">
+                <button onClick={() => setSelecao(0)} className={`${selecao == 0 ? `border-[#6954C0] text-[#6954C0] scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-[#6954C0] border-[1px] hover:text-[#6954C0] p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Agendamentos</button>
+                <button onClick={() => setSelecao(1)} className={`${selecao == 1 ? `border-[#6954C0] text-[#6954C0] scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-[#6954C0] border-[1px] hover:text-[#6954C0] p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Meus pedidos</button>
+                <button onClick={() => setSelecao(2)} className={`${selecao == 2 ? `border-[#6954C0] text-[#6954C0] scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-[#6954C0] border-[1px] hover:text-[#6954C0] p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Meus pets</button>
+                <button onClick={() => setSelecao(3)} className={`${selecao == 3 ? `border-[#6954C0] text-[#6954C0] scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-[#6954C0] border-[1px] hover:text-[#6954C0] p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Últimas compras</button>
+                <button onClick={() => setSelecao(4)} className={`${selecao == 4 ? `border-[#6954C0] text-[#6954C0] scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-[#6954C0] border-[1px] hover:text-[#6954C0] p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Endereços</button>
             </section>
 
-            <section className="grid place-content-center">
-                <div className="grid gap-8 sm:gap-20 mb-2 sm:mb-8 lg:grid-cols-2 xl:grid-cols-3">
-                    {
-                        displayedAddresses.map((endereco, i) => (
-                            <div key={i}>
-                                <Endereco
-                                    titulo={endereco.nome}
-                                    cep={endereco.cep}
-                                    estado={endereco.estado}
-                                    bairro={endereco.bairro}
-                                    rua={endereco.rua}
-                                    numero={endereco.numero}
-                                    complemento={endereco.complemento} />
-                            </div>
-                        ))
-                    }
-                </div>
-            </section>
-
-            <div className="flex flex-row w-[90%] gap-8 p-0 sm:pl-20 lg:self-start self-center">
-                <div className="md:w-44 w-1/2" onClick={() => setOpenEndereco(true)}>
-                    <BotaoGrande title="+ Endereço" background='bg-primaria' type={'button'} />
-                </div>
-                <div className="w-1/2">
-                    <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria  p-1 rounded-lg md:w-44 w-full h-8 hover:bg-[#9EBF40] justify-around' onClick={toggleShowAllAddresses}>
-                        {showAllAddresses ? "Mostrar menos" : "Mostrar todos "}
-                        {showAllAddresses ? <FaAngleUp className="mt-1" /> : <FaAngleDown className="mt-1" />}
-                    </button>
-                </div>
-            </div>
-
-            <section className="mt-12">
-                <TituloLinha voltar={false} titulo="Pedido em andamento" />
-            </section>
-
-            <section className="">
-                <div className="grid gap-10 mb-8 lg:grid-cols-2 xl:grid-cols-3 w-[90%] m-auto">
-                    {
-                        usuarioLogado.pedidos.map((pedido, i) => (
-                            <div key={i}>
-                                <PedidoAndamentoPerfil {...pedido} />
-                            </div>
-                        ))}
-                </div>
-            </section>
-
-            <section className="">
-                <TituloLinha voltar={false} titulo="Últimas compras" />
-            </section>
-
-            <section className="">
-                <CarrosselProduto slides={carrosselProdutos} />
-            </section>
-
-            <section className="">
-                <TituloLinha voltar={false} titulo="Meus pets" />
-            </section>
-
-            <section className="grid lg:grid-cols-3 p-2 xl:grid-cols-4 md:grid-cols-2 gap-4 sm:gap-12 justify-items-center w-[90%] m-auto">
-                {
-                    usuarioLogado.pets.map((pets, i) => (
-                        <div key={i}>
-                            <CardPetPequeno fotoPet={"./assets/cachorro-perfil.png"} nomePet={pets.nome} racaPet={pets.raca} tipoAnimal={pets.especie} porte={pets.porte} isSelected={true} />
-                        </div>
-                    ))}
-            </section>
-            
-            <section className="font-poppins sm:ml-18 mb-6 w-[90%] m-auto">
-                <p className="md:text-xl text-lg font-medium m-auto">Pet novo ?</p>
-                <p className="md:text-sm text-xs my-3 m-auto">Cadastre aqui pra ele não perder nenhuma oportunidade!</p>
-                <div className="sm:w-[174px]" onClick={() => setOpenPet(true)}>
-                    <BotaoGrande title="Cadastrar Pet" background={"bg-primaria"} type={"button"} />
+            <section className="flex flex-col pb-20">
+                <TituloLinha voltar={false} titulo={selecao == 0 ? "Agendamentos" : selecao == 1 ? "Meus pedidos" : selecao == 2 ? "Meus pets" : selecao == 3 ? "Últimas compras" : "Endereços"} />
+                <div>
+                    {componetesSelecao[selecao]}
                 </div>
             </section>
 
@@ -306,25 +247,6 @@ export default function Perfil() {
                     </div>
                 </div>
             )}
-
-            <div className="">
-                <TituloLinha voltar={false} titulo="Histórico de agendamentos" />
-            </div>
-            <div className="flex flex-col">
-                <div className="md:p-8 p-4 grid lg:grid-cols-3 md:grid-cols-2 justify-center items-center sm:gap-8 gap-4 lg:w-[90%] md:w-full lg:ml-16">
-                    {
-                        historicoAgendamentos.map((item, i) => (
-                            <div key={i}>{item}</div>
-                        ))
-                    }
-                </div>
-                <div className="w-full sm:w-[90%] self-center flex md:px-8 pb-12 px-4">
-                    <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-44 w-full h-8 hover:bg-[#9EBF40] max-sm:gap-2 justify-center sm:justify-around items-center' onClick={toggleShowAllSchedulles}>
-                        {showAllSchedulles ? "Mostrar menos" : "Mostrar todos "}
-                        {showAllSchedulles ? <FaAngleUp className="mt-1" /> : <FaAngleDown className="mt-1" />}
-                    </button>
-                </div>
-            </div>
         </main>
     );
 }
