@@ -8,7 +8,7 @@ export default function VisualizarPedido() {
   return (
     <main className=''>
       <section className='mt-4'>
-        <TituloLinha voltar={false} titulo={`Pedido #${idPedido}`} />
+        <TituloLinha voltar={true} titulo={`Pedido #${idPedido}`} />
       </section>
       <section className='lg:p-16 md:p-10 p-4 w-full'>
         <section className='flex lg:flex-row flex-col-reverse md:gap-12 gap-8'>
