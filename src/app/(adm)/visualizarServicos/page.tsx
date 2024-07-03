@@ -13,14 +13,14 @@ export default function VisualizarServicos() {
 
   return (
     <main>
-      <section className=''>
-        <TituloLinha titulo='Serviços' />
+      <section className='mt-4'>
+        <TituloLinha titulo='Serviços' voltar={false}/>
       </section>
       <section className='w-[90%] m-auto flex flex-row justify-evenly md:justify-between flex-wrap my-10'>
         {
           servicos.map((servico)=>(
             <div className='w-32 md:w-56 lg:w-64' key={servico.nome}>
-              <Card servico={servico.nome} src={servico.imagem} />
+              <Card servico={servico} src={servico.imagem} />
             </div>
           ))
         }
