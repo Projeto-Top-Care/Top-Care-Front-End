@@ -9,8 +9,6 @@ import InputText from '../InputText/InputText'
 import CadastroVariante from '../Pop-up/CadastroVariante/CadastroVariante'
 import TextArea from '../TextArea/TextArea'
 
-const animais = ["Cachorro", "Gato", "Peixe", "Coelho", "Passáro", "Tartaruga"];
-
 interface TabelaServicosProps{
     servico?: Servico
 }
@@ -18,7 +16,7 @@ interface TabelaServicosProps{
 export default function TabelaServicos({servico}: TabelaServicosProps) {
     const [check, setCheck] = useState(false)
     const [openVariante, setOpenVariante] = useState<boolean>(false)
-    const [variantes, setVariantes] = useState<VariantesProps[]>([])
+    const [variantes, setVariantes] = useState<VariantesProps[]>(servico ? servico.variantes : [])
 
 
     return (
@@ -64,10 +62,10 @@ export default function TabelaServicos({servico}: TabelaServicosProps) {
                         <div className='ml-8 mb-4'>
                             <h1 className='font-poppins text-sm text-cinza-escuro mb-2'>Pet(s)*</h1>
                             {
-                                animais.map((animal) => (
-                                    <div key={animal} className={'flex flex-row mb-1'}>
-                                        <Checkbox check={setCheck} />
-                                        <label htmlFor="" className='font-poppins'>{animal}</label>
+                                servico?.pets.map((animal) => (
+                                    <div key={animal.name} className={'flex flex-row mb-1'}>
+                                        <Checkbox check={setCheck} defautCheck={animal.check} />
+                                        <label htmlFor="" className='font-poppins'>{animal.name}</label>
                                     </div>
                                 ))
                             }
@@ -86,7 +84,7 @@ export default function TabelaServicos({servico}: TabelaServicosProps) {
                         ))
                     }
                 </div>
-                <div className='w-[40%] mt-4'>
+                <div className='w-[40%] mt-4 mb-4'>
                     <BotaoGrande title='Adicionar variação' type='button' background='bg-secundaria' onClick={() => setOpenVariante(true)} />
                 </div>
             </section>

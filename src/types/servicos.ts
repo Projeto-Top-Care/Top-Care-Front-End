@@ -5,6 +5,7 @@ export interface Servico{
     precoInicial: number,
     imagem: string,
     descricao: string,
+    pets: PetsProps[]
     variantes: VariantesProps[]
 }
 
@@ -13,4 +14,9 @@ export interface VariantesProps{
     nome?: string
     tipo: string,
     preco: number
+}
+
+export interface PetsProps{
+    check: boolean
+    name: string
 }
