@@ -27,13 +27,8 @@ export default function CadastroProduto() {
     return(
         <main className="w-[90%] mx-auto">
             <Confirmacao/>
-            <section className="mt-16">
-                <div className='w-[10%]'>
-                    <BotaoGrande title='Voltar' background='bg-secundaria' type='button' onClick={() => router.back()} />
-                </div>
-            </section>
-            <section className="flex items-center justify-center">  
-                <p className="font-averia font-semibold text-2xl">Cadastre um produto novo</p>
+            <section className="flex items-center justify-center mt-10">  
+                <p className="font-averia font-semibold text-xl md:text-2xl">Cadastre um produto novo</p>
             </section>
             <section>
                 <TabelaProdutos/>
@@ -42,10 +37,10 @@ export default function CadastroProduto() {
                 <EspecificacoesProduto/>
             </section>
             <section className='flex flex-row justify-between items-center my-10'>
-                <div className='w-48'>
+                <div className='w-24 md:w-48'>
                     <BotaoGrande background='bg-error' title='Cancelar' type='button' onClick={()=>router.back()} />
                 </div>
-                <div className='w-60'>
+                <div className='md:w-60'>
                     <BotaoGrande background='bg-secundaria' title='Cadastrar Produto' type='button' />
                 </div>
             </section>

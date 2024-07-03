@@ -18,7 +18,7 @@ export interface ProdutoCompleto{
     precoNovo: number
     marca: string
     precoAssinantes: number
-    tamanho: string[]
+    variantes: VarianteProps[]
     disponivel: boolean,
     codigo: number
     estoque: number
@@ -37,4 +37,12 @@ export interface AvaliacaoType{
     id: number
     nota: number
     descricao: string
+}
+
+export interface VarianteProps{
+    id?: number
+    estoque: number
+    preco: number
+    tipo: string
+    
 }
