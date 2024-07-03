@@ -1,24 +1,14 @@
 'use client'
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import AgendamentosHoje from "@/components/AgendamentosHoje/agendamentosHoje";
-import CalendarioAgendamentoDia from "@/components/CalendarioAgendamentoDia/calendarioAgendamentoDia";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
-import { Agendamentos } from '@/types/usuarios';
-import usuarios from '@/banco/usuarios.json';
-import FiltroGrande from "@/components/Filtro/FiltroGrande";
-import { setLabel } from "@/server/filtros/action";
+import { Agendamentos } from '@/types/agendamentos';
 import { IoIosArrowDown } from "react-icons/io";
+import agendamentos from "@/banco/agendamentos.json"
 
 
 export default function Agendamentos() {
-    const [agendamentos, setAgendamentos] = useState<Agendamentos[]>([]);
     const [pesquisa, setPesquisa] = useState('');
-
-    useEffect(() => {
-        const agendamentosData = usuarios.flatMap(usuario => usuario.agendamentos);
-        setAgendamentos(agendamentosData);
-    }, []);
 
     const agendamentosPesquisa = agendamentos.filter(agendamento =>
         agendamento.servico.toLowerCase().includes(pesquisa) ||
@@ -37,7 +27,7 @@ export default function Agendamentos() {
             <section className="mt-9 mb-14">
                 <TituloLinha titulo={"Agendamentos"} />
                 <div className="flex justify-between w-[90%] m-auto">
-                    <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8 mt-4 ">
+                    <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8 mt-6 ">
                         <div className="size-[2rem] flex">
                             <button><FaSearch style={{ color: "#322828" }} /></button>
                         </div>
@@ -48,7 +38,7 @@ export default function Agendamentos() {
                             className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
                             placeholder="Pesquise nos agendamentos" />
                     </div>
-                    <div className="flex w-36 px-1 border border-cinza-claro rounded-lg h-8 mt-4 ml-[5%] font-poppins">
+                    <div className="flex sm:w-36 w-[35%] px-1 border border-cinza-claro rounded-lg h-8 mt-6 ml-[5%] font-poppins">
                         <p className="w-full text-xs sm:text-base text-cinza-escuro md:mt-1 mt-1.5">Ordenar por</p>
                         <button className="text-cinza-escuro">
                             <IoIosArrowDown />
@@ -63,8 +53,8 @@ export default function Agendamentos() {
                             <th>Serviço</th>
                             <th className="hidden md:table-cell">Pet</th>
                             <th>Local</th>
-                            <th className="hidden md:table-cell">Data</th>
                             <th>Horario</th>
+                            <th className="hidden sm:table-cell">Data</th>
                             <th>Profissional</th>
                             <th className="hidden sm:table-cell">Valor</th>
                             <th className="hidden sm:table-cell">Status</th>
@@ -77,8 +67,8 @@ export default function Agendamentos() {
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.servico}</td>
                                 <td className="hidden md:table-cell border border-x-cinza py-3.5 px-1.5">{agendamento.nomePet}</td>
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.local}</td>
-                                <td className="hidden md:table-cell border border-x-cinza py-3.5 px-1.5">{agendamento.data}</td>
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.horario}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza py-3.5 px-1.5">{agendamento.data}</td>
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.profissional}</td>
                                 <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">R${agendamento.valor}</td>
                                 <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.status}</td>
