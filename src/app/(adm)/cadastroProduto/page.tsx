@@ -6,6 +6,8 @@ import { buscarUsuario } from "@/server/usuario/action";
 import { Usuario } from "@/types/usuarios";
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande"
+import TabelaProdutos from "@/components/TabelaProdutos/TabelaProduto";
+import EspecificacoesProduto from "@/components/EspecificaçoesProduto/Especificacoes";
 
 export default function CadastroProduto() {
     const { getUserID } = useUserID()
@@ -23,7 +25,7 @@ export default function CadastroProduto() {
     }, []);
 
     return(
-        <main>
+        <main className="w-[90%] mx-auto">
             <Confirmacao/>
             <section className="mt-16">
                 <div className='w-[10%]'>
@@ -34,7 +36,10 @@ export default function CadastroProduto() {
                 <p className="font-averia font-semibold text-2xl">Cadastre um produto novo</p>
             </section>
             <section>
-                
+                <TabelaProdutos/>
+            </section>
+            <section>
+                <EspecificacoesProduto/>
             </section>
             <section className='flex flex-row justify-between items-center my-10'>
                 <div className='w-48'>
