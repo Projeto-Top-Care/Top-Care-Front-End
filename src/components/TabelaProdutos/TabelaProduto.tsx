@@ -13,7 +13,7 @@ interface TabelaProdutosProps {
 }
 
 const marcas = ["ZeeDog", "Whiskas", "Royal Canin", "Purina", "Pedigree", "Golden", "TetraMin"]
-const variacoes = ["Cachorro", "Gato", "Coelho", "Pássaro", "Hamster", "Peixe", "Tartaruga"]
+const variacoes = ["Nenhuma", "Cor", "Peso", "Tamanho", "Unidade"]
 
 export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
     const [variacao, setVariacao] = useState("");
@@ -28,14 +28,14 @@ export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
                 </div>
                 <form action="">
                     <div className="mt-5" >
-                        <InputText placeholder='Nome do produto*' value={produto?.nomeProduto} />
+                        <InputText placeholder='Nome do produto*' value={produto?.nomeProduto} required />
                     </div>
                     <div className='flex flex-row gap-3 items-center mt-5'>
                         <div className='w-[75%]'>
-                            <InputText placeholder="Código*" value={produto?.codigo} />
+                            <InputText placeholder="Código*" value={produto?.codigo} required />
                         </div>
                         <div className='w-[25%]'>
-                            <BotaoGrande title='Gerar Código' background='bg-primaria' type='submit' />
+                            <BotaoGrande title='Gerar Código' background='bg-primaria' type='button' />
                         </div>
                     </div>
                     <div className='mt-5'>
@@ -43,7 +43,7 @@ export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
                     </div>
                     <div className='flex flex-row mt-5 gap-3'>
                         <div className='w-[49%]'>
-                            <InputText placeholder='Preço*' value={produto?.precoNovo} />
+                            <InputText placeholder='Preço*' value={produto?.precoNovo} required />
                         </div>
                         <div className='w-[49%]'>
                             <InputText placeholder='Desconto' value={produto?.desconto} />
