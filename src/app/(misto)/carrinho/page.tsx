@@ -19,16 +19,24 @@ import Topico from './Topico'
 
 export default function Carrinho() {
 
-  const { userID } = useUserID()
+  const { getUserID } = useUserID()
   const [carrinho, setCarrinho] = useState<QntProduto[]>([])
+  const [usuarioLogado, setUsuarioLogado] = useState<Usuario>()
+
+
   const { getCarrinho } = useCarrinho()
 
   useEffect(() => {
     setCarrinho(getCarrinho())
+    const idUser = getUserID()
+    if(idUser){
+      const userTaked = buscarUsuario(parseInt(idUser))
+      if(userTaked){
+        setUsuarioLogado(userTaked)
+      }
+    }
   }, [])
 
-  const idUser = userID || ''
-  const usuarioLogado: Usuario | undefined = buscarUsuario(parseInt(idUser!))
   const produtos: Produto[] = carrinho.map((item) => {
     return buscarProduto((item as unknown as QntProduto).id!)!
   })
@@ -178,7 +186,7 @@ export default function Carrinho() {
 
           </section>
           <div className='lg:w-1/2 w-full lg:mt-0 mt-2'>
-            <BotaoGrande title='Continuar' background='bg-secundaria' type='button' onClick={() => router.push('/paginaCompra')} />
+            <BotaoGrande title='Continuar' background='bg-secundaria' type='button' onClick={() => { usuarioLogado ? router.push('/paginaCompra') : router.push('/login')}} />
           </div>
         </section>
       </section>

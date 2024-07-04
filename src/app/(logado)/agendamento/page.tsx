@@ -57,7 +57,7 @@ export default function agendamento() {
         if(metodoPagamento) {
             setOpenConfirmacao(true)
             if(confirmado) {
-                metodoPagamento == "cartao" ? push('./pagamentoCartao') : 
+                metodoPagamento == "cartao" ? push('./Perfil') : 
                 metodoPagamento == "boleto" ? push('./pagamentoBoleto') :
                 metodoPagamento == "pix" ? push('./pagamentoPix') : console.log("Chegou aqui");
             }

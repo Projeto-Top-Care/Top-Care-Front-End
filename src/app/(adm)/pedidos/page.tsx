@@ -1,14 +1,17 @@
 'use client'
 import FiltroGrande from "@/components/Filtro/FiltroGrande";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
-import { Pedidos } from "@/types/pedidos";
+import type { Pedidos } from "@/types/pedidos";
 import { useState } from "react";
 import { FaSearch } from 'react-icons/fa';
 import pedidos from "@/banco/pedidos.json"
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosLogOut } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 export default function Pedidos() {
     const [pesquisa, setPesquisa] = useState('');
+
+    const router = useRouter()
 
     const pedidosPesquisa = pedidos.filter(pedido =>
         pedido.Cod_pedido.includes(pesquisa) ||
@@ -70,6 +73,7 @@ export default function Pedidos() {
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Valor}</td>
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Status}</td>
                                 <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Pagamento}</td>
+                                <td className="text-center"><IoIosLogOut size={20} className="m-auto cursor-pointer" onClick={()=> router.push(`/visualizarPedido?id=${pedido.id}`)}/></td>
                             </tr>
                         ))}
                     </tbody>

@@ -5,6 +5,7 @@ import BotaoGrande from "@/components/BotaoGrande/BotaoGrande"
 import TabelaProdutos from "@/components/TabelaProdutos/TabelaProduto";
 import EspecificacoesProduto from "@/components/EspecificaçoesProduto/Especificacoes";
 import { buscarProduto } from "@/server/produtos/action";
+import { ProdutoCompleto } from "@/types/produto";
 
 interface EditarProdutoProps{
     searchParams: {
@@ -17,7 +18,7 @@ export default function EditarProduto({searchParams}: EditarProdutoProps) {
     const router = useRouter()
     const idProduto = searchParams.id
 
-    const produtoBuscado = buscarProduto(idProduto)
+    const produtoBuscado: ProdutoCompleto = buscarProduto(idProduto)!
 
 
     return(
@@ -30,14 +31,14 @@ export default function EditarProduto({searchParams}: EditarProdutoProps) {
                 <TabelaProdutos produto={produtoBuscado}/>
             </section>
             <section>
-                <EspecificacoesProduto/>
+                <EspecificacoesProduto  produto={produtoBuscado.especificacoes}/>
             </section>
             <section className='flex flex-row justify-between items-center my-10'>
                 <div className='w-24 md:w-48'>
                     <BotaoGrande background='bg-error' title='Cancelar' type='button' onClick={()=>router.back()} />
                 </div>
                 <div className='md:w-60'>
-                    <BotaoGrande background='bg-secundaria' title='Cadastrar Produto' type='button' />
+                    <BotaoGrande background='bg-secundaria' title='Salvar Alterações' type='button' />
                 </div>
             </section>
         </main>

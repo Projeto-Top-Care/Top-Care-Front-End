@@ -1,9 +1,18 @@
 'use client'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import InputPreenchido from '../visualizarPedido/InputPreenchido';
+import { buscarAgendamento } from '@/server/agendamentos/action';
 
-export default function VisualizarPedido() {
-    const idPedido = 100;
+interface VisualizarAgendamentoProps{
+    searchParams: {
+        id: number
+    }
+}
+
+export default function VisualizarAgendamento({searchParams}: VisualizarAgendamentoProps) {
+    const idPedido = searchParams.id;
+
+    const agendamento =  buscarAgendamento(idPedido)
 
     return (
         <main className=''>
@@ -12,18 +21,18 @@ export default function VisualizarPedido() {
             </section>
             <section className='flex flex-col w-full md:gap-8 gap-4 lg:p-16 md:p-10 p-4'>
                 <div className='w-full grid lg:grid-cols-4 md:grid-cols-2 md:gap-8 gap-4'>
-                    <InputPreenchido titulo='Serviço' conteudo='Consulta' />
-                    <InputPreenchido titulo='Pet' conteudo='Nina' />
-                    <InputPreenchido titulo='Local' conteudo='Jaraguá do Sul - SC' />
-                    <InputPreenchido titulo='Status' conteudo='Esperando Cliente' />
+                    <InputPreenchido titulo='Serviço' conteudo={agendamento.servico} />
+                    <InputPreenchido titulo='Pet' conteudo={agendamento.nomePet} />
+                    <InputPreenchido titulo='Local' conteudo={agendamento.local} />
+                    <InputPreenchido titulo='Status' conteudo={agendamento.status} />
                 </div>
                 <div className='w-full grid lg:grid-cols-4 md:grid-cols-2 md:gap-8 gap-4'>
-                    <InputPreenchido titulo='Data' conteudo='19/06/2024' />
-                    <InputPreenchido titulo='Horário' conteudo='09:30' />
-                    <InputPreenchido titulo='Profissional' conteudo='Victor Micheluzzi' />
+                    <InputPreenchido titulo='Data' conteudo={agendamento.data} />
+                    <InputPreenchido titulo='Horário' conteudo={agendamento.horario} />
+                    <InputPreenchido titulo='Profissional' conteudo={agendamento.profissional} />
                     <div className='flex w-full gap-4'>
-                        <InputPreenchido titulo='Valor' conteudo='R$ 200,00' />
-                        <InputPreenchido titulo='Parcelas' conteudo='2X de R$ 100,00' />
+                        <InputPreenchido titulo='Valor' conteudo={agendamento.valor.toString()} />
+                        <InputPreenchido titulo='Parcelas' conteudo={agendamento.parcelas.toString()} />
                     </div>
                 </div>
             </section>

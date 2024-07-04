@@ -44,7 +44,7 @@ export default function PaginaInicial() {
                 <div className="flex flex-col sm:flex-row justify-center px-4 sm:gap-8 gap-6 sm:px-16 py-4">
 
                     <BotaoCategoriaPgInicial title="Acessórios" image="./assets/acessorios.png" pagina="/produtos?q=brinquedo" />
-                    <BotaoCategoriaPgInicial title="Alimentação" image="./assets/alimentacao.png" pagina="/lojas" />
+                    <BotaoCategoriaPgInicial title="Alimentação" image="./assets/alimentacao.png" pagina="/produtos?q=alimentacao" />
                     <BotaoCategoriaPgInicial title="Higiene" image="./assets/higiene.png" pagina="/produtos?q=higiene" />
                     <BotaoCategoriaPgInicial title="Medicamentos" image="./assets/medicamentos.png" pagina="/produtos?q=medicamentos" />
 
