@@ -216,11 +216,11 @@ export default function Perfil() {
             </div>
 
             <section className="w-[90%] flex flex-col sm:flex-row justify-center text-md font-poppins gap-4 self-center">
-                <button onClick={() => setSelecao(0)} className={`${selecao == 0 ? `border-[#6954C0] text-[#6954C0] scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-[#6954C0] border-[1px] hover:text-[#6954C0] p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Agendamentos</button>
-                <button onClick={() => setSelecao(1)} className={`${selecao == 1 ? `border-[#6954C0] text-[#6954C0] scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-[#6954C0] border-[1px] hover:text-[#6954C0] p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Meus pedidos</button>
-                <button onClick={() => setSelecao(2)} className={`${selecao == 2 ? `border-[#6954C0] text-[#6954C0] scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-[#6954C0] border-[1px] hover:text-[#6954C0] p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Meus pets</button>
-                <button onClick={() => setSelecao(3)} className={`${selecao == 3 ? `border-[#6954C0] text-[#6954C0] scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-[#6954C0] border-[1px] hover:text-[#6954C0] p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Últimas compras</button>
-                <button onClick={() => setSelecao(4)} className={`${selecao == 4 ? `border-[#6954C0] text-[#6954C0] scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-[#6954C0] border-[1px] hover:text-[#6954C0] p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Endereços</button>
+                <button onClick={() => setSelecao(0)} className={`${selecao == 0 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Agendamentos</button>
+                <button onClick={() => setSelecao(1)} className={`${selecao == 1 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Meus pedidos</button>
+                <button onClick={() => setSelecao(2)} className={`${selecao == 2 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Meus pets</button>
+                <button onClick={() => setSelecao(3)} className={`${selecao == 3 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Últimas compras</button>
+                <button onClick={() => setSelecao(4)} className={`${selecao == 4 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Endereços</button>
             </section>
 
             <section className="flex flex-col pb-20">
