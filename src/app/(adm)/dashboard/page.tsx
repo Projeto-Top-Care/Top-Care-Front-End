@@ -10,7 +10,7 @@ import { dataCategoriesSoldPerMonth, dataMethodsUsedPerUser, configurationsPie} 
 const Dashboard = () => {
     return (
         <main>
-            <section className="my-10">
+            <section className="">
                 <TituloLinha titulo="Dashboard" voltar={false} />
             </section>
             <section className="w-[90%] mx-auto">

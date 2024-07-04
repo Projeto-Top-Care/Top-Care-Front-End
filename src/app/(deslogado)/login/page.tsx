@@ -3,11 +3,12 @@ import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
 import InputText from '@/components/InputText/InputText'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { useRouter  } from 'next/navigation'
-import { login } from '@/server/usuario/action'
+import { buscarUsuario, login } from '@/server/usuario/action'
 import React, { useState } from 'react'
 import Erro from '@/components/Pop-up/Erro/Erro'
 import { useError } from '@/context/ErrorContext'
 import { useUserID } from '@/context/UserIDContext'
+import { Usuario } from '@/types/usuarios'
 
 export default function Login() {
     const router = useRouter();
@@ -21,8 +22,13 @@ export default function Login() {
         let usuarioId = login(email, senha)
         if(usuarioId != undefined){
             setUserId(usuarioId)
-            router.push('/')
-            router.refresh()
+            const user: Usuario = buscarUsuario(usuarioId)!
+            if(user.role == "admin"){
+                router.push('/dashboard')
+            }else{
+                router.push('/')
+                router.refresh()
+            }
         } else{
             addError("Falha no Login, verifique seu email e senha!")
         }

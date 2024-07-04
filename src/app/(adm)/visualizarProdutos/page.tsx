@@ -1,6 +1,6 @@
 import PaginaProdutos from "@/components/PaginaProdutos/PaginaProduto";
 
-export default function Produtos() {
+export default function ProdutosAdm() {
   return(
     <>
       <PaginaProdutos/>
