@@ -28,7 +28,7 @@ export default function Agendamentos() {
 
     return (
         <section>
-            <section className="mt-9 mb-14">
+            <section className="mt-9 mb-14 text-preto">
                 <TituloLinha titulo={"Agendamentos"} voltar={false} />
                 <div className="flex justify-between w-[90%] m-auto">
                     <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8 ">

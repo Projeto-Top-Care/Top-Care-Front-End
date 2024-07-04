@@ -6,6 +6,7 @@ import TabelaProdutos from "@/components/TabelaProdutos/TabelaProduto";
 import EspecificacoesProduto from "@/components/EspecificaçoesProduto/Especificacoes";
 import { buscarProduto } from "@/server/produtos/action";
 import { ProdutoCompleto } from "@/types/produto";
+import TituloLinha from "@/components/TituloLinha/TituloLinha";
 
 interface EditarProdutoProps{
     searchParams: {
@@ -22,10 +23,10 @@ export default function EditarProduto({searchParams}: EditarProdutoProps) {
 
 
     return(
-        <main className="w-[90%] mx-auto">
+        <main className="w-[90%] mx-auto text-preto">
             <Confirmacao/>
-            <section className="flex items-center justify-center mt-10">  
-                <p className="font-averia font-semibold text-xl md:text-2xl">Editar Produto</p>
+            <section className="">  
+                <TituloLinha voltar={true} titulo={"Editar produto #" + produtoBuscado.codigo} />
             </section>
             <section>
                 <TabelaProdutos produto={produtoBuscado}/>

@@ -9,7 +9,7 @@ import { dataCategoriesSoldPerMonth, dataMethodsUsedPerUser, configurationsPie} 
 
 const Dashboard = () => {
     return (
-        <main>
+        <main className="text-preto">
             <section className="">
                 <TituloLinha titulo="Dashboard" voltar={false} />
             </section>

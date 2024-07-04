@@ -25,7 +25,7 @@ export default function Pedidos() {
     );
 
     return (
-        <section className="mb-28">
+        <section className="mb-28 text-preto">
             <section className="mt-9  mb-14">
                 <TituloLinha titulo={"Pedidos"} voltar={false} />
                 <div className="flex justify-between w-[90%] m-auto">

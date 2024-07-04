@@ -19,7 +19,7 @@ export default function VisualizarPedido({searchParams}: VisualizarPedidoProps) 
       <section className=''>
         <TituloLinha voltar={true} titulo={`Pedido #${idPedido}`} />
       </section>
-      <section className='lg:p-16 md:p-10 p-4 w-full'>
+      <section className='lg:p-16 md:p-10 p-4 w-full text-preto'>
         <section className='flex lg:flex-row flex-col-reverse md:gap-12 gap-8'>
           <div className='lg:w-[45%] w-full'>
             <p className=' text-preto font-poppins font-bold text-base'>Produtos</p>

@@ -1,6 +1,7 @@
 'use client'
 import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
 import TabelaServicos from '@/components/TabelaServicos/TabelaServicos'
+import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { buscarServico } from '@/server/servicos/action'
 import { Servico } from '@/types/servicos'
 import { useRouter } from 'next/navigation'
@@ -18,14 +19,9 @@ export default function EditarServico({searchParams}: PropsService) {
     const service: Servico = buscarServico(idService)! 
 
     return (
-        <main className='w-[90%] mx-auto'>
-            <section className='mt-16'>
-                <div className='w-[10%]'>
-                    <BotaoGrande title='Voltar' background='bg-secundaria' type='button' onClick={() => router.back()} />
-                </div>
-            </section>
-            <section className='flex items-center justify-center'>
-                <p className='font-averia font-semibold text-3xl'>Editar {service.nome}</p>
+        <main className='w-[90%] mx-auto text-preto'>
+            <section className=''>
+                    <TituloLinha titulo={`Editar ` + service.nome} voltar={true} />
             </section>
             <section>
                 <TabelaServicos servico={service}/>
