@@ -11,11 +11,13 @@ const UserIDContext = createContext<UserIDProps | undefined>(undefined);
 
 const UserIDProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
-  const [userID, setUserID] = useState<string | undefined>(undefined);
+  const [userID, setUserID] = useState<string>();
 
   useEffect(() => {
     const storedItem = localStorage.getItem('idUser');
-    if (storedItem) setUserID(storedItem);
+    if (storedItem){
+      setUserID(storedItem)
+    }
   }, []);
 
   useEffect(() => {

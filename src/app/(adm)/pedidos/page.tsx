@@ -22,12 +22,8 @@ export default function Pedidos() {
     );
 
     return (
-        <section>
-<<<<<<< HEAD
-            <section className="mb-28">
-=======
+        <section className="mb-28">
             <section className="mt-9  mb-14">
->>>>>>> 0dad8ffe36a9e696faac4ec648f00a0e6ec6a767
                 <TituloLinha titulo={"Pedidos"} voltar={false} />
                 <div className="flex justify-between w-[90%] m-auto">
                     <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8">

@@ -1,5 +1,6 @@
 export interface Usuario {
     id: number,
+    role: string,
     foto: string,
     nomeCompleto: string,
     email: string,

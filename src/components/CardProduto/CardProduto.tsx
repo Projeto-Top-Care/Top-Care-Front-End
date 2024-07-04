@@ -1,6 +1,6 @@
 'use client'
 import { FaRegHeart } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa6";
+import { FaHeart, FaTrash } from "react-icons/fa6";
 import { FiShoppingBag } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
 import { useRouter } from "next/navigation";
@@ -9,8 +9,25 @@ import { useConfirmacao } from "@/context/confirmacaoContext"
 import { useEffect, useState } from 'react'
 import React from "react";
 import { useCarrinho } from "@/context/CarrinhoContext";
+import { useUserID } from "@/context/UserIDContext";
+import { Usuario } from "@/types/usuarios";
+import { buscarUsuario } from "@/server/usuario/action";
 
 const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAntigoDoProduto, desconto, precoNovo, favorito }: Produto) => {
+
+    const { getUserID } = useUserID()
+    const [isAdmin, setIsAdmin] = useState<boolean>(false)
+
+    useEffect(() => {
+        const id = getUserID()
+        if (id) {
+            const user: Usuario = buscarUsuario(parseInt(id))!
+            if (user.role == 'admin') {
+                setIsAdmin(true)
+            }
+        }
+    }, [])
+
     const {addProduct} = useCarrinho()
     const [favoritoCard, setFavoritoCard] = useState<boolean>(favorito ? true : false);
     const { push } = useRouter()
@@ -62,9 +79,19 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
             </div>
 
             <div className='flex flex-row gap-1 justify-between'>
-                <button className='transition ease-in-out delay-150 duration-200 text-xs text-preto font-medium bg-secundaria rounded-lg w-[76%] h-7 hover:bg-[#9EBF40]'>Comprar agora</button>
+                <button className='transition ease-in-out delay-150 duration-200 text-xs text-preto font-medium bg-secundaria rounded-lg w-[76%] h-7 hover:bg-[#9EBF40]'>
+                    {
+                        isAdmin ?
+                        "Editar Produto" :
+                        "Comprar agora"
+                    }
+                </button>
                 <button className='bg-primaria rounded-lg w-[24%] transition ease-in-out delay-150 duration-200 hover:bg-[#826cda] flex justify-center items-center'>
-                    <FiShoppingBag style={{ color: "#322828", }} className="w-3 sm:w-4" onClick={() => adicionarCarrinho()} />
+                    {   
+                        isAdmin ?
+                        <FaTrash /> :
+                        <FiShoppingBag style={{ color: "#322828", }} className="w-3 sm:w-4" onClick={() => adicionarCarrinho()} />
+                    }
                 </button>
             </div>
         </div>
