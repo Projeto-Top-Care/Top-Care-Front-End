@@ -28,7 +28,7 @@ export default function Agendamentos() {
 
     return (
         <section>
-            <section className="mt-9 mb-14 text-preto">
+            <section className="mb-14 text-preto flex flex-col gap-4">
                 <TituloLinha titulo={"Agendamentos"} voltar={false} />
                 <div className="flex justify-between w-[90%] m-auto">
                     <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8 ">
@@ -42,7 +42,7 @@ export default function Agendamentos() {
                             className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
                             placeholder="Pesquise nos agendamentos" />
                     </div>
-                    <div className="flex sm:w-36 w-[35%] px-1 border border-cinza-claro rounded-lg h-8 ml-[5%] font-poppins">
+                    <div className="flex sm:w-36 w-[35%] px-1 p-4 items-center justify-center border border-cinza-claro rounded-lg h-8 ml-[5%] font-poppins">
                         <p className="w-full text-xs sm:text-base text-cinza-escuro md:mt-1 mt-1.5">Ordenar por</p>
                         <button className="text-cinza-escuro">
                             <IoIosArrowDown />

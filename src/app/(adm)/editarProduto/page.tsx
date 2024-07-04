@@ -36,7 +36,7 @@ export default function EditarProduto({searchParams}: EditarProdutoProps) {
             </section>
             <section className='flex flex-row justify-between items-center my-10'>
                 <div className='w-24 md:w-48'>
-                    <BotaoGrande background='bg-error' title='Cancelar' type='button' onClick={()=>router.back()} />
+                    <BotaoGrande background='bg-error' textColor="text-branco" title='Cancelar' type='button' onClick={()=>router.back()} />
                 </div>
                 <div className='md:w-60'>
                     <BotaoGrande background='bg-secundaria' title='Salvar Alterações' type='button' />
