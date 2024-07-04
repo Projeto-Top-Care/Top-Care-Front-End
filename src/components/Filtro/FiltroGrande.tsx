@@ -4,7 +4,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import Checkbox from '../Checkbox/Checkbox'
 import TituloFiltro from './TituloFiltro'
 import PalavraFiltro from './PalavraFiltro'
-import { aplicarFiltros, definirProdutosFiltrados, filtrarAnimais, filtrarMarcas, filtrarPorte, filtrarPrecos, filtrarTamanhos, returnProdutos, tirarFiltros } from '@/server/filtros/action'
+import { aplicarFiltros, definirProdutosFiltrados, filtrarAnimais, filtrarMarcas, filtrarPorte, filtrarPrecos, returnProdutos, tirarFiltros } from '@/server/filtros/action'
 
 interface FiltroGrande {
     produtos: ProdutoCompleto[]
@@ -104,24 +104,6 @@ export default function FiltroGrande({ produtos, close, setLabel1, setCheck }: F
                                     setTitulo('porte')   
                                 }}/>
                                 <PalavraFiltro palavra={porte} />
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-            <div>
-                <div className='mt-5'>
-                    <TituloFiltro titulo='Tamanhos' />
-                </div>
-                <div className='flex flex-col gap-1 ml-2 mt-5'>
-                    {
-                        filtrarTamanhos(produtos).map((tamanho, i) => (
-                            <div key={tamanho} className='flex items-center'>
-                                <Checkbox check={setChecked} onClick={()=>{
-                                    setLabel(tamanho.split("(")[0])
-                                    setTitulo('tamanhos')
-                                }}/>
-                                <PalavraFiltro palavra={tamanho} />
                             </div>
                         ))
                     }

@@ -12,6 +12,7 @@ import { useUserID } from '@/context/UserIDContext';
 import { Usuario } from '@/types/usuarios';
 import { buscarUsuario } from '@/server/usuario/action';
 import BotaoGrande from '../BotaoGrande/BotaoGrande';
+import { useRouter } from 'next/navigation';
 
 interface InterfaceProdutos {
     searchParams?: { q: string }
@@ -40,6 +41,8 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
     const [label, setLabel] = useState<string>('')
     const [checked, setChecked] = useState<boolean>(false)
     const [escolha, setEscolha] = useState<string>('');
+
+    const router = useRouter()
 
     const filtrarPorQuery = () => {
         if (query) {
@@ -151,7 +154,7 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
                     {
                         isAdmin && (
                             <div className='w-[30%] mt-6'>
-                                <BotaoGrande title='Adicionar novo Produto' type='button' background='bg-secundaria' height='h-9'/>
+                                <BotaoGrande title='Adicionar novo Produto' type='button' background='bg-secundaria' height='h-9' onClick={()=>router.push('/cadastroProduto')}/>
                             </div>
                         )
                     }

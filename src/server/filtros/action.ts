@@ -93,28 +93,6 @@ export const filtrarPorte = (produtos: ProdutoCompleto[]) => {
         return filtrado != ''
     })
 }
-export const filtrarTamanhos = (produtos: ProdutoCompleto[]) => {
-    const tamanhos = produtos.map((produto) => {
-        return produto.tamanho
-    })
-    const tamanhoPadrao = ["PP", "P", "M", "G", "Único"]
-
-    const quantidades: number[] = tamanhoPadrao.map((tamanho) => {
-        let quantidade: number = 0;
-        tamanhos.forEach((tamanho1) => {
-            if (tamanho1.includes(tamanho)) {
-                quantidade++
-            }
-        })
-        return quantidade!;
-    })
-    return tamanhoPadrao.map((tamanho, i) => {
-        return (quantidades[i] > 0 ? tamanho + `(${quantidades[i]})` : '')
-    }).filter((filtrado) => {
-        return filtrado != ''
-    })
-
-}
 
 let produtos: ProdutoCompleto[] = []
 let produtosFiltrados: ProdutoCompleto[] = []

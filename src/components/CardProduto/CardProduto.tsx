@@ -69,7 +69,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
 
             </div>
 
-            <div className='flex flex-col items-center cursor-pointer' onClick={() => push(`/produtos/${nomeProduto.replace(" ", "-")}?id=${id}`)}>
+            <div className='flex flex-col items-center cursor-pointer' onClick={() => { !isAdmin ? push(`/produtos/${nomeProduto.replace('&nbsp', "-")}?id=${id}`) : '' } }>
                 <div className="items-center justify-center flex flex-col-reverse md:flex-col">
                     <p className='text-xs md:text-sm h-10 font-medium text-preto text-center overflow-hidden line-clamp-2'>{nomeProduto}</p>
                     <img src={imagemProduto[0]} className='w-[60%] my-3' />
@@ -79,7 +79,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
             </div>
 
             <div className='flex flex-row gap-1 justify-between'>
-                <button className='transition ease-in-out delay-150 duration-200 text-xs text-preto font-medium bg-secundaria rounded-lg w-[76%] h-7 hover:bg-[#9EBF40]'>
+                <button className='transition ease-in-out delay-150 duration-200 text-xs text-preto font-medium bg-secundaria rounded-lg w-[76%] h-7 hover:bg-[#9EBF40]' onClick={()=>{ !isAdmin ? "": push(`/editarProduto?id=${id}`)}}>
                     {
                         isAdmin ?
                         "Editar Produto" :

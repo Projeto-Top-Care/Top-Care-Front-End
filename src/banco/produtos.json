@@ -1,383 +1,292 @@
 [
   {
     "id": 1,
-    "nomeProduto": "Coleira Zee.Dog NeoPro Bubblegum Rosa para Cães",
-    "notaDeAvaliacao": 4.0,
-    "imagemProduto": ["../assets/produtos/racao.png", "../assets/produtos/racao1.png"],
-    "precoAntigoDoProduto": 20.99,
+    "nomeProduto": "Ração Premium para Cães",
+    "notaDeAvaliacao": 4.8,
+    "imagemProduto": ["/assets/produtos/racao.png"],
+    "precoAntigoDoProduto": 150.00,
     "desconto": "15%",
-    "precoNovo": 17.84,
-    "marca": "Zee.Dog",
-    "precoAssinantes": 15.97,
-    "tamanho": ["G", "M", "P", "PP"],
+    "precoNovo": 127.50,
+    "marca": "DogLovers",
+    "precoAssinantes": 120.00,
+    "variantes": [
+      {
+        "id": 1,
+        "estoque": 100,
+        "preco": 127.50,
+        "tipo": "10kg"
+      }
+    ],
     "disponivel": true,
-    "codigo": 10031110007717,
-    "estoque": 12,
-    "quantidadeVendas": 4,
+    "codigo": 100001,
+    "estoque": 100,
+    "quantidadeVendas": 300,
     "descricao": [
-      "- Indicada para cães;",
-      "- Com uma nova tecnologia com ultra proteção externa de borracha de PVC chamada neopro;",
-      "- Resistente à água e à ação do tempo;",
-      "- Muito fácil de limpar;",
-      "- Borracha de caveira feita de material atóxico;",
-      "- Textura macia e sedosa para maior conforto;",
-      "- Fecho seguro com sistema de segurança de 4 pontos;",
-      "- Regulável, para melhor ajuste no pescoço do seu cachorro;",
-      "- Estampa exclusiva;",
-      "- Em embalagem com 1 unidade;",
-      "- Disponível nos tamanhos PP, P, M e G."
+      "Ração premium para cães de todas as idades",
+      "Enriquecida com vitaminas e minerais"
     ],
     "especificacoes": [
-      {"topico": "Idade", "resposta": "Sênior, Filhote e Adulto"},
-      {"topico": "Porte da Raça", "resposta": "Todos"},
-      {"topico": "Pet", "resposta": "Cachorros"},
-      {"topico": "Cor", "resposta": "Rosa"},
-      {"topico": "Tipo", "resposta": "Coleira para cães"},
-      {"topico": "Material", "resposta": "Poliéster, zinco e borracha"},
-      {"topico": "Apresentação", "resposta": "PP, P, M e G."}
+      {
+        "topico": "Peso",
+        "resposta": "10kg"
+      },
+      {
+        "topico": "Sabor",
+        "resposta": "Frango"
+      },
+      {
+        "topico": "Animal",
+        "resposta": "Roedores"
+      }
     ],
     "avaliacoes": [
-      {"id": 3, "nota": 3, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+      {
+        "id": 1,
+        "nota": 5,
+        "descricao": "Meu cão adorou!"
+      },
+      {
+        "id": 2,
+        "nota": 4,
+        "descricao": "Ótima qualidade, recomendo."
+      }
     ],
-    "tags":["acessório", "passeio", "diversão", "entreterimento", "beleza"]
+    "tags": [
+      "ração",
+      "cães",
+      "DogLovers"
+    ]
   },
   {
     "id": 2,
-    "nomeProduto": "Ração Pedgree",
-    "notaDeAvaliacao": 4.8,
-    "imagemProduto": ["../assets/produtos/racao.png", "../assets/produtos/racao1.png"],
-    "precoAntigoDoProduto": 15.99,
+    "nomeProduto": "Brinquedo para Gatos - Varinha com Pena",
+    "notaDeAvaliacao": 4.7,
+    "imagemProduto": ["/assets/produtos/racao.png"],
+    "precoAntigoDoProduto": 30.00,
     "desconto": "10%",
-    "precoNovo": 14.39,
-    "marca": "Pedgree",
-    "precoAssinantes": 12.99,
-    "tamanho": ["1kg", "5kg"],
+    "precoNovo": 27.00,
+    "marca": "CatPlay",
+    "precoAssinantes": 25.00,
+    "variantes": [
+      {
+        "id": 2,
+        "estoque": 50,
+        "preco": 27.00,
+        "tipo": "Varinha com Pena"
+      }
+    ],
     "disponivel": true,
-    "codigo": 10031110007718,
-    "estoque": 12,
-    "quantidadeVendas": 1,
+    "codigo": 100002,
+    "estoque": 50,
+    "quantidadeVendas": 150,
     "descricao": [
-      "- Indicada para gatos;",
-      "- Confeccionada em nylon resistente;",
-      "- Estampa exclusiva e charmosa;",
-      "- Ideal para passeios seguros e confortáveis;",
-      "- Fecho seguro com sistema de segurança de 4 pontos;",
-      "- Regulável, para melhor ajuste no pescoço do seu gato;",
-      "- Em embalagem com 1 unidade."
+      "Brinquedo interativo para gatos",
+      "Estimula o instinto de caça"
     ],
     "especificacoes": [
-      {"topico": "Idade", "resposta": "Filhote e Adulto"},
-      {"topico": "Porte da Raça", "resposta": "Pequeno e Médio"},
-      {"topico": "Pet", "resposta": "Gatos"},
-      {"topico": "Cor", "resposta": "Verde"},
-      {"topico": "Tipo", "resposta": "Guia para gatos"},
-      {"topico": "Material", "resposta": "Nylon"},
-      {"topico": "Apresentação", "resposta": "Único."}
+      {
+        "topico": "Material",
+        "resposta": "Plástico e penas naturais"
+      },
+      {
+        "topico": "Comprimento",
+        "resposta": "50cm"
+      },
+      {
+        "topico": "Animal",
+        "resposta": "Coelho"
+      }
     ],
     "avaliacoes": [
-      {"id": 2, "nota": 4, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+      {
+        "id": 1,
+        "nota": 5,
+        "descricao": "Meu gato não para de brincar!"
+      },
+      {
+        "id": 2,
+        "nota": 4,
+        "descricao": "Boa qualidade, mas poderia ser mais resistente."
+      }
     ],
-    "tags":["passeio", "diversão", "entreterimento", "acessório", "beleza"]
+    "tags": [
+      "brinquedo",
+      "gatos",
+      "CatPlay"
+    ]
   },
   {
     "id": 3,
-    "nomeProduto": "Produto 3",
-    "notaDeAvaliacao": 4.2,
-    "imagemProduto": ["../assets/produtos/racao.png", "../assets/produtos/racao1.png"],
-    "precoAntigoDoProduto": 39.99,
+    "nomeProduto": "Casinha para Cachorro - Tamanho M",
+    "notaDeAvaliacao": 4.6,
+    "imagemProduto": ["/assets/produtos/racao.png"],
+    "precoAntigoDoProduto": 250.00,
     "desconto": "20%",
-    "precoNovo": 301.99,
-    "marca": "SuperPet",
-    "precoAssinantes": 28.79,
-    "tamanho": ["G", "M", "P"],
+    "precoNovo": 200.00,
+    "marca": "PetHome",
+    "precoAssinantes": 190.00,
+    "variantes": [
+      {
+        "id": 3,
+        "estoque": 20,
+        "preco": 200.00,
+        "tipo": "Tamanho M"
+      }
+    ],
     "disponivel": true,
-    "codigo": 10031110007719,
-    "estoque": 12,
-    "quantidadeVendas": 10,
+    "codigo": 100003,
+    "estoque": 20,
+    "quantidadeVendas": 70,
     "descricao": [
-      "- Indicada para cães e gatos;",
-      "- Confortável e resistente;",
-      "- Ideal para uso em ambientes internos;",
-      "- Pode ser lavada à máquina;",
-      "- Textura macia para maior conforto do seu pet;",
-      "- Estampa divertida e exclusiva;",
-      "- Em embalagem com 1 unidade;",
-      "- Disponível nos tamanhos PP, P, M e G."
+      "Casinha confortável para cães de porte médio",
+      "Material resistente e durável"
     ],
     "especificacoes": [
-      {"topico": "Idade", "resposta": "Filhote e Adulto"},
-      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Cachorros e Gatos"},
-      {"topico": "Cor", "resposta": "Azul"},
-      {"topico": "Tipo", "resposta": "Cama para pets"},
-      {"topico": "Material", "resposta": "Algodão"},
-      {"topico": "Apresentação", "resposta": "PP, P, M e G."}
+      {
+        "topico": "Dimensões",
+        "resposta": "80x70x60 cm"
+      },
+      {
+        "topico": "Material",
+        "resposta": "Plástico reforçado"
+      },
+      {
+        "topico": "Animal",
+        "resposta": "Tartaruga"
+      }
     ],
     "avaliacoes": [
-      {"id": 2, "nota": 1, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+      {
+        "id": 1,
+        "nota": 5,
+        "descricao": "Ótima casinha, meu cão adorou!"
+      },
+      {
+        "id": 2,
+        "nota": 4,
+        "descricao": "Boa, mas difícil de montar."
+      }
     ],
-    "tags":["dormir", "sono", "noite"]
+    "tags": [
+      "casinha",
+      "cães",
+      "PetHome"
+    ]
   },
   {
     "id": 4,
-    "nomeProduto": "Produto 4",
-    "notaDeAvaliacao": 4.7,
-    "imagemProduto": ["../assets/produtos/racao.png", "../assets/produtos/racao1.png"],
-    "precoAntigoDoProduto": 12.99,
-    "desconto": "10%",
-    "precoNovo": 51.69,
-    "marca": "DogLovers",
-    "precoAssinantes": 10.49,
-    "tamanho": ["Único"],
+    "nomeProduto": "Areia Sanitária para Gatos - 10kg",
+    "notaDeAvaliacao": 4.9,
+    "imagemProduto": ["/assets/produtos/racao.png"],
+    "precoAntigoDoProduto": 40.00,
+    "desconto": "5%",
+    "precoNovo": 38.00,
+    "marca": "CatClean",
+    "precoAssinantes": 36.00,
+    "variantes": [
+      {
+        "id": 4,
+        "estoque": 200,
+        "preco": 38.00,
+        "tipo": "10kg"
+      }
+    ],
     "disponivel": true,
-    "codigo": 10031110007720,
-    "estoque": 12,
-    "quantidadeVendas": 101,
+    "codigo": 100004,
+    "estoque": 200,
+    "quantidadeVendas": 500,
     "descricao": [
-      "- Indicado para cães;",
-      "- Confeccionado em material atóxico e resistente;",
-      "- Textura especial para estimular a mastigação saudável;",
-      "- Ideal para brincadeiras interativas e enriquecimento ambiental;",
-      "- Em formato divertido e colorido;",
-      "- Disponível em embalagem com 1 unidade."
+      "Areia sanitária com alto poder de absorção",
+      "Controle de odores por mais tempo"
     ],
     "especificacoes": [
-      {"topico": "Idade", "resposta": "Filhote e Adulto"},
-      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Cachorros"},
-      {"topico": "Cor", "resposta": "Vermelho, Azul e Amarelo"},
-      {"topico": "Tipo", "resposta": "Brinquedo para cães"},
-      {"topico": "Material", "resposta": "Borracha"},
-      {"topico": "Apresentação", "resposta": "Único."}
+      {
+        "topico": "Peso",
+        "resposta": "10kg"
+      },
+      {
+        "topico": "Tipo",
+        "resposta": "Granulada"
+      },
+      {
+        "topico": "Animal",
+        "resposta": "Gato"
+      }
     ],
     "avaliacoes": [
-      {"id": 10, "nota": 4.8, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+      {
+        "id": 1,
+        "nota": 5,
+        "descricao": "Melhor areia que já usei!"
+      },
+      {
+        "id": 2,
+        "nota": 4,
+        "descricao": "Boa, mas poderia ser mais barata."
+      }
     ],
-    "tags":["higiene", "limpeza", "banho"]
+    "tags": [
+      "areia",
+      "gatos",
+      "CatClean"
+    ]
   },
   {
     "id": 5,
-    "nomeProduto": "Produto 5",
-    "notaDeAvaliacao": 4.9,
-    "imagemProduto": ["../assets/produtos/racao.png", "../assets/produtos/racao1.png", "../assets/produtos/racao1.png", "../assets/produtos/racao1.png", "../assets/produtos/racao1.png"],
-    "precoAntigoDoProduto": 49.99,
-    "desconto": "25%",
-    "precoNovo": 117.49,
-    "marca": "MeowWorld",
-    "precoAssinantes": 33.74,
-    "tamanho": ["Único"],
+    "nomeProduto": "Shampoo para Cães - 500ml",
+    "notaDeAvaliacao": 4.5,
+    "imagemProduto": ["/assets/produtos/racao.png"],
+    "precoAntigoDoProduto": 25.00,
+    "desconto": "12%",
+    "precoNovo": 22.00,
+    "marca": "DogCare",
+    "precoAssinantes": 20.00,
+    "variantes": [
+      {
+        "id": 5,
+        "estoque": 150,
+        "preco": 22.00,
+        "tipo": "500ml"
+      }
+    ],
     "disponivel": true,
-    "codigo": 10031110007721,
-    "estoque": 12,
-    "quantidadeVendas": 1001,
+    "codigo": 100005,
+    "estoque": 150,
+    "quantidadeVendas": 250,
     "descricao": [
-      "- Indicado para gatos;",
-      "- Estrutura resistente e durável;",
-      "- Perfeito para gatos que adoram afiar as unhas;",
-      "- Design moderno e elegante;",
-      "- Estimula comportamento saudável de arranhar;",
-      "- Disponível em embalagem com 1 unidade."
+      "Shampoo suave para cães",
+      "Formulação hipoalergênica"
     ],
     "especificacoes": [
-      {"topico": "Idade", "resposta": "Filhote e Adulto"},
-      {"topico": "Porte da Raça", "resposta": "Pequeno e Médio"},
-      {"topico": "Pet", "resposta": "Gatos"},
-      {"topico": "Cor", "resposta": "Bege"},
-      {"topico": "Tipo", "resposta": "Arranhador para gatos"},
-      {"topico": "Material", "resposta": "Sisal"},
-      {"topico": "Apresentação", "resposta": "Único."}
+      {
+        "topico": "Volume",
+        "resposta": "500ml"
+      },
+      {
+        "topico": "Aroma",
+        "resposta": "Camomila"
+      },
+      {
+        "topico": "Animal",
+        "resposta": "Cachorro"
+      }
     ],
     "avaliacoes": [
-      {"id": 2, "nota": 4.9, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
+      {
+        "id": 1,
+        "nota": 5,
+        "descricao": "Ótimo shampoo, cheiro agradável."
+      },
+      {
+        "id": 2,
+        "nota": 4,
+        "descricao": "Bom, mas poderia fazer mais espuma."
+      }
     ],
-    "tags":["brinquedos", "diversão", "entreterimento"]
-  },
-  {
-    "id": 6,
-    "nomeProduto": "Produto 6",
-    "notaDeAvaliacao": 4.6,
-    "imagemProduto": ["../assets/produtos/racao.png", "../assets/produtos/racao1.png"],
-    "precoAntigoDoProduto": 29.99,
-    "desconto": "10%",
-    "precoNovo": 296.99,
-    "marca": "HappyPets",
-    "precoAssinantes": 54.29,
-    "tamanho": ["Único"],
-    "disponivel": true,
-    "codigo": 10031110007722,
-    "estoque": 12,
-    "quantidadeVendas": 7,
-    "descricao": [
-      "- Indicado para cães e gatos;",
-      "- Fabricado em material resistente;",
-      "- Design ergonômico e funcional;",
-      "- Fácil de limpar;",
-      "- Estampa colorida e divertida;",
-      "- Disponível em embalagem com 1 unidade."
-    ],
-    "especificacoes": [
-      {"topico": "Idade", "resposta": "Filhote e Adulto"},
-      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Cachorros e Gatos"},
-      {"topico": "Cor", "resposta": "Roxo"},
-      {"topico": "Tipo", "resposta": "Comedouro"},
-      {"topico": "Material", "resposta": "Plástico"},
-      {"topico": "Apresentação", "resposta": "Único."}
-    ],
-    "avaliacoes": [
-      {"id": 2, "nota": 4.7, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ],
-    "tags":["comer", "pote", "beber", "comida", "água"]
-  },
-  {
-    "id": 7,
-    "nomeProduto": "Produto 7",
-    "notaDeAvaliacao": 4.3,
-    "imagemProduto": ["../assets/produtos/racao.png", "../assets/produtos/racao1.png"],
-    "precoAntigoDoProduto": 8.99,
-    "desconto": "5%",
-    "precoNovo": 208.54,
-    "marca": "Pawsome",
-    "precoAssinantes": 7.69,
-    "tamanho": ["Único"],
-    "disponivel": true,
-    "codigo": 10031110007723,
-    "estoque": 12,
-    "quantidadeVendas": 798,
-    "descricao": [
-      "- Indicado para cães;",
-      "- Confeccionado em material atóxico e resistente;",
-      "- Ideal para brincadeiras interativas;",
-      "- Textura especial para estimular a mastigação saudável;",
-      "- Em formato divertido e colorido;",
-      "- Disponível em embalagem com 1 unidade."
-    ],
-    "especificacoes": [
-      {"topico": "Idade", "resposta": "Filhote e Adulto"},
-      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Cachorros"},
-      {"topico": "Cor", "resposta": "Azul e Amarelo"},
-      {"topico": "Tipo", "resposta": "Brinquedo para cães"},
-      {"topico": "Material", "resposta": "Borracha"},
-      {"topico": "Apresentação", "resposta": "Único."}
-    ],
-    "avaliacoes": [
-      {"id": 2, "nota": 4.0, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ],
-    "tags":["brinquedos", "diversão", "bolinha"]
-  },
-  {
-    "id": 8,
-    "nomeProduto": "Produto 8",
-    "notaDeAvaliacao": 4.0,
-    "imagemProduto": ["../assets/produtos/racao.png", "../assets/produtos/racao1.png"],
-    "precoAntigoDoProduto": 24.99,
-    "desconto": "20%",
-    "precoNovo": 19.99,
-    "marca": "DogFashion",
-    "precoAssinantes": 107.99,
-    "tamanho": ["G", "M", "P"],
-    "disponivel": true,
-    "codigo": 10031110007724,
-    "estoque": 12,
-    "quantidadeVendas": 387,
-    "descricao": [
-      "- Indicada para cães;",
-      "- Fabricada em material resistente e confortável;",
-      "- Ideal para passeios seguros e confortáveis;",
-      "- Fecho seguro com sistema de segurança de 4 pontos;",
-      "- Regulável, para melhor ajuste no pescoço do seu cachorro;",
-      "- Design moderno e elegante;",
-      "- Disponível em embalagem com 1 unidade;",
-      "- Disponível nos tamanhos PP, P, M e G."
-    ],
-    "especificacoes": [
-      {"topico": "Idade", "resposta": "Filhote e Adulto"},
-      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Cachorros"},
-      {"topico": "Cor", "resposta": "Vermelho"},
-      {"topico": "Tipo", "resposta": "Coleira para cães"},
-      {"topico": "Material", "resposta": "Nylon"},
-      {"topico": "Apresentação", "resposta": "PP, P, M e G."}
-    ],
-    "avaliacoes": [
-      {"id": 2, "nota": 3.5, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ],
-    "tags":["acessório", "roupa", "passeio", "diversão"]
-  },
-  {
-    "id": 9,
-    "nomeProduto": "Produto 9",
-    "notaDeAvaliacao": 4.4,
-    "imagemProduto": ["../assets/produtos/racao.png", "../assets/produtos/racao1.png"],
-    "precoAntigoDoProduto": 554.99,
-    "desconto": "15%",
-    "precoNovo": 29.74,
-    "marca": "PetDreams",
-    "precoAssinantes": 26.77,
-    "tamanho": ["G", "M", "P"],
-    "disponivel": true,
-    "codigo": 10031110007725,
-    "estoque": 12,
-    "quantidadeVendas": 896,
-    "descricao": [
-      "- Indicada para cães e gatos;",
-      "- Fabricada em material resistente e durável;",
-      "- Confortável e aconchegante;",
-      "- Design moderno e elegante;",
-      "- Ideal para uso em ambientes internos;",
-      "- Em embalagem com 1 unidade;",
-      "- Disponível nos tamanhos PP, P, M e G."
-    ],
-    "especificacoes": [
-      {"topico": "Idade", "resposta": "Filhote e Adulto"},
-      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Pássaro"},
-      {"topico": "Cor", "resposta": "Verde"},
-      {"topico": "Tipo", "resposta": "Cama para pets"},
-      {"topico": "Material", "resposta": "Algodão"},
-      {"topico": "Apresentação", "resposta": "PP, P, M e G."}
-    ],
-    "avaliacoes": [
-      {"id": 2, "nota": 4.2, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ],
-    "tags": ["conforto", "sono", "noite"]
-  },
-  {
-    "id": 10,
-    "nomeProduto": "Produto 10",
-    "notaDeAvaliacao": 4.9,
-    "imagemProduto": ["../assets/produtos/racao.png", "../assets/produtos/racao1.png"],
-    "precoAntigoDoProduto": 11.99,
-    "desconto": "10%",
-    "precoNovo": 10.79,
-    "marca": "PetLove",
-    "precoAssinantes": 9.71,
-    "tamanho": ["Único"],
-    "disponivel": true,
-    "codigo": 10031110007726,
-    "estoque": 12,
-    "quantidadeVendas": 36,
-    "descricao": [
-      "- Indicado para cães e gatos;",
-      "- Confeccionado em material resistente e durável;",
-      "- Ideal para brincadeiras interativas e enriquecimento ambiental;",
-      "- Textura especial para estimular a mastigação saudável;",
-      "- Design divertido e colorido;",
-      "- Disponível em embalagem com 1 unidade."
-    ],
-    "especificacoes": [
-      {"topico": "Idade", "resposta": "Filhote e Adulto"},
-      {"topico": "Porte da Raça", "resposta": "Pequeno, Médio e Grande"},
-      {"topico": "Pet", "resposta": "Roedores"},
-      {"topico": "Cor", "resposta": "Azul e Vermelho"},
-      {"topico": "Tipo", "resposta": "Brinquedo para pets"},
-      {"topico": "Material", "resposta": "Poliéster"},
-      {"topico": "Apresentação", "resposta": "Único."}
-    ],
-    "avaliacoes": [
-      {"id": 1, "nota": 5.0, "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis faucibus velit, id accumsan velit laoreet in. Maecenas laoreet, orci ut fermentum porta, neque ante dignissim mi, eget consequat est justo nec turpis. Donec nec malesuada velit. Etiam cursus nibh justo, rutrum ornare turpis facilisis sit amet."}
-    ],
-    "tags":["diversão", "brinquedos", "bolinha"]
+    "tags": [
+      "shampoo",
+      "cães",
+      "DogCare"
+    ]
   }
 ]

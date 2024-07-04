@@ -121,9 +121,6 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
               {construirEstrelas(produtoProcurado?.notaDeAvaliacao!)}
               <p className={`font-poppins ml-2 text-base ${produtoProcurado.disponivel ? 'text-verde' : 'text-error'} font-bold`}>{produtoProcurado.disponivel ? "| Disponível" : "| Indisponível"}</p>
             </div>
-            <div className='w-full lg:w-[85%] mt-2'>
-              <SelectTamanho options={produtoProcurado.tamanho.map((tamanho) => { return tamanho })} opcaoSelecionada={() => setTamanho} label='Selecione o Tamanho' />
-            </div>
             <div className='flex flex-col md:flex-row md:items-center md:justify-between w-full lg:w-[85%] gap-3 md:gap-0 h-20 max-sm:mt-3'>
               <div className='flex flex-row items-center gap-3'>
                 <p className='font-poppins font-bold md:text-2xl text-xl text-preto'>R$ {produtoProcurado.precoNovo.toString().replace(".", ",")}</p>
@@ -200,7 +197,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
           <div className='mt-4 sm:mt-8 md:mt-14'>
             {
               produtoProcurado.avaliacoes.map((avaliacao, i) => (
-                <div key={i} className="flex flex-col gap-4 sm:gap-14">
+                <div key={i} className="flex flex-col gap-4 sm:gap-14 md:mb-8 mb-4">
                   <Avaliacao nomeUsuario={(buscarUsuario((avaliacao as AvaliacaoType).id)! as Usuario).nomeCompleto}
                     fotoUsuario={(buscarUsuario(avaliacao.id)! as Usuario).foto} avaliacaoUsuario={avaliacao.descricao}
                     estrelas={construirEstrelas(avaliacao.nota)} notaAvaliacao={avaliacao.nota} />
