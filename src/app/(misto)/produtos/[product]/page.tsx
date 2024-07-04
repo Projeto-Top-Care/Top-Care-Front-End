@@ -39,9 +39,40 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
   const [produtoProcurado, setProdutoProcurado] = useState<ProdutoCompleto>()
   const [numeroImagem, setNumeroImagem] = useState<number>(0)
   const [favorito, setFavorito] = useState<boolean>(false)
-  const [tamanho, setTamanho] = useState<string>();
   const [open, setOpen] = useState<boolean>(false)
   const [quantidade, setQuantidade] = useState<number>(1)
+
+  const especificacoes = [
+    {
+      topico:"Idade", 
+      resposta: produtoProcurado?.especificacoes.idadePet
+    },
+    {
+      topico: "Porte da Raça",
+      resposta: produtoProcurado?.especificacoes.porteRaca 
+    },
+    {
+      topico: "Pet",
+      resposta: produtoProcurado?.especificacoes.pet
+    },
+    {
+      topico: "Cor",
+      resposta: produtoProcurado?.especificacoes.cor
+    }, 
+    {
+      topico: "Tipo",
+      resposta: produtoProcurado?.especificacoes.tipo
+    },
+    {
+      topico: "Material",
+      resposta: produtoProcurado?.especificacoes.material
+    },
+    {
+      topico: "Variações",
+      resposta: produtoProcurado?.especificacoes.apresentacao
+    }
+  
+  ]
 
   const construirEstrelas = (numEstrelas: number) => {
     const arrayFull = new Array(Math.round(numEstrelas)).fill(null)
@@ -181,7 +212,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
           </div>
           <div className='w-[90%] m-auto mt-8'>
             {
-              produtoProcurado.especificacoes.map((item, i) => (
+              especificacoes.map((item, i) => (
                 <div key={i} className={`flex flex-row w-full h-10 items-center max-sm:justify-between ${i % 2 == 0 ? 'bg-terciaria' : ''} rounded-lg`}>
                   <div className='md:w-[50%] font-poppins md:text-lg text-sm ml-2'>{item.topico}</div>
                   <div className='md:w-[50%] font-poppins md:text-base text-xs max-sm:flex max-sm:justify-end max-sm:text-end'>{item.resposta}</div>

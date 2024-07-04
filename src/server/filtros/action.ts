@@ -2,7 +2,7 @@ import { ProdutoCompleto } from "@/types/produto"
 
 export const filtrarAnimais = (produtos: ProdutoCompleto[]) => {
     const animais = produtos.map((produto) => {
-        return produto.especificacoes[2].resposta
+        return produto.especificacoes.pet
     })
 
     const animaisFiltrados = animais.filter((valor, i, self) => {
@@ -73,7 +73,7 @@ export const filtrarMarcas = (produtos: ProdutoCompleto[]) => {
 
 export const filtrarPorte = (produtos: ProdutoCompleto[]) => {
     const portes = produtos.map((produto) => {
-        return produto.especificacoes[1].resposta
+        return produto.especificacoes.porteRaca
     })
     const portesPadrao = ['Pequeno', 'Médio', "Grande"];
 
@@ -123,7 +123,7 @@ export function aplicarFiltros(label: string, titulo: string) {
     let produtosMostrados: ProdutoCompleto[] = [...produtosFiltrados];
 
     produtos.forEach((produto) => {
-        if (produto.especificacoes[2].resposta.includes(label)) {
+        if (produto.especificacoes.pet.includes(label)) {
             produtosMostrados.push(produto)
         }
     })
@@ -141,18 +141,18 @@ export function tirarFiltros(label: string, titulo: string) {
     let isCachorro = false
 
     produtosMostrados.forEach((produto)=>{
-        if(produto.especificacoes[2].resposta == "Gatos"){
+        if(produto.especificacoes.pet == "Gatos"){
             isGato = true
-        }else if(produto.especificacoes[2].resposta == "Cachorros"){
+        }else if(produto.especificacoes.pet == "Cachorros"){
             isCachorro = true
         }
     })
 
     produtosMostrados = produtosMostrados.filter((produto)=>{
         if((isCachorro && !isGato) || (isGato && !isCachorro)){
-            return !(produto.especificacoes[2].resposta.includes(label))
+            return !(produto.especificacoes.pet.includes(label))
         }
-        return !(produto.especificacoes[2].resposta.includes(label) && !produto.especificacoes[2].resposta.includes(" e "))
+        return !(produto.especificacoes.pet.includes(label) && !produto.especificacoes.pet.includes(" e "))
     })
     const filtrados = produtosMostrados.filter((valor, index, self) => {
         return self.indexOf(valor) === index;
@@ -163,7 +163,7 @@ export function tirarFiltros(label: string, titulo: string) {
 
 export function verficarLista(filtrados: ProdutoCompleto[]){
     const verificacao = filtrados.filter((produto)=>{
-        return !(produto.especificacoes[2].resposta.includes(" e "))
+        return !(produto.especificacoes.pet.includes(" e "))
     })
     return verificacao.length == 0 ? [] : filtrados
 }

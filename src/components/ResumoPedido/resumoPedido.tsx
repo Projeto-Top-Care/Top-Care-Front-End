@@ -8,9 +8,10 @@ interface IResumoPedido {
     produtos: QntProduto[],
     desconto: number,
     frete: number
+    plano?: string
 }
 
-export default function ResumoPedido({ produtos, desconto, frete }: IResumoPedido) {
+export default function ResumoPedido({ produtos, desconto, frete, plano }: IResumoPedido) {
 
     const setarProdutosResumo = () => {
         const prods: Produto[] = produtos.map((item, i) => {
@@ -44,6 +45,11 @@ export default function ResumoPedido({ produtos, desconto, frete }: IResumoPedid
 
                 <div className="border-cinza border-[1px] rounded-lg p-4">
                     <h4 className="font-medium text-sm sm:text-base">Produtos</h4>
+                    {
+                        plano && (
+                            <p className="mt-4">Plano {plano}</p>
+                        )
+                    }
 
                     {
                         <div className="flex flex-col text-sm py-4">

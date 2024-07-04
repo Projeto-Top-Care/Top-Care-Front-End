@@ -9,6 +9,7 @@
     "precoNovo": 127.50,
     "marca": "DogLovers",
     "precoAssinantes": 120.00,
+    "tipoVariante" : "Tamanho",
     "variantes": [
       {
         "id": 1,
@@ -25,20 +26,15 @@
       "Ração premium para cães de todas as idades",
       "Enriquecida com vitaminas e minerais"
     ],
-    "especificacoes": [
-      {
-        "topico": "Peso",
-        "resposta": "10kg"
-      },
-      {
-        "topico": "Sabor",
-        "resposta": "Frango"
-      },
-      {
-        "topico": "Animal",
-        "resposta": "Roedores"
-      }
-    ],
+    "especificacoes":{
+      "idadePet": "Filhote",
+      "porteRaca": "Todos",
+      "pet": "Roedores",
+      "cor": "Branco",
+      "tipo": "Coleira para cães",
+      "material": "Poliester",
+      "apresentacao": "PP, P, M" 
+    },
     "avaliacoes": [
       {
         "id": 1,
@@ -59,234 +55,267 @@
   },
   {
     "id": 2,
-    "nomeProduto": "Brinquedo para Gatos - Varinha com Pena",
-    "notaDeAvaliacao": 4.7,
+    "nomeProduto": "Areia Sanitária para Gatos",
+    "notaDeAvaliacao": 4.5,
     "imagemProduto": ["/assets/produtos/racao.png"],
-    "precoAntigoDoProduto": 30.00,
+    "precoAntigoDoProduto": 40.00,
     "desconto": "10%",
-    "precoNovo": 27.00,
-    "marca": "CatPlay",
-    "precoAssinantes": 25.00,
+    "precoNovo": 36.00,
+    "marca": "CatLovers",
+    "precoAssinantes": 32.00,
+    "tipoVariante": "Peso",
     "variantes": [
       {
-        "id": 2,
-        "estoque": 50,
-        "preco": 27.00,
-        "tipo": "Varinha com Pena"
+        "id": 1,
+        "estoque": 200,
+        "preco": 36.00,
+        "tipo": "5kg"
       }
     ],
     "disponivel": true,
     "codigo": 100002,
-    "estoque": 50,
+    "estoque": 200,
     "quantidadeVendas": 150,
     "descricao": [
-      "Brinquedo interativo para gatos",
-      "Estimula o instinto de caça"
+      "Areia sanitária para gatos",
+      "Absorção eficiente de odores"
     ],
-    "especificacoes": [
+    "especificacoes":
       {
-        "topico": "Material",
-        "resposta": "Plástico e penas naturais"
-      },
-      {
-        "topico": "Comprimento",
-        "resposta": "50cm"
-      },
-      {
-        "topico": "Animal",
-        "resposta": "Coelho"
-      }
-    ],
+      "idadePet": "Adulto",
+      "porteRaca": "Pequeno",
+      "pet": "Cães",
+      "cor": "Azul",
+      "tipo": "Cama",
+      "material": "Algodão",
+      "apresentacao": "M, G, GG"
+    },
     "avaliacoes": [
       {
         "id": 1,
-        "nota": 5,
-        "descricao": "Meu gato não para de brincar!"
-      },
-      {
-        "id": 2,
         "nota": 4,
-        "descricao": "Boa qualidade, mas poderia ser mais resistente."
-      }
-    ],
-    "tags": [
-      "brinquedo",
-      "gatos",
-      "CatPlay"
-    ]
-  },
-  {
-    "id": 3,
-    "nomeProduto": "Casinha para Cachorro - Tamanho M",
-    "notaDeAvaliacao": 4.6,
-    "imagemProduto": ["/assets/produtos/racao.png"],
-    "precoAntigoDoProduto": 250.00,
-    "desconto": "20%",
-    "precoNovo": 200.00,
-    "marca": "PetHome",
-    "precoAssinantes": 190.00,
-    "variantes": [
-      {
-        "id": 3,
-        "estoque": 20,
-        "preco": 200.00,
-        "tipo": "Tamanho M"
-      }
-    ],
-    "disponivel": true,
-    "codigo": 100003,
-    "estoque": 20,
-    "quantidadeVendas": 70,
-    "descricao": [
-      "Casinha confortável para cães de porte médio",
-      "Material resistente e durável"
-    ],
-    "especificacoes": [
-      {
-        "topico": "Dimensões",
-        "resposta": "80x70x60 cm"
-      },
-      {
-        "topico": "Material",
-        "resposta": "Plástico reforçado"
-      },
-      {
-        "topico": "Animal",
-        "resposta": "Tartaruga"
-      }
-    ],
-    "avaliacoes": [
-      {
-        "id": 1,
-        "nota": 5,
-        "descricao": "Ótima casinha, meu cão adorou!"
-      },
-      {
-        "id": 2,
-        "nota": 4,
-        "descricao": "Boa, mas difícil de montar."
-      }
-    ],
-    "tags": [
-      "casinha",
-      "cães",
-      "PetHome"
-    ]
-  },
-  {
-    "id": 4,
-    "nomeProduto": "Areia Sanitária para Gatos - 10kg",
-    "notaDeAvaliacao": 4.9,
-    "imagemProduto": ["/assets/produtos/racao.png"],
-    "precoAntigoDoProduto": 40.00,
-    "desconto": "5%",
-    "precoNovo": 38.00,
-    "marca": "CatClean",
-    "precoAssinantes": 36.00,
-    "variantes": [
-      {
-        "id": 4,
-        "estoque": 200,
-        "preco": 38.00,
-        "tipo": "10kg"
-      }
-    ],
-    "disponivel": true,
-    "codigo": 100004,
-    "estoque": 200,
-    "quantidadeVendas": 500,
-    "descricao": [
-      "Areia sanitária com alto poder de absorção",
-      "Controle de odores por mais tempo"
-    ],
-    "especificacoes": [
-      {
-        "topico": "Peso",
-        "resposta": "10kg"
-      },
-      {
-        "topico": "Tipo",
-        "resposta": "Granulada"
-      },
-      {
-        "topico": "Animal",
-        "resposta": "Gato"
-      }
-    ],
-    "avaliacoes": [
-      {
-        "id": 1,
-        "nota": 5,
-        "descricao": "Melhor areia que já usei!"
-      },
-      {
-        "id": 2,
-        "nota": 4,
-        "descricao": "Boa, mas poderia ser mais barata."
+        "descricao": "Grãos finos que não machucam as patas."
       }
     ],
     "tags": [
       "areia",
       "gatos",
-      "CatClean"
+      "CatLovers"
     ]
   },
   {
-    "id": 5,
-    "nomeProduto": "Shampoo para Cães - 500ml",
-    "notaDeAvaliacao": 4.5,
+    "id": 3,
+    "nomeProduto": "Coleira Antipulgas para Cães",
+    "notaDeAvaliacao": 4.2,
     "imagemProduto": ["/assets/produtos/racao.png"],
-    "precoAntigoDoProduto": 25.00,
-    "desconto": "12%",
-    "precoNovo": 22.00,
+    "precoAntigoDoProduto": 30.00,
+    "desconto": "20%",
+    "precoNovo": 24.00,
     "marca": "DogCare",
     "precoAssinantes": 20.00,
+    "tipoVariante": "Unidade",
     "variantes": [
       {
-        "id": 5,
+        "id": 1,
         "estoque": 150,
-        "preco": 22.00,
-        "tipo": "500ml"
+        "preco": 24.00,
+        "tipo": "Único"
       }
     ],
     "disponivel": true,
-    "codigo": 100005,
+    "codigo": 100003,
     "estoque": 150,
-    "quantidadeVendas": 250,
+    "quantidadeVendas": 100,
     "descricao": [
-      "Shampoo suave para cães",
-      "Formulação hipoalergênica"
+      "Coleira antipulgas para cães",
+      "Proteção contínua por até 8 meses"
     ],
-    "especificacoes": [
+    "especificacoes":
       {
-        "topico": "Volume",
-        "resposta": "500ml"
+        "idadePet": "Filhote",
+        "porteRaca": "Médio",
+        "pet": "Gatos",
+        "cor": "Cinza",
+        "tipo": "Arranhador",
+        "material": "Sisal",
+        "apresentacao": "Único"
       },
+    "avaliacoes": [
       {
-        "topico": "Aroma",
-        "resposta": "Camomila"
-      },
-      {
-        "topico": "Animal",
-        "resposta": "Cachorro"
+        "id": 1,
+        "nota": 4,
+        "descricao": "Ótimo custo-benefício."
       }
     ],
+    "tags": [
+      "coleira",
+      "cães",
+      "DogCare"
+    ]
+  },
+  {
+    "id": 4,
+    "nomeProduto": "Comedouro Automático para Gatos",
+    "notaDeAvaliacao": 4.7,
+    "imagemProduto": ["/assets/produtos/racao.png"],
+    "precoAntigoDoProduto": 80.00,
+    "desconto": "5%",
+    "precoNovo": 76.00,
+    "marca": "PetFeeder",
+    "precoAssinantes": 72.00,
+    "tipoVariante": "Capacidade",
+    "variantes": [
+      {
+        "id": 1,
+        "estoque": 80,
+        "preco": 76.00,
+        "tipo": "1.5L"
+      }
+    ],
+    "disponivel": true,
+    "codigo": 100004,
+    "estoque": 80,
+    "quantidadeVendas": 90,
+    "descricao": [
+      "Comedouro automático para gatos",
+      "Programável e fácil de limpar"
+    ],
+    "especificacoes":
+      {
+        "idadePet": "Adulto",
+        "porteRaca": "Grande",
+        "pet": "Cães",
+        "cor": "Vermelho",
+        "tipo": "Coleira",
+        "material": "Couro",
+        "apresentacao": "P, M, G"
+      },
     "avaliacoes": [
       {
         "id": 1,
         "nota": 5,
-        "descricao": "Ótimo shampoo, cheiro agradável."
+        "descricao": "Meus gatos adoraram!"
       },
       {
         "id": 2,
         "nota": 4,
-        "descricao": "Bom, mas poderia fazer mais espuma."
+        "descricao": "Facilitou minha rotina diária."
       }
     ],
     "tags": [
-      "shampoo",
+      "comedouro",
+      "gatos",
+      "PetFeeder"
+    ]
+  },
+  {
+    "id": 5,
+    "nomeProduto": "Brinquedo Interativo para Cães",
+    "notaDeAvaliacao": 4.9,
+    "imagemProduto": ["/assets/produtos/racao.png"],
+    "precoAntigoDoProduto": 25.00,
+    "desconto": "10%",
+    "precoNovo": 22.50,
+    "marca": "PlayfulPets",
+    "precoAssinantes": 20.00,
+    "tipoVariante": "Nenhuma",
+    "variantes": [
+      {
+        "id": 1,
+        "estoque": 120,
+        "preco": 22.50,
+        "tipo": "Único"
+      }
+    ],
+    "disponivel": true,
+    "codigo": 100005,
+    "estoque": 120,
+    "quantidadeVendas": 180,
+    "descricao": [
+      "Brinquedo interativo para cães",
+      "Estimula a atividade física e mental"
+    ],
+    "especificacoes":
+      {
+        "idadePet": "Filhote",
+        "porteRaca": "Todos",
+        "pet": "Roedores",
+        "cor": "Amarelo",
+        "tipo": "Gaiola",
+        "material": "Metal",
+        "apresentacao": "Único"
+      },
+    "avaliacoes": [
+      {
+        "id": 1,
+        "nota": 5,
+        "descricao": "Meu cão não larga mais!"
+      },
+      {
+        "id": 2,
+        "nota": 4,
+        "descricao": "Muito resistente."
+      }
+    ],
+    "tags": [
+      "brinquedo",
       "cães",
-      "DogCare"
+      "PlayfulPets"
+    ]
+  },
+  {
+    "id": 6,
+    "nomeProduto": "Cama Confortável para Gatos",
+    "notaDeAvaliacao": 4.6,
+    "imagemProduto": ["/assets/produtos/racao.png"],
+    "precoAntigoDoProduto": 120.00,
+    "desconto": "15%",
+    "precoNovo": 102.00,
+    "marca": "CozyCats",
+    "precoAssinantes": 95.00,
+    "tipoVariante": "Tamanho",
+    "variantes": [
+      {
+        "id": 1,
+        "estoque": 90,
+        "preco": 102.00,
+        "tipo": "Grande"
+      }
+    ],
+    "disponivel": true,
+    "codigo": 100006,
+    "estoque": 90,
+    "quantidadeVendas": 120,
+    "descricao": [
+      "Cama confortável para gatos",
+      "Material macio e lavável"
+    ],
+    "especificacoes":
+      {
+        "idadePet": "Adulto",
+        "porteRaca": "Pequeno",
+        "pet": "Gatos",
+        "cor": "Rosa",
+        "tipo": "Comedouro",
+        "material": "Plástico",
+        "apresentacao": "PP, P, M"
+      },
+    "avaliacoes": [
+      {
+        "id": 1,
+        "nota": 4,
+        "descricao": "Meu gato adorou a maciez!"
+      },
+      {
+        "id": 2,
+        "nota": 5,
+        "descricao": "Super confortável e fácil de limpar."
+      }
+    ],
+    "tags": [
+      "cama",
+      "gatos",
+      "CozyCats"
     ]
   }
 ]
