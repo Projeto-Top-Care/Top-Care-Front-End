@@ -205,7 +205,7 @@ export default function Perfil() {
                     </div>
                 </div>
             </section>
-            <div className="md:mt-6 mt-2 lg:mx-32 md:mx-20 mx-5 flex justify-end">
+            <div className="md:mt-4 mt-2 lg:mx-32 md:mx-20 mx-5 flex justify-end">
                 <div className="w-full md:w-[20%]">
                     <BotaoGrande
                         title={`${edicao ? 'Salvar Alteração' : 'Editar'}`}
@@ -215,7 +215,7 @@ export default function Perfil() {
                 </div>
             </div>
 
-            <section className="w-[90%] flex flex-col sm:flex-row justify-center text-md font-poppins gap-4 self-center">
+            <section className="w-[90%] flex flex-col sm:flex-row justify-center text-md font-poppins gap-4 self-center mt-12">
                 <button onClick={() => setSelecao(0)} className={`${selecao == 0 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Agendamentos</button>
                 <button onClick={() => setSelecao(1)} className={`${selecao == 1 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Meus pedidos</button>
                 <button onClick={() => setSelecao(2)} className={`${selecao == 2 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Meus pets</button>

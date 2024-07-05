@@ -25,7 +25,7 @@ export default function EnderecosSalvos({ enderecos, setShowAllAdresses, setOpen
     return (
         <main>
             <section className="grid place-content-center">
-                <div className="grid gap-8 sm:gap-20 mb-2 sm:mb-8 lg:grid-cols-2 xl:grid-cols-3">
+                <div className="grid md:mb-12 mb-4 md:w-[95%] lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center gap-8 lg:grid-cols-3 md:grid-cols-2">
                     {
                         enderecos.map((endereco, i) => (
                             <div key={i}>
@@ -36,14 +36,15 @@ export default function EnderecosSalvos({ enderecos, setShowAllAdresses, setOpen
                                     bairro={endereco.bairro}
                                     rua={endereco.rua}
                                     numero={endereco.numero}
-                                    complemento={endereco.complemento} />
+                                    complemento={endereco.complemento}
+                                    cidade={endereco.cidade} />
                             </div>
                         ))
                     }
                 </div>
             </section>
 
-            <div className="flex flex-row w-[90%] gap-8 p-0 sm:pl-20 lg:self-start self-center">
+            <div className="flex flex-row md:w-[95%] gap-8 lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center">
                 <div className="md:w-44 w-1/2" onClick={() => setOpenPopupEndereco(true)}>
                     <BotaoGrande title="+ Endereço" background='bg-primaria' type={'button'} />
                 </div>
