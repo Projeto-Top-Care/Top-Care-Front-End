@@ -17,14 +17,14 @@ export default function HistoricoAgendamentos({ historicoAgendamentos, setShowAl
     return (
         <main>
             <div className="flex flex-col">
-                <div className="md:p-8 p-4 grid lg:grid-cols-3 md:grid-cols-2 justify-center items-center sm:gap-8 gap-4 lg:w-[90%] md:w-full lg:ml-16">
+                <div className="grid md:mb-12 mb-4 md:w-[90%] w-full lg:pl-16 md:p-0 p-4 lg:self-start self-center gap-8 lg:grid-cols-3 md:grid-cols-2">
                     {
                         historicoAgendamentos.map((item, i) => (
                             <div key={i}>{item}</div>
                         ))
                     }
                 </div>
-                <div className="w-full sm:w-[90%] self-center flex md:px-8 pb-12 px-4">
+                <div className="w-full md:w-[90%] gap-8 lg:pl-16 md:p-0 p-4 lg:self-start self-center">
                     <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-44 w-full h-8 hover:bg-[#9EBF40] max-sm:gap-2 justify-center sm:justify-around items-center' onClick={() => setShowSchedulles(!showSchedulles)}>
                         {showSchedulles ? "Mostrar menos" : "Mostrar todos "}
                         {showSchedulles ? <FaAngleUp className="mt-1" /> : <FaAngleDown className="mt-1" />}

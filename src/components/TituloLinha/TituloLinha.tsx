@@ -12,7 +12,7 @@ const TituloLinha = ({ titulo, voltar }: titulotype) => {
     const { back } = useRouter();
 
     return (
-        <div className="w-[90%] m-auto pb-2 pt-4 sm:pb-6 sm:pt-12">
+        <div className="w-[90%] m-auto pb-2 pt-4 sm:pb-6 sm:pt-12 md:mb-8 mb-4">
             <div className="flex flex-row items-center">
                 <div onClick={() => back()} className="font-preto text-2xl hover:-translate-x-1 duration-100">
                     {voltar ? <IoChevronBack /> : <></>}
