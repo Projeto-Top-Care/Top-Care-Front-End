@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "role": "basic",
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Maria Silva Souza",
     "email": "maria.silva@email.com",
@@ -133,6 +134,7 @@
   },
   {
     "id": 2,
+    "role": "basic",
     "foto": "../assets/gatoFotoUsuario2.png",
     "nomeCompleto": "Carlos Pereira Lima",
     "email": "carlos.lima@email.com",
@@ -238,6 +240,7 @@
   },
   {
     "id": 3,
+    "role": "basic",
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Maria Silva Souza",
     "email": "maria.silva@email.com",
@@ -330,6 +333,7 @@
   },
   {
     "id": 4,
+    "role": "basic",
     "foto": "../assets/gatoFotoUsuario2.png",
     "nomeCompleto": "Carlos Pereira Lima",
     "email": "carloslos.lima@email.com",
@@ -423,6 +427,7 @@
   },
   {
     "id": 10,
+    "role": "basic",
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Maria Silva Souza",
     "email": "mariazinha.silva@email.com",
@@ -566,5 +571,22 @@
         "agencia": "visa"
       }
     ]
+  },
+  {
+    "id": 11,
+    "role": "admin",
+    "foto": "../assets/gatoFotoUsuario.png",
+    "nomeCompleto": "Admininastro Da Silva",
+    "email": "adm@email.com",
+    "celular": "+55 (20)00000-0009",
+    "senha": "adm",
+    "cpf": "000.000.000-00",
+    "sexo": "Masculino",
+    "dataNascimento": "01/01/1980",
+    "cupons": [],
+    "enderecos": [],
+    "pedidos": [],
+    "favoritos": [],
+    "cartoes": []
   }
 ]

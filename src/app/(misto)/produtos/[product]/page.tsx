@@ -39,9 +39,40 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
   const [produtoProcurado, setProdutoProcurado] = useState<ProdutoCompleto>()
   const [numeroImagem, setNumeroImagem] = useState<number>(0)
   const [favorito, setFavorito] = useState<boolean>(false)
-  const [tamanho, setTamanho] = useState<string>();
   const [open, setOpen] = useState<boolean>(false)
   const [quantidade, setQuantidade] = useState<number>(1)
+
+  const especificacoes = [
+    {
+      topico:"Idade", 
+      resposta: produtoProcurado?.especificacoes.idadePet
+    },
+    {
+      topico: "Porte da Raça",
+      resposta: produtoProcurado?.especificacoes.porteRaca 
+    },
+    {
+      topico: "Pet",
+      resposta: produtoProcurado?.especificacoes.pet
+    },
+    {
+      topico: "Cor",
+      resposta: produtoProcurado?.especificacoes.cor
+    }, 
+    {
+      topico: "Tipo",
+      resposta: produtoProcurado?.especificacoes.tipo
+    },
+    {
+      topico: "Material",
+      resposta: produtoProcurado?.especificacoes.material
+    },
+    {
+      topico: "Variações",
+      resposta: produtoProcurado?.especificacoes.apresentacao
+    }
+  
+  ]
 
   const construirEstrelas = (numEstrelas: number) => {
     const arrayFull = new Array(Math.round(numEstrelas)).fill(null)
@@ -114,15 +145,12 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             </div>
             <div className='flex flex-col md:flex-row md:gap-1 lg:text-sm text-xs font-poppins font-normal text-preto'>
               <p>Código: {produtoProcurado.codigo} |</p>
-              <p> Ver descrição completa</p>
+              <a href='#' className='hover:underline'>Ver descrição completa</a>
               <p className='max-sm:hidden'>| {produtoProcurado.marca}</p>
             </div>
             <div className='md:mt-1 mt-2 flex flex-row items-center'>
               {construirEstrelas(produtoProcurado?.notaDeAvaliacao!)}
               <p className={`font-poppins ml-2 text-base ${produtoProcurado.disponivel ? 'text-verde' : 'text-error'} font-bold`}>{produtoProcurado.disponivel ? "| Disponível" : "| Indisponível"}</p>
-            </div>
-            <div className='w-full lg:w-[85%] mt-2'>
-              <SelectTamanho options={produtoProcurado.tamanho.map((tamanho) => { return tamanho })} opcaoSelecionada={() => setTamanho} label='Selecione o Tamanho' />
             </div>
             <div className='flex flex-col md:flex-row md:items-center md:justify-between w-full lg:w-[85%] gap-3 md:gap-0 h-20 max-sm:mt-3'>
               <div className='flex flex-row items-center gap-3'>
@@ -184,7 +212,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
           </div>
           <div className='w-[90%] m-auto mt-8'>
             {
-              produtoProcurado.especificacoes.map((item, i) => (
+              especificacoes.map((item, i) => (
                 <div key={i} className={`flex flex-row w-full h-10 items-center max-sm:justify-between ${i % 2 == 0 ? 'bg-terciaria' : ''} rounded-lg`}>
                   <div className='md:w-[50%] font-poppins md:text-lg text-sm ml-2'>{item.topico}</div>
                   <div className='md:w-[50%] font-poppins md:text-base text-xs max-sm:flex max-sm:justify-end max-sm:text-end'>{item.resposta}</div>
@@ -200,7 +228,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
           <div className='mt-4 sm:mt-8 md:mt-14'>
             {
               produtoProcurado.avaliacoes.map((avaliacao, i) => (
-                <div key={i} className="flex flex-col gap-4 sm:gap-14">
+                <div key={i} className="flex flex-col gap-4 sm:gap-14 md:mb-8 mb-4">
                   <Avaliacao nomeUsuario={(buscarUsuario((avaliacao as AvaliacaoType).id)! as Usuario).nomeCompleto}
                     fotoUsuario={(buscarUsuario(avaliacao.id)! as Usuario).foto} avaliacaoUsuario={avaliacao.descricao}
                     estrelas={construirEstrelas(avaliacao.nota)} notaAvaliacao={avaliacao.nota} />

@@ -33,7 +33,7 @@ const PedidoAndamentoPerfil = (props: Pedido) => {
                             ))
                         }
                     </div>
-                    <span className="font-medium">Valor total R${props.pagamento.valorTotal}</span>
+                    <span className="font-medium">Valor total R${props.pagamento.valorTotal.toFixed(2).replace(".", ",")}</span>
                 </div>
                 <div className="mt-2">
                     <BotaoGrande title={"Ver detalhes"} background={"bg-terciaria"} type={"button"} onClick={()=> router.push(`Pedido?id=${props.id}`)}/>

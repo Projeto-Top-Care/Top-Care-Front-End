@@ -1,7 +1,7 @@
 'use client'
 import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
-import CadastroVariante from '@/components/Pop-up/CadastroVariante/CadastroVariante'
 import TabelaServicos from '@/components/TabelaServicos/TabelaServicos'
+import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
@@ -11,14 +11,9 @@ export default function CadastrarServico() {
     const router = useRouter()
 
     return (
-        <main className='w-[90%] mx-auto'>
-            <section className='mt-16'>
-                <div className='w-[10%]'>
-                    <BotaoGrande title='Voltar' background='bg-secundaria' type='button' onClick={() => router.back()} />
-                </div>
-            </section>
-            <section className='flex items-center justify-center'>
-                <p className='font-averia font-semibold text-3xl'>Cadastre um serviço novo</p>
+        <main className='w-[90%] mx-auto text-preto'>
+            <section className=''>
+                <TituloLinha voltar={true} titulo='Cadastrar novo serviço' />
             </section>
             <section>
                 <TabelaServicos />

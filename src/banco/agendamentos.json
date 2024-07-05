@@ -10,7 +10,8 @@
       "nomeCliente": "Maria Silva Souza",
       "data": "02/07/2024",
       "status": "Confirmado",
-      "pagamento": "Cartão de Crédito"
+      "pagamento": "Cartão de Crédito",
+      "parcelas": 2
     },
     {
       "id": 2,
@@ -23,7 +24,8 @@
       "nomeCliente": "Maria Silva Souza",
       "data": "02/07/2024",
       "status": "Pendente",
-      "pagamento": "Pix"
+      "pagamento": "Pix",
+      "parcelas": 1
     },
     {
       "id": 3,
@@ -36,7 +38,8 @@
       "nomeCliente": "Carlos Pereira Lima",
       "data": "02/07/2024",
       "status": "Confirmado",
-      "pagamento": "Cartão de Débito"
+      "pagamento": "Cartão de Débito",
+      "parcelas": 4
     },
     {
       "id": 4,
@@ -49,7 +52,8 @@
       "nomeCliente": "Carlos Pereira Lima",
       "data": "03/07/2024",
       "status": "Cancelado",
-      "pagamento": "Cartão de Crédito"
+      "pagamento": "Cartão de Crédito",
+      "parcelas": 4
     },
     {
       "id": 5,
@@ -62,7 +66,8 @@
       "nomeCliente": "Maria Silva Souza",
       "data": "03/07/2024",
       "status": "Confirmado",
-      "pagamento": "Pix"
+      "pagamento": "Pix",
+      "parcelas": 1
     },
     {
       "id": 6,
@@ -75,7 +80,8 @@
       "nomeCliente": "Carlos Pereira Lima",
       "data": "04/07/2024",
       "status": "Pendente",
-      "pagamento": "Dinheiro"
+      "pagamento": "Boleto",
+      "parcelas": 1
     },
     {
       "id": 7,
@@ -88,7 +94,8 @@
       "nomeCliente": "Maria Silva Souza",
       "data": "04/07/2024",
       "status": "Confirmado",
-      "pagamento": "Cartão de Crédito"
+      "pagamento": "Cartão de Crédito",
+      "parcelas": 5
     },
     {
       "id": 8,
@@ -101,7 +108,8 @@
       "nomeCliente": "Carlos Pereira Lima",
       "data": "04/07/2024",
       "status": "Confirmado",
-      "pagamento": "Cartão de Débito"
+      "pagamento": "Cartão de Débito",
+      "parcelas": 1
     },
     {
       "id": 9,
@@ -114,7 +122,8 @@
       "nomeCliente": "Maria Silva Souza",
       "data": "05/07/2024",
       "status": "Pendente",
-      "pagamento": "Cartão de Crédito"
+      "pagamento": "Cartão de Crédito",
+      "parcelas": 2
     },
     {
       "id": 10,
@@ -127,7 +136,8 @@
       "nomeCliente": "Carlos Pereira Lima",
       "data": "05/07/2024",
       "status": "Confirmado",
-      "pagamento": "Pix"
+      "pagamento": "Pix",
+      "parcelas": 1
     }
   ]
   

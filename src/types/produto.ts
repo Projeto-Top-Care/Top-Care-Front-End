@@ -1,4 +1,4 @@
-export interface Produto{
+export interface Produto {
     id: number
     nomeProduto: string
     notaDeAvaliacao: number
@@ -8,7 +8,7 @@ export interface Produto{
     precoNovo: number
     favorito?: boolean
 }
-export interface ProdutoCompleto{
+export interface ProdutoCompleto {
     id: number
     nomeProduto: string
     notaDeAvaliacao: number
@@ -18,23 +18,37 @@ export interface ProdutoCompleto{
     precoNovo: number
     marca: string
     precoAssinantes: number
-    tamanho: string[]
+    tipoVariante: string
+    variantes: VarianteProps[]
     disponivel: boolean,
     codigo: number
     estoque: number
     quantidadeVendas: number
     descricao: string[]
-    especificacoes: Especificacao[]
+    especificacoes: Especificacao
     avaliacoes: AvaliacaoType[]
     tags: string[],
 }
 
-export interface Especificacao{
-    topico: string
-    resposta: string
+export interface Especificacao {
+    idadePet: string;
+    porteRaca: string;
+    pet: string;
+    cor: string;
+    tipo: string;
+    material: string;
+    apresentacao: string;
 }
-export interface AvaliacaoType{
+export interface AvaliacaoType {
     id: number
     nota: number
     descricao: string
+}
+
+export interface VarianteProps {
+    id?: number
+    estoque: number
+    preco: number
+    tipo: string
+
 }

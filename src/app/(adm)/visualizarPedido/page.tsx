@@ -1,16 +1,25 @@
 'use client'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import InputPreenchido from './InputPreenchido'
+import { buscarPedidoAdm } from '@/server/pedidos/action'
 
-export default function VisualizarPedido() {
-  const idPedido = 100;
+interface VisualizarPedidoProps{
+  searchParams: {
+      id: number
+  }
+}
+
+export default function VisualizarPedido({searchParams}: VisualizarPedidoProps) {
+  const idPedido = searchParams.id;
+
+  const pedido = buscarPedidoAdm(idPedido)
 
   return (
     <main className=''>
-      <section className='mt-4'>
+      <section className=''>
         <TituloLinha voltar={true} titulo={`Pedido #${idPedido}`} />
       </section>
-      <section className='lg:p-16 md:p-10 p-4 w-full'>
+      <section className='lg:p-16 md:p-10 p-4 w-full text-preto'>
         <section className='flex lg:flex-row flex-col-reverse md:gap-12 gap-8'>
           <div className='lg:w-[45%] w-full'>
             <p className=' text-preto font-poppins font-bold text-base'>Produtos</p>
@@ -45,14 +54,14 @@ export default function VisualizarPedido() {
           </div>
           <section className='flex md:flex-row flex-col lg:w-[50%] w-full md:gap-8 gap-4'>
             <div className='w-full flex flex-col md:gap-8 gap-4'>
-              <InputPreenchido titulo='Data' conteudo='27/05/2024' />
-              <InputPreenchido titulo='Destino' conteudo='Rua Venâncio da Silva Porto | SC' />
-              <InputPreenchido titulo='Valor' conteudo='R$ 200,00' />
+              <InputPreenchido titulo='Data' conteudo={pedido.Dt_pedido} />
+              <InputPreenchido titulo='Destino' conteudo={pedido.Destino} />
+              <InputPreenchido titulo='Valor' conteudo={pedido.Valor} />
             </div>
             <div className='w-full flex flex-col md:gap-8 gap-4'>
-              <InputPreenchido titulo='Cliente' conteudo='Kristian Erdmann' />
-              <InputPreenchido titulo='Status' conteudo='Processando Pagamento' />
-              <InputPreenchido titulo='Parcelas' conteudo='2X de R$ 100,00' />
+              <InputPreenchido titulo='Cliente' conteudo={pedido.Cliente} />
+              <InputPreenchido titulo='Status' conteudo={pedido.Status} />
+              <InputPreenchido titulo='Parcelas' conteudo={pedido.Pagamento} />
             </div>
           </section>
         </section>

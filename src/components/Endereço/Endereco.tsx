@@ -8,7 +8,7 @@ interface IEndereco{
     complemento: string
 }
 
-const Endereco = ({titulo, cep, estado, bairro, rua,numero, complemento}:IEndereco) => {
+const EnderecoPerfil = ({titulo, cep, estado, bairro, rua,numero, complemento}:IEndereco) => {
 
     return (
         <div className="font-poppins md:w-[340px] w-[280px] break-normal text-preto">
@@ -45,4 +45,4 @@ const Endereco = ({titulo, cep, estado, bairro, rua,numero, complemento}:IEndere
     )
 }
 
-export default Endereco;
+export default EnderecoPerfil;

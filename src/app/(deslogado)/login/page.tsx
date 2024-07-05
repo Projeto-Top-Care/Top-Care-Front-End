@@ -3,11 +3,12 @@ import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
 import InputText from '@/components/InputText/InputText'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { useRouter  } from 'next/navigation'
-import { login } from '@/server/usuario/action'
+import { buscarUsuario, login } from '@/server/usuario/action'
 import React, { useState } from 'react'
 import Erro from '@/components/Pop-up/Erro/Erro'
 import { useError } from '@/context/ErrorContext'
 import { useUserID } from '@/context/UserIDContext'
+import { Usuario } from '@/types/usuarios'
 
 export default function Login() {
     const router = useRouter();
@@ -21,20 +22,25 @@ export default function Login() {
         let usuarioId = login(email, senha)
         if(usuarioId != undefined){
             setUserId(usuarioId)
-            router.push('/')
-            router.refresh()
+            const user: Usuario = buscarUsuario(usuarioId)!
+            if(user.role == "admin"){
+                router.push('/dashboard')
+            }else{
+                router.push('/')
+                router.refresh()
+            }
         } else{
             addError("Falha no Login, verifique seu email e senha!")
         }
     }
 
     return (
-        <main className='bg-branco'>
+        <main className='bg-branco flex flex-col gap-12'>
             <Erro />
-            <section className='mt-8 md:mt-12'>
+            <section className=''>
                 <TituloLinha voltar={true} titulo='Login' />
             </section>
-            <section className='flex flex-col justify-center items-center w-full gap-16 mt-11 mb-20 md:mt-11 md:mb-24 md:gap-20 lg:flex-row lg:gap-28 lg:my-24 '>
+            <section className='flex flex-col justify-center items-center w-full gap-16 mb-20 md:mb-24 md:gap-20 lg:flex-row lg:gap-28 lg:my-24'>
                 <section className='flex items-end h-full max-lg:w-full'>
                     <div className='w-[90%] m-auto flex flex-col gap-8 md:w-[70%] lg:w-80 lg:m-0'>
                         <InputText onChange={(e) => setEmail(e.target.value)} type={'text'} placeholder='Email' />

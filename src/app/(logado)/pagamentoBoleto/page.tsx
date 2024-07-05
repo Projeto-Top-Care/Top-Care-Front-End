@@ -13,7 +13,16 @@ import { useRouter } from "next/navigation"
 import { useUserID } from "@/context/UserIDContext"
 import { useCarrinho } from "@/context/CarrinhoContext"
 
-export default function PagamentoBoleto() {
+interface BoletoProps{
+    searchParams:{
+        p: string
+    }
+}
+
+export default function PagamentoBoleto({searchParams}: BoletoProps) {
+
+    const plano =  searchParams.p
+
     const { push } = useRouter();
     const {userID} = useUserID()
     const {items} = useCarrinho()
@@ -29,7 +38,7 @@ export default function PagamentoBoleto() {
 
                 <section className="justify-between items-center flex flex-col-reverse gap-6 lg:flex-row px-4 md:px-8 lg:px-20">
                     <section className="p-4 w-full">
-                        <ResumoPedido produtos={pedido} desconto={9} frete={0} />
+                        <ResumoPedido produtos={pedido} desconto={9} frete={0} plano={plano}/>
                     </section>
 
                     <section className="font-poppins px-2 sm:px-0 gap-4 text-preto flex flex-col justify-center items-center w-full md:w-[90%] sm:w-2/5">

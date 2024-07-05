@@ -27,19 +27,19 @@ const BarraProcessoPedido = ({ primeiroPasso, segundoPasso, terceiroPasso, quart
                     <p className="text-center">{primeiroPasso}</p>
                 </div>
                 <div className="gap-2 flex md:w-[25%] md:flex-col items-center font-poppins text-preto md:text-base text-xs">
-                    <div className="md:w-9 md:h-9 w-8 h-8 rounded-full bg-cinza-claro flex justify-center items-center"><LuWallet size={'1.1rem'} /></div>)
+                    <div className="md:w-9 md:h-9 w-8 h-8 rounded-full bg-cinza-claro flex justify-center items-center"><LuWallet size={'1.1rem'} /></div>
                     <p className="text-center">{segundoPasso}</p>
                 </div>
                 <div className="gap-2 flex md:w-[25%] md:flex-col items-center font-poppins text-preto md:text-base text-xs">
-                    <div className="md:w-9 md:h-9 w-8 h-8 rounded-full bg-cinza-claro flex justify-center items-center"><LuBox size={'1.1rem'} /></div>)
+                    <div className="md:w-9 md:h-9 w-8 h-8 rounded-full bg-cinza-claro flex justify-center items-center"><LuBox size={'1.1rem'} /></div>
                     <p className="text-center">{terceiroPasso}</p>
                 </div>
                 <div className="gap-2 flex md:w-[25%] md:flex-col items-center font-poppins text-preto md:text-base text-xs">
-                    <div className="md:w-9 md:h-9 w-8 h-8 rounded-full bg-cinza-claro flex justify-center items-center"><LuTruck size={'1.1rem'} /></div>)
+                    <div className="md:w-9 md:h-9 w-8 h-8 rounded-full bg-cinza-claro flex justify-center items-center"><LuTruck size={'1.1rem'} /></div>
                     <p className="text-center">{quartoPasso}</p>
                 </div>
                 <div className="gap-2 flex md:w-[25%] md:flex-col items-center font-poppins text-preto md:text-base text-xs">
-                    <div className="md:w-9 md:h-9 w-8 h-8 rounded-full bg-cinza-claro flex justify-center items-center"><LuHome size={'1.1rem'} /></div>)
+                    <div className="md:w-9 md:h-9 w-8 h-8 rounded-full bg-cinza-claro flex justify-center items-center"><LuHome size={'1.1rem'} /></div>
                     <p className="text-center">{quintoPasso}</p>
                 </div>
             </div>
