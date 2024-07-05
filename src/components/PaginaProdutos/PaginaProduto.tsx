@@ -153,7 +153,7 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
                     </div>
                     {
                         isAdmin && (
-                            <div className='w-[30%] mt-6'>
+                            <div className='w-fit sm:w-[30%] mt-6'>
                                 <BotaoGrande title='Adicionar novo Produto' type='button' background='bg-secundaria' height='h-9' onClick={()=>router.push('/cadastroProduto')}/>
                             </div>
                         )

@@ -100,7 +100,7 @@ export default function HeaderLogado() {
             }
             {
                 navAberta && (
-                    <div ref={navRef} className={`z-[100] bg-branco drop-shadow-2xl block fixed top-0 left-0 w-full h-fit pb-12 overflow-x-hidden ${animation ? 'animate-slide-left' : 'animate-slide-rigth'}`}>
+                    <div ref={navRef} className={`z-[100] bg-branco drop-shadow-2xl block absolute top-0 left-0 w-full h-fit pb-12 overflow-x-hidden ${animation ? 'animate-slide-left' : 'animate-slide-rigth'}`}>
                         <div className="p-6 flex flex-col gap-4">
 
                             <button onClick={() => setNavAberta(false)}><IoClose size={'2.5rem'} style={{ color: "#6954C0" }} /></button>

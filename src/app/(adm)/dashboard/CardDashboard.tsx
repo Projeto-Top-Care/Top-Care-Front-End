@@ -16,8 +16,8 @@ export default function CardDashboard({background, titulo, variavel, valor, heig
 
             </div>
             <div className='flex w-[90%] h-[75%] mx-auto justify-between items-center'>
-                <p className='font-poppins text-lg'>{titulo}</p>
-                <p className='font-averia font-extrabold text-2xl'>{valor ? `R$ ${variavel}` : variavel}</p>
+                <p className='font-poppins text-md sm:text-lg'>{titulo}</p>
+                <p className='font-averia font-extrabold text-xl sm:text-2xl'>{valor ? `R$ ${variavel.toFixed(2).replace(",", ".")}` : variavel}</p>
             </div>
 
         </div>

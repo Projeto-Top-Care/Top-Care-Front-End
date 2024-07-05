@@ -25,7 +25,7 @@ export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
 
 
     return (
-        <section className='mt-10 border border-cinza-escuro rounded-xl h-full flex flex-col lg:flex-row'>
+        <section className='border border-cinza-escuro rounded-xl h-full flex flex-col lg:flex-row'>
             <section className='border-b border-b-cinza-escuro px-4 md:px-8 lg:border-b-0 lg:border-r border-r-cinza-escuro lg:w-[55%] '>
                 <div className='flex justify-center lg:block  pt-6'>
                     <p className='font-averia text-xl font-extrabold md:text-2xl'>Informações básicas</p>
@@ -102,7 +102,7 @@ export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
                 <div>
                     <p className='font-poppins text-center lg:text-start text-base mt-4'>Clique no botão para adicionar variações deste produto</p>
                 </div>
-                <div>
+                <div className='w-full'>
                     {
                         variantes.map((variante) => (
                             <VarianteProduto tipo={variante.tipo} preco={variante.preco} estoque={variante.estoque} />

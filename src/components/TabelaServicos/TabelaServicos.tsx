@@ -20,8 +20,8 @@ export default function TabelaServicos({servico}: TabelaServicosProps) {
 
 
     return (
-        <section className='mt-10 border border-cinza-escuro rounded-xl h-full flex flex-row'>
-            <section className='border-r border-r-cinza-escuro w-[55%] px-5'>
+        <section className='border border-cinza-escuro rounded-xl h-full flex flex-col sm:flex-row'>
+            <section className='border-r border-r-cinza-escuro w-full sm:w-[55%] px-5'>
                 <div className='pt-6'>
                     <p className='font-averia text-2xl font-extrabold'>Informações básicas</p>
                 </div>
@@ -73,7 +73,7 @@ export default function TabelaServicos({servico}: TabelaServicosProps) {
                     </div>
                 </form>
             </section>
-            <section className='w-[45%] px-5'>
+            <section className='w-full sm:w-[45%] px-5'>
                 <div className='pt-6'>
                     <p className='font-averia text-2xl font-extrabold'>Váriações de Serviços</p>
                 </div>
@@ -84,7 +84,7 @@ export default function TabelaServicos({servico}: TabelaServicosProps) {
                         ))
                     }
                 </div>
-                <div className='w-[40%] mt-4 mb-4'>
+                <div className='w-full sm:w-[40%] mt-4 mb-4'>
                     <BotaoGrande title='Adicionar variação' type='button' background='bg-secundaria' onClick={() => setOpenVariante(true)} />
                 </div>
             </section>

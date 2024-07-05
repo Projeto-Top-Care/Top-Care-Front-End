@@ -15,14 +15,14 @@ const Dashboard = () => {
             </section>
             <section className="w-[90%] mx-auto">
                 <section>
-                    <h1 className="text-averia text-2xl text-preto font-semibold mb-4">Produtos</h1>
+                    <h1 className="text-averia text-xl sm:text-2xl text-preto font-semibold mb-4">Produtos</h1>
                     <div className="flex flex-row items-center border border-preto rounded-xl">
-                        <div className="w-[90%] m-auto flex flex-row items-center justify-between">
-                            <div className="w-[30%] flex flex-col gap-10">
+                        <div className="w-[90%] m-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div className="w-full sm:w-[30%] flex flex-col gap-10 pt-4 sm:pt-0">
                                 <CardDashboard background="bg-primaria" titulo="Produtos Vendidos" variavel={234} />
                                 <CardDashboard background="bg-secundaria" titulo="Ganhos" variavel={234} valor={true} />
                             </div>
-                            <div className="w-[30%] h-56 flex flex-col items-center justify-center">
+                            <div className="w-full sm:w-[30%] h-56 flex flex-col items-center justify-center">
                                 <h1 className="z-50 mb-2 font-poppins text-lg">Vendas por Categoria</h1>
                                 <Chart
                                     className=""
@@ -33,7 +33,7 @@ const Dashboard = () => {
                                     options={configurationsPie}
                                 />
                             </div>
-                            <div className="w-[35%] bg-branco p-6 rounded-lg">
+                            <div className="w-full sm:w-[35%] bg-branco p-6 rounded-lg">
                                 <Chart
                                     chartType="LineChart"
                                     width="100%"
@@ -51,13 +51,13 @@ const Dashboard = () => {
                 <section>
                     <h1 className="text-averia text-2xl text-preto font-semibold mb-4">Pedidos e Agendamentos</h1>
                     <div className="flex flex-row items-center border border-preto rounded-xl">
-                        <div className="w-[90%] m-auto flex flex-row items-center justify-between">
-                            <div className="w-[30%] flex flex-col gap-6">
+                        <div className="w-[90%] m-auto flex flex-col sm:flex-row items-center justify-between">
+                            <div className="w-full sm:w-[30%] flex flex-col gap-6 sm:pt-0 pt-4">
                                 <CardDashboard background="bg-terciaria" titulo="Total Diário" variavel={58} height='h-20' />
                                 <CardDashboard background="bg-primaria" titulo="Ticket Médio" variavel={250} valor height='h-20' />
                                 <CardDashboard background="bg-secundaria" titulo="Total Realizados" variavel={2234} height='h-20' />
                             </div>
-                            <div className="w-[30%] h-96 flex flex-col items-center justify-center">
+                            <div className="w-full sm:w-[30%] h-96 flex flex-col items-center justify-center">
                                 <Chart
                                     chartType="Bar"
                                     width="100%"
@@ -67,7 +67,7 @@ const Dashboard = () => {
                                 />
 
                             </div>
-                            <div className="w-[30%] rounded-lg">
+                            <div className="w-full sm:w-[30%] rounded-lg pb-4">
                                 <h1 className="z-50 mb-2 font-poppins text-lg text-center">Métodos de Pagamento mais Utilizados</h1>
                                 <Chart
                                     className=""

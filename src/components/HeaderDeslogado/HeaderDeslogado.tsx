@@ -80,9 +80,18 @@ export default function HeaderDeslogado() {
                     <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/contato")}>Contato</div>
                 </div>
             </div>
+
             {
                 navAberta && (
-                    <div ref={navRef} className={`z-[100] bg-branco drop-shadow-2xl block absolute top-0 left-0 w-full h-fit pb-12 overflow-x-hidden ${animation ? 'animate-slide-down' : 'animate-slide-up'}`}>
+                    <div
+                        className={`${animation ? 'animate-slide-left' : 'animate-slide-rigth'} fixed top-0 left-0 w-full h-full bg-preto opacity-30 z-50 duration-300`}
+                        onClick={() => setNavAberta(false)}
+                    ></div>
+                )
+            }
+            {
+                navAberta && (
+                    <div ref={navRef} className={`z-[100] bg-branco block absolute top-0 left-0 w-full h-fit pb-12 overflow-x-hidden ${animation ? 'animate-slide-left' : 'animate-slide-right'}`}>
                         <div className="p-6 flex flex-col gap-4">
 
                             <button className="w-full" onClick={() => setNavAberta(false)}><IoClose size={'2.5rem'} style={{ color: "#6954C0" }} /></button>
