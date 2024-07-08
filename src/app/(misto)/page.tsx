@@ -24,7 +24,7 @@ export default function PaginaInicial() {
     return (
         <main className="bg-branco">
             <Confirmacao />
-            <section className='mt-10 mb-10 max-sm:hidden'>
+            <section className='mt-10 mb-8 max-sm:hidden'>
                 <Carrossel slides={slidesCarrosselDesktop} options={OPTIONS} />
             </section>
             <section className='mt-10 mb-10 sm:hidden'>
@@ -32,13 +32,13 @@ export default function PaginaInicial() {
             </section>
 
             <section className='md:mt-20 mt-8'>
-                <div className='flex flex-col gap-10'>
+                <div className='flex flex-col'>
                     <TituloLinha voltar={false} titulo='Você também pode gostar...' />
                     <CarrosselProduto slides={carrosselProdutos} />
                 </div>
             </section>
 
-            <section className="py-6 flex flex-col gap-2 sm:gap-4">
+            <section className="py-6 flex flex-col">
                 <TituloLinha voltar={false} titulo="Categorias de produtos" />
 
                 <div className="flex flex-col sm:flex-row justify-center px-4 sm:gap-8 gap-6 sm:px-16 py-4">
@@ -66,14 +66,14 @@ export default function PaginaInicial() {
                 </div>
             </section>
 
-            <section className='md:mt-20 mt-8'>
-                <div className='flex flex-col gap-10'>
+            <section className=''>
+                <div className='flex flex-col'>
                     <TituloLinha voltar={false} titulo='Mais bem Avaliados' />
                     <CarrosselProduto slides={carrosselProdutos} />
                 </div>
             </section>
 
-            <section className="flex flex-col gap-8 py-6">
+            <section className="flex flex-col py-6">
                 <TituloLinha voltar={false} titulo="Planos de cuidados" />
 
                 <div className="flex sm:flex-row flex-col gap-8 w-[90%] justify-center items-center self-center">
@@ -83,20 +83,20 @@ export default function PaginaInicial() {
                     <PropagandaPlano titulo={"Pro premium"} descricao={"Plano básico oferece os serviços padroes mas ainda com total conforto para seu pet"} preco={179.9} />
                 </div>
 
-                <div className="w-[80%] sm:w-1/6 self-center">
+                <div className="w-[80%] sm:w-1/6 self-center pt-6">
                     <BotaoGrande onClick={() => push('./planos')} title={"Assine já"} background={"bg-primaria"} type={"button"} />
                 </div>
             </section>
 
-            <section className='md:mt-20 mt-8'>
-                <div className='flex flex-col gap-10'>
+            <section className=''>
+                <div className='flex flex-col'>
                     <TituloLinha voltar={false} titulo='Quase acabando' />
                     <CarrosselProduto slides={carrosselProdutos} />
                 </div>
             </section>
 
-            <section className='md:mt-20 mt-8 mb-10'>
-                <div className='flex flex-col gap-10'>
+            <section className='mb-24 mt-8'>
+                <div className='flex flex-col '>
                     <TituloLinha voltar={false} titulo='Promoções relâmpago' />
                     <CarrosselProduto slides={carrosselProdutos} />
                 </div>
