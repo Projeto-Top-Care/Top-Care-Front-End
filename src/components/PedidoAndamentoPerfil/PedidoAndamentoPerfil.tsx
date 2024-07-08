@@ -28,7 +28,7 @@ const PedidoAndamentoPerfil = (props: Pedido) => {
                         {
                             produtosCompletos.map((produto) => (
                                 <div className="" key={produto.id}>
-                                    <img src={produto.imagemProduto[0]} className="w-[50%] h-14 object-cover ml-5" />
+                                    <img src={produto.imagemProduto[0]} className="w-[60%] h-14 object-cover ml-8" />
                                 </div>
                             ))
                         }
