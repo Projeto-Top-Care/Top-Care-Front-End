@@ -84,7 +84,7 @@ export default function Pedidos() {
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Produto}</td>
                                 <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Cliente}</td>
                                 <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Destino}</td>
-                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Valor}</td>
+                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">R${pedido.Valor.toFixed(2).replace(".",",")}</td>
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Status}</td>
                                 <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Pagamento}</td>
                                 <td className="text-center"><IoIosLogOut size={20} className="m-auto cursor-pointer" onClick={()=> router.push(`/visualizarPedido?id=${pedido.id}`)}/></td>

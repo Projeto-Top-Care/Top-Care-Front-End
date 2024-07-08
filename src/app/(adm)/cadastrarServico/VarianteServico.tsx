@@ -22,10 +22,10 @@ export default function VarianteServico({ variante, tipo, preco }: VarianteServi
             </div>
             <div className='sm:text-base text-sm w-full h-28 bg-terciaria flex flex-row items-center px-2 sm:px-5 justify-between rounded-lg'>
                 <div className='flex flex-row'>
-                    <p className='font-semibold'>{variante}:&nbsp;</p> <p>{tipo}</p>
+                    <p className='font-semibold'>{variante}&nbsp;</p><p>{tipo}</p>
                 </div>
                 <div className='flex flex-row'>
-                    <p className='font-semibold'>Preço:&nbsp;</p> <p>R$ {preco}</p>
+                    <p className='font-semibold'>Preço:&nbsp;</p> <p>R$ {preco.toFixed(2).replace(".",",")}</p>
                 </div>
             </div>
         </div>
