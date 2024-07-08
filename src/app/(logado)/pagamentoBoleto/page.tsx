@@ -33,7 +33,7 @@ export default function PagamentoBoleto({searchParams}: BoletoProps) {
 
     return (
         <main>
-            <div className="py-6 sm:py-12 flex flex-col gap-4">
+            <div className="pb-6 sm:pb-12 flex flex-col gap-4">
                 <TituloLinha voltar={false} titulo="Pagamento" />
 
                 <section className="justify-between items-center flex flex-col-reverse gap-6 lg:flex-row px-4 md:px-8 lg:px-20">

@@ -60,10 +60,10 @@ export default function informacoesServicos() {
     }
 
     return (
-        <main className="flex flex-col justify-center bg-branco w-full gap-4 sm:gap-12 pb-24">
+        <main className="flex flex-col justify-center bg-branco w-full pb-24">
             <TituloLinha voltar={false} titulo="Serviços" />
 
-            <div className="flex flex-col lg:flex-row w-[90%] self-center gap-4">
+            <div className="flex flex-col lg:flex-row w-[90%] self-center gap-4 pb-8">
                 <div className="border-[1px] border-cinza-escuro rounded-lg w-full lg:w-1/2">
                     <BarraPesquisa placeholder={"Exemplo: 'banho e tosa'"} />
                 </div>
