@@ -7,26 +7,43 @@ import { FaSearch } from 'react-icons/fa';
 import pedidos from "@/banco/pedidos.json"
 import { IoIosArrowDown, IoIosLogOut } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import { Pedidos as PedidoType } from '@/types/pedidos';
+import pedidosData from "@/banco/pedidos.json";
+import Select from "@/components/Select/Select";
+
 
 export default function Pedidos() {
     const [pesquisa, setPesquisa] = useState('');
-
+    const [escolha, setEscolha] = useState<string>('');
     const router = useRouter()
 
-    const pedidosPesquisa = pedidos.filter(pedido =>
+
+    const pedidosPesquisa : PedidoType[] = pedidosData.filter((pedido : PedidoType) =>
         pedido.Cod_pedido.includes(pesquisa) ||
         pedido.Dt_pedido.includes(pesquisa) ||
         pedido.Produto.includes(pesquisa) ||
         pedido.Cliente.includes(pesquisa) ||
         pedido.Destino.includes(pesquisa) ||
-        pedido.Valor.includes(pesquisa) ||
+        pedido.Valor.toString().includes(pesquisa) ||
         pedido.Status.includes(pesquisa) ||
         pedido.Pagamento.includes(pesquisa)
     );
 
+    const ordenarPedidos = (pedidos: PedidoType[]): PedidoType[] => {
+        if (escolha === 'Valor Crescente') {
+            return [...pedidos].sort((a, b) => a.Valor - b.Valor);
+        } else if (escolha === 'Valor Decrescente') {
+            return [...pedidos].sort((a, b) => b.Valor - a.Valor);
+        }
+        return pedidos;
+    }
+
+    const pedidosOrdenados: PedidoType[] = ordenarPedidos(pedidosPesquisa);
+
+
     return (
         <section className="mb-28 text-preto">
-            <section className="mt-9  mb-14">
+            <section className="mb-14 flex flex-col gap-4">
                 <TituloLinha titulo={"Pedidos"} voltar={false} />
                 <div className="flex justify-between w-[90%] m-auto">
                     <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8">
@@ -40,11 +57,8 @@ export default function Pedidos() {
                             className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
                             placeholder="Pesquise nos agendamentos" />
                     </div>
-                    <div className="flex w-36 px-1 border border-cinza-claro rounded-lg h-8 ml-[5%] font-poppins">
-                        <p className="w-full text-xs sm:text-base text-cinza-escuro md:mt-1 mt-1.5">Ordenar por</p>
-                        <button className="text-cinza-escuro">
-                            <IoIosArrowDown />
-                        </button>
+                    <div className='w-60 mr-2 md:mr-0 '>
+                        <Select options={['Valor Crescente', 'Valor Decrescente']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar Por'} opcao={escolha}/>
                     </div>
                 </div>
             </section>
@@ -63,7 +77,7 @@ export default function Pedidos() {
                         </tr>
                     </thead>
                     <tbody className="lg:text-sm text-xs text-center text-preto break-word border-2 border-cinza">
-                        {pedidosPesquisa.map((pedido, index) => (
+                        {pedidosOrdenados.map((pedido, index) => (
                             <tr key={pedido.id} className={index % 2 === 0 ? 'bg-cinza-claro' : ''}>
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Cod_pedido}</td>
                                 <td className="hidden md:table-cell border border-x-cinza py-3.5 px-1.5">{pedido.Dt_pedido}</td>

@@ -15,8 +15,8 @@ export default function VisualizarAgendamento({searchParams}: VisualizarAgendame
     const agendamento =  buscarAgendamento(idPedido)
 
     return (
-        <main className=''>
-            <section className='mt-4'>
+        <main className='mb-14'>
+            <section className=''>
                 <TituloLinha voltar={true} titulo="Agendamento" />
             </section>
             <section className='flex flex-col w-full md:gap-8 gap-4 lg:p-16 md:p-10 p-4'>

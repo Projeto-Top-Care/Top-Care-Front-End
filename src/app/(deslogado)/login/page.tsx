@@ -35,7 +35,7 @@ export default function Login() {
     }
 
     return (
-        <main className='bg-branco'>
+        <main className='bg-branco flex flex-col gap-12'>
             <Erro />
             <section className=''>
                 <TituloLinha voltar={true} titulo='Login' />

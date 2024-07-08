@@ -10,12 +10,12 @@ interface VarianteProdutoProps {
 
 export default function VarianteProduto({tipo, preco, estoque }: VarianteProdutoProps) {
     return (
-        <div className='font-poppins mt-4'>
+        <div className='font-poppins mt-4 felx flex-col gap-4'>
             <div className='flex flex-row justify-between'>
                 <div>
                     <p className='font-semibold'>Variante: {tipo}</p>
                 </div>
-                <div className='flex flex-row gap-5'>
+                <div className='flex flex-row gap-2 sm:gap-5'>
                     <div>
                         <p className='cursor-pointer'><FaPencil /></p>
                     </div>
@@ -24,7 +24,7 @@ export default function VarianteProduto({tipo, preco, estoque }: VarianteProduto
                     </div>
                 </div>
             </div>
-            <div className='w-full h-28 bg-terciaria flex flex-row items-center pl-5 gap-6 rounded-lg'>
+            <div className='w-full h-28 bg-terciaria flex flex-col sm:flex-row items-start sm:py-0 py-4 sm:items-center px-5 justify-between rounded-lg'>
                 <div className='flex flex-row'>
                     <p className='font-semibold'>Variação:&nbsp;</p> <p>{tipo}</p>
                 </div>
