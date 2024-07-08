@@ -9,6 +9,7 @@ import { IoIosArrowDown, IoIosLogOut } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import { Pedidos as PedidoType } from '@/types/pedidos';
 import pedidosData from "@/banco/pedidos.json";
+import Select from "@/components/Select/Select";
 
 
 export default function Pedidos() {
@@ -29,11 +30,7 @@ export default function Pedidos() {
     );
 
     const ordenarPedidos = (pedidos: PedidoType[]): PedidoType[] => {
-        if (escolha === 'Data Crescente') {
-            return [...pedidos].sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
-        } else if (escolha === 'Data Decrescente') {
-            return [...pedidos].sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime());
-        } else if (escolha === 'Valor Crescente') {
+        if (escolha === 'Valor Crescente') {
             return [...pedidos].sort((a, b) => a.Valor - b.Valor);
         } else if (escolha === 'Valor Decrescente') {
             return [...pedidos].sort((a, b) => b.Valor - a.Valor);
@@ -60,11 +57,8 @@ export default function Pedidos() {
                             className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
                             placeholder="Pesquise nos agendamentos" />
                     </div>
-                    <div className="flex w-36 px-1 border border-cinza-claro rounded-lg h-8 ml-[5%] font-poppins">
-                        <p className="w-full text-xs sm:text-base text-cinza-escuro md:mt-1 mt-1.5">Ordenar por</p>
-                        <button className="text-cinza-escuro">
-                            <IoIosArrowDown />
-                        </button>
+                    <div className='w-60 mr-2 md:mr-0 '>
+                        <Select options={['Valor Crescente', 'Valor Decrescente']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar Por'} opcao={escolha}/>
                     </div>
                 </div>
             </section>
