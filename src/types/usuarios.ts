@@ -43,7 +43,7 @@ export interface Pedido {
     dataCompra: string,
     status: string
     pagamento: Pagamento,
-    endereço: number,
+    endereco: number,
     produtos: QntProduto[]
 }
 
