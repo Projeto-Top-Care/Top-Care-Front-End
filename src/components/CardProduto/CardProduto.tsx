@@ -69,10 +69,10 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
 
             </div>
 
-            <div className='flex flex-col items-center cursor-pointer' onClick={() => { !isAdmin ? push(`/produtos/${nomeProduto.replace('&nbsp', "-")}?id=${id}`) : '' } }>
-                <div className="items-center justify-center flex flex-col-reverse md:flex-col">
+            <div className='w-full flex flex-col items-center cursor-pointer' onClick={() => { !isAdmin ? push(`/produtos/${nomeProduto.replace('&nbsp', "-")}?id=${id}`) : '' } }>
                     <p className='text-xs md:text-sm h-10 font-medium text-preto text-center overflow-hidden line-clamp-2'>{nomeProduto}</p>
-                    <img src={imagemProduto[0]} className='w-[60%] my-3' />
+                <div className="w-full items-center justify-center flex flex-col-reverse md:flex-col">
+                    <img src={imagemProduto[0]} className='h-28 my-3' />
                 </div>
                 <h5 className='text-xs font-medium text-cinza-escuro'><span className='line-through'>R${precoAntigoDoProduto.toFixed(2).replace(".", ",")} </span><span className='text-[11px]'>{desconto}</span></h5>
                 <h5 className='sm:text-base text-sm font-semibold text-preto'>R${precoNovo.toFixed(2).replace(".", ",")}</h5>

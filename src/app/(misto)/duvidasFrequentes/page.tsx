@@ -18,7 +18,7 @@ export default function DuvidasFrequentes() {
     const [categoriaEscolhida, setCategoriaEscolhida] = useState("")
 
     return (
-        <main className="flex flex-col justify-center bg-branco w-full gap-6 lg:gap-12 mb-24">
+        <main className="flex flex-col justify-center bg-branco w-full mb-24">
             <TituloLinha voltar={true} titulo="Dúvidas frequentes" />
 
             <section className="px-8 md:px-24 min-[1025]:px-20 justify-between gap-4 sm:gap-8 lg:gap-0 flex flex-col lg:flex-row w-full">
@@ -44,7 +44,7 @@ export default function DuvidasFrequentes() {
                 </section>
             </section>
 
-            <section className="px-8 flex flex-col w-full pt-4 sm:pt-12 gap-4 items-center text-preto">
+            <section className="px-8 flex flex-col w-full pt-12 sm:pt-12 gap-4 items-center text-preto">
                     <h2 className="text-2xl font-averia font-bold">Ainda não resolveu?</h2>
                     <p className="text-center font-poppins text-base">Fale conosco! Mande um <span></span>
                         <a className="underline" href="#">email</a>, <span></span>

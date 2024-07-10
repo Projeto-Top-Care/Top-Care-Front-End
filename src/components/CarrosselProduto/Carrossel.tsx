@@ -19,7 +19,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       <div className="w-full overflow-hidden" ref={emblaRef}>
         <div className="embla__container flex flex-row justify-start">
           {slides.map((produto, i) => (
-            <div className="flex items-center justify-center h-30 shrink-0 h-80 w-full lg:w-1/3 md:w-1/2 xl:w-1/4" key={i}>
+            <div className="flex items-center justify-center shrink-0 h-[22rem] w-full lg:w-1/3 md:w-1/2 xl:w-1/4" key={i}>
               {produto}
             </div>
           ))}

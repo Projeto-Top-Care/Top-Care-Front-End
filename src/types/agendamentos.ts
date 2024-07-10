@@ -10,7 +10,7 @@ export interface Agendamentos{
     data: string
     status: string
     pagamento: string
-    parcelas: number
+    parcelas?: number
 }
 
 
