@@ -32,7 +32,7 @@ export default function informacoesServicos() {
     }, [filtro])
 
     const searchService = () =>{
-        const arraySearched = [...servicosArray].filter((filtred)=>{
+        const arraySearched = servicos.filter((filtred)=>{
             return filtred.nome.toLowerCase().includes(search.toLowerCase())
         })
 
@@ -51,7 +51,7 @@ export default function informacoesServicos() {
         <main className="flex flex-col justify-center bg-branco w-full pb-24">
             <TituloLinha voltar={false} titulo="Serviços" />
             <div className="flex flex-col lg:flex-row w-[90%] self-center gap-4">
-                <div className="border border-cinza-escuro rounded-lg w-full lg:w-1/2">
+                <div className="border border-cinza-escuro rounded-lg w-full lg:w-1/2 mb-10">
                     <BarraPesquisaComum placeholder={"Exemplo: 'banho e tosa'"} value={setSearch}/>
                 </div>
 
