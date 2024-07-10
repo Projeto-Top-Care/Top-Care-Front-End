@@ -4,48 +4,53 @@ import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { FaPlus } from "react-icons/fa6";
 import { Usuario, Endereco, QntProduto, Cartao } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
 import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
 import { useRouter } from "next/navigation";
-import { getLocalStorageArray, getLocalStorageItem } from "@/server/localStorage/actions";
 import { buscarProduto } from "@/server/produtos/action";
 import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
+import { useUserID } from "@/context/UserIDContext";
+import { useCarrinho } from "@/context/CarrinhoContext";
+import { useError } from "@/context/ErrorContext";
+import Erro from "@/components/Pop-up/Erro/Erro";
+import Carregando from "@/components/Carregando/Carregando";
 
 export default function PaginaCompra() {
 
     const { push } = useRouter();
+    const { getUserID } = useUserID()
+    const { getCarrinho } = useCarrinho()
+    const { addError } = useError()!
 
-    const idUser = getLocalStorageItem('idUser')
-    const usuarioLogado: Usuario = (buscarUsuario(parseInt(idUser))!)
-
-    const [open, setOpen] = useState<string>("")
     const [openEndereco, setOpenEndereco] = useState<boolean>(false)
-    
-    const showError = () => {
-        if (open != "") {
-            return (
-                <div className="z-50">
-                    <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down drop-shadow-lg`}>
-                        <div className="flex items-center justify-center lg:h-10 h-8 bg-error rounded font-poppins">
-                            <p className="text-xs lg:text-base text-branco">{open}</p>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-    }
 
     const [enderecoEscolhido, setEnderecoEscolhido] = useState<Endereco>()
     const [enderecoUsuario, setEnderecoUsuario] = useState("-")
     const [complemento, setComplemento] = useState("-")
 
-    const pedido: QntProduto[] = (getLocalStorageArray('carrinho') as unknown as QntProduto[])
-
     const [eCartao, setECartao] = useState(false)
     const [eBoleto, setEBoleto] = useState(false)
     const [ePix, setEPix] = useState(false)
     const [cartaoEscolhido, setCartaoEscolhido] = useState<Cartao>()
+
+    const [usuarioLogado, setUsuarioLogado] = useState<Usuario | undefined>()
+    const [carrinho, setCarrinho] = useState<QntProduto[] | undefined>()
+
+    useEffect(() => {
+        const idFecthed = getUserID()
+        setCarrinho(getCarrinho())
+        if (idFecthed) {
+            const usuario: Usuario = (buscarUsuario(parseInt(idFecthed!))!)
+            if(usuario){
+                setUsuarioLogado(usuario)
+            }
+        }
+    }, [])
+
+    if(!usuarioLogado){
+        return <Carregando />
+    }
 
     const setarEnderecoEscolhido = (endereco: Endereco) => {
         setEnderecoUsuario(`${endereco.rua}, ${endereco.numero}, ${endereco.bairro}. ${endereco.cidade} - ${endereco.estado}, Brasil`)
@@ -83,15 +88,9 @@ export default function PaginaCompra() {
     }
     const pagar = () => {
         if (enderecoEscolhido == null) {
-            setOpen("Selecione um endereco antes de avançar!")
-            setTimeout(() => {
-                setOpen("")
-            }, 4000)
-        } else if (!eCartao && !ePix && !eBoleto){
-            setOpen("Selecione uma forma de pagamento antes de avançar!")
-            setTimeout(() => {
-                setOpen("")
-            }, 4000)
+            addError("Selecione um endereco antes de avançar!")
+        } else if (!eCartao && !ePix && !eBoleto) {
+            addError("Selecione uma forma de pagamento antes de avançar!")
         } else if (ePix) {
             push('./pagamentoPix')
         } else if (eBoleto) {
@@ -99,22 +98,19 @@ export default function PaginaCompra() {
         } else if (eCartao && cartaoEscolhido != null) {
             push('./Perfil')
         } else {
-            setOpen("Selecione um cartão antes de avançar!")
-            setTimeout(() => {
-                setOpen("")
-            }, 4000)
+            addError("Selecione um cartão antes de avançar!")
         }
     }
 
     return (
         <main className="text-preto font-poppins py-12">
-            {showError()}
+            <Erro/>
             <div className="items-center flex flex-col gap-4 w-full">
-                <TituloLinha titulo="Confirmação do pedido" />
+                <TituloLinha voltar={true} titulo="Confirmação do pedido" />
 
                 <section className="flex flex-col justify-center gap-8 lg:flex-row w-[90%]">
                     <section className="py-4 lg:w-[68%]">
-                        <ResumoPedido produtos={pedido} desconto={0} frete={0} />
+                        <ResumoPedido produtos={carrinho!} desconto={0} frete={0} />
                     </section>
 
                     <section className="py-4 lg:w-[28%]">
@@ -147,7 +143,7 @@ export default function PaginaCompra() {
                     </section>
                 </section>
 
-                <TituloLinha titulo="Quase lá..." />
+                <TituloLinha voltar={false} titulo="Quase lá..." />
 
                 <section className="flex flex-col gap-1 sm:gap-4 lg:flex-col w-[90%] px-2">
                     <h2 className="font-bold text-base sm:text-lg pb-2">Escolha o método de pagamento</h2>

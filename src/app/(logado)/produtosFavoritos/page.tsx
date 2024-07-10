@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { useUserID } from '@/context/UserIDContext';
 import { buscarUsuario } from '@/server/usuario/action';
 import { Usuario } from '@/types/usuarios';
 import TituloLinha from '@/components/TituloLinha/TituloLinha';
@@ -8,38 +9,23 @@ import { FaAngleUp, FaAngleDown } from 'react-icons/fa6';
 import { FaSearch } from 'react-icons/fa';
 import { buscarProduto } from '@/server/produtos/action';
 import { Produto, ProdutoCompleto } from '@/types/produto';
+import Loading from '@/app/(misto)/loading';
 
 export default function ProdutoFavoritos() {
+    const [usuarioLogado, setUsuarioLogado] = useState<Usuario | undefined>()
+    const { getUserID } = useUserID()
+
     const [showAllProducts, setShowAllProducts] = useState(false);
-    const usuarioLogado: Usuario = buscarUsuario(1)!;
     const [pesquisa, setPesquisa] = useState('');
     const [produtosFavoritos, setProdutosFavoritos] = useState<Produto[]>([]);
     const [numDisplayedProducts, setNumDisplayedProducts] = useState(10);
-
+    
     useEffect(() => {
-        let produtosFavoritos: Produto[] = usuarioLogado.favoritos.map((id)=>{
-            return buscarProduto(id)!;
-        })
-
-        if (pesquisa.trim() !== '') {
-            produtosFavoritos = produtosFavoritos.filter((favorito) =>
-                favorito.nomeProduto
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, "")
-                .includes(
-                  pesquisa
-                    .toLowerCase()
-                    .normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, "")
-                )
-            );
+        const idFetched = getUserID()
+        if (idFetched) {
+            const usuario: Usuario = buscarUsuario(parseInt(idFetched!))!;
+            setUsuarioLogado(usuario)
         }
-
-        setProdutosFavoritos(showAllProducts ? produtosFavoritos : produtosFavoritos.slice(0, numDisplayedProducts));
-    }, [pesquisa, showAllProducts, usuarioLogado.favoritos, numDisplayedProducts]);
-
-    useEffect(() => {
         function handleResize() {
             if (window.innerWidth <= 640) {
                 setNumDisplayedProducts(4);
@@ -57,14 +43,41 @@ export default function ProdutoFavoritos() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    useEffect(() => {
+        let produtosFavoritos: Produto[] | undefined = usuarioLogado?.favoritos.map((id) => {
+            return buscarProduto(id)!;
+        })
+
+        if (pesquisa.trim() !== '') {
+            produtosFavoritos = produtosFavoritos?.filter((favorito) =>
+                favorito.nomeProduto
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .includes(
+                        pesquisa
+                            .toLowerCase()
+                            .normalize('NFD')
+                            .replace(/[\u0300-\u036f]/g, "")
+                    )
+            );
+        }
+        if(produtosFavoritos){
+            setProdutosFavoritos(showAllProducts ? produtosFavoritos : produtosFavoritos.slice(0, numDisplayedProducts));
+        }
+    }, [pesquisa, showAllProducts, usuarioLogado?.favoritos, numDisplayedProducts]);
+
     const toggleShowAllProducts = () => {
         setShowAllProducts(!showAllProducts);
     };
 
+    if(!usuarioLogado){
+        return <Loading />
+    }
     return (
-        <section className="mt-8">
-            <TituloLinha titulo={"Meus produtos favoritos"} />
-            <div className="flex flex-row justify-center mt-16 mb-12">
+        <section className="">
+            <TituloLinha voltar={false} titulo={"Meus produtos favoritos"} />
+            <div className="flex flex-row justify-center mb-12">
                 <div className="flex w-2/3 px-1 border border-preto rounded-lg h-8">
                     <div className="size-[2rem] flex items-center justify-center">
                         <button><FaSearch style={{ color: "#322828" }} /></button>

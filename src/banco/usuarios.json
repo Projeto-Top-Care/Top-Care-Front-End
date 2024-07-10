@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "role": "basic",
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Maria Silva Souza",
     "email": "maria.silva@email.com",
@@ -32,20 +33,48 @@
         "rua": "Avenida Atlântica",
         "numero": 5000,
         "complemento": "casa"
+      },
+      {
+        "id": 3,
+        "nome": "Casa asas",
+        "cep": "87654saa-321",
+        "estado": "RasdadJ",
+        "cidade": "Rioasdasd de Janeiro",
+        "bairro": "Copasdasdacabana",
+        "rua": "Aveniasdasdda Atlântica",
+        "numero": 2200,
+        "complemento": "cssasa"
+      },
+      {
+        "id": 4,
+        "nome": "Casasda Vó",
+        "cep": "87654-ccc321",
+        "estado": "RcccJ",
+        "cidade": "Rio dccce Janeiro",
+        "bairro": "Copacabccana",
+        "rua": "Avenida Atcclântica",
+        "numero": 50040,
+        "complemento": "cdsa"
       }
     ],
     "pets": [
       {
-        "nome": "Rex",
+        "id": 1,
+        "nome": "Belinha",
+        "imagem": "./assets/banho.png",
         "especie": "Cachorro",
-        "raca": "Golden Retriever",
-        "idade": 3
+        "raca": "Pinscher",
+        "idade": 11,
+        "porte": "Pequeno"
       },
       {
-        "nome": "Luna",
-        "especie": "Gata",
-        "raca": "Siamês",
-        "idade": 2
+        "id": 2,
+        "nome": "Snoopy",
+        "imagem": "./assets/banho.png",
+        "especie": "Cachorro",
+        "raca": "Poodle",
+        "idade": 7,
+        "porte": "Pequeno"
       }
     ],
     "pedidos": [
@@ -105,6 +134,7 @@
   },
   {
     "id": 2,
+    "role": "basic",
     "foto": "../assets/gatoFotoUsuario2.png",
     "nomeCompleto": "Carlos Pereira Lima",
     "email": "carlos.lima@email.com",
@@ -140,16 +170,22 @@
     ],
     "pets": [
       {
+        "id": 1,
         "nome": "Max",
+        "imagem": "./assets/banho.png",
         "especie": "Cachorro",
         "raca": "Beagle",
-        "idade": 4
+        "idade": 4,
+        "porte": "Médio"
       },
       {
-        "nome": "Bella",
-        "especie": "Gata",
-        "raca": "Persa",
-        "idade": 1
+        "id": 2,
+        "nome": "Bob",
+        "imagem": "./assets/banho.png",
+        "especie": "Cachorro",
+        "raca": "Beagle",
+        "idade": 4,
+        "porte": "Médio"
       }
     ],
     "pedidos": [
@@ -204,6 +240,7 @@
   },
   {
     "id": 3,
+    "role": "basic",
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Maria Silva Souza",
     "email": "maria.silva@email.com",
@@ -239,16 +276,13 @@
     ],
     "pets": [
       {
-        "nome": "Rex",
+        "id": 1,
+        "nome": "Belinha",
+        "imagem": "./assets/banho.png",
         "especie": "Cachorro",
-        "raca": "Golden Retriever",
-        "idade": 3
-      },
-      {
-        "nome": "Luna",
-        "especie": "Gata",
-        "raca": "Siamês",
-        "idade": 2
+        "raca": "Pinscher",
+        "idade": 11,
+        "porte": "Pequeno"
       }
     ],
     "pedidos": [
@@ -299,14 +333,15 @@
   },
   {
     "id": 4,
+    "role": "basic",
     "foto": "../assets/gatoFotoUsuario2.png",
     "nomeCompleto": "Carlos Pereira Lima",
-    "email": "carlos.lima@email.com",
+    "email": "carloslos.lima@email.com",
     "celular": "+55 (21)99999-8888",
     "senha": "senha5678",
     "cpf": "111.111.111-11",
     "sexo": "Masculino",
-    "dataNascimento": "1990-02-02",
+    "dataNascimento": "02/02/2002",
     "cupons": [], 
     "enderecos": [
       {
@@ -334,16 +369,13 @@
     ],
     "pets": [
       {
-        "nome": "Max",
+        "id": 1,
+        "nome": "Belinha",
+        "imagem": "./assets/banho.png",
         "especie": "Cachorro",
-        "raca": "Beagle",
-        "idade": 4
-      },
-      {
-        "nome": "Bella",
-        "especie": "Gata",
-        "raca": "Persa",
-        "idade": 1
+        "raca": "Pinscher",
+        "idade": 11,
+        "porte": "Pequeno"
       }
     ],
     "pedidos": [
@@ -395,9 +427,10 @@
   },
   {
     "id": 10,
+    "role": "basic",
     "foto": "../assets/gatoFotoUsuario.png",
     "nomeCompleto": "Maria Silva Souza",
-    "email": "maria.silva@email.com",
+    "email": "mariazinha.silva@email.com",
     "celular": "+55 (20)00000-0009",
     "senha": "senha12345",
     "cpf": "000.000.000-00",
@@ -473,16 +506,13 @@
     ],
     "pets": [
       {
-        "nome": "Rex",
+        "id": 1,
+        "nome": "Belinha",
+        "imagem": "./assets/banho.png",
         "especie": "Cachorro",
-        "raca": "Golden Retriever",
-        "idade": 3
-      },
-      {
-        "nome": "Luna",
-        "especie": "Gata",
-        "raca": "Siamês",
-        "idade": 2
+        "raca": "Pinscher",
+        "idade": 11,
+        "porte": "Pequeno"
       }
     ],
     "pedidos": [
@@ -541,5 +571,22 @@
         "agencia": "visa"
       }
     ]
+  },
+  {
+    "id": 11,
+    "role": "admin",
+    "foto": "../assets/gatoFotoUsuario.png",
+    "nomeCompleto": "Admininastro Da Silva",
+    "email": "adm@email.com",
+    "celular": "+55 (20)00000-0009",
+    "senha": "adm",
+    "cpf": "000.000.000-00",
+    "sexo": "Masculino",
+    "dataNascimento": "01/01/1980",
+    "cupons": [],
+    "enderecos": [],
+    "pedidos": [],
+    "favoritos": [],
+    "cartoes": []
   }
 ]

@@ -9,24 +9,36 @@ import BotaoMedio from "@/components/BotaoMedio/BotaoMedio"
 import { Pedido, QntProduto, Usuario } from "@/types/usuarios"
 import { buscarUsuario } from "@/server/usuario/action"
 import InputData from "@/components/InputData/InputData"
-import { getLocalStorageArray } from "@/server/localStorage/actions"
 import { useRouter } from "next/navigation"
+import { useUserID } from "@/context/UserIDContext"
+import { useCarrinho } from "@/context/CarrinhoContext"
 
-export default function PagamentoBoleto() {
+interface BoletoProps{
+    searchParams:{
+        p: string
+    }
+}
+
+export default function PagamentoBoleto({searchParams}: BoletoProps) {
+
+    const plano =  searchParams.p
+
     const { push } = useRouter();
+    const {userID} = useUserID()
+    const {items} = useCarrinho()
     
-    const idUser = 1
+    const idUser = parseInt(userID!)
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario>(buscarUsuario(idUser)!)
-    const pedido: QntProduto[] = (getLocalStorageArray('carrinho') as unknown as QntProduto[])
+    const pedido: QntProduto[] = (items as unknown as QntProduto[])
 
     return (
         <main>
-            <div className="py-6 sm:py-12 flex flex-col gap-4">
-                <TituloLinha titulo="Pagamento" />
+            <div className="pb-6 sm:pb-12 flex flex-col gap-4">
+                <TituloLinha voltar={false} titulo="Pagamento" />
 
                 <section className="justify-between items-center flex flex-col-reverse gap-6 lg:flex-row px-4 md:px-8 lg:px-20">
                     <section className="p-4 w-full">
-                        <ResumoPedido produtos={pedido} desconto={9} frete={0} />
+                        <ResumoPedido produtos={pedido} desconto={9} frete={0} plano={plano}/>
                     </section>
 
                     <section className="font-poppins px-2 sm:px-0 gap-4 text-preto flex flex-col justify-center items-center w-full md:w-[90%] sm:w-2/5">

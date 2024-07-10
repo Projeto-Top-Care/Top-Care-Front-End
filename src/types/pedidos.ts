@@ -5,7 +5,7 @@ export interface Pedidos {
     Produto: string;
     Cliente: string;
     Destino: string;
-    Valor: string;
+    Valor: number;
     Status: string;
     Pagamento: string;
   };

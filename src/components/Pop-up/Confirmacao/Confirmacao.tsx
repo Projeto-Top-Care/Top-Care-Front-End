@@ -1,7 +1,7 @@
 import React from 'react'
 import { useConfirmacao } from '@/context/confirmacaoContext'
 
-export default function Erro() {
+export default function Confirmacao() {
     const { confirmacoes } = useConfirmacao()!
 
     return (

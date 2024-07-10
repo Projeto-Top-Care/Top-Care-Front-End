@@ -1,5 +1,6 @@
 export interface Usuario {
     id: number,
+    role: string,
     foto: string,
     nomeCompleto: string,
     email: string,
@@ -21,7 +22,8 @@ export interface Pet {
     nome: string
     especie: string
     raca: string
-    idade: number
+    idade: string
+    porte: string 
 }
 export interface Endereco {
     id: number
@@ -53,7 +55,7 @@ export interface Cartao {
 }
 
 export interface QntProduto {
-    id: number,
+    id: number | undefined,
     quantidade: number
 }
 
@@ -151,3 +153,4 @@ export interface ViaCEP{
     uf: string
     erro: boolean
 }
+

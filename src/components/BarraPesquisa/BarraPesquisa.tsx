@@ -1,4 +1,5 @@
-import { getLocalStorageArray } from "@/server/localStorage/actions";
+'use client'
+import { useSearch } from "@/context/SearchContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
@@ -11,8 +12,9 @@ interface IBarraPesquisa {
 
 export default function BarraPesquisa({ placeholder }: IBarraPesquisa) {
     const router = useRouter()
+    const {items} = useSearch()
     const [query, setQuery] = useState<string>('')
-    const [ultimasPesquisas, setUltimasPesquisas] = useState<string[]>(getLocalStorageArray('ultimasPesquisas'))
+    const [ultimasPesquisas, setUltimasPesquisas] = useState<string[]>(items)
 
     const pesquisas = (): string[] =>{
         const ultimasPesquisasTemp = [...ultimasPesquisas]
@@ -67,7 +69,7 @@ export default function BarraPesquisa({ placeholder }: IBarraPesquisa) {
                 />
                 <div className="peer-focus:!flex hover:!flex flex-col max-h-40 hidden border border-cinza bg-branco top-0 left-0 w-full absolute z-50 mt-9 rounded-lg">
                     {pesquisas().map((pesquisa, i)=>(
-                        <div key={i} className="font-poppins flex flex-row h-10 items-center hover:bg-gray-200" >
+                        <div key={i} className="font-poppins flex flex-row h-10 items-center hover:bg-cinza-claro" >
                             <div className="w-[96%] flex flex-row cursor-pointer items-center" onClick={()=>enviarPesquisa(pesquisa)}>
                                 <div className="size-[2rem] flex items-center justify-center">
                                     <TbReload />

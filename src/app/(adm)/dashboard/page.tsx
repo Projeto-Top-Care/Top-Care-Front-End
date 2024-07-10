@@ -1,84 +1,89 @@
 // pages/dashboard.js
 'use client'
-import { colors } from "@mui/material";
+import TituloLinha from "@/components/TituloLinha/TituloLinha";
+import CardDashboard from "./CardDashboard";
 import { Chart } from "react-google-charts";
+import { dataDaysAndSells , configurationsBar } from "@/utils/dataChartBar"
+import { dataSellsForDay, configurationsLine} from "@/utils/dataChartLine"
+import { dataCategoriesSoldPerMonth, dataMethodsUsedPerUser, configurationsPie} from "@/utils/dataChartPie"
 
 const Dashboard = () => {
-    const randonValues = () =>{
-        let values: (string | number)[][] = [["Dias", "Vendas"], [0, 0]]
-
-        for(let i=1; i<31; i++){
-            values.push([i, Math.floor(Math.random()*50)])
-        }
-
-        return values
-
-    }
-
-    const dataLine = randonValues()
-
-    const optionsLine = {
-        legend: {
-            position: 'none'
-        },
-        colors: ['#C9E47B']
-    };
-
-    const dataPie = [
-        ["Produtos", "Quantidade de Vendas"],
-        ["Acessórios", 11],
-        ["Medicamentos", 22],
-        ["Higiene", 9],
-        ["Brinquedos", 7],
-    ];
-
-    const optionsPie = {
-        pieHole: 0.4,
-        is3D: false,
-        legend: "none",
-        colors: ['#B5A6F3', '#C9E47B', '#DFEAFF', '#DFEAFF'],
-        fontName: 'Poppins',
-        pieSliceTextStyle: {
-            color: 'black'
-        },
-        backgroundColor: '#F5F5F5',
-        tooltip: {
-            ignoreBounds: true,
-            showColorCode: true,
-        }
-    };
-
     return (
-        <div>
-            <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
-            <div className=" w-full flex flex-wrap">
-                <div className="container p-4 w-[30%]">
-                    <section className="rounded-lg shadow-md p-4 mb-6 bg-cinza-claro">
-                        <h2 className="text-xl font-semibold mb-2 poppins">Vendas por categoria</h2>
-                        <Chart
-                            chartType="PieChart"
-                            width="100%"
-                            height="300px"
-                            data={dataPie}
-                            options={optionsPie}
-                            style={{ borderRadius: 40 }}
-                        />
-                    </section>
-                </div>
-                <div className="container p-4 w-[30%]">
-                    <section className="rounded-lg shadow-md p-4 mb-6 ">
-                        <h2 className="text-xl font-semibold mb-2 poppins">Vendas Mensais</h2>
-                        <Chart
-                            chartType="Line"
-                            width="100%"
-                            height="300px"
-                            data={dataLine}
-                            options={optionsLine}
-                        />
-                    </section>
-                </div>
-            </div>
-        </div>
+        <main className="text-preto">
+            <section className="">
+                <TituloLinha titulo="Dashboard" voltar={false} />
+            </section>
+            <section className="w-[90%] mx-auto">
+                <section>
+                    <h1 className="text-averia text-xl sm:text-2xl text-preto font-semibold mb-4">Produtos</h1>
+                    <div className="flex flex-row items-center border border-preto rounded-xl">
+                        <div className="w-[90%] m-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div className="w-full sm:w-[30%] flex flex-col gap-10 pt-4 sm:pt-0">
+                                <CardDashboard background="bg-primaria" titulo="Produtos Vendidos" variavel={234} />
+                                <CardDashboard background="bg-secundaria" titulo="Ganhos" variavel={234} valor={true} />
+                            </div>
+                            <div className="w-full sm:w-[30%] h-56 flex flex-col items-center justify-center">
+                                <h1 className="z-50 mb-2 font-poppins text-lg">Vendas por Categoria</h1>
+                                <Chart
+                                    className=""
+                                    chartType="PieChart"
+                                    width="100%"
+                                    height="100%"
+                                    data={dataCategoriesSoldPerMonth}
+                                    options={configurationsPie}
+                                />
+                            </div>
+                            <div className="w-full sm:w-[35%] bg-branco p-6 rounded-lg">
+                                <Chart
+                                    chartType="LineChart"
+                                    width="100%"
+                                    height="250px"
+                                    data={dataSellsForDay}
+                                    options={configurationsLine}
+                                    className="border border-preto"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section className="w-[90%] mx-auto mt-14 mb-14">
+                <section>
+                    <h1 className="text-averia text-2xl text-preto font-semibold mb-4">Pedidos e Agendamentos</h1>
+                    <div className="flex flex-row items-center border border-preto rounded-xl">
+                        <div className="w-[90%] m-auto flex flex-col sm:flex-row items-center justify-between">
+                            <div className="w-full sm:w-[30%] flex flex-col gap-6 sm:pt-0 pt-4">
+                                <CardDashboard background="bg-terciaria" titulo="Total Diário" variavel={58} height='h-20' />
+                                <CardDashboard background="bg-primaria" titulo="Ticket Médio" variavel={250} valor height='h-20' />
+                                <CardDashboard background="bg-secundaria" titulo="Total Realizados" variavel={2234} height='h-20' />
+                            </div>
+                            <div className="w-full sm:w-[30%] h-96 flex flex-col items-center justify-center">
+                                <Chart
+                                    chartType="Bar"
+                                    width="100%"
+                                    height="300px"
+                                    data={dataDaysAndSells}
+                                    options={configurationsBar}
+                                />
+
+                            </div>
+                            <div className="w-full sm:w-[30%] rounded-lg pb-4">
+                                <h1 className="z-50 mb-2 font-poppins text-lg text-center">Métodos de Pagamento mais Utilizados</h1>
+                                <Chart
+                                    className=""
+                                    chartType="PieChart"
+                                    width="100%"
+                                    height="100%"
+                                    data={dataMethodsUsedPerUser}
+                                    options={configurationsPie}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+        </main>
     );
 };
 

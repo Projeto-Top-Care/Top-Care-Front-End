@@ -25,18 +25,15 @@ const Footer = () => {
                 <div className="flex flex-col items-start lg:items-center">
                     <h5 className="md:text-base text-xs">Nossas redes sociais</h5>
                     <div className="flex justify-center gap-2 pt-2 w-full md:w-[80%]">
-                        <FaInstagram style={{ color: "#322828", fontSize: "1.4rem" }} />
-                        <FaFacebookSquare style={{ color: "#322828", fontSize: "1.4rem" }} />
-                        <FaYoutube style={{ color: "#322828", fontSize: "1.4rem" }} />
-                        <BsTwitterX style={{ color: "#322828", fontSize: "1.4rem" }} />
+                        <a href="https://www.instagram.com/"><FaInstagram style={{ color: "#322828", fontSize: "1.4rem" }} /></a>
+                        <a href="https://www.facebook.com/?locale=pt_BR"><FaFacebookSquare style={{ color: "#322828", fontSize: "1.4rem" }} /></a>
+                        <a href="https://www.youtube.com"><FaYoutube style={{ color: "#322828", fontSize: "1.4rem" }} /></a>
+                        <a href="https://x.com/?lang=pt-br"><BsTwitterX style={{ color: "#322828", fontSize: "1.4rem" }} /></a>
                     </div>
                 </div>
 
-
-
                 <div className="flex flex-col">
                     <h5 className="md:text-base text-xs mb-[2%]">Métodos de pagamento</h5>
-                    {/* <img className="md:w-[190px]" src="assets/footer-pagamento.png" /> */}
                     <div className="grid grid-cols-3 gap-1">
                         <img className="w-4 sm:w-[1.4rem] lg:w-10 self-center" src="./assets/logo-mastercard.png" />
                         <img className="w-4 sm:w-[1.4rem] lg:w-10 self-center" src="./assets/logo-elo.png" />

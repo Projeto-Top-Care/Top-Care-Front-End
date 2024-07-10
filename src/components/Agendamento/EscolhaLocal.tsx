@@ -1,0 +1,51 @@
+'use client'
+import React, { SetStateAction, useEffect, useState } from 'react';
+import LocalAgendamento from '@/components/LocalAgendamento/LocalAgendamento';
+
+interface ILocal {
+    setLocalEscolhido: React.Dispatch<SetStateAction<string>>
+}
+
+const EscolhaLocal = ({setLocalEscolhido}: ILocal) => {
+
+    const [selectedLocal, setSelectedLocal] = useState<string>('');
+    useEffect(() => {
+        setLocalEscolhido(selectedLocal)
+    }, [selectedLocal])
+
+    const handleSelectLocal = (servico: string) => {
+        setSelectedLocal(servico);
+    };
+
+    return (
+        <main className='p-8'>
+            <div className="mt-8 sm:mt-12 w-full flex flex-col gap-6 sm:gap-12">
+                <div className='flex items-center justify-center'>
+                    <p className='font-poppins text-preto font-medium text-xl text-center'>Selecione um local para o agendamento</p>
+                </div>
+                <div className='lg:flex lg:justify-center lg:items-center grid md:grid-cols-2 gap-8 mt-12'>
+                    <LocalAgendamento
+                        nomeFilial='Camboriu - SC'
+                        rua='Dom Henrique, 424'
+                        isSelected={selectedLocal === 'Camboriu - SC'}
+                        onSelect={() => handleSelectLocal('Camboriu - SC')}
+                    />
+                    <LocalAgendamento
+                        nomeFilial='Jaraguá do Sul - SC'
+                        rua='Honório Pedri, 82'
+                        isSelected={selectedLocal === 'Jaraguá do Sul - SC'}
+                        onSelect={() => handleSelectLocal('Jaraguá do Sul - SC')}
+                    />
+                    <LocalAgendamento
+                        nomeFilial='Curitiba - PR'
+                        rua='Rua Antônio Gomes, 106'
+                        isSelected={selectedLocal === 'Curitiba - PR'}
+                        onSelect={() => handleSelectLocal('Curitiba - PR')}
+                    />
+                </div>
+            </div>
+        </main>
+    )
+}
+
+export default EscolhaLocal;

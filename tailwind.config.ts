@@ -20,7 +20,8 @@ const config: Config = {
         'fundo-modal': 'rgba(0, 0, 0, 0.3)',
         'error' : '#E94444',
         'verde': '#37BC2C',
-        'azul-hover': '#c4d5f3'
+        'azul-hover': '#c4d5f3',
+        'roxo-select': '#6954C0'
       },
       fontFamily: {
         'poppins': ['Poppins'],

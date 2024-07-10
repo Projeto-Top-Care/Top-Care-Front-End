@@ -35,7 +35,7 @@ export default function InputData({dataSelecionada}: IInputData) {
 
     return (
         <div className={`w-full h-full flex flex-col items-center justify-center`}>
-            <div className='w-full h-10 border text-xs lg:text-sm font-poppins border-cinza rounded-lg flex flex-row justify-between px-3 items-center'>
+            <div className='w-full h-12 border text-xs lg:text-sm font-poppins border-cinza rounded-md flex flex-row justify-between px-3 items-center'>
                 <p className={`${typeof data === "string" ? (data === undefined && lastData ? 'text-cinza-escuro' : 'text-cinza') : 'text-cinza-escuro'}`}>{typeof data === "string" || data === undefined ? (lastData && typeof data !== 'string' ? dataToString(lastData) : "Data*") : dataToString(data as Dayjs)}</p>
                 <FaCalendarAlt color='#4F4F4F' onClick={() => setOpen(!open)} />
             </div>
