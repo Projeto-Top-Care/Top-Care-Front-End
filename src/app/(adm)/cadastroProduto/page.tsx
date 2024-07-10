@@ -29,7 +29,7 @@ export default function CadastroProduto() {
         <main className="w-[90%] mx-auto text-preto">
             <Confirmacao />
             <section className="">
-                <TituloLinha voltar={true} titulo='Cadastrar novo serviço' />
+                <TituloLinha voltar={true} titulo='Cadastrar novo produto' />
             </section>
             <section>
                 <TabelaProdutos />

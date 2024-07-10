@@ -154,15 +154,15 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             </div>
             <div className='flex flex-col md:flex-row md:items-center md:justify-between w-full lg:w-[85%] gap-3 md:gap-0 h-20 max-sm:mt-3'>
               <div className='flex flex-row items-center gap-3'>
-                <p className='font-poppins font-bold md:text-2xl text-xl text-preto'>R$ {produtoProcurado.precoNovo.toString().replace(".", ",")}</p>
-                <s className='font-poppins font-bold md:text-base text-sm text-cinza'>R$ {produtoProcurado.precoAntigoDoProduto.toString().replace(".", ",")}</s>
+                <p className='font-poppins font-bold md:text-2xl text-xl text-preto'>R$ {produtoProcurado.precoNovo.toFixed(2).replace(".", ",")}</p>
+                <s className='font-poppins font-bold md:text-base text-sm text-cinza'>R$ {produtoProcurado.precoAntigoDoProduto.toFixed(2).replace(".", ",")}</s>
               </div>
               <div className='max-sm:w-full'>
                 <BotaoGrande background='bg-primaria' fontSize='text-xs lg:text-sm' type='button' title='Calcular Frete' />
               </div>
             </div>
             <div className='rounded-lg bg-terciaria w-full lg:w-[85%] px-6 py-4'>
-              <p className='font-poppins md:text-base text-sm '>R$ {produtoProcurado.precoAssinantes.toString().replace(".", ",")} para assinantes</p>
+              <p className='font-poppins md:text-base text-sm '>R$ {produtoProcurado.precoAssinantes.toFixed(2).replace(".", ",")} para assinantes</p>
               <div className='md:mt-1 mt-2 flex flex-col md:gap-0 gap-2'>
                 <p className='font-poppins md:text-base text-sm'>*   10% OFF em todas as compras no app, site e lojas físicas</p>
                 <p className='font-poppins md:text-base text-sm'>*   Sem custo ou mensalidade. Cancele ou pause quando quiser</p>
@@ -189,7 +189,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
           </section>
         </section>
         <section className='md:mt-20 mt-8'>
-          <div className='flex flex-col gap-10'>
+          <div className='flex flex-col'>
             <TituloLinha voltar={false} titulo='Você também pode gostar...' />
             <CarrosselProduto slides={carrosselProdutos} />
           </div>

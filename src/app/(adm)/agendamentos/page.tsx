@@ -36,6 +36,8 @@ export default function Agendamentos() {
             return [...agendamentos].sort((a, b) => a.valor - b.valor);
         } else if (escolha === 'Valor Decrescente') {
             return [...agendamentos].sort((a, b) => b.valor - a.valor);
+        }else if (escolha == 'A a Z') {
+            return [...agendamentos].sort((a, b) => a.servico > b.servico ? 1 : -1);
         }
         return agendamentos;
     }
@@ -47,8 +49,8 @@ export default function Agendamentos() {
             <section className="mb-14 text-preto flex flex-col gap-4">
                 <TituloLinha titulo={"Agendamentos"} voltar={false} />
                 <div className="flex justify-between w-[90%] m-auto">
-                    <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8 mt-6 ">
-                        <div className="size-[2rem] flex">
+                    <div className="flex w-[60%] px-1 border border-preto rounded-lg h-10">
+                        <div className="size-[2rem] h-full flex">
                             <button><FaSearch style={{ color: "#322828" }} /></button>
                         </div>
                         <input
@@ -58,9 +60,9 @@ export default function Agendamentos() {
                             className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
                             placeholder="Pesquise nos agendamentos" />
                     </div>
-                    <div className='w-60 mr-2 md:mr-0 mt-6'>
+                    <div className='w-60 mr-2 md:mr-0'>
                         <Select
-                            options={['Data Crescente', 'Data Decrescente', 'Valor Crescente', 'Valor Decrescente']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar Por'} opcao={escolha}/>
+                            options={['Data Crescente', 'Data Decrescente', 'Valor Crescente', 'Valor Decrescente', 'A a Z']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar Por'} opcao={escolha}/>
                     </div>
                 </div>
             </section>
@@ -88,7 +90,7 @@ export default function Agendamentos() {
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.horario}</td>
                                 <td className="hidden sm:table-cell border border-x-cinza py-3.5 px-1.5">{agendamento.data}</td>
                                 <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.profissional}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">R${agendamento.valor}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">R${agendamento.valor.toFixed(2).replace(".",",")}</td>
                                 <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.status}</td>
                                 <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.pagamento}</td>
                                 <td className="text-center"><IoIosLogOut size={20} className="m-auto cursor-pointer" onClick={() => router.push(`/visualizarAgendamento?id=${agendamento.id}`)} /></td>

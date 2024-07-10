@@ -19,6 +19,8 @@ export default function CadastroVariante({ openModalProps, variantesProps, setVa
     const [tipo, setTipo] = useState<string>("")
     const [preco, setPreco] = useState<number>(0)
 
+    const [error, setError] = useState<boolean>(false)
+
     useEffect(() => {
         openModalProps(openModal)
     }, [openModal])
@@ -29,6 +31,7 @@ export default function CadastroVariante({ openModalProps, variantesProps, setVa
     }, [variantes])
 
     const addVariante = () => {
+        setError(false)
         const newVariante: VariantesProps = {
             nome: nome,
             tipo: tipo,
@@ -38,10 +41,15 @@ export default function CadastroVariante({ openModalProps, variantesProps, setVa
         setVariantes(newVariantes)
     }
 
+    const verificarVariante = () => {
+        !nome ? setError(true) : !tipo ? setError(true) : !preco ? setError(true) : addVariante() 
+    }
+
     return (
-        <div className='absolute'>
+        <div className="absolute">
             <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpenModal(false)}></div>
-            <div className='w-[50%] bg-branco rounded-lg fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
+            <div className={`${error ? `border-2 border-error` : `border-0`} w-[50%] bg-branco rounded-lg fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50`}>
+            
                 <div className='mt-5 text-center'>
                     <h1 className='font-averia font-extrabold text-xl text-preto'>Criar Variação</h1>
                 </div>
@@ -64,10 +72,10 @@ export default function CadastroVariante({ openModalProps, variantesProps, setVa
                 </div>
                 <div className='flex flex-row w-[90%] mx-auto justify-between mb-5'>
                     <div className='w-[40%]'>
-                        <BotaoGrande background='bg-error' title='Cancelar' type='button' onClick={() => setOpenModal(false)} />
+                        <BotaoGrande background='bg-error' textColor='text-branco' title='Cancelar' type='button' onClick={() => setOpenModal(false)} />
                     </div>
                     <div className='w-[40%]'>
-                        <BotaoGrande background='bg-secundaria' title='Finalizar' type='button' onClick={()=>addVariante()}/>
+                        <BotaoGrande background='bg-secundaria' title='Finalizar' type='submit' onClick={()=>verificarVariante()}/>
                     </div>
                 </div>
             </div>

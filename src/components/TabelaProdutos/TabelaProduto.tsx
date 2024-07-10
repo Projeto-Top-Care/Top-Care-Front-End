@@ -23,7 +23,6 @@ export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
     const [variantes, setVariantes] = useState<VarianteProps[]>(produto ? produto.variantes : [])
     const [quantidadeFotos, setQuantidadeFotos] = useState<number[]>([])
 
-
     return (
         <section className='border border-cinza-escuro rounded-xl h-full flex flex-col lg:flex-row'>
             <section className='border-b border-b-cinza-escuro px-4 md:px-8 lg:border-b-0 lg:border-r border-r-cinza-escuro lg:w-[55%] '>
@@ -67,18 +66,18 @@ export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
                     <div className='flex flex-col items-center mt-5'>
                         <h1 className='font-averia font-extrabold text-lg text-center'>Imagem</h1>
                         <p className='font-poppins text-center text-sm'>Para adicionar mais fotos aperte no sinal de mais</p>
-                        <div className='flex flex-row justify-center md:gap-6 mt-6 mb-6'>
-                            <div className='flex flex-row items-center gap-5 w-full'>
+                        <div className='flex flex-col gap-8 justify-center md:flex-row md:gap-4 mt-6 mb-6'>
+                            <div className='flex flex-col md:flex-row items-center gap-5 w-full'>
                                 <div className='flex flex-col items-center'>
-                                    <div className='w-20 h-20 md:w-24 md:h-24'>
-                                        <InputFile rounded='rounded-lg' />
+                                    <div className='w-20 h-20 md:w-24 md:h-24 lg:w-20 lg:h-20 xl:w-24 xl:h-24'>
+                                        <InputFile rounded='rounded-lg'/>
                                     </div>
                                     <p className='font-poppins text-xs md:text-sm text-center mt-1'>Principal</p>
                                 </div>
                                 {
                                     quantidadeFotos.map((number, i) => (
                                         <div className='flex flex-col items-center animate-checked' key={i}>
-                                            <div className='w-20 h-20 md:w-24 md:h-24'>
+                                            <div className='w-20 h-20 md:w-24 md:h-24 lg:w-20 lg:h-20 xl:w-24 xl:h-24'>
                                                 <InputFile rounded='rounded-lg' />
                                             </div>
                                             <p className='font-poppins text-xs md:text-sm text-center mt-1'>Imagem {number + 1}</p>
@@ -86,7 +85,7 @@ export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
                                     ))
                                 }
                             </div>
-                            <div className={`${quantidadeFotos.length < 4 ? '!flex' : 'hidden'} items-center justify-center cursor-pointer w-full md:w-[10%] mt-[-25%] md:mt-[-10%]`}>
+                            <div className={`${quantidadeFotos.length < 4 ? '!flex' : 'hidden'} items-center justify-center cursor-pointer w-full md:w-[10%] mt-[-25%] md:mt-[-5%]`}>
                                 <div className='p-3 rounded-full bg-terciaria cursor-pointer' onClick={()=>setQuantidadeFotos([...quantidadeFotos, quantidadeFotos.length + 1])}>
                                     {<FiPlus size={20} />}
                                 </div>
@@ -102,10 +101,10 @@ export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
                 <div>
                     <p className='font-poppins text-center lg:text-start text-base mt-4'>Clique no botão para adicionar variações deste produto</p>
                 </div>
-                <div className='w-full'>
+                <div>
                     {
                         variantes.map((variante) => (
-                            <VarianteProduto tipo={variante.tipo} preco={variante.preco} estoque={variante.estoque} />
+                            <VarianteProduto tipo={variante.tipo} preco={variante.preco} estoque={variante.estoque}/>
                         ))
                     }
                 </div>
