@@ -141,7 +141,7 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
                 <section className='w-full md:w-[75%]'>
                     <div className='w-full flex items-center flex-col-reverse md:flex-row justify-between'>
                         <p className='font-poppins text-lg font-bold mt-5 pl-0 sm:pl-6 lg:pl-2 md:mt-0 md:text-2xl'>{query ? `Resultados para "${query}"` : isAdmin ? "Produtos Top Care" : "Produtos"}</p>
-                        <div className='w-full md:w-[25%] flex justify-between'>
+                        <div className='w-full md:w-[25%] flex gap-[10%] justify-center'>
                             <div className='flex flex-row gap-2 items-center justify-center border w-[25%] p-1 rounded-lg border-cinza ml-2 font-poppins text-sm md:hidden' onClick={() => setFiltroOpen(true)}>
                                 <p>Filtrar</p>
                                 <FaFilter style={{ color: "#BDBDBD", }} />
@@ -153,8 +153,10 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
                     </div>
                     {
                         isAdmin && (
-                            <div className='w-fit sm:w-[30%] mt-6'>
+                            <div className='flex justify-center md:block'>
+                                <div className='w-fit sm:w-[30%] md:w-[40%] mt-6 md:ml-5 lg:w-[30%] lg:ml-0'>
                                 <BotaoGrande title='Adicionar novo Produto' type='button' background='bg-secundaria' height='h-9' onClick={()=>router.push('/cadastroProduto')}/>
+                                </div>
                             </div>
                         )
                     }
