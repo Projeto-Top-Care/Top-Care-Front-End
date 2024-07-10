@@ -44,11 +44,11 @@ export default function CadastroVariante({ openModalProps, variantesProps, setVa
     return (
         <div className='absolute'>
             <div className='fixed top-0 left-0 w-full h-full z-50 bg-fundo-modal' onClick={() => setOpenModal(false)}></div>
-            <div className='w-[50%] bg-branco rounded-lg fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
+            <div className='w-[80%] lg:w-[60%] xl:w-[50%] bg-branco rounded-lg fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
                 <div className='mt-5 text-center'>
                     <h1 className='font-averia font-extrabold text-xl text-preto'>Criar Variação</h1>
                 </div>
-                <div className='my-10 flex flex-row w-[90%] m-auto justify-between'>
+                <div className='my-10 flex flex-col gap-4 md:flex-row w-[90%] m-auto justify-between'>
                     <InputText
                         placeholder='Titulo da variante*'
                         value={tipo}

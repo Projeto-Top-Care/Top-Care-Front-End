@@ -8,15 +8,28 @@ import type { Endereco, Pedido, QntProduto, Usuario } from '@/types/usuarios'
 import { Produto } from '@/types/produto'
 import { MdBlock } from "react-icons/md";
 import { TfiReload } from "react-icons/tfi";
+import { useEffect, useState } from "react";
+import Carregando from "@/components/Carregando/Carregando";
 
 interface PropsUsuario {
     searchParams: { id: number }
 }
 
 export default function Pedido({ searchParams }: PropsUsuario) {
-    const {userID} = useUserID()
+    const [userId, setUserId] = useState<number>(0)
+    const {getUserID} = useUserID()
 
-    const userId = parseInt(userID!)
+    useEffect(()=>{
+        const idResponse = getUserID()
+        if(idResponse){
+            setUserId(parseInt(idResponse))
+        }
+    },[])
+
+    if(userId == 0) {
+        return <Carregando />
+    }
+
     const produtoId = searchParams.id
     const usuarioProcurado: Usuario = buscarUsuario(userId)!
 
@@ -29,7 +42,7 @@ export default function Pedido({ searchParams }: PropsUsuario) {
     const produtosCompletos: Produto[] = produtos.map((produto) => {
         return buscarProduto(produto.id!)!
     })
-    const endereco: Endereco = buscarEndereco(pedidoBuscado.endereço, userId)!
+    const endereco: Endereco = buscarEndereco(pedidoBuscado.endereco, userId)!
 
     return (
         <main>
