@@ -87,6 +87,7 @@ export default function HeaderLogado() {
                     <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/lojas")}>Lojas</div>
                     <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./planos")}>Planos</div>
                     <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./duvidasFrequentes")}>Ajuda</div>
+                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./contato")}>Orçamentos</div>
                 </div>
             </div>
 
