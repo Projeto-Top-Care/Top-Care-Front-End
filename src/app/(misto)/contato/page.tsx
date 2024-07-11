@@ -1,20 +1,19 @@
 'use client'
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
-import InputData from "@/components/InputData/InputData";
 import InputText from "@/components/InputText/InputText";
 import Erro from "@/components/Pop-up/Erro/Erro";
 import UmBotao from "@/components/Pop-up/UmBotao/UmBotao";
 import Select from "@/components/Select/Select";
 import TextArea from "@/components/TextArea/TextArea";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
-import { salvarInformacoes } from "@/server/formulario/action";
 import { FaRegFilePdf } from "react-icons/fa6";
 import { FaFileImage } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { useConfirmacao } from "@/context/confirmacaoContext";
 import { useError } from "@/context/ErrorContext";
+import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 
 export default function Contato() {
 
@@ -37,7 +36,7 @@ export default function Contato() {
         e.append("files", filesArray[0])
         const rawFormObject = Object.fromEntries(e)
 
-        if(!rawFormObject.nome){
+        if(rawFormObject.nome == ""){
             addError("Campos Faltando!")
         }
         else{
@@ -78,6 +77,8 @@ export default function Contato() {
 
     return (
         <main className={`flex flex-col w-full mb-32 overflow-hidden`}>
+            <Erro />
+            <Confirmacao />
             <section className="">
                 <section className="flex flex-col items-center justify-center gap-4 mt-10 mx-12">
                     <h1 className="font-averia md:text-3xl text-2xl font-bold text-preto text-center">Precisa de ajuda?</h1>
