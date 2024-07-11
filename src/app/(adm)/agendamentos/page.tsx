@@ -49,8 +49,8 @@ export default function Agendamentos() {
             <section className="mb-14 text-preto flex flex-col gap-4">
                 <TituloLinha titulo={"Agendamentos"} voltar={false} />
                 <div className="flex justify-between w-[90%] m-auto">
-                    <div className="flex w-[60%] px-1 border border-preto rounded-lg h-8">
-                        <div className="size-[2rem] flex">
+                    <div className="flex w-[60%] px-1 border border-preto rounded-lg h-10">
+                        <div className="size-[2rem] h-full flex">
                             <button><FaSearch style={{ color: "#322828" }} /></button>
                         </div>
                         <input
@@ -60,7 +60,7 @@ export default function Agendamentos() {
                             className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
                             placeholder="Pesquise nos agendamentos" />
                     </div>
-                    <div className='w-60 mr-2 md:mr-0'>
+                    <div className='md:w-[18%] w-[38%]'>
                         <Select
                             options={['Data Crescente', 'Data Decrescente', 'Valor Crescente', 'Valor Decrescente', 'A a Z']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar Por'} opcao={escolha}/>
                     </div>
