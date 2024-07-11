@@ -6,106 +6,78 @@ import Erro from "@/components/Pop-up/Erro/Erro";
 import UmBotao from "@/components/Pop-up/UmBotao/UmBotao";
 import Select from "@/components/Select/Select";
 import TextArea from "@/components/TextArea/TextArea";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 import { salvarInformacoes } from "@/server/formulario/action";
+import { FaRegFilePdf } from "react-icons/fa6";
+import { FaFileImage } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa6";
+import { FaRegTrashCan } from "react-icons/fa6";
+import { useConfirmacao } from "@/context/confirmacaoContext";
+import { useError } from "@/context/ErrorContext";
 
 export default function Contato() {
 
-    const [open, setOpen] = useState<boolean>(false)
     const [openModal, setOpenModal] = useState<boolean>(false)
-    const [modalError, setModalError] = useState<boolean>(false)
 
-    const [nome, setNome] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
     const [atendimento, setAtendimento] = useState<string>("");
-    const [filial, setFilial] = useState<string>("");
-    const [servico, setServico] = useState<string>("");
-    const [data, setData] = useState<string>("");
-    const [horario, setHorario] = useState<string>("");
-    const [descricao, setDescricao] = useState<string>("");
 
-    const formData = new FormData();
+    const [filesArray, setFilesArray] = useState<File[]>([])
 
-    const updateFormData = () => {
-        formData.append('nome', nome)
-        formData.append('email', email)
-        formData.append('atendimento', atendimento)
-        formData.append('filial', filial)
-        formData.append('servico', servico)
-        formData.append('data', data)
-        formData.append('horario', horario)
-        formData.append('descricao', descricao)
-    }
-
-    useEffect(()=>{
-        updateFormData();
-    })
-
-    useEffect(()=>{
-        if (openModal) {
-            document.body.style.overflowY = 'hidden';
-        }else{
-            document.body.style.overflowY = 'auto';
-        }    
-    },[openModal])
-
-    
-    const showModalError = () => {
-        if (modalError) {
-            return (
-                <div className="w-full z-50">
-                    <Erro />
-                </div>
-            )
-        }
-    }
+    const {addConfirmacao} = useConfirmacao()!
+    const {addError} = useError()!
 
     const copyContent = (content: string) => {
         navigator.clipboard.writeText(content);
-        setOpen(true)
-        setTimeout(() => {
-            setOpen(false)
-        }, 4000)
+        addConfirmacao("Copiado")
     }
 
-    const verificaForms = () => {
-        if (nome != '' && email != '' && atendimento != '' && descricao != '') {
-            if (atendimento == 'Agendamento') {
-                if (filial != '' && servico != '' && data != '' && horario != '') {
-                    setOpenModal(true)
-                } else {
-                    setModalError(true)
-                }
-            } else {
-                setOpenModal(true)
-            }
-        } else {
-            setModalError(true)
+    const sendForm = (e: FormData) =>{
+        e.append("atendimento", atendimento)
+        e.append("files", filesArray[0])
+        const rawFormObject = Object.fromEntries(e)
+
+        if(!rawFormObject.nome){
+            addError("Campos Faltando!")
         }
-        setTimeout(() => {
-            setModalError(false)
-        }, 4000)
+        else{
+            setOpenModal(true)
+        }
+
+        console.log(rawFormObject)
     }
 
-    const showCopied = () => {
-        if (open) {
-            return (
-                <div className="z-50">
-                    <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down`}>
-                        <div className="flex items-center justify-center lg:h-10 h-8 bg-terciaria rounded font-poppins">
-                            <p className="text-xs lg:text-base">Copiado!</p>
-                        </div>
-                    </div>
-                </div>
-            )
+    const setFilesToSend = (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files![0]
+
+        const fileNames = filesArray.map((file)=>{
+            return file.name;
+        })
+
+        const index = fileNames.indexOf(file.name)
+        console.log(index)
+
+        if (file && index == -1) {
+            setFilesArray([...filesArray, file])
+            addConfirmacao("Arquivo Adicionado!")
+        }else{
+            addError("Arquivo já foi adicionado!")
         }
+    }
+
+    const gerarIcon = (extensao: string) => {
+        return extensao === "pdf" ? <FaRegFilePdf color="#E93939" size={70} /> : <FaFileImage color="#53BADA" size={70} />
+    }
+
+    const removeFile = (fileTakes: File) =>{
+        setFilesArray([...filesArray].filter((file)=>{
+            console.log(file.name != fileTakes.name)
+            return file.name != fileTakes.name
+        }))
     }
 
     return (
-        <main className={`flex flex-col w-full mb-32 overflow-hidden ${openModal ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
-            {showCopied()}
-            {showModalError()}
+        <main className={`flex flex-col w-full mb-32 overflow-hidden`}>
             <section className="">
                 <section className="flex flex-col items-center justify-center gap-4 mt-10 mx-12">
                     <h1 className="font-averia md:text-3xl text-2xl font-bold text-preto text-center">Precisa de ajuda?</h1>
@@ -116,48 +88,50 @@ export default function Contato() {
                         <h1 className="font-averia md:text-2xl text-lg font-bold text-preto mt-12">Preencha o formulário</h1>
                     </div>
                     <div className="mt-6 flex flex-col justify-start border-solid border rounded-lg border-cinza-escuro md:w-[55%] w-full gap-5">
-                        <form action={() => salvarInformacoes(formData)} onSubmit={()=>verificaForms()}>
+                        <form action={sendForm}>
                             <div className="md:p-10 p-4">
                                 <div className="text-xs">
-                                    <InputText placeholder="Nome completo*" id="nome" onChange={(e) => setNome(e.target.value)} />
+                                    <InputText required name="nome" placeholder="Tipo de serviço*" />
                                 </div>
                                 <div className="flex flex-col justify-between lg:mt-[5%] mt-[8%] lg:flex-row">
                                     <div className="w-full lg:w-[48%]">
                                         <div className="text-xs">
-                                            <InputText placeholder="Email*" type={'email'} id='email' onChange={(e) => setEmail(e.target.value)} />
+                                            <InputText placeholder="Email*" required type={'email'} name="email" />
                                         </div>
                                     </div>
                                     <div className="w-full mt-[8%] lg:w-[48%] lg:mt-0">
                                         <div className="text-xs">
-                                            <Select label="Tipo de atendimento*" options={['Serviço', 'Dúvidas', 'Sugestões', 'Reclamações', 'Compras', 'Agendamento']} opcaoSelecionada={setAtendimento} opcao={atendimento} />
+                                            <Select label="Tipo de atendimento*" options={['Cuidados', "Bem estar"]} opcaoSelecionada={setAtendimento} opcao={atendimento} />
                                         </div>
                                     </div>
                                 </div>
-                                {atendimento == "Agendamento" && (
-                                    <div>
-                                        <div className="flex flex-col justify-between lg:mt-[5%] mt-[8%] lg:flex-row">
-                                            <div className="w-full lg:w-[48%]">
-                                                <Select label="Filial*" options={['Top Care Balneário Camboriú - SC', 'Top Care Curitiba - PR', 'Top Care Gramado - RS', "Top Care Joinville - SC", "Top Care Jaraguá do Sul - SC", "Top Care Corupá - SC"]} opcaoSelecionada={setFilial} opcao={filial} />
-                                            </div>
-                                            <div className="w-full mt-[8%] lg:w-[48%] lg:mt-0">
-                                                <Select label="Serviço*" options={['Consulta', 'Passeio', 'Vacinação', 'Hospedagem', 'Adestramento', 'Exames', 'Banho', 'Tosa', 'Banho e Tosa']} opcaoSelecionada={setServico} opcao={servico} />
-                                            </div>
-                                        </div>
-                                        <div className="flex flex-col justify-between lg:mt-[5%] mt-[8%] lg:flex-row">
-                                            <div className="w-full lg:w-[48%]">
-                                                <InputData dataSelecionada={setData} />
-                                            </div>
-                                            <div className="w-full mt-[8%] lg:w-[48%] lg:mt-0">
-                                                <Select label="Horario*" options={['9:30', '10:00', '11:30', '13:30', '15:30', '16:30']} opcaoSelecionada={setHorario} opcao={horario} />
-                                            </div>
+                                <div className="h-32 lg:mt-[5%] mt-[8%]">
+                                    <TextArea placeholder="Descrição*" required name="descricao" />
+                                </div>
+                                <div className="border border-cinza rounded-lg mt-6 flex flex-col justify-between">
+                                    <p className="font-poppins text-sm text-cinza-escuro mt-2 ml-2.5">Arquivos</p>
+
+                                    <div className="flex flex-wrap gap-4 mt-7 items-center mb-6 w-[96%] mx-auto">
+                                        {
+                                            filesArray.map((file) => (
+                                                <div key={file.size} className="group flex flex-col cursor-pointer gap-1 p-2 items-center rounded-lg justify-end hover:bg-red-300 relative" onClick={()=> removeFile(file)}>
+                                                    <p>{gerarIcon(file.name.split(".")[1])}</p>
+                                                    <p className="font-poppins text-xs">{file.name}</p>
+                                                    <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden group-hover:!block"><FaRegTrashCan size={40}/></p>
+                                                </div>
+                                            ))
+                                        }
+
+                                        <div className="">
+                                            <label htmlFor="arquivos" className="flex flex-col h-12 w-12 justify-center items-center px-3 py-2 bg-terciaria font-poppins text-preto mb-2 text-sm rounded-lg">
+                                                <p><FaPlus size={20} /></p>
+                                            </label>
+                                            <input type="file" name="" id="arquivos" accept=".png,.pdf,.jpg,.jpeg" className="hidden" onChange={(e)=> setFilesToSend(e)} />
                                         </div>
                                     </div>
-                                )}
-                                <div className="h-32 lg:mt-[5%] mt-[8%]">
-                                    <TextArea placeholder="Descrição*" id="descricao" onChange={(e) => setDescricao(e.target.value)} />
                                 </div>
                                 <div className="mt-[5%]">
-                                    <BotaoGrande title="Enviar" type='submit' background="bg-secundaria" />
+                                    <BotaoGrande title="Enviar" type='submit' background="bg-secundaria"/>
                                 </div>
                             </div>
                         </form>
@@ -192,13 +166,13 @@ export default function Contato() {
                             </div>
                         </section>
                     </section>
-                </section>     
+                </section>
             </section>
             {openModal && (
                 <div className="w-full">
                     <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpenModal(false)}></div>
                     <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 lg:w-[25%] w-[60%]`}>
-                        <UmBotao texto="Formulário Enviado com sucesso!" openParms={setOpenModal}/>
+                        <UmBotao texto="Formulário Enviado com sucesso!" openParms={setOpenModal} />
                     </div>
                 </div>
             )}
