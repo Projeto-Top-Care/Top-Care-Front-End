@@ -44,12 +44,12 @@ export default function EnderecosSalvos({ enderecos, setShowAllAdresses, setOpen
                 </div>
             </section>
 
-            <div className="flex flex-row md:w-[95%] gap-8 lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center">
-                <div className="md:w-44 w-1/2" onClick={() => setOpenPopupEndereco(true)}>
-                    <BotaoGrande title="+ Endereço" background='bg-primaria' type={'button'} />
+            <div className="flex flex-col-reverse md:flex-row md:w-[95%] w-full gap-4 lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center">
+                <div className="md:w-52" onClick={() => setOpenPopupEndereco(true)}>
+                    <BotaoGrande title="Novo endereço" background='bg-primaria' type={'button'} />
                 </div>
-                <div className="w-1/2">
-                    <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria  p-1 rounded-lg md:w-44 w-full h-8 hover:bg-[#9EBF40] justify-around' onClick={() => setShowAdresses(!showAddresses)}>
+                <div className="">
+                    <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-52 w-full h-8 hover:bg-[#9EBF40] justify-center gap-2' onClick={() => setShowAdresses(!showAddresses)}>
                         {showAddresses ? "Mostrar menos" : "Mostrar todos "}
                         {showAddresses ? <FaAngleUp className="mt-1" /> : <FaAngleDown className="mt-1" />}
                     </button>
