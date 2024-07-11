@@ -61,7 +61,7 @@ export default function informacoesServicos() {
                     <ButtonFiltro filtro={filtro} title="Todos" onClick={()=>setFiltro("Todos")}/>
                 </div>
             </div>
-            <div className="w-[90%] self-center flex flex-col gap-6">
+            <div className="w-[90%] self-center flex flex-col gap-6 mt-8">
                 {
                     servicosArray.map((item, i)=>(
                         <CardServico key={i} id={item.id} nome={item.nome} imagem={item.imagem} descricao={item.descricao} />
