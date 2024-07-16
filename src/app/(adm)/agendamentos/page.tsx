@@ -84,15 +84,15 @@ export default function Agendamentos() {
                     <tbody className="lg:text-sm text-xs text-center text-preto break-word border-2 border-cinza">
                     {agendamentosOrdenados.map((agendamento, index) => (
                             <tr key={agendamento.id} className={index % 2 === 0 ? 'bg-cinza-claro' : ''}>
-                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.servico}</td>
-                                <td className="hidden md:table-cell border border-x-cinza py-3.5 px-1.5">{agendamento.nomePet}</td>
-                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.local}</td>
-                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.horario}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza py-3.5 px-1.5">{agendamento.data}</td>
-                                <td className="border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.profissional}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">R${agendamento.valor.toFixed(2).replace(".",",")}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.status}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.pagamento}</td>
+                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.servico}</td>
+                                <td className="hidden md:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.nomePet}</td>
+                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.local}</td>
+                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.horario}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5">{agendamento.data}</td>
+                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.profissional}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">R${agendamento.valor.toFixed(2).replace(".",",")}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.status}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.pagamento}</td>
                                 <td className="text-center"><IoIosLogOut size={20} className="m-auto cursor-pointer" onClick={() => router.push(`/visualizarAgendamento?id=${agendamento.id}`)} /></td>
                             </tr>
                         ))}
