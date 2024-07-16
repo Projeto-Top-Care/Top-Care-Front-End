@@ -26,18 +26,18 @@ export default function CadastroProduto() {
     }, []);
 
     return (
-        <main className="w-[90%] mx-auto text-preto">
+        <main className="mx-auto text-preto">
             <Confirmacao />
             <section className="">
                 <TituloLinha voltar={true} titulo='Cadastrar novo produto' />
             </section>
-            <section>
+            <section className="w-[90%] mx-auto">
                 <TabelaProdutos />
             </section>
-            <section>
+            <section className="w-[90%] mx-auto">
                 <EspecificacoesProduto />
             </section>
-            <section className='flex flex-row justify-between items-center my-10'>
+            <section className='w-[90%] mx-auto flex flex-row justify-between items-center my-10'>
                 <div className='w-24 md:w-48'>
                     <BotaoGrande background='bg-error' textColor="text-branco" title='Cancelar' type='button' onClick={() => router.back()} />
                 </div>

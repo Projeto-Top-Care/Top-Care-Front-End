@@ -8,12 +8,12 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import Select from "@/components/Select/Select";
-import router from "next/router";
 
 
 export default function Agendamentos() {
     const [pesquisa, setPesquisa] = useState<string>('');
     const [escolha, setEscolha] = useState<string>('');
+    const router = useRouter();
 
     const agendamentosPesquisa: AgendamentoType[] = agendamentosData.filter((agendamento: AgendamentoType) =>
         agendamento.servico.includes(pesquisa.toLowerCase()) ||

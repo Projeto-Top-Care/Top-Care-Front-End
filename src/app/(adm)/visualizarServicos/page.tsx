@@ -25,7 +25,7 @@ export default function VisualizarServicos() {
           ))
         }
       </section>
-      <section className='w-[90%] mx-auto flex justify-end mb-10'>
+      <section className='text-preto w-[90%] mx-auto flex justify-end mb-10'>
         <div className='group w-10 h-10 bg-secundaria flex items-center justify-center rounded-xl cursor-pointer hover:w-48 ease-linear duration-500' onClick={()=>router.push('/cadastrarServico')}>
           <div className='group-hover:w-[20%] flex items-center justify-center duration-500 ease-in group-hover:rotate-90'> <FaPlus/> </div>
           <div className='w-[80%] animate-slide-left hidden object-cover group-hover:!flex'><p className='line-clamp-1 w-48 font-poppins'>Adicionar serviço</p></div>
