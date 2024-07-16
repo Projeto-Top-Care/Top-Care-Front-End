@@ -82,12 +82,12 @@ export default function HeaderLogado() {
 
             <div className="bg-terciaria flex max-sm:hidden flex-row justify-center">
                 <div className="font-poppins flex flex-row justify-between md:gap-12 gap-2 py-3">
-                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/produtos")}>Produtos</div>
-                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/informacoesServicos")}>Serviços</div>
-                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/lojas")}>Lojas</div>
-                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./planos")}>Planos</div>
-                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./duvidasFrequentes")}>Ajuda</div>
-                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./contato")}>Orçamentos</div>
+                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/produtos")}>Produtos</div>
+                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/informacoesServicos")}>Serviços</div>
+                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/lojas")}>Lojas</div>
+                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./planos")}>Planos</div>
+                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./duvidasFrequentes")}>Ajuda</div>
+                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./contato")}>Orçamentos</div>
                 </div>
             </div>
 

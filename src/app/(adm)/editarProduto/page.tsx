@@ -23,18 +23,18 @@ export default function EditarProduto({searchParams}: EditarProdutoProps) {
 
 
     return(
-        <main className="w-[90%] mx-auto text-preto">
+        <main className="mx-auto text-preto">
             <Confirmacao/>
             <section className="">  
                 <TituloLinha voltar={true} titulo={"Editar produto #" + produtoBuscado.codigo} />
             </section>
-            <section>
+            <section className="w-[90%] mx-auto">
                 <TabelaProdutos produto={produtoBuscado}/>
             </section>
-            <section>
+            <section className="w-[90%] mx-auto">
                 <EspecificacoesProduto  produto={produtoBuscado.especificacoes}/>
             </section>
-            <section className='flex flex-row justify-between items-center my-10'>
+            <section className='w-[90%] mx-auto flex flex-row justify-between items-center my-10'>
                 <div className='w-24 md:w-48'>
                     <BotaoGrande background='bg-error' textColor="text-branco" title='Cancelar' type='button' onClick={()=>router.back()} />
                 </div>

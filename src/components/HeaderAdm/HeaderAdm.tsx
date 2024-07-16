@@ -86,11 +86,11 @@ export default function HeaderAdm() {
 
             <div className="bg-terciaria flex max-sm:hidden flex-row justify-center">
                 <div className="font-poppins flex flex-row justify-between md:gap-20 gap-2 py-3">
-                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./dashboard")}>Dashboard</div>
-                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/visualizarProdutos")}>Produtos</div>
-                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/agendamentos")}>Agendamentos</div>
-                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/pedidos")}>Pedidos</div>
-                    <div className="hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./visualizarServicos")}>Serviços</div>
+                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./dashboard")}>Dashboard</div>
+                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/visualizarProdutos")}>Produtos</div>
+                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/agendamentos")}>Agendamentos</div>
+                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/pedidos")}>Pedidos</div>
+                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./visualizarServicos")}>Serviços</div>
                 </div>
             </div>
             {

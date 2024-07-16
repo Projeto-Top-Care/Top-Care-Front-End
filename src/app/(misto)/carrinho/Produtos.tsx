@@ -64,7 +64,7 @@ export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Prod
                             <Checkbox check={setChecked} />
                         </div>
                         <div className='flex flex-row items-center justify-center w-[100%]'>
-                            <img src={imagemProduto} alt="" className='w-[100%]' />
+                            <img src={imagemProduto} alt="" className='w-[80%]' />
                         </div>
                     </div>
                     <div className='flex flex-col md:flex-row items-start h-full md:w-[80%] w-[70%] md:justify-between justify-center'>

@@ -51,7 +51,7 @@ export default function TabelaServicos({servico}: TabelaServicosProps) {
                             <div className='w-full'>
                                 <InputText placeholder='Profissionais' />
                             </div>
-                            <div className='mt-4 flex flex-col items-center'>
+                            <div className='my-6 flex flex-col items-center'>
                                 <h1 className='font-averia font-extrabold text-lg text-center'>Imagem</h1>
                                 <div className='w-24 h-24'>
                                     <InputFile rounded='rounded-lg'/>

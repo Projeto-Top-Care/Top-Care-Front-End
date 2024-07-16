@@ -32,7 +32,7 @@ export default function VisualizarAgendamento({searchParams}: VisualizarAgendame
                     <InputPreenchido titulo='Profissional' conteudo={agendamento.profissional} />
                     <div className='flex w-full gap-4'>
                         <InputPreenchido titulo='Valor' conteudo={agendamento.valor.toString()} />
-                        <InputPreenchido titulo='Parcelas' conteudo={agendamento.parcelas.toString()} />
+                        <InputPreenchido titulo='Parcelas' conteudo={agendamento.parcelas!.toString()} />
                     </div>
                 </div>
             </section>
