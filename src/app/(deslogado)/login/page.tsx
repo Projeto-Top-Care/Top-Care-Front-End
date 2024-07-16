@@ -40,7 +40,7 @@ export default function Login() {
             <section className=''>
                 <TituloLinha voltar={true} titulo='Login' />
             </section>
-            <section className='flex flex-col justify-center items-center w-full gap-16 mb-20 md:mb-24 md:gap-20 lg:flex-row lg:gap-28 lg:my-24'>
+            <section className='flex flex-col justify-center items-center w-full gap-16 mb-20 md:mb-24 lg:mb-32 md:gap-20 lg:flex-row lg:gap-28 lg:my-8'>
                 <section className='flex items-end h-full max-lg:w-full'>
                     <div className='w-[90%] m-auto flex flex-col gap-8 md:w-[70%] lg:w-80 lg:m-0'>
                         <InputText onChange={(e) => setEmail(e.target.value)} type={'text'} placeholder='Email' />

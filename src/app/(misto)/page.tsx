@@ -24,14 +24,14 @@ export default function PaginaInicial() {
     return (
         <main className="bg-branco">
             <Confirmacao />
-            <section className='mt-10 mb-8 max-sm:hidden'>
+            <section className='mt-16 mb-8 max-sm:hidden'>
                 <Carrossel slides={slidesCarrosselDesktop} options={OPTIONS} />
             </section>
             <section className='mt-10 mb-10 sm:hidden'>
                 <Carrossel slides={slidesCarrosselMobile} options={OPTIONS} />
             </section>
 
-            <section className='md:mt-20 mt-8'>
+            <section className='md:mt-10 mt-8'>
                 <div className='flex flex-col'>
                     <TituloLinha voltar={false} titulo='Você também pode gostar...' />
                     <CarrosselProduto slides={carrosselProdutos} />
