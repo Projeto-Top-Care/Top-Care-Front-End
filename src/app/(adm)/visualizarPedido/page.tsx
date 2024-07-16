@@ -52,7 +52,7 @@ export default function VisualizarPedido({searchParams}: VisualizarPedidoProps) 
               </div>
             </div>
           </div>
-          <section className='flex md:flex-row flex-col lg:w-[50%] w-full md:gap-8 gap-4'>
+          <section className='flex md:flex-row flex-col lg:w-[50%] w-full md:gap-8 gap-4 mb-24'>
             <div className='w-full flex flex-col md:gap-8 gap-4'>
               <InputPreenchido titulo='Data' conteudo={pedido.Dt_pedido} />
               <InputPreenchido titulo='Destino' conteudo={pedido.Destino} />
