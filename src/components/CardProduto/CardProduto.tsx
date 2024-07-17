@@ -74,8 +74,8 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
                 <div className="w-full items-center justify-center flex flex-col-reverse md:flex-col">
                     <img src={imagemProduto[0]} className='h-28 my-3' />
                 </div>
-                <h5 className='text-xs font-medium text-cinza-escuro'><span className='line-through'>R${precoAntigoDoProduto.toFixed(2).replace(".", ",")} </span><span className='text-[11px]'>{desconto}</span></h5>
-                <h5 className='sm:text-base text-sm font-semibold text-preto'>R${precoNovo.toFixed(2).replace(".", ",")}</h5>
+                <h5 className='text-xs font-medium text-cinza-escuro'><span className='line-through'>R${precoAntigoDoProduto.toFixed(2).replace(".", ",")} </span></h5>
+                <h5 className='sm:text-lg text-sm font-semibold text-preto'>R${precoNovo.toFixed(2).replace(".", ",")}</h5>
             </div>
 
             <div className='flex flex-row gap-1 justify-between'>

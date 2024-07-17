@@ -2,19 +2,17 @@
 import { IoExitOutline } from "react-icons/io5";
 import { useUserID } from "@/context/UserIDContext";
 import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
-import CardPetPequeno from "@/components/CardPetPequeno/CardPetPequeno";
 import CartoesSalvos from "@/components/CartoesSalvos/CartoesSalvos";
 import InputEstatico from "@/components/InputEstatico/InputEstatico";
 import PerfilFoto from "@/components/PerfilFoto/PerfilFoto";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { buscarUsuario } from "@/server/usuario/action";
-import { QntProduto, Usuario } from "@/types/usuarios";
+import { Usuario } from "@/types/usuarios";
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
-import { buscarProduto, buscarTodos } from "@/server/produtos/action";
+import { buscarTodos } from "@/server/produtos/action";
 import CardProduto from "@/components/CardProduto/CardProduto";
 import React, { useEffect, useState } from "react";
 import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
-import { Produto } from "@/types/produto";
 import CadastroPet from "@/components/Pop-up/CadastroPet/CadastroPet";
 import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico";
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
@@ -24,9 +22,11 @@ import HistoricoAgendamentos from "@/components/SecoesPerfil/historicoAgendament
 import EnderecosSalvos from "@/components/SecoesPerfil/enderecosSalvos";
 import PedidosEmAndamento from "@/components/SecoesPerfil/pedidosEmAndamento";
 import MeusPets from "@/components/SecoesPerfil/meusPets";
+import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
+import { useRouter } from "next/navigation";
 
 export default function Perfil() {
-    const { getUserID } = useUserID()
+    const { getUserID, setUserId } = useUserID()
 
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario | null>(null);
 
@@ -36,6 +36,9 @@ export default function Perfil() {
     const [openEndereco, setOpenEndereco] = useState(false);
     const [openPet, setOpenPet] = useState(false);
     const [edicao, setEdicao] = useState(false);
+    const [openModal, setOpenModal] = useState<boolean>(false)
+    const [sim, setSim] = useState<boolean>(false)
+
     const [nome, setNome] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [sexo, setSexo] = useState<'Feminino' | 'Masculino' | "Prefiro não Informar">('Prefiro não Informar')
@@ -43,6 +46,7 @@ export default function Perfil() {
     const [numero, setNumero] = useState<string>('')
     const [dataNascimento, setDataNascimento] = useState<string>('')
     const [selecao, setSelecao] = useState<number>(0)
+    const router = useRouter()
 
     const agendamentos = [
         <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
@@ -50,6 +54,13 @@ export default function Perfil() {
         <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
         <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
     ]
+
+    useEffect(()=>{
+        if(sim){
+            setUserId("")
+            router.push("/")
+        }
+    },[sim])
 
     useEffect(() => {
         const fetchedID = getUserID();
@@ -74,9 +85,6 @@ export default function Perfil() {
     const historicoAgendamentos = showAllSchedulles ? agendamentos : agendamentos.slice(0, 3);
     const displayedAddresses = showAllAddresses ? usuarioLogado!.enderecos : usuarioLogado!.enderecos.slice(0, 3);
 
-    const produtos: QntProduto = buscarProduto(usuarioLogado.id)!
-    const produto: Produto = buscarProduto(produtos.id!)!
-
     const verificarEdicao = () => {
         if (nome === "" || email === "" || numero.length !== 10 || ddd.length !== 2 || dataNascimento.length !== 10) {
             return true;
@@ -85,7 +93,7 @@ export default function Perfil() {
     }
 
     const logout = () => {
-        localStorage.setItem('idUser', '')
+        setOpenModal(true)
     }
 
     const carrosselProdutos = buscarTodos().map((produto, i) => (
@@ -103,6 +111,7 @@ export default function Perfil() {
         <EnderecosSalvos enderecos={displayedAddresses} setOpenEndereco={setOpenEndereco} setShowAllAdresses={setShowAllAddresses} />
     ]
 
+
     return (
         <main className="bg-branco text-preto flex flex-col gap-6">
             <Confirmacao />
@@ -110,9 +119,7 @@ export default function Perfil() {
                 <TituloLinha voltar={false} titulo="Minha conta" />
                 <div className="flex justify-end w-[90%]">
                     <div className="">
-                        <a href="/">
-                            <button className='flex md:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-28 w-20 h-8 hover:bg-[#9EBF40] justify-around' onClick={logout}> Logout <IoExitOutline className="mt-1" /></button>
-                        </a>
+                        <button className='flex md:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-28 w-20 h-8 hover:bg-[#9EBF40] justify-around' onClick={logout}> Logout <IoExitOutline className="mt-1" /></button>   
                     </div>
                 </div>
                 <div className="lg:ml-32 md:ml-20 ml-4">
@@ -247,6 +254,16 @@ export default function Perfil() {
                     </div>
                 </div>
             )}
+            {openModal && (
+                <div className="w-full">
+                    <div className='fixed top-0 left-0 w-full h-full bg-fundo-modal' onClick={() => setOpenModal(false)}></div>
+                    <div className="fixed lg:w-[25%] w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+                        <DoisBotoes openParms={setOpenModal} texto="Você deseja mesmo sair?" sim={setSim} />
+                    </div>
+                </div>
+            )
+
+            }
         </main>
     );
 }
