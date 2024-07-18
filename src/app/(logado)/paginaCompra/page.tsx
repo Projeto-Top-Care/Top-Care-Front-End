@@ -5,7 +5,7 @@ import { FaPlus } from "react-icons/fa6";
 import { Usuario, Endereco, QntProduto, Cartao } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
 import { useEffect, useState } from "react";
-import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
 import { useRouter } from "next/navigation";
 import { buscarProduto } from "@/server/produtos/action";

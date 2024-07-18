@@ -1,5 +1,5 @@
 'use client'
-import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import InputText from "@/components/InputText/InputText";
 import { useRouter } from "next/navigation"
 import { useState, useEffect } from "react";

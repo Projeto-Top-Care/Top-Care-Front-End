@@ -2,7 +2,7 @@
 import InputFile from "../../InputFile/InputFile"
 import Select from "../../Select/Select"
 import InputText from "../../InputText/InputText";
-import BotaoMedio from "../../BotaoMedio/BotaoMedio";
+import BotaoMedio from "../../Botoes/BotaoMedio/BotaoMedio";
 import { useState } from "react";
 
 const animais = ["Cachorro", "Gato", "Coelho", "Pássaro", "Hamster", "Peixe", "Tartaruga"]

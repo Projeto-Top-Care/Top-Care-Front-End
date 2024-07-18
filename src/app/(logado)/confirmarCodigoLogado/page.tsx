@@ -1,7 +1,7 @@
 'use client'
 import InputText from "@/components/InputText/InputText"
 import InputEstatico from "@/components/InputEstatico/InputEstatico"
-import BotaoGrande from "@/components/BotaoGrande/BotaoGrande"
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import { useRouter  } from 'next/navigation'
 
 export default function confirmarCodigo() {

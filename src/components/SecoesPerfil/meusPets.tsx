@@ -1,7 +1,7 @@
 'use client'
 import { Usuario } from "@/types/usuarios"
 import { SetStateAction, useEffect, useState } from "react"
-import BotaoGrande from "../BotaoGrande/BotaoGrande"
+import BotaoGrande from "../Botoes/BotaoGrande/BotaoGrande"
 import CardPetPequeno from "../CardPetPequeno/CardPetPequeno"
 
 interface iPedidos {

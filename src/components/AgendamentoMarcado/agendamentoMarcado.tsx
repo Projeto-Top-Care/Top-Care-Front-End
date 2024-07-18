@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react";
-import BotaoGrande from "../BotaoGrande/BotaoGrande";
+import BotaoGrande from "../Botoes/BotaoGrande/BotaoGrande";
 import DoisBotoes from "../Pop-up/DoisBotoes/DoisBotoes";
 
 type agendamentotype = {

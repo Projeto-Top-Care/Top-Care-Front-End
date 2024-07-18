@@ -1,5 +1,5 @@
 'use client'
-import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
+import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande'
 import InputFile from '@/components/InputFile/InputFile'
 import InputMask from '@/components/InputMask/InputMask'
 import InputText from '@/components/InputText/InputText'

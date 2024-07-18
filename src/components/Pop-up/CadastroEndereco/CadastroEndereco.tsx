@@ -2,7 +2,7 @@
 import Select from "../../Select/Select"
 import InputText from "../../InputText/InputText";
 import { useState } from "react";
-import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 
 const estados = ["Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"]
 

@@ -8,7 +8,7 @@ import { PiBoneFill } from "react-icons/pi";
 import { FaBook, FaPhone, FaQuestion, FaStethoscope } from "react-icons/fa6";
 
 import { useEffect, useRef, useState } from "react";
-import BotaoPequeno from "../BotaoPequeno";
+import BotaoPequeno from "../Botoes/BotaoPequeno";
 import { BsClipboardHeart } from "react-icons/bs";
 
 export default function HeaderDeslogado() {

@@ -2,7 +2,7 @@
 import VarianteServico from '@/app/(adm)/cadastrarServico/VarianteServico'
 import { Servico, VariantesProps } from '@/types/servicos'
 import React, { useState } from 'react'
-import BotaoGrande from '../BotaoGrande/BotaoGrande'
+import BotaoGrande from '../Botoes/BotaoGrande/BotaoGrande'
 import Checkbox from '../Checkbox/Checkbox'
 import InputFile from '../InputFile/InputFile'
 import InputText from '../InputText/InputText'

@@ -1,5 +1,5 @@
 'use client'
-import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
+import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande'
 import InputText from '@/components/InputText/InputText'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { useRouter  } from 'next/navigation'

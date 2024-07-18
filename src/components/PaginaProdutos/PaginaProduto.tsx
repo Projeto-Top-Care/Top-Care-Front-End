@@ -11,7 +11,7 @@ import Confirmacao from '@/components/Pop-up/Confirmacao/Confirmacao';
 import { useUserID } from '@/context/UserIDContext';
 import { Usuario } from '@/types/usuarios';
 import { buscarUsuario } from '@/server/usuario/action';
-import BotaoGrande from '../BotaoGrande/BotaoGrande';
+import BotaoGrande from '../Botoes/BotaoGrande/BotaoGrande';
 import { useRouter } from 'next/navigation';
 
 interface InterfaceProdutos {

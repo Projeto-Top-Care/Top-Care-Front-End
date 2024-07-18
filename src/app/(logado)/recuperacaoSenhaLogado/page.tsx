@@ -1,6 +1,6 @@
 'use client'
 import Loading from '@/app/(misto)/loading/page'
-import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
+import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande'
 import { buscarUsuario } from '@/server/usuario/action'
 import { Usuario } from '@/types/usuarios'
 import { useState } from 'react'

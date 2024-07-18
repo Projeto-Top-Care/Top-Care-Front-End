@@ -1,5 +1,5 @@
 import InputText from "@/components/InputText/InputText"
-import BotaoGrande from "@/components/BotaoGrande/BotaoGrande"
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 
 export default function redefinirSenha() { 
     return (

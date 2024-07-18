@@ -1,6 +1,6 @@
 'use client'
-import BotaoCategoriaPgInicial from "@/components/Botao-categoria-pgInicial/botao-categoria-pgInicial"
-import BotaoGrande from "@/components/BotaoGrande/BotaoGrande"
+import BotaoCategoriaPgInicial from "@/components/Botoes/Botao-categoria-pgInicial/botao-categoria-pgInicial"
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import CardProduto from "@/components/CardProduto/CardProduto"
 import Carrossel from "@/components/Carrossel/Carrossel"
 import CarrosselProduto from "@/components/CarrosselProduto/Carrossel"

@@ -5,10 +5,9 @@ import { AiOutlineStar } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { buscarProduto, buscarTodos } from '@/server/produtos/action'
-import { ProdutoCompleto, Especificacao, AvaliacaoType } from '@/types/produto'
+import { ProdutoCompleto, AvaliacaoType } from '@/types/produto'
 import { useEffect, useState } from 'react'
-import SelectTamanho from '@/components/SelectTamanho/SelectTamanho';
-import BotaoGrande from '@/components/BotaoGrande/BotaoGrande';
+import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande';
 import QuantidadeProduto from '@/components/QuantidadeProduto/QuantidadeProduto';
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import CardProduto from '@/components/CardProduto/CardProduto';

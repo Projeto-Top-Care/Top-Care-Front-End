@@ -5,7 +5,7 @@ import TextArea from "../TextArea/TextArea";
 import Select from "../Select/Select";
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
-import BotaoGrande from "../BotaoGrande/BotaoGrande"
+import BotaoGrande from "../Botoes/BotaoGrande/BotaoGrande"
 import VarianteProduto from "../VarianteProduto/VarianteProduto"
 import CadastroVarianteProduto from "../CadastroVarianteProduto/CadastroVarianteProduto"
 

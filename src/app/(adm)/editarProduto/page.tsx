@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from "next/navigation"
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
-import BotaoGrande from "@/components/BotaoGrande/BotaoGrande"
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import TabelaProdutos from "@/components/TabelaProdutos/TabelaProduto";
 import EspecificacoesProduto from "@/components/EspecificaçoesProduto/Especificacoes";
 import { buscarProduto } from "@/server/produtos/action";

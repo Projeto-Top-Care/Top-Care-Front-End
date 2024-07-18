@@ -5,7 +5,7 @@ import EscolhaPet from "@/components/Agendamento/escolhaPet";
 import EscolhaServico from "@/components/Agendamento/escolhaServico";
 import Resumo from "@/components/Agendamento/Resumo";
 import BarraProcessoAgendamento from "@/components/BarraProcesso/BarraProcessoAgendamento";
-import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import CadastroPet from "@/components/Pop-up/CadastroPet/CadastroPet";
 import Erro from "@/components/Pop-up/Erro/Erro";
 import { useError } from "@/context/ErrorContext";

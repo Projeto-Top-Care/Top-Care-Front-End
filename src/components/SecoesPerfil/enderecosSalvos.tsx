@@ -2,7 +2,7 @@ import { Endereco } from "@/types/usuarios"
 import { SetStateAction, useEffect, useState } from "react"
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6"
 import EnderecoPerfil from "../Endereço/Endereco"
-import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 
 interface iEnderecos {
     enderecos: Endereco[],

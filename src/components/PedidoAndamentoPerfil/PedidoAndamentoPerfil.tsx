@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import BotaoGrande from "../BotaoGrande/BotaoGrande";
+import BotaoGrande from "../Botoes/BotaoGrande/BotaoGrande";
 import { buscarProduto } from '@/server/produtos/action';
 import { Usuario, QntProduto, Pedido } from '@/types/usuarios';
 import { Produto } from '@/types/produto';

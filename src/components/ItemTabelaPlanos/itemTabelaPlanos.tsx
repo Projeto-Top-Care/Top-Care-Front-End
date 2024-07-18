@@ -2,8 +2,7 @@
 import { FaCheck } from "react-icons/fa6"
 import { IoClose } from "react-icons/io5";
 import { useRouter } from "next/navigation"
-import BotaoPequeno from "../BotaoPequeno";
-import BotaoGrande from "../BotaoGrande/BotaoGrande";
+import BotaoGrande from "../Botoes/BotaoGrande/BotaoGrande";
 import { useState, useEffect } from "react";
 import { useUserID } from "@/context/UserIDContext";
 import { buscarUsuario } from "@/server/usuario/action";

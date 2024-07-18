@@ -1,6 +1,6 @@
 'use client'
 import BarraPesquisa from "@/components/BarraPesquisa/BarraPesquisa";
-import BotaoCategoriaPergunta from "@/components/BotaoCategoriaPergunta/botaoCategoriaPergunta";
+import BotaoCategoriaPergunta from "@/components/Botoes/BotaoCategoriaPergunta/botaoCategoriaPergunta";
 import ItemAcordiao from "@/components/ItemAcordeao/itemAcordeao";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { buscarCategoria } from "@/server/duvidas/action";

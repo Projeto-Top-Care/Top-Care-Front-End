@@ -13,7 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import { useUserID } from "@/context/UserIDContext";
 import { FaStethoscope } from "react-icons/fa6";
 import { BsClipboard2Heart } from "react-icons/bs";
-import BotaoGrande from "../BotaoGrande/BotaoGrande";
+import BotaoGrande from "../Botoes/BotaoGrande/BotaoGrande";
 
 export default function HeaderAdm() {
     const { push } = useRouter();

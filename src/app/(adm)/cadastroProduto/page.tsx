@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { buscarUsuario } from "@/server/usuario/action";
 import { Usuario } from "@/types/usuarios";
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
-import BotaoGrande from "@/components/BotaoGrande/BotaoGrande"
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import TabelaProdutos from "@/components/TabelaProdutos/TabelaProduto";
 import EspecificacoesProduto from "@/components/EspecificaçoesProduto/Especificacoes";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";

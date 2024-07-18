@@ -1,4 +1,4 @@
-import BotaoGrande from '@/components/BotaoGrande/BotaoGrande'
+import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande'
 import InputText from '@/components/InputText/InputText'
 import { VarianteProps } from '@/types/produto'
 import React, { SetStateAction, useEffect, useState } from 'react'

@@ -1,6 +1,6 @@
 import { SetStateAction, useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
-import BotaoGrande from "../BotaoGrande/BotaoGrande";
+import BotaoGrande from "../Botoes/BotaoGrande/BotaoGrande";
 import { useRouter } from "next/navigation"
 
 interface iAgendamentos {
