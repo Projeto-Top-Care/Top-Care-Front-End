@@ -6,8 +6,8 @@ import { FaChevronUp } from "react-icons/fa6";
 interface ISelect {
     label: string,
     options: string[],
-    opcaoSelecionada: Dispatch<SetStateAction<string>>,
-    opcao: string
+    opcaoSelecionada: Dispatch<SetStateAction<string | undefined>>,
+    opcao: string | undefined
 }
 
 export default function Select({ label, options, opcaoSelecionada, opcao }: ISelect) {
