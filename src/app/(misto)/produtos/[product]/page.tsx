@@ -114,38 +114,43 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
       <main className='text-preto'>
         <Confirmacao />
         <section className=''>
-          <TituloLinha voltar={true} titulo='Produto' />
+          <TituloLinha voltar={true} titulo={produtoProcurado.nomeProduto} />
         </section>
         <section className='flex flex-col md:flex-row w-[90%] m-auto mt-8 md:mt-[2.5rem]'>
-          <section className='w-full md:w-[45%] h-auto'>
-            <div className='h-full md:w-[90%] w-full flex flex-col-reverse lg:flex-row justify-end'>
-              <div className='lg:h-full mt-3 w-full lg:w-[30%] md:m-auto flex flex-row items-center justify-center gap-1 lg:block'>
-                <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='bg-branco md:hidden font-poppins border border-preto w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
-                {produtoProcurado.imagemProduto.map((image, i) => (
-                  <div onClick={() => setNumeroImagem(i)} key={i} className={`flex items-center justify-center cursor-pointer md:h-16 lg:w-[50%] lg:m-auto h-10 w-10 md:w-[40%] rounded-xl md:rounded-2xl border ${numeroImagem == i ? 'border-cinza-escuro' : 'border-cinza'} md:mt-5 lg:mb-5`}>
-                    <img src={image} alt="" className='w-[60%] 2xl:w-[50%] object-cover' />
-                  </div>
-                ))}
-                <button onClick={() => setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='bg-branco md:hidden font-poppins border border-preto w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
-              </div>
+
+          <section className='w-full ml-10 md:w-[45%] h-auto'>
+            <div className='h-full w-full flex flex-col gap-4'>
+
               <div className='h-44 md:h-full border border-cinza rounded-2xl w-full lg:w-[70%] flex items-center justify-center'>
                 <img src={produtoProcurado.imagemProduto[numeroImagem]} alt="" className='w-[50%] md:w-full 2xl:w-[80%]' />
                 <div className='flex-row md:w-[42%] lg:w-[30%] absolute justify-between flex max-sm:hidden'>
-                  <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='bg-branco font-poppins border border-preto lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
-                  <button onClick={() => setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='bg-branco font-poppins border border-preto lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
+                  <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='hover:shadow-md hover:translate-x-[-0.5rem] animation duration-200 bg-branco font-poppins border border-preto lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
+                  <button onClick={() => setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='hover:shadow-md hover:translate-x-[0.5rem] animation duration-200 bg-branco font-poppins border border-preto lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
                 </div>
               </div>
+
+              <div className='lg:h-full w-full lg:w-1/3 md:m-auto flex flex-row items-center gap-1 lg:block'>
+                <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='bg-branco md:hidden font-poppins border border-preto w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
+                
+                {produtoProcurado.imagemProduto.map((image, i) => (
+                  <div onClick={() => setNumeroImagem(i)} key={i} className={`flex items-center justify-center cursor-pointer md:h-16 lg:w-2/5 lg:m-auto h-10 w-10 md:w-[40%] rounded-xl md:rounded-2xl border ${numeroImagem == i ? 'border-cinza-escuro' : 'border-cinza'} md:mt-5 lg:mb-5`}>
+                    <img src={image} alt="" className='w-3/5 2xl:w-[50%] object-cover' />
+                  </div>
+                ))}
+
+                <button onClick={() => setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='bg-branco md:hidden font-poppins border border-preto w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
+              </div>
+
             </div>
           </section>
+          
           <section className='md:w-[55%] w-full flex flex-col max-sm:mt-4'>
             <div className='flex flex-row items-center justify-between lg:w-[85%]'>
               <p className='font-poppins md:text-xl text-base font-normal text-preto'>{produtoProcurado.nomeProduto}</p>
               <div className="transition duration-100 active:scale-75 z-50" onClick={() => setFavorito(!favorito)}>{favorito ? <FaHeart size={20} style={{ color: "#B5A6F3", }} /> : <FaRegHeart size={20} style={{ color: "#4f4f4f", }} />}</div>
             </div>
-            <div className='flex flex-col md:flex-row md:gap-1 lg:text-sm text-xs font-poppins font-normal text-preto'>
+            <div className='flex flex-col md:flex-row md:gap-1 lg:text-sm text-xs font-poppins font-normal text-cinza-escuro'>
               <p>Código: {produtoProcurado.codigo} |</p>
-              <a href='#' className='hover:underline'>Ver descrição completa</a>
-              <p className='max-sm:hidden'>| {produtoProcurado.marca}</p>
             </div>
             <div className='md:mt-1 mt-2 flex flex-row items-center'>
               {construirEstrelas(produtoProcurado?.notaDeAvaliacao!)}
@@ -158,14 +163,6 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
               </div>
               <div className='max-sm:w-full'>
                 <BotaoGrande background='bg-primaria' fontSize='text-xs lg:text-sm' type='button' title='Calcular Frete' />
-              </div>
-            </div>
-            <div className='rounded-lg bg-terciaria w-full lg:w-[85%] px-6 py-4'>
-              <p className='font-poppins md:text-base text-sm '>R$ {produtoProcurado.precoAssinantes.toFixed(2).replace(".", ",")} para assinantes</p>
-              <div className='md:mt-1 mt-2 flex flex-col md:gap-0 gap-2'>
-                <p className='font-poppins md:text-base text-sm'>*   10% OFF em todas as compras no app, site e lojas físicas</p>
-                <p className='font-poppins md:text-base text-sm'>*   Sem custo ou mensalidade. Cancele ou pause quando quiser</p>
-                <p className='font-poppins md:text-base text-sm'>*   Assine os produtos na sacola e garanta os benefícios</p>
               </div>
             </div>
             <div className='flex flex-row items-start gap-4 w-full lg:w-[85%] mt-4'>
