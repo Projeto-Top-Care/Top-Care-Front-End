@@ -7,8 +7,6 @@ import { FaHeart } from "react-icons/fa6";
 import { buscarProduto, buscarTodos } from '@/server/produtos/action'
 import { ProdutoCompleto, AvaliacaoType } from '@/types/produto'
 import { useEffect, useState } from 'react'
-import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande';
-import QuantidadeProduto from '@/components/QuantidadeProduto/QuantidadeProduto';
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import CardProduto from '@/components/CardProduto/CardProduto';
 import { buscarUsuario } from '@/server/usuario/action';
@@ -16,11 +14,14 @@ import { QntProduto, Usuario } from '@/types/usuarios';
 import Avaliacao from '@/components/Avaliacao/Avaliacao';
 import EscreverAvaliacao from '@/components/EscreverAvaliacao/EscreverAvaliacao';
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
-import { FiShoppingBag } from 'react-icons/fi';
 import { useRouter } from "next/navigation";
 import { useCarrinho } from '@/context/CarrinhoContext';
 import { useConfirmacao } from '@/context/confirmacaoContext';
 import Confirmacao from '@/components/Pop-up/Confirmacao/Confirmacao';
+import Loading from '../../loading';
+import QuantidadeProduto from '@/components/QuantidadeProduto/QuantidadeProduto';
+import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande';
+import InputText from '@/components/InputText/InputText';
 
 interface PropsProduct {
   searchParams: { id: number }
@@ -33,22 +34,24 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
 
   const { push } = useRouter();
   const { addProduct } = useCarrinho()
-  const { addConfirmacao} = useConfirmacao()!
+  const { addConfirmacao } = useConfirmacao()!
 
   const [produtoProcurado, setProdutoProcurado] = useState<ProdutoCompleto>()
   const [numeroImagem, setNumeroImagem] = useState<number>(0)
   const [favorito, setFavorito] = useState<boolean>(false)
   const [open, setOpen] = useState<boolean>(false)
   const [quantidade, setQuantidade] = useState<number>(1)
+  const [especificacao1, setEspecificacao1] = useState<String>("Rosa")
+  const [especificacao2, setEspecificacao2] = useState<String>("Pequeno")
 
   const especificacoes = [
     {
-      topico:"Idade", 
+      topico: "Idade",
       resposta: produtoProcurado?.especificacoes.idadePet
     },
     {
       topico: "Porte da Raça",
-      resposta: produtoProcurado?.especificacoes.porteRaca 
+      resposta: produtoProcurado?.especificacoes.porteRaca
     },
     {
       topico: "Pet",
@@ -57,7 +60,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
     {
       topico: "Cor",
       resposta: produtoProcurado?.especificacoes.cor
-    }, 
+    },
     {
       topico: "Tipo",
       resposta: produtoProcurado?.especificacoes.tipo
@@ -70,7 +73,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
       topico: "Variações",
       resposta: produtoProcurado?.especificacoes.apresentacao
     }
-  
+
   ]
 
   const construirEstrelas = (numEstrelas: number) => {
@@ -107,68 +110,131 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
   }
 
   if (!produtoProcurado) return (
-    <div className='font-poppins'>Carregando...</div>
+    <Loading />
   )
   else {
     return (
-      <main className='text-preto'>
+      <main className='text-preto font-poppins'>
         <Confirmacao />
         <section className=''>
           <TituloLinha voltar={true} titulo={produtoProcurado.nomeProduto} />
         </section>
-        <section className='flex flex-col md:flex-row w-[90%] m-auto mt-8 md:mt-[2.5rem]'>
 
-          <section className='w-full ml-10 md:w-[45%] h-auto'>
-            <div className='h-full w-full flex flex-col gap-4'>
+        <section className='flex flex-col md:flex-row w-[90%] m-auto mt-8 md:mt-[2.5rem] justify-between'>
 
-              <div className='h-44 md:h-full border border-cinza rounded-2xl w-full lg:w-[70%] flex items-center justify-center'>
-                <img src={produtoProcurado.imagemProduto[numeroImagem]} alt="" className='w-[50%] md:w-full 2xl:w-[80%]' />
-                <div className='flex-row md:w-[42%] lg:w-[30%] absolute justify-between flex max-sm:hidden'>
-                  <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='hover:shadow-md hover:translate-x-[-0.5rem] animation duration-200 bg-branco font-poppins border border-preto lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
-                  <button onClick={() => setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='hover:shadow-md hover:translate-x-[0.5rem] animation duration-200 bg-branco font-poppins border border-preto lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
+          <section className='w-full sm:ml-10 md:w-[30%] h-auto'>
+            <div className='h-full w-full flex flex-col gap-2 lg:gap-4 lg:justify-center'>
+
+              <div className='h-44 md:h-fit lg:h-full border border-cinza rounded-2xl w-full flex items-center justify-center'>
+                <img src={produtoProcurado.imagemProduto[numeroImagem]} alt="" className='w-[50%] md:w-full py-4 2xl:w-[50%]' />
+                <div className='flex-row md:w-[33%] absolute justify-between flex max-sm:hidden'>
+                  <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='hover:shadow-md hover:translate-x-[-0.5rem] animation duration-200 bg-branco  border border-preto lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
+                  <button onClick={() => setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='hover:shadow-md hover:translate-x-[0.5rem] animation duration-200 bg-branco  border border-preto lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
                 </div>
               </div>
 
-              <div className='lg:h-full w-full lg:w-1/3 md:m-auto flex flex-row items-center gap-1 lg:block'>
-                <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='bg-branco md:hidden font-poppins border border-preto w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
-                
-                {produtoProcurado.imagemProduto.map((image, i) => (
-                  <div onClick={() => setNumeroImagem(i)} key={i} className={`flex items-center justify-center cursor-pointer md:h-16 lg:w-2/5 lg:m-auto h-10 w-10 md:w-[40%] rounded-xl md:rounded-2xl border ${numeroImagem == i ? 'border-cinza-escuro' : 'border-cinza'} md:mt-5 lg:mb-5`}>
-                    <img src={image} alt="" className='w-3/5 2xl:w-[50%] object-cover' />
-                  </div>
-                ))}
+              <div className='lg:h-full w-full lg:w-1/3 lg:m-auto flex flex-row lg:items-center gap-1 lg:block'>
+                <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='hover:shadow-md hover:translate-x-[-0.5rem] animation duration-200 bg-branco md:hidden  border border-preto w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
 
-                <button onClick={() => setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='bg-branco md:hidden font-poppins border border-preto w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
+                <div className='flex flex-row w-full gap-2'>
+                  {produtoProcurado.imagemProduto.map((image, i) => (
+                    <div onClick={() => setNumeroImagem(i)} key={i} className={`flex items-center justify-center cursor-pointer md:h-16 lg:w-2/5 duration-100 lg:m-auto h-10 w-10 md:w-[40%] rounded-xl md:rounded-2xl border ${numeroImagem == i ? 'border-cinza-escuro scale-105' : 'border-cinza opacity-80'} md:mt-5 lg:mb-5`}>
+                      <img src={image} alt="" className='w-3/5 2xl:w-[50%] object-cover' />
+                    </div>
+                  ))}
+                </div>
+
+                <button onClick={() => setNumeroImagem(produtoProcurado.imagemProduto.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='hover:shadow-md hover:translate-x-[-0.5rem] animation duration-200 bg-branco md:hidden  border border-preto w-8 h-8 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
               </div>
 
             </div>
           </section>
-          
-          <section className='md:w-[55%] w-full flex flex-col max-sm:mt-4'>
-            <div className='flex flex-row items-center justify-between lg:w-[85%]'>
-              <p className='font-poppins md:text-xl text-base font-normal text-preto'>{produtoProcurado.nomeProduto}</p>
+
+          <section className='md:w-3/5 w-full flex flex-col max-sm:mt-4'>
+            <div className='flex flex-row items-center justify-between'>
+              <p className=' md:text-xl text-base font-normal text-preto'>{produtoProcurado.nomeProduto}</p>
               <div className="transition duration-100 active:scale-75 z-50" onClick={() => setFavorito(!favorito)}>{favorito ? <FaHeart size={20} style={{ color: "#B5A6F3", }} /> : <FaRegHeart size={20} style={{ color: "#4f4f4f", }} />}</div>
             </div>
-            <div className='flex flex-col md:flex-row md:gap-1 lg:text-sm text-xs font-poppins font-normal text-cinza-escuro'>
+            <div className='flex flex-col md:flex-row md:gap-1 lg:text-sm text-xs  font-normal text-cinza-escuro'>
               <p>Código: {produtoProcurado.codigo} |</p>
             </div>
             <div className='md:mt-1 mt-2 flex flex-row items-center'>
               {construirEstrelas(produtoProcurado?.notaDeAvaliacao!)}
-              <p className={`font-poppins ml-2 text-base ${produtoProcurado.disponivel ? 'text-verde' : 'text-error'} font-bold`}>{produtoProcurado.disponivel ? "| Disponível" : "| Indisponível"}</p>
+              <p className={` ml-2 text-base ${produtoProcurado.disponivel ? 'text-verde' : 'text-error'} font-bold`}>{produtoProcurado.disponivel ? "| Disponível" : "| Indisponível"}</p>
             </div>
-            <div className='flex flex-col md:flex-row md:items-center md:justify-between w-full lg:w-[85%] gap-3 md:gap-0 h-20 max-sm:mt-3'>
-              <div className='flex flex-row items-center gap-3'>
-                <p className='font-poppins font-bold md:text-2xl text-xl text-preto'>R$ {produtoProcurado.precoNovo.toFixed(2).replace(".", ",")}</p>
-                <s className='font-poppins font-bold md:text-base text-sm text-cinza'>R$ {produtoProcurado.precoAntigoDoProduto.toFixed(2).replace(".", ",")}</s>
+
+            <div className='flex lg:flex-row flex-col gap-6'>
+              <div className='flex flex-col md:justify-between w-full gap-4 max-sm:mt-3 mt-6'>
+
+                <div className='flex flex-row items-center gap-3'>
+                  <p className='font-bold md:text-2xl text-xl text-preto'>R$ {produtoProcurado.precoNovo.toFixed(2).replace(".", ",")}</p>
+                  <p className='font-medium line-through text-sm text-cinza'>R$ {produtoProcurado.precoAntigoDoProduto.toFixed(2).replace(".", ",")}</p>
+                </div>
+
+                <div className='flex flex-col gap-4'>
+                  <div className='flex flex-col gap-2'>
+                    <p className='text-cinza-escuro font-medium'>Cor</p>
+                    <div className='flex flex-row gap-3'>
+                      <button onClick={() => setEspecificacao1("Rosa")} className={`${especificacao1 == "Rosa" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Rosa</button>
+                      <button onClick={() => setEspecificacao1("Roxo")} className={`${especificacao1 == "Roxo" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Roxo</button>
+                      <button onClick={() => setEspecificacao1("Vermelho")} className={`${especificacao1 == "Vermelho" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Vermelho</button>
+                      <button onClick={() => setEspecificacao1("Azul")} className={`${especificacao1 == "Azul" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Azul</button>
+                    </div>
+                  </div>
+                  <div className='flex flex-col gap-2'>
+                    <p className='text-cinza-escuro font-medium'>Tamanho</p>
+                    <div className='flex flex-row gap-3'>
+                      <button onClick={() => setEspecificacao2("Pequeno")} className={`${especificacao2 == "Pequeno" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Pequeno</button>
+                      <button onClick={() => setEspecificacao2("Médio")} className={`${especificacao2 == "Médio" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Médio</button>
+                      <button onClick={() => setEspecificacao2("Grande")} className={`${especificacao2 == "Grande" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Grande</button>
+                    </div>
+                  </div>
+                </div>
+                <div className='flex flex-col gap-2'>
+                  <p className='text-cinza-escuro font-medium'>Quantidade</p>
+                  <div className='w-1/3'>
+                    <QuantidadeProduto propsQuantidade={setQuantidade} estoqueDisponivel={produtoProcurado.estoque} />
+                  </div>
+                </div>
               </div>
-              <div className='max-sm:w-full'>
-                <BotaoGrande background='bg-primaria' fontSize='text-xs lg:text-sm' type='button' title='Calcular Frete' />
+
+              <div className='flex flex-col w-full justify-between gap-2'>
+                <div className='bg-terciaria flex flex-col gap-4 p-4 rounded-lg'>
+                  <div>
+                    <p className='font-semibold text-md sm:text-lg'>Calcule seu frete</p>
+                    <p className='text-cinza-escuro text-sm'>Informe seu CEP</p>
+                    <div className='flex flex-row gap-2 items-center'>
+                      <InputText />
+                      <div className='w-2/5'>
+                        <BotaoGrande background='bg-secundaria' title='Calcular' type={'button'} />
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div className='lg:text-base text-sm flex flex-row justify-between font-medium'>
+                    <p>Frete normal</p>
+                    <p>R$13,99</p>
+                  </div>
+                  <div className='lg:text-base text-sm flex flex-row justify-between font-medium'>
+                    <p>SEDEX</p>
+                    <p>R$23,99</p>
+                  </div>
+
+                </div>
+                <div onClick={() => adicionarCarrinho()} className='h-full'>
+                  <BotaoGrande height='h-full' title='Adicionar à sacola' background='bg-primaria' type='button' />
+                </div>
+                <div className='h-full'>
+                  <BotaoGrande height='h-full' title='Comprar agora' background='bg-secundaria' type='button' />
+                </div>
               </div>
             </div>
-            <div className='flex flex-row items-start gap-4 w-full lg:w-[85%] mt-4'>
+
+            {/* <div className='flex flex-row items-start gap-4 w-full lg:w-[85%] mt-4'>
               <div className='w-[30%]'>
                 <QuantidadeProduto propsQuantidade={setQuantidade} estoqueDisponivel={produtoProcurado.estoque} />
-                <p className='font-poppins text-cinza-escuro text-center mt-1 lg:text-base md:text-xs text-[10px]'>Em estoque: {produtoProcurado.estoque}</p>
+                <p className=' text-cinza-escuro text-center mt-1 lg:text-base md:text-xs text-[10px]'>Em estoque: {produtoProcurado.estoque}</p>
               </div>
 
               <button className='bg-primaria rounded-lg w-[15%] p-2 transition ease-in-out delay-150 duration-200 hover:bg-[#826cda] flex justify-center items-center' onClick={() => adicionarCarrinho()}>
@@ -176,12 +242,13 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
               </button>
 
               <div className='h-8 flex items-center max-md:hidden'>
-                <p className='font-poppins'>ou</p>
+                <p className=''>ou</p>
               </div>
               <div className='w-[50%]'>
                 <BotaoGrande title='Comprar Agora' type='button' background='bg-secundaria' />
               </div>
-            </div>
+            </div> */}
+
           </section>
         </section>
         <section className='md:mt-20 mt-8'>
@@ -197,7 +264,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
           <div className='mt-10 w-[90%] m-auto md:text-base text-sm'>
             {
               produtoProcurado.descricao.map((linha, i) => (
-                <p className='font-poppins mb-0.5' key={i}>{linha}</p>
+                <p className=' mb-0.5' key={i}>{linha}</p>
               ))
             }
           </div>
@@ -210,8 +277,8 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             {
               especificacoes.map((item, i) => (
                 <div key={i} className={`flex flex-row w-full h-10 items-center max-sm:justify-between ${i % 2 == 0 ? 'bg-terciaria' : ''} rounded-lg`}>
-                  <div className='md:w-[50%] font-poppins md:text-lg text-sm ml-2'>{item.topico}</div>
-                  <div className='md:w-[50%] font-poppins md:text-base text-xs max-sm:flex max-sm:justify-end max-sm:text-end'>{item.resposta}</div>
+                  <div className='md:w-[50%]  md:text-lg text-sm ml-2'>{item.topico}</div>
+                  <div className='md:w-[50%]  md:text-base text-xs max-sm:flex max-sm:justify-end max-sm:text-end'>{item.resposta}</div>
                 </div>
               ))
             }

@@ -3,7 +3,7 @@
     "id": 1,
     "nomeProduto": "Ração Premium para Cães",
     "notaDeAvaliacao": 4.8,
-    "imagemProduto": ["/assets/produtos/racao.png"],
+    "imagemProduto": ["/assets/produtos/racao.png", "/assets/produtos/racao.png"],
     "precoAntigoDoProduto": 150.00,
     "desconto": "15%",
     "precoNovo": 127.50,
