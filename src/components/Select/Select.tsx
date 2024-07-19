@@ -1,13 +1,12 @@
 'use client'
 import { useState, useEffect, useRef, MutableRefObject, Dispatch, SetStateAction } from "react";
 import { FaChevronDown } from "react-icons/fa6";
-import { FaChevronUp } from "react-icons/fa6";
 
 interface ISelect {
     label: string,
     options: string[],
-    opcaoSelecionada: Dispatch<SetStateAction<string | undefined>>,
-    opcao: string | undefined
+    opcaoSelecionada: Dispatch<SetStateAction<string>>,
+    opcao: string
 }
 
 export default function Select({ label, options, opcaoSelecionada, opcao }: ISelect) {

@@ -1,5 +1,6 @@
 import usuarios from '@/banco/usuarios.json'
 import { Usuario } from '@/types/usuarios';
+import { axiosAPI } from '../api';
 
 export function buscarUsuario(id: number) {
     let usuarioEncontrado;
@@ -54,4 +55,9 @@ export function buscarPedido(idPedido: number, idUsuario: number){
         }
     })
     return pedidoEncontrado;
+}
+
+export async function cadastroUsuario(payload: any){
+    const respose = await axiosAPI.post("/usuario/cadastro", payload).then(resp => resp);
+    return respose.data
 }

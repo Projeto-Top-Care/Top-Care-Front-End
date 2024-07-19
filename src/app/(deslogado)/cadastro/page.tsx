@@ -8,7 +8,9 @@ import CadastroPet from '@/components/Pop-up/CadastroPet/CadastroPet'
 import Erro from '@/components/Pop-up/Erro/Erro'
 import ResponsiveInput from '@/components/ResponsiveInput'
 import Select from '@/components/Select/Select'
+import { cadastroUsuario } from '@/server/usuario/action'
 import { Endereco, ViaCEP } from '@/types/usuarios'
+import { Dayjs } from 'dayjs'
 import React, { useState } from 'react'
 
 const siglasEstados = [
@@ -45,10 +47,11 @@ export default function Cadastro() {
     const [open, setOpen] = useState<boolean>(false)
     const [senha, setSenha] = useState<string>("")
     const [confSenha, setConfSenha] = useState<string>("")
-    const [sexo, setSexo] = useState<string>()
+    const [sexo, setSexo] = useState<string>("")
+    const [data, setData] = useState<string>("")
 
     const [cep, setCep] = useState<string>('');
-    const [estado, setEstado] = useState<string>()
+    const [estado, setEstado] = useState<string>("")
     const [endereco, setEndereco] = useState<ViaCEP>();
 
     const [messageCep, setMessageCep] = useState<string>('');
@@ -57,6 +60,9 @@ export default function Cadastro() {
 
 
     const buscarCep = async () => {
+        if (cep.length < 9) {
+            return
+        }
         try {
             console.log("Cheguei aqui")
             const infosEndereco = await fetch('https://viacep.com.br/ws/' + cep + '/json/')
@@ -76,12 +82,21 @@ export default function Cadastro() {
         let requisitos = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!]).{8,}$/;
         return !requisitos.test(senha)
     }
+    const enviarDados = async (e: FormData) => {
+        const parseData = data.split("/")
+        const stringFormat = parseData[1] + "-" + parseData[0]+ "-" + parseData[2]
+        const dataFormatada = new Date(stringFormat).toISOString().split("T")[0];
+        console.log(dataFormatada)
 
-    const enviarDados = (e: FormData) =>{
+        e.append("dataNascimento", dataFormatada)
+        e.append("sexo", sexo)
+        e.append("estado", estado)
+        e.append("senha", senha)
+        e.append("cep", cep)
         const objectCadastro = Object.fromEntries(e)
-        event?.preventDefault()
-        console.log(objectCadastro)
-        console.log(endereco)
+
+        const response = await cadastroUsuario(objectCadastro)
+        console.log(response)
     }
 
     return (
@@ -113,7 +128,7 @@ export default function Cadastro() {
                                 <ResponsiveInput size='w-72'>
                                     <InputMask
                                         placeholder='Data de Nascimento'
-                                        name='dataNascimento'
+                                        onChange={(e) => setData(e.target.value)}
                                         required
                                         mask={"dd/mm/yyyy"}
                                         replacement={{ d: /\d/, m: /\d/, y: /\d/ }}
@@ -220,7 +235,7 @@ export default function Cadastro() {
                                     <InputMask placeholder='CEP'
                                         onChange={(e) => setCep(e.target.value)}
                                         value={cep}
-                                        onFocus={buscarCep}
+                                        onBlur={buscarCep}
                                         mask={'_____-___'}
                                         replacement={{ _: /\d/ }}
                                     />
@@ -230,7 +245,7 @@ export default function Cadastro() {
                                         label='Estado'
                                         options={siglasEstados}
                                         opcaoSelecionada={setEstado}
-                                        opcao={endereco? endereco.uf : estado}
+                                        opcao={endereco ? endereco.uf : estado}
                                     />
                                 </ResponsiveInput>
                             </MoldeInput>
@@ -238,16 +253,15 @@ export default function Cadastro() {
                                 <ResponsiveInput size='w-60'>
                                     <InputText
                                         placeholder='Cidade'
-                                        type={'text'}
                                         name="cidade"
                                         value={endereco ? endereco.localidade : undefined}
+
                                     />
                                 </ResponsiveInput>
                                 <ResponsiveInput size='w-60'>
                                     <InputText
                                         placeholder='Bairro'
-                                        type={'text'}
-                                        value={endereco ? endereco.bairro : undefined}
+                                        value={endereco?.bairro}
                                         name="bairro"
                                     />
                                 </ResponsiveInput>
@@ -277,13 +291,13 @@ export default function Cadastro() {
                                     <InputText
                                         placeholder='Complemento'
                                         type={'text'}
-                                        value={endereco?.complemento ? endereco.complemento : undefined}
-                                        name="complemento" />
+                                        name="complemento"
+                                    />
                                 </ResponsiveInput>
                                 <ResponsiveInput size='w-60'>
                                     <InputText
-                                        placeholder='Nome para o Endereço'
-                                        type={'text'}
+                                        placeholder='Nome para o Endereço*'
+                                        required
                                         name="nomeEndereco"
                                     />
                                 </ResponsiveInput>
