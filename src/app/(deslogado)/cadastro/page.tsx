@@ -85,15 +85,15 @@ export default function Cadastro() {
     const enviarDados = async (e: FormData) => {
         const parseData = data.split("/")
         const stringFormat = parseData[1] + "-" + parseData[0]+ "-" + parseData[2]
-        const dataFormatada = new Date(stringFormat).toISOString().split("T")[0];
-        console.log(dataFormatada)
+        const dataFormatada = new Date(stringFormat);
 
-        e.append("dataNascimento", dataFormatada)
-        e.append("sexo", sexo)
+        e.append("dataNascimento", dataFormatada.toISOString().split("T")[0])
+        e.append("sexo", sexo.toUpperCase())
         e.append("estado", estado)
         e.append("senha", senha)
         e.append("cep", cep)
         const objectCadastro = Object.fromEntries(e)
+        console.log(objectCadastro)
 
         const response = await cadastroUsuario(objectCadastro)
         console.log(response)
