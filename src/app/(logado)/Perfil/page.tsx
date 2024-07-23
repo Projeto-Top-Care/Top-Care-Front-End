@@ -41,7 +41,7 @@ export default function Perfil() {
 
     const [nome, setNome] = useState<string>('')
     const [email, setEmail] = useState<string>('')
-    const [sexo, setSexo] = useState<'Feminino' | 'Masculino' | "Prefiro não Informar">('Prefiro não Informar')
+    const [sexo, setSexo] = useState<'Feminino' | 'Masculino'>()
     const [ddd, setDdd] = useState<string>('')
     const [numero, setNumero] = useState<string>('')
     const [dataNascimento, setDataNascimento] = useState<string>('')

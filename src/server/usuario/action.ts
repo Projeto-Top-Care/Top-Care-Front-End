@@ -13,18 +13,6 @@ export function buscarUsuario(id: number) {
     return usuarioEncontrado
 }
 
-export function login(email: string, senha: string) {
-    let id;
-    usuarios.forEach((usuario) =>{
-        if(usuario.email == email) {
-            if(usuario.senha == senha) {
-                id = usuario.id
-            }
-        }
-    })
-    return id
-}
-
 export function buscarUsuarioEmail(email:string){
     let usuarioEncontrado;
     usuarios.forEach((usuario)=>{
@@ -59,5 +47,10 @@ export function buscarPedido(idPedido: number, idUsuario: number){
 
 export async function cadastroUsuario(payload: any){
     const respose = await axiosAPI.post("/usuario/cadastro", payload).then(resp => resp);
+    return respose.data
+}
+
+export async function login(payload:any) {
+    const respose = await axiosAPI.post("/usuario/login", payload).then(resp => resp);
     return respose.data
 }

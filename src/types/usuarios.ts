@@ -7,7 +7,7 @@ export interface Usuario {
     celular: string,
     senha: string,
     cpf: string,
-    sexo: 'Feminino' | 'Masculino' | "Prefiro não Informar"
+    sexo: 'Feminino' | 'Masculino' | undefined
     dataNascimento: string,
     produtosCarrinho: number[]
     enderecos: Endereco[],

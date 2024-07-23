@@ -93,7 +93,6 @@ export default function Cadastro() {
         e.append("senha", senha)
         e.append("cep", cep)
         const objectCadastro = Object.fromEntries(e)
-        console.log(objectCadastro)
 
         const response = await cadastroUsuario(objectCadastro)
         console.log(response)
