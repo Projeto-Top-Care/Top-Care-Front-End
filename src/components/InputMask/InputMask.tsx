@@ -11,7 +11,9 @@ export default function InputTextMask(props: InputHTMLAttributes<HTMLInputElemen
             focus:bg-branco bg-branco placeholder-transparent focus:outline-none`} 
             mask={props.mask} 
             replacement={props.replacement} 
-            onMask={props.onMasks}
+            onMask={props.onMasks} 
+            onFocus={()=>setFocus(true)}
+            onBlur={()=>setFocus(false)}
             />
             <label htmlFor={props?.id} className="absolute left-1.5 font-poppins px-1 lg:text-sm text-xs transition-all bg-branco rounded lg:-top-2.5 -top-2
             md:peer-placeholder-shown:text-sm peer-placeholder-shown:text-xs peer-placeholder-shown:text-cinza-escuro peer-placeholder-shown:top-2.5
