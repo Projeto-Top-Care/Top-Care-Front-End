@@ -3,18 +3,18 @@ import { useRouter } from "next/navigation"
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import TabelaProdutos from "@/components/TabelaProdutos/TabelaProduto";
-import EspecificacoesProduto from "@/components/EspecificaçoesProduto/Especificacoes";
 import { buscarProduto } from "@/server/produtos/action";
 import { ProdutoCompleto } from "@/types/produto";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
+import VariacaoProdutos from "@/components/VariacaoProdutos/VariacaoProdutos";
 
-interface EditarProdutoProps{
+interface EditarProdutoProps {
     searchParams: {
         id: number
     }
 }
 
-export default function EditarProduto({searchParams}: EditarProdutoProps) {
+export default function EditarProduto({ searchParams }: EditarProdutoProps) {
 
     const router = useRouter()
     const idProduto = searchParams.id
@@ -22,21 +22,21 @@ export default function EditarProduto({searchParams}: EditarProdutoProps) {
     const produtoBuscado: ProdutoCompleto = buscarProduto(idProduto)!
 
 
-    return(
+    return (
         <main className="mx-auto text-preto">
-            <Confirmacao/>
-            <section className="">  
+            <Confirmacao />
+            <section className="">
                 <TituloLinha voltar={true} titulo={"Editar produto #" + produtoBuscado.codigo} />
             </section>
             <section className="w-[90%] mx-auto">
-                <TabelaProdutos produto={produtoBuscado}/>
+                <TabelaProdutos produto={produtoBuscado.especificacoes} />
             </section>
             <section className="w-[90%] mx-auto">
-                <EspecificacoesProduto  produto={produtoBuscado.especificacoes}/>
+                <VariacaoProdutos produtos={produtoBuscado} />
             </section>
             <section className='w-[90%] mx-auto flex flex-row justify-between items-center my-10'>
                 <div className='w-24 md:w-48'>
-                    <BotaoGrande background='bg-error' textColor="text-branco" title='Cancelar' type='button' onClick={()=>router.back()} />
+                    <BotaoGrande background='bg-error' textColor="text-branco" title='Cancelar' type='button' onClick={() => router.back()} />
                 </div>
                 <div className='md:w-60'>
                     <BotaoGrande background='bg-secundaria' title='Salvar Alterações' type='button' />
