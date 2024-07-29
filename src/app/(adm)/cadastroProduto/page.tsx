@@ -7,7 +7,7 @@ import { Usuario } from "@/types/usuarios";
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import TabelaProdutos from "@/components/TabelaProdutos/TabelaProduto";
-import EspecificacoesProduto from "@/components/EspecificaçoesProduto/Especificacoes";
+import EspecificacoesProduto from "@/components/VariacaoProdutos/VariacaoProdutos";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 
 export default function CadastroProduto() {

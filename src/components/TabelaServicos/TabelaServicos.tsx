@@ -8,91 +8,88 @@ import InputFile from '../InputFile/InputFile'
 import InputText from '../InputText/InputText'
 import CadastroVariante from '../Pop-up/CadastroVariante/CadastroVariante'
 import TextArea from '../TextArea/TextArea'
+import { FiPlus } from "react-icons/fi";
 
-interface TabelaServicosProps{
+interface TabelaServicosProps {
     servico?: Servico
 }
 
-export default function TabelaServicos({servico}: TabelaServicosProps) {
-    const [check, setCheck] = useState(false)
+export default function TabelaServicos({ servico }: TabelaServicosProps) {
     const [openVariante, setOpenVariante] = useState<boolean>(false)
     const [variantes, setVariantes] = useState<VariantesProps[]>(servico ? servico.variantes : [])
 
-
     return (
         <section className='border border-cinza-escuro rounded-xl h-full flex flex-col sm:flex-row'>
-            <section className='border-r border-r-cinza-escuro w-full sm:w-[55%] px-5'>
-                <div className='pt-6'>
+            <section className='md:border-r md:border-r-cinza-escuro w-full sm:w-[50%] px-5'>
+                <div className='pt-6 flex md:items-start items-center'>
                     <p className='font-averia text-2xl font-extrabold'>Informações básicas</p>
                 </div>
                 <form action="">
-                    <div className='mt-6'>
-                        <InputText 
-                        placeholder='Nome do serviço*'
-                        value={servico?.nome}
+                    <div className='flex md:flex-row flex-col mt-7 gap-5'>
+                        <div className=' flex flex-col md:items-start items-center'>
+                            <div className='md:w-28 w-24 md:h-28 h-24'>
+                                <InputFile rounded='rounded-lg' />
+                            </div>
+                        </div>
+                        <div className='w-full flex flex-col gap-8'>
+                            <div>
+                                <InputText
+                                    placeholder='Nome do serviço*'
+                                    value={servico?.nome}
+                                />
+                            </div>
+                            <div>
+                                <InputText
+                                    placeholder='Pet(s)*'
+                                    value={servico?.nome}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='mt-8'>
+                        <TextArea
+                            placeholder='Descrição'
+                            height='h-32'
+                            value={servico?.descricao}
                         />
                     </div>
-                    <div className='mt-3'>
-                        <TextArea 
-                        placeholder='Descrição' 
-                        height='h-32' 
-                        value={servico?.descricao}
-                        />
-                    </div>
-                    <div className='mt-3'>
-                        <InputText 
-                        placeholder='Preço mínimo*' 
-                        type={'number'} 
-                        value={servico?.precoInicial}
-                        />
-                    </div>
-                    <div className='flex flex-row mt-3'>
-                        <div className='flex flex-col items-center w-[50%]'>
+                    <div className='flex flex-row mt-8 mb-8'>
+                        <div className='flex flex-col items-center w-full'>
                             <div className='w-full'>
                                 <InputText placeholder='Profissionais' />
                             </div>
-                            <div className='my-6 flex flex-col items-center'>
-                                <h1 className='font-averia font-extrabold text-lg text-center'>Imagem</h1>
-                                <div className='w-24 h-24'>
-                                    <InputFile rounded='rounded-lg'/>
-                                </div>
-                                <p className='font-poppins text-sm text-center mt-1'>Imagem Princípal</p>
-                            </div>
-                        </div>
-                        <div className='ml-8 mb-4'>
-                            <h1 className='font-poppins text-sm text-cinza-escuro mb-2'>Pet(s)*</h1>
-                            {
-                                servico?.pets.map((animal) => (
-                                    <div key={animal.name} className={'flex flex-row mb-1'}>
-                                        <Checkbox check={setCheck} defautCheck={animal.check} />
-                                        <label htmlFor="" className='font-poppins'>{animal.name}</label>
-                                    </div>
-                                ))
-                            }
                         </div>
                     </div>
                 </form>
             </section>
-            <section className='w-full sm:w-[45%] px-5'>
-                <div className='pt-6'>
-                    <p className='font-averia text-2xl font-extrabold'>Váriações de Serviços</p>
-                </div>
-                <div>
-                    {
-                        variantes.map((variante)=>(
-                            <VarianteServico tipo={variante.tipo} variante={variante.nome} preco={variante.preco} />
-                        ))
-                    }
-                </div>
-                <div className='w-full sm:w-[40%] mt-4 mb-4'>
-                    <BotaoGrande title='Adicionar variação' type='button' background='bg-secundaria' onClick={() => setOpenVariante(true)} />
-                </div>
-            </section>
-            {
-                openVariante && (
-                    <CadastroVariante openModalProps={setOpenVariante} variantesProps={servico?.variantes} setVariantesProps={setVariantes}/>
-                )
-            }
+            <div>
+                <div className='border-t md:hidden border-t-cinza-escuro w-full'></div>
+                <section className='sm:w-full px-5 md:ml-5'>
+                    <div className='pt-6'>
+                        <p className='font-averia text-2xl font-extrabold'>Variações de Serviços</p>
+                    </div>
+                    <div className='grid xl:grid-cols-2 xl:gap-4 md:gap-2 mb-8 mt-2'>
+                        {
+                            variantes.map((variante) => (
+                                <VarianteServico tipo={variante.tipo} variante={variante.nome} preco={variante.preco} />
+                            ))
+                        }
+                        <div className='flex items-center gap-2 flex-row cursor-pointer md:w-[10%] w-full mt-4' onClick={() => setOpenVariante(true)}>
+                            <div className='p-2 rounded-full bg-terciaria'>
+                                {<FiPlus size={20} />}
+                            </div>
+                            <p className='font-poppins text-sm text-preto'>
+                                Adicionar variação
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                {
+                    openVariante && (
+                        <CadastroVariante openModalProps={setOpenVariante} variantesProps={servico?.variantes} setVariantesProps={setVariantes} />
+                    )
+                }
+            </div>
         </section>
     )
 }
