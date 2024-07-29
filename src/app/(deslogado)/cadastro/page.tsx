@@ -130,7 +130,6 @@ export default function Cadastro() {
                                     placeholder='Data de Nascimento'
                                     value={dataNascimento}
                                     onChange={(e) => setDataNascimento(e.target.value)}
-                                    erro={erro && dataNascimento.length < 10}
                                     erroMessage={"Data inválida"}
                                     mask={"dd/mm/yyyy"}
                                     replacement={{ d: /\d/, m: /\d/, y: /\d/ }}
@@ -156,7 +155,6 @@ export default function Cadastro() {
                                 value={telefone}
                                 mask={'(__) _____-____'}
                                 replacement={{ _: /\d/ }}
-                                erro={telefone.length < 15 && erro}
                                 onMasks={(e) => setTelefone(e.target.value)}
                                 erroMessage={"Telefone inválido"}
                             />
@@ -171,7 +169,6 @@ export default function Cadastro() {
                                 onChange={(e) => setCpf(e.target.value)}
                                 mask={"___.___.___-__"}
                                 replacement={{ _: /\d/ }}
-                                erro={cpf.length < 13 && erro}
                                 erroMessage="CPF inválido!"
                             />
                         </ResponsiveInput>
@@ -181,8 +178,6 @@ export default function Cadastro() {
                             options={['Masculino', 'Feminino', 'Prefiro não Informar']} 
                             opcaoSelecionada={setSexo} 
                             opcao={sexo}
-                            erro = {sexo == '' && erro}
-                            erroMessage={"Sexo inválido!"}
                             />
                         </ResponsiveInput>
                     </MoldeInput>
@@ -255,7 +250,6 @@ export default function Cadastro() {
                                     }}
                                     mask={'_____-___'}
                                     replacement={{ _: /\d/ }}
-                                    erro={erro || inexistente}
                                     erroMessage={messageCep}
                                 />
                             </ResponsiveInput>
