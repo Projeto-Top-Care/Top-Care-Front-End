@@ -6,11 +6,11 @@ import InputText from '@/components/InputText/InputText'
 import MoldeInput from '@/components/MoldeInput'
 import CadastroPet from '@/components/Pop-up/CadastroPet/CadastroPet'
 import Erro from '@/components/Pop-up/Erro/Erro'
+import UmBotao from '@/components/Pop-up/UmBotao/UmBotao'
 import ResponsiveInput from '@/components/ResponsiveInput'
 import Select from '@/components/Select/Select'
 import { cadastroUsuario } from '@/server/usuario/action'
-import { Endereco, ViaCEP } from '@/types/usuarios'
-import { Dayjs } from 'dayjs'
+import { ViaCEP } from '@/types/usuarios'
 import React, { useState } from 'react'
 
 const siglasEstados = [
@@ -45,6 +45,9 @@ const siglasEstados = [
 
 export default function Cadastro() {
     const [open, setOpen] = useState<boolean>(false)
+    const [openModal, setOpenModal] = useState<boolean>(false)
+
+
     const [senha, setSenha] = useState<string>("")
     const [confSenha, setConfSenha] = useState<string>("")
     const [sexo, setSexo] = useState<string>("")
@@ -53,10 +56,6 @@ export default function Cadastro() {
     const [cep, setCep] = useState<string>('');
     const [estado, setEstado] = useState<string>("")
     const [endereco, setEndereco] = useState<ViaCEP>();
-
-    const [messageCep, setMessageCep] = useState<string>('');
-    const [erro, setErro] = useState<boolean>(false)
-    const [inexistente, setInexistente] = useState<boolean>(false)
 
 
     const buscarCep = async () => {
@@ -73,8 +72,7 @@ export default function Cadastro() {
             }
             setEndereco(consultarCEPConvert);
         } catch (erro) {
-            setInexistente(true)
-            setMessageCep("CEP inexistente!")
+
         }
     }
 
@@ -84,7 +82,7 @@ export default function Cadastro() {
     }
     const enviarDados = async (e: FormData) => {
         const parseData = data.split("/")
-        const stringFormat = parseData[1] + "-" + parseData[0]+ "-" + parseData[2]
+        const stringFormat = parseData[1] + "-" + parseData[0] + "-" + parseData[2]
         const dataFormatada = new Date(stringFormat);
 
         e.append("dataNascimento", dataFormatada.toISOString().split("T")[0])
@@ -96,6 +94,7 @@ export default function Cadastro() {
 
         const response = await cadastroUsuario(objectCadastro)
         console.log(response)
+        setOpenModal(true)
     }
 
     return (
@@ -322,6 +321,16 @@ export default function Cadastro() {
                     </div>
                 </div>
             )}
+            {
+                openModal && (
+                    <div className="w-full">
+                        <div className='fixed top-0 left-0 w-full h-full bg-fundo-modal' onClick={() => setOpenModal(false)}></div>
+                        <div className="fixed lg:w-[25%] w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+                            <UmBotao openParms={setOpenModal} texto="Usuário cadastrado!" rota='login'/>
+                        </div>
+                    </div>
+                )
+            }
         </main>
     )
 }
