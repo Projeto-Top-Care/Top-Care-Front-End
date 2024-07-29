@@ -17,11 +17,13 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
 
     const { getUserID } = useUserID()
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
+    const [isLogged, setIsLogged] = useState<boolean>(false)
 
     useEffect(() => {
         const id = getUserID()
         if (id) {
             const user: Usuario = buscarUsuario(parseInt(id))!
+            setIsLogged(true)
             if (user.role == 'admin') {
                 setIsAdmin(true)
             }
@@ -61,8 +63,8 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
                     <p className='text-sm md:text-base text-[0.6rem] font-medium text-cinza-escuro'>{notaDeAvaliacao}</p>
                 </div>
 
-                <div>
-                    <button onClick={() => setFavoritoCard(!favoritoCard)} className="transition duration-100 active:scale-75 z-50">
+                <div className={`${isAdmin ? `hidden` : ``}`}>
+                    <button onClick={() => (isLogged ? setFavoritoCard(!favoritoCard) : push('/login'))} className="transition duration-100 active:scale-75 z-50">
                         {iconeFavorito()}
                     </button>
                 </div>

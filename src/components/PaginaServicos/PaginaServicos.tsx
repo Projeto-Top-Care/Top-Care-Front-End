@@ -5,29 +5,19 @@ import servicos from '@/banco/servicos.json'
 import { useEffect, useState } from "react";
 import BarraPesquisaComum from "@/components/BarraPesquisaComum/BarraPesquisaComum";
 import { Servico } from "@/types/servicos";
-import ButtonFiltro from "./buttonFiltro";
-import { useUserID } from "@/context/UserIDContext";
-import { Usuario } from "@/types/usuarios";
-import { buscarUsuario } from "@/server/usuario/action";
+import ButtonFiltro from "@/app/(misto)/informacoesServicos/buttonFiltro";
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
-import PaginaServicos from "@/components/PaginaServicos/PaginaServicos";
+import { useRouter } from "next/navigation";
 
-export default function informacoesServicos() {
+interface InterfaceServicos {
+    isAdmin: boolean
+}
 
-    const { getUserID } = useUserID()
-    const [isAdmin, setIsAdmin] = useState<boolean>(false)
-
-    useEffect(() => {
-        const id = getUserID()
-        if (id) {
-            const user: Usuario = buscarUsuario(parseInt(id))!
-            if (user.role == 'admin') {
-                setIsAdmin(true)
-            }
-        }
-    }, [])
+export default function PaginaServicos({ isAdmin }: InterfaceServicos) {
 
     const [servicosArray, setServicosArray] = useState<Servico[]>(servicos)
+
+    const { push } = useRouter();
 
     const [filtro, setFiltro] = useState("Todos")
     const [search, setSearch] = useState<string>('')
@@ -66,10 +56,11 @@ export default function informacoesServicos() {
 
     return (
         <main className="flex flex-col justify-center bg-branco w-full pb-24">
-            {/* <TituloLinha voltar={false} titulo="Serviços" />
+            <TituloLinha voltar={false} titulo="Serviços" />
             <div className="flex flex-col lg:flex-row w-[90%] self-center gap-4">
+
                 <div className={`${isAdmin ? `block` : `hidden`}`}> 
-                    <BotaoGrande title="Adicionar serviço" background={"bg-secundaria"} type={"button"} />
+                    <BotaoGrande height="h-9" title="Cadastrar serviço" background={"bg-secundaria"} type={"button"} onClick={() => push('/cadastrarServico')} />
                 </div>
                 <div className="border border-cinza-escuro rounded-lg w-full lg:w-1/2 mb-10">
                     <BarraPesquisaComum placeholder={"Exemplo: 'banho e tosa'"} value={setSearch}/>
@@ -84,11 +75,10 @@ export default function informacoesServicos() {
             <div className="w-[90%] self-center flex flex-col gap-6 mt-8">
                 {
                     servicosArray.map((item, i)=>(
-                        <CardServico key={i} id={item.id} nome={item.nome} imagem={item.imagem} descricao={item.descricao} />
+                        <CardServico isAdmin={isAdmin} key={i} id={item.id} nome={item.nome} imagem={item.imagem} descricao={item.descricao} />
                     ))
                 }
-            </div> */}
-            <PaginaServicos isAdmin={isAdmin} />
+            </div>
         </main>
     )
 }

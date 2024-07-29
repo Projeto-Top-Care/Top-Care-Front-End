@@ -75,9 +75,9 @@ export default function ProdutoFavoritos() {
         return <Loading />
     }
     return (
-        <section className="">
+        <section className="flex flex-col">
             <TituloLinha voltar={false} titulo={"Meus produtos favoritos"} />
-            <div className="flex flex-row justify-center mb-12">
+            <div className="flex flex-row w-[90%] ml-[5%] mb-12">
                 <div className="flex w-2/3 px-1 border border-preto rounded-lg h-8">
                     <div className="size-[2rem] flex items-center justify-center">
                         <button><FaSearch style={{ color: "#322828" }} /></button>
@@ -91,7 +91,7 @@ export default function ProdutoFavoritos() {
                     />
                 </div>
             </div>
-            <section className='w-[90%] grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  justify-items-center gap-10 mt-10 ml-[5%]'>
+            <section className='w-[90%] grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  justify-items-center gap-10 ml-[5%]'>
                 {produtosFavoritos.map((produto) => (
                     <CardProduto
                         key={produto.id}

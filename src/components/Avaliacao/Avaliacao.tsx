@@ -14,7 +14,7 @@ const Avaliacao = ({ nomeUsuario, avaliacaoUsuario, fotoUsuario, estrelas, notaA
     return (
 
         <div className='flex flex-row w-[90%] m-auto font-poppins'>
-            <div className='flex flex-col bg-branco shadow-md p-4 md:rounded-lg rounded-2xl w-full items-start'>
+            <div className='flex flex-col bg-branco border border-cinza-escuro p-4 md:rounded-xl rounded-2xl w-full items-start'>
                 <div className="flex flex-row w-full">
                     <div className='md:h-14 md:w-14 h-12 w-14 border rounded-full md:mr-2 mr-0'>
                         <img className='w-full h-full rounded-full' src={fotoUsuario} />

@@ -1,18 +1,31 @@
 'use client'
-import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { buscarServicos } from '@/server/servicos/action'
 import { Servico } from '@/types/servicos'
-import React from 'react'
-import Card from './Card'
-import { FaPlus } from "react-icons/fa";
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import PaginaServicos from '@/components/PaginaServicos/PaginaServicos'
+import { useUserID } from '@/context/UserIDContext'
+import { buscarUsuario } from '@/server/usuario/action'
+import { Usuario } from '@/types/usuarios'
 
 export default function VisualizarServicos() {
-  const servicos: Servico[] = buscarServicos()
-  const router = useRouter()
+
+  const { getUserID } = useUserID()
+    const [isAdmin, setIsAdmin] = useState<boolean>(false)
+
+    useEffect(() => {
+        const id = getUserID()
+        if (id) {
+            const user: Usuario = buscarUsuario(parseInt(id))!
+            if (user.role == 'admin') {
+                setIsAdmin(true)
+            }
+        }
+    }, [])
 
   return (
     <main>
+{/*       
       <section className='text-preto'>
         <TituloLinha titulo='Serviços' voltar={false}/>
       </section>
@@ -30,7 +43,9 @@ export default function VisualizarServicos() {
           <div className='group-hover:w-[20%] flex items-center justify-center duration-500 ease-in group-hover:rotate-90'> <FaPlus/> </div>
           <div className='w-[80%] animate-slide-left hidden object-cover group-hover:!flex'><p className='line-clamp-1 w-48 font-poppins'>Adicionar serviço</p></div>
         </div>
-      </section>
-    </main>
+      </section>*/}
+
+      <PaginaServicos isAdmin={isAdmin}/>
+    </main> 
   )
 }

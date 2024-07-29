@@ -6,7 +6,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { buscarProduto, buscarTodos } from '@/server/produtos/action'
 import { ProdutoCompleto, AvaliacaoType } from '@/types/produto'
-import { useEffect, useState } from 'react'
+import { SetStateAction, useEffect, useState } from 'react'
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import CardProduto from '@/components/CardProduto/CardProduto';
 import { buscarUsuario } from '@/server/usuario/action';
@@ -22,6 +22,8 @@ import Loading from '../../loading';
 import QuantidadeProduto from '@/components/QuantidadeProduto/QuantidadeProduto';
 import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande';
 import InputText from '@/components/InputText/InputText';
+import InputQuantidade from '../../carrinho/InputQuantidade';
+import InputEstatico from '@/components/InputEstatico/InputEstatico';
 
 interface PropsProduct {
   searchParams: { id: number }
@@ -39,10 +41,9 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
   const [produtoProcurado, setProdutoProcurado] = useState<ProdutoCompleto>()
   const [numeroImagem, setNumeroImagem] = useState<number>(0)
   const [favorito, setFavorito] = useState<boolean>(false)
-  const [open, setOpen] = useState<boolean>(false)
+  const [opcoesFrete, setOpcoesFrete] = useState<boolean>(false)
   const [quantidade, setQuantidade] = useState<number>(1)
-  const [especificacao1, setEspecificacao1] = useState<String>("Rosa")
-  const [especificacao2, setEspecificacao2] = useState<String>("Pequeno")
+  const [especificacao1, setEspecificacao1] = useState<String>("Rosa, pequeno")
 
   const especificacoes = [
     {
@@ -173,20 +174,14 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
 
                 <div className='flex flex-col gap-4'>
                   <div className='flex flex-col gap-2'>
-                    <p className='text-cinza-escuro font-medium'>Cor</p>
-                    <div className='flex flex-row gap-3'>
-                      <button onClick={() => setEspecificacao1("Rosa")} className={`${especificacao1 == "Rosa" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Rosa</button>
-                      <button onClick={() => setEspecificacao1("Roxo")} className={`${especificacao1 == "Roxo" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Roxo</button>
-                      <button onClick={() => setEspecificacao1("Vermelho")} className={`${especificacao1 == "Vermelho" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Vermelho</button>
-                      <button onClick={() => setEspecificacao1("Azul")} className={`${especificacao1 == "Azul" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Azul</button>
-                    </div>
-                  </div>
-                  <div className='flex flex-col gap-2'>
-                    <p className='text-cinza-escuro font-medium'>Tamanho</p>
-                    <div className='flex flex-row gap-3'>
-                      <button onClick={() => setEspecificacao2("Pequeno")} className={`${especificacao2 == "Pequeno" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Pequeno</button>
-                      <button onClick={() => setEspecificacao2("Médio")} className={`${especificacao2 == "Médio" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Médio</button>
-                      <button onClick={() => setEspecificacao2("Grande")} className={`${especificacao2 == "Grande" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm`}>Grande</button>
+                    <p className='text-cinza-escuro font-medium'>Variações</p>
+                    <div className='block  gap-3'>
+                      <button onClick={() => setEspecificacao1("Rosa, pequeno")} className={`${especificacao1 == "Rosa, pequeno" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm m-1`}>Rosa, pequeno</button>
+                      <button onClick={() => setEspecificacao1("Rosa, médio")} className={`${especificacao1 == "Rosa, médio" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm m-1`}>Roxo, médio</button>
+                      <button onClick={() => setEspecificacao1("Rosa, grande")} className={`${especificacao1 == "Rosa, grande" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm m-1`}>Vermelho, grande</button>
+                      <button onClick={() => setEspecificacao1("Azul, pequeno")} className={`${especificacao1 == "Azul, pequeno" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm m-1`}>Azul, pequeno</button>
+                      <button onClick={() => setEspecificacao1("Azul, médio")} className={`${especificacao1 == "Azul, médio" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm m-1`}>Azul, médio</button>
+                      <button onClick={() => setEspecificacao1("Azul, grande")} className={`${especificacao1 == "Azul, grande" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm m-1`}>Azul, grande</button>
                     </div>
                   </div>
                 </div>
@@ -198,7 +193,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
                 </div>
               </div>
 
-              <div className='flex flex-col w-full justify-between gap-2'>
+              <div className='flex flex-col w-full  gap-2'>
                 <div className='bg-terciaria flex flex-col gap-4 p-4 rounded-lg'>
                   <div>
                     <p className='font-semibold text-md sm:text-lg'>Calcule seu frete</p>
@@ -206,48 +201,29 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
                     <div className='flex flex-row gap-2 items-center'>
                       <InputText />
                       <div className='w-2/5'>
-                        <BotaoGrande background='bg-secundaria' title='Calcular' type={'button'} />
+                        <BotaoGrande onClick={() => setOpcoesFrete(true)} background='bg-secundaria' title='Calcular' type={'button'} />
                       </div>
                     </div>
                   </div>
 
-
-                  <div className='lg:text-base text-sm flex flex-row justify-between font-medium'>
+                  <div className={`${opcoesFrete ? `` : `hidden`} lg:text-base text-sm flex flex-row justify-between font-medium`}>
                     <p>Frete normal</p>
                     <p>R$13,99</p>
                   </div>
-                  <div className='lg:text-base text-sm flex flex-row justify-between font-medium'>
+                  <div className={`${opcoesFrete ? `` : `hidden`} lg:text-base text-sm flex flex-row justify-between font-medium`}>
                     <p>SEDEX</p>
                     <p>R$23,99</p>
                   </div>
 
                 </div>
-                <div onClick={() => adicionarCarrinho()} className='h-full'>
-                  <BotaoGrande height='h-full' title='Adicionar à sacola' background='bg-primaria' type='button' />
+                <div onClick={() => adicionarCarrinho()}>
+                  <BotaoGrande height='h-9' title='Adicionar à sacola' background='bg-primaria' type='button' />
                 </div>
-                <div className='h-full'>
-                  <BotaoGrande height='h-full' title='Comprar agora' background='bg-secundaria' type='button' />
+                <div>
+                  <BotaoGrande height='h-9' title='Comprar agora' background='bg-secundaria' type='button' />
                 </div>
               </div>
             </div>
-
-            {/* <div className='flex flex-row items-start gap-4 w-full lg:w-[85%] mt-4'>
-              <div className='w-[30%]'>
-                <QuantidadeProduto propsQuantidade={setQuantidade} estoqueDisponivel={produtoProcurado.estoque} />
-                <p className=' text-cinza-escuro text-center mt-1 lg:text-base md:text-xs text-[10px]'>Em estoque: {produtoProcurado.estoque}</p>
-              </div>
-
-              <button className='bg-primaria rounded-lg w-[15%] p-2 transition ease-in-out delay-150 duration-200 hover:bg-[#826cda] flex justify-center items-center' onClick={() => adicionarCarrinho()}>
-                <FiShoppingBag style={{ color: "#322828", }} className="w-4" />
-              </button>
-
-              <div className='h-8 flex items-center max-md:hidden'>
-                <p className=''>ou</p>
-              </div>
-              <div className='w-[50%]'>
-                <BotaoGrande title='Comprar Agora' type='button' background='bg-secundaria' />
-              </div>
-            </div> */}
 
           </section>
         </section>
@@ -288,7 +264,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
           <div>
             <TituloLinha voltar={false} titulo='Avaliações' />
           </div>
-          <div className='mt-4 sm:mt-8 md:mt-14'>
+          <div className='mb-20'>
             {
               produtoProcurado.avaliacoes.map((avaliacao, i) => (
                 <div key={i} className="flex flex-col gap-4 sm:gap-14 md:mb-8 mb-4">
@@ -299,9 +275,9 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
               ))
             }
           </div>
-          <div className='mt-4 sm:mt-14 mb-20'>
+          {/* <div className='mt-4 sm:mt-14 mb-20'>
             <EscreverAvaliacao nomeUsuario={"Kristian Erdmann"} fotoUsuario="../assets/gatoFotoUsuario.png" />
-          </div>
+          </div> */}
         </section>
       </main>
     )
