@@ -17,7 +17,7 @@ export default function VariacaoProdutos({ produtos }: VariacaoProps) {
     const [variantes, setVariantes] = useState<VarianteProps[]>(produtos ? produtos.variantes : [])
 
     return (
-        <section className='flex flex-col justify-center lg:block items-center w-full px-6 mt-10 border border-cinza-escuro rounded-xl'>
+        <section className='flex flex-col justify-center lg:block items-center w-full p-8 mt-10 border border-cinza-escuro rounded-xl'>
             <div className='pt-6'>
                 <p className='font-averia text-xl font-extrabold md:text-2xl'>Variações do Produto</p>
             </div>
