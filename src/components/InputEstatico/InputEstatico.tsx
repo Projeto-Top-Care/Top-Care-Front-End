@@ -2,7 +2,7 @@ import { ChangeEventHandler } from "react"
 
 interface IInputEstatico {
     titulo?: string,
-    info: string | number,
+    info: string | number | undefined,
     type?: string
     edition: boolean
     error?: boolean

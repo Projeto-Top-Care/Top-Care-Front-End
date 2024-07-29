@@ -1,5 +1,6 @@
 import usuarios from '@/banco/usuarios.json'
 import { Usuario } from '@/types/usuarios';
+import { axiosAPI } from '../api';
 
 export function buscarUsuario(id: number) {
     let usuarioEncontrado;
@@ -10,18 +11,6 @@ export function buscarUsuario(id: number) {
         }
     })
     return usuarioEncontrado
-}
-
-export function login(email: string, senha: string) {
-    let id;
-    usuarios.forEach((usuario) =>{
-        if(usuario.email == email) {
-            if(usuario.senha == senha) {
-                id = usuario.id
-            }
-        }
-    })
-    return id
 }
 
 export function buscarUsuarioEmail(email:string){
@@ -54,4 +43,14 @@ export function buscarPedido(idPedido: number, idUsuario: number){
         }
     })
     return pedidoEncontrado;
+}
+
+export async function cadastroUsuario(payload: any){
+    const respose = await axiosAPI.post("/usuario/cadastro", payload).then(resp => resp);
+    return respose.data
+}
+
+export async function login(payload:any) {
+    const respose = await axiosAPI.post("/usuario/login", payload).then(resp => resp);
+    return respose.data
 }
