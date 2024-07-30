@@ -182,7 +182,7 @@ export default function CadastroFuncionario() {
                 </section>
             </section>
             <section className='mb-24 mt-12'>
-                <div className='w-[21%] m-auto'>
+                <div className='w-[50%] md:w-[20%] m-auto'>
                     <BotaoGrande title='Criar funcionário' background='bg-secundaria' type={'button'} />
                 </div>
             </section>
