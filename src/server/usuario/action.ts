@@ -40,7 +40,7 @@ export async function buscarUsuario(id: number) {
 }
 
 export async function cadastroUsuario(payload: any){
-    const response = await axiosAPI.post("/usuario/cadastro", payload).then(resp => resp);
+    const response = await axiosAPI.post("/usuario/cliente/cadastro", payload).then(resp => resp);
     return response.data
 }
 

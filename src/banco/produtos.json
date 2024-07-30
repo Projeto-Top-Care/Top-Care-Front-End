@@ -38,11 +38,19 @@
     "avaliacoes": [
       {
         "id": 1,
+        "usuario": {
+          "nome": "Enzo",
+          "foto": "./"
+        },
         "nota": 5,
         "descricao": "Meu cão adorou!"
       },
       {
         "id": 2,
+        "usuario": {
+          "nome": "Enzo",
+          "foto": "./"
+        },
         "nota": 4,
         "descricao": "Ótima qualidade, recomendo."
       }
@@ -93,6 +101,10 @@
     "avaliacoes": [
       {
         "id": 1,
+        "usuario": {
+          "nome": "Enzo",
+          "foto": "./"
+        },
         "nota": 4,
         "descricao": "Grãos finos que não machucam as patas."
       }
@@ -143,6 +155,10 @@
     "avaliacoes": [
       {
         "id": 1,
+        "usuario": {
+          "nome": "Enzo",
+          "foto": "./"
+        },
         "nota": 4,
         "descricao": "Ótimo custo-benefício."
       }
@@ -194,6 +210,10 @@
       {
         "id": 1,
         "nota": 5,
+        "usuario": {
+          "nome": "Enzo",
+          "foto": "./"
+        },
         "descricao": "Meus gatos adoraram!"
       },
       {
@@ -248,11 +268,19 @@
     "avaliacoes": [
       {
         "id": 1,
+        "usuario": {
+          "nome": "Enzo",
+          "foto": "./"
+        },
         "nota": 5,
         "descricao": "Meu cão não larga mais!"
       },
       {
         "id": 2,
+        "usuario": {
+          "nome": "Enzo",
+          "foto": "./"
+        },
         "nota": 4,
         "descricao": "Muito resistente."
       }
@@ -303,11 +331,19 @@
     "avaliacoes": [
       {
         "id": 1,
+        "usuario": {
+          "nome": "Enzo",
+          "foto": "./"
+        },
         "nota": 4,
         "descricao": "Meu gato adorou a maciez!"
       },
       {
         "id": 2,
+        "usuario": {
+          "nome": "Enzo",
+          "foto": "./"
+        },
         "nota": 5,
         "descricao": "Super confortável e fácil de limpar."
       }

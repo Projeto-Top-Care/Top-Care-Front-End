@@ -40,7 +40,7 @@ export default function Perfil() {
 
     const [nome, setNome] = useState<string>('')
     const [email, setEmail] = useState<string>('')
-    const [sexo, setSexo] = useState<'Feminino' | 'Masculino'>()
+    const [sexo, setSexo] = useState<string>()
     const [ddd, setDdd] = useState<string>('')
     const [numero, setNumero] = useState<string>('')
     const [dataNascimento, setDataNascimento] = useState<string>('')
@@ -62,7 +62,7 @@ export default function Perfil() {
 
     useEffect(() => {
         procurarUsuario()
-    }, []);
+    }, [openModal, openEndereco, openPet]); 
 
     const procurarUsuario = async () =>{
         const fetchedID = getUserID();
@@ -72,7 +72,7 @@ export default function Perfil() {
                 setUsuarioLogado(usuario);
                 setNome(usuario.nome);
                 setEmail(usuario.email);
-                setSexo(usuario.sexo);
+                setSexo(usuario.sexo!.charAt(0) + usuario.sexo!.slice(1).toLowerCase());
                 setDdd(usuario.celular.substring(1,3));
                 setNumero(usuario.celular.substring(5));
                 setDataNascimento(formatarData(usuario.dataNascimento));
@@ -149,7 +149,7 @@ export default function Perfil() {
 
                             <InputEstatico
                                 titulo="Senha"
-                                info={usuarioLogado.senha}
+                                info={"********"}
                                 type={'password'}
                                 edition={false} />
 
@@ -228,12 +228,12 @@ export default function Perfil() {
                 <button onClick={() => setSelecao(0)} className={`${selecao == 0 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Agendamentos</button>
                 <button onClick={() => setSelecao(1)} className={`${selecao == 1 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Meus pedidos</button>
                 <button onClick={() => setSelecao(2)} className={`${selecao == 2 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Meus pets</button>
-                <button onClick={() => setSelecao(3)} className={`${selecao == 3 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Últimas compras</button>
+                <button onClick={() => setSelecao(3)} className={`${selecao == 3 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Recomendados</button>
                 <button onClick={() => setSelecao(4)} className={`${selecao == 4 ? `border-roxo-select text-roxo-select scale-105` : `border-cinza text-cinza-escuro`} duration-100 hover:border-roxo-select border-[1px] hover:text-roxo-select p-2 rounded-lg w-full sm:text-md text-sm sm:w-1/5`}>Endereços</button>
             </section>
 
             <section className="flex flex-col pb-20">
-                <TituloLinha voltar={false} titulo={selecao == 0 ? "Agendamentos" : selecao == 1 ? "Meus pedidos" : selecao == 2 ? "Meus pets" : selecao == 3 ? "Últimas compras" : "Endereços"} />
+                <TituloLinha voltar={false} titulo={selecao == 0 ? "Agendamentos" : selecao == 1 ? "Meus pedidos" : selecao == 2 ? "Meus pets" : selecao == 3 ? "Recomendados" : "Endereços"} />
                 <div>
                     {componetesSelecao[selecao]}
                 </div>

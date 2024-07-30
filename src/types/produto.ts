@@ -1,3 +1,5 @@
+import { Usuario } from "./usuarios"
+
 export interface Produto {
     id: number
     nomeProduto: string
@@ -41,6 +43,7 @@ export interface Especificacao {
 }
 export interface AvaliacaoType {
     id: number
+    usuario: Usuario
     nota: number
     descricao: string
 }

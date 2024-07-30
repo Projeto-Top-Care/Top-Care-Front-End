@@ -60,9 +60,6 @@ export default function CadastroEndereco({ setOpen }: ICadastroEndereco) {
         const response = await cadastrarEnderecos(endereco)
         addConfirmacao("Endereco cadastrado!")
         setOpen(false)
-        setTimeout(()=>{
-            location.reload()
-        }, 100)
     }
 
 

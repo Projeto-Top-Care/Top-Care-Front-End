@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
 import { Pet } from "@/types/usuarios";
 import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
+import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 
 export default function agendamento() {
 
@@ -73,6 +74,7 @@ export default function agendamento() {
     return (
         <main className="w-full flex flex-col items-center py-12">
             <Erro />
+            <Confirmacao/>
             <div className='w-full'>
                 {openPet && (
                     <div className='overflow-hidden'>

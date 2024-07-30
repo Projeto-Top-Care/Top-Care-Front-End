@@ -6,6 +6,7 @@ import BotaoMedio from "../../BotaoMedio/BotaoMedio";
 import { useEffect, useState } from "react";
 import { useUserID } from "@/context/UserIDContext";
 import { cadastrarPet } from "@/server/usuario/pet";
+import { useConfirmacao } from "@/context/confirmacaoContext";
 
 const animais = ["Cachorro", "Gato", "Coelho", "Pássaro", "Hamster", "Peixe", "Tartaruga"]
 const racasCachorro = ["Afegão Hound", "Affenpinscher", "Airedale Terrier", "Akita", "American Staffordshire Terrier", "Basenji", "Basset Hound", "Beagle", "Beagle Harrier", "Bearded Collie", "Bedlington Terrier", "Bichon Frisé", "Bloodhound", "Bobtail", "Boiadeiro Australiano", "Boiadeiro Bernês", "Border Collie", "Border Terrier", "Borzoi", "Boston Terrier", "Boxer", "Buldogue Francês", "Buldogue Inglês", "Bull Terrier", "Bulmastife", "Cairn Terrier", "Cane Corso", "Cão de Água Português", "Cão de Crista Chinês", "Cavalier King Charles Spaniel", "Chesapeake Bay Retriever", "Chihuahua", "Chow Chow", "Cocker Spaniel Americano", "Cocker Spaniel Inglês", "Collie", "Coton de Tuléar", "Dachshund", "Dálmata", "Dandie Dinmont Terrier", "Dobermann", "Dogo Argentino", "Dogue Alemão", "Fila Brasileiro", "Fox Terrier", "Foxhound Inglês", "Galgo Escocês", "Galgo Irlandês", "Golden Retriever", "Grande Boiadeiro Suiço", "Greyhound", "Grifo da Bélgica", "Husky Siberiano", "Jack Russell Terrier", "King Charles", "Komondor", "Labradoodle", "Labrador Retriever", "Lakeland Terrier", "Leonberger", "Lhasa Apso", "Lulu da Pomerânia", "Malamute do Alasca", "Maltês", "Mastife", "Mastim Napolitano", "Mastim Tibetano", "Norfolk Terrier", "Norwich Terrier", "Papillon", "Pastor Alemão", "Pastor Australiano", "Pinscher Miniatura", "Poodle", "Pug", "Rottweiler", "Sem Raça Definida (SRD)", "ShihTzu", "Silky Terrier", "Skye Terrier", "Staffordshire Bull Terrier", "Terra Nova", "Terrier Escocês", "Tosa", "Weimaraner", "Welsh Corgi (Cardigan)", "Welsh Corgi (Pembroke)", "West Highland White Terrier", "Whippet", "Xoloitzcuintli", "Yorkshire Terrier"]
@@ -19,6 +20,8 @@ export default function CadastroPet({ setOpen }: ICadastroPet) {
     const [raca, setRaca] = useState("");
     const [porte, setPorte] = useState("");
     const [nome, setNome] = useState("");
+
+    const {addConfirmacao} = useConfirmacao()
 
     const {getUserID} = useUserID()
     const [id, setId] = useState<string>("")
@@ -34,10 +37,12 @@ export default function CadastroPet({ setOpen }: ICadastroPet) {
         const dadosPet = {
             idUsuario: id,
             nome: nome,
-            especie: pet.toUpperCase(),
+            idEspecie: animais.indexOf(pet) + 1,
             raca: raca,
             porte: porte.toUpperCase()
         }
+        addConfirmacao("Pet cadastrado!")
+        setOpen(false)
 
         const response = await cadastrarPet(dadosPet)
     }

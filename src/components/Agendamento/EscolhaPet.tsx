@@ -53,7 +53,7 @@ export default function EscolhaPet({ setPetEscolhido }: IPet) {
                         <img src="assets/dog-sad.png" alt="" className='w-[23%] -mt-20'/>
                         <p className='font-poppins text-lg w-[38%] text-center mt-2'>Parece que você não tem nenhum pet cadastrado. Que tal cadastrar um agora?</p>
                     </div> :
-                    <div className='grid lg:flex lg:flex-row md:grid-cols-2 grid-cols-1 gap-8 lg:mb-8'>
+                    <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:mb-8'>
                         {
                             usuarioLogado.pets.map((pets, i) => (
                                 <div key={i}>
@@ -62,7 +62,7 @@ export default function EscolhaPet({ setPetEscolhido }: IPet) {
                                         porte={pets.porte}
                                         nomePet={pets.nome}
                                         racaPet={pets.raca}
-                                        tipoAnimal={pets.especie}
+                                        tipoAnimal={pets.especie.nome}
                                         isSelected={selectedPet === pets}
                                         onSelect={() => handleSelectPet(pets)}
                                     />

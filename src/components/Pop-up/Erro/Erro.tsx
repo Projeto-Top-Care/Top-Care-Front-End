@@ -13,7 +13,7 @@ export default function Erro() {
                     <VscError size={30} color='#E94444' className='m-3'/>
                     <div className='flex flex-col'>
                         <p className='text-base text-preto font-semibold font-poppins'>Erro</p>
-                        <p className="text-preto lg:text-sm text-xs text-center">{erro.message}</p>
+                        <p className="text-preto lg:text-sm text-xs -mt-1">{erro.message}</p>
                     </div>
                 </div>
             ))}

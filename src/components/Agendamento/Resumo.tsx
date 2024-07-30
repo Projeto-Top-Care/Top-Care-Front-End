@@ -1,10 +1,11 @@
 'use client'
-import React, { SetStateAction, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
 import { Usuario, Cartao, Pet } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
 import { useRouter } from "next/navigation";
 import { FaPlus } from "react-icons/fa";
+import { useUserID } from '@/context/UserIDContext';
 
 interface IResumo {
     pet: Pet,
@@ -26,7 +27,18 @@ const Resumo = ({ pet, local, servico, data, hora, profissional, setMetodoPagame
 
     const { push } = useRouter();
 
-    const usuarioLogado: Usuario = (buscarUsuario(1)!)
+    const [usuario, setUsuario] = useState<Usuario>()
+    const { getUserID } = useUserID()
+
+    useEffect(() => {
+        const getUser = async () => {
+            const id = getUserID()
+            if (id) {
+                const usuarioGetted = await buscarUsuario(parseInt(id))
+                setUsuario(usuarioGetted)
+            }
+        }
+    }, [])
 
     const showError = () => {
         if (open != "") {
@@ -181,7 +193,7 @@ const Resumo = ({ pet, local, servico, data, hora, profissional, setMetodoPagame
                             eCartao ?
                                 <div className="flex flex-col justify-end gap-2">
                                     {
-                                        usuarioLogado.cartoes?.map((cartao, i) => (
+                                        usuario?.cartoes?.map((cartao, i) => (
                                             <div key={cartao.numero} onClick={() => setCartaoEscolhido(cartao)}>
                                                 <CardCartaoSalvo checked={verificarCartao(cartao.nome)} titulo={cartao.nome} numero={cartao.numero} validade={cartao.validade} tipo={cartao.agencia} />
                                             </div>
