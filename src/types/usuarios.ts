@@ -1,21 +1,23 @@
+import { Agendamentos } from "./agendamentos"
+
 export interface Usuario {
     id: number,
     role: string,
     foto: string,
-    nomeCompleto: string,
+    nome: string,
     email: string,
     celular: string,
     senha: string,
     cpf: string,
     sexo: 'Feminino' | 'Masculino' | undefined
     dataNascimento: string,
-    produtosCarrinho: number[]
     enderecos: Endereco[],
     pets: Pet[]
     pedidos: Pedido[],
     favoritos: number[],
     cartoes: Cartao[],
     cupons: Cupom[]
+    agendamentos: Agendamentos[]
 }
 
 export interface Pet {

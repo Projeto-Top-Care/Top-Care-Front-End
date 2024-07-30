@@ -1,7 +1,7 @@
 'use client'
 import { createContext, useState, useContext, ReactNode } from 'react';
 
-interface Confirmacao{
+interface Confirmacao {
   id: number
   message: string
 }
@@ -36,4 +36,10 @@ export const ConfirmacaoProvider: React.FC<ConfirmacaoProviderProps> = ({ childr
   );
 };
 
-export const useConfirmacao = () => useContext(ConfirmacaoContext);
+export const useConfirmacao = () => {
+  const context = useContext(ConfirmacaoContext)
+  if (context == null) {
+    throw new Error("Context must be in a ConfirmacaoProvider!")
+  }
+  return context
+}

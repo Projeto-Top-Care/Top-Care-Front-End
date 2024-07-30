@@ -19,6 +19,7 @@ const config: Config = {
         'cinza-escuro': '#4F4F4F',
         'fundo-modal': 'rgba(0, 0, 0, 0.3)',
         'error' : '#E94444',
+        'error-transparent': 'rgba(255, 0, 0, 0.4)',
         'verde': '#37BC2C',
         'azul-hover': '#c4d5f3',
         'roxo-select': '#6954C0'

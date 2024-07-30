@@ -2,17 +2,6 @@ import usuarios from '@/banco/usuarios.json'
 import { Usuario } from '@/types/usuarios';
 import { axiosAPI } from '../api';
 
-export function buscarUsuario(id: number) {
-    let usuarioEncontrado;
-
-    usuarios.forEach((usuario)=>{
-        if(usuario.id == id){
-            usuarioEncontrado = usuario;
-        }
-    })
-    return usuarioEncontrado
-}
-
 export function buscarUsuarioEmail(email:string){
     let usuarioEncontrado;
     usuarios.forEach((usuario)=>{
@@ -23,8 +12,8 @@ export function buscarUsuarioEmail(email:string){
     return usuarioEncontrado
 }
 
-export function buscarEndereco(idEndereco: number, idUsuario: number){
-    const usuario: Usuario = buscarUsuario(idUsuario)!
+export async function buscarEndereco(idEndereco: number, idUsuario: number){
+    const usuario: Usuario = await buscarUsuario(idUsuario)!
     let enderecoEncontrado;
     usuario.enderecos.forEach((endereco)=>{
         if(endereco.id == idEndereco){
@@ -34,8 +23,8 @@ export function buscarEndereco(idEndereco: number, idUsuario: number){
     return enderecoEncontrado;
 }
 
-export function buscarPedido(idPedido: number, idUsuario: number){
-    const usuario: Usuario = buscarUsuario(idUsuario)!
+export async function buscarPedido(idPedido: number, idUsuario: number){
+    const usuario: Usuario = await buscarUsuario(idUsuario)!
     let pedidoEncontrado;
     usuario.pedidos.forEach((pedido)=>{
         if(pedido.id == idPedido){
@@ -45,12 +34,17 @@ export function buscarPedido(idPedido: number, idUsuario: number){
     return pedidoEncontrado;
 }
 
+export async function buscarUsuario(id: number) {
+    const response = await axiosAPI.get(`/usuario/buscar/${id}`).then(resp => resp);
+    return response.data
+}
+
 export async function cadastroUsuario(payload: any){
-    const respose = await axiosAPI.post("/usuario/cadastro", payload).then(resp => resp);
-    return respose.data
+    const response = await axiosAPI.post("/usuario/cadastro", payload).then(resp => resp);
+    return response.data
 }
 
 export async function login(payload:any) {
-    const respose = await axiosAPI.post("/usuario/login", payload).then(resp => resp);
-    return respose.data
+    const response = await axiosAPI.post("/usuario/login", payload).then(resp => resp);
+    return response.data
 }

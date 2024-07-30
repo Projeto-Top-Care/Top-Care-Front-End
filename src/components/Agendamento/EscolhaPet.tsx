@@ -25,17 +25,21 @@ export default function EscolhaPet({ setPetEscolhido }: IPet) {
     };
 
     useEffect(() => {
+        buscarUser()
+    }, [])
+
+    const buscarUser = async () => {
         const idFetched = getUserID();
         if (idFetched) {
-            const usuarioBuscado = buscarUsuario(parseInt(idFetched))
+            const usuarioBuscado = await buscarUsuario(parseInt(idFetched))
             if (usuarioBuscado) {
                 setUsuarioLogado(usuarioBuscado)
             }
         }
-    }, [])
+    }
 
     if (!usuarioLogado) {
-        return <Loading/>
+        return <Loading />
     }
 
     return (
@@ -43,23 +47,30 @@ export default function EscolhaPet({ setPetEscolhido }: IPet) {
             <div className='flex items-center justify-center'>
                 <p className='font-poppins text-preto font-medium text-xl text-center'>Para qual pet é o agendamento?</p>
             </div>
-            <div className='grid lg:flex lg:flex-row md:grid-cols-2 grid-cols-1 gap-8 lg:mb-8'>
-                {
-                    usuarioLogado.pets.map((pets, i) => (
-                        <div key={i}>
-                            <CardPetPequeno
-                                fotoPet={"./assets/cachorro-perfil.png"}
-                                porte={pets.porte}
-                                nomePet={pets.nome}
-                                racaPet={pets.raca}
-                                tipoAnimal={pets.especie}
-                                isSelected={selectedPet === pets}
-                                onSelect={() => handleSelectPet(pets)}
-                            />
-                        </div>
-                    ))
-                }
-            </div>
+            {
+                usuarioLogado.pets.length == 0 ?
+                    <div className='flex flex-col w-full justify-center items-center'>
+                        <img src="assets/dog-sad.png" alt="" className='w-[23%] -mt-20'/>
+                        <p className='font-poppins text-lg w-[38%] text-center mt-2'>Parece que você não tem nenhum pet cadastrado. Que tal cadastrar um agora?</p>
+                    </div> :
+                    <div className='grid lg:flex lg:flex-row md:grid-cols-2 grid-cols-1 gap-8 lg:mb-8'>
+                        {
+                            usuarioLogado.pets.map((pets, i) => (
+                                <div key={i}>
+                                    <CardPetPequeno
+                                        fotoPet={"./assets/cachorro-perfil.png"}
+                                        porte={pets.porte}
+                                        nomePet={pets.nome}
+                                        racaPet={pets.raca}
+                                        tipoAnimal={pets.especie}
+                                        isSelected={selectedPet === pets}
+                                        onSelect={() => handleSelectPet(pets)}
+                                    />
+                                </div>
+                            ))
+                        }
+                    </div>
+            }
         </main>
     );
 }

@@ -11,37 +11,9 @@ import ResponsiveInput from '@/components/ResponsiveInput'
 import Select from '@/components/Select/Select'
 import { cadastroUsuario } from '@/server/usuario/action'
 import { ViaCEP } from '@/types/usuarios'
+import { siglasEstados } from '@/utils/estados'
 import React, { useState } from 'react'
 
-const siglasEstados = [
-    "AC", // Acre
-    "AL", // Alagoas
-    "AP", // Amapá
-    "AM", // Amazonas
-    "BA", // Bahia
-    "CE", // Ceará
-    "DF", // Distrito Federal
-    "ES", // Espírito Santo
-    "GO", // Goiás
-    "MA", // Maranhão
-    "MT", // Mato Grosso
-    "MS", // Mato Grosso do Sul
-    "MG", // Minas Gerais
-    "PA", // Pará
-    "PB", // Paraíba
-    "PR", // Paraná
-    "PE", // Pernambuco
-    "PI", // Piauí
-    "RJ", // Rio de Janeiro
-    "RN", // Rio Grande do Norte
-    "RS", // Rio Grande do Sul
-    "RO", // Rondônia
-    "RR", // Roraima
-    "SC", // Santa Catarina
-    "SP", // São Paulo
-    "SE", // Sergipe
-    "TO"  // Tocantins
-];
 
 export default function Cadastro() {
     const [open, setOpen] = useState<boolean>(false)
@@ -80,6 +52,7 @@ export default function Cadastro() {
         let requisitos = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!]).{8,}$/;
         return !requisitos.test(senha)
     }
+
     const enviarDados = async (e: FormData) => {
         const parseData = data.split("/")
         const stringFormat = parseData[1] + "-" + parseData[0] + "-" + parseData[2]

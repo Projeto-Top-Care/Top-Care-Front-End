@@ -27,12 +27,14 @@ export default function Carrinho() {
   const { getCarrinho } = useCarrinho()
 
   useEffect(() => {
-    setCarrinho(getCarrinho())
-    const idUser = getUserID()
-    if(idUser){
-      const userTaked = buscarUsuario(parseInt(idUser))
-      if(userTaked){
-        setUsuarioLogado(userTaked)
+    const buscarUser = async () => {
+      setCarrinho(getCarrinho())
+      const idUser = getUserID()
+      if (idUser) {
+        const userTaked = await buscarUsuario(parseInt(idUser))
+        if (userTaked) {
+          setUsuarioLogado(userTaked)
+        }
       }
     }
   }, [])
@@ -186,7 +188,7 @@ export default function Carrinho() {
 
           </section>
           <div className='lg:w-1/2 w-full lg:mt-0 mt-2'>
-            <BotaoGrande title='Continuar' background='bg-secundaria' type='button' onClick={() => { usuarioLogado ? router.push('/paginaCompra') : router.push('/login')}} />
+            <BotaoGrande title='Continuar' background='bg-secundaria' type='button' onClick={() => { usuarioLogado ? router.push('/paginaCompra') : router.push('/login') }} />
           </div>
         </section>
       </section>

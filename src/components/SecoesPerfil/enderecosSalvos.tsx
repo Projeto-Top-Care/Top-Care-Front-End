@@ -13,14 +13,10 @@ interface iEnderecos {
 export default function EnderecosSalvos({ enderecos, setShowAllAdresses, setOpenEndereco }: iEnderecos) {
 
     const [showAddresses, setShowAdresses] = useState(false)
-    const [openPopupEndereco, setOpenPopupEndereco] = useState(false)
 
     useEffect(() => {
         setShowAllAdresses(showAddresses)
     }, [showAddresses])
-    useEffect(() => {
-        setOpenEndereco(openPopupEndereco)
-    }, [openPopupEndereco])
 
     return (
         <main>
@@ -45,7 +41,7 @@ export default function EnderecosSalvos({ enderecos, setShowAllAdresses, setOpen
             </section>
 
             <div className="flex flex-col-reverse md:flex-row md:w-[95%] w-full gap-4 lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center">
-                <div className="md:w-52" onClick={() => setOpenPopupEndereco(true)}>
+                <div className="md:w-52" onClick={() => setOpenEndereco(true)}>
                     <BotaoGrande title="Novo endereço" background='bg-primaria' type={'button'} />
                 </div>
                 <div className="">

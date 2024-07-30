@@ -31,7 +31,6 @@ export default function Perfil() {
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario | null>(null);
 
     const [showAllAddresses, setShowAllAddresses] = useState(false);
-    const [showAllSchedulles, setShowAllSchedulles] = useState(false);
 
     const [openEndereco, setOpenEndereco] = useState(false);
     const [openPet, setOpenPet] = useState(false);
@@ -51,7 +50,6 @@ export default function Perfil() {
     const agendamentos = [
         <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
         <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
-        <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
         <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
     ]
 
@@ -63,26 +61,34 @@ export default function Perfil() {
     },[sim])
 
     useEffect(() => {
+        procurarUsuario()
+    }, []);
+
+    const procurarUsuario = async () =>{
         const fetchedID = getUserID();
         if (fetchedID) {
-            const usuario: Usuario = buscarUsuario(parseInt(fetchedID))!;
+            const usuario: Usuario = await buscarUsuario(parseInt(fetchedID))!;
             if (usuario) {
                 setUsuarioLogado(usuario);
-                setNome(usuario.nomeCompleto);
+                setNome(usuario.nome);
                 setEmail(usuario.email);
                 setSexo(usuario.sexo);
-                setDdd(usuario.celular.substring(5, 7));
-                setNumero(usuario.celular.substring(8));
-                setDataNascimento(usuario.dataNascimento);
+                setDdd(usuario.celular.substring(1,3));
+                setNumero(usuario.celular.substring(5));
+                setDataNascimento(formatarData(usuario.dataNascimento));
             }
         }
-    }, []);
+    }
+
+    const formatarData = (nascimento: string) =>{
+        const data = nascimento.split("-")
+        return data[2] +"/"+ data[1]+"/"+data[0]
+    }
 
     if (!usuarioLogado) {
         return <Carregando />
     }
 
-    const historicoAgendamentos = showAllSchedulles ? agendamentos : agendamentos.slice(0, 3);
     const displayedAddresses = showAllAddresses ? usuarioLogado!.enderecos : usuarioLogado!.enderecos.slice(0, 3);
 
     const verificarEdicao = () => {
@@ -104,7 +110,7 @@ export default function Perfil() {
 
 
     const componetesSelecao = [
-        <HistoricoAgendamentos historicoAgendamentos={historicoAgendamentos} setShowAllSchedulles={setShowAllSchedulles} />,
+        <HistoricoAgendamentos agendamentos={usuarioLogado.agendamentos} />,
         <PedidosEmAndamento usuario={usuarioLogado} />,
         <MeusPets usuario={usuarioLogado} setOpenPet={setOpenPet} />,
         <CarrosselProduto slides={carrosselProdutos} />,
@@ -123,7 +129,7 @@ export default function Perfil() {
                     </div>
                 </div>
                 <div className="lg:ml-32 md:ml-20 ml-4">
-                    <PerfilFoto src="./assets/cachorro-perfil.png/" nome={usuarioLogado.nomeCompleto} />
+                    <PerfilFoto src="./assets/cachorro-perfil.png/" nome={usuarioLogado.nome} />
                 </div>
             </section>
 
@@ -172,7 +178,8 @@ export default function Perfil() {
                                         <InputMaskEstatico
                                             titulo='DDD'
                                             info={ddd}
-                                            edition={edicao} mask={'__'}
+                                            edition={edicao} 
+                                            mask={'__'}
                                             replacement={{ _: /\d/ }}
                                             error={ddd.length !== 2}
                                             onMasks={(e) => setDdd(e.target.value)}
@@ -203,11 +210,6 @@ export default function Perfil() {
                         </div>
                         <div className="md:text-base text-sm mt-6 font-poppins">
                             Cartões Salvos
-                            <CartoesSalvos
-                                tipoCartao="crédito"
-                                nome={usuarioLogado.nomeCompleto}
-                                dataValidade="12/28"
-                                finalCartao={9875} />
                         </div>
                     </div>
                 </div>
@@ -240,7 +242,7 @@ export default function Perfil() {
             {openEndereco && (
                 <div className='overflow-hidden'>
                     <div className='fixed top-0 left-0 w-full h-full z-50 bg-fundo-modal' onClick={() => setOpenEndereco(false)}></div>
-                    <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
+                    <div className='fixed w-[70%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
                         <CadastroEndereco setOpen={setOpenEndereco} />
                     </div>
                 </div>
@@ -261,9 +263,7 @@ export default function Perfil() {
                         <DoisBotoes openParms={setOpenModal} texto="Você deseja mesmo sair?" sim={setSim} />
                     </div>
                 </div>
-            )
-
-            }
+            )}
         </main>
     );
 }

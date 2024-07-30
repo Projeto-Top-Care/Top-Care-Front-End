@@ -8,10 +8,13 @@ import React from 'react'
 import Erro from '@/components/Pop-up/Erro/Erro'
 import { useError } from '@/context/ErrorContext'
 import { useUserID } from '@/context/UserIDContext'
+import { useConfirmacao } from '@/context/confirmacaoContext'
+import Confirmacao from '@/components/Pop-up/Confirmacao/Confirmacao'
 
 export default function Login() {
     const router = useRouter();
-    const { addError } = useError()!;
+    const { addError } = useError();
+    const {addConfirmacao} = useConfirmacao()
     const { setUserId } = useUserID()
 
     const verificarLogin = async (e: FormData) => {
@@ -20,8 +23,9 @@ export default function Login() {
         try {
             const authLogin = await login(loginObject)
             if (authLogin) {
-                router.push("/")
+                router.replace("/")
                 setUserId(authLogin.id)
+                addConfirmacao("Login efetuado com sucesso!")
             }
         } catch (error) {
             addError("Credenciais inválidas")
@@ -31,6 +35,7 @@ export default function Login() {
     return (
         <main className='bg-branco flex flex-col gap-12'>
             <Erro />
+            <Confirmacao/>
             <section className=''>
                 <TituloLinha voltar={true} titulo='Login' />
             </section>
