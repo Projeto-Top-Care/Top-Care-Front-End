@@ -6,9 +6,10 @@ interface InputQuantidade{
     value: number
     valorQuantidade: Dispatch<SetStateAction<number>>
     abrirPopUp: () => void
+    limite: number
 }
 
-export default function InputQuantidade({ valorQuantidade, abrirPopUp, value }: InputQuantidade) {
+export default function InputQuantidade({ valorQuantidade, abrirPopUp, value, limite }: InputQuantidade) {
     const [size, setSize] = useState<number>(10)
     return (
         <div className="flex flex-col items-center">
@@ -23,7 +24,7 @@ export default function InputQuantidade({ valorQuantidade, abrirPopUp, value }: 
                 <div className="border border-secundaria md:w-8 md:h-8 w-6 h-6 rounded flex justify-center items-center">
                     <p className="font-xl text-center">{value}</p>
                 </div>
-                <button onClick={() => valorQuantidade(value + 1)} className="bg-secundaria md:w-7 md:h-6 w-4 h-4 rounded font-poppins flex items-center justify-center">+</button>
+                <button onClick={() => value >= limite ? valorQuantidade(limite) : valorQuantidade(value + 1)} className={`${value >= limite ? `opacity-80` : ``} bg-secundaria md:w-7 md:h-6 w-4 h-4 rounded font-poppins flex items-center justify-center`}>+</button>
             </div>
         </div>
     )

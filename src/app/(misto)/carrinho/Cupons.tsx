@@ -2,13 +2,15 @@ import { Cupom } from '@/types/usuarios'
 import { CiDiscount1 } from "react-icons/ci";
 import { TbTruckDelivery } from "react-icons/tb";
 import React, { Dispatch, SetStateAction } from 'react'
+import { IoClose } from 'react-icons/io5';
 
 interface ICupons {
     cupons: Cupom[]
     setCupom: Dispatch<SetStateAction<Cupom | undefined>>
+    setOpenCupons: Dispatch<SetStateAction<boolean>>
 }
 
-export default function Cupons({ cupons, setCupom }: ICupons) {
+export default function Cupons({ cupons, setCupom, setOpenCupons }: ICupons) {
 
     const renderCupons = () => {
         if (cupons.length != 0) {
@@ -35,7 +37,8 @@ export default function Cupons({ cupons, setCupom }: ICupons) {
             )
         } else {
             return (
-                <div className='w-full h-full flex justify-center items-center flex-col'>
+                <div className='animation duration-300 ease-in cursor-default w-full h-full flex justify-center items-center flex-col'>
+                    <IoClose className='cursor-pointer absolute top-4 right-4 size-4' onClick={() => setOpenCupons(false)}/>
                     <h1 className='font-poppins'>Você não tem cupons disponíveis!</h1>
                     <img src="assets/dog-sad.png" alt="" className='w-[40%]' />
                 </div>

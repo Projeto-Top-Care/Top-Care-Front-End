@@ -242,13 +242,13 @@
     "id": 3,
     "role": "basic",
     "foto": "../assets/gatoFotoUsuario.png",
-    "nomeCompleto": "Maria Silva Souza",
-    "email": "maria.silva@email.com",
+    "nomeCompleto": "Maria  Souza",
+    "email": "mariana@email.com",
     "celular": "+55 (20)00000-0009",
-    "senha": "senha1234",
-    "cpf": "000.000.000-00",
+    "senha": "senha",
+    "cpf": "000.010.000-00",
     "sexo": "feminino",
-    "dataNascimento": "1980-01-01",
+    "dataNascimento": "1981-01-01",
     "cupons": [],
     "enderecos": [
       {

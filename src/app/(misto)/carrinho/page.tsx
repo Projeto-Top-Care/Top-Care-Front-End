@@ -16,13 +16,13 @@ import CupomPequeno from './CupomPequeno'
 import Cupons from './Cupons'
 import Produtos from './Produtos'
 import Topico from './Topico'
+import CalcularFrete from '@/components/CalcularFrete/calcularFrete'
 
 export default function Carrinho() {
 
   const { getUserID } = useUserID()
   const [carrinho, setCarrinho] = useState<QntProduto[]>([])
   const [usuarioLogado, setUsuarioLogado] = useState<Usuario>()
-
 
   const { getCarrinho } = useCarrinho()
 
@@ -132,7 +132,7 @@ export default function Carrinho() {
             {
               produtos!.map((produto) => (
                 <div key={produto.id}>
-                  <Produtos id={produto.id} nomeProduto={produto.nomeProduto} imagemProduto={produto.imagemProduto[0]} preco={produto.precoNovo} />
+                  <Produtos variacao='Rosa, pequeno' id={produto.id} nomeProduto={produto.nomeProduto} imagemProduto={produto.imagemProduto[0]} preco={produto.precoNovo} estoque={10} />
                 </div>
               ))
             }
@@ -152,7 +152,7 @@ export default function Carrinho() {
               {
                 openCupons && (
                   <div className='relative'>
-                    <Cupons cupons={typeof usuarioLogado != undefined ? usuarioLogado!.cupons : []} setCupom={setCupom} />
+                    <Cupons cupons={typeof usuarioLogado != undefined ? usuarioLogado!.cupons : []} setCupom={setCupom} setOpenCupons={setOpenCupons} />
                   </div>
                 ) ||
                 cupom && (
@@ -160,21 +160,8 @@ export default function Carrinho() {
                 )
               }
             </div>
-            <div className='mt-2'>
-              <p className='font-poppins font-medium'>Calcular Frete</p>
-              <p className='font-poppins font-regular text-xs md:!flex hidden'>Infrorme seu CEP</p>
-              <div className='flex lg:flex-row flex-col lg:gap-0 gap-3 justify-between lg:mt-0 mt-2'>
-                <div className='lg:w-[60%] w-full'><InputMask title='_____-___' mask='_____-___' replacement={{ _: /\d/ }} onMasks={(e: any) => setCep(e.target.value)} error={erro || inexitente} /></div>
-                <div className='lg:w-[32%] w-full' onClick={() => enviarFrete()}><BotaoGrande title='Calcular' type='button' background='bg-secundaria' height='lg:h-10 h-8' fontSize='text-sm font-medium' /></div>
-              </div>
-              {
-                erro && (
-                  <span className='absolute font-poppins text-error text-sm'>Digite todos os número de um CEP</span>
-                ) ||
-                inexitente && (
-                  <span className='absolute font-poppins text-error text-sm'>O CEP informado não existe!</span>
-                )
-              }
+            <div>
+              <CalcularFrete setFrete={setFrete} setErro={setErro} setInexistente={setInexistente} />
             </div>
             <div className='mt-6'>
               <Topico topico='Frete' preco={frete} />

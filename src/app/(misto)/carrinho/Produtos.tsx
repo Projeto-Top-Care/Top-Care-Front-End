@@ -3,20 +3,23 @@ import Checkbox from '@/components/Checkbox/Checkbox'
 import DoisBotoes from '@/components/Pop-up/DoisBotoes/DoisBotoes'
 import { useCarrinho } from '@/context/CarrinhoContext'
 import { QntProduto } from '@/types/usuarios'
-import React, { useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import InputQuantidade from './InputQuantidade'
 
 interface Produtos {
     id: number
     imagemProduto: string
     nomeProduto: string
+    variacao: string
     preco: number
+    estoque: number
 }
 
-export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Produtos) {
+export default function Produtos({ id, imagemProduto, variacao, nomeProduto, preco, estoque }: Produtos) {
     const {items} = useCarrinho()
     const [quantidade, setQuantidade] = useState<number>(1)
     const [checked, setChecked] = useState<boolean>(true)
+    const [precoTotal, setPrecoTotal] = useState<number>(preco)
     const [open, setOpen] = useState<boolean>(false)
     const [sim, setSim] = useState<boolean>(false)
 
@@ -48,6 +51,7 @@ export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Prod
     }
     useEffect(() => {
         atualizarCarrinho()
+        setPrecoTotal(preco * quantidade)
     }, [quantidade])
 
     useEffect(() => {
@@ -69,16 +73,16 @@ export default function Produtos({ id, imagemProduto, nomeProduto, preco }: Prod
                     </div>
                     <div className='flex flex-col md:flex-row items-start h-full md:w-[80%] w-[70%] md:justify-between justify-center'>
                         <div className='flex items-center justify-center md:h-full h-auto'>
-                            <p className='font-poppins md:text-sm text-xs overflow-hidden line-clamp-1 md:line-clamp-2 w-full md:w-full'>{nomeProduto}</p>
+                            <p className='font-poppins md:text-sm text-xs overflow-hidden line-clamp-1 md:line-clamp-2 w-full md:w-full'>{nomeProduto}- {variacao}</p>
                         </div>
                         <div className='flex flex-col'>
-                            <InputQuantidade valorQuantidade={setQuantidade} abrirPopUp={abrirPopUp} value={quantidade} />
+                            <InputQuantidade limite={estoque} valorQuantidade={setQuantidade} abrirPopUp={abrirPopUp} value={quantidade} />
                         </div>
                     </div>
                 </div>
                 <div className='flex flex-col items-center w-24'>
                     <p className='font-poppins md:!flex hidden'>Preço</p>
-                    <p className='font-poppins mt-2 md:text-base text-sm'>R${preco.toFixed(2).replace(".", ",")}</p>
+                    <p className='font-poppins mt-2 md:text-base text-sm'>R${precoTotal.toFixed(2).replace(".", ",")}</p>
                 </div>
             </div>
 
