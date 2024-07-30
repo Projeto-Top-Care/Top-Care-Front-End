@@ -42,27 +42,26 @@ export default function CadastroVariante({ openModalProps, variantesProps, setVa
     }
 
     const verificarVariante = () => {
-        !nome ? setError(true) : !tipo ? setError(true) : !preco ? setError(true) : addVariante() 
+        !nome ? setError(true) : !tipo ? setError(true) : !preco ? setError(true) : addVariante()
     }
 
     return (
         <div className="absolute">
             <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpenModal(false)}></div>
             <div className={`${error ? `border-2 border-error` : `border-0`} w-[50%] bg-branco rounded-lg fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50`}>
-            
-                <div className='mt-5 text-center'>
-                    <h1 className='font-averia font-extrabold text-xl text-preto'>Criar Variação</h1>
+                <div className='flex flex-row-reverse justify-start gap-7 mr-8'>
+                    <div className="lg:w-[33%] w-[50%] flex justify-end items-end">
+                        <img src="./assets/Sair.svg" alt="" className="lg:w-[12%] md:w-[25%] w-[35%] cursor-pointer" onClick={() => setOpenModal(false)} />
+                    </div>
+                    <div className='mt-5 text-center'>
+                        <h1 className='font-averia font-extrabold text-xl text-preto'>Criar Variação</h1>
+                    </div>
                 </div>
-                <div className='my-10 flex flex-row w-[90%] m-auto justify-between'>
+                <div className='my-8 flex flex-col w-[90%] gap-4 m-auto justify-between'>
                     <InputText
                         placeholder='Variação*'
                         value={nome}
                         onChange={(e) => setNome(e.target.value)}
-                    />
-                    <InputText
-                        placeholder='Tipo*'
-                        value={tipo}
-                        onChange={(e) => setTipo(e.target.value)}
                     />
                     <InputText
                         placeholder='Preço*'
@@ -71,11 +70,8 @@ export default function CadastroVariante({ openModalProps, variantesProps, setVa
                     />
                 </div>
                 <div className='flex flex-row w-[90%] mx-auto justify-between mb-5'>
-                    <div className='w-[40%]'>
-                        <BotaoGrande background='bg-error' textColor='text-branco' title='Cancelar' type='button' onClick={() => setOpenModal(false)} />
-                    </div>
-                    <div className='w-[40%]'>
-                        <BotaoGrande background='bg-secundaria' title='Finalizar' type='submit' onClick={()=>verificarVariante()}/>
+                    <div className='w-full'>
+                        <BotaoGrande background='bg-secundaria' title='Finalizar' type='submit' onClick={() => verificarVariante()} />
                     </div>
                 </div>
             </div>
