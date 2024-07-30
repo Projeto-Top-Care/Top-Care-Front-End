@@ -24,7 +24,10 @@ export default function HistoricoAgendamentos({ historicoAgendamentos, setShowAl
 
     return (
         <main>
-            <div className="flex flex-col">
+            <div className="flex flex-col mb-4">
+                <div className="md:mb-12 mb-4 md:w-[90%] w-full lg:pl-16 md:p-0 p-4 lg:self-start self-center">
+                    <p className="font-poppins text-preto text-base">O cancelamento só pode ser feito dentro de 24 horas antes da data do seu agendamento!</p>
+                </div>
                 <div className="grid md:mb-12 mb-4 md:w-[90%] w-full lg:pl-16 md:p-0 p-4 lg:self-start self-center gap-8 lg:grid-cols-3 md:grid-cols-2">
                     {
                         historicoAgendamentos.map((item, i) => (
