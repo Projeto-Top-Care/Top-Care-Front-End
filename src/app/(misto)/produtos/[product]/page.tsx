@@ -158,7 +158,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
                 <s className='font-poppins font-bold md:text-base text-sm text-cinza'>R$ {produtoProcurado.precoAntigoDoProduto.toFixed(2).replace(".", ",")}</s>
               </div>
               <div className='max-sm:w-full'>
-                <BotaoGrande background='bg-primaria' fontSize='text-xs lg:text-sm' type='button' title='Calcular Frete' />
+                <BotaoGrande background="primaria" type='button' title='Calcular Frete' />
               </div>
             </div>
             <div className='rounded-lg bg-terciaria w-full lg:w-[85%] px-6 py-4'>
@@ -183,7 +183,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
                 <p className='font-poppins'>ou</p>
               </div>
               <div className='w-[50%]'>
-                <BotaoGrande title='Comprar Agora' type='button' background='bg-secundaria' />
+                <BotaoGrande title='Comprar Agora' type='button' background="secundaria" />
               </div>
             </div>
           </section>

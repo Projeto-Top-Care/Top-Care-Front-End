@@ -132,7 +132,7 @@ export default function Contato() {
                                     </div>
                                 </div>
                                 <div className="mt-[5%]">
-                                    <BotaoGrande title="Enviar" type='submit' background="bg-secundaria"/>
+                                    <BotaoGrande title="Enviar" type='submit' background="secundaria"/>
                                 </div>
                             </div>
                         </form>

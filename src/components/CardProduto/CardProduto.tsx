@@ -19,16 +19,18 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
 
     useEffect(() => {
-        const id = getUserID()
-        if (id) {
-            const user: Usuario = buscarUsuario(parseInt(id))!
-            if (user.role == 'admin') {
-                setIsAdmin(true)
+        const func = async () => {
+            const id = getUserID()
+            if (id) {
+                const user: Usuario = await buscarUsuario(parseInt(id))
+                if (user.role == 'admin') {
+                    setIsAdmin(true)
+                }
             }
         }
     }, [])
 
-    const {addProduct} = useCarrinho()
+    const { addProduct } = useCarrinho()
     const [favoritoCard, setFavoritoCard] = useState<boolean>(favorito ? true : false);
     const { push } = useRouter()
     const { addConfirmacao } = useConfirmacao()!
@@ -50,7 +52,7 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
         }
         addProduct(newProduto)
         addConfirmacao("Adicionado a Sacola!")
-        
+
     }
 
     return (
@@ -69,8 +71,8 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
 
             </div>
 
-            <div className='w-full flex flex-col items-center cursor-pointer' onClick={() => { !isAdmin ? push(`/produtos/${nomeProduto.replace('&nbsp', "-")}?id=${id}`) : '' } }>
-                    <p className='text-xs md:text-sm h-10 font-medium text-preto text-center overflow-hidden line-clamp-2'>{nomeProduto}</p>
+            <div className='w-full flex flex-col items-center cursor-pointer' onClick={() => { !isAdmin ? push(`/produtos/${nomeProduto.replace('&nbsp', "-")}?id=${id}`) : '' }}>
+                <p className='text-xs md:text-sm h-10 font-medium text-preto text-center overflow-hidden line-clamp-2'>{nomeProduto}</p>
                 <div className="w-full items-center justify-center flex flex-col-reverse md:flex-col">
                     <img src={imagemProduto[0]} className='h-28 my-3' />
                 </div>
@@ -79,18 +81,18 @@ const CardProduto = ({ id, nomeProduto, notaDeAvaliacao, imagemProduto, precoAnt
             </div>
 
             <div className='flex flex-row gap-1 justify-between'>
-                <button className='transition ease-in-out delay-150 duration-200 text-xs text-preto font-medium bg-secundaria rounded-lg w-[76%] h-7 hover:bg-[#9EBF40]' onClick={()=>{ !isAdmin ? "": push(`/editarProduto?id=${id}`)}}>
+                <button className='transition ease-in-out delay-150 duration-200 text-xs text-preto font-medium bg-secundaria rounded-lg w-[76%] h-7 hover:bg-[#9EBF40]' onClick={() => { !isAdmin ? "" : push(`/editarProduto?id=${id}`) }}>
                     {
                         isAdmin ?
-                        "Editar Produto" :
-                        "Comprar agora"
+                            "Editar Produto" :
+                            "Comprar agora"
                     }
                 </button>
                 <button className='bg-primaria rounded-lg w-[24%] transition ease-in-out delay-150 duration-200 hover:bg-[#826cda] flex justify-center items-center'>
-                    {   
+                    {
                         isAdmin ?
-                        <FaTrash /> :
-                        <FiShoppingBag style={{ color: "#322828", }} className="w-3 sm:w-4" onClick={() => adicionarCarrinho()} />
+                            <FaTrash /> :
+                            <FiShoppingBag style={{ color: "#322828", }} className="w-3 sm:w-4" onClick={() => adicionarCarrinho()} />
                     }
                 </button>
             </div>

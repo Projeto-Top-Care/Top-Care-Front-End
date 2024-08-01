@@ -48,7 +48,7 @@ export default function Login() {
                             <p onClick={() => router.push('/recuperacaoSenhaDeslogado')} className='underline text-cinza-escuro font-poppins text-xs select-none cursor-pointer w-36 mb-4'>Esqueçeu sua senha?</p>
                             <BotaoGrande
                                 title='Login'
-                                background='bg-terciaria'
+                                background="terciaria"
                                 type={'submit'}
                             />
                         </div>
@@ -66,7 +66,7 @@ export default function Login() {
                     <div>
                     </div>
                     <div className='w-full mt-6' onClick={() => router.push('/cadastro')}>
-                        <BotaoGrande title='Cadastrar' background='bg-terciaria' type={'button'} />
+                        <BotaoGrande title='Cadastrar' background="terciaria" type={'button'} />
                     </div>
                 </section>
             </section>

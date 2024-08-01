@@ -56,7 +56,7 @@ export default function VisualizarPedido({searchParams}: VisualizarPedidoProps) 
             <div className='w-full flex flex-col md:gap-8 gap-4'>
               <InputPreenchido titulo='Data' conteudo={pedido.Dt_pedido} />
               <InputPreenchido titulo='Destino' conteudo={pedido.Destino} />
-              <InputPreenchido titulo='Valor' conteudo={pedido.Valor} />
+              <InputPreenchido titulo='Valor' conteudo={pedido.Valor.toString()} />
             </div>
             <div className='w-full flex flex-col md:gap-8 gap-4'>
               <InputPreenchido titulo='Cliente' conteudo={pedido.Cliente} />

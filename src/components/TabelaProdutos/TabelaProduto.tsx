@@ -38,7 +38,7 @@ export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
                             <InputText placeholder="Código*" value={produto?.codigo} required />
                         </div>
                         <div className='w-[30%] md:w-[20%] lg:w-[35%] xl:w-[25%]'>
-                            <BotaoGrande title='Gerar' background='bg-primaria' type='button' />
+                            <BotaoGrande title='Gerar' background='primaria' type='button' />
                         </div>
                     </div>
                     <div className='mt-5'>
@@ -109,7 +109,7 @@ export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
                     }
                 </div>
                 <div className='w-[70%] md:w-[25%] lg:w-[45%] mt-4 mb-6'>
-                    <BotaoGrande title='Adicionar variante' background='bg-secundaria' type='button' onClick={() => setOpenVariante(true)} />
+                    <BotaoGrande title='Adicionar variante' background='secundaria' type='button' onClick={() => setOpenVariante(true)} />
                 </div>
             </section>
             {

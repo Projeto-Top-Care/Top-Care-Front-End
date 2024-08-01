@@ -20,10 +20,10 @@ export default function CadastrarServico() {
             </section>
             <section className='w-[90%] mx-auto flex flex-row justify-between items-center my-10'>
                 <div className='w-48'>
-                    <BotaoGrande background='bg-error' title='Cancelar' type='button' textColor='text-branco' onClick={()=>router.back()} />
+                    <BotaoGrande background='cancelar' title='Cancelar' type='button' onClick={()=>router.back()} />
                 </div>
                 <div className='w-60'>
-                    <BotaoGrande background='bg-secundaria' title='Cadastrar Produto' type='button' />
+                    <BotaoGrande background='secundaria' title='Cadastrar Produto' type='button' />
                 </div>
             </section>
         </main>

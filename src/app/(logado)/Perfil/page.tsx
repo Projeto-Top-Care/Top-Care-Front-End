@@ -32,6 +32,8 @@ export default function Perfil() {
 
     const [showAllAddresses, setShowAllAddresses] = useState(false);
 
+    const [atualizar, setAtualizar] = useState<number>(0)
+
     const [openEndereco, setOpenEndereco] = useState(false);
     const [openPet, setOpenPet] = useState(false);
     const [edicao, setEdicao] = useState(false);
@@ -62,7 +64,7 @@ export default function Perfil() {
 
     useEffect(() => {
         procurarUsuario()
-    }, [openModal, openEndereco, openPet]); 
+    }, [openModal, openEndereco, openPet, atualizar]); 
 
     const procurarUsuario = async () =>{
         const fetchedID = getUserID();
@@ -114,7 +116,7 @@ export default function Perfil() {
         <PedidosEmAndamento usuario={usuarioLogado} />,
         <MeusPets usuario={usuarioLogado} setOpenPet={setOpenPet} />,
         <CarrosselProduto slides={carrosselProdutos} />,
-        <EnderecosSalvos enderecos={displayedAddresses} setOpenEndereco={setOpenEndereco} setShowAllAdresses={setShowAllAddresses} />
+        <EnderecosSalvos atualizarProps={setAtualizar} enderecos={displayedAddresses} setOpenEndereco={setOpenEndereco} setShowAllAdresses={setShowAllAddresses} />
     ]
 
 
@@ -218,7 +220,7 @@ export default function Perfil() {
                 <div className="w-full md:w-[20%]">
                     <BotaoGrande
                         title={`${edicao ? 'Salvar Alteração' : 'Editar'}`}
-                        background="bg-secundaria"
+                        background="secundaria"
                         type="button"
                         onClick={() => setEdicao(edicao ? verificarEdicao() : true)} />
                 </div>
@@ -240,7 +242,7 @@ export default function Perfil() {
             </section>
 
             {openEndereco && (
-                <div className='overflow-hidden'>
+                <div className='overflow-hidden absolute'>
                     <div className='fixed top-0 left-0 w-full h-full z-50 bg-fundo-modal' onClick={() => setOpenEndereco(false)}></div>
                     <div className='fixed w-[70%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
                         <CadastroEndereco setOpen={setOpenEndereco} />
@@ -249,7 +251,7 @@ export default function Perfil() {
             )}
 
             {openPet && (
-                <div className='overflow-hidden'>
+                <div className='overflow-hidden absolute'>
                     <div className='fixed top-0 left-0 w-full h-full z-50 bg-fundo-modal' onClick={() => setOpenPet(false)}></div>
                     <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
                         <CadastroPet setOpen={setOpenPet} />
@@ -257,7 +259,7 @@ export default function Perfil() {
                 </div>
             )}
             {openModal && (
-                <div className="w-full">
+                <div className="w-full absolute">
                     <div className='fixed top-0 left-0 w-full h-full bg-fundo-modal' onClick={() => setOpenModal(false)}></div>
                     <div className="fixed lg:w-[25%] w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
                         <DoisBotoes openParms={setOpenModal} texto="Você deseja mesmo sair?" sim={setSim} />

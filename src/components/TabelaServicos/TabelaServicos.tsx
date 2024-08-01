@@ -85,7 +85,7 @@ export default function TabelaServicos({servico}: TabelaServicosProps) {
                     }
                 </div>
                 <div className='w-full sm:w-[40%] mt-4 mb-4'>
-                    <BotaoGrande title='Adicionar variação' type='button' background='bg-secundaria' onClick={() => setOpenVariante(true)} />
+                    <BotaoGrande title='Adicionar variação' type='button' background='secundaria' onClick={() => setOpenVariante(true)} />
                 </div>
             </section>
             {

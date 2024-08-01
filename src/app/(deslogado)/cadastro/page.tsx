@@ -32,6 +32,7 @@ export default function Cadastro() {
 
     const buscarCep = async () => {
         if (cep.length < 9) {
+            setEndereco(undefined)
             return
         }
         try {
@@ -44,7 +45,7 @@ export default function Cadastro() {
             }
             setEndereco(consultarCEPConvert);
         } catch (erro) {
-
+            setEndereco(undefined)
         }
     }
 
@@ -187,7 +188,7 @@ export default function Cadastro() {
                             <p className='font-poppins text-sm'>Cadastre aqui pra ele não perder nenhuma oportunidade! É rapidinho!</p>
                         </div>
                         <div className='md:w-full w-[90%] m-auto' onClick={() => setOpen(true)}>
-                            <BotaoGrande title='Cadastrar Pet' background='bg-primaria' type={'button'} />
+                            <BotaoGrande title='Cadastrar Pet' background="primaria" type={'button'} />
                         </div>
 
                     </section>
@@ -279,7 +280,7 @@ export default function Cadastro() {
                 <section className='w-full flex justify-center items-center mt-8 sm:mt-14 mb-14'>
                     <div className='md:w-[25%] lg:w-[15%] w-[90%]'>
                         <BotaoGrande
-                            background='bg-terciaria'
+                            background="terciaria"
                             title='Cadastrar'
                             type={'submit'}
                         />

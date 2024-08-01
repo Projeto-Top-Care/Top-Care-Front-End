@@ -72,10 +72,10 @@ export default function CadastroVariante({ openModalProps, variantesProps, setVa
                 </div>
                 <div className='flex flex-row w-[90%] mx-auto justify-between mb-5'>
                     <div className='w-[40%]'>
-                        <BotaoGrande background='bg-error' textColor='text-branco' title='Cancelar' type='button' onClick={() => setOpenModal(false)} />
+                        <BotaoGrande background='cancelar' title='Cancelar' type='button' onClick={() => setOpenModal(false)} />
                     </div>
                     <div className='w-[40%]'>
-                        <BotaoGrande background='bg-secundaria' title='Finalizar' type='submit' onClick={()=>verificarVariante()}/>
+                        <BotaoGrande background='secundaria' title='Finalizar' type='submit' onClick={()=>verificarVariante()}/>
                     </div>
                 </div>
             </div>

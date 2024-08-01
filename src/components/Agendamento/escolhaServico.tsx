@@ -1,7 +1,7 @@
 'use client'
 import React, { SetStateAction, useEffect, useState } from 'react';
 import ServicosAgendamento from '../ServicosAgendamento/ServicosAgendamento';
-import { Precos, Servico } from '@/types/servicos'
+import { VariantesProps, Servico } from '@/types/servicos'
 import servicos from '@/banco/servicos.json'
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { buscarPrecos, buscarServico } from '@/server/servicos/action';
@@ -15,7 +15,7 @@ const EscolhaServico = ({ setServicoEscolhido }: IServico) => {
     const [selectedServico, setSelectedServico] = useState<string>('');
     const [showVacinas, setShowVacinas] = useState<boolean>(false);
 
-    const vacinas: Precos[] = buscarPrecos(4)!
+    const vacinas: VariantesProps[] = buscarPrecos(4)!
 
     useEffect(() => {
         setServicoEscolhido(selectedServico)

@@ -8,9 +8,10 @@ interface iEnderecos {
     enderecos: Endereco[],
     setShowAllAdresses: React.Dispatch<SetStateAction<boolean>>
     setOpenEndereco: React.Dispatch<SetStateAction<boolean>>
+    atualizarProps: React.Dispatch<SetStateAction<number>>
 }
 
-export default function EnderecosSalvos({ enderecos, setShowAllAdresses, setOpenEndereco }: iEnderecos) {
+export default function EnderecosSalvos({ enderecos, setShowAllAdresses, setOpenEndereco, atualizarProps }: iEnderecos) {
 
     const [showAddresses, setShowAdresses] = useState(false)
 
@@ -25,15 +26,7 @@ export default function EnderecosSalvos({ enderecos, setShowAllAdresses, setOpen
                     {
                         enderecos.map((endereco, i) => (
                             <div key={i}>
-                                <EnderecoPerfil
-                                    titulo={endereco.nome}
-                                    cep={endereco.cep}
-                                    estado={endereco.estado}
-                                    bairro={endereco.bairro}
-                                    rua={endereco.rua}
-                                    numero={endereco.numero}
-                                    complemento={endereco.complemento}
-                                    cidade={endereco.cidade} />
+                                <EnderecoPerfil endereco={endereco} atualizarProps={atualizarProps}/>
                             </div>
                         ))
                     }
@@ -42,7 +35,7 @@ export default function EnderecosSalvos({ enderecos, setShowAllAdresses, setOpen
 
             <div className="flex flex-col-reverse md:flex-row md:w-[95%] w-full gap-4 lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center">
                 <div className="md:w-52" onClick={() => setOpenEndereco(true)}>
-                    <BotaoGrande title="Novo endereço" background='bg-primaria' type={'button'} />
+                    <BotaoGrande title="Novo endereço" background='primaria' type={'button'} />
                 </div>
                 <div className="">
                     <button className='flex lg:text-base text-sm transition ease-in-out delay-150 duration-200 text-preto font-poppins bg-secundaria p-1 rounded-lg md:w-52 w-full h-8 hover:bg-[#9EBF40] justify-center gap-2' onClick={() => setShowAdresses(!showAddresses)}>

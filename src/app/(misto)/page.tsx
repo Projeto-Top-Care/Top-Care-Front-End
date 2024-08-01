@@ -57,7 +57,7 @@ export default function PaginaInicial() {
                         <h3 className="font-averia md:text-2xl text-xl font-bold text-preto">Você sabia?</h3>
                         <p className="font-poppins text-preto text-sm sm:text-lg">Nós da Top care também trabalhamos com serviços exclusivos e cuidamos do seu pet com todo o amor e carinho. Agende já uma consulta com a gente para seu pet ter os tratamentos que ele merece!</p>
                         <div className="w-1/2 lg:w-1/4">
-                            <BotaoGrande onClick={() => push('./inforacoesServicos')} title={"Saiba mais!"} background={"bg-primaria"} type={"button"} />
+                            <BotaoGrande onClick={() => push('./inforacoesServicos')} title={"Saiba mais!"} background={"primaria"} type={"button"} />
                         </div>
                     </div>
                     <div className="h-fit lg:flex hidden">
@@ -84,7 +84,7 @@ export default function PaginaInicial() {
                 </div>
 
                 <div className="w-[80%] sm:w-1/6 self-center pt-6">
-                    <BotaoGrande onClick={() => push('./planos')} title={"Assine já"} background={"bg-primaria"} type={"button"} />
+                    <BotaoGrande onClick={() => push('./planos')} title={"Assine já"} background={"primaria"} type={"button"} />
                 </div>
             </section>
 

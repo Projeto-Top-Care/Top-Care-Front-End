@@ -150,7 +150,7 @@ export default function Carrinho() {
             <div className='mt-5'>
               <p className='font-poppins font-medium'>Cupons</p>
               <p className='font-poppins font-regular text-sm my-2'>Clique no botão abaixo e escolha um cupom de desconto</p>
-              <BotaoGrande title='Cupons' background='bg-secundaria' type='button' onClick={() => setOpenCupons(!openCupons)} />
+              <BotaoGrande title='Cupons' background="secundaria" type='button' onClick={() => setOpenCupons(!openCupons)} />
               {
                 openCupons && (
                   <div className='relative'>
@@ -167,7 +167,7 @@ export default function Carrinho() {
               <p className='font-poppins font-regular text-xs md:!flex hidden'>Infrorme seu CEP</p>
               <div className='flex lg:flex-row flex-col lg:gap-0 gap-3 justify-between lg:mt-0 mt-2'>
                 <div className='lg:w-[60%] w-full'><InputMask title='_____-___' mask='_____-___' replacement={{ _: /\d/ }} onMasks={(e: any) => setCep(e.target.value)} error={erro || inexitente} /></div>
-                <div className='lg:w-[32%] w-full' onClick={() => enviarFrete()}><BotaoGrande title='Calcular' type='button' background='bg-secundaria' height='lg:h-10 h-8' fontSize='text-sm font-medium' /></div>
+                <div className='lg:w-[32%] w-full' onClick={() => enviarFrete()}><BotaoGrande title='Calcular' type='button' background="secundaria" size='lg:h-10 h-8' /></div>
               </div>
               {
                 erro && (
@@ -188,7 +188,7 @@ export default function Carrinho() {
 
           </section>
           <div className='lg:w-1/2 w-full lg:mt-0 mt-2'>
-            <BotaoGrande title='Continuar' background='bg-secundaria' type='button' onClick={() => { usuarioLogado ? router.push('/paginaCompra') : router.push('/login') }} />
+            <BotaoGrande title='Continuar' background="secundaria" type='button' onClick={() => { usuarioLogado ? router.push('/paginaCompra') : router.push('/login') }} />
           </div>
         </section>
       </section>

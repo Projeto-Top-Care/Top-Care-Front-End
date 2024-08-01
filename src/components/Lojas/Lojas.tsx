@@ -1,4 +1,3 @@
-import { radio } from "@material-tailwind/react";
 import { LuMapPin } from "react-icons/lu";
 
 interface ILoja {

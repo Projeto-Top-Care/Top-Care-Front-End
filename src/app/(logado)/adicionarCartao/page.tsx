@@ -34,7 +34,7 @@ export default function adicionarCartao() {
                         </div>
                     </div>
                     <div className="mt-8 mb-[10%] w-[60%] md:w-[30%] md:mb-[10%] md:mt-[6%] lg:w-[20%]">
-                        <BotaoGrande title={"Salvar Cartão"} background={"bg-secundaria"} type={"button"} ></BotaoGrande>
+                        <BotaoGrande title={"Salvar Cartão"} background="secundaria" type={"button"} ></BotaoGrande>
                     </div>
                 </div>
             </section>
