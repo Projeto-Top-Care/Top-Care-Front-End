@@ -64,7 +64,7 @@ export default function Pedidos() {
                             placeholder="Pesquise nos pedidos" />
                     </div>
                     <div className='md:w-[18%] w-[38%]'>
-                        <Select options={['Data Crescente', 'Data Decrescente', 'Valor Crescente', 'Valor Decrescente', 'A a Z']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar Por'} opcao={escolha}/>
+                        <Select options={['Data Crescente', 'Data Decrescente', 'Valor Crescente', 'Valor Decrescente', 'A a Z']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar por'} opcao={escolha}/>
                     </div>
                 </div>
             </section>
