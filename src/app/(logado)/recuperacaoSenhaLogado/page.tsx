@@ -3,15 +3,28 @@ import Loading from '@/app/(misto)/loading/page'
 import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande'
 import { buscarUsuario } from '@/server/usuario/action'
 import { Usuario } from '@/types/usuarios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter  } from 'next/navigation'
 import { useUserID } from '@/context/UserIDContext'
+import Carregando from '@/components/Carregando/Carregando'
 
 export default function RecuperacaoSenhaDeslogado() {
   const {push} = useRouter();
-  const {userID} = useUserID()
-  const userId = parseInt(userID!)
-  const usuarioLogado: Usuario = buscarUsuario(userId)!
+  const {getUserID} = useUserID()
+
+  const [usuarioLogado, setUsuarioLogado] = useState<Usuario>()
+
+  const getUser = async () =>{
+    const id = getUserID()
+    if(id){
+      setUsuarioLogado( await buscarUsuario(parseInt(id)))
+    }
+  }
+
+  useEffect(()=>{
+    getUser()
+  },[])
+
   const [checked1, setChecked1] = useState<boolean>(true);
   const [checked2, setChecked2] = useState<boolean>(false);
 
@@ -32,6 +45,8 @@ export default function RecuperacaoSenhaDeslogado() {
     });
     return celularFinal.join("") + "-" + arrayCelular[1];
   };
+
+  if(!usuarioLogado) return <Carregando />
 
   return (
     <main>
@@ -139,7 +154,7 @@ export default function RecuperacaoSenhaDeslogado() {
               <BotaoGrande
                 title="Continuar"
                 type="submit"
-                background="bg-secundaria"
+                background="secundaria"
               />
             </div>
           </div>

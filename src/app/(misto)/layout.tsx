@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-branco">
         <AppProvider>
-          <Header/> 
+          <Header/>
             {children}
           <Footer />
         </AppProvider>

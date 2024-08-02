@@ -2,60 +2,59 @@
 import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande'
 import InputText from '@/components/InputText/InputText'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
-import { useRouter  } from 'next/navigation'
-import { buscarUsuario, login } from '@/server/usuario/action'
-import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import {login } from '@/server/usuario/action'
+import React from 'react'
 import Erro from '@/components/Pop-up/Erro/Erro'
 import { useError } from '@/context/ErrorContext'
 import { useUserID } from '@/context/UserIDContext'
-import { Usuario } from '@/types/usuarios'
+import { useConfirmacao } from '@/context/confirmacaoContext'
+import Confirmacao from '@/components/Pop-up/Confirmacao/Confirmacao'
 
 export default function Login() {
     const router = useRouter();
-    const {addError} = useError()!;
-    const {setUserId} = useUserID()
+    const { addError } = useError();
+    const {addConfirmacao} = useConfirmacao()
+    const { setUserId } = useUserID()
 
-    const [email, setEmail] = useState("")
-    const [senha, setSenha] = useState("")
-
-    const verificarLogin = () =>{
-        let usuarioId = login(email, senha)
-        if(usuarioId != undefined){
-            setUserId(usuarioId)
-            const user: Usuario = buscarUsuario(usuarioId)!
-            if(user.role == "admin"){
-                router.push('/dashboard')
-            }else{
-                router.push('/')
-                router.refresh()
+    const verificarLogin = async (e: FormData) => {
+        const loginObject = Object.fromEntries(e)
+        
+        try {
+            const authLogin = await login(loginObject)
+            if (authLogin) {
+                router.replace("/")
+                setUserId(authLogin.id)
+                addConfirmacao("Login efetuado com sucesso!")
             }
-        } else{
-            addError("Falha no Login, verifique seu email e senha!")
+        } catch (error) {
+            addError("Credenciais inválidas")
         }
     }
 
     return (
         <main className='bg-branco flex flex-col gap-12'>
             <Erro />
+            <Confirmacao/>
             <section className=''>
                 <TituloLinha voltar={true} titulo='Login' />
             </section>
             <section className='flex flex-col justify-center items-center w-full gap-16 mb-20 md:mb-24 lg:mb-32 md:gap-20 lg:flex-row lg:gap-28 lg:my-8'>
                 <section className='flex items-end h-full max-lg:w-full'>
-                    <div className='w-[90%] m-auto flex flex-col gap-8 md:w-[70%] lg:w-80 lg:m-0'>
-                        <InputText onChange={(e) => setEmail(e.target.value)} type={'text'} placeholder='Email' />
+                    <form action={verificarLogin} className=' w-[90%] m-auto flex flex-col gap-8 md:w-[70%] lg:w-80 lg:m-0'>
+                        <InputText placeholder='Email' name='email' />
                         <div className='flex flex-col gap-2'>
-                            <InputText onChange={(e) => setSenha(e.target.value)} type={'password'} placeholder='Senha' />
+                            <InputText type={'password'} placeholder='Senha' name='senha' />
                             <p onClick={() => router.push('/recuperacaoSenhaDeslogado')} className='underline text-cinza-escuro font-poppins text-xs select-none cursor-pointer w-36 mb-4'>Esqueçeu sua senha?</p>
-                            <BotaoGrande 
-                            title='Login' 
-                            background='bg-terciaria' 
-                            type={'button'} 
-                            onClick={()=>verificarLogin()}/>
+                            <BotaoGrande
+                                title='Login'
+                                background="terciaria"
+                                type={'submit'}
+                            />
                         </div>
-                    </div>
+                    </form>
                 </section>
-                
+
                 <section className='flex flex-col items-center h-full w-[90%] m-auto md:w-[70%] lg:w-80 lg:m-0'>
                     <div className='w-[20%] mb-3'>
                         <img src="./assets/logo.png" alt="" />
@@ -66,8 +65,8 @@ export default function Login() {
                     </div>
                     <div>
                     </div>
-                    <div className='w-full mt-4' onClick={() => router.push('/cadastro')}>
-                        <BotaoGrande title='Cadastrar' background='bg-terciaria' type={'button'} />
+                    <div className='w-full mt-6' onClick={() => router.push('/cadastro')}>
+                        <BotaoGrande title='Cadastrar' background="terciaria" type={'button'} />
                     </div>
                 </section>
             </section>

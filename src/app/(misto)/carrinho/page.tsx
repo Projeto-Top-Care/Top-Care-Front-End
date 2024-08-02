@@ -27,12 +27,14 @@ export default function Carrinho() {
   const { getCarrinho } = useCarrinho()
 
   useEffect(() => {
-    setCarrinho(getCarrinho())
-    const idUser = getUserID()
-    if(idUser){
-      const userTaked = buscarUsuario(parseInt(idUser))
-      if(userTaked){
-        setUsuarioLogado(userTaked)
+    const func = async () => {
+      setCarrinho(getCarrinho())
+      const idUser = getUserID()
+      if (idUser) {
+        const userTaked = await buscarUsuario(parseInt(idUser))
+        if (userTaked) {
+          setUsuarioLogado(userTaked)
+        }
       }
     }
   }, [])
@@ -148,7 +150,7 @@ export default function Carrinho() {
             <div className='mt-5'>
               <p className='font-poppins font-medium'>Cupons</p>
               <p className='font-poppins font-regular text-sm my-2'>Clique no botão abaixo e escolha um cupom de desconto</p>
-              <BotaoGrande title='Cupons' background='bg-secundaria' type='button' onClick={() => setOpenCupons(!openCupons)} />
+              <BotaoGrande title='Cupons' background='secundaria' type='button' onClick={() => setOpenCupons(!openCupons)} />
               {
                 openCupons && (
                   <div className='relative'>
@@ -173,7 +175,7 @@ export default function Carrinho() {
 
           </section>
           <div className='lg:w-1/2 w-full lg:mt-0 mt-2'>
-            <BotaoGrande title='Continuar' background='bg-secundaria' type='button' onClick={() => { usuarioLogado ? router.push('/paginaCompra') : router.push('/login')}} />
+            <BotaoGrande title='Continuar' background='secundaria' type='button' onClick={() => { usuarioLogado ? router.push('/paginaCompra') : router.push('/login') }} />
           </div>
         </section>
       </section>

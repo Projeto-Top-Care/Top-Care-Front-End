@@ -16,11 +16,13 @@ export default function CadastroProduto() {
     const router = useRouter()
 
     useEffect(() => {
-        const fetchedID = getUserID();
-        if (fetchedID) {
-            const usuario: Usuario = buscarUsuario(parseInt(fetchedID))!;
-            if (usuario) {
-                setUser(usuario)
+        const useEffectFunction = async () => {
+            const fetchedID = getUserID();
+            if (fetchedID) {
+                const usuario: Usuario = await buscarUsuario(parseInt(fetchedID))!;
+                if (usuario) {
+                    setUser(usuario)
+                }
             }
         }
     }, []);
@@ -39,10 +41,10 @@ export default function CadastroProduto() {
             </section>
             <section className='w-[90%] mx-auto flex flex-row justify-between items-center my-10'>
                 <div className='w-24 md:w-48'>
-                    <BotaoGrande background='bg-error' textColor="text-branco" title='Cancelar' type='button' onClick={() => router.back()} />
+                    <BotaoGrande background='cancelar' title='Cancelar' type='button' onClick={() => router.back()} />
                 </div>
                 <div className='md:w-60'>
-                    <BotaoGrande background='bg-secundaria' title='Cadastrar Produto' type='button' />
+                    <BotaoGrande background='secundaria' title='Cadastrar Produto' type='button' />
                 </div>
             </section>
         </main>

@@ -212,10 +212,10 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
 
                 </div>
                 <div onClick={() => adicionarCarrinho()}>
-                  <BotaoGrande height='h-9' title='Adicionar à sacola' background='bg-primaria' type='button' />
+                  <BotaoGrande size='h-9' title='Adicionar à sacola' background='primaria' type='button' />
                 </div>
                 <div>
-                  <BotaoGrande height='h-9' title='Comprar agora' background='bg-secundaria' type='button' />
+                  <BotaoGrande size='h-9' title='Comprar agora' background='secundaria' type='button' />
                 </div>
               </div>
             </div>
@@ -263,8 +263,8 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             {
               produtoProcurado.avaliacoes.map((avaliacao, i) => (
                 <div key={i} className="flex flex-col gap-4 sm:gap-14 md:mb-8 mb-4">
-                  <Avaliacao nomeUsuario={(buscarUsuario((avaliacao as AvaliacaoType).id)! as Usuario).nomeCompleto}
-                    fotoUsuario={(buscarUsuario(avaliacao.id)! as Usuario).foto} avaliacaoUsuario={avaliacao.descricao}
+                  <Avaliacao nomeUsuario={avaliacao.usuario.nome}
+                    fotoUsuario={avaliacao.usuario.foto} avaliacaoUsuario={avaliacao.descricao}
                     estrelas={construirEstrelas(avaliacao.nota)} notaAvaliacao={avaliacao.nota} />
                 </div>
               ))

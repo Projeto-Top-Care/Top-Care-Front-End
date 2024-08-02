@@ -24,11 +24,13 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
 
     useEffect(() => {
-        const id = getUserID()
-        if (id) {
-            const user: Usuario = buscarUsuario(parseInt(id))!
-            if (user.role == 'admin') {
-                setIsAdmin(true)
+        const func = async () => {
+            const id = getUserID()
+            if (id) {
+                const user: Usuario = await buscarUsuario(parseInt(id))!
+                if (user.role == 'admin') {
+                    setIsAdmin(true)
+                }
             }
         }
     }, [])
@@ -155,7 +157,7 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
                         isAdmin && (
                             <div className='flex justify-center md:block'>
                                 <div className='w-fit sm:w-[30%] md:w-[40%] mt-6 md:ml-5 lg:w-[30%] lg:ml-0'>
-                                <BotaoGrande title='Adicionar novo Produto' type='button' background='bg-secundaria' height='h-9' onClick={()=>router.push('/cadastroProduto')}/>
+                                    <BotaoGrande title='Adicionar novo Produto' type='button' background='bg-secundaria' height='h-9' onClick={() => router.push('/cadastroProduto')} />
                                 </div>
                             </div>
                         )

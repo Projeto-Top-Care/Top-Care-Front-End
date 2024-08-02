@@ -19,28 +19,30 @@ export default function ProdutoFavoritos() {
     const [pesquisa, setPesquisa] = useState('');
     const [produtosFavoritos, setProdutosFavoritos] = useState<Produto[]>([]);
     const [numDisplayedProducts, setNumDisplayedProducts] = useState(10);
-    
-    useEffect(() => {
-        const idFetched = getUserID()
-        if (idFetched) {
-            const usuario: Usuario = buscarUsuario(parseInt(idFetched!))!;
-            setUsuarioLogado(usuario)
-        }
-        function handleResize() {
-            if (window.innerWidth <= 640) {
-                setNumDisplayedProducts(4);
-            } else if (window.innerWidth <= 980) {
-                setNumDisplayedProducts(6);
-            } else if (window.innerWidth <= 1280) {
-                setNumDisplayedProducts(8);
-            } else {
-                setNumDisplayedProducts(10);
-            }
-        }
 
-        window.addEventListener('resize', handleResize);
-        handleResize();
-        return () => window.removeEventListener('resize', handleResize);
+    useEffect(() => {
+        const ueFunc = async () => {
+            const idFetched = getUserID()
+            if (idFetched) {
+                const usuario: Usuario = await buscarUsuario(parseInt(idFetched!))!;
+                setUsuarioLogado(usuario)
+            }
+            function handleResize() {
+                if (window.innerWidth <= 640) {
+                    setNumDisplayedProducts(4);
+                } else if (window.innerWidth <= 980) {
+                    setNumDisplayedProducts(6);
+                } else if (window.innerWidth <= 1280) {
+                    setNumDisplayedProducts(8);
+                } else {
+                    setNumDisplayedProducts(10);
+                }
+            }
+
+            window.addEventListener('resize', handleResize);
+            handleResize();
+            return () => window.removeEventListener('resize', handleResize);
+        }
     }, []);
 
     useEffect(() => {
@@ -62,7 +64,7 @@ export default function ProdutoFavoritos() {
                     )
             );
         }
-        if(produtosFavoritos){
+        if (produtosFavoritos) {
             setProdutosFavoritos(showAllProducts ? produtosFavoritos : produtosFavoritos.slice(0, numDisplayedProducts));
         }
     }, [pesquisa, showAllProducts, usuarioLogado?.favoritos, numDisplayedProducts]);
@@ -71,7 +73,7 @@ export default function ProdutoFavoritos() {
         setShowAllProducts(!showAllProducts);
     };
 
-    if(!usuarioLogado){
+    if (!usuarioLogado) {
         return <Loading />
     }
     return (

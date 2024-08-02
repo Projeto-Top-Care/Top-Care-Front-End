@@ -30,7 +30,7 @@ export default function redefinirSenha() {
 
                     </div>
                     <div className="mt-3 mb-[10%] w-[80%] md:w-[60%] md:mb-[5%] lg:w-[32%]">
-                        <BotaoGrande title="Redefinir" background="bg-secundaria" type="button" />
+                        <BotaoGrande title="Redefinir" background="secundaria" type="button" />
                     </div>
                 </div>
             </section>

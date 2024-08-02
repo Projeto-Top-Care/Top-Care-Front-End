@@ -1,30 +1,39 @@
+import { Agendamentos } from "./agendamentos"
+import { Servico } from "./servicos"
+
 export interface Usuario {
     id: number,
     role: string,
     foto: string,
-    nomeCompleto: string,
+    nome: string,
     email: string,
     celular: string,
     senha: string,
     cpf: string,
     sexo: 'Feminino' | 'Masculino' | "Prefiro não Informar"
     dataNascimento: string,
-    produtosCarrinho: number[]
     enderecos: Endereco[],
     pets: Pet[]
     pedidos: Pedido[],
     favoritos: number[],
     cartoes: Cartao[],
     cupons: Cupom[]
+    agendamentos: Agendamentos[]
 }
 
 export interface Pet {
     nome: string
-    especie: string
+    especie: Especie
     raca: string
-    idade: string
     porte: string 
 }
+
+export interface Especie{
+    id: number
+    nome: string
+    servicos: Servico[]
+}
+
 export interface Endereco {
     id: number
     nome: string,
@@ -133,6 +142,7 @@ export interface Especificacao{
 
 export interface AvaliacaoType{
     id: number
+    usuario: Usuario
     nota: number
     descricao: string
 }

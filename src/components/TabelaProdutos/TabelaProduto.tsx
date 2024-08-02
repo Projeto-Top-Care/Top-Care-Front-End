@@ -5,7 +5,6 @@ import TextArea from "../TextArea/TextArea";
 import Select from "../Select/Select";
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
-import BotaoGrande from "../Botoes/BotaoGrande/BotaoGrande"
 
 interface TabelaProdutosProps {
     produtos?: ProdutoCompleto

@@ -1,51 +1,45 @@
 'use client'
 import ResumoPedido from "@/components/ResumoPedido/resumoPedido"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { IoCopyOutline } from "react-icons/io5"
 import { Usuario, QntProduto } from "@/types/usuarios"
 import { buscarUsuario } from "@/server/usuario/action"
 import { useRouter } from "next/navigation"
 import { useUserID } from "@/context/UserIDContext"
 import { useCarrinho } from "@/context/CarrinhoContext"
+import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao"
+import { useConfirmacao } from "@/context/confirmacaoContext"
 
 export default function PagamentoPix() {
 
     const { push } = useRouter();
-    const {userID} = useUserID()
+    const {getUserID} = useUserID()
+    const conf = useConfirmacao()
     const {items} = useCarrinho()
-    
-    const idUser = parseInt(userID!)
-    const [usuarioLogado, setUsuarioLogado] = useState<Usuario>(buscarUsuario(idUser)!)
-    const pedido: QntProduto[] = (items as unknown as QntProduto[])
 
-    const [open, setOpen] = useState<boolean>(false)
+    const getUser = async () =>{
+        const id = getUserID()
+        if(id){
+            setUsuarioLogado (await buscarUsuario(parseInt(id)))
+        }
+    }
+
+    useEffect(()=>{
+        getUser()
+    },[])
+    
+    const [usuarioLogado, setUsuarioLogado] = useState<Usuario>()
+    const pedido: QntProduto[] = (items as unknown as QntProduto[])
 
     const copyContent = (content: string) => {
         navigator.clipboard.writeText(content);
-        setOpen(true)
-        setTimeout(() => {
-            setOpen(false)
-        }, 4000)
-    }
-
-    const showCopied = () => {
-        if (open) {
-            return (
-                <div className="z-50">
-                    <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down drop-shadow-lg`}>
-                        <div className="flex items-center justify-center lg:h-10 h-8 bg-terciaria rounded font-poppins">
-                            <p className="text-xs lg:text-base">Copiado!</p>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
+        conf.addConfirmacao("Copiado")
     }
 
     return (
         <main>
-            {showCopied()}
+            <Confirmacao/>
             <div className="py-6 sm:py-12 flex flex-col gap-4">
                 <TituloLinha voltar={false} titulo="Pagamento" />
 

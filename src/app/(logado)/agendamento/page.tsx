@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
 import { Pet } from "@/types/usuarios";
 import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
+import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 
 export default function agendamento() {
 
@@ -73,6 +74,7 @@ export default function agendamento() {
     return (
         <main className="w-full flex flex-col items-center py-12">
             <Erro />
+            <Confirmacao/>
             <div className='w-full'>
                 {openPet && (
                     <div className='overflow-hidden'>
@@ -128,11 +130,11 @@ export default function agendamento() {
                         <p className='font-poppins text-preto text-sm sm:text-md mt-2 text-start md:w-[55%] w-full'>Clique no botão abaixo para cadastrar, depois continue os procedimentos para agendar um serviço para o seu mais novo pet :)</p>
                     </div>
                     <div className="w-full sm:w-2/12" onClick={() => estado <= -1 ? setOpenPet(true) : setOpenPet(false)}>
-                        <BotaoGrande onClick={() => passoAnterior()} title={estado <= 0 ? "Cadastrar pet" : "Anterior"} background={"bg-terciaria"} type={"button"} />
+                        <BotaoGrande onClick={() => passoAnterior()} title={estado <= 0 ? "Cadastrar pet" : "Anterior"} background="terciaria" type={"button"} />
                     </div>
                 </div>
                 <div className="w-full sm:w-2/12">
-                    <BotaoGrande onClick={() => estado >= 4 ? concluirCompra() : proximoPasso()} title={estado >= 4 ? "Concluir" : "Próximo"} background={"bg-secundaria"} type={"button"} />
+                    <BotaoGrande onClick={() => estado >= 4 ? concluirCompra() : proximoPasso()} title={estado >= 4 ? "Concluir" : "Próximo"} background="secundaria"type={"button"} />
                 </div>
             </div>
         </main>

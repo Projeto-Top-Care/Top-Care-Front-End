@@ -72,7 +72,7 @@ export default function HeaderAdm() {
                 </div>
 
                 <div className='flex max-sm:hidden flex-row gap-4 items-center justify-end w-[10%]'>
-                    <BotaoGrande title="Sair" type="button" background="bg-terciaria" onClick={() => logout()} />
+                    <BotaoGrande title="Sair" type="button" background='terciaria' onClick={() => logout()} />
                 </div>
 
                 <div className="sm:hidden flex">

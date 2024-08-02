@@ -25,7 +25,7 @@ const CardPetPequeno = ({tipoAnimal, fotoPet, nomePet, racaPet, porte, isSelecte
                 <p className="gap-1 lg:text-lg">{nomePet}</p>
                 <p>Animal: {tipoAnimal}</p>
                 <p>Raça: {racaPet}</p>
-                <p>Porte: {porte}</p>
+                <p>Porte: {porte.charAt(0) + porte.slice(1).toLowerCase()}</p>
             </div>
         </div>
     )

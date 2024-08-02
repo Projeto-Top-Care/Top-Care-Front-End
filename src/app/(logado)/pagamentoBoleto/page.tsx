@@ -9,6 +9,7 @@ import { buscarUsuario } from "@/server/usuario/action"
 import { useRouter } from "next/navigation"
 import { useUserID } from "@/context/UserIDContext"
 import { useCarrinho } from "@/context/CarrinhoContext"
+import Carregando from "@/components/Carregando/Carregando"
 
 interface BoletoProps{
     searchParams:{
@@ -21,12 +22,23 @@ export default function PagamentoBoleto({searchParams}: BoletoProps) {
     const plano =  searchParams.p
 
     const { push } = useRouter();
-    const {userID} = useUserID()
+    const {getUserID} = useUserID()
     const {items} = useCarrinho()
     
-    const idUser = parseInt(userID!)
-    const [usuarioLogado, setUsuarioLogado] = useState<Usuario>(buscarUsuario(idUser)!)
+    const getUser = async () =>{
+        const id = getUserID()
+        if(id){
+            setUsuarioLogado(await buscarUsuario(parseInt(id)))
+        }
+    }
+    useEffect(()=>{
+        getUser()
+    },[])
+
+    const [usuarioLogado, setUsuarioLogado] = useState<Usuario>()
     const pedido: QntProduto[] = (items as unknown as QntProduto[])
+
+    if(!usuarioLogado) return <Carregando/>
 
     return (
         <main>
@@ -51,14 +63,14 @@ export default function PagamentoBoleto({searchParams}: BoletoProps) {
                         </div>
                         <div className="lg:flex hidden sm:justify-center lg:justify-end w-full">
                             <div className="w-full sm:w-[30%]">
-                                <BotaoGrande onClick={() => push('/Perfil')} title={"Concluir"} background={"bg-secundaria"} type={"button"} />
+                                <BotaoGrande onClick={() => push('/Perfil')} title={"Concluir"} background="secundaria" type={"button"} />
                             </div>
                         </div>
                     </section>
                 </section>
                 <div className="flex lg:hidden justify-center w-full">
                     <div className="w-[80%] sm:w-[30%]">
-                        <BotaoGrande onClick={() => push('/Perfil')} title={"Concluir"} background={"bg-secundaria"} type={"button"} />
+                        <BotaoGrande onClick={() => push('/Perfil')} title={"Concluir"} background="secundaria" type={"button"} />
                     </div>
                 </div>
             </div>

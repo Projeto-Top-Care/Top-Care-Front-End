@@ -54,7 +54,7 @@ export default function RecuperacaoSenhaDeslogado() {
                             <InputText placeholder="Digite seu email" type={email} id='email' className="peer " onChange={(e) => setEmail(e.target.value)} />
                         </label>
                         <div className="mt-8 mb-20">
-                            <BotaoGrande title="Continuar" type='submit' background="bg-secundaria" />
+                            <BotaoGrande title="Continuar" type='submit' background="secundaria" />
                         </div>
                     </form>
                 </div>

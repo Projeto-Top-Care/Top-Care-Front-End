@@ -36,4 +36,10 @@ export const ErrorProvider: React.FC<ErrorProviderProps> = ({ children }) => {
   );
 };
 
-export const useError = () => useContext(ErrorContext);
+  export const useError = () => {
+    const context = useContext(ErrorContext)
+    if(context == null){
+      throw new Error("Must be in a ErrorProvider!")
+    }
+    return context
+  };

@@ -31,9 +31,20 @@ export default function Pedido({ searchParams }: PropsUsuario) {
     }
 
     const produtoId = searchParams.id
-    const usuarioProcurado: Usuario = buscarUsuario(userId)!
 
-    const pedidoBuscado: Pedido = buscarPedido(produtoId, userId)!
+    const getUser = async () =>{
+        return await buscarUsuario(userId)
+    }
+    const getProduct = async () =>{
+        return await buscarPedido(produtoId, userId)!
+    }
+    const getEndereco = async () =>{
+        return await buscarEndereco(pedidoBuscado.endereco, userId)
+    }
+
+    const usuarioProcurado: Usuario = getUser() as unknown as Usuario
+
+    const pedidoBuscado: Pedido = getProduct as unknown as Pedido
     
     const produtos: QntProduto[] = pedidoBuscado.produtos.map((produto) => {
         return produto;
@@ -42,7 +53,7 @@ export default function Pedido({ searchParams }: PropsUsuario) {
     const produtosCompletos: Produto[] = produtos.map((produto) => {
         return buscarProduto(produto.id!)!
     })
-    const endereco: Endereco = buscarEndereco(pedidoBuscado.endereco, userId)!
+    const endereco: Endereco = getEndereco() as unknown as Endereco
 
     return (
         <main>
@@ -129,7 +140,7 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                                     </div>
                                     <div className="">
                                         <p className="font-poppins text-preto font-medium lg:text-lg md:text-base text-sm  md:mt-8 mt-4">Destinatário</p>
-                                        <p className="font-poppins text-preto md:text-sm text-xs mt-2 md:mb-8 mb-4">{usuarioProcurado.nomeCompleto}</p>
+                                        <p className="font-poppins text-preto md:text-sm text-xs mt-2 md:mb-8 mb-4">{usuarioProcurado.nome}</p>
                                     </div>
                                 </div>
                             </div>

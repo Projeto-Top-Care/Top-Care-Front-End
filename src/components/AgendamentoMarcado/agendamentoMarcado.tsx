@@ -52,7 +52,7 @@ const AgendamentoMarcado = ({ fotoPet, nomePet, servico, data, hora, profissiona
                     </div>
                 </div>
                 <div onClick={() => setOpenConfirmacao(!openConfirmacao)} className="md:p-4 p-2 w-full">
-                    <BotaoGrande textColor={"text-branco"} title={"Cancelar"} fontSize={"text-sm"} background={"bg-error"} type={"button"} height='md:h-8 h-6' />
+                    <BotaoGrande title={"Cancelar"} background={"cancelar"} type={"button"} size='md:h-8 h-6' />
                 </div>
             </div>
         </div>
