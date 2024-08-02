@@ -8,9 +8,10 @@ interface IInputEstatico {
     error?: boolean
     onChange?: ChangeEventHandler<HTMLInputElement> | undefined
     message?: string
+    name?: string
 }
 
-const InputEstatico = ({ titulo, info, type, edition, error, onChange, message }: IInputEstatico) => {
+const InputEstatico = ({ titulo, info, type, edition, error, onChange, message, name }: IInputEstatico) => {
     return (
         <div className="font-poppins text-preto w-full">
             <p className={`md:text-base text-sm ${titulo != 'none' ? 'visible' : 'invisible'}`}>{titulo}</p>
@@ -19,7 +20,10 @@ const InputEstatico = ({ titulo, info, type, edition, error, onChange, message }
                     defaultValue={info}
                     type={type}
                     disabled={!edition}
-                    onChange={onChange} />
+                    onChange={onChange} 
+                    name={name}
+                    required
+                    />
                 {
                     error && (
                         <span className="absolute mt-12 font-poppins text-sm text-error">{message}</span>

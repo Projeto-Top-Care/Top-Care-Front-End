@@ -48,3 +48,8 @@ export async function login(payload:any) {
     const response = await axiosAPI.post("/usuario/login", payload).then(resp => resp);
     return response.data
 }
+
+export async function editarUsuario(payload:any, id:number) {
+    const response = await axiosAPI.put("/usuario/cliente/editar/"+id, payload).then(resp => resp);
+    return response.data
+}

@@ -38,7 +38,7 @@ export default function HistoricoAgendamentos({ agendamentos }: iAgendamentos) {
                         <div className="md:w-52 w-full">
                             <BotaoGrande
                                 title="Novo agendamento"
-                                background="bg-primaria"
+                                background="primaria"
                                 type="button"
                                 onClick={() => handleLinkClick('/agendamento')} />
                         </div>

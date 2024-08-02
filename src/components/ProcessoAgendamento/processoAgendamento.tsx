@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPaw, faBars, faLocationDot, faCalendar, faClipboardCheck } from "@fortawesome/free-solid-svg-icons"
 import { IoIosMenu, IoIosPin  } from "react-icons/io";
 import { LuCalendarClock } from "react-icons/lu";
 import { PiNotepad, PiPawPrintBold  } from "react-icons/pi";

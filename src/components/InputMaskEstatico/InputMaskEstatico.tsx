@@ -10,9 +10,10 @@ interface IInputEstatico {
     onMasks?: MaskEventHandler | undefined
     error?: boolean
     message?: string
+    name?: string 
 }
 
-const InputMaskEstatico = ({ titulo, info, type, edition, mask, replacement, onMasks, error, message }: IInputEstatico) => {
+const InputMaskEstatico = ({ titulo, info, type, edition, mask, replacement, onMasks, error, message, name }: IInputEstatico) => {
     return (
         <div className="font-poppins text-preto w-full">
             <p className={`md:text-base text-sm ${titulo != 'none' ? 'visible' : 'invisible'}`}>{titulo}</p>
@@ -23,7 +24,10 @@ const InputMaskEstatico = ({ titulo, info, type, edition, mask, replacement, onM
                     disabled={!edition}
                     mask={mask}
                     replacement={replacement}
-                    onMask={onMasks} />
+                    onMask={onMasks} 
+                    name={name}
+                    required
+                    />
                 {
                     error && (
                         <span className="absolute mt-12 font-poppins text-sm text-error">{message}</span>

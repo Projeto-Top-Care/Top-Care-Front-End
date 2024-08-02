@@ -66,7 +66,6 @@ export default function CadastroEndereco({ setOpen }: ICadastroEndereco) {
 
     return (
         <>
-            <Confirmacao />
             <form action={cadastrarEndereco} className="max-h-screen w-full flex justify-center flex-col bg-branco rounded-lg">
                 <div className=" flex justify-center">
                     <h1 className="font-averia font-bold text-center md:text-2xl text-lg mt-4">Adicionar Endereço</h1>
@@ -83,7 +82,7 @@ export default function CadastroEndereco({ setOpen }: ICadastroEndereco) {
                             replacement={{ _: /\d/ }}
                             required
                         />
-                        <InputText name="rua" placeholder="Rua*" type="text" value={endereco?.logradouro} />
+                        <InputText name="rua" placeholder="Rua*" type="text" value={endereco?.logradouro != "" ? endereco?.logradouro : undefined} />
                     </div>
                     <div className="flex flex-col lg:gap-6 md:gap-2 gap-1 ">
                         <Select label="Estado*" options={siglasEstados} opcaoSelecionada={setEstado} opcao={endereco ? endereco.uf : estado} />
@@ -94,7 +93,7 @@ export default function CadastroEndereco({ setOpen }: ICadastroEndereco) {
                         <InputText name="complemento" placeholder="Complemento*" type="text" required />
                     </div>
                     <div className="flex flex-col lg:gap-6 md:gap-2 gap-1 ">
-                        <InputText name="bairro" placeholder="Bairro*" type="text" value={endereco?.bairro} required />
+                        <InputText name="bairro" placeholder="Bairro*" type="text" value={endereco?.bairro != "" ? endereco?.bairro: undefined} required />
                         <InputText name="nome" placeholder="Nome de exibição*" type="text" required />
                     </div>
                 </div>

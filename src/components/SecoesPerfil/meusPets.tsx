@@ -32,7 +32,7 @@ export default function MeusPets({ usuario, setOpenPet }: iPedidos) {
                 <p className="md:text-xl text-lg font-medium m-auto">Pet novo ?</p>
                 <p className="md:text-sm text-xs my-3 m-auto">Cadastre aqui pra ele não perder nenhuma oportunidade!</p>
                 <div className="sm:w-[174px]" onClick={() => setOpenPet(true)}>
-                    <BotaoGrande title="Cadastrar Pet" background={"bg-primaria"} type={"button"} />
+                    <BotaoGrande title="Cadastrar Pet" background={"primaria"} type={"button"} />
                 </div>
             </section>
 
