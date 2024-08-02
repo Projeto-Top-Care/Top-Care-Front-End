@@ -157,7 +157,7 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
                         isAdmin && (
                             <div className='flex justify-center md:block'>
                                 <div className='w-fit sm:w-[30%] md:w-[40%] mt-6 md:ml-5 lg:w-[30%] lg:ml-0'>
-                                    <BotaoGrande title='Adicionar novo Produto' type='button' background='bg-secundaria' height='h-9' onClick={() => router.push('/cadastroProduto')} />
+                                    <BotaoGrande title='Adicionar novo Produto' type='button' background='secundaria' size='h-9' onClick={() => router.push('/cadastroProduto')} />
                                 </div>
                             </div>
                         )

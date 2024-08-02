@@ -12,6 +12,12 @@ interface VisualizarPedidoProps {
   }
 }
 
+export type Historico = {
+  data: string,
+  status: string,
+  responsavel: string
+}
+
 export default function VisualizarPedido({ searchParams }: VisualizarPedidoProps) {
   const idPedido = searchParams.id;
 
@@ -24,7 +30,7 @@ export default function VisualizarPedido({ searchParams }: VisualizarPedidoProps
   // const historico = [
   //   {data: pedido.Dt_pedido, status: "Pedido criado", responsavel: pedido.Cliente}
   // ]
-  const [historico, setHistorico] = useState<Object[]>([{data: pegarDataAtual(), status: status[0], responsavel: pedido.Cliente}])
+  const [historico, setHistorico] = useState<Historico[]>([{data: pegarDataAtual(), status: status[0], responsavel: pedido.Cliente}])
 
   function pegarDataAtual() {
     let data = new Date()
@@ -105,7 +111,7 @@ export default function VisualizarPedido({ searchParams }: VisualizarPedidoProps
           <div className='flex flex-col sm:flex-row items-end gap-2 sm:gap-4 lg:w-[45%]'>
             <InputPreenchido titulo='Status' conteudo={(indexStatus >= status.length - 1 ? status[4] : status[indexStatus])} />
             <div className='w-full sm:w-2/5'>
-              <BotaoGrande onClick={() => atualizarStatus()} fontSize='text-sm' height='h-12' title='Próximo status' background={'bg-secundaria'} type={'button'} />
+              <BotaoGrande onClick={() => atualizarStatus()} size='h-12' title='Próximo status' background={'secundaria'} type={'button'} />
             </div>
           </div>
             <p className='text-roxo-select text-sm font-semibold'>Próximo status: <span className='font-normal'>{(indexStatus >= status.length - 1 ? "Não há mais status." : status[indexStatus + 1])}</span></p>

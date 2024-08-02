@@ -1,7 +1,7 @@
 'use client'
 import InputText from "../../InputText/InputText";
 import { useEffect, useState } from "react";
-import BotaoGrande from "@/components/BotaoGrande/BotaoGrande";
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import { Endereco, ViaCEP } from "@/types/usuarios";
 import { deletarEndereco, editarEnderecos } from "@/server/usuario/endereco";
 

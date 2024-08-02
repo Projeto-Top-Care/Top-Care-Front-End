@@ -29,6 +29,7 @@ export default function Carrinho() {
   useEffect(() => {
     const func = async () => {
       setCarrinho(getCarrinho())
+      console.log(getCarrinho())
       const idUser = getUserID()
       if (idUser) {
         const userTaked = await buscarUsuario(parseInt(idUser))
@@ -37,6 +38,7 @@ export default function Carrinho() {
         }
       }
     }
+    func()
   }, [])
 
   const produtos: Produto[] = carrinho.map((item) => {

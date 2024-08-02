@@ -5,6 +5,7 @@ import { buscarAgendamento } from '@/server/agendamentos/action';
 import { useState } from 'react';
 import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande';
 import HistoricoAtualizacaoStatus from '@/components/HistoricoAtualizacaoStatus/HistoricoAtualizacao';
+import { Historico } from '../visualizarPedido/page';
 
 interface VisualizarAgendamentoProps {
     searchParams: {
@@ -19,7 +20,7 @@ export default function VisualizarAgendamento({ searchParams }: VisualizarAgenda
 
     const status = ["Agendamento criado", "Pendente", "Aprovado", "Finalizado"]
 
-    const [historico, setHistorico] = useState<Object[]>([{ data: pegarDataAtual(), status: status[0], responsavel: agendamento.nomeCliente }])
+    const [historico, setHistorico] = useState<Historico[]>([{ data: pegarDataAtual(), status: status[0], responsavel: agendamento.nomeCliente }])
 
     const [indexStatus, setIndexStatus] = useState<number>(0)
 
@@ -64,7 +65,7 @@ export default function VisualizarAgendamento({ searchParams }: VisualizarAgenda
                 <div className='flex flex-col sm:flex-row items-end gap-4 lg:w-[45%]'>
                     <InputPreenchido titulo='Status' conteudo={(indexStatus >= status.length - 1 ? status[3] : status[indexStatus])} />
                     <div className='w-full sm:w-2/5'>
-                        <BotaoGrande onClick={() => atualizarStatus()} fontSize='text-sm' height='h-12' title='Próximo status' background={'bg-secundaria'} type={'button'} />
+                        <BotaoGrande onClick={() => atualizarStatus()} size='h-12' title='Próximo status' background={'secundaria'} type={'button'} />
                     </div>
                 </div>
                 <p className='text-roxo-select text-sm font-semibold'>Próximo status: <span className='font-normal'>{(indexStatus >= status.length - 1 ? "Não há mais status." : status[indexStatus + 1])}</span></p>

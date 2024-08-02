@@ -1,6 +1,6 @@
 import usuarios from '@/banco/usuarios.json'
 import { Usuario } from '@/types/usuarios';
-import { axiosAPI } from './api';
+import { axiosAPI } from '../api';
 
 export function buscarUsuarioEmail(email:string){
     let usuarioEncontrado;

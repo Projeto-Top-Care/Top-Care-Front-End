@@ -94,7 +94,7 @@ export default function assinaturaPlano() {
                             <p className="text-roxo-select text-sm">Li e aceito os termos e condições</p>
                         </div>
                     </div>
-                    <BotaoGrande onClick={() => termo ? push('./pagamentoBoleto') : alert("É necessário aceitar os termos!")} title="Assinar" background="bg-primaria" type="button" height="h-10" />
+                    <BotaoGrande onClick={() => termo ? push('./pagamentoBoleto') : alert("É necessário aceitar os termos!")} title="Assinar" background="primaria" type="button" size="h-10" />
                 </section>
             </section>
         </main>

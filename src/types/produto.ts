@@ -43,7 +43,7 @@ export interface Especificacao {
 }
 export interface AvaliacaoType {
     id: number
-    usuario: Usuario
+    usuario: UsuarioAvaliacao
     nota: number
     descricao: string
 }
@@ -53,5 +53,9 @@ export interface VarianteProps {
     estoque: number
     preco: number
     tipo: string
+}
 
+export interface UsuarioAvaliacao {
+    nome: string,
+    foto: string
 }

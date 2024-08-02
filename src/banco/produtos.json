@@ -101,7 +101,8 @@
     "avaliacoes": [
       {
         "id": 1,
-        "usuario": {
+        "usuario": 
+        {
           "nome": "Enzo",
           "foto": "./"
         },
@@ -218,6 +219,10 @@
       },
       {
         "id": 2,
+        "usuario": {
+          "nome": "Enzo",
+          "foto": "./"
+        },
         "nota": 4,
         "descricao": "Facilitou minha rotina diária."
       }
