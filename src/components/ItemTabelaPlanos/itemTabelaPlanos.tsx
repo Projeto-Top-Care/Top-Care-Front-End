@@ -79,7 +79,7 @@ const TabelaPlanos = ({ titulo, preco, item1, item2, item3, item4, item5, item6,
                     <p className="sm:hidden flex items-start text-start px-2 w-full font-poppins text-preto font-normal text-xs lg:text-sm">Plantão 24 horas</p>
                     <p className={`w-full bg-cinza-claro text-center h-12 lg:h-14 text-2xl lg:text-3xl flex sm:justify-center justify-end sm:pr-0 pr-2 items-center border-cinza-escuro ${item7 ? `text-[#6954C0]` : `text-cinza`}`}>{item7 ? <FaCheck /> : <IoClose />}</p>
                 </div>
-                <div className="text-preto w-[90%] bg-branco h-12 lg:h-14 flex justify-center items-center sm:rounded-none rounded-b-lg font-normal"><BotaoGrande title="Assinar" background="bg-primaria" type="button" onClick={() => { isLog ? push(`./pagamentoBoleto?p=${titulo}`) : push('/login')}} /></div>
+                <div className="text-preto w-[90%] bg-branco h-12 lg:h-14 flex justify-center items-center sm:rounded-none rounded-b-lg font-normal"><BotaoGrande title="Assinar" background="bg-primaria" type="button" onClick={() => { isLog ? push(`./assinaturaPlano`) : push('/login')}} /></div>
             </div>
         </div>
 
