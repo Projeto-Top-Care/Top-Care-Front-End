@@ -47,7 +47,6 @@ export default function Perfil() {
     const [nome, setNome] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [sexo, setSexo] = useState<string>("")
-    const [ddd, setDdd] = useState<string>('')
     const [numero, setNumero] = useState<string>('')
     const [dataNascimento, setDataNascimento] = useState<string>('')
     const [selecao, setSelecao] = useState<number>(0)
@@ -79,8 +78,7 @@ export default function Perfil() {
                 setNome(usuario.nome);
                 setEmail(usuario.email);
                 setSexo(usuario.sexo!.charAt(0) + usuario.sexo!.slice(1).toLowerCase());
-                setDdd(usuario.celular.substring(1, 3));
-                setNumero(usuario.celular.substring(5));
+                setNumero(usuario.celular);
                 setDataNascimento(formatarData(usuario.dataNascimento));
             }
         }
@@ -105,13 +103,13 @@ export default function Perfil() {
             const date = dataNascimento.split("/")
             const dateFormat = date[2] + "-" + date[1] + "-" + date[0]
 
-            e.append("celular", ("(" + ddd + ") " + numero))
+            e.append("celular", numero)
             e.append("sexo", sexo.replace(" ", "_").toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
             e.append("dataNascimento", dateFormat)
             const s = Object.fromEntries(e)
             const resp = await editarUsuario(s, usuarioLogado.id)
         }
-        if (nome === "" || email === "" || numero.length !== 10 || ddd.length !== 2 || dataNascimento.length !== 10) {
+        if (nome === "" || email === "" || numero.length !== 15 || dataNascimento.length !== 10) {
             addError("A edição não foi salva")
             setEdicao(true);
         } else {
@@ -202,26 +200,14 @@ export default function Perfil() {
                                 </div>
                                 <div className="w-full sm:w-56 flex flex-col gap-6 sm:pt-0 pt-6">
                                     <div className="flex flex-row justify-between">
-                                        <div className="w-14 lg:w-1/4">
-                                            <InputMaskEstatico
-                                                titulo='DDD'
-                                                info={ddd}
-                                                edition={edicao}
-                                                mask={'__'}
-                                                replacement={{ _: /\d/ }}
-                                                error={ddd.length !== 2}
-                                                onMasks={(e) => setDdd(e.target.value)}
-                                                message={'O ddd precisa ser válido'}
-                                            />
-                                        </div>
-                                        <div className="w-3/4 lg:w-[70%]">
+                                        <div className="w-full">
                                             <InputMaskEstatico
                                                 titulo="Celular"
                                                 info={numero}
                                                 edition={edicao}
-                                                mask={'_____-____'}
+                                                mask={'(__) _____-____'}
                                                 replacement={{ _: /\d/ }}
-                                                error={numero.length !== 10}
+                                                error={numero.length !== 15}
                                                 onMasks={(e) => setNumero(e.target.value)}
                                                 message={"O telefone precisa ser válido"} />
                                         </div>

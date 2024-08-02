@@ -35,7 +35,7 @@ export default function Select({ label, options, opcaoSelecionada, opcao, disabl
     return (
         <div ref={selectRef}>
             <p className={`md:text-base text-sm font-poppins text-preto ${bg ? "!block" : "!hidden"}`}>Sexo</p>
-            <div className={`cursor-pointer relative border border-cinza h-10 w-full rounded-lg flex items-center select-none ${open ? 'outline outline-[1.9px] outline-black' : 'outline-none '} ${bg ? `bg-branco ${disabled ? "border-none" : "border-primaria border-2"} h-11` :  ''}`} onClick={() => setOpen(disabled ? false : !open)}>
+            <div tabIndex={0} onFocus={()=>setOpen(true)} className={`cursor-pointer relative border border-cinza h-10 w-full rounded-lg flex items-center select-none ${open ? 'outline outline-[1.9px] outline-black' : 'outline-none '} ${bg ? `bg-branco ${disabled ? "border-none" : "border-primaria border-2"} h-11` :  ''}`} onClick={() => setOpen(disabled ? false : !open)}>
                 <div className="flex flex-row items-center justify-between w-[90%] m-auto">
                     <label htmlFor="" className={`${bg ? "!hidden" : "!flex"} font-poppins text-cinza-escuro md:text-sm text-xs absolute bg-branco px-1 pointer-events-none left-2 ${open || opcao ? 'md:-top-3 -top-2 left-1.5': ""}`}>{label}</label>
                     <p className="font-poppins text-cinza-escuro lg:text-sm text-xs">{opcao ? opcao : ""}</p>
