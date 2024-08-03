@@ -23,7 +23,7 @@ export default function MeusPets({ usuario, setOpenPet }: iPedidos) {
                         :
                         usuario.pets.map((pet, i) => (
                             <div key={i}>
-                                <CardPetPequeno fotoPet={"./assets/cachorro-perfil.png"} nomePet={pet.nome} racaPet={pet.raca} tipoAnimal={pet.especie.nome} porte={pet.porte} isSelected={true} />
+                                <CardPetPequeno noSelection pet={pet} />
                             </div>
                         ))}
             </section>
