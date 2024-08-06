@@ -5,7 +5,7 @@ import InputText from "../../InputText/InputText";
 import BotaoMedio from "../../Botoes/BotaoMedio/BotaoMedio";
 import { useEffect, useState } from "react";
 import { useUserID } from "@/context/UserIDContext";
-import { cadastrarPet } from "@/server/usuario/pet";
+import { cadastrarPet, editarPet } from "@/server/usuario/pet";
 import { useConfirmacao } from "@/context/confirmacaoContext";
 import { Pet } from "@/types/usuarios";
 
@@ -40,18 +40,16 @@ export default function CadastroPet({ setOpen, petEdit }: ICadastroPet) {
     const enviarDados = async () => {
         const dadosPet: any = {
             nome: nome,
+            idUsuario: id,
             idEspecie: animais.indexOf(pet) + 1,
             raca: raca,
             porte: porte.toUpperCase()
         }
         setOpen(false)
-        addConfirmacao(pet ? petEdit?.nome+" editado!" :"Pet cadastrado!")
+        addConfirmacao(petEdit ? petEdit?.nome+" editado!" :"Pet cadastrado!")
         if (petEdit) {
-            dadosPet['id'] = petEdit.id
-            console.log(dadosPet)
-            // const response = await editarPet(dadosPet)
+            const response = await editarPet(dadosPet, petEdit.id)
         } else {
-            dadosPet['idUsuario'] = id
             const response = await cadastrarPet(dadosPet)
         }
     }
@@ -72,7 +70,7 @@ export default function CadastroPet({ setOpen, petEdit }: ICadastroPet) {
                     <InputFile rounded="rounded-full" />
                 </div>
                 <div className="flex flex-col gap-4  lg:w-[35%] md:w-96 w-full">
-                    <InputText placeholder="Qual o nome do pet?" required type="text" onChange={(e) => setNome(e.target.value)} />
+                    <InputText placeholder="Qual o nome do pet?" required type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
                     <Select label="Qual o seu pet?" options={animais} opcaoSelecionada={setPet} opcao={pet} />
                 </div>
                 <div className="flex flex-col gap-4 lg:w-[35%] md:w-96 w-full">

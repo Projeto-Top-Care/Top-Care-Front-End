@@ -41,7 +41,7 @@ export default function Select({ label, options, opcaoSelecionada, opcao, disabl
             <p className={`md:text-base text-sm font-poppins text-preto ${bg ? "!block" : "!hidden"}`}>Sexo</p>
             <div
                 tabIndex={0}
-                onFocus={()=>setFocus(true)}
+                onFocus={()=>setFocus(disabled ? false:  true)}
                 onBlur={()=>setFocus(false)}
                 onClick={()=>setOpen(disabled ? false : !open)}
                 className={`${isErro && !open ? 'border-error': ''} cursor-pointer relative border border-cinza h-10 w-full rounded-lg flex items-center select-none ${open || focus ? 'outline outline-[1.9px] outline-preto' : 'outline-none '} ${bg ? `bg-branco ${disabled ? "border-none" : "border-primaria border-2"} h-11` :  ''}`}>
