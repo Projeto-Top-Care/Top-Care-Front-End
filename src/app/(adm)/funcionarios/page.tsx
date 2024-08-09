@@ -19,13 +19,13 @@ export default function VisualizarAgendamento({ searchParams }: VisualizarAgenda
     const [escolha, setEscolha] = useState<string>('');
 
     const funcionarios = [
-        { nome: "Victor Gabriel Micheluzzi", email: "victor@email.com", cadastro: "1", sexo: "masculino", cpf: "111.222.333-44" },
-        { nome: "João Victor Santana", email: "joao@email.com", cadastro: "2", sexo: "masculino", cpf: "111.222.333-44" },
-        { nome: "Carlos Eduardo Bolzanell dos Santos", email: "carlos@email.com", cadastro: "3", sexo: "masculino", cpf: "111.222.333-44" },
-        { nome: "Luana Becker", email: "luana@email.com", cadastro: "4", sexo: "feminino", cpf: "111.222.333-44" },
-        { nome: "Karoliny Daiana Cieply", email: "karoliny@email.com", cadastro: "5", sexo: "feminino", cpf: "111.222.333-44" },
-        { nome: "Romário Hornburg", email: "romario@email.com", cadastro: "6", sexo: "masculino", cpf: "111.222.333-44" },
-        { nome: "Kristian Erdmann", email: "krsitian@email.com", cadastro: "7", sexo: "masculino", cpf: "111.222.333-44" },
+        { nome: "Victor Gabriel Micheluzzi", email: "victor@email.com", cadastro: "1", cpf: "111.222.333-44" },
+        { nome: "João Victor Santana", email: "joao@email.com", cadastro: "2", cpf: "111.222.333-44" },
+        { nome: "Carlos Eduardo Bolzanell dos Santos", email: "carlos@email.com", cadastro: "3", cpf: "111.222.333-44" },
+        { nome: "Luana Becker", email: "luana@email.com", cadastro: "4", cpf: "111.222.333-44" },
+        { nome: "Karoliny Daiana Cieply", email: "karoliny@email.com", cadastro: "5", cpf: "111.222.333-44" },
+        { nome: "Romário Hornburg", email: "romario@email.com", cadastro: "6", cpf: "111.222.333-44" },
+        { nome: "Kristian Erdmann", email: "krsitian@email.com", cadastro: "7", cpf: "111.222.333-44" },
     ]
 
     const ordenarFuncionarios = (funcionarios: Object[]): Object[] => {
@@ -40,23 +40,10 @@ export default function VisualizarAgendamento({ searchParams }: VisualizarAgenda
         }
     }
 
-    const funcionariosPesquisa = funcionarios.filter((funcionario : Object) => 
-        funcionario.nome.includes(pesquisa) ||
-        funcionario.cadastro.includes(pesquisa) ||
-        funcionario.sexo.includes(pesquisa) ||
-        funcionario.cpf.includes(pesquisa))
-    
-//     const pedidosPesquisa : PedidoType[] = pedidosData.filter((pedido : PedidoType) =>
-//     pedido.Cod_pedido.includes(pesquisa) ||
-//     pedido.Dt_pedido.includes(pesquisa) ||
-//     pedido.Produto.includes(pesquisa) ||
-//     pedido.Cliente.includes(pesquisa) ||
-//     pedido.Destino.includes(pesquisa) ||
-//     pedido.Valor.toString().includes(pesquisa) ||
-//     pedido.Status.includes(pesquisa) ||
-//     pedido.Pagamento.includes(pesquisa)
-// );
-
+    const funcionariosPesquisa = funcionarios.filter((funcionario) =>
+        funcionario.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
+        funcionario.cadastro.toLowerCase().includes(pesquisa.toLowerCase())
+    );
     const funcionariosOrdenados: Object[] = ordenarFuncionarios(funcionariosPesquisa);
 
     return (
@@ -74,16 +61,21 @@ export default function VisualizarAgendamento({ searchParams }: VisualizarAgenda
                         value={pesquisa}
                         onChange={(e) => setPesquisa(e.target.value)}
                         className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
-                        placeholder="Pesquise nos funcionários" />
+                        placeholder="Pesquise pelo nome do funcionário" />
                 </div>
                 <div className='md:w-[18%] w-[38%]'>
                     <Select options={['Ordem alfabética', 'Cadastro crescente', 'Cadastro decrescente']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar por'} opcao={escolha} />
                 </div>
             </section>
-            <section className="w-[80%] m-auto gap-4 grid grid-cols-3 pt-12 pb-20">
+            <section className="w-[90%] lg:w-[80%] m-auto gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 sm:pt-12 pb-16 sm:pb-20">
                 {
                     funcionariosOrdenados.map((item, index) => (
-                        <CardFuncionario nome={item.nome} cadastro={item.cadastro} cpf={item.cpf} email={item.email} />
+                        <CardFuncionario key={index} foto="./assets/dognagrama.png" nome={item.nome} cadastro={item.cadastro} cpf={item.cpf} email={item.email} />
+                    ))
+                }
+                {
+                    funcionariosOrdenados.map((item, index) => (
+                        <CardFuncionario key={index} foto="./assets/lojaCorupa.png" nome={item.nome} cadastro={item.cadastro} cpf={item.cpf} email={item.email} />
                     ))
                 }
             </section>
