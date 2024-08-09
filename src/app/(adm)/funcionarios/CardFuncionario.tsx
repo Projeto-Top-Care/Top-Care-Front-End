@@ -1,7 +1,9 @@
+import { useRouter } from 'next/navigation'
 import React from 'react'
 import { IoIosLogOut } from 'react-icons/io'
 
 interface ICardFuncionario {
+    id: number
     foto: string
     nome: string
     cadastro: string
@@ -9,7 +11,10 @@ interface ICardFuncionario {
     email:string
 }
 
-export default function CardFuncionario({ foto, nome, cadastro, cpf, email }: ICardFuncionario) {
+export default function CardFuncionario({ id, foto, nome, cadastro, cpf, email }: ICardFuncionario) {
+
+    const router = useRouter()
+
     return (
         <div className="flex flex-row items-center border-preto border rounded-xl p-2 w-full relative gap-2">
             <div className="flex items-center sm:w-2/5 w-1/4 h-full">
@@ -21,7 +26,7 @@ export default function CardFuncionario({ foto, nome, cadastro, cpf, email }: IC
                 <p className='line-clamp-1 text-preto text-xs sm:text-sm'>{cpf}</p>
                 <p className='line-clamp-1 text-preto text-xs sm:text-sm'>{email}</p>
             </div>
-            <div className='bg-secundaria absolute -bottom-2 -right-2 rounded-full p-2 text-xl overflow-hidden'>
+            <div onClick={() => router.push(`./visualizarPerfilFuncionario?id=${id}`)} className='bg-secundaria absolute -bottom-2 -right-2 rounded-full p-2 text-xl overflow-hidden'>
                 <IoIosLogOut className='hover:scale-110 hover:translate-x-1 duration-100' />
             </div>
         </div>
