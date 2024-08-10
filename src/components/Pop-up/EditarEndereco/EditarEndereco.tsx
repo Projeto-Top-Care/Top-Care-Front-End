@@ -43,11 +43,10 @@ export default function EditarEndereco({ setOpen, endereco }: ICadastroEndereco)
     }
 
     const editEndereco = async (e: FormData) => {
-        e.append("id", endereco.id.toString())
         const objectEndereco = Object.fromEntries(e)
         console.log(objectEndereco)
 
-        const response = await editarEnderecos(objectEndereco)
+        await editarEnderecos(objectEndereco, endereco.id)
         addConfirmacao("Endereco editado!")
         setOpen(false)
     }

@@ -48,9 +48,10 @@ export default function CadastroPet({ setOpen, petEdit }: ICadastroPet) {
         setOpen(false)
         addConfirmacao(petEdit ? petEdit?.nome+" editado!" :"Pet cadastrado!")
         if (petEdit) {
-            const response = await editarPet(dadosPet, petEdit.id)
+            await editarPet(dadosPet, petEdit.id)
         } else {
-            const response = await cadastrarPet(dadosPet)
+            // await cadastrarPet(dadosPet)
+            console.log(dadosPet)
         }
     }
 

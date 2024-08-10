@@ -45,6 +45,7 @@ export default function Cadastro() {
             }
             setEndereco(consultarCEPConvert);
         } catch (erro) {
+            alert(erro)
             setEndereco(undefined)
         }
     }
