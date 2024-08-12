@@ -8,6 +8,7 @@ import { useUserID } from "@/context/UserIDContext";
 import { cadastrarPet, editarPet } from "@/server/usuario/pet";
 import { useConfirmacao } from "@/context/confirmacaoContext";
 import { Pet } from "@/types/usuarios";
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 
 const animais = ["Cachorro", "Gato", "Coelho", "Pássaro", "Hamster", "Peixe", "Tartaruga"]
 const racasCachorro = ["Afegão Hound", "Affenpinscher", "Airedale Terrier", "Akita", "American Staffordshire Terrier", "Basenji", "Basset Hound", "Beagle", "Beagle Harrier", "Bearded Collie", "Bedlington Terrier", "Bichon Frisé", "Bloodhound", "Bobtail", "Boiadeiro Australiano", "Boiadeiro Bernês", "Border Collie", "Border Terrier", "Borzoi", "Boston Terrier", "Boxer", "Buldogue Francês", "Buldogue Inglês", "Bull Terrier", "Bulmastife", "Cairn Terrier", "Cane Corso", "Cão de Água Português", "Cão de Crista Chinês", "Cavalier King Charles Spaniel", "Chesapeake Bay Retriever", "Chihuahua", "Chow Chow", "Cocker Spaniel Americano", "Cocker Spaniel Inglês", "Collie", "Coton de Tuléar", "Dachshund", "Dálmata", "Dandie Dinmont Terrier", "Dobermann", "Dogo Argentino", "Dogue Alemão", "Fila Brasileiro", "Fox Terrier", "Foxhound Inglês", "Galgo Escocês", "Galgo Irlandês", "Golden Retriever", "Grande Boiadeiro Suiço", "Greyhound", "Grifo da Bélgica", "Husky Siberiano", "Jack Russell Terrier", "King Charles", "Komondor", "Labradoodle", "Labrador Retriever", "Lakeland Terrier", "Leonberger", "Lhasa Apso", "Lulu da Pomerânia", "Malamute do Alasca", "Maltês", "Mastife", "Mastim Napolitano", "Mastim Tibetano", "Norfolk Terrier", "Norwich Terrier", "Papillon", "Pastor Alemão", "Pastor Australiano", "Pinscher Miniatura", "Poodle", "Pug", "Rottweiler", "Sem Raça Definida (SRD)", "ShihTzu", "Silky Terrier", "Skye Terrier", "Staffordshire Bull Terrier", "Terra Nova", "Terrier Escocês", "Tosa", "Weimaraner", "Welsh Corgi (Cardigan)", "Welsh Corgi (Pembroke)", "West Highland White Terrier", "Whippet", "Xoloitzcuintli", "Yorkshire Terrier"]
@@ -46,11 +47,11 @@ export default function CadastroPet({ setOpen, petEdit }: ICadastroPet) {
             porte: porte.toUpperCase()
         }
         setOpen(false)
-        addConfirmacao(petEdit ? petEdit?.nome+" editado!" :"Pet cadastrado!")
+        addConfirmacao(petEdit ? petEdit?.nome + " editado!" : "Pet cadastrado!")
         if (petEdit) {
             await editarPet(dadosPet, petEdit.id)
         } else {
-            // await cadastrarPet(dadosPet)
+            await cadastrarPet(dadosPet)
             console.log(dadosPet)
         }
     }
@@ -79,7 +80,10 @@ export default function CadastroPet({ setOpen, petEdit }: ICadastroPet) {
                     <Select label="Qual o porte do pet?" options={portes} opcaoSelecionada={setPorte} opcao={porte} />
                 </div>
             </div>
-            <div className="w-full flex justify-center mb-4 mt-4">
+            <div className="w-full flex justify-center mb-4 mt-4 gap-14">
+                <div className={`w-36 ${petEdit ? 'block' : 'hidden'}`}>
+                    <BotaoGrande background="cancelar" title="Excluir" size="h-10"/>
+                </div>
                 <BotaoMedio title={petEdit ? "Editar" : "Cadastrar"} onClick={enviarDados} />
             </div>
         </div>
