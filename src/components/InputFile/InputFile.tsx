@@ -6,10 +6,11 @@ import { PiPen } from "react-icons/pi";
 
 interface IInputFile {
     rounded: string,
+    fileGetted?: string
 }
 
-export default function InputFile({ rounded }: IInputFile) {
-    const [file, setFile] = useState("");
+export default function InputFile({ rounded, fileGetted }: IInputFile) {
+    const [file, setFile] = useState(fileGetted);
 
     const onDrop = useCallback((files: any) => {
         const filePego = files[0];

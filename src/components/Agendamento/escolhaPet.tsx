@@ -55,16 +55,12 @@ export default function EscolhaPet({ setPetEscolhido }: IPet) {
                     </div> :
                     <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:mb-8'>
                         {
-                            usuarioLogado.pets.map((pets, i) => (
+                            usuarioLogado.pets.map((pet, i) => (
                                 <div key={i}>
                                     <CardPetPequeno
-                                        fotoPet={"./assets/cachorro-perfil.png"}
-                                        porte={pets.porte}
-                                        nomePet={pets.nome}
-                                        racaPet={pets.raca}
-                                        tipoAnimal={pets.especie.nome}
-                                        isSelected={selectedPet === pets}
-                                        onSelect={() => handleSelectPet(pets)}
+                                        pet={pet}
+                                        isSelected={selectedPet === pet}
+                                        onSelect={() => handleSelectPet(pet)}
                                     />
                                 </div>
                             ))

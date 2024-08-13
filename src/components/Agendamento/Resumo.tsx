@@ -38,6 +38,7 @@ const Resumo = ({ pet, local, servico, data, hora, profissional, setMetodoPagame
                 setUsuario(usuarioGetted)
             }
         }
+        getUser()
     }, [])
 
     const showError = () => {

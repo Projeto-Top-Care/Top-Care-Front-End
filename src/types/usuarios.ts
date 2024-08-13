@@ -22,6 +22,8 @@ export interface Usuario {
 }
 
 export interface Pet {
+    id: number
+    foto: string
     nome: string
     especie: Especie
     raca: string

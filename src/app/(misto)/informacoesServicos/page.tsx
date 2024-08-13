@@ -18,13 +18,16 @@ export default function informacoesServicos() {
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
 
     useEffect(() => {
-        const id = getUserID()
-        if (id) {
-            const user: Usuario = buscarUsuario(parseInt(id))!
-            if (user.role == 'admin') {
-                setIsAdmin(true)
+        const func = async () => {
+            const id = getUserID()
+            if (id) {
+                const user: Usuario = await buscarUsuario(parseInt(id))!
+                if (user.role == 'admin') {
+                    setIsAdmin(true)
+                }
             }
         }
+        func()
     }, [])
 
     const [servicosArray, setServicosArray] = useState<Servico[]>(servicos)
@@ -32,34 +35,34 @@ export default function informacoesServicos() {
     const [filtro, setFiltro] = useState("Todos")
     const [search, setSearch] = useState<string>('')
 
-    const filtrarServicos = () =>{
-        if(filtro != "Todos"){
-            const servicosFiltrados = servicos.filter((filter)=>{
+    const filtrarServicos = () => {
+        if (filtro != "Todos") {
+            const servicosFiltrados = servicos.filter((filter) => {
                 return filter.categoria == filtro
             })
-    
+
             setServicosArray(servicosFiltrados)
             return
         }
         setServicosArray(servicos)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         filtrarServicos()
     }, [filtro])
 
-    const searchService = () =>{
-        const arraySearched = servicos.filter((filtred)=>{
+    const searchService = () => {
+        const arraySearched = servicos.filter((filtred) => {
             return filtred.nome.toLowerCase().includes(search.toLowerCase())
         })
 
         setServicosArray(arraySearched)
     }
 
-    useEffect(()=>{
-        if(search != ""){
+    useEffect(() => {
+        if (search != "") {
             searchService()
-        }else{
+        } else {
             setServicosArray(servicos)
         }
     }, [search])
