@@ -5,6 +5,7 @@ import Select from '../Select/Select'
 import { animais } from '@/utils/pets'
 import { buscarEspecies } from '@/server/especie/especie';
 import { buscarFuncionarios } from '@/server/usuario/funcionario';
+import { set } from 'zod';
 
 interface selecaoInput {
   id: number,
@@ -28,11 +29,11 @@ export default function InputSelect({ type }: InputSelectProps) {
 
   useEffect(() => {
     const func = async () => {
-      let opcoes
+      let opcoes = []
       if (type == "Animais") {
         opcoes = await buscarEspecies()
       } else {
-        opcoes = await buscarFuncionarios()
+        opcoes = await buscarFuncionarios() || []
       }
       setSelecaoPadrao(opcoes)
       setNaoSelecionados(opcoes)
@@ -51,8 +52,7 @@ export default function InputSelect({ type }: InputSelectProps) {
       if (selecao != "") {
 
         let selecionado: selecaoInput = {} as selecaoInput;
-        console.log(selecaoPadrao)
-        console.log(naoSelecionados)
+
         naoSelecionados.forEach((selec) => {
           if (selec.nome == selecao) {
             selecionado = selec
@@ -64,10 +64,18 @@ export default function InputSelect({ type }: InputSelectProps) {
           return selec.nome != selecao
         })
         setNaoSelecionados(selecaosRemovido)
+        setarOpcoes(selecaosRemovido)
       }
     }
 
   }, [selecao])
+
+  const setarOpcoes = (lista: selecaoInput[]) => {
+    let opcao = lista.map((opcao) => {
+      return opcao.nome
+    })
+    setOpcoes(opcao)
+  }
 
   const removerSelecionado = (nome: string) => {
     let selecaosRemovido = [...selecionados].filter((animal) => {
@@ -91,6 +99,7 @@ export default function InputSelect({ type }: InputSelectProps) {
       }
     })
     setNaoSelecionados(newAnimais)
+    setarOpcoes(newAnimais)
 
   }
 
