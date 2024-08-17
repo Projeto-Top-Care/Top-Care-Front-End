@@ -7,9 +7,13 @@ import CarrosselProduto from "@/components/CarrosselProduto/Carrossel"
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao"
 import PropagandaPlano from "@/components/PropagandaPlano/propagandaPlano"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
+import { useUserID } from "@/context/UserIDContext"
 import { buscarTodos } from "@/server/produtos/action"
+import { buscarUsuario } from "@/server/usuario/action"
+import { Usuario } from "@/types/usuarios"
 import { EmblaOptionsType } from "embla-carousel"
 import { useRouter } from "next/navigation";
+import { useEffect } from "react"
 
 const carrosselProdutos = buscarTodos().map((produto, i) => (<CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
     precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />))
@@ -20,6 +24,21 @@ export default function PaginaInicial() {
     const OPTIONS: EmblaOptionsType = { loop: true }
 
     const { push } = useRouter();
+    const {getUserID} = useUserID()
+
+    useEffect(()=>{
+        const func = async () =>{
+            const id = getUserID()
+            if(id){
+                const user: Usuario = await buscarUsuario(parseInt(id)) 
+                if(user.role = "ADMIN"){
+                    push("/dashboard")
+                }
+                push("/")
+            }
+        }
+        func()
+    },[])
 
     return (
         <main className="bg-branco">

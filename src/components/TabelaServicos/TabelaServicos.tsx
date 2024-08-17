@@ -7,6 +7,7 @@ import InputText from '../InputText/InputText'
 import CadastroVariante from '../Pop-up/CadastroVariante/CadastroVariante'
 import TextArea from '../TextArea/TextArea'
 import { FiPlus } from "react-icons/fi";
+import InputSelect from '../InputSelect/InputSelect'
 
 interface TabelaServicosProps {
     servico?: Servico
@@ -37,14 +38,11 @@ export default function TabelaServicos({ servico }: TabelaServicosProps) {
                                 />
                             </div>
                             <div>
-                                <InputText
-                                    placeholder='Pet(s)*'
-                                    value={servico?.nome}
-                                />
+                                <InputSelect type='Animais' />
                             </div>
                         </div>
                     </div>
-                    <div className='mt-8'>
+                    <div className='mt-4'>
                         <TextArea
                             placeholder='Descrição'
                             height='h-32'
@@ -54,7 +52,7 @@ export default function TabelaServicos({ servico }: TabelaServicosProps) {
                     <div className='flex flex-row mt-8 mb-8'>
                         <div className='flex flex-col items-center w-full'>
                             <div className='w-full'>
-                                <InputText placeholder='Profissionais' />
+                                <InputSelect type='Profissionais' />
                             </div>
                         </div>
                     </div>
