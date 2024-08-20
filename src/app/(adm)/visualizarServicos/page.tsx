@@ -11,21 +11,26 @@ import { Usuario } from '@/types/usuarios'
 export default function VisualizarServicos() {
 
   const { getUserID } = useUserID()
-    const [isAdmin, setIsAdmin] = useState<boolean>(false)
+  const [isAdmin, setIsAdmin] = useState<boolean>(false)
 
-    useEffect(() => {
-        const id = getUserID()
-        if (id) {
-            const user: Usuario = buscarUsuario(parseInt(id))!
-            if (user.role == 'admin') {
-                setIsAdmin(true)
-            }
+  useEffect(() => {
+    const func = async () => {
+      const id = getUserID()
+      console.log(id)
+      if (id) {
+        const user: Usuario = await buscarUsuario(parseInt(id))!
+        if (user.role == 'ADMIN') {
+          console.log(user)
+          setIsAdmin(true)
         }
-    }, [])
+      }
+    }
+    func()
+  }, [])
 
   return (
     <main>
-{/*       
+      {/*       
       <section className='text-preto'>
         <TituloLinha titulo='Serviços' voltar={false}/>
       </section>
@@ -45,7 +50,7 @@ export default function VisualizarServicos() {
         </div>
       </section>*/}
 
-      <PaginaServicos isAdmin={isAdmin}/>
-    </main> 
+      <PaginaServicos isAdmin={isAdmin} />
+    </main>
   )
 }

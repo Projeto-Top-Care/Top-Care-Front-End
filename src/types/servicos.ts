@@ -2,9 +2,9 @@ export interface Servico{
     id: number,
     nome: string,
     categoria?: string,
-    precoInicial: number,
     imagem: string,
     descricao: string,
+    funcionarios: FuncionariosProps[],
     pets: PetsProps[]
     variantes: VariantesProps[]
 }
@@ -17,6 +17,10 @@ export interface VariantesProps{
 }
 
 export interface PetsProps{
-    check: boolean
+    id: number
+    name: string
+}
+export interface FuncionariosProps{
+    id: number
     name: string
 }

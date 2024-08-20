@@ -2,13 +2,13 @@
 import VarianteServico from '@/app/(adm)/cadastrarServico/VarianteServico'
 import { Servico, VariantesProps } from '@/types/servicos'
 import React, { useState } from 'react'
-import BotaoGrande from '../Botoes/BotaoGrande/BotaoGrande'
-import Checkbox from '../Checkbox/Checkbox'
 import InputFile from '../InputFile/InputFile'
 import InputText from '../InputText/InputText'
 import CadastroVariante from '../Pop-up/CadastroVariante/CadastroVariante'
 import TextArea from '../TextArea/TextArea'
 import { FiPlus } from "react-icons/fi";
+import InputSelect from '../InputSelect/InputSelect'
+import Select from '../Select/Select'
 
 interface TabelaServicosProps {
     servico?: Servico
@@ -17,6 +17,7 @@ interface TabelaServicosProps {
 export default function TabelaServicos({ servico }: TabelaServicosProps) {
     const [openVariante, setOpenVariante] = useState<boolean>(false)
     const [variantes, setVariantes] = useState<VariantesProps[]>(servico ? servico.variantes : [])
+    const [categoria, setCategoria] = useState<string>('');
 
     return (
         <section className='border border-cinza-escuro rounded-xl h-full flex flex-col sm:flex-row'>
@@ -39,24 +40,30 @@ export default function TabelaServicos({ servico }: TabelaServicosProps) {
                                 />
                             </div>
                             <div>
-                                <InputText
-                                    placeholder='Pet(s)*'
-                                    value={servico?.nome}
-                                />
+                                <InputSelect type='Animais' />
                             </div>
                         </div>
                     </div>
-                    <div className='mt-8'>
+                    <div className='mt-4'>
                         <TextArea
                             placeholder='Descrição'
                             height='h-32'
                             value={servico?.descricao}
                         />
                     </div>
-                    <div className='flex flex-row mt-8 mb-8'>
+                    <div className='mt-5'>
+                        <Select 
+                            label='Categoria' 
+                            opcao={categoria}
+                            opcaoSelecionada={setCategoria}
+                            options={['Bem Estar', 'Saúde']}
+                            name='categoria'              
+                        />
+                    </div>
+                    <div className='flex flex-row mt-5 mb-8'>
                         <div className='flex flex-col items-center w-full'>
                             <div className='w-full'>
-                                <InputText placeholder='Profissionais' />
+                                <InputSelect type='Profissionais' />
                             </div>
                         </div>
                     </div>

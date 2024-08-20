@@ -3,7 +3,7 @@ import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande'
 import InputText from '@/components/InputText/InputText'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { useRouter } from 'next/navigation'
-import {login } from '@/server/usuario/action'
+import { login } from '@/server/usuario/action'
 import React from 'react'
 import Erro from '@/components/Pop-up/Erro/Erro'
 import { useError } from '@/context/ErrorContext'
@@ -14,28 +14,33 @@ import Confirmacao from '@/components/Pop-up/Confirmacao/Confirmacao'
 export default function Login() {
     const router = useRouter();
     const { addError } = useError();
-    const {addConfirmacao} = useConfirmacao()
+    const { addConfirmacao } = useConfirmacao()
     const { setUserId } = useUserID()
 
     const verificarLogin = async (e: FormData) => {
         const loginObject = Object.fromEntries(e)
-        
-        try {
-            const authLogin = await login(loginObject)
-            if (authLogin) {
-                router.replace("/")
-                setUserId(authLogin.id)
-                addConfirmacao("Login efetuado com sucesso!")
+        const authLogin = await login(loginObject)
+
+        if (authLogin) {
+            
+            setUserId(authLogin.id)
+            addConfirmacao("Login efetuado com sucesso!")
+            if(authLogin.role == "ADMIN"){
+                router.push("/dashboard")
+            }else{
+                router.push("/")
             }
-        } catch (error) {
+        }
+        else {
             addError("Credenciais inválidas")
         }
     }
 
+
     return (
         <main className='bg-branco flex flex-col gap-12'>
             <Erro />
-            <Confirmacao/>
+            <Confirmacao />
             <section className=''>
                 <TituloLinha voltar={true} titulo='Login' />
             </section>

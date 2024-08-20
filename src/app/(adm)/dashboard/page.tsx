@@ -6,10 +6,12 @@ import { Chart } from "react-google-charts";
 import { dataDaysAndSells , configurationsBar } from "@/utils/dataChartBar"
 import { dataSellsForDay, configurationsLine} from "@/utils/dataChartLine"
 import { dataCategoriesSoldPerMonth, dataMethodsUsedPerUser, configurationsPie} from "@/utils/dataChartPie"
+import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 
 const Dashboard = () => {
     return (
         <main className="text-preto">
+            <Confirmacao/>
             <section className="">
                 <TituloLinha titulo="Dashboard" voltar={false} />
             </section>
