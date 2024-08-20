@@ -5,6 +5,8 @@ import TextArea from "../TextArea/TextArea";
 import Select from "../Select/Select";
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
+import { cadastroProduto } from '@/server/usuario/action';
+import BotaoGrande from '../Botoes/BotaoGrande/BotaoGrande';
 
 interface TabelaProdutosProps {
     produtos?: ProdutoCompleto
@@ -17,26 +19,48 @@ export default function TabelaProdutos({ produto, produtos }: TabelaProdutosProp
     const [marca, setMarca] = useState("");
     const [quantidadeFotos, setQuantidadeFotos] = useState<number[]>([])
 
+    const enviarDados = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+        
+        const dados = Object.fromEntries(formData.entries());
+        
+        try {
+            const response = await cadastroProduto(dados);
+            console.log(response);
+        } catch (error) {
+            console.error("Erro ao cadastrar produto:", error);
+        }
+    }
+
     return (
         <section className='border border-cinza-escuro rounded-xl h-full flex flex-col lg:flex-row w-full'>
             <section className='border-b border-b-cinza-escuro px-4 md:px-8 lg:border-b-0 lg:border-r border-r-cinza-escuro lg:w-[50%] '>
                 <div className='flex justify-center lg:block pt-6'>
                     <p className='font-averia text-xl font-extrabold md:text-2xl'>Informações básicas</p>
                 </div>
-                <form action="">
+                <form onSubmit={enviarDados}>
                     <div className=" mt-5" >
-                        <InputText placeholder='Nome do produto*' value={produtos?.nomeProduto} required />
+                        <InputText placeholder='Nome do produto*' name='nome' required />
                     </div>
                     <div className='mt-5'>
                         <div className='w-full'>
-                            <InputText placeholder="Código*" value={produtos?.codigo} required />
+                            <InputText placeholder="Código*" name='codigo' required />
                         </div>
                     </div>
                     <div className='mt-5'>
-                        <Select label="Marca" options={marcas} opcaoSelecionada={setMarca} opcao={marca} />
+                        <Select label="Marca" options={marcas} opcaoSelecionada={setMarca} opcao={marca} name='marca' />
                     </div>
                     <div className='mt-5 h-32 mb-8'>
-                        <TextArea placeholder='Descrição' value={produtos?.descricao} />
+                        <TextArea placeholder='Descrição' name='descricao' />
+                    </div>
+                    <div className='md:w-[25%] lg:w-[15%] w-[90%]'>
+                        <BotaoGrande
+                            background="terciaria"
+                            title='Cadastrar'
+                            type={'submit'}
+                        />
                     </div>
                 </form>
             </section>
