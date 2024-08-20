@@ -1,24 +1,6 @@
-import servicos from '@/banco/servicos.json'
-import { VariantesProps, Servico } from '@/types/servicos'
+import { axiosAPI } from "../api";
 
-export function buscarServico(id: number) {
-    let servicoEncontrado: Servico | undefined = undefined
-    servicos.forEach((servico) => {
-        if (servico.id == id) {
-            servicoEncontrado = servico;
-        }
-    })
-    if (servicoEncontrado) return servicoEncontrado as Servico
-}
-
-export function buscarServicos(){
-    return servicos
-}
-
-export function buscarPrecos(id: number) {
-    const servico = buscarServico(id)
-    if (servico) {
-        const precos: VariantesProps[] = servico.variantes
-        return precos
-    }
+export async function getServicos() {
+    const response = await axiosAPI.get('/servicos');
+    return response.data;
 }
