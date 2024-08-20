@@ -41,7 +41,7 @@ const CardAgendamento = ({ nomePet, servico, data, hora, profissional, valor, lo
             )}
             <div className="flex flex-col items-center justify-center rounded-lg border bg-branco border-cinza font-poppins">
                 <div className="p-4 flex flex-col justify-start gap-5 font-poppins md:w-96 w-72">
-                    <div className="flex justify-between items-center' gap-12">
+                    <div className="flex justify-between items-center' gap-12 mb-4">
                         <p className="md:text-lg text-sm w-full">{servico}</p>
                         <div className="w-full flex justify-end mr-2">
                             <img src="./assets/Sair.svg" className="md:w-8 w-6 cursor-pointer" onClick={() => setOpen(false)} />

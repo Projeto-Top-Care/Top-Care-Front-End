@@ -13,7 +13,7 @@ const AgendamentoMarcado = ({ fotoPet, nomePet, data, hora }: agendamentotype) =
     const [openInformacoes, setOpenInformacoes] = useState<boolean>(false);
 
     return (
-        <div className='mt-12 mb-12 flex justify-center items-center'>
+        <div className=''>
             <div className="rounded-lg border-cinza-claro border-2">
                 <div className="flex gap-4 p-4 md:w-80 w-full" onClick={() => setOpenInformacoes(true)}>
                     <div className='md:w-14 w-12 flex justify-center items-center'>
