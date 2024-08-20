@@ -3,16 +3,9 @@ import { useRouter } from "next/navigation"
 import BarraPesquisa from "../BarraPesquisa/BarraPesquisa";
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
-import { FaBook, FaPhone, FaQuestion, FaRegHeart } from "react-icons/fa";
-import { FaUserCircle } from "react-icons/fa";
-import { FiShoppingBag } from "react-icons/fi";
-import { PiBoneFill } from "react-icons/pi";
-import { FaStore } from "react-icons/fa";
 
 import { useEffect, useRef, useState } from "react";
 import { useUserID } from "@/context/UserIDContext";
-import { FaStethoscope } from "react-icons/fa6";
-import { BsClipboard2Heart } from "react-icons/bs";
 import BotaoGrande from "../Botoes/BotaoGrande/BotaoGrande";
 
 export default function HeaderAdm() {
@@ -86,11 +79,12 @@ export default function HeaderAdm() {
 
             <div className="bg-terciaria flex max-sm:hidden flex-row justify-center">
                 <div className="font-poppins flex flex-row justify-between md:gap-20 gap-2 py-3">
-                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./dashboard")}>Dashboard</div>
-                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/visualizarProdutos")}>Produtos</div>
-                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/agendamentos")}>Agendamentos</div>
-                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/pedidos")}>Pedidos</div>
-                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./visualizarServicos")}>Serviços</div>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./dashboard")}>Dashboard</p>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./funcionarios")}>Funcionários</p>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/visualizarProdutos")}>Produtos</p>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/agendamentos")}>Agendamentos</p>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/pedidos")}>Pedidos</p>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./visualizarServicos")}>Serviços</p>
                 </div>
             </div>
             {
@@ -113,6 +107,7 @@ export default function HeaderAdm() {
 
                                 <div className="flex flex-col w-full">
                                     <a onClick={() => handleLinkClick('/dashboard')} className="hover:underline text-roxo-select font-medium text-sm">Dashboard</a>
+                                    <a onClick={() => handleLinkClick('/funcionarios')} className="hover:underline text-roxo-select font-medium text-sm">Funcionários</a>
                                     <a onClick={() => handleLinkClick('/visualizarProdutos')} className="hover:underline text-roxo-select font-medium text-sm">Produtos</a>
                                     <a onClick={() => handleLinkClick('/agendamentos')} className="hover:underline text-roxo-select font-medium text-sm">Agendamentos</a>
                                     <a onClick={() => handleLinkClick('/pedidos')} className="hover:underline text-roxo-select font-medium text-sm">Pedidos</a>
