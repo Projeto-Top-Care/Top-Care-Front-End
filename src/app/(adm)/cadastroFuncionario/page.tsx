@@ -8,6 +8,7 @@ import CadastroPet from '@/components/Pop-up/CadastroPet/CadastroPet'
 import Erro from '@/components/Pop-up/Erro/Erro'
 import ResponsiveInput from '@/components/ResponsiveInput'
 import Select from '@/components/Select/Select'
+import { cadastroFuncionario } from '@/server/usuario/funcionario'
 import { ViaCEP } from '@/types/usuarios'
 import React, { useState } from 'react'
 
@@ -43,12 +44,38 @@ const siglasEstados = [
 
 export default function CadastroFuncionario() {
 
+    //    const funcionarioss = buscarFuncionarios()
+    // console.log(funcionarioss)
+
+    const andressa = {
+        "nome": "Andressa Oliveira dos Anjos",
+        "role": "FUNCIONARIO",
+        "email": "andree@email.com",
+        "celular": "(47)99999-9999",
+        "cpf": "111.222.333-44",
+        "dataNascimento": "2002-12-12",
+        "sexo": "FEMININO",
+        "senha": "senha",
+        "idFilial": 2
+    }
+    const funcionario = {
+        "nome": "",
+        "role": "FUNCIONARIO",
+        "email": "",
+        "celular": "(47)99999-9999",
+        "cpf": "",
+        "dataNascimento": "",
+        "sexo": "",
+        "senha": "",
+        "idFilial": 2
+    }
+
     const [nome, setNome] = useState<string>("")
     const [dataNascimento, setDataNascimento] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [cpf, setCpf] = useState<string>('')
     const [sexo, setSexo] = useState<string>('');
-    const [senha, setSenha] = useState("");
+    const [senha, setSenha] = useState<string>("");
     const [filial, setFilial] = useState<string>('');
     const [codigo, setCodigo] = useState<string>('');
 
@@ -62,8 +89,21 @@ export default function CadastroFuncionario() {
 
 
     const enviarDados = () => {
-        if (nome == '' || dataNascimento == "" || email == "" || sexo == "" || cpf == "" || senha == "")
+        if (nome == '' || dataNascimento == "" || email == "" || sexo == "" || cpf == "" || senha == ""){
             setErro(true)
+        }
+        const funcionarioNovo = {
+            "nome": nome,
+            "role": "FUNCIONARIO",
+            "email": email,
+            "celular": "(47)99999-9999",
+            "cpf": cpf,
+            "dataNascimento": dataNascimento,
+            "sexo": "FEMININO",
+            "senha": senha,
+            "idFilial": 2
+        }
+        cadastroFuncionario(funcionarioNovo)
     }
 
     return (
@@ -153,17 +193,17 @@ export default function CadastroFuncionario() {
                     </MoldeInput>
                     <MoldeInput>
                         <ResponsiveInput size='w-72'>
-                            <div className='flex'>
+                            <div className='flex justify-between'>
                                 <InputText
                                     placeholder='Senha*'
                                     type={'password'}
                                     value={senha}
                                     onChange={(e) => setSenha(e.target.value)}
-                                    erro={erro}
-                                    erroMessage={"Senha fora dos padrões"}
+                                    // erro={erro}
+                                    // erroMessage={"Senha fora dos padrões"}
                                 />
                                 <div className='m-auto w-20'>
-                                    <BotaoGrande title={'Gerar'} background={'bg-primaria'} type={'button'} onClick={gerarSenha}/>
+                                    <BotaoGrande title={'Gerar'} size={'h-10 w-full'} background={'primaria'} type={'button'} onClick={gerarSenha}/>
                                 </div>
                             </div>
 
@@ -183,7 +223,7 @@ export default function CadastroFuncionario() {
             </section>
             <section className='mb-24 mt-12'>
                 <div className='w-[21%] m-auto'>
-                    <BotaoGrande title='Criar funcionário' background='bg-secundaria' type={'button'} />
+                    <BotaoGrande onClick={() => enviarDados()} title='Criar funcionário' size='p-2' background='secundaria' type={'button'} />
                 </div>
             </section>
         </main>

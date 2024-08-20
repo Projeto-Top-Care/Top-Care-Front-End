@@ -6,6 +6,9 @@ import { FaSearch } from "react-icons/fa"
 import { useState } from "react"
 import Select from "@/components/Select/Select"
 import CardFuncionario from "./CardFuncionario"
+import { buscarFuncionarios, cadastroFuncionario } from "@/server/usuario/funcionario"
+import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
+import { useRouter } from "next/navigation"
 
 interface VisualizarAgendamentoProps {
     searchParams: {
@@ -17,6 +20,8 @@ export default function VisualizarAgendamento({ searchParams }: VisualizarAgenda
 
     const [pesquisa, setPesquisa] = useState<string>('')
     const [escolha, setEscolha] = useState<string>('');
+
+    const router = useRouter();
 
     const funcionarios = [
         { id: 1, nome: "Victor Gabriel Micheluzzi", email: "victor@email.com", cadastro: "1", cpf: "111.222.333-44" },
@@ -62,6 +67,9 @@ export default function VisualizarAgendamento({ searchParams }: VisualizarAgenda
                         onChange={(e) => setPesquisa(e.target.value)}
                         className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
                         placeholder="Pesquise pelo nome do funcionário" />
+                </div>
+                <div className="">
+                    <BotaoGrande onClick={() => router.push('/cadastroFuncionario')} size="text-sm h-full w-full px-4" title={"Adicionar funcionário"} background={"secundaria"} />
                 </div>
                 <div className='md:w-[18%] w-[38%]'>
                     <Select options={['Ordem alfabética', 'Cadastro crescente', 'Cadastro decrescente']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar por'} opcao={escolha} />
