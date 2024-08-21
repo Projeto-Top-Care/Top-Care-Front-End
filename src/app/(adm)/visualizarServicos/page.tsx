@@ -1,8 +1,5 @@
 'use client'
-import { buscarServicos } from '@/server/servicos/action'
-import { Servico } from '@/types/servicos'
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import PaginaServicos from '@/components/PaginaServicos/PaginaServicos'
 import { useUserID } from '@/context/UserIDContext'
 import { buscarUsuario } from '@/server/usuario/action'

@@ -16,7 +16,7 @@ export default function VarianteServico({ variante, tipo, preco }: VarianteServi
         </div>
         <div className='flex flex-col text-sm gap-2 justify-start '>
             <div className='flex gap-1'>
-                <p><span className='font-bold'>Variação: </span> {tipo}</p>
+                <p><span className='font-bold'>Nome: </span> {variante}</p>
             </div>
             <div className='flex gap-1'>
                 <p><span className='font-bold'>Preço: </span>{preco.toFixed(2).replace(".",",")}</p>

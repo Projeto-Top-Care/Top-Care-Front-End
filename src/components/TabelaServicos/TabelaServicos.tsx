@@ -1,7 +1,7 @@
 'use client'
 import VarianteServico from '@/app/(adm)/cadastrarServico/VarianteServico'
-import { Servico, VariantesProps } from '@/types/servicos'
-import React, { useState } from 'react'
+import { PetsProps, Servico, VariantesProps } from '@/types/servicos'
+import React, { useEffect, useState } from 'react'
 import InputFile from '../InputFile/InputFile'
 import InputText from '../InputText/InputText'
 import CadastroVariante from '../Pop-up/CadastroVariante/CadastroVariante'
@@ -9,15 +9,35 @@ import TextArea from '../TextArea/TextArea'
 import { FiPlus } from "react-icons/fi";
 import InputSelect from '../InputSelect/InputSelect'
 import Select from '../Select/Select'
+import { set } from 'zod'
+import { getServico } from '@/server/servicos/action'
 
 interface TabelaServicosProps {
-    servico?: Servico
+    servicoID?: string
 }
 
-export default function TabelaServicos({ servico }: TabelaServicosProps) {
+export default function TabelaServicos({ servicoID }: TabelaServicosProps) {
     const [openVariante, setOpenVariante] = useState<boolean>(false)
-    const [variantes, setVariantes] = useState<VariantesProps[]>(servico ? servico.variantes : [])
+    const [servico, setServico] = useState<Servico>()
+
+    const [variantes, setVariantes] = useState<VariantesProps[]>([])
     const [categoria, setCategoria] = useState<string>('');
+
+
+    useEffect(()=>{
+        const func = async () =>{
+            const id = servicoID
+            if(id){
+                const servicoFetch = await getServico(servicoID)
+                setServico(servicoFetch)
+                setCategoria(servicoFetch.categoria)
+                setVariantes(servicoFetch.variantes)
+            }
+        }   
+        func()
+    },[])
+
+
 
     return (
         <section className='border border-cinza-escuro rounded-xl h-full flex flex-col sm:flex-row'>
@@ -40,7 +60,9 @@ export default function TabelaServicos({ servico }: TabelaServicosProps) {
                                 />
                             </div>
                             <div>
-                                <InputSelect type='Animais' />
+                                {servico && 
+                                    <InputSelect type='Animais' jaSelecionados={servico.especies} />
+                                }
                             </div>
                         </div>
                     </div>
@@ -51,7 +73,7 @@ export default function TabelaServicos({ servico }: TabelaServicosProps) {
                             value={servico?.descricao}
                         />
                     </div>
-                    <div className='mt-5'>
+                    <div className='mt-4'>
                         <Select 
                             label='Categoria' 
                             opcao={categoria}
@@ -60,10 +82,12 @@ export default function TabelaServicos({ servico }: TabelaServicosProps) {
                             name='categoria'              
                         />
                     </div>
-                    <div className='flex flex-row mt-5 mb-8'>
+                    <div className='flex flex-row mt-4 mb-8'>
                         <div className='flex flex-col items-center w-full'>
                             <div className='w-full'>
-                                <InputSelect type='Profissionais' />
+                                {servico &&
+                                    <InputSelect type='Profissionais' jaSelecionados={servico?.funcionarios} />
+                                }
                             </div>
                         </div>
                     </div>

@@ -6,26 +6,23 @@ import { animais } from '@/utils/pets'
 import { buscarEspecies } from '@/server/especie/especie';
 import { buscarFuncionarios } from '@/server/usuario/funcionario';
 import { set } from 'zod';
-
-interface selecaoInput {
-  id: number,
-  nome: string
-}
+import { PetsProps } from '@/types/servicos';
+import BotaoGrande from '../Botoes/BotaoGrande/BotaoGrande';
 
 interface InputSelectProps {
   type: "Animais" | "Profissionais"
+  jaSelecionados?: PetsProps[];
 }
 
-export default function InputSelect({ type }: InputSelectProps) {
+export default function InputSelect({ type, jaSelecionados }: InputSelectProps) {
 
-  const [selecaoPadrao, setSelecaoPadrao] = useState<selecaoInput[]>([])
+  const [selecaoPadrao, setSelecaoPadrao] = useState<PetsProps[]>([])
 
   const [opcoes, setOpcoes] = useState<string[]>([]);
 
-  const [naoSelecionados, setNaoSelecionados] = useState<selecaoInput[]>([])
-  const [selecionados, setSelecionados] = useState<selecaoInput[]>([])
+  const [naoSelecionados, setNaoSelecionados] = useState<PetsProps[]>([])
+  const [selecionados, setSelecionados] = useState<PetsProps[]>(jaSelecionados || [])
   const [selecao, setSelecao] = useState<string>("")
-
 
   useEffect(() => {
     const func = async () => {
@@ -51,7 +48,7 @@ export default function InputSelect({ type }: InputSelectProps) {
     if (selecaoPadrao.length > 0) {
       if (selecao != "") {
 
-        let selecionado: selecaoInput = {} as selecaoInput;
+        let selecionado: PetsProps = {} as PetsProps;
 
         naoSelecionados.forEach((selec) => {
           if (selec.nome == selecao) {
@@ -70,7 +67,7 @@ export default function InputSelect({ type }: InputSelectProps) {
 
   }, [selecao])
 
-  const setarOpcoes = (lista: selecaoInput[]) => {
+  const setarOpcoes = (lista: PetsProps[]) => {
     let opcao = lista.map((opcao) => {
       return opcao.nome
     })
@@ -83,7 +80,7 @@ export default function InputSelect({ type }: InputSelectProps) {
     })
     setSelecionados(selecaosRemovido)
 
-    let newAnimais: selecaoInput[] = [];
+    let newAnimais: PetsProps[] = [];
 
     selecaoPadrao.forEach((animal) => {
       let cont = 0;
