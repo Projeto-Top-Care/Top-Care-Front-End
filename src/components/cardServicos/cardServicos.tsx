@@ -36,7 +36,7 @@ const CardServico = ({ servico, isAdmin }: ICardServico) => {
 
             </div>
             <div className="w-56 absolute bottom-6 right-6">
-                <BotaoGrande onClick={() => isLogged ? isAdmin ? push('/cadastrarServico?id='+servico?.id) : push('/agendamento') : push("/login")} background="secundaria" size="h-8" title={isAdmin ? "Editar serviço" : "Agende agora!"} />
+                <BotaoGrande onClick={() => isLogged ? isAdmin ? push('/editarServicos?id='+servico?.id) : push('/agendamento') : push("/login")} background="secundaria" size="h-8" title={isAdmin ? "Editar serviço" : "Agende agora!"} />
             </div>
         </div>
     )

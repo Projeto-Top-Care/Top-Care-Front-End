@@ -34,7 +34,9 @@ export default function PaginaInicial() {
                 if(user.role = "ADMIN"){
                     push("/dashboard")
                 }
-                push("/")
+                else{
+                    push("/")
+                }
             }
         }
         func()

@@ -5,30 +5,18 @@ import { VariantesProps } from '@/types/servicos'
 import React, { SetStateAction, useEffect, useState } from 'react'
 
 interface CadastroVarianteProps {
-    openModalProps: React.Dispatch<SetStateAction<boolean>>
-    variantesProps?: VariantesProps[]
-    setVariantesProps: React.Dispatch<SetStateAction<VariantesProps[]>>
+    setOpenModal: React.Dispatch<SetStateAction<boolean>>
+    variantes: VariantesProps[]
+    setVariantes: React.Dispatch<SetStateAction<VariantesProps[]>>
 }
 
-export default function CadastroVariante({ openModalProps, variantesProps, setVariantesProps }: CadastroVarianteProps) {
-
-    const [openModal, setOpenModal] = useState<boolean>(true)
-    const [variantes, setVariantes] = useState<VariantesProps[]>(variantesProps ? variantesProps : [])
+export default function CadastroVariante({ setOpenModal, variantes, setVariantes }: CadastroVarianteProps) {
 
     const [nome, setNome] = useState<string>("")
     const [tipo, setTipo] = useState<string>("")
     const [preco, setPreco] = useState<number>(0)
 
     const [error, setError] = useState<boolean>(false)
-
-    useEffect(() => {
-        openModalProps(openModal)
-    }, [openModal])
-
-    useEffect(() => {
-        console.log(variantes)
-        setVariantesProps(variantes)
-    }, [variantes])
 
     const addVariante = () => {
         setError(false)
@@ -39,10 +27,11 @@ export default function CadastroVariante({ openModalProps, variantesProps, setVa
         }
         const newVariantes = [...variantes, newVariante]
         setVariantes(newVariantes)
+        setOpenModal(false)
     }
 
     const verificarVariante = () => {
-        !nome ? setError(true) : !tipo ? setError(true) : !preco ? setError(true) : addVariante()
+        !nome ? setError(true) : !preco ? setError(true) : addVariante()
     }
 
     return (
@@ -71,7 +60,7 @@ export default function CadastroVariante({ openModalProps, variantesProps, setVa
                 </div>
                 <div className='flex flex-row w-[90%] mx-auto justify-between mb-5'>
                     <div className='w-full'>
-                        <BotaoGrande background='secundaria' title='Finalizar' type='submit' onClick={() => verificarVariante()} />
+                        <BotaoGrande background='secundaria' title='Finalizar' type='button' onClick={() => verificarVariante()} />
                     </div>
                 </div>
             </div>
