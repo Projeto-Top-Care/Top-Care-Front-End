@@ -3,7 +3,7 @@
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import InputPreenchido from "../visualizarPedido/InputPreenchido"
 import { FaSearch } from "react-icons/fa"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Select from "@/components/Select/Select"
 import CardFuncionario from "./CardFuncionario"
 import { buscarFuncionarios, cadastroFuncionario } from "@/server/usuario/funcionario"
@@ -23,21 +23,23 @@ export default function VisualizarAgendamento({ searchParams }: VisualizarAgenda
 
     const router = useRouter();
 
-    const funcionarios = [
-        { id: 1, nome: "Victor Gabriel Micheluzzi", email: "victor@email.com", cadastro: "1", cpf: "111.222.333-44" },
-        { id: 2, nome: "João Victor Santana", email: "joao@email.com", cadastro: "2", cpf: "111.222.333-44" },
-        { id: 3, nome: "Carlos Eduardo Bolzanell dos Santos", email: "carlos@email.com", cadastro: "3", cpf: "111.222.333-44" },
-        { id: 4, nome: "Luana Becker", email: "luana@email.com", cadastro: "4", cpf: "111.222.333-44" },
-        { id: 5, nome: "Karoliny Daiana Cieply", email: "karoliny@email.com", cadastro: "5", cpf: "111.222.333-44" },
-        { id: 6, nome: "Romário Hornburg", email: "romario@email.com", cadastro: "6", cpf: "111.222.333-44" },
-        { id: 7, nome: "Kristian Erdmann", email: "krsitian@email.com", cadastro: "7", cpf: "111.222.333-44" },
-    ]
+    const [funcionarios, setFuncionarios] = useState([])
+
+    const verfuncioarios = async () => {
+        const response = await buscarFuncionarios()
+        setFuncionarios(response)
+        console.log(funcionarios)
+    }
+
+    useEffect(() => {
+        verfuncioarios()
+    }, [])
 
     const ordenarFuncionarios = (funcionarios: Object[]): Object[] => {
         if (escolha === "Cadastro decrescente") {
-            return [...funcionarios].sort((a, b) => b.cadastro - a.cadastro);
+            return [...funcionarios].sort((a, b) => b.codigo - a.codigo);
         } else if (escolha === "Cadastro crescente") {
-            return [...funcionarios].sort((a, b) => a.cadastro - b.cadastro);
+            return [...funcionarios].sort((a, b) => a.codigo - b.codigo);
         } else if (escolha === "Ordem alfabética") {
             return [...funcionarios].sort((a, b) => a.nome.localeCompare(b.nome));
         } else {
@@ -47,7 +49,7 @@ export default function VisualizarAgendamento({ searchParams }: VisualizarAgenda
 
     const funcionariosPesquisa = funcionarios.filter((funcionario) =>
         funcionario.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
-        funcionario.cadastro.toLowerCase().includes(pesquisa.toLowerCase())
+        funcionario.codigo.toLowerCase().includes(pesquisa.toLowerCase())
     );
     const funcionariosOrdenados: Object[] = ordenarFuncionarios(funcionariosPesquisa);
 
@@ -78,11 +80,10 @@ export default function VisualizarAgendamento({ searchParams }: VisualizarAgenda
             <section className="w-[90%] lg:w-[80%] m-auto gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 sm:pt-12 pb-16 sm:pb-20">
                 {
                     funcionariosOrdenados.map((item, index) => (
-                        <CardFuncionario key={index} id={item.id} foto="./assets/dognagrama.png" nome={item.nome} cadastro={item.cadastro} cpf={item.cpf} email={item.email} />
+                        <CardFuncionario key={index} id={item.id} foto="./assets/dognagrama.png" nome={item.nome} cadastro={item.codigo} email={item.email} />
                     ))
                 }
             </section>
-
         </main >
     )
 }
