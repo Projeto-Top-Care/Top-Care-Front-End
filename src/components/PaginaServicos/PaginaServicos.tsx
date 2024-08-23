@@ -7,6 +7,8 @@ import { Servico } from "@/types/servicos";
 import ButtonFiltro from "@/app/(misto)/informacoesServicos/buttonFiltro";
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import { useRouter } from "next/navigation";
+import { getServicos } from "@/server/servicos/action";
+import { set } from "zod";
 
 interface InterfaceServicos {
     isAdmin: boolean
@@ -19,7 +21,9 @@ export default function PaginaServicos({ isAdmin }: InterfaceServicos) {
 
     useEffect(()=>{
         const func = async () =>{
-
+            const servicos = await getServicos()
+            setServicosArray(servicos)
+            setListagem(servicos)
         }   
         func()
     },[])
@@ -83,7 +87,7 @@ export default function PaginaServicos({ isAdmin }: InterfaceServicos) {
             <div className="w-[90%] self-center flex flex-col gap-6 mt-8">
                 {
                     listagem.map((item, i) => (
-                        <CardServico isAdmin={isAdmin} key={i} id={item.id} nome={item.nome} imagem={item.imagem} descricao={item.descricao} />
+                        <CardServico isAdmin={isAdmin} key={i} servico={item} />
                     ))
                 }
             </div>
