@@ -11,10 +11,7 @@ interface CadastroEspecificacoesProps {
 
 export default function CadastroEspecificacoes({ openModalProps, especificacoesProps, setEspecificacaoProps }: CadastroEspecificacoesProps) {
     const [openModal, setOpenModal] = useState<boolean>(true)
-    const [especificacao, setEspecificacao] = useState<Especificacao[]>(() => {
-        const savedEspecificacao = localStorage.getItem('especificacao');
-        return savedEspecificacao ? JSON.parse(savedEspecificacao) : (especificacoesProps ? especificacoesProps : []);
-    })
+    const [especificacao, setEspecificacao] = useState<Especificacao[]>([])
 
     const [nome, setNome] = useState<string>("")
     const [descricao, setDescricao] = useState<string>("")
@@ -22,11 +19,6 @@ export default function CadastroEspecificacoes({ openModalProps, especificacoesP
     useEffect(() => {
         openModalProps(openModal)
     }, [openModal])
-
-    useEffect(() => {
-        setEspecificacaoProps(especificacao)
-        localStorage.setItem('especificacao', JSON.stringify(especificacao))
-    }, [especificacao])
 
     const addEspecificacao = () => {
         const especificacaoAtual: Especificacao = {

@@ -11,10 +11,7 @@ interface CadastroVarianteProps {
 
 export default function CadastroVariante({ openModalProps, variantesProps, setVariantesProps }: CadastroVarianteProps) {
     const [openModal, setOpenModal] = useState<boolean>(true)
-    const [variantes, setVariantes] = useState<VarianteProps[]>(() => {
-        const savedVariantes = localStorage.getItem('variantes');
-        return savedVariantes ? JSON.parse(savedVariantes) : (variantesProps ? variantesProps : []);
-    })
+    const [variantes, setVariantes] = useState<VarianteProps[]>([])
 
     const [estoque, setEstoque] = useState<number>(0)
     const [tipo, setTipo] = useState<string>("")
@@ -23,11 +20,6 @@ export default function CadastroVariante({ openModalProps, variantesProps, setVa
     useEffect(() => {
         openModalProps(openModal)
     }, [openModal])
-
-    useEffect(() => {
-        setVariantesProps(variantes)
-        localStorage.setItem('variantes', JSON.stringify(variantes))
-    }, [variantes])
 
     const addVariante = () => {
         const newVariante: VarianteProps = {
