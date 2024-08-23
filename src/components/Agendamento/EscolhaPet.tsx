@@ -52,8 +52,9 @@ export default function EscolhaPet({ setPetEscolhido }: IPet) {
                     <div className='flex flex-col w-full justify-center items-center'>
                         <img src="assets/dog-sad.png" alt="" className='w-[23%] -mt-20'/>
                         <p className='font-poppins text-lg w-[38%] text-center mt-2'>Parece que você não tem nenhum pet cadastrado. Que tal cadastrar um agora?</p>
-                    </div> :
-                    <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:mb-8'>
+                    </div> 
+                    :
+                    <div className='flex flex-row flex-wrap justify-center items-start w-[80%] mx-auto gap-8 lg:mb-8'>
                         {
                             usuarioLogado.pets.map((pet, i) => (
                                 <div key={i}>

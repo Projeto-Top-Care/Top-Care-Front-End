@@ -31,11 +31,8 @@ export default function PaginaInicial() {
             const id = getUserID()
             if(id){
                 const user: Usuario = await buscarUsuario(parseInt(id)) 
-                if(user.role = "ADMIN"){
+                if(user.role == "ADMIN"){
                     push("/dashboard")
-                }
-                else{
-                    push("/")
                 }
             }
         }

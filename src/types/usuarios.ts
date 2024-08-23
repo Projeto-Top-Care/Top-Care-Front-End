@@ -25,7 +25,7 @@ export interface Pet {
     id: number
     foto: string
     nome: string
-    especie: Especie
+    especie: string
     raca: string
     porte: string 
 }

@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation"
 import { Pet } from "@/types/usuarios";
 import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
+import { Servico, VariantesProps } from "@/types/servicos";
 
 export default function agendamento() {
 
@@ -24,10 +25,11 @@ export default function agendamento() {
     const [openConfirmacao, setOpenConfirmacao] = useState<boolean>(false)
     const [confirmado, setConfirmado] = useState<boolean>(false)
 
-    const {addError} = useError()!;
+    const { addError } = useError()!;
 
     const [pet, setPet] = useState<Pet | null>(null);
-    const [servico, setServico] = useState("");
+    const [servico, setServico] = useState<Servico>();
+    const [variante, setVariante] = useState<VariantesProps>();
     const [local, setLocal] = useState("");
     const [data, setData] = useState("");
     const [hora, setHora] = useState("");
@@ -35,34 +37,43 @@ export default function agendamento() {
     const [metodoPagamento, setMetodoPagamento] = useState("");
 
     const proximoPasso = () => {
-        if(estado <= 0) {
+        if (estado <= 0) {
             pet == null ? addError("Selecione o pet para o agendamento") : setEstado(estado + 1)
-        } else if(estado == 1) {
-            servico == "" ? addError("Selecione o serviço para agendamento!") : setEstado(estado + 1)
-        } else if(estado == 2) {
+        } else if (estado == 1) {
+            servico == undefined ? addError("Selecione o serviço para agendamento!") :
+            variante == undefined ? addError("Selecione a variante do serviço!") : setEstado(estado + 1)
+        } else if (estado == 2) {
             local == "" ? addError("Selecione o local para o agendamento!") : setEstado(estado + 1)
-        } else if(estado == 3) {
+        } else if (estado == 3) {
             data == "" ? addError("Selecione a data para o agendamento!") :
-            hora == "" ? addError("Selecione o horário e profissional para o agendamento!") : 
-            setEstado(estado + 1)
+                hora == "" ? addError("Selecione o horário e profissional para o agendamento!") :
+                    setEstado(estado + 1)
         } else {
             setEstado(estado + 1)
         }
     }
 
     const passoAnterior = () => {
-        estado <= -1 ? (setEstado(0)) : setEstado(estado - 1)
+        if(estado <= -1){
+            setEstado(0)
+        }else{
+            if(estado == 1){
+                setServico(undefined)
+                setVariante(undefined)
+            }
+            setEstado(estado - 1)  
+        } 
     }
 
     const concluirCompra = () => {
-        if(metodoPagamento) {
+        if (metodoPagamento) {
             setOpenConfirmacao(true)
-            if(confirmado) {
-                metodoPagamento == "cartao" ? push('./Perfil') : 
-                metodoPagamento == "boleto" ? push('./pagamentoBoleto') :
-                metodoPagamento == "pix" ? push('./pagamentoPix') : console.log("Chegou aqui");
+            if (confirmado) {
+                metodoPagamento == "cartao" ? push('./Perfil') :
+                    metodoPagamento == "boleto" ? push('./pagamentoBoleto') :
+                        metodoPagamento == "pix" ? push('./pagamentoPix') : console.log("Chegou aqui");
             }
-        } else if(estado >= 4) {
+        } else if (estado >= 4) {
             addError("Selecione o método de pagamento!")
         }
     }
@@ -74,7 +85,7 @@ export default function agendamento() {
     return (
         <main className="w-full flex flex-col items-center py-12">
             <Erro />
-            <Confirmacao/>
+            <Confirmacao />
             <div className='w-full'>
                 {openPet && (
                     <div className='overflow-hidden'>
@@ -93,11 +104,19 @@ export default function agendamento() {
             <div className="w-full flex items-center justify-center pb-8">
                 {(estado <= 0 ?
                     <div className="w-full">
-                        <EscolhaPet setPetEscolhido={setPet}/>
+                        <EscolhaPet setPetEscolhido={setPet} />
                     </div>
                     : estado == 1 ?
                         <div className="w-full">
-                            <EscolhaServico setServicoEscolhido={setServico} />
+                            {pet &&
+                                <EscolhaServico 
+                                    setServicoEscolhido={setServico}
+                                    servicoSelecionado={servico} 
+                                    variante={variante}
+                                    setVariante={setVariante}
+                                    petId={pet.id} 
+                                    />
+                            }
                         </div>
                         : estado == 2 ?
                             <div className="w-full">
@@ -109,7 +128,9 @@ export default function agendamento() {
                                 </div>
                                 :
                                 <div className="w-[80%] flex">
-                                    <Resumo pet={pet!} local={local} servico={servico} data={data} hora={hora} profissional={profissional} setMetodoPagamento={setMetodoPagamento} />
+                                    {
+                                        pet && <Resumo pet={pet} local={local} servico={servico?.nome || ''} data={data} hora={hora} profissional={profissional} setMetodoPagamento={setMetodoPagamento} />
+                                    }
                                 </div>
                 )}
             </div>
@@ -134,7 +155,7 @@ export default function agendamento() {
                     </div>
                 </div>
                 <div className="w-full sm:w-2/12">
-                    <BotaoGrande onClick={() => estado >= 4 ? concluirCompra() : proximoPasso()} title={estado >= 4 ? "Concluir" : "Próximo"} background="secundaria"type={"button"} />
+                    <BotaoGrande onClick={() => estado >= 4 ? concluirCompra() : proximoPasso()} title={estado >= 4 ? "Concluir" : "Próximo"} background="secundaria" type={"button"} />
                 </div>
             </div>
         </main>

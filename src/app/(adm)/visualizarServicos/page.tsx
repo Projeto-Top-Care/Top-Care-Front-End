@@ -18,7 +18,6 @@ export default function VisualizarServicos() {
       if (id) {
         const user: Usuario = await buscarUsuario(parseInt(id))!
         if (user.role == 'ADMIN') {
-          console.log(user)
           setIsAdmin(true)
         }
       }

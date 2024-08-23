@@ -11,7 +11,7 @@ export interface Servico{
 
 export interface VariantesProps{
     id?: number,
-    nome?: string
+    nome: string
     tipo: string,
     preco: number
 }
