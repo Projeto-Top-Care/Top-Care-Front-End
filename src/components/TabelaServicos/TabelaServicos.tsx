@@ -87,7 +87,7 @@ export default function TabelaServicos({ servico, pets, setPets, funcionarios, s
                     <div className='grid xl:grid-cols-2 xl:gap-4 md:gap-2 mb-8 mt-2'>
                         {
                             variantes.map((variante, i) => (
-                                <div key={i}><VarianteServico tipo={variante.tipo} variante={variante.nome} preco={variante.preco} /></div>
+                                <div key={i}><VarianteServico tipo={variante.tipo} variante={variante.nome} preco={variante.preco} variantes={variantes} setVariantes={setVariantes} /></div>
                             ))
                         }
                         <div className='flex items-center gap-2 flex-row cursor-pointer md:w-[10%] w-full mt-4' onClick={() => setOpenVariante(true)}>

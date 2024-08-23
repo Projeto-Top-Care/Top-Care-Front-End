@@ -4,6 +4,7 @@ import PaginaServicos from '@/components/PaginaServicos/PaginaServicos'
 import { useUserID } from '@/context/UserIDContext'
 import { buscarUsuario } from '@/server/usuario/action'
 import { Usuario } from '@/types/usuarios'
+import Confirmacao from '@/components/Pop-up/Confirmacao/Confirmacao'
 
 export default function VisualizarServicos() {
 
@@ -27,6 +28,7 @@ export default function VisualizarServicos() {
 
   return (
     <main>
+      <Confirmacao />
       {/*       
       <section className='text-preto'>
         <TituloLinha titulo='Serviços' voltar={false}/>
