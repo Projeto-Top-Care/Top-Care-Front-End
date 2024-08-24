@@ -25,6 +25,7 @@ export default function CadastroFuncionario() {
     const [nome, setNome] = useState<string>("")
     const [dataNascimento, setDataNascimento] = useState<string>('')
     const [cpf, setCpf] = useState<string>('')
+    const [codigo, setCodigo] = useState<number>()
     const [filial, setFilial] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [senha, setSenha] = useState<string>("")
@@ -41,7 +42,9 @@ export default function CadastroFuncionario() {
 
         const dados = Object.fromEntries(e)
         const response = cadastroFuncionario(dados)
-        router.push('./funcionarios')
+        if(response != null) {
+            router.push('./funcionarios')
+        }
     }
     
     const [filiais, setFiliais] = useState<string[]>()
@@ -134,8 +137,9 @@ export default function CadastroFuncionario() {
                                     name='codigo'
                                     type='codigo'
                                     required
-                                    erro={erro}
-                                    erroMessage={"O código não pode estar vazio!"}
+                                    onChange={(e) => setCodigo(parseInt(e.target.value))}
+                                    erro={codigo?.toString().length != 6 && erro}
+                                    erroMessage="O código deve ter 6 dígitos!"
                                 />
                             </ResponsiveInput>
                             <ResponsiveInput size='w-72'>

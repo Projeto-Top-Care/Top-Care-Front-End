@@ -2,7 +2,6 @@
 import { IoExitOutline } from "react-icons/io5";
 import { useUserID } from "@/context/UserIDContext";
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
-import CartoesSalvos from "@/components/CartoesSalvos/CartoesSalvos";
 import InputEstatico from "@/components/InputEstatico/InputEstatico";
 import PerfilFoto from "@/components/PerfilFoto/PerfilFoto";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";

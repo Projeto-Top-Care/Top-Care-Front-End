@@ -1,22 +1,23 @@
 'use client'
 
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
-import InputPreenchido from "../visualizarPedido/InputPreenchido"
 import { FaSearch } from "react-icons/fa"
 import { useEffect, useState } from "react"
 import Select from "@/components/Select/Select"
 import CardFuncionario from "./CardFuncionario"
-import { buscarFuncionarios, cadastroFuncionario } from "@/server/usuario/funcionario"
+import { buscarFuncionarios } from "@/server/usuario/funcionario"
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import { useRouter } from "next/navigation"
 
-interface VisualizarAgendamentoProps {
+interface AtualizarFuncionarios {
     searchParams: {
-        id: number
+        at: number
     }
 }
 
-export default function VisualizarAgendamento({ searchParams }: VisualizarAgendamentoProps) {
+export default function VisualizarAgendamento({ searchParams }: AtualizarFuncionarios) {
+
+    const [att, setAtt] = useState<number>(searchParams.at)
 
     const [pesquisa, setPesquisa] = useState<string>('')
     const [escolha, setEscolha] = useState<string>('');
@@ -34,6 +35,9 @@ export default function VisualizarAgendamento({ searchParams }: VisualizarAgenda
     useEffect(() => {
         verfuncioarios()
     }, [])
+    useEffect(() => {
+        verfuncioarios()
+    }, [att])
 
     const ordenarFuncionarios = (funcionarios: Object[]): Object[] => {
         if (escolha === "Cadastro decrescente") {
@@ -73,7 +77,7 @@ export default function VisualizarAgendamento({ searchParams }: VisualizarAgenda
                 <div className="">
                     <BotaoGrande onClick={() => router.push('/cadastroFuncionario')} size="text-sm h-full w-full px-4" title={"Adicionar funcionário"} background={"secundaria"} />
                 </div>
-                <div className='md:w-[18%] w-[38%]'>
+                <div className='md:w-[20%] w-[38%]'>
                     <Select options={['Ordem alfabética', 'Cadastro crescente', 'Cadastro decrescente']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar por'} opcao={escolha} />
                 </div>
             </section>

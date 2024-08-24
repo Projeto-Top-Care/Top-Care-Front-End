@@ -60,10 +60,6 @@ export default function HeaderAdm() {
                     <div onClick={() => push("/dashboard")}><img className="md:w-[70px] w-[40px] cursor-pointer" src="../assets/logo.png" /></div>
                 </div>
 
-                <div className="flex w-2/3 px-4 max-sm:hidden">
-                    <BarraPesquisa placeholder="O que você precisa hoje?" />
-                </div>
-
                 <div className='flex max-sm:hidden flex-row gap-4 items-center justify-end w-[10%]'>
                     <BotaoGrande title="Sair" type="button" background='terciaria' onClick={() => logout()} />
                 </div>
