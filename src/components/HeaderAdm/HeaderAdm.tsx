@@ -7,6 +7,7 @@ import { IoClose } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { useUserID } from "@/context/UserIDContext";
 import BotaoGrande from "../Botoes/BotaoGrande/BotaoGrande";
+import DoisBotoes from "../Pop-up/DoisBotoes/DoisBotoes";
 
 export default function HeaderAdm() {
     const { push } = useRouter();
@@ -15,6 +16,8 @@ export default function HeaderAdm() {
 
     const [navAberta, setNavAberta] = useState(false)
     const [animation, setAnimation] = useState<boolean>(false)
+    const [openModal, setOpenModal] = useState<boolean>(false)
+    const [sim, setSim] = useState<boolean>(false)
 
     useEffect(() => {
         if (!animation) {
@@ -49,9 +52,17 @@ export default function HeaderAdm() {
     };
 
     const logout = () => {
-        setUserId("")
-        push('/')
+        setOpenModal(true)
     }
+
+    useEffect(() => {
+        if (sim) {
+            setUserId("")
+            push("/")
+        }
+    }, [sim])
+    //        setUserId("")
+    // push('/')
 
     return (
         <div>
@@ -115,6 +126,14 @@ export default function HeaderAdm() {
                     </div>
                 )
             }
+            {openModal && (
+                <div className="z-50 w-full absolute">
+                    <div className='fixed top-0 left-0 w-full h-full bg-fundo-modal' onClick={() => setOpenModal(false)}></div>
+                    <div className="fixed lg:w-[25%] w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+                        <DoisBotoes openParms={setOpenModal} texto="Você deseja mesmo sair?" sim={setSim} />
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

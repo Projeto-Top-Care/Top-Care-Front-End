@@ -9,6 +9,7 @@ import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
 import InputEstatico from "@/components/InputEstatico/InputEstatico";
 import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico";
 import Select from "@/components/Select/Select";
+import { buscarFiliais } from "@/server/filiais/filial";
 
 interface VisualizarFuncionarioProps {
     searchParams: {
@@ -21,21 +22,34 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
     const router = useRouter()
     const idFuncionario = searchParams.id;
     const [funcionario, setFuncionario] = useState()
+    const [filiais, setFiliais] = useState<string[]>([])
+    const [filial, setFilial] = useState<string>('')
+    const [edicao, setEdicao] = useState<boolean>(false)
 
     const verFuncionario = async () => {
         const response = await buscarFuncionario(idFuncionario)
         setFuncionario(response)
-        console.log(funcionario)
+    }
+
+    const verFiliais = async () => {
+        const response = await buscarFiliais()
+        const listaDeNomes = response.map(filial => filial.nome);
+        setFiliais(listaDeNomes)
     }
 
     useEffect(() => {
         verFuncionario()
+        verFiliais()
     }, [])
-
-    const [edicao, setEdicao] = useState<boolean>(false)
 
     const [openModal, setOpenModal] = useState<boolean>(false)
     const [confirmarExclusao, setConfirmarExclusao] = useState<boolean>(false)
+
+    const formatarData = (nascimento: string) => {
+        if (!nascimento) return ""
+        const data = nascimento.split("-")
+        return data[2] + "/" + data[1] + "/" + data[0]
+    }
 
     const [dataNascimento, setDataNascimento] = useState<string>('')
     const [sexo, setSexo] = useState<string>('')
@@ -55,24 +69,38 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
 
     const editarFuncionarioo = async (e: FormData) => {
         if (edicao) {
-            const date = dataNascimento.split("/")
-            const dateFormat = date[2] + "-" + date[1] + "-" + date[0]
-
-            e.append("celular", numero)
+            const date = dataNascimento ? dataNascimento.split("/") : null
+            const dateFormat = date ? date[2] + "-" + date[1] + "-" + date[0] : ""
+            
             e.append("sexo", sexo.replace(" ", "_").toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
-            e.append("dataNascimento", dateFormat)
+            if(filial != '') {
+                e.append("nomeFilial", filial)
+            } else {
+                e.append("nomeFilial", funcionario.nomeFilial)
+            }
+            if(sexo != '') {
+                e.append("celular", numero.replace(" ", ""))
+            } else {
+                e.append("celular", funcionario.celular.replace(" ", ""))
+            }
+            if (dateFormat) {
+                e.append("dataNascimento", dateFormat)
+            } else {
+                e.append("dataNascimento", funcionario.dataNascimento)
+            }
 
             const dados = Object.fromEntries(e)
-            // const response = editarFuncionario(idFuncionario, dados)
             console.log(dados)
+            const response = editarFuncionario(idFuncionario, dados)
             setEdicao(false)
+            verFuncionario()
             // if(response != null) {
             //     router.push('./funcionarios')
             // }
-            // const response = await editarFuncionario(idFuncionario, dados)
         }
         setEdicao(!edicao)
     }
+
     return (
         <>
             {funcionario ? (
@@ -97,7 +125,7 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
                                 <InputEstatico name="email" titulo='Email' edition={edicao} info={funcionario.email} />
                                 <Select
                                     label="Sexo"
-                                    opcao={funcionario.sexo}
+                                    opcao={sexo == '' ? funcionario.sexo.toLowerCase() : sexo}
                                     name="sexo"
                                     opcaoSelecionada={setSexo}
                                     options={["Feminino", "Masculino", "Não informar"]}
@@ -105,10 +133,11 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
                                     bg
                                 />
                             </div>
+
                             <div className='w-full flex flex-col md:gap-8 gap-4'>
                                 <InputMaskEstatico
                                     titulo="Data de Nascimento"
-                                    info={funcionario.dataNascimento}
+                                    info={formatarData(funcionario.dataNascimento)}
                                     name="dataNascimento"
                                     edition={edicao}
                                     mask={'dd/mm/yyyy'}
@@ -116,16 +145,27 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
                                     onMasks={(e) => setDataNascimento(e.target.value)} />
 
                                 {/* <InputEstatico name="dataNascimento" titulo='Data de nascimento' edition={edicao} info={funcionario.dataNascimento} /> */}
+
                                 <InputEstatico name="codigo" titulo='Código' edition={false} info={funcionario.codigo} />
+
                                 <InputMaskEstatico
                                     titulo="Celular"
-                                    info={funcionario.celular}
+                                    info={numero == '' ? funcionario.celular : numero}
                                     edition={edicao}
-                                    name="celular"
                                     mask={'(__) _____-____'}
                                     replacement={{ _: /\d/ }}
                                     onMasks={(e) => setNumero(e.target.value)} />
-                                <InputEstatico name="filial" titulo='Filial' edition={edicao} info={funcionario.nomeFilial} />
+
+                                <Select
+                                    label='Filial'
+                                    options={filiais ? filiais! : ["Não há filiais cadastradas!"]}
+                                    opcaoSelecionada={setFilial}
+                                    disabled={!edicao}
+                                    opcao={filial == '' ? funcionario.nomeFilial : filial}
+                                    name='nomeFilial'
+                                    bg
+                                />
+                                {/* <InputEstatico name="filial" titulo='Filial' edition={edicao} info={funcionario.nomeFilial} /> */}
                             </div>
                         </section>
                     </form>

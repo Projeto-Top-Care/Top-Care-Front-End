@@ -128,8 +128,6 @@ export default function Perfil() {
             precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />
     ))
 
-
-
     const componetesSelecao = [
         <HistoricoAgendamentos agendamentos={usuarioLogado.agendamentos} />,
         <PedidosEmAndamento usuario={usuarioLogado} />,
