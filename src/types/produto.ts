@@ -1,5 +1,3 @@
-import { Usuario } from "./usuarios"
-
 export interface Produto {
     id: number
     nomeProduto: string
@@ -33,13 +31,8 @@ export interface ProdutoCompleto {
 }
 
 export interface Especificacao {
-    idadePet: string;
-    porteRaca: string;
-    pet: string;
-    cor: string;
-    tipo: string;
-    material: string;
-    apresentacao: string;
+    nome: string
+    conteudo: string
 }
 export interface AvaliacaoType {
     id: number

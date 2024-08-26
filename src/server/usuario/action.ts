@@ -53,8 +53,3 @@ export async function editarUsuario(payload:any, id:number) {
     const response = await axiosAPI.put("/usuario/cliente/editar/"+id, payload).then(resp => resp);
     return response.data
 }
-
-export async function cadastroProduto(payload: any){
-    const response = await axiosAPI.post("/produto/cadastro", payload).then(resp => resp);
-    return response.data
-}
