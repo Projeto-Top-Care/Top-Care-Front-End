@@ -91,6 +91,7 @@ export default function HeaderAdm() {
                     <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/agendamentos")}>Agendamentos</div>
                     <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/pedidos")}>Pedidos</div>
                     <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./visualizarServicos")}>Serviços</div>
+                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/filiais")}>Filiais</div>
                 </div>
             </div>
             {
@@ -117,6 +118,7 @@ export default function HeaderAdm() {
                                     <a onClick={() => handleLinkClick('/agendamentos')} className="hover:underline text-roxo-select font-medium text-sm">Agendamentos</a>
                                     <a onClick={() => handleLinkClick('/pedidos')} className="hover:underline text-roxo-select font-medium text-sm">Pedidos</a>
                                     <a onClick={() => handleLinkClick('/visualizarServicos')} className="hover:underline text-roxo-select font-medium text-sm">Serviços</a>
+                                    <a onClick={() => handleLinkClick('/filiais')} className="hover:underline text-roxo-select font-medium text-sm">Filiais</a>
                                     <a onClick={() => logout()} className="hover:underline text-roxo-select font-medium text-sm">Sair</a>
                                 </div>
                             </div>
