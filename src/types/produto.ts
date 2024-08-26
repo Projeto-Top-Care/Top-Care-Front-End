@@ -33,14 +33,11 @@ export interface ProdutoCompleto {
 }
 
 export interface Especificacao {
-    idadePet: string;
-    porteRaca: string;
-    pet: string;
-    cor: string;
-    tipo: string;
-    material: string;
-    apresentacao: string;
+    id?: number,
+    nome: string,
+    descricao: string
 }
+
 export interface AvaliacaoType {
     id: number
     usuario: UsuarioAvaliacao
