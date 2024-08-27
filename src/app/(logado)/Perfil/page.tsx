@@ -28,6 +28,7 @@ import Erro from "@/components/Pop-up/Erro/Erro";
 import { useError } from "@/context/ErrorContext";
 import { useConfirmacao } from "@/context/confirmacaoContext";
 import Select from "@/components/Select/Select";
+import { formatarData } from "@/utils/data";
 
 export default function Perfil() {
     const { getUserID, setUserId } = useUserID()
@@ -51,12 +52,6 @@ export default function Perfil() {
     const [dataNascimento, setDataNascimento] = useState<string>('')
     const [selecao, setSelecao] = useState<number>(0)
     const router = useRouter()
-
-    const agendamentos = [
-        <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
-        <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
-        <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
-    ]
 
     useEffect(() => {
         if (sim) {
@@ -84,11 +79,6 @@ export default function Perfil() {
         }
     }
 
-    const formatarData = (nascimento: string) => {
-        const data = nascimento.split("-")
-        return data[2] + "/" + data[1] + "/" + data[0]
-    }
-
     const { addError } = useError()
     const { addConfirmacao } = useConfirmacao()
 
@@ -96,7 +86,7 @@ export default function Perfil() {
         return <Carregando />
     }
 
-    const displayedAddresses = showAllAddresses ? usuarioLogado!.enderecos : usuarioLogado!.enderecos.slice(0, 3);
+    const displayedAddresses = showAllAddresses ? usuarioLogado.enderecos : usuarioLogado.enderecos;
 
     const verificarEdicao = async (e: FormData) => {
         if (edicao) {
@@ -128,8 +118,6 @@ export default function Perfil() {
         <CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
             precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />
     ))
-
-
 
     const componetesSelecao = [
         <HistoricoAgendamentos agendamentos={usuarioLogado.agendamentos} />,

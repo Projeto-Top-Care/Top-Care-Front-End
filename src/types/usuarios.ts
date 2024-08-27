@@ -23,7 +23,7 @@ export interface Usuario {
 
 export interface Pet {
     id: number
-    foto: string
+    imagem: string
     nome: string
     especie: string
     raca: string

@@ -7,22 +7,14 @@ import { buscarUsuario } from '@/server/usuario/action';
 import Loading from '@/app/(misto)/loading/page';
 
 interface IPet {
-    setPetEscolhido: React.Dispatch<SetStateAction<Pet | null>>
+    setPet: React.Dispatch<SetStateAction<Pet | undefined>>
+    pet: Pet | undefined
 }
 
-export default function EscolhaPet({ setPetEscolhido }: IPet) {
+export default function EscolhaPet({ setPet, pet }: IPet) {
 
     const { getUserID } = useUserID()
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario | null>(null);
-
-    const [selectedPet, setSelectedPet] = useState<Pet | null>(null);
-    useEffect(() => {
-        setPetEscolhido(selectedPet)
-    }, [selectedPet])
-
-    const handleSelectPet = (pet: Pet) => {
-        setSelectedPet(pet);
-    };
 
     useEffect(() => {
         buscarUser()
@@ -56,12 +48,12 @@ export default function EscolhaPet({ setPetEscolhido }: IPet) {
                     :
                     <div className='flex flex-row flex-wrap justify-center items-start w-[80%] mx-auto gap-8 lg:mb-8'>
                         {
-                            usuarioLogado.pets.map((pet, i) => (
+                            usuarioLogado.pets.map((peti, i) => (
                                 <div key={i}>
                                     <CardPetPequeno
-                                        pet={pet}
-                                        isSelected={selectedPet === pet}
-                                        onSelect={() => handleSelectPet(pet)}
+                                        pet={peti}
+                                        isSelected={pet?.nome === peti.nome}
+                                        onSelect={() => setPet(peti)}
                                     />
                                 </div>
                             ))

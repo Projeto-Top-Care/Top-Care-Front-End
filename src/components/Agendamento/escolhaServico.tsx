@@ -8,19 +8,21 @@ import { set } from 'zod';
 
 interface IServico {
     setServicoEscolhido: React.Dispatch<SetStateAction<Servico | undefined>>
-    petId: number
+    petId: number | undefined
     servicoSelecionado?: Servico
     variante?: VariantesProps
     setVariante: React.Dispatch<SetStateAction<VariantesProps | undefined>>
 }
 
 const EscolhaServico = ({ setServicoEscolhido, petId, servicoSelecionado, variante, setVariante }: IServico) => {
-    
+
     const [servicos, setServicos] = useState<Servico[]>([]);
 
     const getPet = async () => {
-        const response: any = await buscarPet(petId)
-        setServicos(response.especie.servicos);
+        if (petId) {
+            const response: any = await buscarPet(petId)
+            setServicos(response.especie.servicos);
+        }
     }
 
     useEffect(() => {
@@ -37,19 +39,19 @@ const EscolhaServico = ({ setServicoEscolhido, petId, servicoSelecionado, varian
                 <div className='flex w-[60%] mx-auto justify-center flex-wrap gap-4 sm:gap-8 mt-8'>
                     {
                         servicos.map((item, i) => (
-                                <ServicosAgendamento
-                                    servico={item}
-                                    selecionada={variante}
-                                    setSelecionada={setVariante}
-                                    isSelected={servicoSelecionado?.nome === item.nome}
-                                    onSelect={() =>{
-                                        setVariante(undefined)
-                                        setServicoEscolhido(item)
-                                    }}
-                                />
-                            ))
+                            <ServicosAgendamento
+                                servico={item}
+                                selecionada={variante}
+                                setSelecionada={setVariante}
+                                isSelected={servicoSelecionado?.nome === item.nome}
+                                onSelect={() => {
+                                    setVariante(undefined)
+                                    setServicoEscolhido(item)
+                                }}
+                            />
+                        ))
                     }
-                    </div>
+                </div>
             </div>
         </main>
     )
