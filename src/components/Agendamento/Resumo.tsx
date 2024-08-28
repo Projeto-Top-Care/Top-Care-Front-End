@@ -90,7 +90,7 @@ const Resumo = ({ petNome, variante, local, servico, data, hora, profissional, s
 
                             <div className='flex flex-row justify-between items-center w-full gap-4 sm:gap-24'>
                                 <p className='font-semibold'>Horário</p>
-                                <p className="text-end">{hora}</p>
+                                <p className="text-end">{hora.slice(0,5)}</p>
                             </div>
 
                             <div className='flex flex-row justify-between items-center w-full gap-4 sm:gap-24'>

@@ -25,7 +25,6 @@ interface Horarios {
 
 export default function EscolhaData({ setData, setHora, setProfissional, data, hora, servicoId }: IData) {
 
-    const { format } = require('date-fns');
     const [profissionais, setProfissionais] = useState<Profissional[]>([]);
 
     const setar = (hora: string, profissional: Profissional) => {
@@ -70,7 +69,7 @@ export default function EscolhaData({ setData, setHora, setProfissional, data, h
                                             {
                                                 profissional.horarios.map((horario, i) => (
                                                     <div className=''>
-                                                        <HorarioAgendamento horario={horario.horaInicio.toString()}
+                                                        <HorarioAgendamento horario={horario.horaInicio.toString().slice(0,5)}
                                                             isSelected={hora === horario.horaInicio.toString()}
                                                             onSelect={() => setar(horario.horaInicio.toString(), profissional)}
                                                         />

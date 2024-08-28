@@ -32,7 +32,7 @@ const AgendamentoMarcado = ({ agendamento }: agendamentotype) => {
                                     nomePet={agendamento.pet.nome}
                                     servico={agendamento.servico}
                                     data={formatarData(agendamento.horario.dia)}
-                                    hora={agendamento.horario.horaInicio}
+                                    hora={agendamento.horario.horaInicio.slice(0, 5)}
                                     profissional={agendamento.horario.funcionario}
                                     valor={agendamento.valor}
                                     local={agendamento.filial}
