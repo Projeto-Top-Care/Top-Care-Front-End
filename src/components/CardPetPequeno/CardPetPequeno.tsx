@@ -18,16 +18,16 @@ const CardPetPequeno = ({ pet, isSelected, onSelect, noSelection }: pettype) => 
     return (
         <div
             onClick={onSelect}
-            className={`flex relative bg-branco border border-cinza justify-center items-center lg:gap-5 rounded-lg w-full lg:h-36 h-32 px-2 cursor-pointer ${isSelected ? 'scale-105 duration-100 outline border-transparent outline-primaria' : noSelection ? 'border-cinza' : 'opacity-50 '
+            className={`flex relative bg-branco border border-cinza justify-center items-center lg:gap-5 rounded-lg w-80 px-2 lg:h-36 h-32 cursor-pointer ${isSelected ? 'scale-105 duration-100 outline border-transparent outline-primaria' : noSelection ? 'border-cinza' : 'opacity-50 '
                 }`} >
             <div className="w-20 flex items-center">
-                <img className='rounded-full lg:w-full w-10/12' src={pet.foto == "" || pet.foto == undefined ? `./assets/perfil/${pet.especie.nome}_perfil.jpg` : pet.foto} />
+                <img className='rounded-full lg:w-full w-10/12' src={pet.foto == "" || pet.foto == undefined ? `./assets/perfil/${pet.especie}_perfil.jpg` : pet.foto} />
             </div>
             <div className="text-sm text-preto font-poppins md:w-[50%] w-[60%] mr-2 ml-1">
                 <p className="gap-1 font-semibold lg:text-lg">{pet.nome}</p>
-                <p className="text-xs lg:text-sm">Animal: {pet.especie.nome}</p>
+                <p className="text-xs lg:text-sm">Animal: {pet.especie}</p>
                 <p className="text-xs lg:text-sm">Raça: {pet.raca}</p>
-                <p className="text-xs lg:text-sm">Porte: {pet.porte.charAt(0) + pet.porte.slice(1).toLowerCase()}</p>
+                <p className="text-xs lg:text-sm">Porte: {pet.porte}</p>
             </div>
             <div onClick={()=>setOpenEdit(true)} className={`${noSelection ? 'absolute flex items-center justify-center p-2 bg-terciaria rounded-full -top-2 -right-2' : 'invisible'}`}>
                 <LuPencil size={17} />

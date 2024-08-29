@@ -20,12 +20,12 @@ export default function Select({ label, options, opcaoSelecionada, opcao, disabl
 
     const selectRef: MutableRefObject<any> = useRef(null);
 
-    useEffect(()=>{
+    useEffect(() => {
         opcaoSelecionada(opcao)
     })
 
     useEffect(() => {
-        function handleClickOutside(e : MouseEvent) {
+        function handleClickOutside(e: MouseEvent) {
             if (selectRef.current && !selectRef.current.contains(e.target)) {
                 setOpen(false);
             }
@@ -41,14 +41,14 @@ export default function Select({ label, options, opcaoSelecionada, opcao, disabl
             <p className={`md:text-base text-sm font-poppins text-preto ${bg ? "!block" : "!hidden"}`}>{label}</p>
             <div
                 tabIndex={0}
-                onFocus={()=>setFocus(disabled ? false:  true)}
-                onBlur={()=>setFocus(false)}
-                onClick={()=>setOpen(disabled ? false : !open)}
-                className={`${isErro && !open ? 'border-error': ''} cursor-pointer relative border border-cinza h-10 w-full rounded-lg flex items-center select-none ${open || focus ? 'outline outline-[1.9px] outline-preto' : 'outline-none '} ${bg ? `bg-branco ${disabled ? "border-none" : "border-primaria border-2"} h-11` :  ''}`}>
+                onFocus={() => setFocus(disabled ? false : true)}
+                onBlur={() => setFocus(false)}
+                onClick={() => setOpen(disabled ? false : !open)}
+                className={`${isErro && !open ? 'border-error' : ''} cursor-pointer relative border border-cinza h-10 w-full rounded-lg flex items-center select-none ${open || focus ? 'outline outline-[1.9px] outline-preto' : 'outline-none '} ${bg ? `bg-branco ${disabled ? "border-none" : "border-primaria border-2"} h-11` : ''}`}>
                 <div className="flex flex-row items-center justify-between w-[90%] m-auto">
-                    <label htmlFor="" className={`${bg ? "!hidden" : "!flex"} font-poppins text-cinza-escuro md:text-sm text-xs absolute bg-branco px-1 pointer-events-none left-2 ${open || opcao ? 'md:-top-3 -top-2 left-1.5': ""}`}>{label}</label>
-                    <p className="font-poppins text-cinza-escuro lg:text-sm text-xs -ml-4">{opcao ? opcao : ""}</p>
+                    <label htmlFor="" className={`${bg ? "!hidden" : "!flex"} font-poppins text-cinza-escuro md:text-sm text-xs absolute bg-branco px-1 pointer-events-none left-2 ${open || opcao ? 'md:-top-3 -top-2 left-1.5' : ""}`}>{label}</label>
                     <p className={`${disabled ? `hidden` : `flex`} duration-500 ${open ? "rotate-180" : ""}`}>{<FaChevronDown />}</p>
+                    <p className="font-poppins text-cinza-escuro lg:text-sm text-xs">{opcao ? opcao : ""}</p>
                 </div>
                 <p className={`${isErro && !open ? 'visible' : 'invisible'} absolute top-10 text-xs text-error font-poppins`}>{erro}</p>
                 {open && (
@@ -64,7 +64,7 @@ export default function Select({ label, options, opcaoSelecionada, opcao, disabl
                     </ul>
                 )}
             </div>
-            <input type="hidden" name={name} value={opcao}/>
+            <input type="hidden" name={name} value={opcao} />
         </div>
     );
 }

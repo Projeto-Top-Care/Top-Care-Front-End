@@ -19,8 +19,6 @@ export default function HistoricoAgendamentos({ agendamentos }: iAgendamentos) {
         push(url);
     };
 
-    const historicoAgendamentos = showSchedulles ? agendamentos : agendamentos.slice(0, 3);
-
     return (
         <main>
             <div className="flex flex-col mb-4">
@@ -29,9 +27,11 @@ export default function HistoricoAgendamentos({ agendamentos }: iAgendamentos) {
                 </div>
                 <div className="grid md:mb-12 mb-4 md:w-[90%] w-full lg:pl-16 md:p-0 p-4 lg:self-start self-center gap-8 lg:grid-cols-3 md:grid-cols-2">
                     {
-                        historicoAgendamentos.map((item, i) => (
+                        agendamentos.map((item, i) => (
                             <div key={i}>
-                                <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet={item.nomePet} servico={item.servico} data={item.data} hora={item.horario} profissional={item.profissional} valor={item.valor} />,
+                                <AgendamentoMarcado 
+                                    agendamento={item}
+                                />
                             </div>
                         ))
                     }

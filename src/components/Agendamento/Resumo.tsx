@@ -6,24 +6,24 @@ import { buscarUsuario } from "@/server/usuario/action";
 import { useRouter } from "next/navigation";
 import { FaPlus } from "react-icons/fa";
 import { useUserID } from '@/context/UserIDContext';
+import { VariantesProps } from '@/types/servicos';
+import Erro from '../Pop-up/Erro/Erro';
 
 interface IResumo {
-    pet: Pet,
+    petNome: string,
+    variante: VariantesProps | undefined,
     local: string,
     servico: string,
     data: string,
     hora: string,
     profissional: string,
-    setMetodoPagamento: React.Dispatch<SetStateAction<string>>
+    setMetodoPagamento: React.Dispatch<SetStateAction<number>>
+    metodo: number
 }
 
-const Resumo = ({ pet, local, servico, data, hora, profissional, setMetodoPagamento }: IResumo) => {
+const Resumo = ({ petNome, variante, local, servico, data, hora, profissional, setMetodoPagamento, metodo }: IResumo) => {
 
-    const [eCartao, setECartao] = useState(false)
-    const [eBoleto, setEBoleto] = useState(false)
-    const [ePix, setEPix] = useState(false)
     const [cartaoEscolhido, setCartaoEscolhido] = useState<Cartao>()
-    const [open, setOpen] = useState<string>("")
 
     const { push } = useRouter();
 
@@ -41,69 +41,19 @@ const Resumo = ({ pet, local, servico, data, hora, profissional, setMetodoPagame
         getUser()
     }, [])
 
-    const showError = () => {
-        if (open != "") {
-            return (
-                <div className="z-50">
-                    <div className={`fixed top-3 left-1/2 -translate-x-1/2 lg:w-[40%] w-[50%] animate-slide-down drop-shadow-lg`}>
-                        <div className="flex items-center justify-center lg:h-10 h-8 bg-error rounded font-poppins">
-                            <p className="text-xs lg:text-base text-branco">{open}</p>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-    }
+    const metodos = [
+        { id: 1, nome: 'Cartão de crédito' },
+        { id: 2, nome: 'Boleto Bancário' },
+        { id: 3, nome: 'Pix' }
+    ]
 
-    const verificarFormaPagamentoEscolhida = (formaPagamento: string) => {
-        if (formaPagamento == "cartao") {
-            setMetodoPagamento("cartao")
-            setECartao(true)
-            setEBoleto(false)
-            setEPix(false)
-        } else if (formaPagamento == "boleto") {
-            setMetodoPagamento("boleto")
-            setECartao(false)
-            setEBoleto(true)
-            setEPix(false)
-        } else {
-            setMetodoPagamento("pix")
-            setECartao(false)
-            setEBoleto(false)
-            setEPix(true)
-        }
-    }
     const verificarCartao = (nomeCartao: string) => {
-        if (cartaoEscolhido?.nome == nomeCartao) {
-            return true
-        } else {
-            return false
-        }
+        return cartaoEscolhido?.nome == nomeCartao ? true : false
     }
-    const pagar = () => {
-        if (!eCartao && !ePix && !eBoleto) {
-            setOpen("Selecione uma forma de pagamento antes de avançar!")
-            setTimeout(() => {
-                setOpen("")
-            }, 4000)
-        } else if (ePix) {
-            push('./pagamentoPix')
-        } else if (eBoleto) {
-            push('./pagamentoBoleto')
-        } else if (eCartao && cartaoEscolhido != null) {
-            push('./Perfil')
-        } else {
-            setOpen("Selecione um cartão antes de avançar!")
-            setTimeout(() => {
-                setOpen("")
-            }, 4000)
-        }
-    }
-
 
     return (
         <main className='p2 sm:p-8 font-poppins w-full flex flex-col gap-8 mt-12'>
-            {showError()}
+            <Erro/>
             <div className='flex items-center justify-center'>
                 <p className='text-preto font-medium text-xl text-center'>Seu agendamento está quase concluído, confime os dados para concluí-lo</p>
             </div>
@@ -118,10 +68,14 @@ const Resumo = ({ pet, local, servico, data, hora, profissional, setMetodoPagame
                                 <p className='font-semibold'>Serviço</p>
                                 <p className="text-end">{servico}</p>
                             </div>
+                            <div className='flex flex-row justify-between items-center w-full gap-4 sm:gap-24'>
+                                <p className='font-semibold'>Variante</p>
+                                <p className="text-end">{variante?.nome}</p>
+                            </div>
 
                             <div className='flex flex-row justify-between items-center w-full gap-4 sm:gap-24'>
                                 <p className='font-semibold'>Pet</p>
-                                <p className="text-end">{pet.nome}</p>
+                                <p className="text-end">{petNome}</p>
                             </div>
 
                             <div className='flex flex-row justify-between items-center w-full gap-4 sm:gap-24'>
@@ -136,7 +90,7 @@ const Resumo = ({ pet, local, servico, data, hora, profissional, setMetodoPagame
 
                             <div className='flex flex-row justify-between items-center w-full gap-4 sm:gap-24'>
                                 <p className='font-semibold'>Horário</p>
-                                <p className="text-end">{hora}</p>
+                                <p className="text-end">{hora.slice(0,5)}</p>
                             </div>
 
                             <div className='flex flex-row justify-between items-center w-full gap-4 sm:gap-24'>
@@ -147,51 +101,30 @@ const Resumo = ({ pet, local, servico, data, hora, profissional, setMetodoPagame
                         <div className="border border-cinza-claro lg:grid flex lg:items-center lg:justify-center mt-5"></div>
                         <div className='text-preto font-poppins flex items-center justify-between mt-4'>
                             <p className='font-semibold md:text-base text-sm'>Valor do serviço</p>
-                            <p className='md:text-lg text-sm text-end '>R$79,90</p>
+                            <p className='md:text-lg text-sm text-end '>R$ {variante?.preco}</p>
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-col justify-end items-start font-poppins text-preto gap-8 w-full lg:w-[60%]">
                     <p className='font-bold text-sm sm:text-base'>Escolha o método de pagamento</p>
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <div className="flex flex-row gap-4">
-                            <input className="w-5 h-5 checked: accent-purple-500"
-                                type="radio"
-                                value="cartao"
-                                name="pagamento"
-                                id="cartao"
-                                checked={eCartao}
-                                onClick={() => verificarFormaPagamentoEscolhida("cartao")}
-                            />
-                            <label className="text-sm sm:text-base" htmlFor="cartao">Cartão de crédito</label>
-                        </div>
-                        <div className="flex flex-row gap-4">
-                            <input className="w-5 h-5 checked: accent-purple-500"
-                                type="radio"
-                                value="boleto"
-                                name="pagamento"
-                                id="boleto"
-                                checked={eBoleto}
-                                onClick={() => verificarFormaPagamentoEscolhida("boleto")}
-                            />
-                            <label className="text-sm sm:text-base" htmlFor="boleto">Boleto bancário</label>
-                        </div>
-                        <div className="flex flex-row gap-4">
-                            <input className="w-5 h-5 checked: accent-purple-500"
-                                type="radio"
-                                value="pix"
-                                name="pagamento"
-                                id="pix"
-                                checked={ePix}
-                                onClick={() => verificarFormaPagamentoEscolhida("pix")}
-                            />
-                            <label className="text-sm sm:text-base" htmlFor="pix">PIX</label>
-                        </div>
+                        {
+                            metodos.map((metodo, i) => (
+                                <div className="flex flex-row gap-4" key={i}>
+                                    <input className="w-5 h-5 checked: accent-purple-500"
+                                        type="radio"
+                                        name="pagamento"
+                                        onChange={() => setMetodoPagamento(metodo.id)}
+                                    />
+                                    <label className="text-sm sm:text-base" htmlFor="cartao">{metodo.nome}</label>
+                                </div>
+                            ))
+                        }
                     </div>
 
                     <div className="flex flex-col gap-2 w-full sm:w-full">
                         {
-                            eCartao ?
+                            metodo == 1 ?
                                 <div className="flex flex-col justify-end gap-2">
                                     {
                                         usuario?.cartoes?.map((cartao, i) => (

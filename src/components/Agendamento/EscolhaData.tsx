@@ -2,29 +2,47 @@
 import InputData from '@/components/InputData/InputData';
 import React, { SetStateAction, useEffect, useState } from 'react';
 import HorarioAgendamento from '../HorarioAgendamento/HorarioAgendamento';
+import { getHorariosPorDia } from '@/server/servicos/action';
 
-interface IData{
-    setDataSelecionada: React.Dispatch<SetStateAction<string>>
-    setHoraSelecionada: React.Dispatch<SetStateAction<string>>
-    setProfissionalSelecionada: React.Dispatch<SetStateAction<string>>
+interface IData {
+    setData: React.Dispatch<SetStateAction<string>>
+    setHora: React.Dispatch<SetStateAction<string>>
+    setProfissional: React.Dispatch<SetStateAction<Profissional | undefined>>
+    data: string
+    hora: string
+    profissional: Profissional | undefined
+    servicoId: string
 }
 
-export default function EscolhaData({setDataSelecionada, setHoraSelecionada, setProfissionalSelecionada}: IData) {
+export interface Profissional {
+    nome: string
+    horarios: Horarios[]
+}
+interface Horarios {
+    horaInicio: Date,
+    horaFim: Date
+}
 
-    const [data, setData] = useState<string>("");
-    const [hora, setHora] = useState<string>("");
-    const [profissional, setProfissional] = useState<string>("");
+export default function EscolhaData({ setData, setHora, setProfissional, data, hora, servicoId }: IData) {
 
-    const handleSelect = (hora: string, profissional: string) => {
+    const [profissionais, setProfissionais] = useState<Profissional[]>([]);
+
+    const setar = (hora: string, profissional: Profissional) => {
         setHora(hora);
         setProfissional(profissional);
-    };
+    }
 
     useEffect(() => {
-        setDataSelecionada(data)
-        setHoraSelecionada(hora)
-        setProfissionalSelecionada(profissional)
-    }, [data, hora, profissional])
+        const func = async () => {
+            if (data != '') {
+                const dataA = data.split("/").reverse().join("-")
+                const response = await getHorariosPorDia(servicoId, dataA)
+                setProfissionais(response)
+            }
+        }
+        func()
+    }, [data])
+
 
     return (
         <main className='p-2 sm:p-8 w-full'>
@@ -38,72 +56,32 @@ export default function EscolhaData({setDataSelecionada, setHoraSelecionada, set
                     </div>
                 </div>
                 {
-                    data !== '' &&(
+                    data !== '' && (
                         <div className='flex flex-col gap-4 sm:gap-8 mt-4 sm:mt-8'>
-                    <div className='flex flex-col gap-4'>
-                        <div>
-                            <p className='text-preto font-poppins text-md sm:text-lg'>Doutora Kamila Fagundes</p>
+
+                            {
+                                profissionais.map((profissional, i) => (
+                                    <div className='flex flex-col gap-4' key={i}>
+                                        <div>
+                                            <p className='text-preto font-poppins text-md sm:text-lg'>{profissional.nome}</p>
+                                        </div>
+                                        <div className='sm:flex grid grid-cols-4 gap-4 justify-start items-start'>
+                                            {
+                                                profissional.horarios.map((horario, i) => (
+                                                    <div className=''>
+                                                        <HorarioAgendamento horario={horario.horaInicio.toString().slice(0,5)}
+                                                            isSelected={hora === horario.horaInicio.toString()}
+                                                            onSelect={() => setar(horario.horaInicio.toString(), profissional)}
+                                                        />
+                                                    </div>
+                                                ))
+                                            }
+
+                                        </div>
+                                    </div>
+                                ))
+                            }
                         </div>
-                        <div className='sm:flex grid grid-cols-4 gap-4 justify-start items-start'>
-                            <div className=''>
-                                <HorarioAgendamento horario='09:30'
-                                    isSelected={hora === '09:30'}
-                                    onSelect={() => handleSelect('09:30', "Doutora Kamila Fagundes")}
-                                />
-                            </div>
-                            <div className=''>
-                                <HorarioAgendamento horario='11:30'
-                                    isSelected={hora === '11:30'}
-                                    onSelect={() => handleSelect('11:30', "Doutora Kamila Fagundes")}
-                                />
-                            </div>
-                            <div className=''>
-                                <HorarioAgendamento horario='15:30'
-                                    isSelected={hora === '15:30'}
-                                    onSelect={() => handleSelect('15:30', "Doutora Kamila Fagundes")}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="border border-cinza-claro w-full"></div>
-                    <div className='flex flex-col gap-4'>
-                        <div>
-                            <p className='text-preto font-poppins text-md sm:text-lg'>Doutor Flávio Almeida</p>
-                        </div>
-                        <div className='sm:flex grid grid-cols-4 gap-4 justify-start items-start'>
-                            <div className=''>
-                                <HorarioAgendamento horario='07:30'
-                                    isSelected={hora === '07:30'}
-                                    onSelect={() => handleSelect('07:30', "Doutor Flávio Almeida")}
-                                />
-                            </div>
-                            <div className=''>
-                                <HorarioAgendamento horario='09:00'
-                                    isSelected={hora === '09:00'}
-                                    onSelect={() => handleSelect('09:00', "Doutor Flávio Almeida")}
-                                />
-                            </div>
-                            <div className=''>
-                                <HorarioAgendamento horario='10:30'
-                                    isSelected={hora === '10:30'}
-                                    onSelect={() => handleSelect('10:30', "Doutor Flávio Almeida")}
-                                />
-                            </div>
-                            <div className=''>
-                                <HorarioAgendamento horario='13:00'
-                                    isSelected={hora === '13:00'}
-                                    onSelect={() => handleSelect('13:00', "Doutor Flávio Almeida")}
-                                />
-                            </div>
-                            <div className=''>
-                                <HorarioAgendamento horario='14:30'
-                                    isSelected={hora === '14:30'}
-                                    onSelect={() => handleSelect('14:30', "Doutor Flávio Almeida")}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
                     )
                 }
             </div>
