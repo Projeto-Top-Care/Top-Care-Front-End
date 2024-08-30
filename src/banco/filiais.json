@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "src": "./assets/lojaCuritiba.png/",
+        "nome": "Top Care Curitiba - PR",
+        "cep": "80215-190",
+        "cidade": "Curitiba",
+        "estado": "PR",
+        "rua": "R. Cel. Zacarias",
+        "bairro": "Prado Velho",
+        "numero": 51,
+        "contato": "+55 (47) 99999-9999",
+        "funcionamentoDias": "Segunda a Sabádo",
+        "funcionamentoHora": "08h às 20h",
+        "complemento": "Sala 4"
+    },
+    {
+        "id": 2,
+        "src": "./assets/lojaGramado.png/",
+        "nome": "Top Care Gramado - RS",
+        "cep": "95675-072",
+        "cidade": "Gramado",
+        "estado": "RS",
+        "rua": "Av. das Hortênsias",
+        "bairro": "Planalto",
+        "numero": 680,
+        "contato": "+55 (47) 99999-9999",
+        "funcionamentoDias": "Segunda a Sabádo",
+        "funcionamentoHora": "08h às 20h"
+    },
+    {
+        "id": 3,
+        "src": "./assets/lojaJoinville.png/",
+        "nome": "Top Care Jaraguá do Sul - SC",
+        "cep": "89202-000",
+        "cidade": "Jaraguá do Sul",
+        "estado": "SC",
+        "rua": "R. Guilherme Weege",
+        "bairro": "Centro",
+        "numero": 202,
+        "contato": "+55 (47) 99999-9999",
+        "funcionamentoDias": "Segunda a Sabádo",
+        "funcionamentoHora": "08h às 20h"
+
+    }
+]

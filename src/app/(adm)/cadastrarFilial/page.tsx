@@ -7,6 +7,7 @@ import MoldeInput from '@/components/MoldeInput'
 import Erro from '@/components/Pop-up/Erro/Erro'
 import ResponsiveInput from '@/components/ResponsiveInput'
 import Select from '@/components/Select/Select'
+import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { ViaCEP } from '@/types/usuarios'
 import React, { useState } from 'react'
 
@@ -80,9 +81,7 @@ export default function CadastroFilial() {
     return (
         <main className={`w-full overflow-hidden text-preto`}>
             <Erro />
-            <section className='w-[90%] m-auto mt-10 md:w-full'>
-                <h1 className='font-averia text-center text-2xl font-bold'>Cadastre uma nova filial!</h1>
-            </section>
+            <TituloLinha titulo='Cadastre uma nova filial!' voltar={true}/>
             <section className='flex flex-col justify-center items-center mt-12 gap-20 lg:flex-row lg:gap-10'>
                 <section className='flex flex-col justify-center md:gap-8 gap-5'>
                     <div className='flex md:flex-row flex-col gap-5 md:gap-8'>
