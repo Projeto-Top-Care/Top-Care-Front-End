@@ -61,7 +61,7 @@ export default function Perfil() {
 
     useEffect(() => {
         procurarUsuario()
-    }, [openModal, openEndereco, openPet, atualizar]);
+    }, [openEndereco, atualizar]);
 
     const procurarUsuario = async () => {
         const fetchedID = getUserID();
@@ -89,12 +89,11 @@ export default function Perfil() {
 
     const verificarEdicao = async (e: FormData) => {
         if (edicao) {
-            const date = dataNascimento.split("/")
-            const dateFormat = date[2] + "-" + date[1] + "-" + date[0]
+            const date = dataNascimento.split("/").reverse().join("-")
 
             e.append("celular", numero)
             e.append("sexo", sexo.replace(" ", "_").toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
-            e.append("dataNascimento", dateFormat)
+            e.append("dataNascimento", date)
             const s = Object.fromEntries(e)
             const resp = await editarUsuario(s, usuarioLogado.id)
         }
@@ -119,9 +118,9 @@ export default function Perfil() {
     ))
 
     const componetesSelecao = [
-        <HistoricoAgendamentos agendamentos={usuarioLogado.agendamentos} />,
+        <HistoricoAgendamentos agendamentos={usuarioLogado.agendamentos} setAtt={setAtualizar} />,
         <PedidosEmAndamento usuario={usuarioLogado} />,
-        <MeusPets usuario={usuarioLogado} setOpenPet={setOpenPet} />,
+        <MeusPets usuario={usuarioLogado} setOpenPet={setOpenPet} setAtt={setAtualizar}/>,
         <CarrosselProduto slides={carrosselProdutos} />,
         <EnderecosSalvos atualizarProps={setAtualizar} enderecos={displayedAddresses} setOpenEndereco={setOpenEndereco} setShowAllAdresses={setShowAllAddresses} />
     ]
@@ -255,7 +254,7 @@ export default function Perfil() {
                 <div className='overflow-hidden absolute'>
                     <div className='fixed top-0 left-0 w-full h-full z-50 bg-fundo-modal' onClick={() => setOpenPet(false)}></div>
                     <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
-                        <CadastroPet setOpen={setOpenPet} />
+                        <CadastroPet setOpen={setOpenPet} setAtt={setAtualizar}/>
                     </div>
                 </div>
             )}

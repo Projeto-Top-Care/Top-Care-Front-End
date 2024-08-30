@@ -3,32 +3,30 @@ import InputData from '@/components/InputData/InputData';
 import React, { SetStateAction, useEffect, useState } from 'react';
 import HorarioAgendamento from '../HorarioAgendamento/HorarioAgendamento';
 import { getHorariosPorDia } from '@/server/servicos/action';
+import { Horario } from '@/app/(logado)/agendamento/page';
+import { formatarHora } from '@/utils/data';
 
 interface IData {
-    setData: React.Dispatch<SetStateAction<string>>
-    setHora: React.Dispatch<SetStateAction<string>>
+    setHorario: React.Dispatch<SetStateAction<Horario | undefined>>
     setProfissional: React.Dispatch<SetStateAction<Profissional | undefined>>
-    data: string
-    hora: string
+    horario: Horario | undefined
     profissional: Profissional | undefined
     servicoId: string
 }
 
 export interface Profissional {
+    id: number
     nome: string
-    horarios: Horarios[]
-}
-interface Horarios {
-    horaInicio: Date,
-    horaFim: Date
+    horarios: Horario[]
 }
 
-export default function EscolhaData({ setData, setHora, setProfissional, data, hora, servicoId }: IData) {
+export default function EscolhaData({ setHorario, setProfissional, horario, servicoId }: IData) {
 
     const [profissionais, setProfissionais] = useState<Profissional[]>([]);
+    const [data, setData] = useState<string>('');
 
-    const setar = (hora: string, profissional: Profissional) => {
-        setHora(hora);
+    const setar = (hora: Horario, profissional: Profissional) => {
+        setHorario(hora);
         setProfissional(profissional);
     }
 
@@ -67,11 +65,11 @@ export default function EscolhaData({ setData, setHora, setProfissional, data, h
                                         </div>
                                         <div className='sm:flex grid grid-cols-4 gap-4 justify-start items-start'>
                                             {
-                                                profissional.horarios.map((horario, i) => (
+                                                profissional.horarios.map((horario1, i) => (
                                                     <div className=''>
-                                                        <HorarioAgendamento horario={horario.horaInicio.toString().slice(0,5)}
-                                                            isSelected={hora === horario.horaInicio.toString()}
-                                                            onSelect={() => setar(horario.horaInicio.toString(), profissional)}
+                                                        <HorarioAgendamento horario={formatarHora(horario1.horaInicio)}
+                                                            isSelected={horario1.horaInicio === horario?.horaInicio.toString()}
+                                                            onSelect={() => setar(horario1, profissional)}
                                                         />
                                                     </div>
                                                 ))

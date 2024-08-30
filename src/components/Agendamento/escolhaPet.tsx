@@ -9,26 +9,11 @@ import Loading from '@/app/(misto)/loading/page';
 interface IPet {
     setPet: React.Dispatch<SetStateAction<Pet | undefined>>
     pet: Pet | undefined
+    usuarioLogado?: Usuario;
 }
 
-export default function EscolhaPet({ setPet, pet }: IPet) {
+export default function EscolhaPet({ setPet, pet, usuarioLogado }: IPet) {
 
-    const { getUserID } = useUserID()
-    const [usuarioLogado, setUsuarioLogado] = useState<Usuario | null>(null);
-
-    useEffect(() => {
-        buscarUser()
-    }, [])
-
-    const buscarUser = async () => {
-        const idFetched = getUserID();
-        if (idFetched) {
-            const usuarioBuscado = await buscarUsuario(parseInt(idFetched))
-            if (usuarioBuscado) {
-                setUsuarioLogado(usuarioBuscado)
-            }
-        }
-    }
 
     if (!usuarioLogado) {
         return <Loading />
