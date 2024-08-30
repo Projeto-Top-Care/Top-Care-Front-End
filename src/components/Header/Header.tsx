@@ -18,7 +18,7 @@ export default function Home() {
     return (
         <main className="">
             {
-                userID != null ? <HeaderLogado /> : <HeaderDeslogado />
+                userID ? <HeaderLogado /> : <HeaderDeslogado />
             }
         </main>
     );

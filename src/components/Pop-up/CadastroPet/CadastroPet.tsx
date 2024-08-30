@@ -19,12 +19,10 @@ interface ICadastroPet {
     petEdit?: Pet
 }
 export default function CadastroPet({ setOpen, petEdit }: ICadastroPet) {
-    const [pet, setPet] = useState(petEdit ? petEdit.especie.nome : "");
+    const [pet, setPet] = useState(petEdit ? petEdit.especie : "");
     const [raca, setRaca] = useState(petEdit ? petEdit.raca : "");
     const [porte, setPorte] = useState(petEdit ? petEdit.porte.charAt(0) + petEdit.porte.slice(1).toLowerCase() : "");
     const [nome, setNome] = useState(petEdit ? petEdit.nome : "");
-
-    const [erro, setErro] = useState<boolean>(false)
 
     const { addConfirmacao } = useConfirmacao()
 
@@ -44,7 +42,8 @@ export default function CadastroPet({ setOpen, petEdit }: ICadastroPet) {
             idUsuario: id,
             idEspecie: animais.indexOf(pet) + 1,
             raca: raca,
-            porte: porte.toUpperCase()
+            porte: porte.toUpperCase().normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, "")
         }
         setOpen(false)
         addConfirmacao(petEdit ? petEdit?.nome + " editado!" : "Pet cadastrado!")

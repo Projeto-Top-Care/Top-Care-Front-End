@@ -31,6 +31,6 @@ export async function getHorariosPorDia(id: string, dia: string) {
 }
 
 export async function getFiliais(){
-    const response = await axiosAPI.get('/filiais');
+    const response = await axiosAPI.get('teste/filiais');
     return response.data;
 }

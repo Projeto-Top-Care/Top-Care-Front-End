@@ -2,12 +2,9 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosClose } from "react-icons/io";
 import Select from '../Select/Select'
-import { animais } from '@/utils/pets'
 import { buscarEspecies } from '@/server/especie/especie';
-import { buscarFuncionarios } from '@/server/usuario/funcionario';
-import { set } from 'zod';
+import { buscarFuncionarios, buscarFuncionariosSimples } from '@/server/usuario/funcionario';
 import { PetsProps } from '@/types/servicos';
-import BotaoGrande from '../Botoes/BotaoGrande/BotaoGrande';
 
 interface InputSelectProps {
   type: "Animais" | "Profissionais"
@@ -30,7 +27,7 @@ export default function InputSelect({ type, jaSelecionados, setSelecionados }: I
       if (type == "Animais") {
         opcoes = await buscarEspecies()
       } else {
-        opcoes = await buscarFuncionarios() || []
+        opcoes = await buscarFuncionariosSimples() || []
       }
       setSelecaoPadrao(opcoes)
 

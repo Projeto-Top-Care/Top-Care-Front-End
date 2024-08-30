@@ -5,6 +5,11 @@ export const buscarFuncionarios = async () => {
     return response.data;
 }
 
+export const buscarFuncionariosSimples = async () => {
+    const response = await axiosAPI.get("/funcionario/simples")
+    return response.data;
+}
+
 export async function cadastroFuncionario(payload: any) {
     const response = await axiosAPI.post("/funcionario", payload).then(resp => resp);
     return response.data
