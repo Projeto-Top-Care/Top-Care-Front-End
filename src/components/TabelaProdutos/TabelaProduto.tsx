@@ -2,14 +2,15 @@ import { Especificacao, ProdutoCompleto } from '@/types/produto'
 import InputText from "../InputText/InputText";
 import InputFile from '../InputFile/InputFile';
 import TextArea from "../TextArea/TextArea";
-import { useState } from "react";
+import { use, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import CadastroEspecificacoes from '../CadastroEspecificacao/CadastroEspecificacao';
 import CardEspecificacaoProduto from '../CardEspecificacaoProduto/CardEspecificacaoProduto';
+import Select from '../Select/Select';
 
 interface TabelaProdutosProps {
     produtos?: ProdutoCompleto
-    produto?: Especificacao
+    produto?: ProdutoCompleto
 }
 
 export default function TabelaProdutos({ produto, produtos }: TabelaProdutosProps) {
@@ -18,6 +19,7 @@ export default function TabelaProdutos({ produto, produtos }: TabelaProdutosProp
     const [especificacoes, setEspecificacao] = useState<Especificacao[]>(() => {
         return Array.isArray(produtos?.especificacoes) ? produtos.especificacoes : [];
     });
+    const [marca, setMarca] = useState<string>('')
 
     return (
         <section className='border border-cinza-escuro rounded-xl h-full flex flex-col lg:flex-row w-full'>
@@ -25,14 +27,20 @@ export default function TabelaProdutos({ produto, produtos }: TabelaProdutosProp
                 <div className='flex justify-center lg:block pt-6'>
                     <p className='font-averia text-xl font-extrabold md:text-2xl'>Informações básicas</p>
                 </div>
-                <form action="">
-                    <div className="mt-5">
+                <div className='flex flex-col gap-5 py-4'>
+                    <div className="">
                         <InputText placeholder='Nome do produto*' value={produto?.nome} required />
                     </div>
-                    <div className='mt-5 h-32 mb-8'>
+                    <div className="">
+                        <InputText placeholder='Codigo*' value={produto?.codigo} required />
+                    </div>
+                    <div className='h-32'>
                         <TextArea placeholder='Descrição' value={produtos?.descricao} />
                     </div>
-                </form>
+                    <div>
+                        <Select label='Marca*' opcao={marca} opcaoSelecionada={setMarca} options={['Marca 1', 'Marca 2', 'Marca 3']} />
+                    </div>
+                </div>
             </section>
             <section className="lg:w-[45%] lg:ml-7 lg:p-0 p-4">
                 <div className="flex justify-center lg:block pt-6">
@@ -42,8 +50,8 @@ export default function TabelaProdutos({ produto, produtos }: TabelaProdutosProp
                     {especificacoes.map((especificacao) => (
                         <CardEspecificacaoProduto descricao={especificacao.descricao} nome={especificacao.nome} />
                     ))}
-                    <div className='flex flex-row gap-2 cursor-pointer md:w-[10%] w-full mt-4' onClick={() => setOpenEspecificacao(true)}>
-                        <div className='p-2 rounded-full bg-terciaria'>
+                    <div className='flex flex-row gap-2 mt-4 cursor-default items-center'>
+                        <div className=' w-10 h-10 flex items-center justify-center rounded-full cursor-pointer bg-terciaria' onClick={() => setOpenEspecificacao(true)}>
                             <FiPlus size={20} />
                         </div>
                         <p className='font-poppins text-sm text-preto w-full'>

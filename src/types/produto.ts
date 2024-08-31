@@ -12,7 +12,7 @@ export interface Produto {
 }
 export interface ProdutoCompleto {
     id: number
-    nomeProduto: string
+    nome: string
     notaDeAvaliacao: number
     imagemProduto: string[]
     precoAntigoDoProduto: number
