@@ -24,20 +24,25 @@ export default function PaginaInicial() {
     const OPTIONS: EmblaOptionsType = { loop: true }
 
     const { push } = useRouter();
-    const {getUserID} = useUserID()
+    const { getUserID, setUserId } = useUserID()
 
-    useEffect(()=>{
-        const func = async () =>{
+    useEffect(() => {
+        const func = async () => {
             const id = getUserID()
-            if(id){
-                const user: Usuario = await buscarUsuario(parseInt(id)) 
-                if(user.role == "ADMIN"){
-                    push("/dashboard")
+            if (id) {
+                try {
+                    const user: Usuario = await buscarUsuario(parseInt(id))
+                    if (user.role == "ADMIN") {
+                        push("/dashboard")
+                    }
+                }catch(e){
+                    setUserId('')
+                    console.log(e)
                 }
             }
         }
         func()
-    },[])
+    }, [])
 
     return (
         <main className="bg-branco">
