@@ -7,32 +7,35 @@ export interface ProdutoCard {
     imagemProduto: string
     preco: number
 }
+
+export interface PaginaProduto {
+    produtos: ProdutoCard[]
+    page: number
+    totalPages: number
+    pageSize: number
+    totalElements: number
+}
+
+
 export interface ProdutoCompleto {
     id: number
     nome: string
-    notaDeAvaliacao: number
-    imagemProduto: string[]
-    precoAntigoDoProduto: number
-    desconto: string
-    precoNovo: number
+    notaAvaliacao: number
+    imagens: string[]
     marca: string
-    precoAssinantes: number
-    tipoVariante: string
     variantes: VarianteProps[]
     disponivel: boolean,
     codigo: number
-    estoque: number
     quantidadeVendas: number
-    descricao: string[]
-    especificacoes: Especificacao
+    descricao: string
+    especificacoes: Especificacao[]
     avaliacoes: AvaliacaoType[]
-    tags: string[],
 }
 
 export interface Especificacao {
     id?: number,
     nome: string,
-    descricao: string
+    conteudo: string
 }
 
 export interface AvaliacaoType {
@@ -44,9 +47,13 @@ export interface AvaliacaoType {
 
 export interface VarianteProps {
     id?: number
+    cor: string
+    tamanho: string
+    peso: number
+    unidades: number
     estoque: number
     preco: number
-    tipo: string
+    desconto: number
 }
 
 export interface UsuarioAvaliacao {

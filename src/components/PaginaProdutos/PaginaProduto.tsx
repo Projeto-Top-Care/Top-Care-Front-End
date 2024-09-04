@@ -4,7 +4,7 @@ import produtos from '@/banco/produtos.json'
 import React, { useEffect, useMemo, useState } from 'react'
 import { FaFilter } from "react-icons/fa";
 import FiltroGrande from '@/components/Filtro/FiltroGrande'
-import { ProdutoCard, ProdutoCompleto } from '@/types/produto'
+import { PaginaProduto, ProdutoCard, ProdutoCompleto } from '@/types/produto'
 import Select from '@/components/Select/Select';
 import Confirmacao from '@/components/Pop-up/Confirmacao/Confirmacao';
 import { useUserID } from '@/context/UserIDContext';
@@ -23,6 +23,9 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
     const { getUserID } = useUserID()
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
 
+    const query = searchParams?.q
+    const [produtosMostrados, setProdutosMostrados] = useState<ProdutoCard[]>()
+
     useEffect(() => {
         const func = async () => {
             const id = getUserID()
@@ -38,14 +41,11 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
 
     useEffect(() => {
         const func = async () => {
-            const produtos = await buscarTodos()
-            setProdutosMostrados(produtos.content)
+            const paginaProdutos: PaginaProduto = await buscarTodos()
+            setProdutosMostrados(paginaProdutos.produtos)
         }
         func()
     } , [])
-
-    const query = searchParams?.q
-    const [produtosMostrados, setProdutosMostrados] = useState<ProdutoCard[]>()
     // const [produtosMostradosQuery, setProdutosMostradosQuery] = useState<ProdutoCompleto[]>([])
     // const [filtroOpen, setFiltroOpen] = useState<boolean>(false)
     // const [animation, setAnimation] = useState<boolean>(false)
@@ -89,7 +89,7 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
                 </div>
             ))
         )
-    }, [])
+    }, [produtosMostrados])
 
     return (
         <main className='w-full text-preto pb-20'>

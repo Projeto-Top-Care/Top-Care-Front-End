@@ -7,7 +7,7 @@ import { Usuario } from "@/types/usuarios";
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import TabelaProdutos from "@/components/TabelaProdutos/TabelaProduto";
-import EspecificacoesProduto from "@/components/VariacaoProdutos/VariacaoProdutos";
+import VariacaoProdutos from "@/components/VariacaoProdutos/VariacaoProdutos";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 
 export default function CadastroProduto() {
@@ -38,7 +38,7 @@ export default function CadastroProduto() {
                 <TabelaProdutos />
             </section>
             <section className="w-[90%] mx-auto">
-                <EspecificacoesProduto />
+                <VariacaoProdutos />
             </section>
             <section className='w-[90%] mx-auto flex flex-row justify-between items-center my-10'>
                 <div className='w-24 md:w-48'>

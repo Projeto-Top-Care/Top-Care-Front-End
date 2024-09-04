@@ -10,21 +10,21 @@ interface VariacaoProps {
     produtos?: ProdutoCompleto
 }
 
-const variacoes = ["Nenhuma", "Cor", "Peso", "Tamanho", "Unidade"]
-
 export default function VariacaoProdutos({ produtos }: VariacaoProps) {
     const [openVariante, setOpenVariante] = useState<boolean>(false)
-    const [variantes, setVariantes] = useState<VarianteProps[]>(produtos ? produtos.variantes : [])
+    const [variantes, setVariantes] = useState<VarianteProps[]>(produtos?.variantes || [])
 
     return (
         <section className='flex flex-col justify-center lg:block items-center w-full p-8 mt-10 border border-cinza-escuro rounded-xl'>
             <div className='pt-6'>
                 <p className='font-averia text-xl font-extrabold md:text-2xl'>Variações do Produto</p>
             </div>
-            <div className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 w-[90%] gap-4 mt-4 mb-8'>
+            <div className='flex flex-row w-[90%] gap-4 mt-4 mb-8'>
                 {
-                    variantes.map((variante) => (
-                        <CardVarianteProduto tipo={variante.tipo} preco={variante.preco} estoque={variante.estoque} />
+                    variantes.map((variante, i) => (
+                        <div key={i} className='w-80'>
+                            <CardVarianteProduto variante={variante} />
+                        </div>
                     ))
                 }
                 <div className='flex items-center gap-2 flex-row cursor-pointer md:w-[10%] w-full mt-4' onClick={() => setOpenVariante(true)}>
@@ -38,7 +38,11 @@ export default function VariacaoProdutos({ produtos }: VariacaoProps) {
             </div>
             {
                 openVariante && (
-                    <CadastroVarianteProduto openModalProps={setOpenVariante} variantesProps={produtos?.variantes} setVariantesProps={setVariantes} />
+                    <CadastroVarianteProduto 
+                        setOpen={setOpenVariante} 
+                        variantes={variantes} 
+                        setVariantes={setVariantes} 
+                    />
                 )
             }
         </section>

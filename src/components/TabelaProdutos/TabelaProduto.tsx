@@ -16,9 +16,7 @@ interface TabelaProdutosProps {
 export default function TabelaProdutos({ produto, produtos }: TabelaProdutosProps) {
     const [quantidadeFotos, setQuantidadeFotos] = useState<number[]>([])
     const [openEspecificacao, setOpenEspecificacao] = useState<boolean>(false)
-    const [especificacoes, setEspecificacao] = useState<Especificacao[]>(() => {
-        return Array.isArray(produtos?.especificacoes) ? produtos.especificacoes : [];
-    });
+    const [especificacoes, setEspecificacao] = useState<Especificacao[]>( produtos?.especificacoes || []);
     const [marca, setMarca] = useState<string>('')
 
     return (
@@ -29,13 +27,13 @@ export default function TabelaProdutos({ produto, produtos }: TabelaProdutosProp
                 </div>
                 <div className='flex flex-col gap-5 py-4'>
                     <div className="">
-                        <InputText placeholder='Nome do produto*' value={produto?.nome} required />
+                        <InputText placeholder='Nome do produto*' defaultValue={produto?.nome} required />
                     </div>
                     <div className="">
-                        <InputText placeholder='Codigo*' value={produto?.codigo} required />
+                        <InputText placeholder='Codigo*' defaultValue={produto?.codigo} required />
                     </div>
                     <div className='h-32'>
-                        <TextArea placeholder='Descrição' value={produtos?.descricao} />
+                        <TextArea placeholder='Descrição' defaultValue={produtos?.descricao} />
                     </div>
                     <div>
                         <Select label='Marca*' opcao={marca} opcaoSelecionada={setMarca} options={['Marca 1', 'Marca 2', 'Marca 3']} />
@@ -48,7 +46,12 @@ export default function TabelaProdutos({ produto, produtos }: TabelaProdutosProp
                 </div>
                 <div className='flex flex-col w-full gap-4 mt-4 mb-8'>
                     {especificacoes.map((especificacao) => (
-                        <CardEspecificacaoProduto descricao={especificacao.descricao} nome={especificacao.nome} />
+                        <CardEspecificacaoProduto 
+                            descricao={especificacao.conteudo} 
+                            nome={especificacao.nome} 
+                            especificacoes={especificacoes}
+                            setEspecificacoes={setEspecificacao}
+                        />
                     ))}
                     <div className='flex flex-row gap-2 mt-4 cursor-default items-center'>
                         <div className=' w-10 h-10 flex items-center justify-center rounded-full cursor-pointer bg-terciaria' onClick={() => setOpenEspecificacao(true)}>
@@ -61,7 +64,10 @@ export default function TabelaProdutos({ produto, produtos }: TabelaProdutosProp
                 </div>
                 {
                     openEspecificacao && (
-                        <CadastroEspecificacoes openModalProps={setOpenEspecificacao} especificacoesProps={especificacoes} setEspecificacaoProps={setEspecificacao} />
+                        <CadastroEspecificacoes 
+                            setOpenModal={setOpenEspecificacao} 
+                            especificacoes={especificacoes} 
+                            setEspecificacoes={setEspecificacao} />
                     )
                 }
                 <div className='flex flex-col items-center mt-5'>
