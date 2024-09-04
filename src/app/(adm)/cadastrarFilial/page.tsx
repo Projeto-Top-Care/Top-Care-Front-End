@@ -48,14 +48,13 @@ export default function CadastroFilial() {
     const [cep, setCep] = useState<string>('');
     const [estado, setEstado] = useState<string>("")
     const [endereco, setEndereco] = useState<ViaCEP>();
-
+    const [funcionamentoDias, setFuncionamentoDias] = useState<string>("");
+    const [horarioFuncionamento, setHorarioFuncionamento] = useState<string>("");
 
     const [erro, setErro] = useState<boolean>(false)
 
-
     const enviarDados = () => {
-        if (nome == '')
-            setErro(true)
+        
     }
 
     const buscarCep = async () => {
@@ -81,8 +80,8 @@ export default function CadastroFilial() {
     return (
         <main className={`w-full overflow-hidden text-preto`}>
             <Erro />
-            <TituloLinha titulo='Cadastre uma nova filial!' voltar={true}/>
-            <section className='flex flex-col justify-center items-center mt-12 gap-20 lg:flex-row lg:gap-10'>
+            <TituloLinha titulo='Cadastre uma nova filial!' voltar={true} />
+            <form action={enviarDados} className='flex flex-col justify-center items-center mt-12 gap-20 lg:flex-row lg:gap-10'>
                 <section className='flex flex-col justify-center md:gap-8 gap-5'>
                     <div className='flex md:flex-row flex-col gap-5 md:gap-8'>
                         <div className='md:w-72 w-[90%] m-auto gap-3 flex items-center justify-center'>
@@ -169,10 +168,26 @@ export default function CadastroFilial() {
                             />
                         </ResponsiveInput>
                     </MoldeInput>
+                    <MoldeInput>
+                        <ResponsiveInput size='w-72'>
+                            <InputText
+                                placeholder='Dias de funcionamento*'
+                                value={funcionamentoDias}
+                                onChange={(e) => setFuncionamentoDias(e.target.value)}
+                            />
+                        </ResponsiveInput>
+                        <ResponsiveInput size='w-72'>
+                            <InputText
+                                placeholder='Horário de funcionamento*'
+                                value={horarioFuncionamento}
+                                onChange={(e) => setHorarioFuncionamento(e.target.value)}
+                            />
+                        </ResponsiveInput>
+                    </MoldeInput>
                 </section>
-            </section>
+            </form>
             <section className='mb-24 mt-12'>
-                <div className='w-[50%] md:w-[20%] m-auto'>
+                <div className='w-[90%] md:w-[30%] lg:w-[20%] m-auto'>
                     <BotaoGrande title='Criar filial' background='secundaria' type={'button'} />
                 </div>
             </section>
