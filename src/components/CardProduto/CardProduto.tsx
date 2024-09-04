@@ -28,11 +28,12 @@ const CardProduto = ({ produto }: ProdutoProps) => {
             const id = getUserID()
             if (id) {
                 const user: Usuario = await buscarUsuario(parseInt(id))
-                if (user.role == 'admin') {
+                if (user.role == 'ADMIN') {
                     setIsAdmin(true)
                 }
             }
         }
+        func()
     }, [])
 
     const { addProduct } = useCarrinho()

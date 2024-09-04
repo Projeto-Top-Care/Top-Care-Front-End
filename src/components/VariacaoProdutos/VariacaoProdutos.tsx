@@ -6,13 +6,13 @@ import CadastroVarianteProduto from "../CadastroVarianteProduto/CadastroVariante
 import CardVarianteProduto from '../CardVarianteProduto/CardVarianteProduto';
 import { FiPlus } from "react-icons/fi";
 
-interface VariacaoProps {
-    produtos?: ProdutoCompleto
+interface VariacaoPageProps {
+    variantess?: VarianteProps[]
 }
 
-export default function VariacaoProdutos({ produtos }: VariacaoProps) {
+export default function VariacaoProdutos({ variantess }: VariacaoPageProps) {
     const [openVariante, setOpenVariante] = useState<boolean>(false)
-    const [variantes, setVariantes] = useState<VarianteProps[]>(produtos?.variantes || [])
+    const [variantes, setVariantes] = useState<VarianteProps[]>(variantess || [])
 
     return (
         <section className='flex flex-col justify-center lg:block items-center w-full p-8 mt-10 border border-cinza-escuro rounded-xl'>
@@ -22,8 +22,12 @@ export default function VariacaoProdutos({ produtos }: VariacaoProps) {
             <div className='flex flex-row w-[90%] gap-4 mt-4 mb-8'>
                 {
                     variantes.map((variante, i) => (
-                        <div key={i} className='w-80'>
-                            <CardVarianteProduto variante={variante} />
+                        <div key={i} className=''>
+                            <CardVarianteProduto 
+                                variante={variante}
+                                variantes={variantes} 
+                                setVariantes={setVariantes}   
+                            />
                         </div>
                     ))
                 }

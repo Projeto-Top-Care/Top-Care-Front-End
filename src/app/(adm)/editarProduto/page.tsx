@@ -7,6 +7,8 @@ import { buscarProduto } from "@/server/produtos/action";
 import { ProdutoCompleto } from "@/types/produto";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import VariacaoProdutos from "@/components/VariacaoProdutos/VariacaoProdutos";
+import { useEffect, useState } from "react";
+import Carregando from "@/components/Carregando/Carregando";
 
 interface EditarProdutoProps {
     searchParams: {
@@ -19,8 +21,21 @@ export default function EditarProduto({ searchParams }: EditarProdutoProps) {
     const router = useRouter()
     const idProduto = searchParams.id
 
-    const produtoBuscado: ProdutoCompleto = buscarProduto(idProduto)!
+    const [produtoBuscado, setProdutoBuscado] = useState<ProdutoCompleto>()
 
+    useEffect(() => {
+        const useEffectFunction = async () => {
+            const produto: ProdutoCompleto = await buscarProduto(idProduto);
+            setProdutoBuscado(produto)
+        }
+        useEffectFunction()
+    } , [idProduto]);
+
+    if (!produtoBuscado) {
+        return (
+            <Carregando />
+        )
+    }
 
     return (
         <main className="mx-auto text-preto">
@@ -29,14 +44,14 @@ export default function EditarProduto({ searchParams }: EditarProdutoProps) {
                 <TituloLinha voltar={true} titulo={"Editar produto #" + produtoBuscado.codigo} />
             </section>
             <section className="w-[90%] mx-auto">
-                <TabelaProdutos produto={produtoBuscado.especificacoes} />
+                <TabelaProdutos produto={produtoBuscado} />
             </section>
             <section className="w-[90%] mx-auto">
-                <VariacaoProdutos produtos={produtoBuscado} />
+                <VariacaoProdutos variantess={produtoBuscado.variantes} />
             </section>
             <section className='w-[90%] mx-auto flex flex-row justify-between items-center my-10'>
                 <div className='w-24 md:w-48'>
-                    <BotaoGrande background='cancelar' title='Cancelar' type='button' onClick={()=>router.back()} />
+                    <BotaoGrande background='cancelar' title='Cancelar' type='button' onClick={() => router.back()} />
                 </div>
                 <div className='md:w-60'>
                     <BotaoGrande background='secundaria' title='Salvar Alterações' type='button' />

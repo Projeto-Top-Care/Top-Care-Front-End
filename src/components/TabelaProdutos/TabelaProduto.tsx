@@ -9,15 +9,14 @@ import CardEspecificacaoProduto from '../CardEspecificacaoProduto/CardEspecifica
 import Select from '../Select/Select';
 
 interface TabelaProdutosProps {
-    produtos?: ProdutoCompleto
     produto?: ProdutoCompleto
 }
 
-export default function TabelaProdutos({ produto, produtos }: TabelaProdutosProps) {
+export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
     const [quantidadeFotos, setQuantidadeFotos] = useState<number[]>([])
     const [openEspecificacao, setOpenEspecificacao] = useState<boolean>(false)
-    const [especificacoes, setEspecificacao] = useState<Especificacao[]>( produtos?.especificacoes || []);
-    const [marca, setMarca] = useState<string>('')
+    const [especificacoes, setEspecificacao] = useState<Especificacao[]>( produto?.especificacoes || []);
+    const [marca, setMarca] = useState<string>(produto?.marca || '')
 
     return (
         <section className='border border-cinza-escuro rounded-xl h-full flex flex-col lg:flex-row w-full'>
@@ -33,7 +32,7 @@ export default function TabelaProdutos({ produto, produtos }: TabelaProdutosProp
                         <InputText placeholder='Codigo*' defaultValue={produto?.codigo} required />
                     </div>
                     <div className='h-32'>
-                        <TextArea placeholder='Descrição' defaultValue={produtos?.descricao} />
+                        <TextArea placeholder='Descrição' defaultValue={produto?.descricao} />
                     </div>
                     <div>
                         <Select label='Marca*' opcao={marca} opcaoSelecionada={setMarca} options={['Marca 1', 'Marca 2', 'Marca 3']} />
