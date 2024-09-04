@@ -1,0 +1,75 @@
+'use client'
+import TituloLinha from "@/components/TituloLinha/TituloLinha";
+import CardVisualizacao from "./CardVisualizacao/CardVisualizacao";
+import { useEffect, useState } from "react";
+import { FuncionarioCompleto, HorarioFuncionarioSimples } from "@/types/funcionario";
+import { buscarFuncionario, verHorariosDisponiveis } from "@/server/usuario/funcionario";
+
+interface VisualizarFuncionarioProps {
+    searchParams: {
+        id: number
+    }
+}
+
+export default function VisualizarAgendamentoFuncionario({ searchParams }: VisualizarFuncionarioProps) {
+
+    const idFuncionario = searchParams.id;
+    const [funcionario, setFuncionario] = useState<FuncionarioCompleto>()
+    const [horariosDisponiveis, setHorariosDisponiveis] = useState<HorarioFuncionarioSimples[]>()
+
+    const verFuncionario = async () => {
+        const response = await buscarFuncionario(idFuncionario)
+        setFuncionario(response)
+    }
+    const verHorarios = async () => {
+        const response = await verHorariosDisponiveis(idFuncionario)
+        setHorariosDisponiveis(response)
+    }
+
+    useEffect(() => {
+        verFuncionario()
+        verHorarios()
+    }, [])
+
+    const formatarData = (dateString:string) => {
+        const [year, month, day] = dateString.split('-');
+        return `${day}/${month}/${year}`;
+    };
+
+    return (
+        <main className='mb-14 font-poppins'>
+            <section className="">
+                <TituloLinha titulo={"Olá, funcionário " + funcionario?.nome} voltar={false} />
+                <section className="flex flex-col md:mb-12 mb-4 md:w-[95%] lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center gap-8">
+                    <p className="font-averia text-preto md:text-2xl text-xl lg:text-start text-center font-bold">Agendamentos</p>
+                    <div className="gap-8 grid lg:grid-cols-3 md:grid-cols-2 md:mt-2">
+                        <CardVisualizacao servico="Banho e Tosa" horario="15:30" fotoPet={"./assets/cachorro-perfil.png"} animal="Cachorro" nomePet="Nina" porte="Médio" raca="Poodle" data={"1212-12-12"} />
+                        <CardVisualizacao servico="Banho e Tosa" horario="15:30" fotoPet={"./assets/cachorro-perfil.png"} animal="Cachorro" nomePet="Nina" porte="Pequeno" raca="Spitz Alemao" data={"1212-12-12"} />
+                    </div>
+                    {/* <div className="gap-8 grid lg:grid-cols-3 md:grid-cols-2 md:mt-2">
+                        {funcionario?.horarios.map((item, index) => (
+                            item.reservado ? 
+                            <CardVisualizacao key={index} data={item.dia} servico={"Nome do serviço"} horario={item.horaInicio.substring(0, 5)} fotoPet={"./assets/cachorro-perfil.png"} animal="Cachorro" nomePet="Nina" porte="Pequeno" raca="Spitz Alemao" />
+                            : <> </>    
+                        ))}
+                    </div> */}
+                </section>
+            </section>
+            <TituloLinha titulo={"Horários disponíveis"} voltar={false} />
+            <section className="flex flex-col md:mb-12 mb-4 md:w-[95%] lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center gap-8">
+                <div className="flex flex-row gap-6">
+                    {
+                        horariosDisponiveis &&
+                        horariosDisponiveis.map((item, index) => (
+                            <div key={index} className="w-1/4 flex flex-col border-roxo-select border rounded-lg p-2 text-roxo-select">
+                                <p className="font-semibold">Dia {formatarData(item.dia)}</p>
+                                <p className="">{item.horaFim} às {item.horaFim}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </section>
+            <button onClick={() => console.log(horariosDisponiveis)}>veja os horarios</button>
+        </main >
+    )
+}

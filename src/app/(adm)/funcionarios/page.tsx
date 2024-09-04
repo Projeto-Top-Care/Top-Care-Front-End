@@ -8,6 +8,7 @@ import CardFuncionario from "./CardFuncionario"
 import { buscarFuncionarios } from "@/server/usuario/funcionario"
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import { useRouter } from "next/navigation"
+import { FuncionarioSimples } from "@/types/funcionario"
 
 interface AtualizarFuncionarios {
     searchParams: {
@@ -24,7 +25,7 @@ export default function VisualizarAgendamento({ searchParams }: AtualizarFuncion
 
     const router = useRouter();
 
-    const [funcionarios, setFuncionarios] = useState([])
+    const [funcionarios, setFuncionarios] = useState<FuncionarioSimples[]>([])
 
     const verfuncioarios = async () => {
         const response = await buscarFuncionarios()
@@ -39,7 +40,7 @@ export default function VisualizarAgendamento({ searchParams }: AtualizarFuncion
         verfuncioarios()
     }, [att])
 
-    const ordenarFuncionarios = (funcionarios: Object[]): Object[] => {
+    const ordenarFuncionarios = (funcionarios: FuncionarioSimples[]): FuncionarioSimples[] => {
         if (escolha === "Cadastro decrescente") {
             return [...funcionarios].sort((a, b) => b.codigo - a.codigo);
         } else if (escolha === "Cadastro crescente") {
@@ -53,41 +54,41 @@ export default function VisualizarAgendamento({ searchParams }: AtualizarFuncion
 
     const funcionariosPesquisa = funcionarios.filter((funcionario) =>
         funcionario.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
-        funcionario.codigo.toLowerCase().includes(pesquisa.toLowerCase())
+        funcionario.codigo.toString().includes((pesquisa))
     );
-    const funcionariosOrdenados: Object[] = ordenarFuncionarios(funcionariosPesquisa);
+    const funcionariosOrdenados: FuncionarioSimples[] = ordenarFuncionarios(funcionariosPesquisa);
 
     return (
-        <main className='font-poppins text-preto'>
-            <section className=''>
-                <TituloLinha voltar={false} titulo={`Funcionarios`} />
-            </section>
-            <section className="flex justify-between w-[90%] m-auto">
-                <div className="flex w-[60%] px-1 border border-preto rounded-lg h-10">
-                    <div className="size-[2rem] h-full flex">
-                        <button><FaSearch style={{ color: "#322828" }} /></button>
+            <main className='font-poppins text-preto'>
+                <section className=''>
+                    <TituloLinha voltar={false} titulo={`Funcionarios`} />
+                </section>
+                <section className="flex justify-between w-[90%] m-auto">
+                    <div className="flex w-[60%] px-1 border border-preto rounded-lg h-10">
+                        <div className="size-[2rem] h-full flex">
+                            <button><FaSearch style={{ color: "#322828" }} /></button>
+                        </div>
+                        <input
+                            type="search"
+                            value={pesquisa}
+                            onChange={(e) => setPesquisa(e.target.value)}
+                            className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
+                            placeholder="Pesquise pelo nome do funcionário" />
                     </div>
-                    <input
-                        type="search"
-                        value={pesquisa}
-                        onChange={(e) => setPesquisa(e.target.value)}
-                        className="focus:outline-0 w-full text-xs sm:text-base placeholder:text-cinza-escuro font-poppins bg-branco"
-                        placeholder="Pesquise pelo nome do funcionário" />
-                </div>
-                <div className="">
-                    <BotaoGrande onClick={() => router.push('/cadastroFuncionario')} size="text-sm h-full w-full px-4" title={"Adicionar funcionário"} background={"secundaria"} />
-                </div>
-                <div className='md:w-[20%] w-[38%]'>
-                    <Select options={['Ordem alfabética', 'Cadastro crescente', 'Cadastro decrescente']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar por'} opcao={escolha} />
-                </div>
-            </section>
-            <section className="w-[90%] lg:w-[80%] m-auto gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 sm:pt-12 pb-16 sm:pb-20">
-                {
-                    funcionariosOrdenados.map((item, index) => (
-                        <CardFuncionario key={index} id={item.id} foto="./assets/dognagrama.png" nome={item.nome} cadastro={item.codigo} email={item.email} />
-                    ))
-                }
-            </section>
-        </main >
+                    <div className="">
+                        <BotaoGrande onClick={() => router.push('/cadastroFuncionario')} size="text-sm h-full w-full px-4" title={"Adicionar funcionário"} background={"secundaria"} />
+                    </div>
+                    <div className='md:w-[20%] w-[38%]'>
+                        <Select options={['Ordem alfabética', 'Cadastro crescente', 'Cadastro decrescente']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar por'} opcao={escolha} />
+                    </div>
+                </section>
+                <section className="w-[90%] lg:w-[80%] m-auto gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 sm:pt-12 pb-16 sm:pb-20">
+                    {
+                        funcionariosOrdenados.map((item, index) => (
+                            <CardFuncionario key={index} id={item.id} foto="./assets/dognagrama.png" nome={item.nome} cadastro={item.codigo.toString()} email={item.email} />
+                        ))
+                    }
+                </section>
+            </main >
     )
 }

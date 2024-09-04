@@ -10,6 +10,7 @@ import InputEstatico from "@/components/InputEstatico/InputEstatico";
 import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico";
 import Select from "@/components/Select/Select";
 import { buscarFiliais } from "@/server/filiais/filial";
+import { FuncionarioCompleto } from "@/types/funcionario";
 
 interface VisualizarFuncionarioProps {
     searchParams: {
@@ -21,7 +22,7 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
 
     const router = useRouter()
     const idFuncionario = searchParams.id;
-    const [funcionario, setFuncionario] = useState()
+    const [funcionario, setFuncionario] = useState<FuncionarioCompleto>()
     const [filiais, setFiliais] = useState<string[]>([])
     const [filial, setFilial] = useState<string>('')
     const [edicao, setEdicao] = useState<boolean>(false)
@@ -76,17 +77,17 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
             if(filial != '') {
                 e.append("nomeFilial", filial)
             } else {
-                e.append("nomeFilial", funcionario.nomeFilial)
+                e.append("nomeFilial", funcionario!.nomeFilial)
             }
             if(sexo != '') {
                 e.append("celular", numero.replace(" ", ""))
             } else {
-                e.append("celular", funcionario.celular.replace(" ", ""))
+                e.append("celular", funcionario!.celular.replace(" ", ""))
             }
             if (dateFormat) {
                 e.append("dataNascimento", dateFormat)
             } else {
-                e.append("dataNascimento", funcionario.dataNascimento)
+                e.append("dataNascimento", funcionario!.dataNascimento)
             }
 
             const dados = Object.fromEntries(e)
