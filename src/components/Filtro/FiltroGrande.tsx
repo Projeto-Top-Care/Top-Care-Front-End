@@ -1,5 +1,5 @@
 'use client'
-import { ProdutoCompleto } from '@/types/produto'
+import { ProdutoCard, ProdutoCompleto } from '@/types/produto'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import Checkbox from '../Checkbox/Checkbox'
 import TituloFiltro from './TituloFiltro'
@@ -7,7 +7,7 @@ import PalavraFiltro from './PalavraFiltro'
 import { aplicarFiltros, definirProdutosFiltrados, filtrarAnimais, filtrarMarcas, filtrarPorte, filtrarPrecos, returnProdutos, tirarFiltros } from '@/server/filtros/action'
 
 interface FiltroGrande {
-    produtos: ProdutoCompleto[]
+    produtos?: ProdutoCard[]
     close?: Dispatch<SetStateAction<boolean>>
     setLabel1: Dispatch<SetStateAction<string>>
     setCheck: Dispatch<SetStateAction<boolean>>

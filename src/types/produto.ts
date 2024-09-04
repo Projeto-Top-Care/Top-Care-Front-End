@@ -1,14 +1,11 @@
 import { Usuario } from "./usuarios"
 
-export interface Produto {
+export interface ProdutoCard {
     id: number
-    nomeProduto: string
-    notaDeAvaliacao: number
-    imagemProduto: string[]
-    precoAntigoDoProduto: number
-    desconto: string
-    precoNovo: number
-    favorito?: boolean
+    nome: string
+    notaAvaliacao: number
+    imagemProduto: string
+    preco: number
 }
 export interface ProdutoCompleto {
     id: number
