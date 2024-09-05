@@ -4,7 +4,7 @@ import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import TabelaProdutos from "@/components/TabelaProdutos/TabelaProduto";
 import { buscarProduto } from "@/server/produtos/action";
-import { ProdutoCompleto } from "@/types/produto";
+import { Especificacao, ProdutoCompleto } from "@/types/produto";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import VariacaoProdutos from "@/components/VariacaoProdutos/VariacaoProdutos";
 import { useEffect, useState } from "react";
@@ -22,6 +22,7 @@ export default function EditarProduto({ searchParams }: EditarProdutoProps) {
     const idProduto = searchParams.id
 
     const [produtoBuscado, setProdutoBuscado] = useState<ProdutoCompleto>()
+    const [especificacoes, setEspecificacoes] = useState<Especificacao[]>([])
 
     useEffect(() => {
         const useEffectFunction = async () => {
@@ -44,7 +45,11 @@ export default function EditarProduto({ searchParams }: EditarProdutoProps) {
                 <TituloLinha voltar={true} titulo={"Editar produto #" + produtoBuscado.codigo} />
             </section>
             <section className="w-[90%] mx-auto">
-                <TabelaProdutos produto={produtoBuscado} />
+                <TabelaProdutos 
+                    produto={produtoBuscado} 
+                    especificacoes={especificacoes}
+                    setEspecificacoes={setEspecificacoes}    
+                />
             </section>
             <section className="w-[90%] mx-auto">
                 <VariacaoProdutos variantess={produtoBuscado.variantes} />

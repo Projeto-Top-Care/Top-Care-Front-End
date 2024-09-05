@@ -10,12 +10,13 @@ import Select from '../Select/Select';
 
 interface TabelaProdutosProps {
     produto?: ProdutoCompleto
+    especificacoes: Especificacao[]
+    setEspecificacoes: React.Dispatch<React.SetStateAction<Especificacao[]>>
 }
 
-export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
+export default function TabelaProdutos({ produto, especificacoes, setEspecificacoes }: TabelaProdutosProps) {
     const [quantidadeFotos, setQuantidadeFotos] = useState<number[]>([])
     const [openEspecificacao, setOpenEspecificacao] = useState<boolean>(false)
-    const [especificacoes, setEspecificacao] = useState<Especificacao[]>( produto?.especificacoes || []);
     const [marca, setMarca] = useState<string>(produto?.marca || '')
 
     return (
@@ -49,7 +50,7 @@ export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
                             descricao={especificacao.conteudo} 
                             nome={especificacao.nome} 
                             especificacoes={especificacoes}
-                            setEspecificacoes={setEspecificacao}
+                            setEspecificacoes={setEspecificacoes}
                         />
                     ))}
                     <div className='flex flex-row gap-2 mt-4 cursor-default items-center'>
@@ -66,7 +67,7 @@ export default function TabelaProdutos({ produto }: TabelaProdutosProps) {
                         <CadastroEspecificacoes 
                             setOpenModal={setOpenEspecificacao} 
                             especificacoes={especificacoes} 
-                            setEspecificacoes={setEspecificacao} />
+                            setEspecificacoes={setEspecificacoes} />
                     )
                 }
                 <div className='flex flex-col items-center mt-5'>
