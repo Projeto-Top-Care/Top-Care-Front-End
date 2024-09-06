@@ -2,7 +2,7 @@
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { useEffect, useState } from "react";
-import { buscarFuncionario, editarFuncionario, excluirFuncionario } from "@/server/usuario/funcionario";
+import { buscarFuncionario, editarFuncionario, excluirFuncionario, verHorariosDisponiveis } from "@/server/usuario/funcionario";
 import Loading from "../loading";
 import { useRouter } from "next/navigation";
 import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
@@ -10,7 +10,7 @@ import InputEstatico from "@/components/InputEstatico/InputEstatico";
 import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico";
 import Select from "@/components/Select/Select";
 import { buscarFiliais } from "@/server/filiais/filial";
-import { FuncionarioCompleto } from "@/types/funcionario";
+import { FuncionarioCompleto, HorarioFuncionarioSimples } from "@/types/funcionario";
 
 interface VisualizarFuncionarioProps {
     searchParams: {
@@ -23,6 +23,7 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
     const router = useRouter()
     const idFuncionario = searchParams.id;
     const [funcionario, setFuncionario] = useState<FuncionarioCompleto>()
+    const [horariosDisponiveis, setHorariosDisponiveis] = useState<HorarioFuncionarioSimples[]>()
     const [filiais, setFiliais] = useState<string[]>([])
     const [filial, setFilial] = useState<string>('')
     const [edicao, setEdicao] = useState<boolean>(false)
@@ -30,6 +31,11 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
     const verFuncionario = async () => {
         const response = await buscarFuncionario(idFuncionario)
         setFuncionario(response)
+    }
+
+    const verHorarios = async () => {
+        const response = await verHorariosDisponiveis(idFuncionario)
+        setHorariosDisponiveis(response)
     }
 
     const verFiliais = async () => {
@@ -41,7 +47,13 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
     useEffect(() => {
         verFuncionario()
         verFiliais()
+        verHorarios()
     }, [])
+
+    const formatarData2 = (dateString: string) => {
+        const [year, month, day] = dateString.split('-');
+        return `${day}/${month}/${year}`;
+    }
 
     const [openModal, setOpenModal] = useState<boolean>(false)
     const [confirmarExclusao, setConfirmarExclusao] = useState<boolean>(false)
@@ -72,14 +84,14 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
         if (edicao) {
             const date = dataNascimento ? dataNascimento.split("/") : null
             const dateFormat = date ? date[2] + "-" + date[1] + "-" + date[0] : ""
-            
+
             e.append("sexo", sexo.replace(" ", "_").toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
-            if(filial != '') {
+            if (filial != '') {
                 e.append("nomeFilial", filial)
             } else {
                 e.append("nomeFilial", funcionario!.nomeFilial)
             }
-            if(sexo != '') {
+            if (sexo != '') {
                 e.append("celular", numero.replace(" ", ""))
             } else {
                 e.append("celular", funcionario!.celular.replace(" ", ""))
@@ -105,7 +117,7 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
     return (
         <>
             {funcionario ? (
-                <section>
+                <section className="font-poppins">
                     <div>
                         <TituloLinha titulo={funcionario.nome} voltar={true} />
                     </div>
@@ -117,9 +129,11 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
                                 {/* <BotaoGrande onClick={() => setEdicao(edicao)} size="p-2" title={`${edicao ? 'Salvar Alteração' : 'Editar'}`} background={"secundaria"} type={"button"} /> */}
                                 <BotaoGrande size="p-2" title={`${edicao ? 'Salvar Alteração' : 'Editar'}`} background={"secundaria"} type={"submit"} />
                                 <BotaoGrande onClick={() => setOpenModal(true)} size="p-2" title={"Excluir"} background={"cancelar"} type={"button"} />
+                                <BotaoGrande size="p-2" title={"Excluir"} background={"primaria"} type={"button"} />
+                                <BotaoGrande size="p-2" title={"Excluir"} background={"terciaria"} type={"button"} />
                             </div>
                         </div>
-                        <section className='bg-terciaria px-8 py-6 rounded-lg flex md:flex-row flex-col lg:w-[60%] w-full md:gap-8 gap-4 mb-24'>
+                        <section className='bg-terciaria px-8 py-6 rounded-lg flex md:flex-row flex-col lg:w-[60%] w-full md:gap-8 gap-4 mb-8'>
                             <div className='w-full flex flex-col md:gap-8 gap-4'>
                                 <InputEstatico name="nome" titulo='Nome completo' info={funcionario.nome} edition={edicao} />
                                 <InputEstatico name="cpf" titulo='CPF' edition={false} info={funcionario.cpf} />
@@ -179,6 +193,21 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
                             </div>
                         </div>
                     )}
+
+                    <TituloLinha titulo={"Horários disponíveis"} voltar={false} />
+                    <section className="flex flex-col md:mb-24 mb-4 md:w-[95%] lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center gap-8">
+                        <div className="flex flex-row gap-6">
+                            {
+                                horariosDisponiveis &&
+                                horariosDisponiveis.map((item, index) => (
+                                    <div key={index} className="w-1/4 flex flex-col border-roxo-select border rounded-lg p-2 text-roxo-select">
+                                        <p className="font-semibold">Dia {formatarData2(item.dia)}</p>
+                                        <p className="">{item.horaInicio.slice(0, 5)} às {item.horaFim.slice(0, 5)}</p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </section>
                 </section>
             ) : (
                 <Loading />

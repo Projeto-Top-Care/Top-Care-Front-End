@@ -14,10 +14,10 @@ const BotaoGrande = ({ title, background, size, type, onClick }: IBotaoGrande) =
     const backgrounds = ['primaria', 'secundaria', 'terciaria', 'cancelar']
 
     const variant = [
-        "bg-primaria",
-        "bg-secundaria",
-        "bg-terciaria",
-        "bg-branco border border-error text-error"
+        "bg-primaria hover:bg-[#7D64E4] hover:text-branco",
+        "bg-secundaria hover:bg-[#92BD17]",
+        "bg-terciaria hover:bg-[#90C7FA]",
+        "bg-branco border border-error text-error hover:bg-error hover:text-branco"
     ]
 
     return (

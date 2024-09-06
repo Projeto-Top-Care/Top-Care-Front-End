@@ -63,7 +63,7 @@ export default function VisualizarAgendamentoFuncionario({ searchParams }: Visua
                         horariosDisponiveis.map((item, index) => (
                             <div key={index} className="w-1/4 flex flex-col border-roxo-select border rounded-lg p-2 text-roxo-select">
                                 <p className="font-semibold">Dia {formatarData(item.dia)}</p>
-                                <p className="">{item.horaFim} às {item.horaFim}</p>
+                                <p className="">{item.horaInicio.slice(0, 5)} às {item.horaFim.slice(0, 5)}</p>
                             </div>
                         ))
                     }
