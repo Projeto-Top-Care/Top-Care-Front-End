@@ -9,7 +9,7 @@ export async function buscarTodos() {
     return response.data
 }
 
-export async function cadastrarProduto(produto: any) {
-    const response = await axiosAPI.post('/produto', produto)
+export async function cadastrarProduto(formdata: FormData) {
+    const response = await axiosAPI.post('/produto', formdata)
     return response.data
 }

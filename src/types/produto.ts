@@ -4,7 +4,7 @@ export interface ProdutoCard {
     id: number
     nome: string
     notaAvaliacao: number
-    imagemProduto: string
+    imagem: string
     preco: number
 }
 
@@ -21,7 +21,7 @@ export interface ProdutoCompleto {
     id: number
     nome: string
     notaAvaliacao: number
-    imagens: string[]
+    imagens: Imagem[]
     marca: string
     variantes: VarianteProps[]
     disponivel: boolean,
@@ -59,4 +59,10 @@ export interface VarianteProps {
 export interface UsuarioAvaliacao {
     nome: string,
     foto: string
+}
+
+export interface Imagem {
+    id: number
+    caminho: string
+    nomeOriginal: boolean
 }

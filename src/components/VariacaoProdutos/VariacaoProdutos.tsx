@@ -1,18 +1,16 @@
-import { Especificacao, ProdutoCompleto, VarianteProps } from '@/types/produto'
-import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
+import { VarianteProps } from '@/types/produto'
 import { useState } from "react";
-import VarianteProduto from "../CardVarianteProduto/CardVarianteProduto"
 import CadastroVarianteProduto from "../CadastroVarianteProduto/CadastroVarianteProduto"
 import CardVarianteProduto from '../CardVarianteProduto/CardVarianteProduto';
 import { FiPlus } from "react-icons/fi";
 
 interface VariacaoPageProps {
-    variantess?: VarianteProps[]
+    variantes: VarianteProps[]
+    setVariantes: React.Dispatch<React.SetStateAction<VarianteProps[]>>
 }
 
-export default function VariacaoProdutos({ variantess }: VariacaoPageProps) {
+export default function VariacaoProdutos({ variantes, setVariantes }: VariacaoPageProps) {
     const [openVariante, setOpenVariante] = useState<boolean>(false)
-    const [variantes, setVariantes] = useState<VarianteProps[]>(variantess || [])
 
     return (
         <section className='flex flex-col justify-center lg:block items-center w-full p-8 mt-10 border border-cinza-escuro rounded-xl'>

@@ -80,7 +80,7 @@ const CardProduto = ({ produto }: ProdutoProps) => {
             <div className='w-full flex flex-col items-center cursor-pointer' onClick={() => { !isAdmin ? push(`/produtos/${produto.nome.replace('&nbsp', "-")}?id=${produto.id}`) : '' }}>
                 <p className='text-xs md:text-sm h-10 font-medium text-preto text-center overflow-hidden line-clamp-2'>{produto.nome}</p>
                 <div className="w-full items-center justify-center flex flex-col-reverse md:flex-col">
-                    <img src={produto.imagemProduto} className='h-28 my-3' />
+                    <img src={produto.imagem} className='h-28 my-3' />
                 </div>
                 <h5 className='text-xs font-medium text-cinza-escuro'><span className='line-through'>R${produto.preco.toFixed(2).replace(".", ",")} </span></h5>
                 <h5 className='sm:text-lg text-sm font-semibold text-preto'>R${produto.preco.toFixed(2).replace(".", ",")}</h5>

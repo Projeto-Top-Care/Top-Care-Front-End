@@ -25,6 +25,7 @@ import InputQuantidade from '../../carrinho/InputQuantidade';
 import InputEstatico from '@/components/InputEstatico/InputEstatico';
 import CalcularFrete from '@/components/CalcularFrete/calcularFrete';
 import {construirEstrelas} from "@/utils/estrelas"
+import ButtonVariante from './component/ButtonVariante';
 
 interface PropsProduct {
   searchParams: { id: number }
@@ -37,13 +38,12 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
   const { addConfirmacao } = useConfirmacao()!
 
   const [produto, setProduto] = useState<ProdutoCompleto>()
-  const [variante, setVariante] = useState<VarianteProps>()
+  const [varianteSelecionada, setVarianteSelecionada] = useState<VarianteProps>()
 
 
   const [numeroImagem, setNumeroImagem] = useState<number>(0)
   const [favorito, setFavorito] = useState<boolean>(false)
   const [quantidade, setQuantidade] = useState<number>(1)
-  const [especificacao1, setEspecificacao1] = useState<String>("Rosa, pequeno")
 
   const [frete, setFrete] = useState<number | string>(0)
   const [erro, setErro] = useState<boolean>(false)
@@ -54,7 +54,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
     const func = async () => {
       const produto = await buscarProduto(searchParams.id)
       setProduto(produto)
-      setVariante(produto.variantes[0])
+      setVarianteSelecionada(produto.variantes[0])
     }
     func()
   }, [])
@@ -85,7 +85,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
             <div className='h-full w-full flex flex-col gap-2 lg:gap-4 lg:justify-center'>
 
               <div className='h-52 md:h-fit lg:h-full border border-cinza rounded-2xl w-full flex items-center justify-center'>
-                <img src={"produto.imagens[numeroImagem]"} alt="" className='h-48 md:h-64 py-4 lg:h-72 xl:h-96' />
+                <img src={produto.imagens[numeroImagem].caminho} alt="" className='h-48 md:h-64 py-4 lg:h-72 xl:h-96' />
                 <div className='flex-row md:w-[33%] absolute justify-between flex max-sm:hidden'>
                   <button onClick={() => setNumeroImagem(numeroImagem > 0 ? numeroImagem - 1 : numeroImagem)} className='hover:shadow-md hover:translate-x-[-0.5rem] animation duration-200 bg-branco  border border-preto lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronLeft /></button>
                   <button onClick={() => setNumeroImagem(produto.imagens.length > numeroImagem + 1 ? numeroImagem + 1 : numeroImagem)} className='hover:shadow-md hover:translate-x-[0.5rem] animation duration-200 bg-branco  border border-preto lg:w-14 lg:h-14 md:w-10 md:h-10 rounded-full flex items-center justify-center' ><FaChevronRight /></button>
@@ -98,7 +98,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
                 <div className='flex flex-row w-full gap-2'>
                   {produto.imagens.map((image, i) => (
                     <div onClick={() => setNumeroImagem(i)} key={i} className={`flex items-center justify-center cursor-pointer h-10 w-10 md:h-16 md:w-16 duration-100 lg:m-auto rounded-xl md:rounded-2xl border ${numeroImagem == i ? 'border-cinza-escuro scale-105' : 'border-cinza opacity-80'} md:mt-5 lg:mb-5`}>
-                      <img src={"image"} alt="" className='w-3/5 md:w-1/2 lg:w-[50%] object-cover' />
+                      <img src={image.caminho} alt="" className='w-3/5 md:w-1/2 lg:w-[50%] object-cover' />
                     </div>
                   ))}
                 </div>
@@ -126,27 +126,34 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
               <div className='flex flex-col md:justify-between w-full gap-4 max-sm:mt-3 mt-6'>
 
                 <div className='flex flex-row items-center gap-3'>
-                  <p className='font-bold md:text-2xl text-xl text-preto'>R$ {variante?.preco.toFixed(2).replace(".", ",")}</p>
-                  <p className='font-medium line-through text-sm text-cinza'>R$ {variante?.preco.toFixed(2).replace(".", ",")}</p>
+                  <p className='font-bold md:text-2xl text-xl text-preto'>R$ {varianteSelecionada?.preco.toFixed(2).replace(".", ",")}</p>
+                  <p className='font-medium line-through text-sm text-cinza'>R$ {varianteSelecionada?.preco.toFixed(2).replace(".", ",")}</p>
                 </div>
 
                 <div className='flex flex-col gap-4'>
                   <div className='flex flex-col gap-2'>
                     <p className='text-cinza-escuro font-medium'>Variações</p>
-                    <div className='block  gap-3'>
-                      <button onClick={() => setEspecificacao1("Rosa, pequeno")} className={`${especificacao1 == "Rosa, pequeno" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm m-1`}>Rosa, pequeno</button>
-                      <button onClick={() => setEspecificacao1("Rosa, médio")} className={`${especificacao1 == "Rosa, médio" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm m-1`}>Roxo, médio</button>
-                      <button onClick={() => setEspecificacao1("Rosa, grande")} className={`${especificacao1 == "Rosa, grande" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm m-1`}>Vermelho, grande</button>
-                      <button onClick={() => setEspecificacao1("Azul, pequeno")} className={`${especificacao1 == "Azul, pequeno" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm m-1`}>Azul, pequeno</button>
-                      <button onClick={() => setEspecificacao1("Azul, médio")} className={`${especificacao1 == "Azul, médio" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm m-1`}>Azul, médio</button>
-                      <button onClick={() => setEspecificacao1("Azul, grande")} className={`${especificacao1 == "Azul, grande" ? `border-roxo-select text-roxo-select bg-[#EAE4FF] scale-105` : `border-cinza-escuro`} duration-100 border rounded-md p-1  text-sm m-1`}>Azul, grande</button>
+                    <p className='text-cinza font-medium'>Cor - Tamanho - Peso - Unidades</p>
+                    <div className='flex flex-col gap-3'>
+                      
+                      {
+                        produto.variantes.map((variante, i) => (
+                          <div key={i}>
+                            <ButtonVariante
+                              variante={variante}
+                              setVariante={setVarianteSelecionada}
+                              varianteSelecionada={varianteSelecionada}
+                            />
+                          </div>
+                        ))
+                      }
                     </div>
                   </div>
                 </div>
                 <div className='flex flex-col gap-2'>
                   <p className='text-cinza-escuro font-medium'>Quantidade</p>
                   <div className='w-1/3'>
-                    <QuantidadeProduto propsQuantidade={setQuantidade} estoqueDisponivel={variante?.estoque || 0} />
+                    <QuantidadeProduto propsQuantidade={setQuantidade} estoqueDisponivel={varianteSelecionada?.estoque || 0} />
                   </div>
                 </div>
               </div>

@@ -4,7 +4,7 @@ import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import TabelaProdutos from "@/components/TabelaProdutos/TabelaProduto";
 import { buscarProduto } from "@/server/produtos/action";
-import { Especificacao, ProdutoCompleto } from "@/types/produto";
+import { Especificacao, Imagem, ProdutoCompleto, VarianteProps } from "@/types/produto";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import VariacaoProdutos from "@/components/VariacaoProdutos/VariacaoProdutos";
 import { useEffect, useState } from "react";
@@ -23,14 +23,20 @@ export default function EditarProduto({ searchParams }: EditarProdutoProps) {
 
     const [produtoBuscado, setProdutoBuscado] = useState<ProdutoCompleto>()
     const [especificacoes, setEspecificacoes] = useState<Especificacao[]>([])
+    const [variantes, setVariantes] = useState<VarianteProps[]>([])
+    const [imagensProduto, setImagensProdutos] = useState<Imagem[]>([])
+    const [imagens, setImagens] = useState<File[]>([])
 
     useEffect(() => {
         const useEffectFunction = async () => {
             const produto: ProdutoCompleto = await buscarProduto(idProduto);
             setProdutoBuscado(produto)
+            setEspecificacoes(produto.especificacoes)
+            setVariantes(produto.variantes)
+            setImagensProdutos(produto.imagens)
         }
         useEffectFunction()
-    } , [idProduto]);
+    }, [idProduto]);
 
     if (!produtoBuscado) {
         return (
@@ -45,14 +51,24 @@ export default function EditarProduto({ searchParams }: EditarProdutoProps) {
                 <TituloLinha voltar={true} titulo={"Editar produto #" + produtoBuscado.codigo} />
             </section>
             <section className="w-[90%] mx-auto">
-                <TabelaProdutos 
-                    produto={produtoBuscado} 
+
+                <TabelaProdutos
+                    produto={produtoBuscado}
                     especificacoes={especificacoes}
-                    setEspecificacoes={setEspecificacoes}    
+                    setEspecificacoes={setEspecificacoes}
+                    imagens={imagens}
+                    setImagens={setImagens}
+                    imagensProduto={imagensProduto}
                 />
+
             </section>
             <section className="w-[90%] mx-auto">
-                <VariacaoProdutos variantess={produtoBuscado.variantes} />
+
+                <VariacaoProdutos
+                    variantes={variantes}
+                    setVariantes={setVariantes}
+                />
+
             </section>
             <section className='w-[90%] mx-auto flex flex-row justify-between items-center my-10'>
                 <div className='w-24 md:w-48'>
