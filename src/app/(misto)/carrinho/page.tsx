@@ -10,6 +10,8 @@ import { buscarUsuario } from '@/server/usuario/action'
 import { Produto } from '@/types/produto'
 import { Usuario, Cupom, QntProduto } from '@/types/usuarios'
 import { useRouter } from 'next/navigation'
+import {cadastroCarrinho} from '@/server/carrinho/action'
+import { buscarCarrinho } from '@/server/carrinho/action'
 
 import React, { useEffect, useState } from 'react'
 import CupomPequeno from './CupomPequeno'
@@ -41,9 +43,9 @@ export default function Carrinho() {
     func()
   }, [])
 
-  const produtos: Produto[] = carrinho.map((item) => {
+  const produtos: Produto[] = carrinho ? carrinho.map((item) => {
     return buscarProduto((item as unknown as QntProduto).id!)!
-  })
+  }) : [];
   const [frete, setFrete] = useState<number | string>(0)
   const [desconto, setDesconto] = useState<number>(0)
   const [cep, setCep] = useState<string>('')
@@ -128,6 +130,8 @@ export default function Carrinho() {
       <section className=''>
         <TituloLinha voltar={false} titulo='Minha Sacola' />
       </section>
+      {
+        produtos && produtos.length > 0 ? (
       <section className=' w-[90%] m-auto flex md:flex-row flex-col md:gap-0 gap-10 justify-between mt-14 mb-24 md:h-[35rem]'>
         <section className='border border-cinza rounded-lg md:w-[65%] w-full md:px-6 px-3 py-4 overflow-auto scroll'>
           <h1 className='font-poppins md:text-xl text-lg font-medium'>Produtos</h1>
@@ -181,6 +185,16 @@ export default function Carrinho() {
           </div>
         </section>
       </section>
+      ) : (
+        <section className='w-[90%] mx-auto md:w-full self-center flex flex-col items-center mt-16 mb-16'>
+          <h1 className='font-poppins font-bold text-lg md:text-2xl'>Sua sacola está vazia</h1>
+          <p className='font-poppins text-center text-base md:text-lg mt-4'>Adicione alguns de nossos produtos!</p>
+          <div className='w-44 md:w-48 mt-6'>
+          <BotaoGrande title='Voltar para a loja' background='secundaria' type='button' onClick={() => router.push('/')} />
+          </div>
+        </section>
+      )
+    }
       {open && (
         <div className="w-full">
           <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpen(false)}></div>
