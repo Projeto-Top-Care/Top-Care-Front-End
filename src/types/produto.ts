@@ -25,11 +25,17 @@ export interface ProdutoCompleto {
     marca: string
     variantes: VarianteProps[]
     disponivel: boolean,
+    categoria: Categoria
     codigo: number
     quantidadeVendas: number
     descricao: string
     especificacoes: Especificacao[]
     avaliacoes: AvaliacaoType[]
+}
+
+export interface Categoria {
+    id: number
+    nome: string
 }
 
 export interface Especificacao {

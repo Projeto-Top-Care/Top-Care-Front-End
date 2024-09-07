@@ -1,13 +1,15 @@
-import { Especificacao, Imagem, ProdutoCompleto } from '@/types/produto'
+import { Categoria, Especificacao, Imagem, ProdutoCompleto } from '@/types/produto'
 import InputText from "../InputText/InputText";
 import InputFile from '../InputFile/InputFile';
 import TextArea from "../TextArea/TextArea";
-import { ChangeEvent, use, useState } from "react";
+import React, { ChangeEvent, use, useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import CadastroEspecificacoes from '../CadastroEspecificacao/CadastroEspecificacao';
 import CardEspecificacaoProduto from '../CardEspecificacaoProduto/CardEspecificacaoProduto';
 import Select from '../Select/Select';
 import Confirmacao from '../Pop-up/Confirmacao/Confirmacao';
+import { getCategorias } from '@/server/categoria/action';
+import { set } from 'zod';
 
 interface TabelaProdutosProps {
     produto?: ProdutoCompleto
@@ -16,12 +18,32 @@ interface TabelaProdutosProps {
     imagens: File[]
     setImagens: React.Dispatch<React.SetStateAction<File[]>>
     imagensProduto?: Imagem[]
+    setCategoriaa?: React.Dispatch<React.SetStateAction<Categoria | undefined>>
 }
 
-export default function TabelaProdutos({ produto, especificacoes, setEspecificacoes, imagens, setImagens, imagensProduto }: TabelaProdutosProps) {
+export default function TabelaProdutos({ produto, especificacoes, setEspecificacoes, imagens, setImagens, imagensProduto, setCategoriaa }: TabelaProdutosProps) {
     const quantidadeFotos = new Array(imagensProduto ? 5 - imagensProduto.length : 5).fill(0).map((_, i) => imagensProduto? imagensProduto.length + 1 + i : i + 1)
     const [openEspecificacao, setOpenEspecificacao] = useState<boolean>(false)
-    const [marca, setMarca] = useState<string>(produto?.marca || '')
+    const [categoria, setCategoria] = useState<string>(produto?.categoria.nome || '')
+    const [categorias, setCategorias] = useState<Categoria[]>([])
+
+    useEffect(() => {
+        categorias.forEach((cat) => {
+            if (cat.nome === categoria && setCategoriaa) {
+                setCategoriaa(cat)
+            }
+        })
+    }, [categoria])
+
+    useEffect(() => {
+        const func = async () => {
+            const categoriass = await getCategorias();
+            if(categoriass){
+                setCategorias(categoriass)
+            }
+        }
+        func()
+    }, [])
 
     return (
         <section className='border border-cinza-escuro rounded-xl h-full flex flex-col lg:flex-row w-full'>
@@ -44,6 +66,7 @@ export default function TabelaProdutos({ produto, especificacoes, setEspecificac
                             placeholder='Codigo*'
                             defaultValue={produto?.codigo}
                             name='codigo'
+                            type='number'
                             required
                         />
                     </div>
@@ -55,13 +78,20 @@ export default function TabelaProdutos({ produto, especificacoes, setEspecificac
                             required
                         />
                     </div>
+                    <div className="">
+                        <InputText
+                            placeholder='Marca*'
+                            defaultValue={produto?.marca}
+                            name='marca'
+                            required
+                        />
+                    </div>
                     <div>
                         <Select
-                            label='Marca*'
-                            opcao={marca}
-                            opcaoSelecionada={setMarca}
-                            name='marca'
-                            options={['Marca 1', 'Marca 2', 'Marca 3']}
+                            label='Categoria*'
+                            opcao={categoria}
+                            opcaoSelecionada={setCategoria}
+                            options={categorias.map((cat) => cat.nome)}
                         />
                     </div>
                 </div>

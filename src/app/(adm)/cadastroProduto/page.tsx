@@ -5,7 +5,7 @@ import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import TabelaProdutos from "@/components/TabelaProdutos/TabelaProduto";
 import VariacaoProdutos from "@/components/VariacaoProdutos/VariacaoProdutos";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
-import { Especificacao, VarianteProps } from "@/types/produto";
+import { Categoria, Especificacao, VarianteProps } from "@/types/produto";
 import { useState } from "react";
 import { cadastrarProduto } from "@/server/produtos/action";
 import { useError } from "@/context/ErrorContext";
@@ -19,6 +19,7 @@ export default function CadastroProduto() {
 
     const [variantes, setVariantes] = useState<VarianteProps[]>([])
     const [especificacoes, setEspecificacoes] = useState<Especificacao[]>([])
+    const [categoeria, setCategoria] = useState<Categoria>()
     const [imagens, setImagens] = useState<File[]>([])
 
     const cadastrar = async (e: FormData) => {
@@ -38,6 +39,7 @@ export default function CadastroProduto() {
         const produto: any = Object.fromEntries(e.entries())
         produto.especificacoes = especificacoes
         produto.variantes = variantes
+        produto.categoria = categoeria
 
         const formdata = new FormData()
         for (let i = 0; i < imagens.length; i++) {
@@ -69,6 +71,7 @@ export default function CadastroProduto() {
                     setEspecificacoes={setEspecificacoes}
                     imagens={imagens}
                     setImagens={setImagens}
+                    setCategoriaa={setCategoria}
                 />
             </section>
             <section className="w-[90%] mx-auto">
