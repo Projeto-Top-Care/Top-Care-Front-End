@@ -40,7 +40,7 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
 
     const verFiliais = async () => {
         const response = await buscarFiliais()
-        const listaDeNomes = response.map(filial => filial.nome);
+        const listaDeNomes = response.map((filial:FuncionarioCompleto) => filial.nome);
         setFiliais(listaDeNomes)
     }
 
@@ -103,13 +103,9 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
             }
 
             const dados = Object.fromEntries(e)
-            console.log(dados)
             const response = editarFuncionario(idFuncionario, dados)
             setEdicao(false)
             verFuncionario()
-            // if(response != null) {
-            //     router.push('./funcionarios')
-            // }
         }
         setEdicao(!edicao)
     }
@@ -121,16 +117,14 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
                     <div>
                         <TituloLinha titulo={funcionario.nome} voltar={true} />
                     </div>
-                    <form action={editarFuncionarioo} className="font-poppins text-preto w-[90%] m-auto flex justify-center">
-                        <div className="mr-[5%]">
+                    <form action={editarFuncionarioo} className="font-poppins text-preto w-[90%] m-auto flex flex-col-reverse sm:flex-row justify-center">
+                        <div className="mr-[5%] lg:items-start items-center">
                             <p className='text-preto font-poppins font-bold text-base'>Foto</p>
-                            <div className='w-52 h-52 md:text-sm text-xs bg-branco p-3 rounded text-cinza-escuro border border-cinza mb-5' />
+                            <div className='w-52 h-52 m-auto md:text-sm text-xs bg-branco p-3 rounded text-cinza-escuro border border-cinza mb-5' />
                             <div className="flex flex-col gap-4">
                                 {/* <BotaoGrande onClick={() => setEdicao(edicao)} size="p-2" title={`${edicao ? 'Salvar Alteração' : 'Editar'}`} background={"secundaria"} type={"button"} /> */}
                                 <BotaoGrande size="p-2" title={`${edicao ? 'Salvar Alteração' : 'Editar'}`} background={"secundaria"} type={"submit"} />
                                 <BotaoGrande onClick={() => setOpenModal(true)} size="p-2" title={"Excluir"} background={"cancelar"} type={"button"} />
-                                <BotaoGrande size="p-2" title={"Excluir"} background={"primaria"} type={"button"} />
-                                <BotaoGrande size="p-2" title={"Excluir"} background={"terciaria"} type={"button"} />
                             </div>
                         </div>
                         <section className='bg-terciaria px-8 py-6 rounded-lg flex md:flex-row flex-col lg:w-[60%] w-full md:gap-8 gap-4 mb-8'>
@@ -196,13 +190,22 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
 
                     <TituloLinha titulo={"Horários disponíveis"} voltar={false} />
                     <section className="flex flex-col md:mb-24 mb-4 md:w-[95%] lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center gap-8">
-                        <div className="flex flex-row gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6">
                             {
                                 horariosDisponiveis &&
                                 horariosDisponiveis.map((item, index) => (
-                                    <div key={index} className="w-1/4 flex flex-col border-roxo-select border rounded-lg p-2 text-roxo-select">
-                                        <p className="font-semibold">Dia {formatarData2(item.dia)}</p>
-                                        <p className="">{item.horaInicio.slice(0, 5)} às {item.horaFim.slice(0, 5)}</p>
+                                    <div key={index} className="w-full flex flex-col border-roxo-select border rounded-lg p-2 text-roxo-select">
+                                        <p className="sm:text-base text-sm font-semibold">Dia {formatarData2(item.dia)}</p>
+                                        <p className="sm:text-base text-sm">{item.horaInicio.slice(0, 5)} às {item.horaFim.slice(0, 5)}</p>
+                                    </div>
+                                ))
+                            }
+                             {
+                                horariosDisponiveis &&
+                                horariosDisponiveis.map((item, index) => (
+                                    <div key={index} className="w-full flex flex-col border-roxo-select border rounded-lg p-2 text-roxo-select">
+                                        <p className="sm:text-base text-sm font-semibold">Dia {formatarData2(item.dia)}</p>
+                                        <p className="sm:text-base text-sm">{item.horaInicio.slice(0, 5)} às {item.horaFim.slice(0, 5)}</p>
                                     </div>
                                 ))
                             }
