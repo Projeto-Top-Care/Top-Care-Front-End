@@ -18,9 +18,10 @@ import { deletarProduto } from "@/server/produtos/action";
 
 interface ProdutoProps {
     produto: ProdutoCard
+    att?: React.Dispatch<React.SetStateAction<number>>
 }
 
-const CardProduto = ({ produto }: ProdutoProps) => {
+const CardProduto = ({ produto, att }: ProdutoProps) => {
 
     const { getUserID } = useUserID()
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
@@ -56,6 +57,7 @@ const CardProduto = ({ produto }: ProdutoProps) => {
             try {
                 deletarProduto(produto.id)
                 addConfirmacao("Produto deletado com sucesso!")
+                att && att(Math.random())
             } catch (err) {
                 addError("Erro ao deletar produto")
                 console.log(err)

@@ -9,6 +9,11 @@ export async function buscarTodos() {
     return response.data
 }
 
+export async function buscarTodosCompleto() {
+    const response = await axiosAPI.get('/produto/completo')
+    return response.data
+}
+
 export async function cadastrarProduto(formdata: FormData) {
     const response = await axiosAPI.post('/produto', formdata)
     return response.data
@@ -21,5 +26,10 @@ export async function deletarProduto(id: number) {
 
 export async function editarProduto(id: number, formdata: FormData) {
     const response = await axiosAPI.put(`/produto/${id}`, formdata)
+    return response.data
+}
+
+export async function buscarFiltros(query: string) {
+    const response = await axiosAPI.get('produto/filtro?query=' + query)
     return response.data
 }

@@ -11,27 +11,29 @@ import { cadastrarProduto } from "@/server/produtos/action";
 import { useError } from "@/context/ErrorContext";
 import { useConfirmacao } from "@/context/confirmacaoContext";
 import Erro from "@/components/Pop-up/Erro/Erro";
+import { PetsProps } from "@/types/servicos";
 
 export default function CadastroProduto() {
     const router = useRouter()
-    const {addError} = useError()
-    const {addConfirmacao} = useConfirmacao();
+    const { addError } = useError()
+    const { addConfirmacao } = useConfirmacao();
 
     const [variantes, setVariantes] = useState<VarianteProps[]>([])
     const [especificacoes, setEspecificacoes] = useState<Especificacao[]>([])
+    const [especies, setEspecies] = useState<PetsProps[]>([])
     const [categoeria, setCategoria] = useState<Categoria>()
     const [imagens, setImagens] = useState<File[]>([])
 
     const cadastrar = async (e: FormData) => {
-        if(especificacoes.length === 0) {
+        if (especificacoes.length === 0) {
             addError('É necessário cadastrar ao menos uma especificação')
             return
         }
-        if(variantes.length === 0) {
+        if (variantes.length === 0) {
             addError('É necessário cadastrar ao menos uma variante')
             return
         }
-        if(imagens.length === 0) {
+        if (imagens.length === 0) {
             addError('É necessário cadastrar ao menos uma imagem')
             return
         }
@@ -40,14 +42,15 @@ export default function CadastroProduto() {
         produto.especificacoes = especificacoes
         produto.variantes = variantes
         produto.categoria = categoeria
+        produto.especies = especies
 
         const formdata = new FormData()
         for (let i = 0; i < imagens.length; i++) {
             formdata.append('files', imagens[i])
         }
         formdata.append('produtoDTO', new Blob([JSON.stringify(produto)], { type: 'application/json' }))
- 
-        try{
+
+        try {
             await cadastrarProduto(formdata)
             addConfirmacao('Produto cadastrado com sucesso')
             router.push("/visualizarProdutos")
@@ -61,22 +64,24 @@ export default function CadastroProduto() {
     return (
         <form action={cadastrar} className="mx-auto text-preto">
             <Confirmacao />
-            <Erro/>
+            <Erro />
             <section className="">
                 <TituloLinha voltar={true} titulo='Cadastrar novo produto' />
             </section>
             <section className="w-[90%] mx-auto">
-                <TabelaProdutos 
+                <TabelaProdutos
                     especificacoes={especificacoes}
                     setEspecificacoes={setEspecificacoes}
                     imagens={imagens}
                     setImagens={setImagens}
                     setCategoriaa={setCategoria}
+                    especies={especies}
+                    setEspecies={setEspecies}
                 />
             </section>
             <section className="w-[90%] mx-auto">
-                <VariacaoProdutos 
-                    variantes={variantes} 
+                <VariacaoProdutos
+                    variantes={variantes}
                     setVariantes={setVariantes}
                 />
             </section>

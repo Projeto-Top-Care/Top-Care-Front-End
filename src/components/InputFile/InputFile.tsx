@@ -1,5 +1,5 @@
 'use client'
-import { ChangeEventHandler, MouseEventHandler, useCallback } from "react";
+import { ChangeEventHandler, Dispatch, MouseEventHandler, useCallback } from "react";
 import { useState } from "react"
 import { useDropzone } from "react-dropzone";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -12,17 +12,21 @@ interface IInputFile {
     canExclude?: boolean
     imagens?: File[]
     setImagens?: React.Dispatch<React.SetStateAction<File[]>>
+    imagensDeletar?: string[]
+    setImagensDeletar?: Dispatch<React.SetStateAction<string[]>>
 }
 
-export default function InputFile({ rounded, fileGetted, imagens, setImagens, canNotEdit, canExclude }: IInputFile) {
+export default function InputFile({ rounded, fileGetted, imagens, setImagens, canNotEdit, canExclude, imagensDeletar, setImagensDeletar }: IInputFile) {
     const [file, setFile] = useState(fileGetted);
+    const [filePego, setFilePego] = useState<File>();
 
     const onDrop = useCallback((files: any) => {
-        const filePego = files[0];
+        setFilePego(files[0]);
+        const filePegoFunc = files[0]
         
         if( imagens && setImagens) {
             const newImages = imagens
-            imagens.push(filePego)
+            imagens.push(filePegoFunc)
             setImagens(newImages)
         }
 
@@ -31,10 +35,15 @@ export default function InputFile({ rounded, fileGetted, imagens, setImagens, ca
         reader.onload = () => {
             setFile(reader.result);
         };
-        reader.readAsDataURL(filePego);
+        reader.readAsDataURL(filePegoFunc);
     }, []);
 
     const removeFile = () => {
+        const newImgaens = imagens?.filter(imagem => imagem !== filePego)
+        setImagens && newImgaens && setImagens(newImgaens)
+
+        setImagensDeletar && imagensDeletar && file && setImagensDeletar([...imagensDeletar, file])
+
         setFile(undefined)
     }
 

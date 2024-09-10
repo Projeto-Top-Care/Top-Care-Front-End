@@ -1,3 +1,4 @@
+import { PetsProps } from "./servicos"
 import { Usuario } from "./usuarios"
 
 export interface ProdutoCard {
@@ -27,6 +28,7 @@ export interface ProdutoCompleto {
     disponivel: boolean,
     categoria: Categoria
     codigo: number
+    especies: PetsProps[]
     quantidadeVendas: number
     descricao: string
     especificacoes: Especificacao[]

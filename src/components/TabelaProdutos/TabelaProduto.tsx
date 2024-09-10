@@ -10,6 +10,8 @@ import Select from '../Select/Select';
 import Confirmacao from '../Pop-up/Confirmacao/Confirmacao';
 import { getCategorias } from '@/server/categoria/action';
 import { set } from 'zod';
+import InputSelect from '../InputSelect/InputSelect';
+import { PetsProps } from '@/types/servicos';
 
 interface TabelaProdutosProps {
     produto?: ProdutoCompleto
@@ -19,10 +21,18 @@ interface TabelaProdutosProps {
     setImagens: React.Dispatch<React.SetStateAction<File[]>>
     imagensProduto?: Imagem[]
     setCategoriaa?: React.Dispatch<React.SetStateAction<Categoria | undefined>>
+    imagensDeletar?: string[]
+    setImagensDeletar?: React.Dispatch<React.SetStateAction<string[]>>
+    especies: PetsProps[]
+    setEspecies: React.Dispatch<React.SetStateAction<PetsProps[]>>
 }
 
-export default function TabelaProdutos({ produto, especificacoes, setEspecificacoes, imagens, setImagens, imagensProduto, setCategoriaa }: TabelaProdutosProps) {
-    const quantidadeFotos = new Array(imagensProduto ? 5 - imagensProduto.length : 5).fill(0).map((_, i) => imagensProduto? imagensProduto.length + 1 + i : i + 1)
+export default function TabelaProdutos(
+    { produto, especificacoes, setEspecificacoes, imagens, setImagens, 
+        imagensProduto, setCategoriaa, imagensDeletar, setImagensDeletar,
+            especies, setEspecies }: TabelaProdutosProps) {
+
+    const quantidadeFotos = new Array(imagensProduto ? 5 - imagensProduto.length : 5).fill(0).map((_, i) => imagensProduto ? imagensProduto.length + 1 + i : i + 1)
     const [openEspecificacao, setOpenEspecificacao] = useState<boolean>(false)
     const [categoria, setCategoria] = useState<string>(produto?.categoria.nome || '')
     const [categorias, setCategorias] = useState<Categoria[]>([])
@@ -38,7 +48,7 @@ export default function TabelaProdutos({ produto, especificacoes, setEspecificac
     useEffect(() => {
         const func = async () => {
             const categoriass = await getCategorias();
-            if(categoriass){
+            if (categoriass) {
                 setCategorias(categoriass)
             }
         }
@@ -94,6 +104,13 @@ export default function TabelaProdutos({ produto, especificacoes, setEspecificac
                             options={categorias.map((cat) => cat.nome)}
                         />
                     </div>
+                    <div>
+                        <InputSelect 
+                            type='Animais' 
+                            jaSelecionados={especies} 
+                            setSelecionados={setEspecies} 
+                        />
+                    </div>
                 </div>
             </section>
             <section className="lg:w-[45%] lg:ml-7 lg:p-0 p-4">
@@ -144,6 +161,8 @@ export default function TabelaProdutos({ produto, especificacoes, setEspecificac
                                                 canExclude
                                                 imagens={imagens}
                                                 setImagens={setImagens}
+                                                imagensDeletar={imagensDeletar}
+                                                setImagensDeletar={setImagensDeletar}
                                             />
                                         </div>
                                         <p className='font-poppins text-xs md:text-sm text-center mt-1'>Imagem {i + 1}</p>

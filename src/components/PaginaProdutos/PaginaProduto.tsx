@@ -13,6 +13,7 @@ import { buscarUsuario } from '@/server/usuario/action';
 import BotaoGrande from '../Botoes/BotaoGrande/BotaoGrande';
 import { useRouter } from 'next/navigation';
 import { buscarTodos } from '@/server/produtos/action';
+import Erro from '../Pop-up/Erro/Erro';
 
 interface InterfaceProdutos {
     searchParams?: { q: string }
@@ -22,6 +23,7 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
 
     const { getUserID } = useUserID()
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
+    const [att, setAtt] = useState<number>(0)
 
     const query = searchParams?.q
     const [produtosMostrados, setProdutosMostrados] = useState<ProdutoCard[]>()
@@ -45,12 +47,10 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
             setProdutosMostrados(paginaProdutos.produtos)
         }
         func()
-    } , [])
+    }, [att])
     // const [produtosMostradosQuery, setProdutosMostradosQuery] = useState<ProdutoCompleto[]>([])
     // const [filtroOpen, setFiltroOpen] = useState<boolean>(false)
     // const [animation, setAnimation] = useState<boolean>(false)
-    const [label, setLabel] = useState<string>('')
-    const [checked, setChecked] = useState<boolean>(false)
     const [escolha, setEscolha] = useState<string>('');
 
     const router = useRouter()
@@ -85,7 +85,7 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
         return (
             produtosMostrados?.map((produto) => (
                 <div key={produto.id}>
-                    <CardProduto produto={produto} />
+                    <CardProduto produto={produto} att={setAtt} />
                 </div>
             ))
         )
@@ -94,6 +94,7 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
     return (
         <main className='w-full text-preto pb-20'>
             <Confirmacao />
+            <Erro/>
             {/* <section className='flex items-start'>
                 {
                     filtroOpen && (
@@ -104,9 +105,13 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
                 }
             </section> */}
             <div className='md:flex md:flex-row mt-5 md:mt-10 md:w-[90%] md:m-auto'>
-                {/* <div className='hidden md:!flex w-[25%]'>
-                    <FiltroGrande produtos={produtosMostrados} setLabel1={setLabel} setCheck={setChecked} />
-                </div> */}
+                {
+                    produtosMostrados && (
+                        <div className='hidden md:!flex w-[25%]'>
+                            <FiltroGrande />
+                        </div>
+                    )
+                }
                 <section className='w-full md:w-[75%]'>
                     <div className='w-full flex items-center flex-col-reverse md:flex-row justify-between'>
                         <p className='font-poppins text-lg font-bold mt-5 pl-0 sm:pl-6 lg:pl-2 md:mt-0 md:text-2xl'>{query ? `Resultados para "${query}"` : isAdmin ? "Produtos Top Care" : "Produtos"}</p>
