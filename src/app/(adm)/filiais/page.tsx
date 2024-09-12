@@ -72,21 +72,17 @@ export default function Filiais({ isAdmin }: InterfaceFiliais) {
     const escolha = 'Ordenacao';
     const filiaisOrdenadas: Filial[] = ordenarFiliais(filiaisArray, escolha);
 
-    // const handleFilialClick = (id: number) => {
-    //     router.push(`/editarFilial?id=${id.toString()}`);
-    // };
-
-    const mostrarFiliais = useMemo(() => {
-        return (
-            filiaisMostradas.map((filiais) => (
-                <div key={filiais.id}>
-                    <Lojas src={filiais.src} nome={filiais.nome} cidade={filiais.endereco.cidade} estado={filiais.endereco.estado}
-                        rua={filiais.endereco.rua} bairro={filiais.endereco.bairro} numero={filiais.endereco.numero}
-                        cep={filiais.endereco.cep} contato={filiais.contato} funcionamentoDias={filiais.funcionamentoDias} funcionamentoHora={filiais.funcionamentoHora} />
-                </div>
-            ))
-        )
-    }, [])
+    // const mostrarFiliais = useMemo(() => {
+    //     return (
+    //         filiaisMostradas.map((filiais) => (
+    //             <div key={filiais.id}>
+    //                 <Lojas src={filiais.src} nome={filiais.nome} cidade={filiais.endereco.cidade} estado={filiais.endereco.estado}
+    //                     rua={filiais.endereco.rua} bairro={filiais.endereco.bairro} numero={filiais.endereco.numero}
+    //                     cep={filiais.endereco.cep} contato={filiais.contato} funcionamentoDias={filiais.horarioFuncionamento} funcionamentoHora={filiais.diasDaSemana} />
+    //             </div>
+    //         ))
+    //     )
+    // }, [])
 
     return (
         <section>
@@ -117,9 +113,13 @@ export default function Filiais({ isAdmin }: InterfaceFiliais) {
                     </div>
                 )
             } */}
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 place-items-center mt-5 md:mt-10'>
-                {mostrarFiliais}
-            </div>
+            <section className="w-[90%] lg:w-[80%] m-auto gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 sm:pt-12 pb-16 sm:pb-20">
+                {
+                    filiaisOrdenadas.map((filial, index) => (
+                        <Lojas key={index} src={""} nome={filial.nome} cidade={""} estado={""} rua={""} bairro={""} numero={0} cep={""} contato={""} funcionamentoDias={filial.diasDaSemana} funcionamentoHora={filial.horarioFuncionamento} />
+                    ))
+                }
+            </section>
         </section>
     );
 }
