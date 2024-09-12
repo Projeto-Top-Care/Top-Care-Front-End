@@ -64,9 +64,6 @@ export default function Produtos({ id, imagemProduto, variacao, nomeProduto, pre
             <div className='flex flex-row items-start justify-between md:h-24 h-16'>
                 <div className='flex flex-row items-center h-full w-full'>
                     <div className='flex flex-row justify-center items-center md:w-28 w-20 h-full'>
-                        <div>
-                            <Checkbox check={setChecked} />
-                        </div>
                         <div className='flex flex-row items-center justify-center w-[100%]'>
                             <img src={imagemProduto} alt="" className='w-[80%]' />
                         </div>
