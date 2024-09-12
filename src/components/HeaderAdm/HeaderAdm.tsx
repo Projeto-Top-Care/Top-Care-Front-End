@@ -3,17 +3,11 @@ import { useRouter } from "next/navigation"
 import BarraPesquisa from "../BarraPesquisa/BarraPesquisa";
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
-import { FaBook, FaPhone, FaQuestion, FaRegHeart } from "react-icons/fa";
-import { FaUserCircle } from "react-icons/fa";
-import { FiShoppingBag } from "react-icons/fi";
-import { PiBoneFill } from "react-icons/pi";
-import { FaStore } from "react-icons/fa";
 
 import { useEffect, useRef, useState } from "react";
 import { useUserID } from "@/context/UserIDContext";
-import { FaStethoscope } from "react-icons/fa6";
-import { BsClipboard2Heart } from "react-icons/bs";
 import BotaoGrande from "../Botoes/BotaoGrande/BotaoGrande";
+import DoisBotoes from "../Pop-up/DoisBotoes/DoisBotoes";
 
 export default function HeaderAdm() {
     const { push } = useRouter();
@@ -22,6 +16,8 @@ export default function HeaderAdm() {
 
     const [navAberta, setNavAberta] = useState(false)
     const [animation, setAnimation] = useState<boolean>(false)
+    const [openModal, setOpenModal] = useState<boolean>(false)
+    const [sim, setSim] = useState<boolean>(false)
 
     useEffect(() => {
         if (!animation) {
@@ -56,19 +52,23 @@ export default function HeaderAdm() {
     };
 
     const logout = () => {
-        setUserId("")
-        push('/')
+        setOpenModal(true)
     }
+
+    useEffect(() => {
+        if (sim) {
+            setUserId("")
+            push("/")
+        }
+    }, [sim])
+    //        setUserId("")
+    // push('/')
 
     return (
         <div>
             <div className="bg-primaria md:px-20 px-6 md:py-3 py-2 flex flex-row-reverse sm:flex-row font-poppins justify-between items-center text-preto">
                 <div className='px-3'>
                     <div onClick={() => push("/dashboard")}><img className="md:w-[70px] w-[40px] cursor-pointer" src="../assets/logo.png" /></div>
-                </div>
-
-                <div className="flex w-2/3 px-4 max-sm:hidden">
-                    <BarraPesquisa placeholder="O que você precisa hoje?" />
                 </div>
 
                 <div className='flex max-sm:hidden flex-row gap-4 items-center justify-end w-[10%]'>
@@ -86,12 +86,13 @@ export default function HeaderAdm() {
 
             <div className="bg-terciaria flex max-sm:hidden flex-row justify-center">
                 <div className="font-poppins flex flex-row justify-between md:gap-20 gap-2 py-3">
-                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./dashboard")}>Dashboard</div>
-                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/visualizarProdutos")}>Produtos</div>
-                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/agendamentos")}>Agendamentos</div>
-                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/pedidos")}>Pedidos</div>
-                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./visualizarServicos")}>Serviços</div>
-                    <div className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/filiais")}>Filiais</div>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./dashboard")}>Dashboard</p>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./funcionarios")}>Funcionários</p>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/visualizarProdutos")}>Produtos</p>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/agendamentos")}>Agendamentos</p>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/pedidos")}>Pedidos</p>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./visualizarServicos")}>Serviços</p>
+                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/filiais")}>Filiais</p>
                 </div>
             </div>
             {
@@ -114,6 +115,7 @@ export default function HeaderAdm() {
 
                                 <div className="flex flex-col w-full">
                                     <a onClick={() => handleLinkClick('/dashboard')} className="hover:underline text-roxo-select font-medium text-sm">Dashboard</a>
+                                    <a onClick={() => handleLinkClick('/funcionarios')} className="hover:underline text-roxo-select font-medium text-sm">Funcionários</a>
                                     <a onClick={() => handleLinkClick('/visualizarProdutos')} className="hover:underline text-roxo-select font-medium text-sm">Produtos</a>
                                     <a onClick={() => handleLinkClick('/agendamentos')} className="hover:underline text-roxo-select font-medium text-sm">Agendamentos</a>
                                     <a onClick={() => handleLinkClick('/pedidos')} className="hover:underline text-roxo-select font-medium text-sm">Pedidos</a>
@@ -126,6 +128,14 @@ export default function HeaderAdm() {
                     </div>
                 )
             }
+            {openModal && (
+                <div className="z-50 w-full absolute">
+                    <div className='fixed top-0 left-0 w-full h-full bg-fundo-modal' onClick={() => setOpenModal(false)}></div>
+                    <div className="fixed lg:w-[25%] w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+                        <DoisBotoes openParms={setOpenModal} texto="Você deseja mesmo sair?" sim={setSim} />
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

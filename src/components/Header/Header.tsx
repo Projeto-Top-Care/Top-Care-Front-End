@@ -15,13 +15,11 @@ export default function Home() {
         setUserID(getUserID())
     },[searchParams])
 
-    const renderizarHeader = () => {
-        return userID ? <HeaderLogado /> : <HeaderDeslogado />;
-    };
-
     return (
         <main className="">
-            {renderizarHeader()}
+            {
+                userID ? <HeaderLogado /> : <HeaderDeslogado />
+            }
         </main>
     );
 }

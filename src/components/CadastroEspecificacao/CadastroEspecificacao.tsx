@@ -4,29 +4,23 @@ import { Especificacao } from '@/types/produto'
 import React, { SetStateAction, useEffect, useState } from 'react'
 
 interface CadastroEspecificacoesProps {
-    openModalProps: React.Dispatch<SetStateAction<boolean>>
-    especificacoesProps?: Especificacao[]
-    setEspecificacaoProps: React.Dispatch<SetStateAction<Especificacao[]>>
+    setOpenModal: React.Dispatch<SetStateAction<boolean>>
+    especificacoes: Especificacao[]
+    setEspecificacoes: React.Dispatch<SetStateAction<Especificacao[]>>
 }
 
-export default function CadastroEspecificacoes({ openModalProps, especificacoesProps, setEspecificacaoProps }: CadastroEspecificacoesProps) {
-    const [openModal, setOpenModal] = useState<boolean>(true)
-    const [especificacao, setEspecificacao] = useState<Especificacao[]>([])
+export default function CadastroEspecificacoes({setOpenModal, especificacoes, setEspecificacoes }: CadastroEspecificacoesProps) {
 
     const [nome, setNome] = useState<string>("")
-    const [descricao, setDescricao] = useState<string>("")
-
-    useEffect(() => {
-        openModalProps(openModal)
-    }, [openModal])
+    const [conteudo, setConteudo] = useState<string>("")
 
     const addEspecificacao = () => {
         const especificacaoAtual: Especificacao = {
             nome: nome,
-            descricao: descricao
+            conteudo: conteudo
         }
-        const newEspecificacao = [...especificacao, especificacaoAtual]
-        setEspecificacao(newEspecificacao)
+        const newEspecificacao = [...especificacoes, especificacaoAtual]
+        setEspecificacoes(newEspecificacao)
 
         setOpenModal(false)
     }
@@ -56,9 +50,9 @@ export default function CadastroEspecificacoes({ openModalProps, especificacoesP
                     <div>
                         <InputText
                             placeholder='Descrição*'
-                            type={descricao}
+                            type={conteudo}
                             required
-                            onChange={(e) => setDescricao(e.target.value)}
+                            onChange={(e) => setConteudo(e.target.value)}
                         />
                     </div>
                 </div>

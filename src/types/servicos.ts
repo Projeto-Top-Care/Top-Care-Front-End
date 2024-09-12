@@ -1,3 +1,5 @@
+import { Endereco } from "./usuarios"
+
 export interface Servico{
     id: number,
     nome: string,
@@ -11,7 +13,7 @@ export interface Servico{
 
 export interface VariantesProps{
     id?: number,
-    nome?: string
+    nome: string
     tipo: string,
     preco: number
 }
@@ -19,4 +21,10 @@ export interface VariantesProps{
 export interface PetsProps{
     id: number
     nome: string
+}
+
+export interface Filial{
+    id: number,
+    nome: string,
+    endereco: Endereco
 }

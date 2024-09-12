@@ -24,3 +24,13 @@ export async function deleteServico(id: string) {
     const response = await axiosAPI.delete(`/servicos/${id}`);
     return response.data;
 }
+
+export async function getHorariosPorDia(id: string, dia: string) {
+    const response = await axiosAPI.get(`/servicos/${id}/${dia}`);
+    return response.data;
+}
+
+export async function getFiliais(){
+    const response = await axiosAPI.get('teste/filiais');
+    return response.data;
+}

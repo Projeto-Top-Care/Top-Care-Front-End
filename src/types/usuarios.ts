@@ -23,9 +23,9 @@ export interface Usuario {
 
 export interface Pet {
     id: number
-    foto: string
+    imagem: string
     nome: string
-    especie: Especie
+    especie: string
     raca: string
     porte: string 
 }
@@ -135,11 +135,6 @@ export interface produtos{
     descricao: string[]
     especificacoes: object[]
     avaliacoes: object[]
-}
-
-export interface Especificacao{
-    topico: string
-    resposta: string
 }
 
 export interface AvaliacaoType{

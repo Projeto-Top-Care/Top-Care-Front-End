@@ -7,9 +7,10 @@ import AgendamentoMarcado from "../AgendamentoMarcado/agendamentoMarcado";
 
 interface iAgendamentos {
     agendamentos: Agendamentos[]
+    setAtt: React.Dispatch<SetStateAction<number>>
 }
 
-export default function HistoricoAgendamentos({ agendamentos }: iAgendamentos) {
+export default function HistoricoAgendamentos({ agendamentos, setAtt }: iAgendamentos) {
 
     const [showSchedulles, setShowSchedulles] = useState(false)
 
@@ -19,21 +20,22 @@ export default function HistoricoAgendamentos({ agendamentos }: iAgendamentos) {
         push(url);
     };
 
-    const historicoAgendamentos = showSchedulles ? agendamentos : agendamentos.slice(0, 3);
-
     return (
         <main>
             <div className="flex flex-col mb-4">
                 <div className="md:mb-12 mb-4 md:w-[90%] w-full lg:pl-16 md:p-0 p-4 lg:self-start self-center">
-                    <p className="font-poppins text-preto text-base">O cancelamento só pode ser feito dentro de 24 horas antes da data do seu agendamento!</p>
+                    <p className="font-poppins text-preto text-base">O cancelamento só pode ser feito com mais de 24 horas antes da data do seu agendamento!</p>
                 </div>
                 <div className="grid md:mb-12 mb-4 md:w-[90%] w-full lg:pl-16 md:p-0 p-4 lg:self-start self-center gap-8 lg:grid-cols-3 md:grid-cols-2">
                     {
-                        historicoAgendamentos.map((item, i) => (
+                        agendamentos.map((item, i) => (
                             <div key={i}>
-                                <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet={item.nomePet} servico={item.servico} data={item.data} hora={item.horario} profissional={item.profissional} valor={item.valor} />,
+                                <AgendamentoMarcado 
+                                    agendamento={item}
+                                    setAtt={setAtt}
+                                />
                             </div>
-                        ))
+                        )).reverse().slice(0, showSchedulles ? agendamentos.length : 3)
                     }
                 </div>
                 <div className="flex flex-col-reverse md:flex-row lg:pl-16 md:p-0 p-4 lg:self-start self-center gap-4 md:w-[90%] w-full">

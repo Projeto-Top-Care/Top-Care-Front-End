@@ -2,7 +2,6 @@
 import { IoExitOutline } from "react-icons/io5";
 import { useUserID } from "@/context/UserIDContext";
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
-import CartoesSalvos from "@/components/CartoesSalvos/CartoesSalvos";
 import InputEstatico from "@/components/InputEstatico/InputEstatico";
 import PerfilFoto from "@/components/PerfilFoto/PerfilFoto";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
@@ -28,6 +27,7 @@ import Erro from "@/components/Pop-up/Erro/Erro";
 import { useError } from "@/context/ErrorContext";
 import { useConfirmacao } from "@/context/confirmacaoContext";
 import Select from "@/components/Select/Select";
+import { formatarData } from "@/utils/data";
 
 export default function Perfil() {
     const { getUserID, setUserId } = useUserID()
@@ -52,12 +52,6 @@ export default function Perfil() {
     const [selecao, setSelecao] = useState<number>(0)
     const router = useRouter()
 
-    const agendamentos = [
-        <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
-        <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />,
-        <AgendamentoMarcado fotoPet={"./assets/cachorro-perfil.png"} nomePet="Nina" servico="Banho e Tosa" data="01/12/2023" hora="15:45h" profissional="Carla de Moraes" valor={80.0} />
-    ]
-
     useEffect(() => {
         if (sim) {
             setUserId("")
@@ -67,7 +61,7 @@ export default function Perfil() {
 
     useEffect(() => {
         procurarUsuario()
-    }, [openModal, openEndereco, openPet, atualizar]);
+    }, [openEndereco, atualizar]);
 
     const procurarUsuario = async () => {
         const fetchedID = getUserID();
@@ -84,11 +78,6 @@ export default function Perfil() {
         }
     }
 
-    const formatarData = (nascimento: string) => {
-        const data = nascimento.split("-")
-        return data[2] + "/" + data[1] + "/" + data[0]
-    }
-
     const { addError } = useError()
     const { addConfirmacao } = useConfirmacao()
 
@@ -96,16 +85,15 @@ export default function Perfil() {
         return <Carregando />
     }
 
-    const displayedAddresses = showAllAddresses ? usuarioLogado!.enderecos : usuarioLogado!.enderecos.slice(0, 3);
+    const displayedAddresses = showAllAddresses ? usuarioLogado.enderecos : usuarioLogado.enderecos;
 
     const verificarEdicao = async (e: FormData) => {
         if (edicao) {
-            const date = dataNascimento.split("/")
-            const dateFormat = date[2] + "-" + date[1] + "-" + date[0]
+            const date = dataNascimento.split("/").reverse().join("-")
 
             e.append("celular", numero)
             e.append("sexo", sexo.replace(" ", "_").toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
-            e.append("dataNascimento", dateFormat)
+            e.append("dataNascimento", date)
             const s = Object.fromEntries(e)
             const resp = await editarUsuario(s, usuarioLogado.id)
         }
@@ -124,18 +112,16 @@ export default function Perfil() {
         setOpenModal(true)
     }
 
-    const carrosselProdutos = buscarTodos().map((produto, i) => (
-        <CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
-            precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />
-    ))
-
-
+    // const carrosselProdutos = buscarTodos().map((produto, i) => (
+    //     <CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
+    //         precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />
+    // ))
 
     const componetesSelecao = [
-        <HistoricoAgendamentos agendamentos={usuarioLogado.agendamentos} />,
+        <HistoricoAgendamentos agendamentos={usuarioLogado.agendamentos} setAtt={setAtualizar} />,
         <PedidosEmAndamento usuario={usuarioLogado} />,
-        <MeusPets usuario={usuarioLogado} setOpenPet={setOpenPet} />,
-        <CarrosselProduto slides={carrosselProdutos} />,
+        <MeusPets usuario={usuarioLogado} setOpenPet={setOpenPet} setAtt={setAtualizar}/>,
+        // <CarrosselProduto slides={carrosselProdutos} />,
         <EnderecosSalvos atualizarProps={setAtualizar} enderecos={displayedAddresses} setOpenEndereco={setOpenEndereco} setShowAllAdresses={setShowAllAddresses} />
     ]
 
@@ -268,7 +254,7 @@ export default function Perfil() {
                 <div className='overflow-hidden absolute'>
                     <div className='fixed top-0 left-0 w-full h-full z-50 bg-fundo-modal' onClick={() => setOpenPet(false)}></div>
                     <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
-                        <CadastroPet setOpen={setOpenPet} />
+                        <CadastroPet setOpen={setOpenPet} setAtt={setAtualizar}/>
                     </div>
                 </div>
             )}

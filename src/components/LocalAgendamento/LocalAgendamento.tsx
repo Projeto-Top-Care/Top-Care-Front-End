@@ -15,8 +15,8 @@ const LocalAgendamento = ({ nomeFilial, rua, isSelected, onSelect }: ILocalAgend
             style={{ borderColor: isSelected ? '#6954C0' : '#BDBDBD' }}>
             <div className="flex ml-2 items-center gap-4 ">
                 <div className="flex flex-col">
-                    <p className="md:text-lg text-sm text-preto">Top Care {nomeFilial}</p>
-                    <p className="md:text-sm text-xs text-cinza-escuro">Rua {rua}</p>
+                    <p className="md:text-lg text-sm text-preto">{nomeFilial}</p>
+                    <p className="md:text-sm text-xs text-cinza-escuro">{rua}</p>
                 </div>
             </div>
         </div>

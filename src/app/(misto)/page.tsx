@@ -15,8 +15,7 @@ import { EmblaOptionsType } from "embla-carousel"
 import { useRouter } from "next/navigation";
 import { useEffect } from "react"
 
-const carrosselProdutos = buscarTodos().map((produto, i) => (<CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
-    precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />))
+const carrosselProdutos: any = []
 
 export default function PaginaInicial() {
     const slidesCarrosselDesktop: string[] = ['./assets/slidesDesktop/Banner1.svg', './assets/slidesDesktop/Banner2.svg', './assets/slidesDesktop/Banner3.svg', './assets/slidesDesktop/Banner4.svg']
@@ -24,23 +23,27 @@ export default function PaginaInicial() {
     const OPTIONS: EmblaOptionsType = { loop: true }
 
     const { push } = useRouter();
-    const {getUserID} = useUserID()
+    const { getUserID, setUserId } = useUserID()
 
-    useEffect(()=>{
-        const func = async () =>{
+    useEffect(() => {
+        const func = async () => {
             const id = getUserID()
-            if(id){
-                const user: Usuario = await buscarUsuario(parseInt(id)) 
-                if(user.role = "ADMIN"){
-                    push("/dashboard")
-                }
-                else{
-                    push("/")
+            if (id) {
+                try {
+                    const user: Usuario = await buscarUsuario(parseInt(id))
+                    if (user.role == "ADMIN") {
+                        push("/dashboard")
+                    }else if(user.role = "FUNCIONARIO"){
+                        push("/paginaInicial")
+                    }
+                }catch(e){
+                    setUserId('')
+                    console.log(e)
                 }
             }
         }
         func()
-    },[])
+    }, [])
 
     return (
         <main className="bg-branco">

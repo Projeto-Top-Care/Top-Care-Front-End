@@ -7,7 +7,6 @@ import { createServico } from '@/server/servicos/action'
 import { PetsProps, VariantesProps } from '@/types/servicos'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
-import { set } from 'zod'
 
 export default function CadastrarServico() {
     const router = useRouter()

@@ -19,7 +19,8 @@ export default function Cadastro() {
     const [open, setOpen] = useState<boolean>(false)
     const [openModal, setOpenModal] = useState<boolean>(false)
 
-
+    const { format } = require('date-fns');
+    
     const [senha, setSenha] = useState<string>("")
     const [confSenha, setConfSenha] = useState<string>("")
     const [sexo, setSexo] = useState<string>("")
@@ -58,9 +59,9 @@ export default function Cadastro() {
     const enviarDados = async (e: FormData) => {
         const parseData = data.split("/")
         const stringFormat = parseData[1] + "-" + parseData[0] + "-" + parseData[2]
-        const dataFormatada = new Date(stringFormat);
+        const dataFormatada = format(new Date(stringFormat), 'yyyy-MM-dd');
 
-        e.append("dataNascimento", dataFormatada.toISOString().split("T")[0])
+        e.append("dataNascimento", dataFormatada)
         e.append("sexo", sexo.toUpperCase())
         e.append("estado", estado)
         e.append("senha", senha)

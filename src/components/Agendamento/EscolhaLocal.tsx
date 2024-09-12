@@ -1,21 +1,25 @@
 'use client'
-import React, { SetStateAction, useEffect, useState } from 'react';
+import React, { SetStateAction, use, useEffect, useState } from 'react';
 import LocalAgendamento from '@/components/LocalAgendamento/LocalAgendamento';
+import { Filial } from '@/types/servicos';
+import { getFiliais } from '@/server/servicos/action';
 
 interface ILocal {
-    setLocalEscolhido: React.Dispatch<SetStateAction<string>>
+    setLocal: React.Dispatch<SetStateAction<Filial | undefined>>
+    local: Filial | undefined
 }
 
-const EscolhaLocal = ({setLocalEscolhido}: ILocal) => {
+const EscolhaLocal = ({ setLocal, local }: ILocal) => {
 
-    const [selectedLocal, setSelectedLocal] = useState<string>('');
+    const [filiais, setFiliais] = useState<Filial[]>([])
+
     useEffect(() => {
-        setLocalEscolhido(selectedLocal)
-    }, [selectedLocal])
-
-    const handleSelectLocal = (servico: string) => {
-        setSelectedLocal(servico);
-    };
+        const func = async () => {
+            const response = await getFiliais()
+            setFiliais(response)
+        }
+        func()
+    }, [])
 
     return (
         <main className='p-8'>
@@ -23,25 +27,17 @@ const EscolhaLocal = ({setLocalEscolhido}: ILocal) => {
                 <div className='flex items-center justify-center'>
                     <p className='font-poppins text-preto font-medium text-xl text-center'>Selecione um local para o agendamento</p>
                 </div>
-                <div className='lg:flex lg:justify-center lg:items-center grid md:grid-cols-2 gap-8 mt-12'>
-                    <LocalAgendamento
-                        nomeFilial='Camboriu - SC'
-                        rua='Dom Henrique, 424'
-                        isSelected={selectedLocal === 'Camboriu - SC'}
-                        onSelect={() => handleSelectLocal('Camboriu - SC')}
-                    />
-                    <LocalAgendamento
-                        nomeFilial='Jaraguá do Sul - SC'
-                        rua='Honório Pedri, 82'
-                        isSelected={selectedLocal === 'Jaraguá do Sul - SC'}
-                        onSelect={() => handleSelectLocal('Jaraguá do Sul - SC')}
-                    />
-                    <LocalAgendamento
-                        nomeFilial='Curitiba - PR'
-                        rua='Rua Antônio Gomes, 106'
-                        isSelected={selectedLocal === 'Curitiba - PR'}
-                        onSelect={() => handleSelectLocal('Curitiba - PR')}
-                    />
+                <div className='lg:flex lg:justify-center lg:items-center flex-wrap grid md:grid-cols-2 gap-8 mt-12'>
+                    {
+                        filiais.map((item, i) => (
+                            <LocalAgendamento
+                                nomeFilial={item.nome}
+                                rua={item.endereco.rua + " " + item.endereco.numero}
+                                isSelected={item.nome === local?.nome}
+                                onSelect={() => setLocal(item)}
+                            />
+                        ))
+                    }
                 </div>
             </div>
         </main>

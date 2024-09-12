@@ -1,5 +1,5 @@
 'use client'
-import EscolhaData from "@/components/Agendamento/EscolhaData";
+import EscolhaData, { Profissional } from "@/components/Agendamento/EscolhaData";
 import EscolhaLocal from "@/components/Agendamento/EscolhaLocal";
 import EscolhaPet from "@/components/Agendamento/escolhaPet";
 import EscolhaServico from "@/components/Agendamento/escolhaServico";
@@ -11,58 +11,173 @@ import Erro from "@/components/Pop-up/Erro/Erro";
 import { useError } from "@/context/ErrorContext";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
-import { Pet } from "@/types/usuarios";
+import { Pet, Usuario } from "@/types/usuarios";
 import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
+import { Filial, Servico, VariantesProps } from "@/types/servicos";
+import { useConfirmacao } from "@/context/confirmacaoContext";
+import { useUserID } from "@/context/UserIDContext";
+import { buscarUsuario } from "@/server/usuario/action";
+import { agendar } from "@/server/agendamentos/action";
+
+export interface Horario {
+    id: number
+    dia: string
+    horaInicio: string
+    horaFim: string
+}
 
 export default function agendamento() {
 
     const { push } = useRouter();
-    const [estado, setEstado] = useState(0)
+    const { addError } = useError();
+    const { addConfirmacao } = useConfirmacao();
+
+    const [etapa, setEtapa] = useState(0)
     const [openPet, setOpenPet] = useState(false);
 
     const [openConfirmacao, setOpenConfirmacao] = useState<boolean>(false)
     const [confirmado, setConfirmado] = useState<boolean>(false)
 
-    const {addError} = useError()!;
-
-    const [pet, setPet] = useState<Pet | null>(null);
-    const [servico, setServico] = useState("");
-    const [local, setLocal] = useState("");
-    const [data, setData] = useState("");
-    const [hora, setHora] = useState("");
-    const [profissional, setProfissional] = useState("");
+    const [pet, setPet] = useState<Pet>();
+    const [servico, setServico] = useState<Servico>();
+    const [variante, setVariante] = useState<VariantesProps>();
+    const [local, setLocal] = useState<Filial>();
+    const [horario, setHorario] = useState<Horario>();
+    const [profissional, setProfissional] = useState<Profissional>();
     const [metodoPagamento, setMetodoPagamento] = useState("");
 
-    const proximoPasso = () => {
-        if(estado <= 0) {
-            pet == null ? addError("Selecione o pet para o agendamento") : setEstado(estado + 1)
-        } else if(estado == 1) {
-            servico == "" ? addError("Selecione o serviço para agendamento!") : setEstado(estado + 1)
-        } else if(estado == 2) {
-            local == "" ? addError("Selecione o local para o agendamento!") : setEstado(estado + 1)
-        } else if(estado == 3) {
-            data == "" ? addError("Selecione a data para o agendamento!") :
-            hora == "" ? addError("Selecione o horário e profissional para o agendamento!") : 
-            setEstado(estado + 1)
-        } else {
-            setEstado(estado + 1)
+    const { getUserID } = useUserID()
+    const [usuarioLogado, setUsuarioLogado] = useState<Usuario>();
+    const [atualizar, setAtualizar] = useState(0)
+
+    useEffect(() => {
+        buscarUser()
+    }, [atualizar])
+
+    const buscarUser = async () => {
+        const idFetched = getUserID();
+        if (idFetched) {
+            const usuarioBuscado = await buscarUsuario(parseInt(idFetched))
+            if (usuarioBuscado) {
+                setUsuarioLogado(usuarioBuscado)
+            }
         }
     }
 
-    const passoAnterior = () => {
-        estado <= -1 ? (setEstado(0)) : setEstado(estado - 1)
+    const processos = [
+
+        <EscolhaPet
+            setPet={setPet}
+            pet={pet}
+            usuarioLogado={usuarioLogado}
+        />,
+        <EscolhaServico
+            setServicoEscolhido={setServico}
+            servicoSelecionado={servico}
+            variante={variante}
+            setVariante={setVariante}
+            petId={pet?.id}
+        />,
+        <EscolhaLocal
+            setLocal={setLocal}
+            local={local}
+        />,
+        <EscolhaData
+            setHorario={setHorario}
+            setProfissional={setProfissional}
+            horario={horario}
+            profissional={profissional}
+            servicoId={servico?.id.toString() || ''}
+        />,
+        <Resumo
+            petNome={pet?.nome || ''}
+            local={local?.nome || ''}
+            servico={servico?.nome || ''}
+            variante={variante}
+            data={horario?.dia || ''}
+            hora={horario?.horaInicio || ''}
+            profissional={profissional?.nome || ''}
+            setMetodoPagamento={setMetodoPagamento}
+            metodo={metodoPagamento}
+        />
+
+    ]
+
+    const verificarEtapa = () => {
+        if (etapa == 0 && !pet) {
+            addError("Selecione um pet!")
+        } else if (etapa == 1) {
+            if (!servico) {
+                addError("Selecione um serviço!")
+            } else if (!variante) {
+                addError("Selecione uma variação!")
+            } else {
+                setEtapa(etapa + 1)
+            }
+        } else if (etapa == 2 && !local) {
+            addError("Selecione um local!")
+        } else if (etapa == 3 && (!horario || !profissional)) {
+            addError("Selecione uma data, hora e profissional!")
+        } else {
+            setEtapa(etapa + 1)
+        }
     }
 
-    const concluirCompra = () => {
-        if(metodoPagamento) {
+    const etapaAnterior = () => {
+        if (etapa == 1) {
+            setServico(undefined)
+            setVariante(undefined)
+        } else if (etapa == 2) {
+            setLocal(undefined)
+        } else if (etapa == 3) {
+            setHorario(undefined)
+            setProfissional(undefined)
+        }
+        setEtapa(etapa - 1)
+    }
+
+    const concluirCompra = async () => {
+        if (metodoPagamento) {
             setOpenConfirmacao(true)
-            if(confirmado) {
-                metodoPagamento == "cartao" ? push('./Perfil') : 
-                metodoPagamento == "boleto" ? push('./pagamentoBoleto') :
-                metodoPagamento == "pix" ? push('./pagamentoPix') : console.log("Chegou aqui");
+            if (confirmado) {
+                const objetoAgendamento = {
+                    pet: {
+                        id: pet?.id
+                    },
+                    varianteServico: {
+                        id: variante?.id
+                    },
+                    local: {
+                        id: local?.id
+                    },
+                    horario: {
+                        id: horario?.id
+                    },
+                    pagamento: {
+                        metodoPagamento: metodoPagamento,
+                        parcelas: 1,
+                        pago: false
+                    }
+                }
+                let idAgendamento = null
+
+                if (usuarioLogado) {
+                    idAgendamento = await agendar(objetoAgendamento, usuarioLogado.id)
+                }
+
+                if (metodoPagamento == "CARTAO_CREDITO") {
+                    push('/Perfil')
+                    addConfirmacao("Agendamento marcado com sucesso!")
+                } else if (metodoPagamento == "BOLETO") {
+                    push('/pagamentoBoleto?agendamento='+ idAgendamento) 
+                } else {
+                    push('/pagamentoPix?agendamento='+ idAgendamento)
+                }
             }
-        } else if(estado >= 4) {
+
+
+        } else if (etapa >= 4) {
             addError("Selecione o método de pagamento!")
         }
     }
@@ -74,44 +189,28 @@ export default function agendamento() {
     return (
         <main className="w-full flex flex-col items-center py-12">
             <Erro />
-            <Confirmacao/>
+            <Confirmacao />
             <div className='w-full'>
                 {openPet && (
                     <div className='overflow-hidden'>
                         <div className='fixed top-0 left-0 w-full h-full z-50 bg-fundo-modal' onClick={() => setOpenPet(false)}></div>
                         <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
-                            <CadastroPet setOpen={setOpenPet} />
+                            <CadastroPet setOpen={setOpenPet} setAtt={setAtualizar} />
                         </div>
                     </div>
                 )}
             </div>
 
             <div className="w-full">
-                <BarraProcessoAgendamento estado={estado} />
+                <BarraProcessoAgendamento estado={etapa} />
             </div>
 
             <div className="w-full flex items-center justify-center pb-8">
-                {(estado <= 0 ?
-                    <div className="w-full">
-                        <EscolhaPet setPetEscolhido={setPet}/>
-                    </div>
-                    : estado == 1 ?
-                        <div className="w-full">
-                            <EscolhaServico setServicoEscolhido={setServico} />
-                        </div>
-                        : estado == 2 ?
-                            <div className="w-full">
-                                <EscolhaLocal setLocalEscolhido={setLocal} />
-                            </div>
-                            : estado == 3 ?
-                                <div className="w-[90%]">
-                                    <EscolhaData setDataSelecionada={setData} setHoraSelecionada={setHora} setProfissionalSelecionada={setProfissional} />
-                                </div>
-                                :
-                                <div className="w-[80%] flex">
-                                    <Resumo pet={pet!} local={local} servico={servico} data={data} hora={hora} profissional={profissional} setMetodoPagamento={setMetodoPagamento} />
-                                </div>
-                )}
+                <div className={`${etapa >= 3 ? 'w-[80%] m-auto' : 'w-full'}`}>
+                    {
+                        processos[etapa]
+                    }
+                </div>
             </div>
 
             {openConfirmacao && (
@@ -123,18 +222,18 @@ export default function agendamento() {
                 </div>
             )}
 
-            <div className={`flex w-[90%] gap-2 sm:flex-row ${estado <= 0 ? `flex-col` : `flex-col-reverse`} justify-between items-center sm:items-end`}>
+            <div className={`flex w-[90%] gap-2 sm:flex-row ${etapa <= 0 ? `flex-col` : `flex-col-reverse`} justify-between items-center sm:items-end`}>
                 <div className="w-full flex sm:items-start items-center flex-col gap-4">
-                    <div className={`${estado <= 0 ? `flex flex-col` : `hidden`}`}>
+                    <div className={`${etapa <= 0 ? `flex flex-col` : `hidden`}`}>
                         <p className='font-averia text-preto font-bold text-xl sm:text-2xl'>Gostaria de cadastrar um pet?</p>
                         <p className='font-poppins text-preto text-sm sm:text-md mt-2 text-start md:w-[55%] w-full'>Clique no botão abaixo para cadastrar, depois continue os procedimentos para agendar um serviço para o seu mais novo pet :)</p>
                     </div>
-                    <div className="w-full sm:w-2/12" onClick={() => estado <= -1 ? setOpenPet(true) : setOpenPet(false)}>
-                        <BotaoGrande onClick={() => passoAnterior()} title={estado <= 0 ? "Cadastrar pet" : "Anterior"} background="terciaria" type={"button"} />
+                    <div className="w-full sm:w-2/12" onClick={() => etapa <= -1 ? setOpenPet(true) : setOpenPet(false)}>
+                        <BotaoGrande onClick={() => etapaAnterior()} title={etapa <= 0 ? "Cadastrar pet" : "Anterior"} background="terciaria" type={"button"} />
                     </div>
                 </div>
                 <div className="w-full sm:w-2/12">
-                    <BotaoGrande onClick={() => estado >= 4 ? concluirCompra() : proximoPasso()} title={estado >= 4 ? "Concluir" : "Próximo"} background="secundaria"type={"button"} />
+                    <BotaoGrande onClick={() => etapa >= 4 ? concluirCompra() : verificarEtapa()} title={etapa >= 4 ? "Concluir" : "Próximo"} background="secundaria" type={"button"} />
                 </div>
             </div>
         </main>
