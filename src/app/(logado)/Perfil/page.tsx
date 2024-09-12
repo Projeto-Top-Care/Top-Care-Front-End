@@ -112,16 +112,16 @@ export default function Perfil() {
         setOpenModal(true)
     }
 
-    const carrosselProdutos = buscarTodos().map((produto, i) => (
-        <CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
-            precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />
-    ))
+    // const carrosselProdutos = buscarTodos().map((produto, i) => (
+    //     <CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
+    //         precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />
+    // ))
 
     const componetesSelecao = [
         <HistoricoAgendamentos agendamentos={usuarioLogado.agendamentos} setAtt={setAtualizar} />,
         <PedidosEmAndamento usuario={usuarioLogado} />,
         <MeusPets usuario={usuarioLogado} setOpenPet={setOpenPet} setAtt={setAtualizar}/>,
-        <CarrosselProduto slides={carrosselProdutos} />,
+        // <CarrosselProduto slides={carrosselProdutos} />,
         <EnderecosSalvos atualizarProps={setAtualizar} enderecos={displayedAddresses} setOpenEndereco={setOpenEndereco} setShowAllAdresses={setShowAllAddresses} />
     ]
 
