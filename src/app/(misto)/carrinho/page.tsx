@@ -10,7 +10,7 @@ import { buscarUsuario } from '@/server/usuario/action'
 import { Produto } from '@/types/produto'
 import { Usuario, Cupom, QntProduto } from '@/types/usuarios'
 import { useRouter } from 'next/navigation'
-import {cadastroCarrinho} from '@/server/carrinho/action'
+import {buscarCarrinhoPorUserId, cadastroCarrinho} from '@/server/carrinho/action'
 import { buscarCarrinho } from '@/server/carrinho/action'
 
 import React, { useEffect, useState } from 'react'
@@ -28,6 +28,21 @@ export default function Carrinho() {
 
   const { getCarrinho } = useCarrinho()
 
+  async function criarOuBuscarCarrinho(userId : number) {
+    try {
+      let carrinhoBuscado = await buscarCarrinhoPorUserId(userId);
+      return carrinhoBuscado;
+    } catch (error) {
+      if ((error as any).response.status === 404) {
+        const body = { usuarioId: userId };
+        let carrinhoBuscado = await cadastroCarrinho(body);
+        return carrinhoBuscado;
+      } else {  
+        console.error(error);
+      }
+    }
+  }
+
   useEffect(() => {
     const func = async () => {
       setCarrinho(getCarrinho())
@@ -37,6 +52,9 @@ export default function Carrinho() {
         const userTaked = await buscarUsuario(parseInt(idUser))
         if (userTaked) {
           setUsuarioLogado(userTaked)
+          // criarOuBuscarCarrinho(userTaked.id!).then((carrinhoBuscado) => {
+          //   setCarrinho(carrinhoBuscado)
+          // });
         }
       }
     }
