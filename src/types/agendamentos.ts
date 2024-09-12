@@ -6,7 +6,7 @@ export interface Agendamentos{
     id: number
     filial: string
     valor: number
-    varianteServico: VarianteServico
+    servico: string
     horario: Horario
     pet: Pet
     status: string
@@ -25,11 +25,6 @@ interface Horario{
     dia: string,
     horaInicio: string,
     funcionario: string
-}
-
-interface VarianteServico {
-    nome: string,
-    preco: number,
 }
 
 

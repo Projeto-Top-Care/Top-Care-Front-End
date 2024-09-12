@@ -29,8 +29,3 @@ export const editarFuncionario = async (id: number, payload: any) => {
     const response = await axiosAPI.put(`/funcionario/${id}`, payload)
     return response.data;
 }
-
-export const verHorariosDisponiveis = async (id:number) => {
-    const response = await axiosAPI.get(`/horario/${id}`)
-    return response.data;
-}

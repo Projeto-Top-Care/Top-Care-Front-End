@@ -1,51 +1,34 @@
 'use client'
-import { ProdutoCard, ProdutoCompleto } from '@/types/produto'
+import { ProdutoCompleto } from '@/types/produto'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import Checkbox from '../Checkbox/Checkbox'
 import TituloFiltro from './TituloFiltro'
-import { buscarFiltros, buscarTodosCompleto } from '@/server/produtos/action'
-import { add } from 'date-fns'
-import { useError } from '@/context/ErrorContext'
+import PalavraFiltro from './PalavraFiltro'
+import { aplicarFiltros, definirProdutosFiltrados, filtrarAnimais, filtrarMarcas, filtrarPorte, filtrarPrecos, returnProdutos, tirarFiltros } from '@/server/filtros/action'
 
 interface FiltroGrande {
+    produtos: ProdutoCompleto[]
     close?: Dispatch<SetStateAction<boolean>>
+    setLabel1: Dispatch<SetStateAction<string>>
+    setCheck: Dispatch<SetStateAction<boolean>>
 }
 
-export default function FiltroGrande({ close }: FiltroGrande) {
+export default function FiltroGrande({ produtos, close, setLabel1, setCheck }: FiltroGrande) {
 
-    const { addError } = useError()
-
+    const [checked, setChecked] = useState<boolean>(false);
     const [label, setLabel] = useState<string>('');
     const [titulo, setTitulo] = useState<string>('');
-    const [produtosFiltrados, setProdutosFiltrados] = useState<ProdutoCompleto[]>()
+    const [produtosFiltrados, setProdutosFiltrados] = useState<ProdutoCompleto[]>(produtos)
 
-    const [especies, setEspecies] = useState<string[]>([])
-    const [marcas, setMarcas] = useState<string[]>([])
-    const [categorias, setCategorias] = useState<string[]>([])
-
-    useEffect(() => {
-        const func = () => {
-            try {
-                buscarFiltros("especies").then(resp => resp).then(data => setEspecies(data))
-                buscarFiltros("marcas").then(resp => resp).then(data => setMarcas(data))
-                buscarFiltros("categorias").then(resp => resp).then(data => setCategorias(data))
-            } catch (e) {
-                addError('Erro ao buscar filtros')
-                console.log(e)
-            }
+    useEffect(()=>{
+        if (checked) {
+            aplicarFiltros(label, titulo);
+        } else if(!checked){
+            tirarFiltros(label, titulo)
         }
-        func()
-    }, [])
-
-    useEffect(() => {
-        const func = async () => {
-            const produtos: ProdutoCompleto[] = await buscarTodosCompleto()
-            if (produtos) {
-                setProdutosFiltrados(produtos)
-            }
-        }
-        func()
-    }, [])
+        setLabel1(label)
+        setCheck(checked)
+    },[label, checked])
 
     return (
         <div className='w-64 bg-branco border-r border-y md:border-l md:rounded-md border-cinza rounded-e-md pb-5'>
@@ -60,9 +43,13 @@ export default function FiltroGrande({ close }: FiltroGrande) {
                 </div>
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
-                        especies.map((especie, index) => (
-                            <div key={index} className='flex items-center'>
-                                <Checkbox  label={especie}/>
+                        filtrarAnimais(produtos).map((animal, i) => (
+                            <div key={animal} className='flex items-center'>
+                                <Checkbox check={setChecked} onClick={()=>{
+                                    setLabel(animal.split("(")[0])
+                                    setTitulo('pet')
+                                }}/>
+                                <PalavraFiltro palavra={animal} />
                             </div>
                         ))
                     }
@@ -72,16 +59,15 @@ export default function FiltroGrande({ close }: FiltroGrande) {
                 <div className='mt-5'>
                     <TituloFiltro titulo='Preço' />
                 </div>
-            </div>
-            <div>
-                <div className='mt-5'>
-                    <TituloFiltro titulo='Marcas' />
-                </div>
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
-                        marcas.map((marca, index) => (
-                            <div key={index} className='flex items-center'>
-                                <Checkbox label={marca}/>
+                        filtrarPrecos(produtos).map((preco, i) => (
+                            <div key={preco} className='flex items-center'>
+                                <Checkbox check={setChecked} onClick={()=>{
+                                    setLabel(preco.split("(")[0])
+                                    setTitulo('preco')
+                                }}/>
+                                <PalavraFiltro palavra={preco} />
                             </div>
                         ))
                     }
@@ -89,13 +75,35 @@ export default function FiltroGrande({ close }: FiltroGrande) {
             </div>
             <div>
                 <div className='mt-5'>
-                    <TituloFiltro titulo='Categoria' />
+                    <TituloFiltro titulo='Marcas' />
                 </div>
                 <div className='flex flex-col gap-1 ml-2 mt-5'>
                     {
-                        categorias.map((categoria, index) => (
-                            <div key={index} className='flex items-center'>
-                                <Checkbox label={categoria}/>
+                        filtrarMarcas(produtos).map((marca, i) => (
+                            <div key={marca} className='flex items-center'>
+                                <Checkbox check={setChecked} onClick={()=>{
+                                    setLabel(marca.split("(")[0])
+                                    setTitulo('marca')
+                                }}/>
+                                <PalavraFiltro palavra={marca} />
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+            <div>
+                <div className='mt-5'>
+                    <TituloFiltro titulo='Porte' />
+                </div>
+                <div className='flex flex-col gap-1 ml-2 mt-5'>
+                    {
+                        filtrarPorte(produtos).map((porte, i) => (
+                            <div key={porte} className='flex items-center'>
+                                <Checkbox check={setChecked} onClick={()=>{
+                                    setLabel(porte.split("(")[0])
+                                    setTitulo('porte')   
+                                }}/>
+                                <PalavraFiltro palavra={porte} />
                             </div>
                         ))
                     }

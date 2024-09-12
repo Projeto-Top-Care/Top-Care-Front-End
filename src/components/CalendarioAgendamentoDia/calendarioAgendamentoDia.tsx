@@ -7,7 +7,7 @@ interface IAgendamentos {
 
 }
 
-const CalendarioAgendamentoDia = ({ }: IAgendamentos) => {
+const calendarioAgendamentoDia = ({ }: IAgendamentos) => {
     return (
         <div className="font-poppins around w-[960px]">
             <div className="flex justify-center text-preto mb-4">
@@ -38,4 +38,4 @@ const CalendarioAgendamentoDia = ({ }: IAgendamentos) => {
     )
 }
 
-export default CalendarioAgendamentoDia;
+export default calendarioAgendamentoDia;

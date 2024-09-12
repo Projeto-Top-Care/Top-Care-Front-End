@@ -61,7 +61,7 @@ export default function Perfil() {
 
     useEffect(() => {
         procurarUsuario()
-    }, [openEndereco, atualizar]);
+    }, [openModal, openEndereco, openPet, atualizar]);
 
     const procurarUsuario = async () => {
         const fetchedID = getUserID();
@@ -89,11 +89,12 @@ export default function Perfil() {
 
     const verificarEdicao = async (e: FormData) => {
         if (edicao) {
-            const date = dataNascimento.split("/").reverse().join("-")
+            const date = dataNascimento.split("/")
+            const dateFormat = date[2] + "-" + date[1] + "-" + date[0]
 
             e.append("celular", numero)
             e.append("sexo", sexo.replace(" ", "_").toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
-            e.append("dataNascimento", date)
+            e.append("dataNascimento", dateFormat)
             const s = Object.fromEntries(e)
             const resp = await editarUsuario(s, usuarioLogado.id)
         }
@@ -112,16 +113,16 @@ export default function Perfil() {
         setOpenModal(true)
     }
 
-    // const carrosselProdutos = buscarTodos().map((produto, i) => (
-    //     <CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
-    //         precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />
-    // ))
+    const carrosselProdutos = buscarTodos().map((produto, i) => (
+        <CardProduto key={i} id={produto.id} nomeProduto={produto.nomeProduto} precoAntigoDoProduto={produto.precoAntigoDoProduto}
+            precoNovo={produto.precoNovo} notaDeAvaliacao={produto.notaDeAvaliacao} imagemProduto={produto.imagemProduto} desconto={produto.desconto} />
+    ))
 
     const componetesSelecao = [
-        <HistoricoAgendamentos agendamentos={usuarioLogado.agendamentos} setAtt={setAtualizar} />,
+        <HistoricoAgendamentos agendamentos={usuarioLogado.agendamentos} />,
         <PedidosEmAndamento usuario={usuarioLogado} />,
-        <MeusPets usuario={usuarioLogado} setOpenPet={setOpenPet} setAtt={setAtualizar}/>,
-        // <CarrosselProduto slides={carrosselProdutos} />,
+        <MeusPets usuario={usuarioLogado} setOpenPet={setOpenPet} />,
+        <CarrosselProduto slides={carrosselProdutos} />,
         <EnderecosSalvos atualizarProps={setAtualizar} enderecos={displayedAddresses} setOpenEndereco={setOpenEndereco} setShowAllAdresses={setShowAllAddresses} />
     ]
 
@@ -254,7 +255,7 @@ export default function Perfil() {
                 <div className='overflow-hidden absolute'>
                     <div className='fixed top-0 left-0 w-full h-full z-50 bg-fundo-modal' onClick={() => setOpenPet(false)}></div>
                     <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
-                        <CadastroPet setOpen={setOpenPet} setAtt={setAtualizar}/>
+                        <CadastroPet setOpen={setOpenPet} />
                     </div>
                 </div>
             )}

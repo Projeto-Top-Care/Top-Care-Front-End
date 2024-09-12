@@ -2,7 +2,6 @@ import React from 'react'
 
 interface CardVisualizacao {
     servico: string
-    data: string
     horario: string
     fotoPet: string
     nomePet: string
@@ -11,12 +10,7 @@ interface CardVisualizacao {
     porte: string
 }
 
-export default function CardVisualizacao({ servico, data, horario, fotoPet, nomePet, animal, raca, porte }: CardVisualizacao) {
-
-    const dataNova = data; 
-    const [ano, mes, dia] = dataNova.split("-"); 
-    const dataFormatada = `${dia}/${mes}/${ano.substring(2)}`; 
-
+export default function CardVisualizacao({ servico, horario, fotoPet, nomePet, animal, raca, porte }: CardVisualizacao) {
 
     return (
         <div className='flex flex-col justify-center  font-poppins text-preto w-full'>
@@ -24,8 +18,8 @@ export default function CardVisualizacao({ servico, data, horario, fotoPet, nome
                 <div>
                     <p className='md:text-lg text-sm'>{servico}</p>
                 </div>
-                <div className='border border-primaria rounded-md bg-primaria p-0.5 flex items-center justify-center'>
-                    <p className='md:text-base text-xs'>{dataFormatada}, {horario}</p>
+                <div className='border border-primaria rounded-md bg-primaria p-0.5 w-16 flex items-center justify-center'>
+                    <p className='md:text-base text-xs'>{horario}</p>
                 </div>
             </div>
             <div className='border rounded-b-lg border-preto border-t-transparent w-full p-4 flex justify-between items-center'>

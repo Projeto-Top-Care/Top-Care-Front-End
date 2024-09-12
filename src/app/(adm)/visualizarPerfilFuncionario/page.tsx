@@ -1,8 +1,8 @@
 'use client'
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
-import { SetStateAction, useEffect, useState } from "react";
-import { buscarFuncionario, editarFuncionario, excluirFuncionario, verHorariosDisponiveis } from "@/server/usuario/funcionario";
+import { useEffect, useState } from "react";
+import { buscarFuncionario, editarFuncionario, excluirFuncionario } from "@/server/usuario/funcionario";
 import Loading from "../loading";
 import { useRouter } from "next/navigation";
 import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
@@ -10,8 +10,6 @@ import InputEstatico from "@/components/InputEstatico/InputEstatico";
 import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico";
 import Select from "@/components/Select/Select";
 import { buscarFiliais } from "@/server/filiais/filial";
-import { FuncionarioCompleto, HorarioFuncionarioSimples } from "@/types/funcionario";
-import CardVisualizacao from "@/app/(funcionario)/visualizacaoAgendamentoFuncionario/CardVisualizacao/CardVisualizacao";
 
 interface VisualizarFuncionarioProps {
     searchParams: {
@@ -23,39 +21,26 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
 
     const router = useRouter()
     const idFuncionario = searchParams.id;
-    const [funcionario, setFuncionario] = useState<FuncionarioCompleto>()
-    const [horariosDisponiveis, setHorariosDisponiveis] = useState<HorarioFuncionarioSimples[]>()
+    const [funcionario, setFuncionario] = useState()
     const [filiais, setFiliais] = useState<string[]>([])
     const [filial, setFilial] = useState<string>('')
     const [edicao, setEdicao] = useState<boolean>(false)
-    const [opcaoSelecionada, setOpcaoSelecionada] = useState<string>("Todos")
 
     const verFuncionario = async () => {
         const response = await buscarFuncionario(idFuncionario)
         setFuncionario(response)
     }
 
-    const verHorarios = async () => {
-        const response = await verHorariosDisponiveis(idFuncionario)
-        setHorariosDisponiveis(response)
-    }
-
     const verFiliais = async () => {
         const response = await buscarFiliais()
-        const listaDeNomes = response.map((filial: FuncionarioCompleto) => filial.nome);
+        const listaDeNomes = response.map(filial => filial.nome);
         setFiliais(listaDeNomes)
     }
 
     useEffect(() => {
         verFuncionario()
         verFiliais()
-        verHorarios()
     }, [])
-
-    const formatarData2 = (dateString: string) => {
-        const [year, month, day] = dateString.split('-');
-        return `${day}/${month}/${year}`;
-    }
 
     const [openModal, setOpenModal] = useState<boolean>(false)
     const [confirmarExclusao, setConfirmarExclusao] = useState<boolean>(false)
@@ -86,49 +71,54 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
         if (edicao) {
             const date = dataNascimento ? dataNascimento.split("/") : null
             const dateFormat = date ? date[2] + "-" + date[1] + "-" + date[0] : ""
-
+            
             e.append("sexo", sexo.replace(" ", "_").toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
-            if (filial != '') {
+            if(filial != '') {
                 e.append("nomeFilial", filial)
             } else {
-                e.append("nomeFilial", funcionario!.nomeFilial)
+                e.append("nomeFilial", funcionario.nomeFilial)
             }
-            if (sexo != '') {
+            if(sexo != '') {
                 e.append("celular", numero.replace(" ", ""))
             } else {
-                e.append("celular", funcionario!.celular.replace(" ", ""))
+                e.append("celular", funcionario.celular.replace(" ", ""))
             }
             if (dateFormat) {
                 e.append("dataNascimento", dateFormat)
             } else {
-                e.append("dataNascimento", funcionario!.dataNascimento)
+                e.append("dataNascimento", funcionario.dataNascimento)
             }
 
             const dados = Object.fromEntries(e)
+            console.log(dados)
             const response = editarFuncionario(idFuncionario, dados)
             setEdicao(false)
             verFuncionario()
+            // if(response != null) {
+            //     router.push('./funcionarios')
+            // }
         }
         setEdicao(!edicao)
     }
-    let tem = true
+
     return (
         <>
             {funcionario ? (
-                <section className="font-poppins">
+                <section>
                     <div>
                         <TituloLinha titulo={funcionario.nome} voltar={true} />
                     </div>
-                    <form action={editarFuncionarioo} className="font-poppins text-preto w-[90%] m-auto flex flex-col-reverse sm:flex-row justify-center">
-                        <div className="mr-[5%] lg:items-start items-center">
+                    <form action={editarFuncionarioo} className="font-poppins text-preto w-[90%] m-auto flex justify-center">
+                        <div className="mr-[5%]">
                             <p className='text-preto font-poppins font-bold text-base'>Foto</p>
-                            <div className='w-52 h-52 m-auto md:text-sm text-xs bg-branco p-3 rounded text-cinza-escuro border border-cinza mb-5' />
+                            <div className='w-52 h-52 md:text-sm text-xs bg-branco p-3 rounded text-cinza-escuro border border-cinza mb-5' />
                             <div className="flex flex-col gap-4">
+                                {/* <BotaoGrande onClick={() => setEdicao(edicao)} size="p-2" title={`${edicao ? 'Salvar Alteração' : 'Editar'}`} background={"secundaria"} type={"button"} /> */}
                                 <BotaoGrande size="p-2" title={`${edicao ? 'Salvar Alteração' : 'Editar'}`} background={"secundaria"} type={"submit"} />
                                 <BotaoGrande onClick={() => setOpenModal(true)} size="p-2" title={"Excluir"} background={"cancelar"} type={"button"} />
                             </div>
                         </div>
-                        <section className='bg-terciaria px-8 py-6 rounded-lg flex md:flex-row flex-col lg:w-[60%] w-full md:gap-8 gap-4 mb-8'>
+                        <section className='bg-terciaria px-8 py-6 rounded-lg flex md:flex-row flex-col lg:w-[60%] w-full md:gap-8 gap-4 mb-24'>
                             <div className='w-full flex flex-col md:gap-8 gap-4'>
                                 <InputEstatico name="nome" titulo='Nome completo' info={funcionario.nome} edition={edicao} />
                                 <InputEstatico name="cpf" titulo='CPF' edition={false} info={funcionario.cpf} />
@@ -154,6 +144,8 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
                                     replacement={{ d: /\d/, m: /\d/, y: /\d/ }}
                                     onMasks={(e) => setDataNascimento(e.target.value)} />
 
+                                {/* <InputEstatico name="dataNascimento" titulo='Data de nascimento' edition={edicao} info={funcionario.dataNascimento} /> */}
+
                                 <InputEstatico name="codigo" titulo='Código' edition={false} info={funcionario.codigo} />
 
                                 <InputMaskEstatico
@@ -173,6 +165,7 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
                                     name='nomeFilial'
                                     bg
                                 />
+                                {/* <InputEstatico name="filial" titulo='Filial' edition={edicao} info={funcionario.nomeFilial} /> */}
                             </div>
                         </section>
                     </form>
@@ -185,49 +178,6 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
                             </div>
                         </div>
                     )}
-
-                    <TituloLinha titulo="Agendamentos" voltar={false} />
-                    <section className="w-[90%] m-auto">
-                        <div className="w-full flex justify-end">
-                            <div className={`w-1/6 ${tem ? `` : `hidden`}`}>
-                                <Select options={['Finalizados', 'Cancelados', 'Esperando', 'Todos']} label={'Ordenar por'} opcaoSelecionada={setOpcaoSelecionada} opcao={opcaoSelecionada} />
-                            </div>
-                        </div>
-                        {
-                            tem ? (
-                                <div className="gap-8 grid lg:grid-cols-3 md:grid-cols-2 md:mt-2">
-                                    <CardVisualizacao servico="Banho e Tosa" horario="15:30" fotoPet={"./assets/cachorro-perfil.png"} animal="Cachorro" nomePet="Nina" porte="Pequeno" raca="Spitz Alemao" data={"1212-12-12"} />
-                                    <CardVisualizacao servico="Banho e Tosa" horario="15:30" fotoPet={"./assets/cachorro-perfil.png"} animal="Cachorro" nomePet="Nina" porte="Médio" raca="Poodle" data={"1212-12-12"} />
-                                </div>
-                            ) : (
-                                <div className="w-full m-auto flex flex-col col-span-4">
-                                <p className="w-full m-auto">O usuário não tem nenhum agendamento :(</p>
-                                <img className="w-64 self-center" src="./assets/dog-sad.png" />
-                            </div>
-                            )
-                        }
-
-                    </section>
-                    <TituloLinha titulo={"Horários disponíveis"} voltar={false} />
-                    <section className="md:mb-24 mb-4 flex flex-col md:w-[95%] lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center gap-8">
-                        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                            {
-                                horariosDisponiveis && horariosDisponiveis.length > 0 ? (
-                                    horariosDisponiveis.map((item, index) => (
-                                        <div key={index} className="w-full flex flex-col border-roxo-select border rounded-lg p-2 text-roxo-select">
-                                            <p className="sm:text-base text-sm font-semibold">Dia {formatarData2(item.dia)}</p>
-                                            <p className="sm:text-base text-sm">{item.horaInicio.slice(0, 5)} às {item.horaFim.slice(0, 5)}</p>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <div className="w-full m-auto flex flex-col col-span-4">
-                                        <p className="w-full m-auto">O usuário não tem horários disponíveis :(</p>
-                                        <img className="w-64 self-center" src="./assets/dog-sad.png" />
-                                    </div>
-                                )
-                            }
-                        </div>
-                    </section>
                 </section>
             ) : (
                 <Loading />

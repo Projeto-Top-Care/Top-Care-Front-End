@@ -9,7 +9,6 @@ import ResponsiveInput from '@/components/ResponsiveInput'
 import Select from '@/components/Select/Select'
 import { buscarFiliais } from '@/server/filiais/filial'
 import { cadastroFuncionario } from '@/server/usuario/funcionario'
-import { FuncionarioCompleto } from '@/types/funcionario'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
@@ -52,7 +51,7 @@ export default function CadastroFuncionario() {
 
     const verFiliais = async () => {
         const response = await buscarFiliais()
-        const listaDeNomes = response.map((filial:FuncionarioCompleto) => filial.nome);
+        const listaDeNomes = response.map(filial => filial.nome);
         // console.log(listaDeNomes);
         setFiliais(listaDeNomes)
     }
