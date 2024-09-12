@@ -27,7 +27,11 @@ export default function Login() {
             addConfirmacao("Login efetuado com sucesso!")
             if(authLogin.role == "ADMIN"){
                 router.push("/dashboard")
-            }else{
+            }
+            else if(authLogin.role == "FUNCIONARIO"){
+                router.push(`/visualizacaoAgendamentoFuncionario?id=${authLogin.id}`)
+            }
+            else{
                 router.push("/")
             }
         }
