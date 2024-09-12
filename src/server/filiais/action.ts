@@ -10,16 +10,6 @@ export async function getFilial(id: string) {
     return response.data;
 }  
 
-// const func = async () =>{
-//     const filial = await getFilial('1')
-//     filial.endereco.rua
-//     filial.endereco.bairro
-//     filial.endereco.cep
-//     filial.endereco.cidade
-//     filial.endereco.estado
-//     filial.endereco.numero
-// }
-
 export async function createFilial(filiais: any) {
     const response = await axiosAPI.post('/filiais', filiais);
     return response.data;
