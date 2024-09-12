@@ -200,7 +200,10 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
                                     <CardVisualizacao servico="Banho e Tosa" horario="15:30" fotoPet={"./assets/cachorro-perfil.png"} animal="Cachorro" nomePet="Nina" porte="Médio" raca="Poodle" data={"1212-12-12"} />
                                 </div>
                             ) : (
-                                <p>O usuário não tem nenhum agendamento :(</p>
+                                <div className="w-full m-auto flex flex-col col-span-4">
+                                <p className="w-full m-auto">O usuário não tem nenhum agendamento :(</p>
+                                <img className="w-64 self-center" src="./assets/dog-sad.png" />
+                            </div>
                             )
                         }
 
@@ -217,7 +220,10 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
                                         </div>
                                     ))
                                 ) : (
-                                    <p className="w-full m-auto col-span-3">O usuário não tem horários disponíveis :(</p>
+                                    <div className="w-full m-auto flex flex-col col-span-4">
+                                        <p className="w-full m-auto">O usuário não tem horários disponíveis :(</p>
+                                        <img className="w-64 self-center" src="./assets/dog-sad.png" />
+                                    </div>
                                 )
                             }
                         </div>
