@@ -2,8 +2,10 @@
 import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande'
 import Confirmacao from '@/components/Pop-up/Confirmacao/Confirmacao'
 import DoisBotoes from '@/components/Pop-up/DoisBotoes/DoisBotoes'
+import Erro from '@/components/Pop-up/Erro/Erro'
 import TabelaServicos from '@/components/TabelaServicos/TabelaServicos'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
+import { useError } from '@/context/ErrorContext'
 import { useConfirmacao } from '@/context/confirmacaoContext'
 import { deleteServico, getServico, updateServico } from '@/server/servicos/action'
 import { PetsProps, Servico, VariantesProps } from '@/types/servicos'
@@ -17,10 +19,11 @@ interface PropsService {
 export default function EditarServico({ searchParams }: PropsService) {
     const router = useRouter()
     const { addConfirmacao } = useConfirmacao();
+    const {addError} = useError()
 
     const [servico, setServico] = useState<Servico>()
     const [openModal, setOpenModal] = useState<boolean>(false)
-    const [sim, setSim] = useState<boolean>(false) 
+    const [sim, setSim] = useState<boolean>(false)
 
     const [variantes, setVariantes] = useState<VariantesProps[]>([])
     const [pets, setPets] = useState<PetsProps[]>([])
@@ -28,14 +31,14 @@ export default function EditarServico({ searchParams }: PropsService) {
 
     useEffect(() => {
         const func = async () => {
-            if(sim){
+            if (sim) {
                 await deleteServico(searchParams.id);
                 addConfirmacao("Serviço excluído!")
                 router.push('/visualizarServicos')
-            }  
+            }
         }
-        func() 
-    },[sim])
+        func()
+    }, [sim])
 
     useEffect(() => {
         const func = async () => {
@@ -58,13 +61,18 @@ export default function EditarServico({ searchParams }: PropsService) {
         servico.variantes = variantes
         servico.especies = pets
         servico.funcionarios = funcionarios
-        await updateServico(searchParams.id, servico)
-        addConfirmacao("Servico Editado!")
+        try {
+            await updateServico(searchParams.id, servico)
+            addConfirmacao("Servico Editado!")
+        }catch(error){
+            addError("Erro ao editar serviço!")
+        }
     }
 
     return (
         <>
             <Confirmacao />
+            <Erro/>
             <form action={enviarDados} className='mx-auto text-preto'>
                 <section className=''>
                     <TituloLinha titulo={`Editar ` + servico?.nome} voltar={true} />
@@ -84,7 +92,7 @@ export default function EditarServico({ searchParams }: PropsService) {
                 </section>
                 <section className='w-[90%] mx-auto flex flex-row justify-between items-center my-10'>
                     <div className='w-48'>
-                        <BotaoGrande background='cancelar' title='Excluir serviço' type='button' onClick={()=> setOpenModal(true)}/>
+                        <BotaoGrande background='cancelar' title='Excluir serviço' type='button' onClick={() => setOpenModal(true)} />
                     </div>
                     <div className='w-60'>
                         <BotaoGrande background='secundaria' title='Salvar serviço' type='submit' />
@@ -98,7 +106,7 @@ export default function EditarServico({ searchParams }: PropsService) {
                         <DoisBotoes texto='Você tem certeza que deseja excluir esse serviço?' openParms={setOpenModal} sim={setSim} />
                     </div>
                 </div>
-                )
+            )
             }
         </>
     )

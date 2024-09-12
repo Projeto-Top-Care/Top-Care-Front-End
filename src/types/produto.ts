@@ -1,41 +1,49 @@
+import { PetsProps } from "./servicos"
 import { Usuario } from "./usuarios"
 
-export interface Produto {
+export interface ProdutoCard {
     id: number
-    nomeProduto: string
-    notaDeAvaliacao: number
-    imagemProduto: string[]
-    precoAntigoDoProduto: number
-    desconto: string
-    precoNovo: number
-    favorito?: boolean
+    nome: string
+    notaAvaliacao: number
+    imagem: string
+    preco: number
 }
+
+export interface PaginaProduto {
+    produtos: ProdutoCard[]
+    page: number
+    totalPages: number
+    pageSize: number
+    totalElements: number
+}
+
+
 export interface ProdutoCompleto {
     id: number
-    nomeProduto: string
-    notaDeAvaliacao: number
-    imagemProduto: string[]
-    precoAntigoDoProduto: number
-    desconto: string
-    precoNovo: number
+    nome: string
+    notaAvaliacao: number
+    imagens: Imagem[]
     marca: string
-    precoAssinantes: number
-    tipoVariante: string
     variantes: VarianteProps[]
     disponivel: boolean,
+    categoria: Categoria
     codigo: number
-    estoque: number
+    especies: PetsProps[]
     quantidadeVendas: number
-    descricao: string[]
-    especificacoes: Especificacao
+    descricao: string
+    especificacoes: Especificacao[]
     avaliacoes: AvaliacaoType[]
-    tags: string[],
+}
+
+export interface Categoria {
+    id: number
+    nome: string
 }
 
 export interface Especificacao {
     id?: number,
     nome: string,
-    descricao: string
+    conteudo: string
 }
 
 export interface AvaliacaoType {
@@ -47,12 +55,22 @@ export interface AvaliacaoType {
 
 export interface VarianteProps {
     id?: number
+    cor: string
+    tamanho: string
+    peso: number
+    unidades: number
     estoque: number
     preco: number
-    tipo: string
+    desconto: number
 }
 
 export interface UsuarioAvaliacao {
     nome: string,
     foto: string
+}
+
+export interface Imagem {
+    id: number
+    caminho: string
+    nomeOriginal: boolean
 }

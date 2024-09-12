@@ -1,7 +1,10 @@
 'use client'
+import agendamento from "@/app/(logado)/agendamento/page"
 import { buscarProduto } from "@/server/produtos/action"
+import { Agendamentos } from "@/types/agendamentos"
 import { Produto } from "@/types/produto"
 import { QntProduto } from "@/types/usuarios"
+import { formatarData } from "@/utils/data"
 import { useState } from "react"
 
 interface IResumoPedido {
@@ -9,9 +12,10 @@ interface IResumoPedido {
     desconto: number,
     frete: number
     plano?: string
+    agendamento?: Agendamentos
 }
 
-export default function ResumoPedido({ produtos, desconto, frete, plano }: IResumoPedido) {
+export default function ResumoPedido({ produtos, desconto, frete, plano, agendamento }: IResumoPedido) {
 
     const setarProdutosResumo = () => {
         const prods: Produto[] = produtos.map((item, i) => {
@@ -24,9 +28,13 @@ export default function ResumoPedido({ produtos, desconto, frete, plano }: IResu
 
     const calcularSubtotal = () => {
         let soma = 0
-        produtosResumo.map((item, i) => {
-            soma += item.precoNovo * produtos[i].quantidade
-        })
+        if(agendamento){
+            soma = agendamento.varianteServico.preco
+        }else{
+            produtosResumo.map((item, i) => {
+                soma += item.precoNovo * produtos[i].quantidade
+            })
+        }
         return soma
     }
 
@@ -44,10 +52,20 @@ export default function ResumoPedido({ produtos, desconto, frete, plano }: IResu
                 <h2 className="font-bold text-base sm:text-lg pb-2">Resumo geral</h2>
 
                 <div className="border-cinza border-[1px] rounded-lg p-4">
-                    <h4 className="font-medium text-sm sm:text-base">Produtos</h4>
+                    <h4 className="font-medium text-sm sm:text-base">{agendamento ? "Agendamento": "Produtos"}</h4>
                     {
                         plano && (
                             <p className="mt-4">Plano {plano}</p>
+                        )
+                    }
+
+                    {
+                        agendamento && (
+                            <div>
+                                <p className="mt-4">Agendamento para {formatarData(agendamento.horario.dia)}</p>
+                                <p>Local: {agendamento.filial}</p>
+                                <p>Horário: {agendamento.horario.horaInicio.slice(0,5)}</p>
+                            </div>
                         )
                     }
 
@@ -76,7 +94,7 @@ export default function ResumoPedido({ produtos, desconto, frete, plano }: IResu
                             <p className="text-xs sm:text-sm">R${(desconto).toFixed(2).replace(".", ",")}</p>
                         </div>
 
-                        <div className="flex flex-row justify-between">
+                        <div className={`flex-row justify-between ${agendamento ? 'hidden': '!flex'}`}>
                             <p className="font-medium text-sm sm:text-base">Frete</p>
                             <p className="text-xs sm:text-sm">R${(frete).toFixed(2).replace(".", ",")}</p>
                         </div>

@@ -1,53 +1,98 @@
 'use client'
 import { useRouter } from "next/navigation"
-import { useUserID } from "@/context/UserIDContext";
-import { useEffect, useState } from "react"
-import { buscarUsuario } from "@/server/usuario/action";
-import { Usuario } from "@/types/usuarios";
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import TabelaProdutos from "@/components/TabelaProdutos/TabelaProduto";
-import EspecificacoesProduto from "@/components/VariacaoProdutos/VariacaoProdutos";
+import VariacaoProdutos from "@/components/VariacaoProdutos/VariacaoProdutos";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
+import { Categoria, Especificacao, VarianteProps } from "@/types/produto";
+import { useState } from "react";
+import { cadastrarProduto } from "@/server/produtos/action";
+import { useError } from "@/context/ErrorContext";
+import { useConfirmacao } from "@/context/confirmacaoContext";
+import Erro from "@/components/Pop-up/Erro/Erro";
+import { PetsProps } from "@/types/servicos";
 
 export default function CadastroProduto() {
-    const { getUserID } = useUserID()
-    const [user, setUser] = useState<Usuario>()
     const router = useRouter()
+    const { addError } = useError()
+    const { addConfirmacao } = useConfirmacao();
 
-    useEffect(() => {
-        const useEffectFunction = async () => {
-            const fetchedID = getUserID();
-            if (fetchedID) {
-                const usuario: Usuario = await buscarUsuario(parseInt(fetchedID))!;
-                if (usuario) {
-                    setUser(usuario)
-                }
-            }
+    const [variantes, setVariantes] = useState<VarianteProps[]>([])
+    const [especificacoes, setEspecificacoes] = useState<Especificacao[]>([])
+    const [especies, setEspecies] = useState<PetsProps[]>([])
+    const [categoeria, setCategoria] = useState<Categoria>()
+    const [imagens, setImagens] = useState<File[]>([])
+
+    const cadastrar = async (e: FormData) => {
+        if (especificacoes.length === 0) {
+            addError('É necessário cadastrar ao menos uma especificação')
+            return
         }
-        useEffectFunction()
-    }, []);
+        if (variantes.length === 0) {
+            addError('É necessário cadastrar ao menos uma variante')
+            return
+        }
+        if (imagens.length === 0) {
+            addError('É necessário cadastrar ao menos uma imagem')
+            return
+        }
+
+        const produto: any = Object.fromEntries(e.entries())
+        produto.especificacoes = especificacoes
+        produto.variantes = variantes
+        produto.categoria = categoeria
+        produto.especies = especies
+
+        const formdata = new FormData()
+        for (let i = 0; i < imagens.length; i++) {
+            formdata.append('files', imagens[i])
+        }
+        formdata.append('produtoDTO', new Blob([JSON.stringify(produto)], { type: 'application/json' }))
+
+        try {
+            await cadastrarProduto(formdata)
+            addConfirmacao('Produto cadastrado com sucesso')
+            router.push("/visualizarProdutos")
+        } catch (error) {
+            addError('Erro ao cadastrar produto')
+            console.log(error)
+        }
+        //Função de cadastro de produto
+    }
 
     return (
-        <main className="mx-auto text-preto">
+        <form action={cadastrar} className="mx-auto text-preto">
             <Confirmacao />
+            <Erro />
             <section className="">
                 <TituloLinha voltar={true} titulo='Cadastrar novo produto' />
             </section>
             <section className="w-[90%] mx-auto">
-                <TabelaProdutos />
+                <TabelaProdutos
+                    especificacoes={especificacoes}
+                    setEspecificacoes={setEspecificacoes}
+                    imagens={imagens}
+                    setImagens={setImagens}
+                    setCategoriaa={setCategoria}
+                    especies={especies}
+                    setEspecies={setEspecies}
+                />
             </section>
             <section className="w-[90%] mx-auto">
-                <EspecificacoesProduto />
+                <VariacaoProdutos
+                    variantes={variantes}
+                    setVariantes={setVariantes}
+                />
             </section>
             <section className='w-[90%] mx-auto flex flex-row justify-between items-center my-10'>
                 <div className='w-24 md:w-48'>
                     <BotaoGrande background='cancelar' title='Cancelar' type='button' onClick={() => router.back()} />
                 </div>
                 <div className='md:w-60'>
-                    <BotaoGrande background='secundaria' title='Cadastrar Produto' type='button' />
+                    <BotaoGrande background='secundaria' title='Cadastrar Produto' type='submit' />
                 </div>
             </section>
-        </main>
+        </form>
     )
 }

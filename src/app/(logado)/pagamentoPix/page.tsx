@@ -10,25 +10,103 @@ import { useUserID } from "@/context/UserIDContext"
 import { useCarrinho } from "@/context/CarrinhoContext"
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao"
 import { useConfirmacao } from "@/context/confirmacaoContext"
+import { Agendamentos } from "@/types/agendamentos"
+import { buscarAgendamento, cancelarAgendamento, verificarPagamento } from "@/server/agendamentos/action"
+import { useError } from "@/context/ErrorContext"
+import Erro from "@/components/Pop-up/Erro/Erro"
 
-export default function PagamentoPix() {
+interface BoletoProps {
+    searchParams: {
+        p: string,
+        agendamento: number
+    }
+}
+
+export default function PagamentoPix({ searchParams }: BoletoProps) {
+
+    const agendamentoId = searchParams.agendamento
+
+    const [agendamento, setAgendamento] = useState<Agendamentos>()
+
+    const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();
+    const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
+
+    useEffect(() => {
+        const func = async () => {
+            const agend = await buscarAgendamento(agendamentoId)
+            if (agend) {
+                setAgendamento(agend)
+            }
+        }
+        func()
+    }, []);
+
+    const { addConfirmacao } = useConfirmacao();
+    const { addError } = useError();
+
+    useEffect(() => {
+        // Recupera o tempo de início do Local Storage ou define o tempo atual
+        const startTime = localStorage.getItem('startTime') || new Date().getTime();
+
+        // Se não houver um tempo de início salvo, salva o tempo atual
+        if (!localStorage.getItem('startTime')) {
+            localStorage.setItem('startTime', startTime.toString());
+        }
+
+        // Calcula o tempo restante para completar 1 hora
+        const elapsedTime = new Date().getTime() - parseInt(startTime.toString());
+        const remainingTime = 3600000 - elapsedTime; // 1 hora = 3600000 ms
+
+        if (remainingTime > 0) {
+            // Configura o intervalo para imprimir o número 1 a cada minuto
+            const interval = setInterval(async () => {
+                const resp = await verificarPagamento(agendamentoId)
+                if (resp) {
+                    addConfirmacao("Pagamento confirmado")
+                    push("/Perfil")
+                } // Ação a ser executada a cada 5 segundos
+            }, 5000); // 5000 ms = 5 segundos
+            setIntervalId(interval);    
+
+            // Configura o timeout para parar o intervalo após o tempo restante
+            const timeout = setTimeout(async () => {
+                clearInterval(interval);
+                localStorage.removeItem('startTime');
+                addError("Tempo esgotado")
+                push("/Perfil")
+                await cancelarAgendamento(agendamentoId)
+            }, remainingTime);
+            setTimeoutId(timeout);
+        } else {
+            // Se o tempo já passou, remove o tempo de início do Local Storage
+            localStorage.removeItem('startTime');
+        }
+
+        // Cleanup function para limpar o intervalo e o timeout se o componente for desmontado
+        return () => {
+            if (intervalId) clearInterval(intervalId);
+            if (timeoutId) clearTimeout(timeoutId);
+        };
+    }, [intervalId, timeoutId]);
+
+
 
     const { push } = useRouter();
-    const {getUserID} = useUserID()
+    const { getUserID } = useUserID()
     const conf = useConfirmacao()
-    const {items} = useCarrinho()
+    const { items } = useCarrinho()
 
-    const getUser = async () =>{
+    const getUser = async () => {
         const id = getUserID()
-        if(id){
-            setUsuarioLogado (await buscarUsuario(parseInt(id)))
+        if (id) {
+            setUsuarioLogado(await buscarUsuario(parseInt(id)))
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getUser()
-    },[])
-    
+    }, [])
+
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario>()
     const pedido: QntProduto[] = (items as unknown as QntProduto[])
 
@@ -39,14 +117,15 @@ export default function PagamentoPix() {
 
     return (
         <main>
-            <Confirmacao/>
+            <Confirmacao />
+            <Erro />
             <div className="py-6 sm:py-12 flex flex-col gap-4">
                 <TituloLinha voltar={false} titulo="Pagamento" />
 
                 <section className="flex flex-col-reverse gap-2 sm:flex-row sm:px-2 md:px-8 lg:px-20">
                     <section className="p-4 w-full sm:w-1/2">
-                        <ResumoPedido produtos={pedido} desconto={0} frete={0} />
-                    </section> 
+                        <ResumoPedido produtos={pedido} desconto={0} frete={0} agendamento={agendamento} />
+                    </section>
 
                     <section className="font-poppins gap-8 text-preto flex flex-col justify-center items-center sm:w-[50%]">
                         <div className="flex flex-col items-center gap-2">

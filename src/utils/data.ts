@@ -1,4 +1,7 @@
 export const formatarData = (nascimento: string) => {
-    const data = nascimento.split("-")
-    return data[2] + "/" + data[1] + "/" + data[0]
+    return nascimento.split("-").reverse().join("/")
+}
+
+export const formatarHora = (hora: string) =>{
+    return hora.slice(0,5)
 }
