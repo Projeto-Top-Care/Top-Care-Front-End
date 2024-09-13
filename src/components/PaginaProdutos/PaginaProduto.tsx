@@ -16,16 +16,15 @@ import { buscarTodos } from '@/server/produtos/action';
 import Erro from '../Pop-up/Erro/Erro';
 
 interface InterfaceProdutos {
-    searchParams?: { q: string }
+    query?: string
 }
 
-export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
+export default function PaginaProdutos({ query }: InterfaceProdutos) {
 
     const { getUserID } = useUserID()
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
     const [att, setAtt] = useState<number>(0)
 
-    const query = searchParams?.q
     const [produtosMostrados, setProdutosMostrados] = useState<ProdutoCard[]>()
 
     useEffect(() => {
@@ -43,11 +42,11 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
 
     useEffect(() => {
         const func = async () => {
-            const paginaProdutos: PaginaProduto = await buscarTodos()
+            const paginaProdutos: PaginaProduto = await buscarTodos(query ? query : 'empty')
             setProdutosMostrados(paginaProdutos.produtos)
         }
         func()
-    }, [att])
+    }, [att, query])
     // const [produtosMostradosQuery, setProdutosMostradosQuery] = useState<ProdutoCompleto[]>([])
     // const [filtroOpen, setFiltroOpen] = useState<boolean>(false)
     // const [animation, setAnimation] = useState<boolean>(false)
@@ -108,7 +107,7 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
                 {
                     produtosMostrados && (
                         <div className='hidden md:!flex w-[25%]'>
-                            <FiltroGrande />
+                            <FiltroGrande query={query}/>
                         </div>
                     )
                 }

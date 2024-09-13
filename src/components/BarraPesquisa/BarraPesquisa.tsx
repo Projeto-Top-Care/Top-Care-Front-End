@@ -1,5 +1,6 @@
 'use client'
 import { useSearch } from "@/context/SearchContext";
+import { buscarPorQuery } from "@/server/produtos/action";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
@@ -39,7 +40,7 @@ export default function BarraPesquisa({ placeholder }: IBarraPesquisa) {
         localStorage.setItem('ultimasPesquisas', JSON.stringify(pesquisas()))
     }, [ultimasPesquisas])
 
-    const enter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const enter = async (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key == 'Enter') {
             if (query != '') {
                 document.getElementById('search')?.blur()
@@ -48,7 +49,7 @@ export default function BarraPesquisa({ placeholder }: IBarraPesquisa) {
             }
         }
     }
-    const enviarQuery = () => {
+    const enviarQuery = async () => {
         if (query != '') {
             router.push('/produtos?q=' + query)
         }
