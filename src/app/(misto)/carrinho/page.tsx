@@ -7,7 +7,7 @@ import { useCarrinho } from '@/context/CarrinhoContext'
 import { useUserID } from '@/context/UserIDContext'
 import { buscarProduto } from '@/server/produtos/action'
 import { buscarUsuario } from '@/server/usuario/action'
-import { Produto } from '@/types/produto'
+import { ProdutoCard, ProdutoCompleto } from '@/types/produto'
 import { Usuario, Cupom, QntProduto } from '@/types/usuarios'
 import { useRouter } from 'next/navigation'
 import {buscarCarrinhoPorUserId, cadastroCarrinho} from '@/server/carrinho/action'
@@ -20,11 +20,21 @@ import Produtos from './Produtos'
 import Topico from './Topico'
 import CalcularFrete from '@/components/CalcularFrete/calcularFrete'
 
-export default function Carrinho() {
+export default async function Carrinho() {
 
   const { getUserID } = useUserID()
   const [carrinho, setCarrinho] = useState<QntProduto[]>([])
   const [usuarioLogado, setUsuarioLogado] = useState<Usuario>()
+  const [frete, setFrete] = useState<number | string>(0)
+  const [desconto, setDesconto] = useState<number>(0)
+  const [cep, setCep] = useState<string>('')
+  const [openCupons, setOpenCupons] = useState<boolean>(false)
+  const [cupom, setCupom] = useState<Cupom>()
+  const [erro, setErro] = useState<boolean>(false)
+  const [inexitente, setInexistente] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false)
+  const [sim, setSim] = useState<boolean>(false)
+  const router = useRouter()
 
   const { getCarrinho } = useCarrinho()
 
@@ -40,6 +50,12 @@ export default function Carrinho() {
       } else {  
         console.error(error);
       }
+    }
+  }
+
+  const calcularDesconto = () => {
+    if (cupom) {
+      setDesconto(cupom.porcentagem * somaTotal())
     }
   }
 
@@ -61,20 +77,6 @@ export default function Carrinho() {
     func()
   }, [])
 
-  const produtos: Produto[] = carrinho ? carrinho.map((item) => {
-    return buscarProduto((item as unknown as QntProduto).id!)!
-  }) : [];
-  const [frete, setFrete] = useState<number | string>(0)
-  const [desconto, setDesconto] = useState<number>(0)
-  const [cep, setCep] = useState<string>('')
-  const [openCupons, setOpenCupons] = useState<boolean>(false)
-  const [cupom, setCupom] = useState<Cupom>()
-  const [erro, setErro] = useState<boolean>(false)
-  const [inexitente, setInexistente] = useState<boolean>(false)
-  const [open, setOpen] = useState<boolean>(false)
-  const [sim, setSim] = useState<boolean>(false)
-  const router = useRouter()
-
   useEffect(() => {
     if (cep.length != 9) {
       if (cupom?.tipo == 'frete') {
@@ -86,7 +88,6 @@ export default function Carrinho() {
       setErro(false)
     }
   }, [cep])
-
   useEffect(() => {
     setOpenCupons(false)
     calcularDesconto()
@@ -109,12 +110,17 @@ export default function Carrinho() {
     }
   }, [sim])
 
+  const produtos: ProdutoCompleto[] = carrinho ? await Promise.all(carrinho.map(async (item) => {
+    return await buscarProduto((item as unknown as QntProduto).id!)!;
+  })) : [];
+
   const somaTotal = () => {
+    console.log(produtos)
     if (typeof produtos != undefined) {
       let total = 0
 
       produtos!.forEach((produto) => [
-        total += produto.precoNovo
+        total += produto.variantes[0].preco
       ])
 
       return total;
@@ -137,11 +143,6 @@ export default function Carrinho() {
     setFrete(34)
 
   }
-  const calcularDesconto = () => {
-    if (cupom) {
-      setDesconto(cupom.porcentagem * somaTotal())
-    }
-  }
 
   return (
     <main className='text-preto'>
@@ -158,7 +159,7 @@ export default function Carrinho() {
             {
               produtos!.map((produto) => (
                 <div key={produto.id}>
-                  <Produtos variacao='Rosa, pequeno' id={produto.id} nomeProduto={produto.nomeProduto} imagemProduto={produto.imagemProduto[0]} preco={produto.precoNovo} estoque={10} />
+                  <Produtos variacao='Rosa, pequeno' id={produto.id} nomeProduto={produto.nome} imagemProduto={produto.imagens[0]} preco={produto.variantes[0].preco} estoque={produto.variantes[0].estoque} />
                 </div>
               ))
             }
@@ -169,7 +170,7 @@ export default function Carrinho() {
             <h1 className='font-poppins font-bold text-xl'>Sumário</h1>
             <div className='flex flex-row justify-between mt-6'>
               <p className='font-poppins font-medium'>Subtotal</p>
-              <p className='font-poppins'>R${somaTotal().toFixed(2).replace(".", ",")}</p>
+              <p className='font-poppins'> R${(somaTotal() || 0).toFixed(2).replace(".", ",")}</p>
             </div>
             <div className='mt-5'>
               <p className='font-poppins font-medium'>Cupons</p>

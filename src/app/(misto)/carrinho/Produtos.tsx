@@ -79,7 +79,7 @@ export default function Produtos({ id, imagemProduto, variacao, nomeProduto, pre
                 </div>
                 <div className='flex flex-col items-center w-24'>
                     <p className='font-poppins md:!flex hidden'>Preço</p>
-                    <p className='font-poppins mt-2 md:text-base text-sm'>R${precoTotal.toFixed(2).replace(".", ",")}</p>
+                    <p className='font-poppins mt-2 md:text-base text-sm'>R${(precoTotal || 0).toFixed(2).replace(".", ",")}</p>
                 </div>
             </div>
 

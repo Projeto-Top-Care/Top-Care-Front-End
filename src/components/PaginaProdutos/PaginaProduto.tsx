@@ -33,6 +33,7 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
             const id = getUserID()
             if (id) {
                 const user: Usuario = await buscarUsuario(parseInt(id))!
+                console.log(user.role)
                 if (user.role == 'ADMIN') {
                     setIsAdmin(true)
                 }
