@@ -9,8 +9,8 @@ export async function buscarTodos(query: string) {
     return response.data
 }
 
-export async function buscarTodosCompleto(query: string) {
-    const response = await axiosAPI.get('/produto/completo/'+query)
+export async function buscarTodosCompleto() {
+    const response = await axiosAPI.get('/produto/completo')
     return response.data
 }
 
@@ -36,5 +36,10 @@ export async function buscarFiltros(query: string) {
 
 export async function buscarPorQuery(query: string) {
     const response = await axiosAPI.get('produto/procurar/' + query)
+    return response.data
+}
+
+export async function buscarFiltrados(url: string) {
+    const response = await axiosAPI.get('produto?'+url)
     return response.data
 }

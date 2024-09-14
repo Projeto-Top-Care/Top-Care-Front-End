@@ -12,7 +12,7 @@ import { Usuario } from '@/types/usuarios';
 import { buscarUsuario } from '@/server/usuario/action';
 import BotaoGrande from '../Botoes/BotaoGrande/BotaoGrande';
 import { useRouter } from 'next/navigation';
-import { buscarTodos } from '@/server/produtos/action';
+import { buscarFiltrados, buscarTodos } from '@/server/produtos/action';
 import Erro from '../Pop-up/Erro/Erro';
 
 interface InterfaceProdutos {
@@ -24,6 +24,7 @@ export default function PaginaProdutos({ query }: InterfaceProdutos) {
     const { getUserID } = useUserID()
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
     const [att, setAtt] = useState<number>(0)
+    const [url, setUrl] = useState<string>('')
 
     const [produtosMostrados, setProdutosMostrados] = useState<ProdutoCard[]>()
 
@@ -42,6 +43,11 @@ export default function PaginaProdutos({ query }: InterfaceProdutos) {
 
     useEffect(() => {
         const func = async () => {
+            if(url != ''){
+                const produtos = await buscarFiltrados(url)
+                setProdutosMostrados(produtos)
+                return
+            }
             const paginaProdutos: PaginaProduto = await buscarTodos(query ? query : 'empty')
             setProdutosMostrados(paginaProdutos.produtos)
         }
@@ -107,7 +113,7 @@ export default function PaginaProdutos({ query }: InterfaceProdutos) {
                 {
                     produtosMostrados && (
                         <div className='hidden md:!flex w-[25%]'>
-                            <FiltroGrande query={query}/>
+                            <FiltroGrande query={query} setUrl={setUrl} setAtt={setAtt}/>
                         </div>
                     )
                 }
