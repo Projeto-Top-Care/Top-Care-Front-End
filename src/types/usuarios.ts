@@ -137,6 +137,11 @@ export interface produtos{
     avaliacoes: object[]
 }
 
+export interface Especificacao{
+    topico: string
+    resposta: string
+}
+
 export interface AvaliacaoType{
     id: number
     usuario: Usuario

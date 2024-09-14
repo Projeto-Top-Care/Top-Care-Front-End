@@ -8,7 +8,6 @@ import { FaPlus } from "react-icons/fa";
 import { useUserID } from '@/context/UserIDContext';
 import { VariantesProps } from '@/types/servicos';
 import Erro from '../Pop-up/Erro/Erro';
-import { formatarData, formatarHora } from '@/utils/data';
 
 interface IResumo {
     petNome: string,
@@ -18,8 +17,8 @@ interface IResumo {
     data: string,
     hora: string,
     profissional: string,
-    setMetodoPagamento: React.Dispatch<SetStateAction<string>>
-    metodo: string
+    setMetodoPagamento: React.Dispatch<SetStateAction<number>>
+    metodo: number
 }
 
 const Resumo = ({ petNome, variante, local, servico, data, hora, profissional, setMetodoPagamento, metodo }: IResumo) => {
@@ -43,9 +42,9 @@ const Resumo = ({ petNome, variante, local, servico, data, hora, profissional, s
     }, [])
 
     const metodos = [
-        { id: 1, nome: 'CARTAO_CREDITO', ref: "Cartão de crédito" },
-        { id: 2, nome: 'BOLETO', ref: "Boleto bancário" },
-        { id: 3, nome: 'PIX', ref: "Pix" }
+        { id: 1, nome: 'Cartão de crédito' },
+        { id: 2, nome: 'Boleto Bancário' },
+        { id: 3, nome: 'Pix' }
     ]
 
     const verificarCartao = (nomeCartao: string) => {
@@ -86,12 +85,12 @@ const Resumo = ({ petNome, variante, local, servico, data, hora, profissional, s
 
                             <div className='flex flex-row justify-between items-center w-full gap-4 sm:gap-24'>
                                 <p className='font-semibold'>Data</p>
-                                <p className="text-end">{formatarData(data)}</p>
+                                <p className="text-end">{data}</p>
                             </div>
 
                             <div className='flex flex-row justify-between items-center w-full gap-4 sm:gap-24'>
                                 <p className='font-semibold'>Horário</p>
-                                <p className="text-end">{formatarHora(hora)}</p>
+                                <p className="text-end">{hora.slice(0,5)}</p>
                             </div>
 
                             <div className='flex flex-row justify-between items-center w-full gap-4 sm:gap-24'>
@@ -115,9 +114,9 @@ const Resumo = ({ petNome, variante, local, servico, data, hora, profissional, s
                                     <input className="w-5 h-5 checked: accent-purple-500"
                                         type="radio"
                                         name="pagamento"
-                                        onChange={() => setMetodoPagamento(metodo.nome)}
+                                        onChange={() => setMetodoPagamento(metodo.id)}
                                     />
-                                    <label className="text-sm sm:text-base" htmlFor="cartao">{metodo.ref}</label>
+                                    <label className="text-sm sm:text-base" htmlFor="cartao">{metodo.nome}</label>
                                 </div>
                             ))
                         }
@@ -125,7 +124,7 @@ const Resumo = ({ petNome, variante, local, servico, data, hora, profissional, s
 
                     <div className="flex flex-col gap-2 w-full sm:w-full">
                         {
-                            metodo == "CARTAO_CREDITO" ?
+                            metodo == 1 ?
                                 <div className="flex flex-col justify-end gap-2">
                                     {
                                         usuario?.cartoes?.map((cartao, i) => (

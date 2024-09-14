@@ -16,16 +16,6 @@ import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
 import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 import { Filial, Servico, VariantesProps } from "@/types/servicos";
 import { useConfirmacao } from "@/context/confirmacaoContext";
-import { useUserID } from "@/context/UserIDContext";
-import { buscarUsuario } from "@/server/usuario/action";
-import { agendar } from "@/server/agendamentos/action";
-
-export interface Horario {
-    id: number
-    dia: string
-    horaInicio: string
-    horaFim: string
-}
 
 export default function agendamento() {
 
@@ -43,34 +33,16 @@ export default function agendamento() {
     const [servico, setServico] = useState<Servico>();
     const [variante, setVariante] = useState<VariantesProps>();
     const [local, setLocal] = useState<Filial>();
-    const [horario, setHorario] = useState<Horario>();
+    const [data, setData] = useState("");
+    const [hora, setHora] = useState("");
     const [profissional, setProfissional] = useState<Profissional>();
-    const [metodoPagamento, setMetodoPagamento] = useState("");
-
-    const { getUserID } = useUserID()
-    const [usuarioLogado, setUsuarioLogado] = useState<Usuario>();
-    const [atualizar, setAtualizar] = useState(0)
-
-    useEffect(() => {
-        buscarUser()
-    }, [atualizar])
-
-    const buscarUser = async () => {
-        const idFetched = getUserID();
-        if (idFetched) {
-            const usuarioBuscado = await buscarUsuario(parseInt(idFetched))
-            if (usuarioBuscado) {
-                setUsuarioLogado(usuarioBuscado)
-            }
-        }
-    }
+    const [metodoPagamento, setMetodoPagamento] = useState(0);
 
     const processos = [
 
         <EscolhaPet
             setPet={setPet}
             pet={pet}
-            usuarioLogado={usuarioLogado}
         />,
         <EscolhaServico
             setServicoEscolhido={setServico}
@@ -84,9 +56,11 @@ export default function agendamento() {
             local={local}
         />,
         <EscolhaData
-            setHorario={setHorario}
+            setData={setData}
+            setHora={setHora}
             setProfissional={setProfissional}
-            horario={horario}
+            data={data}
+            hora={hora}
             profissional={profissional}
             servicoId={servico?.id.toString() || ''}
         />,
@@ -95,10 +69,10 @@ export default function agendamento() {
             local={local?.nome || ''}
             servico={servico?.nome || ''}
             variante={variante}
-            data={horario?.dia || ''}
-            hora={horario?.horaInicio || ''}
+            data={data}
+            hora={hora}
             profissional={profissional?.nome || ''}
-            setMetodoPagamento={setMetodoPagamento}
+            setMetodoPagamento={setMetodoPagamento} 
             metodo={metodoPagamento}
         />
 
@@ -108,75 +82,49 @@ export default function agendamento() {
         if (etapa == 0 && !pet) {
             addError("Selecione um pet!")
         } else if (etapa == 1) {
-            if (!servico) {
+            if(!servico){
                 addError("Selecione um serviço!")
-            } else if (!variante) {
+            }else if(!variante){
                 addError("Selecione uma variação!")
-            } else {
+            }else{
                 setEtapa(etapa + 1)
             }
         } else if (etapa == 2 && !local) {
             addError("Selecione um local!")
-        } else if (etapa == 3 && (!horario || !profissional)) {
+        } else if (etapa == 3 && (!data || !hora || !profissional)) {
             addError("Selecione uma data, hora e profissional!")
         } else {
             setEtapa(etapa + 1)
         }
-    }
-
+    } 
+    
     const etapaAnterior = () => {
-        if (etapa == 1) {
+        if(etapa == 1){
             setServico(undefined)
             setVariante(undefined)
-        } else if (etapa == 2) {
+        }else if(etapa == 2){
             setLocal(undefined)
-        } else if (etapa == 3) {
-            setHorario(undefined)
+        }else if(etapa == 3){
+            setData("")
+            setHora("")
             setProfissional(undefined)
         }
         setEtapa(etapa - 1)
     }
 
-    const concluirCompra = async () => {
+    const concluirCompra = () => {
         if (metodoPagamento) {
             setOpenConfirmacao(true)
             if (confirmado) {
-                const objetoAgendamento = {
-                    pet: {
-                        id: pet?.id
-                    },
-                    varianteServico: {
-                        id: variante?.id
-                    },
-                    local: {
-                        id: local?.id
-                    },
-                    horario: {
-                        id: horario?.id
-                    },
-                    pagamento: {
-                        metodoPagamento: metodoPagamento,
-                        parcelas: 1,
-                        pago: false
-                    }
-                }
-                let idAgendamento = null
-
-                if (usuarioLogado) {
-                    idAgendamento = await agendar(objetoAgendamento, usuarioLogado.id)
-                }
-
-                if (metodoPagamento == "CARTAO_CREDITO") {
+                if(metodoPagamento == 1){
                     push('/Perfil')
                     addConfirmacao("Agendamento marcado com sucesso!")
-                } else if (metodoPagamento == "BOLETO") {
-                    push('/pagamentoBoleto?agendamento='+ idAgendamento) 
-                } else {
-                    push('/pagamentoPix?agendamento='+ idAgendamento)
+                }else if(metodoPagamento == 2){
+                    push('/pagamentoBoleto') 
+                }else {
+                    push('/pagamentoPix')
                 }
             }
-
-
         } else if (etapa >= 4) {
             addError("Selecione o método de pagamento!")
         }
@@ -195,7 +143,7 @@ export default function agendamento() {
                     <div className='overflow-hidden'>
                         <div className='fixed top-0 left-0 w-full h-full z-50 bg-fundo-modal' onClick={() => setOpenPet(false)}></div>
                         <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
-                            <CadastroPet setOpen={setOpenPet} setAtt={setAtualizar} />
+                            <CadastroPet setOpen={setOpenPet} />
                         </div>
                     </div>
                 )}

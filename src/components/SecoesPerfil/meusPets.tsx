@@ -7,10 +7,9 @@ import CardPetPequeno from "../CardPetPequeno/CardPetPequeno"
 interface iPedidos {
     usuario: Usuario,
     setOpenPet: React.Dispatch<SetStateAction<boolean>>
-    setAtt: React.Dispatch<SetStateAction<number>>
 }
 
-export default function MeusPets({ usuario, setOpenPet, setAtt }: iPedidos) {
+export default function MeusPets({ usuario, setOpenPet }: iPedidos) {
 
     return (
         <main className="w-full">
@@ -24,7 +23,7 @@ export default function MeusPets({ usuario, setOpenPet, setAtt }: iPedidos) {
                         :
                         usuario.pets.map((pet, i) => (
                             <div key={i}>
-                                <CardPetPequeno noSelection pet={pet} setAtt={setAtt}/>
+                                <CardPetPequeno noSelection pet={pet} />
                             </div>
                         ))}
             </section>

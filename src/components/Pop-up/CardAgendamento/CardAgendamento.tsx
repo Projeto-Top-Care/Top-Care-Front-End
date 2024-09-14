@@ -1,47 +1,28 @@
 'use client'
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import DoisBotoes from "../DoisBotoes/DoisBotoes";
-import React, { use } from "react";
+import React from "react";
 import { useEffect, useState, SetStateAction } from "react";
 import Descricoes from "./Descricoes";
-import { cancelarAgendamento, verificarCancelamento } from "@/server/agendamentos/action";
-import { Agendamentos } from "@/types/agendamentos";
-import { formatarData, formatarHora } from "@/utils/data";
 
 type agendamentotype = {
-    agendamento: Agendamentos,
+    nomePet: string
+    servico: string
+    data: string
+    hora: string
+    profissional: string
+    valor: number
+    local: string
+    formaPagamento: string
     openParms: React.Dispatch<SetStateAction<boolean>>
-    setAtt?: React.Dispatch<SetStateAction<number>>
 }
 
-const CardAgendamento = ({ agendamento, openParms, setAtt }: agendamentotype) => {
+const CardAgendamento = ({ nomePet, servico, data, hora, profissional, valor, local, formaPagamento, openParms }: agendamentotype) => {
 
     //Isso será excluído, é apenas para deixar bonitinho
     const [openConfirmacao, setOpenConfirmacao] = useState<boolean>(false)
     const [open, setOpen] = useState<boolean>(true)
     const [cancelamentoConfirmado, setCancelamentoConfirmado] = useState<boolean>(false)
-    const [podeCancelar, setPodeCancelar] = useState<boolean>(false)
-
-    useEffect(() => {
-        const func = async () => {
-            const resp = await verificarCancelamento(agendamento.id)
-            if(resp){
-                setPodeCancelar(resp)
-            }
-        }
-        func()
-    }, [])
-
-    useEffect(() => {
-        const func = async () => {
-            if(cancelamentoConfirmado){
-                await cancelarAgendamento(agendamento.id)
-                openParms(false)
-                setAtt ? setAtt(prev => prev + 1) : null
-            }
-        }
-        func()
-    }, [cancelamentoConfirmado])
 
     useEffect(() => {
         openParms(open)
@@ -61,19 +42,19 @@ const CardAgendamento = ({ agendamento, openParms, setAtt }: agendamentotype) =>
             <div className="flex flex-col items-center justify-center rounded-lg border bg-branco border-cinza font-poppins">
                 <div className="p-4 flex flex-col justify-start gap-5 font-poppins md:w-96 w-72">
                     <div className="flex justify-between items-center' gap-12 mb-4">
-                        <p className="md:text-lg text-sm w-full">{agendamento.varianteServico.nome}</p>
+                        <p className="md:text-lg text-sm w-full">{servico}</p>
                         <div className="w-full flex justify-end mr-2">
                             <img src="./assets/Sair.svg" className="md:w-8 w-6 cursor-pointer" onClick={() => setOpen(false)} />
                         </div>
                     </div>
-                    <Descricoes titulo="Data/Horário" variavel={`${formatarData(agendamento.horario.dia)} às ${formatarHora(agendamento.horario.horaInicio)}`}/>
-                    <Descricoes titulo="Pet" variavel={agendamento.pet.nome}/>
-                    <Descricoes titulo="Profissional" variavel={agendamento.horario.funcionario}/>
-                    <Descricoes titulo="Local" variavel={agendamento.filial}/>
-                    <Descricoes titulo="Forma de pagamento" variavel={agendamento.pagamento.metodoPagamento}/>
-                    <Descricoes titulo="Valor" variavel={`R$ ${agendamento.varianteServico.preco.toFixed(2).replace(".", ",")}`}/>
+                    <Descricoes titulo="Data/Horário" variavel={`${data} às ${hora}`}/>
+                    <Descricoes titulo="Pet" variavel={nomePet}/>
+                    <Descricoes titulo="Profissional" variavel={profissional}/>
+                    <Descricoes titulo="Local" variavel={local}/>
+                    <Descricoes titulo="Forma de pagamento" variavel={formaPagamento}/>
+                    <Descricoes titulo="Valor" variavel={`R$ ${valor.toFixed(2).replace(".", ",")}`}/>
                 </div>
-                <div onClick={() => setOpenConfirmacao(!openConfirmacao)} className={`md:p-4 p-2 w-full ${podeCancelar ? '!block' : 'hidden'}`}>
+                <div onClick={() => setOpenConfirmacao(!openConfirmacao)} className="md:p-4 p-2 w-full">
                     <BotaoGrande title={"Cancelar"} background={"cancelar"} type={"button"} size='md:h-8 h-6' />
                 </div>
             </div>

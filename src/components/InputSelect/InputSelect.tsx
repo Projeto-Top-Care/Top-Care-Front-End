@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { IoIosClose } from "react-icons/io";
 import Select from '../Select/Select'
 import { buscarEspecies } from '@/server/especie/especie';
-import { buscarFuncionariosSimples } from '@/server/usuario/funcionario';
+import { buscarFuncionarios, buscarFuncionariosSimples } from '@/server/usuario/funcionario';
 import { PetsProps } from '@/types/servicos';
 
 interface InputSelectProps {
@@ -48,6 +48,7 @@ export default function InputSelect({ type, jaSelecionados, setSelecionados }: I
 
     func()
   }, [])
+
 
   useEffect(() => {
     if (selecaoPadrao.length > 0) {
