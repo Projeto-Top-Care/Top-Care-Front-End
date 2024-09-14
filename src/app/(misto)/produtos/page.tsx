@@ -1,9 +1,14 @@
 import PaginaProdutos from "@/components/PaginaProdutos/PaginaProduto";
 
-export default function Produtos() {
+
+interface InterfaceProdutos {
+  searchParams?: { q: string }
+}
+
+export default function Produtos({searchParams}: InterfaceProdutos) {
   return(
     <>
-      <PaginaProdutos/>
+      <PaginaProdutos query={searchParams?.q}/>
     </>
   )
 }

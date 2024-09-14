@@ -4,8 +4,8 @@ export async function buscarProduto(id: number) {
     const response = await axiosAPI.get(`/produto/${id}`)
     return response.data
 }
-export async function buscarTodos() {
-    const response = await axiosAPI.get('/produto')
+export async function buscarTodos(query: string) {
+    const response = await axiosAPI.get('/produto/page/'+ query)
     return response.data
 }
 
@@ -31,5 +31,15 @@ export async function editarProduto(id: number, formdata: FormData) {
 
 export async function buscarFiltros(query: string) {
     const response = await axiosAPI.get('produto/filtro?query=' + query)
+    return response.data
+}
+
+export async function buscarPorQuery(query: string) {
+    const response = await axiosAPI.get('produto/procurar/' + query)
+    return response.data
+}
+
+export async function buscarFiltrados(url: string) {
+    const response = await axiosAPI.get('produto?'+url)
     return response.data
 }

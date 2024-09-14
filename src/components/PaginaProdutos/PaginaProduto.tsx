@@ -12,20 +12,20 @@ import { Usuario } from '@/types/usuarios';
 import { buscarUsuario } from '@/server/usuario/action';
 import BotaoGrande from '../Botoes/BotaoGrande/BotaoGrande';
 import { useRouter } from 'next/navigation';
-import { buscarTodos } from '@/server/produtos/action';
+import { buscarFiltrados, buscarTodos } from '@/server/produtos/action';
 import Erro from '../Pop-up/Erro/Erro';
 
 interface InterfaceProdutos {
-    searchParams?: { q: string }
+    query?: string
 }
 
-export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
+export default function PaginaProdutos({ query }: InterfaceProdutos) {
 
     const { getUserID } = useUserID()
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
     const [att, setAtt] = useState<number>(0)
+    const [url, setUrl] = useState<string>('')
 
-    const query = searchParams?.q
     const [produtosMostrados, setProdutosMostrados] = useState<ProdutoCard[]>()
 
     useEffect(() => {
@@ -43,11 +43,16 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
 
     useEffect(() => {
         const func = async () => {
-            const paginaProdutos: PaginaProduto = await buscarTodos()
+            if(url != ''){
+                const produtos = await buscarFiltrados(url)
+                setProdutosMostrados(produtos)
+                return
+            }
+            const paginaProdutos: PaginaProduto = await buscarTodos(query ? query : 'empty')
             setProdutosMostrados(paginaProdutos.produtos)
         }
         func()
-    }, [att])
+    }, [att, query])
     // const [produtosMostradosQuery, setProdutosMostradosQuery] = useState<ProdutoCompleto[]>([])
     // const [filtroOpen, setFiltroOpen] = useState<boolean>(false)
     // const [animation, setAnimation] = useState<boolean>(false)
@@ -108,7 +113,7 @@ export default function PaginaProdutos({ searchParams }: InterfaceProdutos) {
                 {
                     produtosMostrados && (
                         <div className='hidden md:!flex w-[25%]'>
-                            <FiltroGrande />
+                            <FiltroGrande query={query} setUrl={setUrl} setAtt={setAtt}/>
                         </div>
                     )
                 }
