@@ -48,10 +48,11 @@ export default function VisualizarAgendamento({ searchParams }: AtualizarFuncion
         }
     }
 
-    const funcionariosPesquisa = funcionarios.filter((funcionario) =>
+    const funcionariosPesquisa = Array.isArray(funcionarios) ? funcionarios.filter((funcionario) =>
         funcionario.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
         funcionario.codigo.toString().includes((pesquisa))
-    );
+    ) : [] ;
+
     const funcionariosOrdenados: FuncionarioSimples[] = ordenarFuncionarios(funcionariosPesquisa);
 
     return (

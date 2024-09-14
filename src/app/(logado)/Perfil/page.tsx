@@ -122,6 +122,7 @@ export default function Perfil() {
         <PedidosEmAndamento usuario={usuarioLogado} />,
         <MeusPets usuario={usuarioLogado} setOpenPet={setOpenPet} setAtt={setAtualizar}/>,
         // <CarrosselProduto slides={carrosselProdutos} />,
+        "",
         <EnderecosSalvos atualizarProps={setAtualizar} enderecos={displayedAddresses} setOpenEndereco={setOpenEndereco} setShowAllAdresses={setShowAllAddresses} />
     ]
 
