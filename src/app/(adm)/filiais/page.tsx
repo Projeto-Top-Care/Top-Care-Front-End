@@ -2,11 +2,11 @@
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import Lojas from "@/components/Lojas/Lojas";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import { Filial } from "@/types/filiais";
-import { getFilial } from "@/server/filiais/action";
 import BarraPesquisaComum from "@/components/BarraPesquisaComum/BarraPesquisaComum";
+import { buscarFiliais } from "@/server/filiais/action";
 
 interface InterfaceFiliais {
     isAdmin: boolean
@@ -33,7 +33,7 @@ export default function Filiais({ isAdmin }: InterfaceFiliais) {
 
     useEffect(() => {
         const func = async () => {
-            const filial = await getFilial('1')
+            const filial = await buscarFiliais('1')
             filial.endereco.rua
             filial.endereco.bairro
             filial.endereco.cep
@@ -116,7 +116,7 @@ export default function Filiais({ isAdmin }: InterfaceFiliais) {
             <section className="w-[90%] lg:w-[80%] m-auto gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 sm:pt-12 pb-16 sm:pb-20">
                 {
                     filiaisOrdenadas.map((filial, index) => (
-                        <Lojas key={index} src={""} nome={filial.nome} cidade={""} estado={""} rua={""} bairro={""} numero={0} cep={""} contato={""} funcionamentoDias={filial.diasDaSemana} funcionamentoHora={filial.horarioFuncionamento} />
+                        <Lojas key={index} src={""} nome={filial.nome} cidade={filial.endereco.cidade} estado={filial.endereco.estado} rua={filial.endereco.rua} bairro={filial.endereco.bairro} numero={filial.endereco.numero} cep={filial.endereco.cep} contato={filial.contato} funcionamentoDias={filial.diasDaSemana} funcionamentoHora={filial.horarioFuncionamento} />
                     ))
                 }
             </section>
