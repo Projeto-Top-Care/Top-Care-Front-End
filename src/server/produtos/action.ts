@@ -4,6 +4,11 @@ export async function buscarProduto(id: number) {
     const response = await axiosAPI.get(`/produto/${id}`)
     return response.data
 }
+export async function buscarVariante(id: number) {
+    const response = await axiosAPI.get(`produto/variante/${id}`)
+    return response.data        
+}
+
 export async function buscarTodos(query: string) {
     const response = await axiosAPI.get('/produto/page/'+ query)
     return response.data

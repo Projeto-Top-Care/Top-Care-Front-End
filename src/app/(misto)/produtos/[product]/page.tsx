@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 import CarrosselProduto from '@/components/CarrosselProduto/Carrossel'
 import CardProduto from '@/components/CardProduto/CardProduto';
 import { buscarUsuario } from '@/server/usuario/action';
-import { QntProduto, Usuario } from '@/types/usuarios';
+import { QuantidadeProduto, Usuario } from '@/types/usuarios';
 import Avaliacao from '@/components/Avaliacao/Avaliacao';
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
@@ -18,7 +18,7 @@ import { useCarrinho } from '@/context/CarrinhoContext';
 import { useConfirmacao } from '@/context/confirmacaoContext';
 import Confirmacao from '@/components/Pop-up/Confirmacao/Confirmacao';
 import Loading from '../../loading';
-import QuantidadeProduto from '@/components/QuantidadeProduto/QuantidadeProduto';
+import InputQuantidadeProduto from '@/components/QuantidadeProduto/QuantidadeProduto';
 import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande';
 import InputText from '@/components/InputText/InputText';
 import InputQuantidade from '../../carrinho/InputQuantidade';
@@ -26,6 +26,8 @@ import InputEstatico from '@/components/InputEstatico/InputEstatico';
 import CalcularFrete from '@/components/CalcularFrete/calcularFrete';
 import {construirEstrelas} from "@/utils/estrelas"
 import ButtonVariante from './component/ButtonVariante';
+import { adicionarProduto } from '@/server/carrinho/action';
+import { useUserID } from '@/context/UserIDContext';
 
 interface PropsProduct {
   searchParams: { id: number }
@@ -34,11 +36,12 @@ interface PropsProduct {
 export default function ProdutoDetails({ searchParams }: PropsProduct) {
 
   const { push } = useRouter();
-  const { addProduct } = useCarrinho()
-  const { addConfirmacao } = useConfirmacao()!
+  const { addConfirmacao } = useConfirmacao()
+  const {getUserID} = useUserID();
 
   const [produto, setProduto] = useState<ProdutoCompleto>()
   const [varianteSelecionada, setVarianteSelecionada] = useState<VarianteProps>()
+  const [usuario, setUsuario] = useState<Usuario>()
 
 
   const [numeroImagem, setNumeroImagem] = useState<number>(0)
@@ -52,6 +55,12 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
 
   useEffect(() => {
     const func = async () => {
+      const id = getUserID()
+      if(id){
+        const user = await buscarUsuario(parseInt(id))
+        setUsuario(user)
+      }
+
       const produto = await buscarProduto(searchParams.id)
       setProduto(produto)
       setVarianteSelecionada(produto.variantes[0])
@@ -59,13 +68,17 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
     func()
   }, [])
 
-  const adicionarCarrinho = () => {
-    const newProduto: QntProduto = {
-      id: produto?.id,
-      quantidade: quantidade,
+  const adicionarCarrinho = async () => {
+    if(produto && varianteSelecionada){
+      const newProduto: QuantidadeProduto = {
+        produtoId: produto.id,
+        varianteProdutoId: varianteSelecionada.id,
+        quantidade: quantidade,
+      }
+      // console.log(newProduto)
+      usuario && await adicionarProduto(usuario.id, newProduto)
+      addConfirmacao("Produto adiconado na sacola")
     }
-    addProduct(newProduto)
-    addConfirmacao("Produto adiconado na sacola")
   }
 
   if (!produto) return (
@@ -153,7 +166,7 @@ export default function ProdutoDetails({ searchParams }: PropsProduct) {
                 <div className='flex flex-col gap-2'>
                   <p className='text-cinza-escuro font-medium'>Quantidade</p>
                   <div className='w-1/3'>
-                    <QuantidadeProduto propsQuantidade={setQuantidade} estoqueDisponivel={varianteSelecionada?.estoque || 0} />
+                    <InputQuantidadeProduto propsQuantidade={setQuantidade} estoqueDisponivel={varianteSelecionada?.estoque || 0} />
                   </div>
                 </div>
               </div>

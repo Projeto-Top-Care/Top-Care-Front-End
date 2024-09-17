@@ -55,7 +55,7 @@ export interface Pedido {
     status: string
     pagamento: Pagamento,
     endereco: number,
-    produtos: QntProduto[]
+    produtos: QuantidadeProduto[]
 }
 
 export interface Cartao {
@@ -65,8 +65,9 @@ export interface Cartao {
     agencia: string
 }
 
-export interface QntProduto {
-    id: number | undefined,
+export interface QuantidadeProduto {
+    produtoId: number,
+    varianteProdutoId: number,
     quantidade: number
 }
 

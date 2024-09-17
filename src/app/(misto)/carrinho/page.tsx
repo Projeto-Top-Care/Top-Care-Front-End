@@ -1,49 +1,65 @@
 'use client'
 import BotaoGrande from '@/components/Botoes/BotaoGrande/BotaoGrande'
-import InputMask from '@/components/InputMask/InputMask'
 import DoisBotoes from '@/components/Pop-up/DoisBotoes/DoisBotoes'
 import TituloLinha from '@/components/TituloLinha/TituloLinha'
 import { useCarrinho } from '@/context/CarrinhoContext'
 import { useUserID } from '@/context/UserIDContext'
-import { buscarProduto } from '@/server/produtos/action'
+import { buscarProduto, buscarVariante } from '@/server/produtos/action'
 import { buscarUsuario } from '@/server/usuario/action'
-import { Produto } from '@/types/produto'
-import { Usuario, Cupom, QntProduto } from '@/types/usuarios'
+import { ProdutoCompleto, VarianteProps } from '@/types/produto'
+import { Usuario, Cupom, QuantidadeProduto } from '@/types/usuarios'
 import { useRouter } from 'next/navigation'
 
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import CupomPequeno from './CupomPequeno'
 import Cupons from './Cupons'
 import Produtos from './Produtos'
 import Topico from './Topico'
 import CalcularFrete from '@/components/CalcularFrete/calcularFrete'
+import { buscarCarrinho } from '@/server/carrinho/action'
+import Loading from '../loading'
+
+export interface CarrinhoProps {
+  id: number, 
+  produtos: QuantidadeProdutoCarrinho[],
+  desconto: number,
+  frete: number,
+  total: number
+  subTotal: number
+}
+
+export interface QuantidadeProdutoCarrinho {
+  id: number
+  produto: ProdutoCompleto
+  varianteProduto: VarianteProps
+  quantidade: number
+}
 
 export default function Carrinho() {
 
   const { getUserID } = useUserID()
-  const [carrinho, setCarrinho] = useState<QntProduto[]>([])
+  const [carrinho, setCarrinho] = useState<CarrinhoProps>()
   const [usuarioLogado, setUsuarioLogado] = useState<Usuario>()
-
-  const { getCarrinho } = useCarrinho()
 
   useEffect(() => {
     const func = async () => {
-      setCarrinho(getCarrinho())
-      console.log(getCarrinho())
       const idUser = getUserID()
       if (idUser) {
         const userTaked = await buscarUsuario(parseInt(idUser))
         if (userTaked) {
           setUsuarioLogado(userTaked)
+          const carrinho = await buscarCarrinho(userTaked.id)
+          setCarrinho(carrinho)
         }
       }
     }
     func()
   }, [])
 
-  const produtos: Produto[] = carrinho.map((item) => {
-    return buscarProduto((item as unknown as QntProduto).id!)!
-  })
+  
+  const [produtos, setProdutos] = useState<ProdutoCompleto[]>([])
+  const [variantes, setVariantes] = useState<VarianteProps[]>([])
+  
   const [frete, setFrete] = useState<number | string>(0)
   const [desconto, setDesconto] = useState<number>(0)
   const [cep, setCep] = useState<string>('')
@@ -54,6 +70,21 @@ export default function Carrinho() {
   const [open, setOpen] = useState<boolean>(false)
   const [sim, setSim] = useState<boolean>(false)
   const router = useRouter()
+
+  useEffect(() => {
+    if(!carrinho) return
+    const func = async () => {
+      const produtos: ProdutoCompleto[] = []
+      const variantes: VarianteProps[] = []
+      carrinho.produtos.forEach((produto)=>{
+        produtos.push(produto.produto)
+        variantes.push(produto.varianteProduto)
+      })
+      setProdutos(produtos)
+      setVariantes(variantes)
+    }
+    func()
+  }, [carrinho])
 
   useEffect(() => {
     if (cep.length != 9) {
@@ -89,106 +120,108 @@ export default function Carrinho() {
     }
   }, [sim])
 
-  const somaTotal = () => {
+  const somaTotal = (): number => {
     if (typeof produtos != undefined) {
       let total = 0
 
-      produtos!.forEach((produto) => [
-        total += produto.precoNovo
-      ])
+      if (variantes) {
+        variantes.forEach((variacao) => [
+          total += variacao.preco
+        ])
 
-      return total;
+        return total;
+      }
     }
     return 0
   }
 
-  const enviarFrete = () => {
-    if (cep.length !== 9) {
-      setErro(true)
-      return
-    } else if (cep == '11111-111') {
-      setInexistente(true)
-      return
-    } else if (cupom?.tipo == 'frete') {
-      setFrete("Gratuito")
-      return
-    }
-    setErro(false)
-    setFrete(34)
+    const enviarFrete = () => {
+      if (cep.length !== 9) {
+        setErro(true)
+        return
+      } else if (cep == '11111-111') {
+        setInexistente(true)
+        return
+      } else if (cupom?.tipo == 'frete') {
+        setFrete("Gratuito")
+        return
+      }
+      setErro(false)
+      setFrete(34)
 
-  }
-  const calcularDesconto = () => {
-    if (cupom) {
-      setDesconto(cupom.porcentagem * somaTotal())
     }
-  }
+    const calcularDesconto = () => {
+      if (cupom) {
+        setDesconto(cupom.porcentagem * somaTotal())
+      }
+    }
 
-  return (
-    <main className='text-preto'>
-      <section className=''>
-        <TituloLinha voltar={false} titulo='Minha Sacola' />
-      </section>
-      <section className=' w-[90%] m-auto flex md:flex-row flex-col md:gap-0 gap-10 justify-between mt-14 mb-24 md:h-[35rem]'>
-        <section className='border border-cinza rounded-lg md:w-[65%] w-full md:px-6 px-3 py-4 overflow-auto scroll'>
-          <h1 className='font-poppins md:text-xl text-lg font-medium'>Produtos</h1>
-          <p className='font-poppins underline md:text-sm text-xs mt-1 cursor-pointer' onClick={() => setOpen(true)}>Limpar sacola</p>
-          <div className='flex mt-5 flex-col gap-10'>
-            {
-              produtos!.map((produto) => (
-                <div key={produto.id}>
-                  <Produtos variacao='Rosa, pequeno' id={produto.id} nomeProduto={produto.nomeProduto} imagemProduto={produto.imagemProduto[0]} preco={produto.precoNovo} estoque={10} />
-                </div>
-              ))
-            }
-          </div>
+    return (
+      <main className='text-preto'>
+        <section className=''>
+          <TituloLinha voltar={false} titulo='Minha Sacola' />
         </section>
-        <section className='flex flex-col md:w-[33%] w-full items-end justify-between'>
-          <section className='rounded-lg bg-terciaria w-full py-3 px-4'>
-            <h1 className='font-poppins font-bold text-xl'>Sumário</h1>
-            <div className='flex flex-row justify-between mt-6'>
-              <p className='font-poppins font-medium'>Subtotal</p>
-              <p className='font-poppins'>R${somaTotal().toFixed(2).replace(".", ",")}</p>
-            </div>
-            <div className='mt-5'>
-              <p className='font-poppins font-medium'>Cupons</p>
-              <p className='font-poppins font-regular text-sm my-2'>Clique no botão abaixo e escolha um cupom de desconto</p>
-              <BotaoGrande title='Cupons' background='secundaria' type='button' onClick={() => setOpenCupons(!openCupons)} />
+        <section className=' w-[90%] m-auto flex md:flex-row flex-col md:gap-0 gap-10 justify-between mt-14 mb-24 md:h-[35rem]'>
+          <section className='border border-cinza rounded-lg md:w-[65%] w-full md:px-6 px-3 py-4 overflow-auto scroll'>
+            <h1 className='font-poppins md:text-xl text-lg font-medium'>Produtos</h1>
+            <p className='font-poppins underline md:text-sm text-xs mt-1 cursor-pointer' onClick={() => setOpen(true)}>Limpar sacola</p>
+            <div className='flex mt-5 flex-col gap-10'>
               {
-                openCupons && (
-                  <div className='relative'>
-                    <Cupons cupons={typeof usuarioLogado != undefined ? usuarioLogado!.cupons : []} setCupom={setCupom} setOpenCupons={setOpenCupons} />
+                produtos.map((produto, i) => (
+                  <div key={produto.id}>
+                    <Produtos variacao={variantes[i].cor} id={produto.id} nomeProduto={produto.nome} imagemProduto={produto.imagens[0].caminho} preco={variantes[i].preco} estoque={variantes[i].estoque} />
                   </div>
-                ) ||
-                cupom && (
-                  <CupomPequeno cupom={cupom} deleteCupom={setCupom} />
-                )
+                ))
               }
             </div>
-            <div>
-              <CalcularFrete setFrete={setFrete} setErro={setErro} setInexistente={setInexistente} />
-            </div>
-            <div className='mt-6'>
-              <Topico topico='Frete' preco={frete} />
-              <div className='border-t border-cinza'></div>
-              <Topico topico='Descontos' preco={desconto == 0 ? 0 : desconto.toFixed(2)} />
-              <div className='border-t border-cinza'></div>
-              <Topico topico='Total' preco={parseInt((somaTotal() + (typeof frete == 'number' ? frete : 0) - desconto).toFixed(2))} />
-            </div>
-
           </section>
-          <div className='lg:w-1/2 w-full lg:mt-0 mt-2'>
-            <BotaoGrande title='Continuar' background='secundaria' type='button' onClick={() => { usuarioLogado ? router.push('/paginaCompra') : router.push('/login') }} />
-          </div>
+          <section className='flex flex-col md:w-[33%] w-full items-end justify-between'>
+            <section className='rounded-lg bg-terciaria w-full py-3 px-4'>
+              <h1 className='font-poppins font-bold text-xl'>Sumário</h1>
+              <div className='flex flex-row justify-between mt-6'>
+                <p className='font-poppins font-medium'>Subtotal</p>
+                <p className='font-poppins'>R${somaTotal().toFixed(2).replace(".", ",")}</p>
+              </div>
+              <div className='mt-5'>
+                <p className='font-poppins font-medium'>Cupons</p>
+                <p className='font-poppins font-regular text-sm my-2'>Clique no botão abaixo e escolha um cupom de desconto</p>
+                <BotaoGrande title='Cupons' background='secundaria' type='button' onClick={() => setOpenCupons(!openCupons)} />
+                {
+                  openCupons && (
+                    <div className='relative'>
+                      <Cupons cupons={typeof usuarioLogado != undefined ? usuarioLogado!.cupons : []} setCupom={setCupom} setOpenCupons={setOpenCupons} />
+                    </div>
+                  ) ||
+                  cupom && (
+                    <CupomPequeno cupom={cupom} deleteCupom={setCupom} />
+                  )
+                }
+              </div>
+              <div>
+                <CalcularFrete setFrete={setFrete} setErro={setErro} setInexistente={setInexistente} />
+              </div>
+              <div className='mt-6'>
+                <Topico topico='Frete' preco={frete} />
+                <div className='border-t border-cinza'></div>
+                <Topico topico='Descontos' preco={desconto == 0 ? 0 : desconto.toFixed(2)} />
+                <div className='border-t border-cinza'></div>
+                <Topico topico='Total' preco={parseInt((somaTotal() + (typeof frete == 'number' ? frete : 0) - desconto).toFixed(2))} />
+              </div>
+
+            </section>
+            <div className='lg:w-1/2 w-full lg:mt-0 mt-2'>
+              <BotaoGrande title='Continuar' background='secundaria' type='button' onClick={() => { usuarioLogado ? router.push('/paginaCompra') : router.push('/login') }} />
+            </div>
+          </section>
         </section>
-      </section>
-      {open && (
-        <div className="w-full">
-          <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpen(false)}></div>
-          <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 lg:w-[25%] w-[60%]`}>
-            <DoisBotoes texto="Você deseja limpar a sacola?" openParms={setOpen} sim={setSim} />
+        {open && (
+          <div className="w-full">
+            <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpen(false)}></div>
+            <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 lg:w-[25%] w-[60%]`}>
+              <DoisBotoes texto="Você deseja limpar a sacola?" openParms={setOpen} sim={setSim} />
+            </div>
           </div>
-        </div>
-      )}
-    </main>
-  )
-}
+        )}
+      </main>
+    )
+  }

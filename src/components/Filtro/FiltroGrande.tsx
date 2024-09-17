@@ -135,7 +135,7 @@ export default function FiltroGrande({ close, query, setUrl, setAtt }: FiltroGra
                     }
                 </div>
             </div>
-            <div className='sticky bottom-5 left-20 w-56 mt-5'>
+            <div className='sticky bottom-5 mx-auto w-56 mt-5'>
                 <div className=''>
                     <BotaoGrande title='Aplicar Filtros' background='primaria' type='button' onClick={filtrar}/>
                 </div>

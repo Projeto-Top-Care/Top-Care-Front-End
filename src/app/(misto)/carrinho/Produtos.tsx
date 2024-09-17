@@ -2,7 +2,7 @@
 import Checkbox from '@/components/Checkbox/Checkbox'
 import DoisBotoes from '@/components/Pop-up/DoisBotoes/DoisBotoes'
 import { useCarrinho } from '@/context/CarrinhoContext'
-import { QntProduto } from '@/types/usuarios'
+import { QuantidadeProduto } from '@/types/usuarios'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import InputQuantidade from './InputQuantidade'
 
@@ -31,7 +31,7 @@ export default function Produtos({ id, imagemProduto, variacao, nomeProduto, pre
         if (sim) {
             const carrinho = items
             const carrinhoAtualizado = carrinho.filter((item) => {
-                return !((item as unknown as QntProduto).id == id)
+                return !((item as unknown as QuantidadeProduto).id == id)
             })
             localStorage.setItem('carrinho', JSON.stringify(carrinhoAtualizado))
             location.reload()
@@ -41,7 +41,7 @@ export default function Produtos({ id, imagemProduto, variacao, nomeProduto, pre
     const atualizarCarrinho = () => {
         const carrinho = items
         const newCarrinho = carrinho.map((item) => {
-            if ((item as unknown as QntProduto).id == id) {
+            if ((item as unknown as QuantidadeProduto).id == id) {
                 return { id: id, quantidade: quantidade }
             } else {
                 return item
@@ -64,9 +64,6 @@ export default function Produtos({ id, imagemProduto, variacao, nomeProduto, pre
             <div className='flex flex-row items-start justify-between md:h-24 h-16'>
                 <div className='flex flex-row items-center h-full w-full'>
                     <div className='flex flex-row justify-center items-center md:w-28 w-20 h-full'>
-                        <div>
-                            <Checkbox check={setChecked} />
-                        </div>
                         <div className='flex flex-row items-center justify-center w-[100%]'>
                             <img src={imagemProduto} alt="" className='w-[80%]' />
                         </div>
@@ -82,7 +79,7 @@ export default function Produtos({ id, imagemProduto, variacao, nomeProduto, pre
                 </div>
                 <div className='flex flex-col items-center w-24'>
                     <p className='font-poppins md:!flex hidden'>Preço</p>
-                    <p className='font-poppins mt-2 md:text-base text-sm'>R${precoTotal.toFixed(2).replace(".", ",")}</p>
+                    <p className='font-poppins mt-2 md:text-base text-sm'>R${precoTotal}</p>
                 </div>
             </div>
 

@@ -57,7 +57,7 @@ export default function HeaderDeslogado() {
                 </div>
 
                 <div className='flex max-sm:hidden flex-row gap-4 items-center justify-end'>
-                    <FiShoppingBag onClick={() => push('/carrinho')} className='cursor-pointer' size={'1.4rem'} style={{ color: "#322828" }} />
+                    {/* <FiShoppingBag onClick={() => push('/carrinho')} className='cursor-pointer' size={'1.4rem'} style={{ color: "#322828" }} /> */}
                     <BotaoPequeno onClick={() => push('/login')} title="Login" />
                 </div>
 

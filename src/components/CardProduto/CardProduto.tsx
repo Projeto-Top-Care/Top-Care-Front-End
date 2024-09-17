@@ -14,7 +14,7 @@ import { Usuario } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
 import DoisBotoes from "../Pop-up/DoisBotoes/DoisBotoes";
 import { useError } from "@/context/ErrorContext";
-import { deletarProduto } from "@/server/produtos/action";
+import { buscarProduto, deletarProduto } from "@/server/produtos/action";
 
 interface ProdutoProps {
     produto: ProdutoCard
@@ -79,9 +79,11 @@ const CardProduto = ({ produto, att }: ProdutoProps) => {
             <FaRegHeart style={{ color: "#4f4f4f", }} className="w-4" />)
     }
 
-    const adicionarCarrinho = () => {
+    const adicionarCarrinho = async () => {
+        const primeiraVariante = await buscarProduto(produto.id)
         const newProduto = {
             id: produto.id,
+            idVariante: primeiraVariante.variantes[0].id,
             quantidade: 1,
         }
         addProduct(newProduto)

@@ -54,7 +54,7 @@ export interface AvaliacaoType {
 }
 
 export interface VarianteProps {
-    id?: number
+    id: number
     cor: string
     tamanho: string
     peso: number

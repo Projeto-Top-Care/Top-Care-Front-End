@@ -6,7 +6,7 @@
         estoqueDisponivel: number
     }
 
-    export default function QuantidadeProduto({estoqueDisponivel, propsQuantidade}: QuantidadeProduto) {
+    export default function InputQuantidadeProduto({estoqueDisponivel, propsQuantidade}: QuantidadeProduto) {
         const [quantidade, setQuantidade] = useState<number>(1);
         
         useEffect(() => {
