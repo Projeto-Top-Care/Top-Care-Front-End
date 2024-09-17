@@ -2,7 +2,7 @@
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { SetStateAction, useEffect, useState } from "react";
-import { buscarFuncionario, editarFuncionario, excluirFuncionario, verHorariosDisponiveis } from "@/server/usuario/funcionario";
+import { buscarFuncionario, editarFuncionario, excluirFuncionario, verAgendamentosFuncionario, verHorariosDisponiveis } from "@/server/usuario/funcionario";
 import Loading from "../loading";
 import { useRouter } from "next/navigation";
 import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
@@ -12,6 +12,7 @@ import Select from "@/components/Select/Select";
 import { buscarFiliais } from "@/server/filiais/filial";
 import { FuncionarioCompleto, HorarioFuncionarioSimples } from "@/types/funcionario";
 import CardVisualizacao from "@/app/(funcionario)/visualizacaoAgendamentoFuncionario/CardVisualizacao/CardVisualizacao";
+import { Agendamentos } from "@/types/agendamentos";
 
 interface VisualizarFuncionarioProps {
     searchParams: {
@@ -26,6 +27,7 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
     const [funcionario, setFuncionario] = useState<FuncionarioCompleto>()
     const [horariosDisponiveis, setHorariosDisponiveis] = useState<HorarioFuncionarioSimples[]>()
     const [filiais, setFiliais] = useState<string[]>([])
+    const [agendamentosFuncionario, setAgendamentosFuncionario] = useState<Agendamentos[]>()
     const [filial, setFilial] = useState<string>('')
     const [edicao, setEdicao] = useState<boolean>(false)
     const [opcaoSelecionada, setOpcaoSelecionada] = useState<string>("Todos")
@@ -34,22 +36,25 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
         const response = await buscarFuncionario(idFuncionario)
         setFuncionario(response)
     }
-
     const verHorarios = async () => {
         const response = await verHorariosDisponiveis(idFuncionario)
         setHorariosDisponiveis(response)
     }
-
     const verFiliais = async () => {
         const response = await buscarFiliais()
         const listaDeNomes = response.map((filial: FuncionarioCompleto) => filial.nome);
         setFiliais(listaDeNomes)
+    }
+    const verAgendamentos = async () => {
+        const response = await verAgendamentosFuncionario(idFuncionario)
+        setAgendamentosFuncionario(response)
     }
 
     useEffect(() => {
         verFuncionario()
         verFiliais()
         verHorarios()
+        verAgendamentos()
     }, [])
 
     const formatarData2 = (dateString: string) => {
@@ -111,7 +116,33 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
         }
         setEdicao(!edicao)
     }
-    let tem = true
+
+    const verFotoPet = (especie: string) => {
+        return especie === "Cachorro" ? "./assets/perfil/Cachorro_perfil.jpg" :
+            especie === "Coelho" ? "./assets/perfil/Coelho_perfil.jpg" :
+                especie === "Gato" ? "./assets/perfil/Gato_perfil.jpg" :
+                    especie === "Hamster" ? "./assets/perfil/Hamster_perfil.jpg" :
+                        especie === "Pássaro" ? "./assets/perfil/Pássaro_perfil.jpg" :
+                            especie === "Peixe" ? "./assets/perfil/Peixe_perfil.jpg" :
+                                especie === "Tartaruga" ? "./assets/perfil/Tartaruga_perfil.jpg" :
+                                    "";
+    }
+
+    // const filtrarAgendamentos = () => {
+    //     opcaoSelecionada === "Aguardando cliente" ?
+    //         setAgendamentosFiltrados(agendamentosFuncionario?.filter((agendamento) => agendamento.status === "Aguardando cliente"))
+    //         : opcaoSelecionada === "Em andamento" ?
+    //             setAgendamentosFiltrados(agendamentosFuncionario?.filter((agendamento) => agendamento.status === "Em andamento"))
+    //             : opcaoSelecionada === "Aguardando retirada do pet" ?
+    //                 setAgendamentosFiltrados(agendamentosFuncionario?.filter((agendamento) => agendamento.status === "Aguardando retirada do pet"))
+    //                 : opcaoSelecionada === "Concluído" ?
+    //                     setAgendamentosFiltrados(agendamentosFuncionario?.filter((agendamento) => agendamento.status === "Concluído"))
+    //                     : setAgendamentosFiltrados(agendamentosFuncionario)
+    //     console.log(agendamentosFiltrados)
+    // }
+    // const [agendamentosFiltrados, setAgendamentosFiltrados] = useState<Agendamentos[]>()
+
+
     return (
         <>
             {funcionario ? (
@@ -188,25 +219,33 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
 
                     <TituloLinha titulo="Agendamentos" voltar={false} />
                     <section className="w-[90%] m-auto">
-                        <div className="w-full flex justify-end">
-                            <div className={`w-1/6 ${tem ? `` : `hidden`}`}>
-                                <Select options={['Finalizados', 'Cancelados', 'Esperando', 'Todos']} label={'Ordenar por'} opcaoSelecionada={setOpcaoSelecionada} opcao={opcaoSelecionada} />
-                            </div>
-                        </div>
-                        {
-                            tem ? (
-                                <div className="gap-8 grid lg:grid-cols-3 md:grid-cols-2 md:mt-2">
-                                    <CardVisualizacao servico="Banho e Tosa" horario="15:30" fotoPet={"./assets/cachorro-perfil.png"} animal="Cachorro" nomePet="Nina" porte="Pequeno" raca="Spitz Alemao" data={"1212-12-12"} />
-                                    <CardVisualizacao servico="Banho e Tosa" horario="15:30" fotoPet={"./assets/cachorro-perfil.png"} animal="Cachorro" nomePet="Nina" porte="Médio" raca="Poodle" data={"1212-12-12"} />
-                                </div>
-                            ) : (
-                                <div className="w-full m-auto flex flex-col col-span-4">
-                                <p className="w-full m-auto">O usuário não tem nenhum agendamento :(</p>
-                                <img className="w-64 self-center" src="./assets/dog-sad.png" />
-                            </div>
-                            )
-                        }
+                        {/* <div className="w-full flex justify-end">
+                            <div className={`w-1/6 ${agendamentosFuncionario ? `` : `hidden`}`}>
+                                <Select options={['Todos', 'Aguardando cliente', 'Em andamento', 'Aguardando retirada do pet', 'Concluído']} label={'Filtrar agendamentos'} opcaoSelecionada={setOpcaoSelecionada} opcao={opcaoSelecionada} />
 
+                            </div>
+                        </div> */}
+                        <div className="gap-8 grid lg:grid-cols-3 md:grid-cols-2 md:mt-2">
+                            {
+                                agendamentosFuncionario && agendamentosFuncionario.length > 0 ? (
+                                    agendamentosFuncionario.map((item, index) => (
+                                        <CardVisualizacao
+                                            key={index}
+                                            servico={item.varianteServico.nome}
+                                            data={item.horario.dia}
+                                            horario={item.horario.horaInicio}
+                                            fotoPet={verFotoPet(item.pet.especie)!}
+                                            nomePet={item.pet.nome}
+                                            animal={item.pet.especie}
+                                            raca={item.pet.raca}
+                                            porte={item.pet.porte}
+                                        />
+                                    ))
+                                ) : (
+                                    <p className="w-full m-auto col-span-3">O usuário não tem nenhum agendamento :)</p>
+                                )
+                            }
+                        </div>
                     </section>
                     <TituloLinha titulo={"Horários disponíveis"} voltar={false} />
                     <section className="md:mb-24 mb-4 flex flex-col md:w-[95%] lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center gap-8">

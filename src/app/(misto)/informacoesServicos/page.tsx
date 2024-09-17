@@ -1,15 +1,10 @@
 'use client'
-import CardServico from "@/components/cardServicos/cardServicos";
-import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import servicos from '@/banco/servicos.json'
 import { useEffect, useState } from "react";
-import BarraPesquisaComum from "@/components/BarraPesquisaComum/BarraPesquisaComum";
 import { Servico } from "@/types/servicos";
-import ButtonFiltro from "./buttonFiltro";
 import { useUserID } from "@/context/UserIDContext";
 import { Usuario } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
-import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import PaginaServicos from "@/components/PaginaServicos/PaginaServicos";
 
 export default function informacoesServicos() {
@@ -30,42 +25,42 @@ export default function informacoesServicos() {
         func()
     }, [])
 
-    const [servicosArray, setServicosArray] = useState<Servico[]>(servicos)
+    // const [servicosArray, setServicosArray] = useState<Servico[]>(servicos)
 
-    const [filtro, setFiltro] = useState("Todos")
-    const [search, setSearch] = useState<string>('')
+    // const [filtro, setFiltro] = useState("Todos")
+    // const [search, setSearch] = useState<string>('')
 
-    const filtrarServicos = () => {
-        if (filtro != "Todos") {
-            const servicosFiltrados = servicos.filter((filter) => {
-                return filter.categoria == filtro
-            })
+    // const filtrarServicos = () => {
+    //     if (filtro != "Todos") {
+    //         const servicosFiltrados = servicos.filter((filter) => {
+    //             return filter.categoria == filtro
+    //         })
 
-            setServicosArray(servicosFiltrados)
-            return
-        }
-        setServicosArray(servicos)
-    }
+    //         setServicosArray(servicosFiltrados)
+    //         return
+    //     }
+    //     setServicosArray(servicos)
+    // }
 
-    useEffect(() => {
-        filtrarServicos()
-    }, [filtro])
+    // useEffect(() => {
+    //     filtrarServicos()
+    // }, [filtro])
 
-    const searchService = () => {
-        const arraySearched = servicos.filter((filtred) => {
-            return filtred.nome.toLowerCase().includes(search.toLowerCase())
-        })
+    // const searchService = () => {
+    //     const arraySearched = servicos.filter((filtred) => {
+    //         return filtred.nome.toLowerCase().includes(search.toLowerCase())
+    //     })
 
-        setServicosArray(arraySearched)
-    }
+    //     setServicosArray(arraySearched)
+    // }
 
-    useEffect(() => {
-        if (search != "") {
-            searchService()
-        } else {
-            setServicosArray(servicos)
-        }
-    }, [search])
+    // useEffect(() => {
+    //     if (search != "") {
+    //         searchService()
+    //     } else {
+    //         setServicosArray(servicos)
+    //     }
+    // }, [search])
 
     return (
         <main className="flex flex-col justify-center bg-branco w-full pb-24">

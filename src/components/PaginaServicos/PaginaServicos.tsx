@@ -8,7 +8,6 @@ import ButtonFiltro from "@/app/(misto)/informacoesServicos/buttonFiltro";
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import { useRouter } from "next/navigation";
 import { getServicos } from "@/server/servicos/action";
-import { set } from "zod";
 
 interface InterfaceServicos {
     isAdmin: boolean
@@ -22,6 +21,7 @@ export default function PaginaServicos({ isAdmin }: InterfaceServicos) {
     useEffect(()=>{
         const func = async () =>{
             const servicos = await getServicos()
+            console.log(servicos)
             setServicosArray(servicos)
             setListagem(servicos)
         }   

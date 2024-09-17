@@ -25,7 +25,7 @@ export default function CardVisualizacao({ servico, data, horario, fotoPet, nome
                     <p className='md:text-lg text-sm'>{servico}</p>
                 </div>
                 <div className='border border-primaria rounded-md bg-primaria p-0.5 flex items-center justify-center'>
-                    <p className='md:text-base text-xs'>{dataFormatada}, {horario}</p>
+                    <p className='md:text-base text-xs'>{dataFormatada}, {horario.substring(0, 5)}</p>
                 </div>
             </div>
             <div className='border rounded-b-lg border-preto border-t-transparent w-full p-4 flex justify-between items-center'>
