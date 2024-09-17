@@ -34,3 +34,8 @@ export const verHorariosDisponiveis = async (id:number) => {
     const response = await axiosAPI.get(`/horario/${id}`)
     return response.data;
 }
+
+export const verAgendamentosFuncionario = async (id:number) => {
+    const response = await axiosAPI.get(`/funcionario/agendamentos/${id}`)
+    return response.data;
+}
