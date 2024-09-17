@@ -92,7 +92,7 @@ export default function HeaderAdm() {
                     <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/agendamentos")}>Agendamentos</p>
                     <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/pedidos")}>Pedidos</p>
                     <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("./visualizarServicos")}>Serviços</p>
-                    <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/filiais")}>Filiais</p>
+                    {/* <p className="underline-offset-4 decoration-preto hover:underline md:text-sm text-[0.78rem] cursor-pointer" onClick={() => push("/filiais")}>Filiais</p> */}
                 </div>
             </div>
             {
