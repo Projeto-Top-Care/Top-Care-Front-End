@@ -106,6 +106,11 @@ export default function PaginaCompra() {
         }
     }
 
+    const fazerPedido = async () => {
+        
+    
+    }
+
     return (
         <main className="text-preto font-poppins py-12">
             <Erro />
