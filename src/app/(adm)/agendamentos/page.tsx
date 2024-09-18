@@ -8,41 +8,65 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import Select from "@/components/Select/Select";
+import { buscarAgendamentos } from "@/server/agendamentos/action";
+
+
 
 
 export default function Agendamentos() {
     const [pesquisa, setPesquisa] = useState<string>('');
+    const [agendamentosData, setAgendamentosData] = useState<AgendamentoType[]>([]);
     const [escolha, setEscolha] = useState<string>('');
     const router = useRouter();
 
-    const agendamentosPesquisa: AgendamentoType[] = agendamentosData.filter((agendamento: AgendamentoType) =>
-        agendamento.servico.includes(pesquisa.toLowerCase()) ||
-        agendamento.nomePet.includes(pesquisa.toLowerCase()) ||
-        agendamento.local.includes(pesquisa.toLowerCase()) ||
-        agendamento.horario.includes(pesquisa.toLowerCase()) ||
-        agendamento.profissional.includes(pesquisa.toLowerCase()) ||
-        agendamento.valor.toString().includes(pesquisa.toLowerCase()) ||
-        agendamento.status.includes(pesquisa.toLowerCase()) ||
-        agendamento.data.toString().includes(pesquisa.toLowerCase()) ||
-        agendamento.pagamento.includes(pesquisa.toLowerCase())
-    );
 
-    const ordenarAgendamentos = (agendamentos: AgendamentoType[]): AgendamentoType[] => {
-        if (escolha === 'Data Crescente') {
-            return [...agendamentos].sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
-        } else if (escolha === 'Data Decrescente') {
-            return [...agendamentos].sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime());
-        } else if (escolha === 'Valor Crescente') {
-            return [...agendamentos].sort((a, b) => a.valor - b.valor);
-        } else if (escolha === 'Valor Decrescente') {
-            return [...agendamentos].sort((a, b) => b.valor - a.valor);
-        }else if (escolha == 'A a Z') {
-            return [...agendamentos].sort((a, b) => a.servico > b.servico ? 1 : -1);
-        }
-        return agendamentos;
-    }
+    // const agendamentosPesquisa: AgendamentoType[] = agendamentosData.filter((agendamento: AgendamentoType) =>
+    //     agendamento.varianteServico.nome.includes(pesquisa.toLowerCase()) ||
+    //     agendamento.pet.nome.includes(pesquisa.toLowerCase()) ||
+    //     agendamento.filial.includes(pesquisa.toLowerCase()) ||
+    //     agendamento.horario.horaInicio.includes(pesquisa.toLowerCase()) ||
+    //     agendamento.horario.funcionario.includes(pesquisa.toLowerCase()) ||
+    //     agendamento.valor.toString().includes(pesquisa.toLowerCase()) ||
+    //     agendamento.status.includes(pesquisa.toLowerCase()) ||
+    //     agendamento.horario.dia.toString().includes(pesquisa.toLowerCase()) ||
+    //     agendamento.pagamento.toString().includes(pesquisa.toLowerCase())
+    // );
 
-    const agendamentosOrdenados: AgendamentoType[] = ordenarAgendamentos(agendamentosPesquisa);
+
+    useEffect(() => {
+        const fetchAgendamentos = async () => {
+            try {
+                const response = await buscarAgendamentos();
+                console.log(response);
+                setAgendamentosData(response.data);
+            } catch (error) {
+                console.error("Erro ao buscar agendamentos:", error);
+            }
+        };
+
+
+        fetchAgendamentos();
+    }, []);
+
+
+    // const ordenarAgendamentos = (agendamentos: AgendamentoType[]): AgendamentoType[] => {
+    //     if (escolha === 'Data Crescente') {
+    //         return [...agendamentos].sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
+    //     } else if (escolha === 'Data Decrescente') {
+    //         return [...agendamentos].sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime());
+    //     } else if (escolha === 'Valor Crescente') {
+    //         return [...agendamentos].sort((a, b) => a.valor - b.valor);
+    //     } else if (escolha === 'Valor Decrescente') {
+    //         return [...agendamentos].sort((a, b) => b.valor - a.valor);
+    //     }else if (escolha == 'A a Z') {
+    //         return [...agendamentos].sort((a, b) => a.servico > b.servico ? 1 : -1);
+    //     }
+    //     return agendamentos;
+    // }
+
+
+    // const agendamentosOrdenados: AgendamentoType[] = ordenarAgendamentos(agendamentosPesquisa);
+
 
     return (
         <section>
@@ -82,20 +106,20 @@ export default function Agendamentos() {
                         </tr>
                     </thead>
                     <tbody className="lg:text-sm text-xs text-center text-preto break-word border-2 border-cinza">
-                    {agendamentosOrdenados.map((agendamento, index) => (
-                            <tr key={agendamento.id} className={index % 2 === 0 ? 'bg-cinza-claro' : ''}>
-                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.servico}</td>
-                                <td className="hidden md:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.nomePet}</td>
-                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.local}</td>
-                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.horario}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5">{agendamento.data}</td>
-                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.profissional}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">R${agendamento.valor.toFixed(2).replace(".",",")}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.status}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.pagamento}</td>
-                                <td className="text-center"><IoIosLogOut size={20} className="m-auto cursor-pointer" onClick={() => router.push(`/visualizarAgendamento?id=${agendamento.id}`)} /></td>
-                            </tr>
-                        ))}
+                    {agendamentosData.map((agendamento, index) => (
+                        <tr key={agendamento.id} className={index % 2 === 0 ? 'bg-cinza-claro' : ''}>
+                            <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.varianteServico.nome}</td>
+                            <td className="hidden md:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.pet.nome}</td>
+                            <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.filial}</td>
+                            <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.horario.horaInicio}</td>
+                            <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5">{agendamento.horario.dia}</td>
+                            <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.horario.funcionario}</td>
+                            <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">R${agendamento.valor.toFixed(2).replace(".",",")}</td>
+                            <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.status}</td>
+                            <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{agendamento.pagamento.toString()}</td>
+                            <td className="text-center"><IoIosLogOut size={20} className="m-auto cursor-pointer" onClick={() => router.push(`/visualizarAgendamento?id=${agendamento.id}`)} /></td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </section>
