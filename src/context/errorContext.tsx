@@ -26,7 +26,7 @@ export const ErrorProvider: React.FC<ErrorProviderProps> = ({ children }) => {
     setErrors(erros);
     setTimeout(() => {
       setErrors((errors) => errors.filter((error) => error.id !== id));
-    }, 4000);
+    }, 2000);
   };
 
   return (

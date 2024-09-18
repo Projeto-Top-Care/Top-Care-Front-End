@@ -2,26 +2,26 @@
 import ResumoPedido from "@/components/ResumoPedido/resumoPedido";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import { FaPlus } from "react-icons/fa6";
-import { Usuario, Endereco, QntProduto, Cartao } from "@/types/usuarios";
+import { Usuario, Endereco, QuantidadeProduto, Cartao } from "@/types/usuarios";
 import { buscarUsuario } from "@/server/usuario/action";
 import { useEffect, useState } from "react";
 import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande";
 import CardCartaoSalvo from "@/components/CardCartaoSalvo/cardCartaoSalvo";
 import { useRouter } from "next/navigation";
-import { buscarProduto } from "@/server/produtos/action";
 import CadastroEndereco from "@/components/Pop-up/CadastroEndereco/CadastroEndereco";
 import { useUserID } from "@/context/UserIDContext";
 import { useCarrinho } from "@/context/CarrinhoContext";
 import { useError } from "@/context/ErrorContext";
 import Erro from "@/components/Pop-up/Erro/Erro";
 import Carregando from "@/components/Carregando/Carregando";
+import { CarrinhoProps } from "@/app/(misto)/carrinho/page";
+import { buscarCarrinho } from "@/server/carrinho/action";
 
 export default function PaginaCompra() {
 
     const { push } = useRouter();
     const { getUserID } = useUserID()
-    const { getCarrinho } = useCarrinho()
-    const { addError } = useError()!
+    const { addError } = useError()
 
     const [openEndereco, setOpenEndereco] = useState<boolean>(false)
 
@@ -35,16 +35,17 @@ export default function PaginaCompra() {
     const [cartaoEscolhido, setCartaoEscolhido] = useState<Cartao>()
 
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario | undefined>()
-    const [carrinho, setCarrinho] = useState<QntProduto[] | undefined>()
+    const [carrinho, setCarrinho] = useState<CarrinhoProps | undefined>()
 
     useEffect(() => {
         const ueFunction = async () => {
             const idFecthed = getUserID()
-            setCarrinho(getCarrinho())
             if (idFecthed) {
                 const usuario: Usuario = (await buscarUsuario(parseInt(idFecthed!))!)
                 if (usuario) {
                     setUsuarioLogado(usuario)
+                    const carrinho = await buscarCarrinho(usuario.id)
+                    setCarrinho(carrinho)
                 }
             }
         }
@@ -113,7 +114,11 @@ export default function PaginaCompra() {
 
                 <section className="flex flex-col justify-center gap-8 lg:flex-row w-[90%]">
                     <section className="py-4 lg:w-[68%]">
-                        <ResumoPedido produtos={carrinho!} desconto={0} frete={0} />
+                        {
+                            carrinho && (
+                                <ResumoPedido produtos={carrinho.produtos} desconto={0} frete={0} />
+                            )
+                        }
                     </section>
 
                     <section className="py-4 lg:w-[28%]">

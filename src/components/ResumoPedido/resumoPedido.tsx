@@ -1,14 +1,14 @@
 'use client'
 import agendamento from "@/app/(logado)/agendamento/page"
+import { QuantidadeProdutoCarrinho } from "@/app/(misto)/carrinho/page"
 import { buscarProduto } from "@/server/produtos/action"
 import { Agendamentos } from "@/types/agendamentos"
-import { Produto } from "@/types/produto"
-import { QntProduto } from "@/types/usuarios"
+import { ProdutoCompleto } from "@/types/produto"
 import { formatarData } from "@/utils/data"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 interface IResumoPedido {
-    produtos: QntProduto[],
+    produtos: QuantidadeProdutoCarrinho[],
     desconto: number,
     frete: number
     plano?: string
@@ -17,14 +17,20 @@ interface IResumoPedido {
 
 export default function ResumoPedido({ produtos, desconto, frete, plano, agendamento }: IResumoPedido) {
 
-    const setarProdutosResumo = () => {
-        const prods: Produto[] = produtos.map((item, i) => {
-            return (buscarProduto(item.id!)! as Produto);
-        })
-        return prods
+    const [produtosResumo, setProdutosResumo] = useState<ProdutoCompleto[]>([])
 
-    }
-    const [produtosResumo, setProdutosResumo] = useState<Produto[]>(setarProdutosResumo())
+    useEffect(() => {
+        const func = async () => {
+            const produtosResumo = await Promise.all(produtos.map(async (item) => {
+                console.log(item)
+                const produto = await buscarProduto(item.produto.id)
+                return produto
+            })
+            )
+            setProdutosResumo(produtosResumo)
+        }
+        func()
+    }, [])
 
     const calcularSubtotal = () => {
         let soma = 0
@@ -32,7 +38,7 @@ export default function ResumoPedido({ produtos, desconto, frete, plano, agendam
             soma = agendamento.varianteServico.preco
         }else{
             produtosResumo.map((item, i) => {
-                soma += item.precoNovo * produtos[i].quantidade
+                soma += item.variantes[i].preco * produtos[i].quantidade
             })
         }
         return soma
@@ -75,8 +81,8 @@ export default function ResumoPedido({ produtos, desconto, frete, plano, agendam
                                 produtosResumo.map((item, i) => (
                                     <div className="flex flex-row justify-between sm:gap-8 gap-2" key={i}>
                                         <p className="text-xs sm:text-sm">{produtos[i].quantidade}x</p>
-                                        <p className="w-full text-start line-clamp-1 text-xs sm:text-sm">{item.nomeProduto}</p>
-                                        <p className="text-xs sm:text-sm">R${(item.precoNovo * produtos[i].quantidade).toFixed(2).replace(".", ",")}</p>
+                                        <p className="w-full text-start line-clamp-1 text-xs sm:text-sm">{item.nome}</p>
+                                        <p className="text-xs sm:text-sm">R${(produtos[i].varianteProduto.preco * produtos[i].quantidade).toFixed(2).replace(".", ",")}</p>
                                     </div>
                                 ))
                             }
