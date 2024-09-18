@@ -2,7 +2,7 @@
 import FiltroGrande from "@/components/Filtro/FiltroGrande";
 import TituloLinha from "@/components/TituloLinha/TituloLinha";
 import type { Pedidos } from "@/types/pedidos";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaSearch } from 'react-icons/fa';
 import pedidos from "@/banco/pedidos.json"
 import { IoIosArrowDown, IoIosLogOut } from "react-icons/io";
@@ -15,36 +15,49 @@ import Select from "@/components/Select/Select";
 export default function Pedidos() {
     const [pesquisa, setPesquisa] = useState('');
     const [escolha, setEscolha] = useState<string>('');
-    const router = useRouter()
+    const [pedidos, setPedidos] = useState<PedidoType[]>([]);
+    const router = useRouter();
 
+    useEffect(() => {
+        const fetchPedidos = async () => {
+            try {
+                const response = await fetch('http://localhost:8082/pedidos');
+                const data = await response.json();
+                setPedidos(data);
+            } catch (error) {
+                console.error("Erro ao buscar pedidos:", error);
+            }
+        };
+        fetchPedidos();
+    }, []);
 
-    const pedidosPesquisa : PedidoType[] = pedidosData.filter((pedido : PedidoType) =>
-        pedido.Cod_pedido.includes(pesquisa) ||
-        pedido.Dt_pedido.includes(pesquisa) ||
-        pedido.Produto.includes(pesquisa) ||
-        pedido.Cliente.includes(pesquisa) ||
-        pedido.Destino.includes(pesquisa) ||
-        pedido.Valor.toString().includes(pesquisa) ||
-        pedido.Status.includes(pesquisa) ||
-        pedido.Pagamento.includes(pesquisa)
-    );
+    // const pedidosPesquisa : PedidoType[] = pedidos.filter((pedido : PedidoType) =>
+    //     pedido.codigo.includes(pesquisa) ||
+    //     pedido.data_compra.includes(pesquisa) ||
+    //     pedido.Produto.includes(pesquisa) ||
+    //     pedido.cliente_id.includes(pesquisa) ||
+    //     pedido.endereco_id.includes(pesquisa) ||
+    //     pedido.total.toString().includes(pesquisa) ||
+    //     pedido.status.includes(pesquisa) ||
+    //     pedido.pagamento_id.includes(pesquisa)
+    // );
 
     const ordenarPedidos = (pedidos: PedidoType[]): PedidoType[] => {
         if (escolha === 'Valor Crescente') {
-            return [...pedidos].sort((a, b) => a.Valor - b.Valor);
+            return [...pedidos].sort((a, b) => a.total - b.total);
         } else if (escolha === 'Valor Decrescente') {
-            return [...pedidos].sort((a, b) => b.Valor - a.Valor);
+            return [...pedidos].sort((a, b) => b.total - a.total);
         } else if (escolha == 'A a Z') {
-            return [...pedidos].sort((a, b) => a.Cliente > b.Cliente ? 1 : -1);
+            return [...pedidos].sort((a, b) => a.clienteNome > b.clienteNome ? 1 : -1);
         } else if (escolha === 'Data Crescente') {
-            return [...pedidos].sort((a, b) => new Date(a.Dt_pedido).getTime() - new Date(b.Dt_pedido).getTime());
+            return [...pedidos].sort((a, b) => new Date(a.dataCompra).getTime() - new Date(b.dataCompra).getTime());
         } else if (escolha === 'Data Decrescente') {
-            return [...pedidos].sort((a, b) => new Date(b.Dt_pedido).getTime() - new Date(a.Dt_pedido).getTime());
+            return [...pedidos].sort((a, b) => new Date(b.dataCompra).getTime() - new Date(a.dataCompra).getTime());
         }
         return pedidos;
     }
 
-    const pedidosOrdenados: PedidoType[] = ordenarPedidos(pedidosPesquisa);
+    // const pedidosOrdenados: PedidoType[] = ordenarPedidos(pedidosPesquisa);
 
 
     return (
@@ -64,7 +77,7 @@ export default function Pedidos() {
                             placeholder="Pesquise nos pedidos" />
                     </div>
                     <div className='md:w-[18%] w-[38%]'>
-                        <Select options={['Data Crescente', 'Data Decrescente', 'Valor Crescente', 'Valor Decrescente', 'A a Z']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar por'} opcao={escolha}/>
+                        <Select options={['Data Crescente', 'Data Decrescente', 'Valor Crescente', 'Valor Decrescente', 'A a Z']} opcaoSelecionada={(opcao) => setEscolha(opcao)} label={'Ordenar por'} opcao={escolha} />
                     </div>
                 </div>
             </section>
@@ -82,16 +95,16 @@ export default function Pedidos() {
                         </tr>
                     </thead>
                     <tbody className="lg:text-sm text-xs text-center text-preto break-word border-2 border-cinza">
-                        {pedidosOrdenados.map((pedido, index) => (
+                        {pedidos.map((pedido, index) => (
                             <tr key={pedido.id} className={index % 2 === 0 ? 'bg-cinza-claro' : ''}>
-                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Cod_pedido}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Dt_pedido}</td>
-                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Cliente}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Destino}</td>
-                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">R${pedido.Valor.toFixed(2).replace(".",",")}</td>
-                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Status}</td>
-                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.Pagamento}</td>
-                                <td className="text-center"><IoIosLogOut size={20} className="m-auto cursor-pointer" onClick={()=> router.push(`/visualizarPedido?id=${pedido.id}`)}/></td>
+                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.codigo}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.dataCompra}</td>
+                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.clienteNome}</td> 
+                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.enderecoCep}</td> 
+                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">R${pedido.total.toFixed(2).replace(".", ",")}</td>
+                                <td className="border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.status}</td>
+                                <td className="hidden sm:table-cell border border-x-cinza xl:py-3.5 lg:py-2 py-1.5 lg:px-1.5 md:px-1 px-0.5">{pedido.metodoPagamento}</td> 
+                                <td className="text-center"><IoIosLogOut size={20} className="m-auto cursor-pointer" onClick={() => router.push(`/visualizarPedido?id=${pedido.id}`)} /></td>
                             </tr>
                         ))}
                     </tbody>

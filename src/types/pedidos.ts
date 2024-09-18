@@ -1,11 +1,11 @@
 export interface Pedidos {
-    id: number;
-    Cod_pedido: string;
-    Dt_pedido: string;
-    Produto: string;
-    Cliente: string;
-    Destino: string;
-    Valor: number;
-    Status: string;
-    Pagamento: string;
-  };
+  id: number;
+  codigo: string;
+  dataCompra: string;
+  produtos: string;
+  clienteNome: string
+  enderecoCep: string;
+  total: number;
+  status: string;
+  metodoPagamento: string;
+};
