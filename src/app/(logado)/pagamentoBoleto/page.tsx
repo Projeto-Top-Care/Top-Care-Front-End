@@ -4,7 +4,7 @@ import BotaoGrande from "@/components/Botoes/BotaoGrande/BotaoGrande"
 import ResumoPedido from "@/components/ResumoPedido/resumoPedido"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import { useState, useEffect } from "react"
-import { QntProduto, Usuario } from "@/types/usuarios"
+import { QuantidadeProduto, Usuario } from "@/types/usuarios"
 import { buscarUsuario } from "@/server/usuario/action"
 import { useRouter } from "next/navigation"
 import { useUserID } from "@/context/UserIDContext"
@@ -12,6 +12,8 @@ import { useCarrinho } from "@/context/CarrinhoContext"
 import Carregando from "@/components/Carregando/Carregando"
 import { Agendamentos } from "@/types/agendamentos"
 import { buscarAgendamento } from "@/server/agendamentos/action"
+import { CarrinhoProps } from "@/app/(misto)/carrinho/page"
+import { buscarCarrinho } from "@/server/carrinho/action"
 
 interface BoletoProps {
     searchParams: {
@@ -29,9 +31,11 @@ export default function PagamentoBoleto({ searchParams }: BoletoProps) {
 
     useEffect(() => {
         const func = async () => {
-            const agend = await buscarAgendamento(agendamentoId)
-            if (agend) {
-                setAgendamento(agend)
+            if (agendamentoId) {
+                const agend = await buscarAgendamento(agendamentoId)
+                if (agend) {
+                    setAgendamento(agend)
+                }
             }
         }
         func()
@@ -39,7 +43,6 @@ export default function PagamentoBoleto({ searchParams }: BoletoProps) {
 
     const { push } = useRouter();
     const { getUserID } = useUserID()
-    const { items } = useCarrinho()
 
     const getUser = async () => {
         const id = getUserID()
@@ -52,9 +55,21 @@ export default function PagamentoBoleto({ searchParams }: BoletoProps) {
     }, [])
 
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario>()
-    const pedido: QntProduto[] = (items as unknown as QntProduto[])
+    const [carrinho, setCarrinho] = useState<CarrinhoProps>()
+
+    useEffect(() => {
+        const func = async () => {
+
+            if (usuarioLogado) {
+                const carrinho = await buscarCarrinho(usuarioLogado.id)
+                setCarrinho(carrinho)
+            }
+        }
+        func()
+    }, [usuarioLogado])
 
     if (!usuarioLogado) return <Carregando />
+
 
     return (
         <main>
@@ -63,7 +78,10 @@ export default function PagamentoBoleto({ searchParams }: BoletoProps) {
 
                 <section className="justify-between items-start flex flex-col-reverse gap-6 lg:flex-row px-4 md:px-8 lg:px-20 h-auto">
                     <section className="w-full h-auto">
-                        <ResumoPedido produtos={pedido} desconto={0} frete={0} plano={plano} agendamento={agendamento} />
+                        {
+                            carrinho &&
+                            <ResumoPedido produtos={carrinho.produtos} desconto={0} frete={0} plano={plano} agendamento={agendamento} />
+                        }
                     </section>
 
                     <section className="font-poppins px-2 sm:px-0 text-preto flex flex-col justify-between items-center w-full md:w-[90%] sm:w-2/5 h-auto">
