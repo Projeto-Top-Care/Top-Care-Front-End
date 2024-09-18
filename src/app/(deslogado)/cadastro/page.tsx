@@ -9,6 +9,7 @@ import Erro from '@/components/Pop-up/Erro/Erro'
 import UmBotao from '@/components/Pop-up/UmBotao/UmBotao'
 import ResponsiveInput from '@/components/ResponsiveInput'
 import Select from '@/components/Select/Select'
+import { useError } from '@/context/ErrorContext'
 import { cadastroUsuario } from '@/server/usuario/action'
 import { ViaCEP } from '@/types/usuarios'
 import { siglasEstados } from '@/utils/estados'
@@ -20,6 +21,7 @@ export default function Cadastro() {
     const [openModal, setOpenModal] = useState<boolean>(false)
 
     const { format } = require('date-fns');
+    const { addError } = useError();
     
     const [senha, setSenha] = useState<string>("")
     const [confSenha, setConfSenha] = useState<string>("")
@@ -53,26 +55,31 @@ export default function Cadastro() {
 
     const requisitosSenha = () => {
         let requisitos = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!]).{8,}$/;
-        return !requisitos.test(senha)
+        return requisitos.test(senha) && confSenha === senha
     }
 
     const enviarDados = async (e: FormData) => {
-        const parseData = data.split("/")
-        const stringFormat = parseData[1] + "-" + parseData[0] + "-" + parseData[2]
-        const dataFormatada = format(new Date(stringFormat), 'yyyy-MM-dd');
+        if(requisitosSenha()) {
+            const parseData = data.split("/")
+            const stringFormat = parseData[1] + "-" + parseData[0] + "-" + parseData[2]
+            const dataFormatada = format(new Date(stringFormat), 'yyyy-MM-dd');
+    
+            e.append("dataNascimento", dataFormatada)
+            e.append("sexo", sexo.toUpperCase())
+            e.append("estado", estado)
+            e.append("senha", senha)
+            e.append("cep", cep)
+            const objectCadastro = Object.fromEntries(e)
+    
+            const response = await cadastroUsuario(objectCadastro)
+            console.log(response)
+            setOpenModal(true)
+        } else {
+            addError("Senha inválida!")
+        }
 
-        e.append("dataNascimento", dataFormatada)
-        e.append("sexo", sexo.toUpperCase())
-        e.append("estado", estado)
-        e.append("senha", senha)
-        e.append("cep", cep)
-        const objectCadastro = Object.fromEntries(e)
-
-        const response = await cadastroUsuario(objectCadastro)
-        console.log(response)
-        setOpenModal(true)
     }
-
+    
     return (
         <main className={`w-full overflow-hidden text-preto`}>
             <Erro />

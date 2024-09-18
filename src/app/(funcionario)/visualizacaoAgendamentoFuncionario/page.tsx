@@ -45,17 +45,6 @@ export default function VisualizarAgendamentoFuncionario({ searchParams }: Visua
         return `${day}/${month}/${year}`;
     };
 
-    const verFotoPet = (especie: string) => {
-        return especie === "Cachorro" ? "./assets/perfil/Cachorro_perfil.jpg" :
-            especie === "Coelho" ? "./assets/perfil/Coelho_perfil.jpg" :
-                especie === "Gato" ? "./assets/perfil/Gato_perfil.jpg" :
-                    especie === "Hamster" ? "./assets/perfil/Hamster_perfil.jpg" :
-                        especie === "Pássaro" ? "./assets/perfil/Pássaro_perfil.jpg" :
-                            especie === "Peixe" ? "./assets/perfil/Peixe_perfil.jpg" :
-                                especie === "Tartaruga" ? "./assets/perfil/Tartaruga_perfil.jpg" :
-                                    "";
-    }
-
     return (
         <main className='mb-14 font-poppins'>
             <section className="">
@@ -63,9 +52,6 @@ export default function VisualizarAgendamentoFuncionario({ searchParams }: Visua
                 <section className="flex flex-col md:mb-12 mb-4 md:w-[95%] lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center gap-8">
                     <div className="w-full flex justify-between">
                         <p className="font-averia text-preto md:text-2xl text-xl lg:text-start text-center font-bold">Meus agendamentos</p>
-                        <div className='w-1/6'>
-                            <Select options={['Finalizados', 'Cancelados', 'Esperando', 'Todos']} label={'Ordenar por'} opcaoSelecionada={setOpcaoSelecionada} opcao={opcaoSelecionada} />
-                        </div>
                     </div>
                     <div className="gap-8 grid lg:grid-cols-3 md:grid-cols-2 md:mt-2">
                         {
@@ -76,7 +62,7 @@ export default function VisualizarAgendamentoFuncionario({ searchParams }: Visua
                                         servico={item.varianteServico.nome}
                                         data={item.horario.dia}
                                         horario={item.horario.horaInicio}
-                                        fotoPet={verFotoPet(item.pet.especie)!}
+                                        fotoPet={`./assets/perfil/${item.pet.especie}_perfil.jpg`}
                                         nomePet={item.pet.nome}
                                         animal={item.pet.especie}
                                         raca={item.pet.raca}
@@ -91,18 +77,21 @@ export default function VisualizarAgendamentoFuncionario({ searchParams }: Visua
                 </section>
             </section>
             <TituloLinha titulo={"Horários disponíveis"} voltar={false} />
-            <section className="flex flex-col md:mb-24 mb-4 md:w-[95%] lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center gap-8">
-                <div className="flex flex-row gap-6">
+            <section className="md:mb-24 mb-4 flex flex-col md:w-[95%] lg:pl-16 md:pl-10 md:p-0 p-4 lg:self-start self-center gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6">
                     {
                         horariosDisponiveis && horariosDisponiveis.length > 0 ? (
                             horariosDisponiveis.map((item, index) => (
-                                <div key={index} className="w-fit px-2 max-w-[12rem] flex flex-col border-roxo-select border rounded-lg p-2 text-roxo-select">
+                                <div key={index} className="w-full flex flex-col border-roxo-select border rounded-lg p-2 text-roxo-select">
                                     <p className="sm:text-base text-sm font-semibold">Dia {formatarData(item.dia)}</p>
                                     <p className="sm:text-base text-sm">{item.horaInicio.slice(0, 5)} às {item.horaFim.slice(0, 5)}</p>
                                 </div>
                             ))
                         ) : (
-                            <p className="w-full m-auto col-span-3">O usuário não tem horários disponíveis :(</p>
+                            <div className="w-full m-auto flex flex-col col-span-4">
+                                <p className="w-full m-auto">O usuário não tem horários disponíveis :(</p>
+                                <img className="w-64 self-center" src="./assets/dog-sad.png" />
+                            </div>
                         )
                     }
                 </div>

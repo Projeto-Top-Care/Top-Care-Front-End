@@ -9,7 +9,7 @@ import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
 import InputEstatico from "@/components/InputEstatico/InputEstatico";
 import InputMaskEstatico from "@/components/InputMaskEstatico/InputMaskEstatico";
 import Select from "@/components/Select/Select";
-import { buscarFiliais } from "@/server/filiais/filial";
+import { buscarFiliais } from "@/server/filiais/action";
 import { FuncionarioCompleto, HorarioFuncionarioSimples } from "@/types/funcionario";
 import CardVisualizacao from "@/app/(funcionario)/visualizacaoAgendamentoFuncionario/CardVisualizacao/CardVisualizacao";
 import { Agendamentos } from "@/types/agendamentos";
@@ -127,21 +127,6 @@ export default function visualizarPerfilFuncionario({ searchParams }: Visualizar
                                 especie === "Tartaruga" ? "./assets/perfil/Tartaruga_perfil.jpg" :
                                     "";
     }
-
-    // const filtrarAgendamentos = () => {
-    //     opcaoSelecionada === "Aguardando cliente" ?
-    //         setAgendamentosFiltrados(agendamentosFuncionario?.filter((agendamento) => agendamento.status === "Aguardando cliente"))
-    //         : opcaoSelecionada === "Em andamento" ?
-    //             setAgendamentosFiltrados(agendamentosFuncionario?.filter((agendamento) => agendamento.status === "Em andamento"))
-    //             : opcaoSelecionada === "Aguardando retirada do pet" ?
-    //                 setAgendamentosFiltrados(agendamentosFuncionario?.filter((agendamento) => agendamento.status === "Aguardando retirada do pet"))
-    //                 : opcaoSelecionada === "Concluído" ?
-    //                     setAgendamentosFiltrados(agendamentosFuncionario?.filter((agendamento) => agendamento.status === "Concluído"))
-    //                     : setAgendamentosFiltrados(agendamentosFuncionario)
-    //     console.log(agendamentosFiltrados)
-    // }
-    // const [agendamentosFiltrados, setAgendamentosFiltrados] = useState<Agendamentos[]>()
-
 
     return (
         <>

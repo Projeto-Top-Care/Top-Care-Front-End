@@ -69,14 +69,14 @@ export default function CadastroPet({ setOpen, petEdit, setAtt }: ICadastroPet) 
                 </div>
             </div>
             <div className="flex lg:flex-row flex-col items-center justify-between w-[90%] mx-auto my-3 gap-4">
-                <div className="md:w-32 md:h-32 h-24 w-24 flex items-center justify-center">
+                {/* <div className="md:w-32 md:h-32 h-24 w-24 flex items-center justify-center">
                     <InputFile rounded="rounded-full" />
-                </div>
-                <div className="flex flex-col gap-4  lg:w-[35%] md:w-96 w-full">
+                </div> */}
+                <div className="flex flex-col gap-4  lg:w-[48%] md:w-96 w-full">
                     <InputText placeholder="Qual o nome do pet?" required type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
                     <Select label="Qual o seu pet?" options={animais} opcaoSelecionada={setPet} opcao={pet} />
                 </div>
-                <div className="flex flex-col gap-4 lg:w-[35%] md:w-96 w-full">
+                <div className="flex flex-col gap-4 lg:w-[48%] md:w-96 w-full">
                     <Select label="Qual a raça do seu pet" options={racasCachorro} opcaoSelecionada={setRaca} opcao={raca} />
                     <Select label="Qual o porte do pet?" options={portes} opcaoSelecionada={setPorte} opcao={porte} />
                 </div>

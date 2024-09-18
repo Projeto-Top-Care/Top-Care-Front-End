@@ -7,7 +7,8 @@ import MoldeInput from '@/components/MoldeInput'
 import Erro from '@/components/Pop-up/Erro/Erro'
 import ResponsiveInput from '@/components/ResponsiveInput'
 import Select from '@/components/Select/Select'
-import { buscarFiliais } from '@/server/filiais/filial'
+import TituloLinha from '@/components/TituloLinha/TituloLinha'
+import { buscarFiliais } from '@/server/filiais/action'
 import { cadastroFuncionario } from '@/server/usuario/funcionario'
 import { FuncionarioCompleto } from '@/types/funcionario'
 import { useRouter } from 'next/navigation'
@@ -64,9 +65,10 @@ export default function CadastroFuncionario() {
     return (
         <main className={`w-full overflow-hidden text-preto`}>
             <Erro />
-            <section className='w-[90%] m-auto mt-10 md:w-full'>
+            {/* <section className='w-[90%] m-auto mt-10 md:w-full'>
                 <h1 className='font-averia text-center text-2xl font-bold'>Faça o cadastro e entre para a família Top Care!</h1>
-            </section>
+            </section> */}
+            <TituloLinha voltar={true} titulo='Cadastrar funcionário' />
 
             <form action={enviarDados}>
                 <section className='flex flex-col justify-center items-center mt-12 gap-20 lg:flex-row lg:gap-10'>
