@@ -56,7 +56,9 @@ export default function Produtos({ produto, variante, produtoQuantidade, setAtt}
                     </div>
                     <div className='flex flex-col md:flex-row items-start h-full md:w-[80%] w-[70%] md:justify-between justify-center'>
                         <div className='flex items-center justify-center md:h-full h-auto'>
-                            <p className='font-poppins md:text-sm text-xs overflow-hidden line-clamp-1 md:line-clamp-2 w-full md:w-full'>{produto.nome}- {variante.cor+ " "+ variante.tamanho + " "+ variante.peso+" "+ variante.unidades }</p>
+                            <p className='font-poppins md:text-sm text-xs overflow-hidden line-clamp-1 md:line-clamp-2 w-full md:w-full'>
+                                {produto.nome} - {" "} 
+                                 {variante.cor ? variante.cor : ""+ " "+ variante.tamanho ? variante.tamanho : "" + " "+ variante.peso ? variante.peso : ""+" "+ variante.unidades ? variante.unidades : "" }</p>
                         </div>
                         <div className='flex flex-col'>{
                             produtoQuantidade && produtoQuantidade.quantidade != 0 &&

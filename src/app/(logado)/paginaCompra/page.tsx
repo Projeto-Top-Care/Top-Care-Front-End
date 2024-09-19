@@ -29,6 +29,9 @@ export default function PaginaCompra() {
     const [enderecoUsuario, setEnderecoUsuario] = useState("-")
     const [complemento, setComplemento] = useState("-")
 
+    const [frete, setFrete] = useState<number>(0)
+    const [desconto, setDesconto] = useState<number>(0)
+
     const [eCartao, setECartao] = useState(false)
     const [eBoleto, setEBoleto] = useState(false)
     const [ePix, setEPix] = useState(false)
@@ -107,8 +110,21 @@ export default function PaginaCompra() {
     }
 
     const fazerPedido = async () => {
+        const pedido = {
+            codigo: Math.floor(Math.random() * 1000000),
+            frete: frete,
+            desconto: desconto,
+            total: carrinho!.total,
+            endereco: enderecoEscolhido,
+            produtos: carrinho!.produtos,
+            pagamento:{
+                metodoPagamento: eCartao ? "CARTAO_CREDITO" : eBoleto ? "BOLETO" : "PIX",
+                parcelas: 1,
+                pago: false,
+            }
+        }
+        console.log(pedido)
         
-    
     }
 
     return (
@@ -121,7 +137,7 @@ export default function PaginaCompra() {
                     <section className="py-4 lg:w-[68%]">
                         {
                             carrinho && (
-                                <ResumoPedido produtos={carrinho.produtos} desconto={0} frete={0} />
+                                <ResumoPedido produtos={carrinho.produtos} desconto={desconto} frete={frete} />
                             )
                         }
                     </section>
@@ -216,8 +232,8 @@ export default function PaginaCompra() {
                         </div>
                     </div>
                     <div className="flex flex-col items-start lg:items-end py-8 gap-2">
-                        <div className="w-[60%] md:w-[22%] lg:w-[20%]" onClick={() => pagar()}>
-                            <BotaoGrande title={"Finalizar compra"} background="secundaria" type={"button"} />
+                        <div className="w-[60%] md:w-[22%] lg:w-[20%]" >
+                            <BotaoGrande title={"Finalizar compra"} onClick={fazerPedido} background="secundaria" type={"button"} />
                         </div>
                         <p className="text-start lg:text-end text-xs sm:text-sm text-cinza-escuro">Após conferir seu pedido, clique no botão acima para confirmar a compra e realizar o pagamento.</p>
                     </div>

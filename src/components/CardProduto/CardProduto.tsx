@@ -15,6 +15,7 @@ import { buscarUsuario } from "@/server/usuario/action";
 import DoisBotoes from "../Pop-up/DoisBotoes/DoisBotoes";
 import { useError } from "@/context/ErrorContext";
 import { buscarProduto, deletarProduto } from "@/server/produtos/action";
+import { adicionarProduto } from "@/server/carrinho/action";
 
 interface ProdutoProps {
     produto: ProdutoCard
@@ -26,6 +27,7 @@ const CardProduto = ({ produto, att }: ProdutoProps) => {
     const { getUserID } = useUserID()
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
     const [isLogged, setIsLogged] = useState<boolean>(false)
+    const [usuario, setUsuario] = useState<Usuario>()
 
     useEffect(() => {
         const func = async () => {
@@ -33,6 +35,7 @@ const CardProduto = ({ produto, att }: ProdutoProps) => {
             if (id) {
                 const user: Usuario = await buscarUsuario(parseInt(id))
                 if (user) {
+                    setUsuario(user)
                     setIsLogged(true)
                 }
                 if (user.role == 'ADMIN') {
@@ -43,7 +46,6 @@ const CardProduto = ({ produto, att }: ProdutoProps) => {
         func()
     }, [])
 
-    const { addProduct } = useCarrinho()
     const [favoritoCard, setFavoritoCard] = useState<boolean>(false);
     const { push } = useRouter()
     const { addConfirmacao } = useConfirmacao()
@@ -81,12 +83,13 @@ const CardProduto = ({ produto, att }: ProdutoProps) => {
 
     const adicionarCarrinho = async () => {
         const primeiraVariante = await buscarProduto(produto.id)
+        
         const newProduto = {
-            id: produto.id,
-            idVariante: primeiraVariante.variantes[0].id,
+            produtoId: produto.id,
+            varianteProdutoId: primeiraVariante.variantes[0].id,
             quantidade: 1,
         }
-        addProduct(newProduto)
+        usuario && await adicionarProduto(usuario.id, newProduto)
         addConfirmacao("Adicionado a Sacola!")
 
     }

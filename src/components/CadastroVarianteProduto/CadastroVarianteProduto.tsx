@@ -14,7 +14,7 @@ export default function CadastroVariante({ setOpen, variantes, setVariantes }: C
 
     const [cor, setCor] = useState<string>('')
     const [tamanho, setTamanho] = useState<string>('')
-    const [peso, setPeso] = useState<number>(0)
+    const [peso, setPeso] = useState<string>('')
     const [unidades, setUnidades] = useState<number>(0)
     const [preco, setPreco] = useState<number>(0)
     const [estoque, setEstoque] = useState<number>(0)
@@ -71,7 +71,7 @@ export default function CadastroVariante({ setOpen, variantes, setVariantes }: C
                                     placeholder='Peso'
                                     type="number"
                                     name='peso'
-                                    onChange={(e) => setPeso(Number(e.target.value))}
+                                    onChange={(e) => setPeso(e.target.value)}
                                 />
                             </div>
                             <div className='w-[50%]'>
