@@ -30,7 +30,7 @@ export default function VisualizarPedido({ searchParams }: VisualizarPedidoProps
   // const historico = [
   //   {data: pedido.Dt_pedido, status: "Pedido criado", responsavel: pedido.Cliente}
   // ]
-  const [historico, setHistorico] = useState<Historico[]>([{data: pegarDataAtual(), status: status[0], responsavel: pedido.Cliente}])
+  const [historico, setHistorico] = useState<Historico[]>([{data: pegarDataAtual(), status: status[0], responsavel: pedido.clienteNome}])
 
   function pegarDataAtual() {
     let data = new Date()
@@ -93,15 +93,15 @@ export default function VisualizarPedido({ searchParams }: VisualizarPedidoProps
           </div>
           <section className='flex md:flex-col flex-col lg:w-[50%] w-full md:gap-8 gap-4 mb-10'>
             <div className='w-full flex flex-row md:gap-8 gap-4'>
-              <InputPreenchido titulo='Data' conteudo={pedido.Dt_pedido} />
-              <InputPreenchido titulo='Cliente' conteudo={pedido.Cliente} />
+              <InputPreenchido titulo='Data' conteudo={pedido.dataCompra} />
+              <InputPreenchido titulo='Cliente' conteudo={pedido.clienteNome} />
             </div>
 
-            <InputPreenchido titulo='Destino' conteudo={pedido.Destino} />
+            <InputPreenchido titulo='Destino' conteudo={pedido.enderecoCep} />
 
             <div className='w-full flex flex-row md:gap-8 gap-4'>
-              <InputPreenchido titulo='Valor' conteudo={"R$" + pedido.Valor.toFixed(2).replace(".", ",")} />
-              <InputPreenchido titulo='Parcelas' conteudo={pedido.Pagamento} />
+              <InputPreenchido titulo='Valor' conteudo={"R$" + pedido.total} />
+              <InputPreenchido titulo='Parcelas' conteudo={pedido.metodoPagamento} />
             </div>
           </section>
         </section>
