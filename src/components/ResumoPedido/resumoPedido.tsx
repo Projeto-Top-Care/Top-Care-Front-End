@@ -17,28 +17,14 @@ interface IResumoPedido {
 
 export default function ResumoPedido({ produtos, desconto, frete, plano, agendamento }: IResumoPedido) {
 
-    const [produtosResumo, setProdutosResumo] = useState<ProdutoCompleto[]>([])
-
-    useEffect(() => {
-        const func = async () => {
-            const produtosResumo = await Promise.all(produtos.map(async (item) => {
-                console.log(item)
-                const produto = await buscarProduto(item.produto.id)
-                return produto
-            })
-            )
-            setProdutosResumo(produtosResumo)
-        }
-        func()
-    }, [])
 
     const calcularSubtotal = () => {
         let soma = 0
         if(agendamento){
             soma = agendamento.varianteServico.preco
         }else{
-            produtosResumo.map((item, i) => {
-                soma += item.variantes[i].preco * produtos[i].quantidade
+            produtos.map((item, i) => {
+                soma += item.varianteProduto.preco * produtos[i].quantidade
             })
         }
         return soma
@@ -78,11 +64,11 @@ export default function ResumoPedido({ produtos, desconto, frete, plano, agendam
                     {
                         <div className="flex flex-col text-sm py-4">
                             {
-                                produtosResumo.map((item, i) => (
+                                produtos.map((item, i) => (
                                     <div className="flex flex-row justify-between sm:gap-8 gap-2" key={i}>
-                                        <p className="text-xs sm:text-sm">{produtos[i].quantidade}x</p>
-                                        <p className="w-full text-start line-clamp-1 text-xs sm:text-sm">{item.nome}</p>
-                                        <p className="text-xs sm:text-sm">R${(produtos[i].varianteProduto.preco * produtos[i].quantidade).toFixed(2).replace(".", ",")}</p>
+                                        <p className="text-xs sm:text-sm">{item.quantidade}x</p>
+                                        <p className="w-full text-start line-clamp-1 text-xs sm:text-sm">{item.produto.nome}</p>
+                                        <p className="text-xs sm:text-sm">R${(item.varianteProduto.preco * produtos[i].quantidade).toFixed(2).replace(".", ",")}</p>
                                     </div>
                                 ))
                             }

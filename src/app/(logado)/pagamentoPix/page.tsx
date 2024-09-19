@@ -98,7 +98,6 @@ export default function PagamentoPix({ searchParams }: BoletoProps) {
     const { push } = useRouter();
     const { getUserID } = useUserID()
     const conf = useConfirmacao()
-    const { items } = useCarrinho()
 
     const getUser = async () => {
         const id = getUserID()

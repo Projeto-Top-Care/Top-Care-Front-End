@@ -1,10 +1,11 @@
+import { Imagem } from "./produto"
 import { Endereco } from "./usuarios"
 
 export interface Servico{
     id: number,
     nome: string,
     categoria: string,
-    imagem: string,
+    imagem: Imagem,
     descricao: string,
     funcionarios: PetsProps[],
     especies: PetsProps[]

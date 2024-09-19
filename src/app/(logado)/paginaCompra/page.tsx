@@ -16,6 +16,11 @@ import Erro from "@/components/Pop-up/Erro/Erro";
 import Carregando from "@/components/Carregando/Carregando";
 import { CarrinhoProps } from "@/app/(misto)/carrinho/page";
 import { buscarCarrinho } from "@/server/carrinho/action";
+import { criarPedido } from "@/server/pedidos/action";
+import UmBotao from "@/components/Pop-up/UmBotao/UmBotao";
+import DoisBotoes from "@/components/Pop-up/DoisBotoes/DoisBotoes";
+import CadastrarCartao from "@/components/CadastrarCartao/CadastrarCartao";
+import Confirmacao from "@/components/Pop-up/Confirmacao/Confirmacao";
 
 export default function PaginaCompra() {
 
@@ -31,6 +36,11 @@ export default function PaginaCompra() {
 
     const [frete, setFrete] = useState<number>(0)
     const [desconto, setDesconto] = useState<number>(0)
+
+    const [open, setOpen] = useState<boolean>(false)
+    const [sim, setSim] = useState<boolean>(false)
+    const [openCartao, setOpenCartao] = useState<boolean>(false)
+    const [att, setAtt] = useState<number>(0)
 
     const [eCartao, setECartao] = useState(false)
     const [eBoleto, setEBoleto] = useState(false)
@@ -53,7 +63,14 @@ export default function PaginaCompra() {
             }
         }
         ueFunction()
-    }, [])
+    }, [att])
+
+
+    useEffect(() => {
+        if (sim) {
+            push('/Perfil')
+        }
+    }, [sim])
 
     if (!usuarioLogado) {
         return <Carregando />
@@ -87,7 +104,7 @@ export default function PaginaCompra() {
         }
     }
     const verificarCartao = (nomeCartao: string) => {
-        if (cartaoEscolhido?.nome == nomeCartao) {
+        if (cartaoEscolhido?.nomeDoCartao == nomeCartao) {
             return true
         } else {
             return false
@@ -110,6 +127,16 @@ export default function PaginaCompra() {
     }
 
     const fazerPedido = async () => {
+
+        if (enderecoEscolhido == null) {
+            addError("Selecione um endereco antes de avançar!")
+            return
+        }
+        if (!eCartao && !ePix && !eBoleto) {
+            addError("Selecione uma forma de pagamento antes de avançar!")
+            return
+        }
+
         const pedido = {
             codigo: Math.floor(Math.random() * 1000000),
             frete: frete,
@@ -117,19 +144,21 @@ export default function PaginaCompra() {
             total: carrinho!.total,
             endereco: enderecoEscolhido,
             produtos: carrinho!.produtos,
-            pagamento:{
+            pagamento: {
                 metodoPagamento: eCartao ? "CARTAO_CREDITO" : eBoleto ? "BOLETO" : "PIX",
                 parcelas: 1,
                 pago: false,
             }
         }
-        console.log(pedido)
-        
+        usuarioLogado && await criarPedido(usuarioLogado.id, pedido)
+        eCartao ? setOpen(true) : eBoleto ? push('/pagamentoBoleto') : push('/pagamentoPix')
+
     }
 
     return (
         <main className="text-preto font-poppins py-12">
             <Erro />
+            <Confirmacao />
             <div className="items-center flex flex-col gap-4 w-full">
                 <TituloLinha voltar={true} titulo="Confirmação do pedido" />
 
@@ -150,7 +179,7 @@ export default function PaginaCompra() {
                                     usuarioLogado.enderecos?.map((endereco, i) => (
                                         <div onClick={() => setarEnderecoEscolhido(endereco)} className="py-1 cursor-pointer flex flex-row justify-between" key={i}>
                                             <p className="text-xs sm:text-sm">{endereco.nome}</p>
-                                            <input className="w-5 h-5 checked: accent-purple-500" type="radio" checked={verificarEnderecoEscolhido(endereco.nome)} />
+                                            <input className="w-5 h-5 checked:accent-purple-500" type="radio" checked={verificarEnderecoEscolhido(endereco.nome)} />
                                         </div>
                                     ))
                                 }
@@ -217,15 +246,15 @@ export default function PaginaCompra() {
                         <div className="flex flex-col self-end justify-end gap-2 w-full sm:w- lg:w-[40%]">
                             {
                                 eCartao ?
-                                    <div className="flex flex-col justify-end gap-2">
+                                    <div className="flex flex-row justify-end gap-2">
                                         {
                                             usuarioLogado.cartoes?.map((cartao, i) => (
                                                 <div key={cartao.numero} onClick={() => setCartaoEscolhido(cartao)}>
-                                                    <CardCartaoSalvo checked={verificarCartao(cartao.nome)} titulo={cartao.nome} numero={cartao.numero} validade={cartao.validade} tipo={cartao.agencia} />
+                                                    <CardCartaoSalvo cartao={cartao} />
                                                 </div>
                                             ))
                                         }
-                                        <button onClick={() => push('/adicionarCartao')} className="hover:bg-indigo-200 size-8 self-start lg:self-end bg-primaria rounded-lg p-2"><FaPlus /></button>
+                                        <button onClick={() => setOpenCartao(true)} className="hover:bg-indigo-200 size-8 self-start lg:self-end bg-secundaria rounded-lg p-2"><FaPlus /></button>
                                     </div>
                                     : <></>
                             }
@@ -244,6 +273,22 @@ export default function PaginaCompra() {
                     <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpenEndereco(false)}></div>
                     <div className='fixed w-[60%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
                         <CadastroEndereco setOpen={setOpenEndereco} />
+                    </div>
+                </div>
+            )}
+            {open && (
+                <div className="w-full">
+                    <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpen(false)}></div>
+                    <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 lg:w-[25%] w-[60%]`}>
+                        <DoisBotoes texto="Você deseja fazer o pedido?" openParms={setOpen} sim={setSim} />
+                    </div>
+                </div>
+            )}
+            {openCartao && (
+                <div className="w-full">
+                    <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpenCartao(false)}></div>
+                    <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[60%]`}>
+                        <CadastrarCartao id={usuarioLogado.id} setAtt={setAtt} setOpenCartao={setOpenCartao}/>
                     </div>
                 </div>
             )}

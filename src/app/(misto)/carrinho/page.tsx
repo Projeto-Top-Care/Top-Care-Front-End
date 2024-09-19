@@ -18,8 +18,8 @@ import Topico from './Topico'
 import CalcularFrete from '@/components/CalcularFrete/calcularFrete'
 import { buscarCarrinho, limparCarrinho } from '@/server/carrinho/action'
 import Loading from '../loading'
-import { useError } from '@/context/ErrorContext'
 import Erro from '@/components/Pop-up/Erro/Erro'
+import { useError } from '@/context/ErrorContext'
 
 export interface CarrinhoProps {
   id: number,
