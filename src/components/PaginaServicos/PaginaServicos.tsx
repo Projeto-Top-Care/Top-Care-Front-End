@@ -85,7 +85,7 @@ export default function PaginaServicos({ isAdmin }: InterfaceServicos) {
                 </div>
             </section>
             <div className="w-[90%] self-center flex flex-col gap-6 mt-8">
-                {
+                { listagem &&
                     listagem.map((item, i) => (
                         <CardServico isAdmin={isAdmin} key={i} servico={item} />
                     ))

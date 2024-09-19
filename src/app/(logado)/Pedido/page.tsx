@@ -63,9 +63,9 @@ export default function Pedido({ searchParams }: PropsUsuario) {
                                 <p className="font-poppins text-preto font-medium md:text-xl text-base">Status da entrega</p>
                                 <p className="font-poppins text-cinza-escuro md:text-base text-xs">Código de rastreio:</p>
                             </div>
-                            <div>
-                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Número do pedido: {pedido?.codigo}</p>
-                                <p className="font-poppins text-cinza-escuro md:text-base text-xs">Data da compra: {pedido?.dataCompra}</p>
+                            <div className="flex flex-col items-end">
+                                <p className="font-poppins text-cinza-escuro md:text-base text-xs"><span className="font-semibold">Número do pedido:</span> {pedido?.codigo}</p>
+                                <p className="font-poppins text-cinza-escuro md:text-base text-xs"><span className="font-semibold">Data da compra:</span> {pedido?.dataCompra}</p>
                             </div>
                         </div>
                         <section className="w-full m-auto md:mt-24 mt-8">

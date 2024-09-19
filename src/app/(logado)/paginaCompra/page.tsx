@@ -287,7 +287,7 @@ export default function PaginaCompra() {
             {openCartao && (
                 <div className="w-full">
                     <div className='fixed top-0 left-0 w-full h-full z-50  bg-fundo-modal' onClick={() => setOpenCartao(false)}></div>
-                    <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[60%]`}>
+                    <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[80%]`}>
                         <CadastrarCartao id={usuarioLogado.id} setAtt={setAtt} setOpenCartao={setOpenCartao}/>
                     </div>
                 </div>
