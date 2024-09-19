@@ -138,7 +138,7 @@ export default function CadastroFuncionario() {
                                 <InputText
                                     placeholder='Código do Funcionário*'
                                     name='codigo'
-                                    type='codigo'
+                                    type='number'
                                     required
                                     onChange={(e) => setCodigo(parseInt(e.target.value))}
                                     erro={codigo?.toString().length != 6 && erro}
