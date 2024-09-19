@@ -1,3 +1,4 @@
+import { QuantidadeProdutoCarrinho } from "@/app/(misto)/carrinho/page"
 import { Agendamentos } from "./agendamentos"
 import { Servico } from "./servicos"
 
@@ -52,17 +53,21 @@ export interface Pedido {
     id: number
     codigo: number,
     dataCompra: string,
+    total: number,
+    desconto: number,
+    frete: number,
     status: string
     pagamento: Pagamento,
-    endereco: number,
-    produtos: QuantidadeProduto[]
+    endereco: Endereco,
+    produtos: QuantidadeProdutoCarrinho[]
 }
 
 export interface Cartao {
-    nome: string,
-    numero: number,
+    nomeDoCartao: string,
+    nomeNoCartao: string,
+    cpf: string
+    numero: string,
     validade: string,
-    agencia: string
 }
 
 export interface QuantidadeProduto {
@@ -72,12 +77,9 @@ export interface QuantidadeProduto {
 }
 
 export interface Pagamento {
-    metodo: string, 
-    pago: boolean
-    subtotal: number,
-    descontos: number,
-    frete: number,
-    valorTotal: number
+    metodoPagamento: string, 
+    pago: boolean,
+    parcelas: number
 }
 
 export interface Produto{

@@ -13,9 +13,7 @@ import { buscarUsuario } from "@/server/usuario/action"
 import { Usuario } from "@/types/usuarios"
 import { EmblaOptionsType } from "embla-carousel"
 import { useRouter } from "next/navigation";
-import { useEffect } from "react"
-
-const carrosselProdutos: any = []
+import { useEffect, useState } from "react"
 
 export default function PaginaInicial() {
     const slidesCarrosselDesktop: string[] = ['./assets/slidesDesktop/Banner1.svg', './assets/slidesDesktop/Banner2.svg', './assets/slidesDesktop/Banner3.svg', './assets/slidesDesktop/Banner4.svg']
@@ -24,6 +22,25 @@ export default function PaginaInicial() {
 
     const { push } = useRouter();
     const { getUserID, setUserId } = useUserID()
+
+    const [produtos, setProdutos] = useState<any[]>([])
+
+    const carrosselProdutos: any = async () => {
+        const produtosBuscados = await buscarTodos("empty")
+        const novosProdutos = produtosBuscados.produtos.map((produto: any) => {
+            return (
+                <CardProduto
+                    key={produto.id}
+                    produto={produto}
+                />
+            )
+        })
+        setProdutos(novosProdutos)
+    }
+
+    useEffect(() => {
+        carrosselProdutos()
+    }, [])
 
     useEffect(() => {
         const func = async () => {
@@ -60,7 +77,7 @@ export default function PaginaInicial() {
             <section className='md:mt-10 mt-8'>
                 <div className='flex flex-col'>
                     <TituloLinha voltar={false} titulo='Você também pode gostar...' />
-                    <CarrosselProduto slides={carrosselProdutos} />
+                    <CarrosselProduto slides={produtos} />
                 </div>
             </section>
 
@@ -95,7 +112,7 @@ export default function PaginaInicial() {
             <section className=''>
                 <div className='flex flex-col'>
                     <TituloLinha voltar={false} titulo='Mais bem Avaliados' />
-                    <CarrosselProduto slides={carrosselProdutos} />
+                    <CarrosselProduto slides={produtos} />
                 </div>
             </section>
 
@@ -117,14 +134,14 @@ export default function PaginaInicial() {
             <section className=''>
                 <div className='flex flex-col'>
                     <TituloLinha voltar={false} titulo='Quase acabando' />
-                    <CarrosselProduto slides={carrosselProdutos} />
+                    <CarrosselProduto slides={produtos} />
                 </div>
             </section>
 
             <section className='mb-24 mt-8'>
                 <div className='flex flex-col '>
                     <TituloLinha voltar={false} titulo='Promoções relâmpago' />
-                    <CarrosselProduto slides={carrosselProdutos} />
+                    <CarrosselProduto slides={produtos} />
                 </div>
             </section>
         </main>

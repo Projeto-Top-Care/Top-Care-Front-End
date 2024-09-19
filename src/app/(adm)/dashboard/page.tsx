@@ -25,7 +25,7 @@ const Dashboard = () => {
                                 <CardDashboard background="bg-secundaria" titulo="Ganhos" variavel={234} valor={true} />
                             </div>
                             <div className="w-full sm:w-[30%] h-56 flex flex-col items-center justify-center">
-                                <h1 className="z-50 mb-2 font-poppins text-lg">Vendas por Categoria</h1>
+                                <h1 className=" mb-2 font-poppins text-lg">Vendas por Categoria</h1>
                                 <Chart
                                     className=""
                                     chartType="PieChart"

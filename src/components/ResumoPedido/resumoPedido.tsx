@@ -1,14 +1,14 @@
 'use client'
 import agendamento from "@/app/(logado)/agendamento/page"
+import { QuantidadeProdutoCarrinho } from "@/app/(misto)/carrinho/page"
 import { buscarProduto } from "@/server/produtos/action"
 import { Agendamentos } from "@/types/agendamentos"
-import { Produto } from "@/types/produto"
-import { QntProduto } from "@/types/usuarios"
+import { ProdutoCompleto } from "@/types/produto"
 import { formatarData } from "@/utils/data"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 interface IResumoPedido {
-    produtos: QntProduto[],
+    produtos: QuantidadeProdutoCarrinho[],
     desconto: number,
     frete: number
     plano?: string
@@ -17,22 +17,14 @@ interface IResumoPedido {
 
 export default function ResumoPedido({ produtos, desconto, frete, plano, agendamento }: IResumoPedido) {
 
-    const setarProdutosResumo = () => {
-        const prods: Produto[] = produtos.map((item, i) => {
-            return (buscarProduto(item.id!)! as Produto);
-        })
-        return prods
-
-    }
-    const [produtosResumo, setProdutosResumo] = useState<Produto[]>(setarProdutosResumo())
 
     const calcularSubtotal = () => {
         let soma = 0
         if(agendamento){
             soma = agendamento.varianteServico.preco
         }else{
-            produtosResumo.map((item, i) => {
-                soma += item.precoNovo * produtos[i].quantidade
+            produtos.map((item, i) => {
+                soma += item.varianteProduto.preco * produtos[i].quantidade
             })
         }
         return soma
@@ -72,11 +64,11 @@ export default function ResumoPedido({ produtos, desconto, frete, plano, agendam
                     {
                         <div className="flex flex-col text-sm py-4">
                             {
-                                produtosResumo.map((item, i) => (
+                                produtos.map((item, i) => (
                                     <div className="flex flex-row justify-between sm:gap-8 gap-2" key={i}>
-                                        <p className="text-xs sm:text-sm">{produtos[i].quantidade}x</p>
-                                        <p className="w-full text-start line-clamp-1 text-xs sm:text-sm">{item.nomeProduto}</p>
-                                        <p className="text-xs sm:text-sm">R${(item.precoNovo * produtos[i].quantidade).toFixed(2).replace(".", ",")}</p>
+                                        <p className="text-xs sm:text-sm">{item.quantidade}x</p>
+                                        <p className="w-full text-start line-clamp-1 text-xs sm:text-sm">{item.produto.nome}</p>
+                                        <p className="text-xs sm:text-sm">R${(item.varianteProduto.preco * produtos[i].quantidade).toFixed(2).replace(".", ",")}</p>
                                     </div>
                                 ))
                             }

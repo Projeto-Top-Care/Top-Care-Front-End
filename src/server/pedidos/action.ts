@@ -1,14 +1,11 @@
-import pedidos from "@/banco/pedidos.json"
-import { Pedidos } from "@/types/pedidos"
+import { axiosAPI } from "../api"
 
-export function buscarPedidoAdm(id: number){
-    const pedido: Pedidos[] | undefined = pedidos.filter((pedido)=>{
-        return pedido.id == id
-    })
+export async function criarPedido(id: number, payload: any){
+    const response = await axiosAPI.post(`/pedidos?id=${id}`, payload)
+    return response.data
+}
 
-    if(pedido){
-        return pedido[0]
-    }else{
-        throw new Error("Agendamento não encontrado")
-    }
+export async function buscarPedido(id: number){
+    const response = await axiosAPI.get(`/pedidos/${id}`)
+    return response.data
 }

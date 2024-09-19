@@ -5,21 +5,20 @@ import { useCarrinho } from '@/context/CarrinhoContext'
 import { QuantidadeProduto } from '@/types/usuarios'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import InputQuantidade from './InputQuantidade'
+import { ProdutoCompleto, VarianteProps } from '@/types/produto'
+import { QuantidadeProdutoCarrinho } from './page'
+import { removerProduto } from '@/server/carrinho/action'
 
 interface Produtos {
-    id: number
-    imagemProduto: string
-    nomeProduto: string
-    variacao: string
-    preco: number
-    estoque: number
+    produto: ProdutoCompleto,
+    variante: VarianteProps,
+    produtoQuantidade: QuantidadeProdutoCarrinho,
+    setAtt: Dispatch<SetStateAction<number>>
 }
 
-export default function Produtos({ id, imagemProduto, variacao, nomeProduto, preco, estoque }: Produtos) {
-    const {items} = useCarrinho()
-    const [quantidade, setQuantidade] = useState<number>(1)
-    const [checked, setChecked] = useState<boolean>(true)
-    const [precoTotal, setPrecoTotal] = useState<number>(preco)
+export default function Produtos({ produto, variante, produtoQuantidade, setAtt}: Produtos) {
+
+    const [precoTotal, setPrecoTotal] = useState<number>(variante.preco)
     const [open, setOpen] = useState<boolean>(false)
     const [sim, setSim] = useState<boolean>(false)
 
@@ -27,32 +26,19 @@ export default function Produtos({ id, imagemProduto, variacao, nomeProduto, pre
         setOpen(true)
     }
 
-    const removeItem = () => {
+    const removeItem = async () => {
         if (sim) {
-            const carrinho = items
-            const carrinhoAtualizado = carrinho.filter((item) => {
-                return !((item as unknown as QuantidadeProduto).id == id)
-            })
-            localStorage.setItem('carrinho', JSON.stringify(carrinhoAtualizado))
-            location.reload()
+            await removerProduto(produtoQuantidade.id).then(() => setAtt((prev) => prev + 1))
         }
     }
 
     const atualizarCarrinho = () => {
-        const carrinho = items
-        const newCarrinho = carrinho.map((item) => {
-            if ((item as unknown as QuantidadeProduto).id == id) {
-                return { id: id, quantidade: quantidade }
-            } else {
-                return item
-            }
-        })
-        localStorage.setItem('carrinho', JSON.stringify(newCarrinho))
+        ""
     }
     useEffect(() => {
         atualizarCarrinho()
-        setPrecoTotal(preco * quantidade)
-    }, [quantidade])
+        produtoQuantidade && setPrecoTotal(variante.preco * produtoQuantidade.quantidade)
+    }, [produtoQuantidade?.quantidade ? produtoQuantidade.quantidade : 0])
 
     useEffect(() => {
         removeItem()
@@ -65,16 +51,19 @@ export default function Produtos({ id, imagemProduto, variacao, nomeProduto, pre
                 <div className='flex flex-row items-center h-full w-full'>
                     <div className='flex flex-row justify-center items-center md:w-28 w-20 h-full'>
                         <div className='flex flex-row items-center justify-center w-[100%]'>
-                            <img src={imagemProduto} alt="" className='w-[80%]' />
+                            <img src={produto.imagens[0].caminho} alt="" className='w-[80%]' />
                         </div>
                     </div>
                     <div className='flex flex-col md:flex-row items-start h-full md:w-[80%] w-[70%] md:justify-between justify-center'>
                         <div className='flex items-center justify-center md:h-full h-auto'>
-                            <p className='font-poppins md:text-sm text-xs overflow-hidden line-clamp-1 md:line-clamp-2 w-full md:w-full'>{nomeProduto}- {variacao}</p>
+                            <p className='font-poppins md:text-sm text-xs overflow-hidden line-clamp-1 md:line-clamp-2 w-full md:w-full'>
+                                {produto.nome} - {" "} 
+                                 {variante.cor ? variante.cor : ""+ " "+ variante.tamanho ? variante.tamanho : "" + " "+ variante.peso ? variante.peso : ""+" "+ variante.unidades ? variante.unidades : "" }</p>
                         </div>
-                        <div className='flex flex-col'>
-                            <InputQuantidade limite={estoque} valorQuantidade={setQuantidade} abrirPopUp={abrirPopUp} value={quantidade} />
-                        </div>
+                        <div className='flex flex-col'>{
+                            produtoQuantidade && produtoQuantidade.quantidade != 0 &&
+                            <InputQuantidade limite={variante.estoque} abrirPopUp={abrirPopUp} value={produtoQuantidade.quantidade} id={produtoQuantidade.id} setAtt={setAtt}/>
+                        }</div>
                     </div>
                 </div>
                 <div className='flex flex-col items-center w-24'>

@@ -3,7 +3,7 @@ import ResumoPedido from "@/components/ResumoPedido/resumoPedido"
 import TituloLinha from "@/components/TituloLinha/TituloLinha"
 import { useEffect, useState } from "react"
 import { IoCopyOutline } from "react-icons/io5"
-import { Usuario, QntProduto } from "@/types/usuarios"
+import { Usuario, QuantidadeProduto } from "@/types/usuarios"
 import { buscarUsuario } from "@/server/usuario/action"
 import { useRouter } from "next/navigation"
 import { useUserID } from "@/context/UserIDContext"
@@ -14,6 +14,8 @@ import { Agendamentos } from "@/types/agendamentos"
 import { buscarAgendamento, cancelarAgendamento, verificarPagamento } from "@/server/agendamentos/action"
 import { useError } from "@/context/ErrorContext"
 import Erro from "@/components/Pop-up/Erro/Erro"
+import { CarrinhoProps } from "@/app/(misto)/carrinho/page"
+import { buscarCarrinho } from "@/server/carrinho/action"
 
 interface BoletoProps {
     searchParams: {
@@ -33,9 +35,11 @@ export default function PagamentoPix({ searchParams }: BoletoProps) {
 
     useEffect(() => {
         const func = async () => {
-            const agend = await buscarAgendamento(agendamentoId)
-            if (agend) {
-                setAgendamento(agend)
+            if (agendamentoId) {
+                const agend = await buscarAgendamento(agendamentoId)
+                if (agend) {
+                    setAgendamento(agend)
+                }
             }
         }
         func()
@@ -57,7 +61,7 @@ export default function PagamentoPix({ searchParams }: BoletoProps) {
         const elapsedTime = new Date().getTime() - parseInt(startTime.toString());
         const remainingTime = 3600000 - elapsedTime; // 1 hora = 3600000 ms
 
-        if (remainingTime > 0) {
+        if (remainingTime > 0 && agendamentoId) {
             // Configura o intervalo para imprimir o número 1 a cada minuto
             const interval = setInterval(async () => {
                 const resp = await verificarPagamento(agendamentoId)
@@ -66,7 +70,7 @@ export default function PagamentoPix({ searchParams }: BoletoProps) {
                     push("/Perfil")
                 } // Ação a ser executada a cada 5 segundos
             }, 5000); // 5000 ms = 5 segundos
-            setIntervalId(interval);    
+            setIntervalId(interval);
 
             // Configura o timeout para parar o intervalo após o tempo restante
             const timeout = setTimeout(async () => {
@@ -94,7 +98,6 @@ export default function PagamentoPix({ searchParams }: BoletoProps) {
     const { push } = useRouter();
     const { getUserID } = useUserID()
     const conf = useConfirmacao()
-    const { items } = useCarrinho()
 
     const getUser = async () => {
         const id = getUserID()
@@ -108,12 +111,22 @@ export default function PagamentoPix({ searchParams }: BoletoProps) {
     }, [])
 
     const [usuarioLogado, setUsuarioLogado] = useState<Usuario>()
-    const pedido: QntProduto[] = (items as unknown as QntProduto[])
+    const [carrinho, setCarrinho] = useState<CarrinhoProps>()
 
     const copyContent = (content: string) => {
         navigator.clipboard.writeText(content);
         conf.addConfirmacao("Copiado")
     }
+
+    useEffect(() => {
+        const func = async () => {
+            if (usuarioLogado) {
+                const carrinho = await buscarCarrinho(usuarioLogado.id)
+                setCarrinho(carrinho)
+            }
+        }
+        func()
+    }, [usuarioLogado])
 
     return (
         <main>
@@ -124,7 +137,9 @@ export default function PagamentoPix({ searchParams }: BoletoProps) {
 
                 <section className="flex flex-col-reverse gap-2 sm:flex-row sm:px-2 md:px-8 lg:px-20">
                     <section className="p-4 w-full sm:w-1/2">
-                        <ResumoPedido produtos={pedido} desconto={0} frete={0} agendamento={agendamento} />
+                        {
+                            carrinho && <ResumoPedido produtos={carrinho.produtos} desconto={0} frete={0} agendamento={agendamento} />
+                        }
                     </section>
 
                     <section className="font-poppins gap-8 text-preto flex flex-col justify-center items-center sm:w-[50%]">

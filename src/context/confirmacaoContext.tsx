@@ -26,7 +26,7 @@ export const ConfirmacaoProvider: React.FC<ConfirmacaoProviderProps> = ({ childr
     setConfirmacoes(confirmacoesT);
     setTimeout(() => {
       setConfirmacoes((confirmacoes) => confirmacoes.filter((confirmacao) => confirmacao.id !== id));
-    }, 4000);
+    }, 2000);
   };
 
   return (

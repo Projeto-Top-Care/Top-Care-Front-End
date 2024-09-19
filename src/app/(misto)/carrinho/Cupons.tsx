@@ -13,7 +13,7 @@ interface ICupons {
 export default function Cupons({ cupons, setCupom, setOpenCupons }: ICupons) {
 
     const renderCupons = () => {
-        if (cupons.length != 0) {
+        if (cupons && cupons.length != 0) {
             return (
                 cupons.map((cupom, i) => (
                     <div key={cupom.nome + i} className='flex flex-col justify-center gap-2 px-4 lg:min-h-16 md:min-h-28 min-h-20 hover:bg-gray-300' onClick={() => setCupom(cupom)}>

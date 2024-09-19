@@ -1,7 +1,7 @@
 'use client'
 import VarianteServico from '@/app/(adm)/cadastrarServico/VarianteServico'
 import { PetsProps, Servico, VariantesProps } from '@/types/servicos'
-import React, { useEffect, useState } from 'react'
+import React, { Dispatch, useEffect, useState } from 'react'
 import InputFile from '../InputFile/InputFile'
 import InputText from '../InputText/InputText'
 import CadastroVariante from '../Pop-up/CadastroVariante/CadastroVariante'
@@ -18,9 +18,11 @@ interface TabelaServicosProps {
     setFuncionarios: React.Dispatch<React.SetStateAction<PetsProps[]>>
     variantes: VariantesProps[]
     setVariantes: React.Dispatch<React.SetStateAction<VariantesProps[]>>
+    imagens?: File[]
+    setImagens?: Dispatch<React.SetStateAction<File[]>>
 }
 
-export default function TabelaServicos({ servico, pets, setPets, funcionarios, setFuncionarios, variantes, setVariantes }: TabelaServicosProps) {
+export default function TabelaServicos({ servico, pets, setPets, funcionarios, setFuncionarios, variantes, setVariantes, setImagens, imagens }: TabelaServicosProps) {
     
     const [openVariante, setOpenVariante] = useState<boolean>(false)
 
@@ -36,7 +38,7 @@ export default function TabelaServicos({ servico, pets, setPets, funcionarios, s
                     <div className='flex md:flex-row flex-col mt-7 gap-5'>
                         <div className=' flex flex-col md:items-start items-center'>
                             <div className='md:w-28 w-24 md:h-28 h-24'>
-                                <InputFile rounded='rounded-lg' />
+                                {setImagens && imagens && <InputFile rounded='rounded-xl' setImagens={setImagens} imagens={imagens} />}
                             </div>
                         </div>
                         <div className='w-full flex flex-col gap-8'>
@@ -45,6 +47,7 @@ export default function TabelaServicos({ servico, pets, setPets, funcionarios, s
                                     placeholder='Nome do serviço*'
                                     name='nome'
                                     defaultValue={servico?.nome}
+                                    required
                                 />
                             </div>
                             <div>
@@ -58,6 +61,7 @@ export default function TabelaServicos({ servico, pets, setPets, funcionarios, s
                             height='h-32'
                             name='descricao'
                             defaultValue={servico?.descricao}
+                            required
                         />
                     </div>
                     <div className='mt-4'>
